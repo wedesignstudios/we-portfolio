@@ -1,0 +1,29 @@
+{
+  "name": "we-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio app to showcase design and development projects.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wedesignstudios/we-portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "we",
+    "design",
+    "studios",
+    "node"
+  ],
+  "author": "David Elden",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wedesignstudios/we-portfolio/issues"
+  },
+  "homepage": "https://github.com/wedesignstudios/we-portfolio#readme",
+  "dependencies": {
+    "express": "^4.15.0"
+  }
+}

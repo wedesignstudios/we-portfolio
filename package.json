@@ -1,10 +1,11 @@
 {
   "name": "we-portfolio",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Portfolio app to showcase design and development projects.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -12,9 +13,7 @@
   },
   "keywords": [
     "portfolio",
-    "we",
-    "design",
-    "studios",
+    "we design studios",
     "node"
   ],
   "author": "David Elden",
@@ -24,6 +23,22 @@
   },
   "homepage": "https://github.com/wedesignstudios/we-portfolio#readme",
   "dependencies": {
-    "express": "^4.15.0"
+    "body-parser": "~1.16.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.0",
+    "express": "^4.15.0",
+    "hbs": "~4.0.1",
+    "morgan": "~1.7.0",
+    "node-sass-middleware": "0.9.8",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "serve-favicon": "~2.3.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1"
   }
 }

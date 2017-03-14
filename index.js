@@ -6,7 +6,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const knex = require('knex');
 
+const clients = require('./routes/clients');
+const images = require('./routes/images');
 const index = require('./routes/index');
+const projects = require('./routes/projects');
 const users = require('./routes/users');
 
 const ENV = process.env.NODE_ENV || 'development';
@@ -35,6 +38,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use('/', index);
+app.use('/clients', clients);
+app.use('/images', images);
+app.use('/projects', projects);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

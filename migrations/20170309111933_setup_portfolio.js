@@ -37,13 +37,13 @@ exports.up = function(knex, Promise) {
       tbl.boolean('index_page');
       tbl.timestamps();
     }),
-    knex.schema.createTableIfNotExists('clients_projects', (tbl) => {
+    knex.schema.createTableIfNotExists('projects_clients', (tbl) => {
       tbl.increments('id').primary();
       tbl.integer('project_id').references('projects.id');
       tbl.integer('client_id').references('clients.id');
       tbl.timestamps();
     }),
-    knex.schema.createTableIfNotExists('collaborators_projects', (tbl) => {
+    knex.schema.createTableIfNotExists('projects_collaborators', (tbl) => {
       tbl.increments('id').primary();
       tbl.integer('project_id').references('projects.id');
       tbl.integer('collaborator_id').references('collaborators.id');
@@ -59,6 +59,6 @@ exports.down = function(knex, Promise) {
     .dropTable('collaborators')
     .dropTable('addresses')
     .dropTable('images')
-    .dropTable('clients_projects')
-    .dropTable('collaborators_projects');
+    .dropTable('projects_clients')
+    .dropTable('projects_collaborators');
 };

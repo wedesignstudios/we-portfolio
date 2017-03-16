@@ -6,11 +6,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const knex = require('knex');
 
-const clients = require('./routes/clients');
-const images = require('./routes/images');
-const index = require('./routes/index');
-const projects = require('./routes/projects');
-const users = require('./routes/users');
+const clients = require('./controllers/clients');
+const images = require('./controllers/images');
+const index = require('./controllers/index');
+const projects = require('./controllers/projects');
+const users = require('./controllers/users');
 
 const ENV = process.env.NODE_ENV || 'development';
 const config = require('./knexfile');

@@ -1,13 +1,14 @@
 const bookshelf = require('../db/bookshelf');
 
-const Project = require('./project.js');
-const Address = require('./address.js');
+const Project = require('./project');
+const Address = require('./address');
+const ProjectsCollaborators = require('./projects_collaborators');
 
 const Collaborator = bookshelf.Model.extend({
   tableName: 'collaborators',
   hasTimestamps: true,
   projects: function() {
-    return this.belongsToMany('Project', 'projects_collaborators', 'project_id');
+    return this.belongsToMany('Project').through('ProjectsCollaborators');
   },
   address: function() {
     return this.hasOne('Address');

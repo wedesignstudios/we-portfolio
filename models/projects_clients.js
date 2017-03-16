@@ -1,16 +1,16 @@
 const bookshelf = require('../db/bookshelf');
 
-const Project = require('./project.js');
-const Client = require('./client.js');
+const Project = require('./project');
+const Client = require('./client');
 
 const ProjectsClients = bookshelf.Model.extend({
   tableName: 'projects_clients',
   hasTimestamps: true,
   project: function() {
-    return this.belongsTo(Project);
+    return this.belongsTo('Project');
   },
   client: function() {
-    return this.belongsTo(Client);
+    return this.belongsTo('Client');
   }
 });
 

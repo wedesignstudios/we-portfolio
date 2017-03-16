@@ -1,7 +1,7 @@
 const bookshelf = require('../db/bookshelf');
 
-const Client = require('./client.js');
-const Collaborator = require('./collaborator.js');
+const Client = require('./client');
+const Collaborator = require('./collaborator');
 
 const Address = bookshelf.Model.extend({
   tableName: 'addresses',

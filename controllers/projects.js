@@ -64,4 +64,17 @@ router.post('/create', (req, res, next) => {
     };
 });
 
+router.delete('/delete/:id', (req, res, next) => {
+  Project
+    .forge({id: req.params.id})
+    .destroy()
+    .then(() => {
+      res.send(`Project ID: ${req.params.id} has been deleted.`);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

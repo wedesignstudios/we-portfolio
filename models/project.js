@@ -18,6 +18,8 @@ const Project = bookshelf.Model.extend({
   images: function() {
     return this.hasMany('Image');
   }
+}, {
+  dependents: ['clients', 'collaborators', 'images']
 });
 
 module.exports = bookshelf.model('Project', Project);

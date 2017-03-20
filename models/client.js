@@ -13,6 +13,8 @@ const Client = bookshelf.Model.extend({
   address: function() {
     return this.hasOne('Address');
   }
+}, {
+  dependents: ['projects', 'address']
 });
 
 module.exports = bookshelf.model('Client', Client);

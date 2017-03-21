@@ -14,7 +14,7 @@ const Collaborator = bookshelf.Model.extend({
     return this.hasOne('Address');
   }
 }, {
-  dependents: ['projects', 'address']
+  dependents: ['projects']
 });
 
 module.exports = bookshelf.model('Collaborator', Collaborator);

@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const knex = require('knex');
 
 const clients = require('./controllers/clients');
+const collaborators = require('./controllers/collaborators');
 const images = require('./controllers/images');
 const index = require('./controllers/index');
 const projects = require('./controllers/projects');
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routes
 app.use('/', index);
 app.use('/clients', clients);
+app.use('/collaborators', collaborators);
 app.use('/images', images);
 app.use('/projects', projects);
 app.use('/users', users);

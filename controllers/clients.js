@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
       res.json(clients.toJSON());
     })
     .catch((err) => {
-      console.log('Error message: ', err);
+      console.error(err);
       res.sendStatus(500);
     });
 });
@@ -33,7 +33,7 @@ router.get('/:id', (req, res, next) => {
       res.json(client.toJSON());
     })
     .catch((err) => {
-      console.log('Error message: ', err);
+      console.error(err);
       res.sendStatus(500);
     });
 });
@@ -70,7 +70,7 @@ router.put('/:id', (req, res, next) => {
   if (Object.keys(formData).length != 0) {
     Client
       .forge({id: req.params.id})
-      .save(formData)
+      .save(formData, {method: 'update'})
       .then((client) => {
         client = client.toJSON();
         res.send(`Client ${client.name} has been updated.`);

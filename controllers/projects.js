@@ -4,7 +4,7 @@ const params = require('params');
 
 const Project = require('../models/project');
 
-// GET all projects
+// INDEX all projects
 router.get('/', (req, res, next) => {
   Project
     .collection()
@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// GET project by ID
+// SHOW a project by ID
 router.get('/:id', (req, res, next) => {
   Project
     .forge({id: req.params.id})
@@ -38,8 +38,8 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-// POST create new project
-router.post('/create', (req, res, next) => {
+// CREATE a new project
+router.post('/', (req, res, next) => {
   const clients_ids = req.body.clients_ids;
   const collaborators_ids = req.body.collaborators_ids;
 
@@ -51,8 +51,8 @@ router.post('/create', (req, res, next) => {
       .forge(formData)
       .save()
       .then((project) => {
-        project.clients().attach(clients_ids);
-        project.collaborators().attach(collaborators_ids);
+        if (clients_ids) project.clients().attach(clients_ids);
+        if (collaborators_ids) project.collaborators().attach(collaborators_ids);
         res.redirect(`/projects/${project.id}`);
       })
       .catch((err) => {
@@ -64,7 +64,29 @@ router.post('/create', (req, res, next) => {
     };
 });
 
-router.delete('/delete/:id', (req, res, next) => {
+// UPDATE a project
+router.put('/:id', (req, res, next) => {
+  const allowedKeys = ['name', 'date', 'description'];
+  const formData = params(req.body).only(allowedKeys);
+
+  if (Object.keys(formData).length != 0) {
+    Project
+      .forge({id: req.params.id})
+      .save(formData, {method: 'update'})
+      .then((project) => {
+        res.send(`Project ID: ${clients_ids} has been updated.`);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+    } else {
+      res.status(400).send('Bad Request');
+    };
+});
+
+// DELETE a project
+router.delete('/:id', (req, res, next) => {
   Project
     .forge({id: req.params.id})
     .destroy()

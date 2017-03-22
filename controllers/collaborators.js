@@ -64,6 +64,9 @@ router.post('/', (req, res, next) => {
 
 // UPDATE a collaborator
 router.put('/:id', (req, res, next) => {
+  const projects_ids = req.body.projects_ids;
+  const projects_ids_detach = req.body.projects_ids_detach;
+
   const allowedKeys = ['name', 'url'];
   const formData = params(req.body).only(allowedKeys);
 
@@ -72,6 +75,8 @@ router.put('/:id', (req, res, next) => {
       .forge({id: req.params.id})
       .save(formData, {method: 'update'})
       .then((collaborator) => {
+        if (projects_ids_detach) collaborator.projects().detach(projects_ids_detach);
+        if (projects_ids) collaborator.projects().attach(projects_ids);      
         collaborator = collaborator.toJSON();
         res.send(`Collaborator ${collaborator.name} has been updated.`);
       })

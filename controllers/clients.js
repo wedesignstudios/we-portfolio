@@ -64,6 +64,9 @@ router.post('/', (req, res, next) => {
 
 // UPDATE a client
 router.put('/:id', (req, res, next) => {
+  const projects_ids = req.body.projects_ids;
+  const projects_ids_detach = req.body.projects_ids_detach;
+
   const allowedKeys = ['name', 'url'];
   const formData = params(req.body).only(allowedKeys);
 
@@ -72,6 +75,8 @@ router.put('/:id', (req, res, next) => {
       .forge({id: req.params.id})
       .save(formData, {method: 'update'})
       .then((client) => {
+        if (projects_ids_detach) client.projects().detach(projects_ids_detach);
+        if (projects_ids) client.projects().attach(projects_ids);
         client = client.toJSON();
         res.send(`Client ${client.name} has been updated.`);
       })

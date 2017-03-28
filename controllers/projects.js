@@ -57,7 +57,11 @@ router.post('/', (req, res, next) => {
       })
       .catch((err) => {
         console.error(err);
-        res.sendStatus(500);
+        if (err.name == 'DuplicateError') {          
+          res.status(500).send(`${err.name}: A Project with this ${err.field} already exists.`);          
+        } else {
+          res.sendStatus(500);
+        }        
       });
     } else {
       res.status(400).send('Bad Request');

@@ -7,6 +7,7 @@ const ProjectsClients = require('./projects_clients');
 const Client = bookshelf.Model.extend({
   tableName: 'clients',
   hasTimestamps: true,
+  duplicates: ['name'],
   projects: function() {
     return this.belongsToMany('Project').through('ProjectsClients');
   },

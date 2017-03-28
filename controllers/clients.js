@@ -54,8 +54,12 @@ router.post('/', (req, res, next) => {
         res.redirect(`/clients/${client.id}`);
       })
       .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
+        console.error(err);        
+        if (err.name == 'DuplicateError') {
+          res.status(500).send(`${err.name}: A Client with this ${err.field} already exists.`);          
+        } else {
+          res.sendStatus(500);
+        }
     })
   } else {
     res.status(400).send('Bad Request');

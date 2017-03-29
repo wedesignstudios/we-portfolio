@@ -21780,6 +21780,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CreateProject = __webpack_require__(180);
 var CreateClient = __webpack_require__(81);
 var CreateCollaborator = __webpack_require__(179);
+var CreateImage = __webpack_require__(181);
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -21798,7 +21799,8 @@ var App = function (_Component) {
         null,
         _react2.default.createElement(CreateProject, null),
         _react2.default.createElement(CreateClient, null),
-        _react2.default.createElement(CreateCollaborator, null)
+        _react2.default.createElement(CreateCollaborator, null),
+        _react2.default.createElement(CreateImage, null)
       );
     }
   }]);
@@ -21967,6 +21969,94 @@ var CreateProject = function (_React$Component) {
 }(_react2.default.Component);
 
 module.exports = CreateProject;
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(53);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(52);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CreateImage = function (_React$Component) {
+  _inherits(CreateImage, _React$Component);
+
+  function CreateImage() {
+    _classCallCheck(this, CreateImage);
+
+    return _possibleConstructorReturn(this, (CreateImage.__proto__ || Object.getPrototypeOf(CreateImage)).apply(this, arguments));
+  }
+
+  _createClass(CreateImage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Add A New Image'
+        ),
+        _react2.default.createElement(
+          'form',
+          null,
+          _react2.default.createElement(
+            'label',
+            null,
+            'Image Title: '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'title' }),
+          _react2.default.createElement(
+            'label',
+            null,
+            'Alt Tag: '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'alt' }),
+          _react2.default.createElement(
+            'label',
+            null,
+            'Image URL: '
+          ),
+          _react2.default.createElement('input', { type: 'text', name: 'url' }),
+          _react2.default.createElement('input', { type: 'hidden', name: 'project_id' }),
+          _react2.default.createElement(
+            'label',
+            null,
+            'Use this image on index page?: '
+          ),
+          _react2.default.createElement('input', { type: 'checkbox', name: 'index_page' }),
+          _react2.default.createElement(
+            'button',
+            { type: 'submit' },
+            'Submit'
+          )
+        )
+      );
+    }
+  }]);
+
+  return CreateImage;
+}(_react2.default.Component);
+
+module.exports = CreateImage;
 
 /***/ })
 /******/ ]);

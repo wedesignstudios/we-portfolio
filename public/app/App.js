@@ -2,16 +2,29 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+const CreateProject = require('./components/CreateProject');
+const CreateClient = require('./components/CreateClient');
+const CreateCollaborator = require('./components/CreateCollaborator');
+
 class App extends Component {
 
   render() {
     return (
       <div>
-          This is a REACT Component!
+        <CreateProject />
+        <CreateClient />
+        <CreateCollaborator />
       </div>
     )
   }
 
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(
+  (
+    <div>
+      <App />
+    </div>
+  ),
+  document.getElementById('app')
+);

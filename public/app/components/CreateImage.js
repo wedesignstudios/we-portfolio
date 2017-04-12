@@ -7,16 +7,26 @@ class CreateImage extends React.Component {
       <div>
         <h3>Add A New Image</h3>
         <form>
-          <label>Image Title: </label>
-          <input type="text" name="title" />
-          <label>Alt Tag: </label>
-          <input type="text" name="alt" />
-          <label>Image URL: </label>
-          <input type="text" name="url" />          
-          <input type="hidden" name="project_id" />
-          <label>Use this image on index page?: </label>
-          <input type="checkbox" name="index_page" />
-          <button type="submit">Submit</button>
+          <div>
+            <label>Image Title: </label>
+            <input type="text" name="title" />
+          </div>
+          <div>
+            <label>Alt Tag: </label>
+            <input type="text" name="alt" />
+          </div>
+          <div>
+            <label>Image URL: </label>
+            <input type="text" name="url" />
+            <input type="hidden" name="project_id" />
+          </div>
+          <div>
+            <label>Use this image on index page?: </label>
+            <input type="checkbox" name="index_page" />
+          </div>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
         </form>
       </div>
     );

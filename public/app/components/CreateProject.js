@@ -13,7 +13,7 @@ function postRequest(state) {
     }
   });
 
-  xhr.open("POST", "http://localhost:3000/projects");
+  xhr.open("POST", "/projects");
   xhr.setRequestHeader("content-type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("cache-control", "no-cache");
 

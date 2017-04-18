@@ -1,5 +1,9 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 function postRequest(state) {
   const data = state;
@@ -30,10 +34,12 @@ class CreateProject extends React.Component {
       description: '',
       nameErr: false,
       dateErr: false,
-      descriptionErr: false
+      descriptionErr: false,
+      dateClear: false,
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDateInputChange = this.handleDateInputChange.bind(this);
     this.validateForm = this.validateForm.bind(this);
   }
 
@@ -44,6 +50,13 @@ class CreateProject extends React.Component {
 
     this.setState({
       [name]: value
+    });
+  }
+
+  handleDateInputChange(date) {
+    this.setState({
+      date: date,
+      dateClear: true
     });
   }
 
@@ -78,11 +91,22 @@ class CreateProject extends React.Component {
             <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
             {this.state.nameErr ? <div id="name-validation-error" style={{color: 'red'}}>Name can not be blank. Please enter a project name.</div> : null}
           </div>
+
           <div>
             <label>Date Completed: </label>
-            <input type="text" name="date" value={this.state.date} onChange={this.handleInputChange} />
+            <DatePicker 
+                selected={this.state.date}
+                value={this.state.date}
+                name="date2"
+                placeholderText="Click to select a date"
+                popoverAttachment="top right"
+                popoverTargetAttachment="top center"
+                popoverTargetOffset="30px 0px"
+                isClearable={this.state.dateClear}
+                onChange={this.handleDateInputChange} />
             {this.state.dateErr ? <div id="date-validation-error" style={{color: 'red'}}>Date can not be blank. Please enter a project completed date.</div> : null}
           </div>
+
           <div>
             <label>Description: </label>
             <input type="textfield" name="description" value={this.state.description} onChange={this.handleInputChange} />

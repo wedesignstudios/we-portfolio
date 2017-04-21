@@ -25315,24 +25315,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function postRequest(state) {
-  var data = state;
-
-  var xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
-
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === 4) {
-      console.log(this.responseText);
-    }
-  });
-
-  xhr.open("POST", "/projects");
-  xhr.setRequestHeader("content-type", "application/json; charset=UTF-8");
-  xhr.setRequestHeader("cache-control", "no-cache");
-
-  xhr.send(JSON.stringify(data));
-}
+var DataActions = __webpack_require__(314);
 
 var CreateProject = function (_React$Component) {
   _inherits(CreateProject, _React$Component);
@@ -25399,7 +25382,7 @@ var CreateProject = function (_React$Component) {
         });
       }
 
-      postRequest(this.state);
+      DataActions.postRequest(this.state, '/projects');
     }
   }, {
     key: 'render',
@@ -39157,6 +39140,45 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var DataActions = {};
+
+DataActions.postRequest = function (state, apiEndpoint) {
+  var data = state;
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      console.log(this.responseText);
+    }
+  });
+
+  xhr.open("POST", apiEndpoint);
+  xhr.setRequestHeader("content-type", "application/json; charset=UTF-8");
+  xhr.setRequestHeader("cache-control", "no-cache");
+
+  xhr.send(JSON.stringify(data));
+};
+
+module.exports = DataActions;
 
 /***/ })
 /******/ ]);

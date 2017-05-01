@@ -26,11 +26,9 @@ class CreateProject extends React.Component {
     this.requiredFieldsBlank = true;
     this.handleOnChange = FormHandlers.handleOnChange;
     this.validateCheckRequiredField = FormValidations.checkRequiredField;
-    this.handleKeyPress = FormHandlers.preventAllButShiftAndTab;
-
-    // Marked for removal:
-    this.validateForm = this.validateForm.bind(this);
-    this.validateFormCheckForBlanks = FormValidations.checkForBlanks;
+    this.handleKeyPress = FormHandlers.preventSpaceKey;
+    this.handleDateKeyPress = FormHandlers.preventAllButShiftAndTab;
+    this.submitForm = this.submitForm.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -43,9 +41,8 @@ class CreateProject extends React.Component {
     return true;
   }
 
-  validateForm(event) {
+  submitForm(event) {
     event.preventDefault();
-    this.validateFormCheckForBlanks(this.requiredFields);
 
     // DataActions.postRequest(this.state, '/projects');
   }
@@ -62,6 +59,7 @@ class CreateProject extends React.Component {
                 name="name"
                 value={this.state.name}
                 onChange={(e) => this.handleOnChange(e, this)}
+                onFocus={(e) => this.handleKeyPress(e)}
                 onBlur={(e) => this.validateCheckRequiredField(e)} />
             {this.state.nameErr ? <div id="project-name-validation-error" style={{color: 'red'}}>Name can not be blank. Please enter a project name.</div> : null}
           </div>
@@ -80,7 +78,7 @@ class CreateProject extends React.Component {
                 popoverTargetAttachment="top center"
                 popoverTargetOffset="30px 0px"
                 onChange={(e) => this.handleOnChange(e, this)}
-                onFocus={(e) => this.handleKeyPress(e)}
+                onFocus={(e) => this.handleDateKeyPress(e)}
                 onBlur={(e) => this.validateCheckRequiredField(e)} />
             {this.state.dateErr ? <div id="project-date-validation-error" style={{color: 'red'}}>Date can not be blank. Please enter a project completed date.</div> : null}
           </div>
@@ -92,11 +90,12 @@ class CreateProject extends React.Component {
                 name="description"
                 value={this.state.description}
                 onChange={(e) => this.handleOnChange(e, this)}
+                onFocus={(e) => this.handleKeyPress(e)}
                 onBlur={(e) => this.validateCheckRequiredField(e)} />
             {this.state.descriptionErr ? <div id="project-description-validation-error" style={{color: 'red'}}>Description can not be blank. Please enter a project description.</div> : null}
           </div>
           <div>
-            <button disabled={this.requiredFieldsBlank} onClick={this.validateForm}>Submit</button>
+            <button disabled={this.requiredFieldsBlank} onClick={this.submitForm}>Submit</button>
           </div>
         </form>
       </div>

@@ -35,22 +35,6 @@ const FormValidations = {
     } else {
       this.setState({[err]: false});
     }
-  },
-
-  checkForBlanks: function() {
-    const argArr = arguments[0];
-
-    for(let i=0; i<argArr.length; i++) {
-      var arg = argArr[i];
-      var argStateValue = this.state[arg];
-      var err = `${arg}Err`;
-
-      if (!argStateValue) {
-        this.setState({[err]: true});
-      } else {
-        this.setState({[err]: false});
-      }
-    }
   }
 
 }

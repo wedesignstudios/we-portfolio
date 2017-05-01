@@ -41,6 +41,16 @@ const FormHandlers = {
         event.preventDefault();
       };
     });
+  },
+
+  preventSpaceKey: function(event) {
+    event.target.addEventListener('keydown', function(event) {
+      let key = event.key;
+
+      if(key === ' ' && !event.target.value) {
+        event.preventDefault();
+      };
+    });
   }
 
 };

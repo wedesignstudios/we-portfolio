@@ -11288,6 +11288,16 @@ var FormHandlers = {
         event.preventDefault();
       };
     });
+  },
+
+  preventSpaceKey: function preventSpaceKey(event) {
+    event.target.addEventListener('keydown', function (event) {
+      var key = event.key;
+
+      if (key === ' ' && !event.target.value) {
+        event.preventDefault();
+      };
+    });
   }
 
 };
@@ -11339,22 +11349,6 @@ var FormValidations = {
       this.setState(_defineProperty({}, err, true));
     } else {
       this.setState(_defineProperty({}, err, false));
-    }
-  },
-
-  checkForBlanks: function checkForBlanks() {
-    var argArr = arguments[0];
-
-    for (var i = 0; i < argArr.length; i++) {
-      var arg = argArr[i];
-      var argStateValue = this.state[arg];
-      var err = arg + 'Err';
-
-      if (!argStateValue) {
-        this.setState(_defineProperty({}, err, true));
-      } else {
-        this.setState(_defineProperty({}, err, false));
-      }
     }
   }
 
@@ -25516,11 +25510,9 @@ var CreateProject = function (_React$Component) {
     _this.requiredFieldsBlank = true;
     _this.handleOnChange = FormHandlers.handleOnChange;
     _this.validateCheckRequiredField = FormValidations.checkRequiredField;
-    _this.handleKeyPress = FormHandlers.preventAllButShiftAndTab;
-
-    // Marked for removal:
-    _this.validateForm = _this.validateForm.bind(_this);
-    _this.validateFormCheckForBlanks = FormValidations.checkForBlanks;
+    _this.handleKeyPress = FormHandlers.preventSpaceKey;
+    _this.handleDateKeyPress = FormHandlers.preventAllButShiftAndTab;
+    _this.submitForm = _this.submitForm.bind(_this);
     return _this;
   }
 
@@ -25536,10 +25528,9 @@ var CreateProject = function (_React$Component) {
       return true;
     }
   }, {
-    key: 'validateForm',
-    value: function validateForm(event) {
+    key: 'submitForm',
+    value: function submitForm(event) {
       event.preventDefault();
-      this.validateFormCheckForBlanks(this.requiredFields);
 
       // DataActions.postRequest(this.state, '/projects');
     }
@@ -25574,6 +25565,9 @@ var CreateProject = function (_React$Component) {
               onChange: function onChange(e) {
                 return _this2.handleOnChange(e, _this2);
               },
+              onFocus: function onFocus(e) {
+                return _this2.handleKeyPress(e);
+              },
               onBlur: function onBlur(e) {
                 return _this2.validateCheckRequiredField(e);
               } }),
@@ -25606,7 +25600,7 @@ var CreateProject = function (_React$Component) {
                 return _this2.handleOnChange(e, _this2);
               },
               onFocus: function onFocus(e) {
-                return _this2.handleKeyPress(e);
+                return _this2.handleDateKeyPress(e);
               },
               onBlur: function onBlur(e) {
                 return _this2.validateCheckRequiredField(e);
@@ -25632,6 +25626,9 @@ var CreateProject = function (_React$Component) {
               onChange: function onChange(e) {
                 return _this2.handleOnChange(e, _this2);
               },
+              onFocus: function onFocus(e) {
+                return _this2.handleKeyPress(e);
+              },
               onBlur: function onBlur(e) {
                 return _this2.validateCheckRequiredField(e);
               } }),
@@ -25646,7 +25643,7 @@ var CreateProject = function (_React$Component) {
             null,
             _react2.default.createElement(
               'button',
-              { disabled: this.requiredFieldsBlank, onClick: this.validateForm },
+              { disabled: this.requiredFieldsBlank, onClick: this.submitForm },
               'Submit'
             )
           )

@@ -35,6 +35,18 @@ const FormValidations = {
     } else {
       this.setState({[err]: false});
     }
+  },
+
+  trimData: function(stateObj) {
+    let keys = Object.keys(stateObj);
+
+    for(let i=0; i<keys.length; i++) {
+      let data = stateObj[keys[i]];
+
+      if(typeof data === 'string') {
+        stateObj[keys[i]] = data.trim();
+      }
+    }
   }
 
 }

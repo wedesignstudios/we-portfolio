@@ -22,8 +22,7 @@ const FormHandlers = {
 
   dateInputChange: function(event, _this) {
     _this.setState({
-      date: event,
-      dateClear: true
+      date: event
     });
 
     if(FormValidations.isMomentObjectNull(event)) {
@@ -51,6 +50,16 @@ const FormHandlers = {
         event.preventDefault();
       };
     });
+  },
+
+  resetForm: function(formID) {
+    const form = document.forms[formID];
+    const formInputs = form.getElementsByTagName("input");
+
+    for(let i=0; i<formInputs.length; i++) {
+      formInputs[i].value = '';
+    }
+    this.setState(this.initialState);
   }
 
 };

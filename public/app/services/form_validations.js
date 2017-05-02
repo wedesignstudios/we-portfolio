@@ -24,16 +24,16 @@ const FormValidations = {
     return false;
   },
 
-  checkRequiredField: function(event) {
+  checkRequiredField: function(event, _this) {
     const target = event.target;
     const value = target.value;
     const fieldName = target.name;
     const err = event.target.name + 'Err';
 
     if(FormValidations.isFieldBlank(event)) {
-      this.setState({[err]: true});
+      _this.setState({[err]: true});
     } else {
-      this.setState({[err]: false});
+      _this.setState({[err]: false});
     }
   },
 

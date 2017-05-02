@@ -22,6 +22,8 @@ class CreateProject extends React.Component {
       descriptionErr: false
     }
 
+    this.initialState = this.state;
+
     this.requiredFields = ['name', 'date', 'description'];
     this.requiredFieldsBlank = true;
     this.handleOnChange = FormHandlers.handleOnChange;
@@ -29,6 +31,7 @@ class CreateProject extends React.Component {
     this.handleKeyPress = FormHandlers.preventSpaceKey;
     this.handleDateKeyPress = FormHandlers.preventAllButShiftAndTab;
     this.submitForm = this.submitForm.bind(this);
+    this.resetForm = FormHandlers.resetForm;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -43,15 +46,15 @@ class CreateProject extends React.Component {
 
   submitForm(event) {
     event.preventDefault();
-
-    // DataActions.postRequest(this.state, '/projects');
+    FormValidations.trimData(this.state);
+    DataActions.postRequest(this.state, '/projects', this.resetForm('create-project'));
   }
 
   render() {
     return (
       <div>
         <h3>Add A New Project</h3>
-        <form>
+        <form id="create-project">
           <div>
             <label>Project Name: </label>
             <input

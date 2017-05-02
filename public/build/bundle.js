@@ -11215,15 +11215,17 @@ module.exports = getIteratorFn;
 
 var DataActions = {
 
-  postRequest: function postRequest(state, apiEndpoint) {
+  postRequest: function postRequest(state, apiEndpoint, callback) {
     var data = state;
-
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
-        console.log(this.responseText);
+        // console.log(this.responseText);
+        if (xhr.status === 200) {
+          callback;
+        };
       }
     });
 
@@ -11269,8 +11271,7 @@ var FormHandlers = {
 
   dateInputChange: function dateInputChange(event, _this) {
     _this.setState({
-      date: event,
-      dateClear: true
+      date: event
     });
 
     if (FormValidations.isMomentObjectNull(event)) {
@@ -11298,6 +11299,16 @@ var FormHandlers = {
         event.preventDefault();
       };
     });
+  },
+
+  resetForm: function resetForm(formID) {
+    var form = document.forms[formID];
+    var formInputs = form.getElementsByTagName("input");
+
+    for (var i = 0; i < formInputs.length; i++) {
+      formInputs[i].value = '';
+    }
+    this.setState(this.initialState);
   }
 
 };
@@ -11349,6 +11360,18 @@ var FormValidations = {
       this.setState(_defineProperty({}, err, true));
     } else {
       this.setState(_defineProperty({}, err, false));
+    }
+  },
+
+  trimData: function trimData(stateObj) {
+    var keys = Object.keys(stateObj);
+
+    for (var i = 0; i < keys.length; i++) {
+      var data = stateObj[keys[i]];
+
+      if (typeof data === 'string') {
+        stateObj[keys[i]] = data.trim();
+      }
     }
   }
 
@@ -25506,6 +25529,8 @@ var CreateProject = function (_React$Component) {
       descriptionErr: false
     };
 
+    _this.initialState = _this.state;
+
     _this.requiredFields = ['name', 'date', 'description'];
     _this.requiredFieldsBlank = true;
     _this.handleOnChange = FormHandlers.handleOnChange;
@@ -25513,6 +25538,7 @@ var CreateProject = function (_React$Component) {
     _this.handleKeyPress = FormHandlers.preventSpaceKey;
     _this.handleDateKeyPress = FormHandlers.preventAllButShiftAndTab;
     _this.submitForm = _this.submitForm.bind(_this);
+    _this.resetForm = FormHandlers.resetForm;
     return _this;
   }
 
@@ -25531,8 +25557,8 @@ var CreateProject = function (_React$Component) {
     key: 'submitForm',
     value: function submitForm(event) {
       event.preventDefault();
-
-      // DataActions.postRequest(this.state, '/projects');
+      FormValidations.trimData(this.state);
+      DataActions.postRequest(this.state, '/projects', this.resetForm('create-project'));
     }
   }, {
     key: 'render',
@@ -25549,7 +25575,7 @@ var CreateProject = function (_React$Component) {
         ),
         _react2.default.createElement(
           'form',
-          null,
+          { id: 'create-project' },
           _react2.default.createElement(
             'div',
             null,

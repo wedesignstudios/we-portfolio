@@ -1,14 +1,16 @@
 const DataActions = {
 
-  postRequest: (state, apiEndpoint) => {
+  postRequest: (state, apiEndpoint, callback) => {
     const data = state;
-
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function () {
+    xhr.addEventListener("readystatechange", function() {
       if (this.readyState === 4) {
-        console.log(this.responseText);
+        // console.log(this.responseText);
+        if(xhr.status === 200) {
+          callback;
+        };
       }
     });
 

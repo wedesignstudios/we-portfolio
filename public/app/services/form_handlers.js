@@ -2,12 +2,8 @@ const FormValidations = require('./form_validations');
 
 const FormHandlers = {
 
-  handleOnChange: function(event, _this) {
-    if(event._isAMomentObject) {
-      FormHandlers.dateInputChange(event, _this);
-    } else {
-      FormHandlers.inputChange(event, _this);
-    }
+  handleOnChange: function(event, _this) {    
+    FormHandlers.inputChange(event, _this);    
   },
 
   inputChange: function(event, _this) {
@@ -18,19 +14,7 @@ const FormHandlers = {
     _this.setState({
       [name]: value
     });
-  },
-
-  dateInputChange: function(event, _this) {
-    _this.setState({
-      date: event
-    });
-
-    if(FormValidations.isMomentObjectNull(event)) {
-      _this.setState({dateErr: true});
-    } else {
-      _this.setState({dateErr: false});
-    }
-  },
+  },  
 
   preventAllButShiftAndTab: function(event) {
     event.target.addEventListener('keydown', function(event) {
@@ -50,6 +34,16 @@ const FormHandlers = {
         event.preventDefault();
       };
     });
+  },
+
+  prependURL: function(event) {
+    if(!event.target.value) {
+      return event.target.value = 'http://';      
+    }
+  },
+
+  removePrependURL: function(event) {    
+    return event.target.value = '';    
   },
 
   resetForm: function(formID) {

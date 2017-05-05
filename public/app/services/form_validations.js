@@ -29,11 +29,24 @@ const FormValidations = {
     const value = target.value;
     const fieldName = target.name;
     const err = event.target.name + 'Err';
+    const errType = err + 'Type';
 
     if(FormValidations.isFieldBlank(event)) {
-      _this.setState({[err]: true});
+      _this.setState({
+        [err]: true,
+        [errType]: 'blank'
+      });
     } else {
       _this.setState({[err]: false});
+    }
+
+    if(fieldName === 'url' && value) {
+      if(!FormValidations.checkForValidURL(value)) {
+        _this.setState({
+          [err]: true,
+          [errType]: 'not valid'
+        })
+      };
     }
   },
 
@@ -46,6 +59,23 @@ const FormValidations = {
       if(typeof data === 'string') {
         stateObj[keys[i]] = data.trim();
       }
+    }
+  },
+
+  urlHasProtocol: function(url) {
+    if(typeof url !== 'string') {
+      return 'Function parameter is not a string.';
+    }
+    return (url.startsWith('http://') || url.startsWith('https://'));
+  },
+
+  checkForValidURL: function (url) {
+    const result = url.match(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]?\.[^\s0-9]{2,}|(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]?\.[^\s0-9]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]?\.[^\s0-9]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]?\.[^\s0-9]{2,})/g);
+
+    if(result === null) {
+      return false;
+    } else {
+      return result.join();
     }
   }
 

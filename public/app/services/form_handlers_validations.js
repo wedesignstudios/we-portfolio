@@ -15,11 +15,20 @@ const FormHandlersValidations = {
     }
   },
 
-  checkRequiredURLField: function(event, _this) {
-    if(event.target.value === 'http://') {
-      FormHandlers.removePrependURL(event);      
+  validateHandleURL: function(url, _this) {
+    const validURL = FormValidations.checkForValidURL(url);
+    console.log('validURL: ', validURL)
+
+    if(validURL === false) {
+      _this.setState({
+        urlErr: true,
+        urlErrType: 'not valid'
+      });
+    } else if(!FormValidations.urlHasProtocol(validURL)) {
+      console.log('prependURL: ', FormHandlers.prependURL(validURL));
+    } else {
+      console.log('validURL', validURL);
     }
-    FormValidations.checkRequiredField(event, _this);
   }
 
 }

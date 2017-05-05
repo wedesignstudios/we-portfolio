@@ -22,9 +22,7 @@ class CreateClient extends React.Component {
     this.requiredFieldsBlank = true;
     this.handleOnChange = FormHandlers.handleOnChange;
     this.validateCheckRequiredField = FormValidations.checkRequiredField;
-    this.validateCheckRequiredURLField = FormHandlersValidations.checkRequiredURLField;
     this.handleKeyPress = FormHandlers.preventSpaceKey;
-    this.prependURL = FormHandlers.prependURL;
     this.submitForm = this.submitForm;
     this.resetForm = FormHandlers.resetForm;
   }
@@ -42,8 +40,9 @@ class CreateClient extends React.Component {
   submitForm(event) {
     event.preventDefault();
     FormValidations.trimData(this.state);
+    FormHandlersValidations.validateHandleURL(this.state.url, this);
+    return
     // DataActions.postRequest(this.state, '/projects', this.resetForm('create-client'));
-    console.log(this.state);
   }
 
   render() {
@@ -56,28 +55,32 @@ class CreateClient extends React.Component {
             <input
                 type="text"
                 name="name"
+                className={this.state.nameErr ? 'err' : null}
                 value={this.state.name}
                 onChange={(e) => this.handleOnChange(e, this)}
                 onFocus={(e) => this.handleKeyPress(e)}
                 onBlur={(e) => this.validateCheckRequiredField(e, this)} />
-            {this.state.nameErr ? <div id="client-name-validation-error" style={{color: 'red'}}>Name can not be blank. Please enter a project name.</div> : null}
           </div>
           <div>
             <label>Website: </label>
             <input
-                type="url"
+                type="text"
                 name="url"
+                className={this.state.urlErr ? 'err' : null}
                 value={this.state.url}
                 placeholder="http://  "
                 onChange={(e) => this.handleOnChange(e, this)}
-                onFocus={(e) => this.prependURL(e)}
-                onBlur={(e) => this.validateCheckRequiredURLField(e, this)} />
-            {this.state.urlErr ? <div id="client-url-validation-error" style={{color: 'red'}}>Website can not be blank. Please enter a project name.</div> : null}
+                onBlur={(e) => this.validateCheckRequiredField(e, this)} />
           </div>
           <div>
             <button disabled={this.requiredFieldsBlank} onClick={(e) => this.submitForm(e)}>Submit</button>
           </div>
         </form>
+        <div className="errors">
+          {this.state.nameErr ? <div id="client-name-validation-error" style={{color: 'red'}}>Client Name can not be blank. Please enter a Client Name.</div> : null}
+          {(this.state.urlErr && this.state.urlErrType === 'blank') ? <div id="client-url-validation-error" style={{color: 'red'}}>Website can not be blank. Please enter a valid website URL.</div> : null}
+          {(this.state.urlErr && this.state.urlErrType === 'not valid') ? <div id="client-url-validation-error" style={{color: 'red'}}>Website URL is not valid. Please enter a valid Website URL.</div> : null}
+        </div>
       </div>
     );
   }

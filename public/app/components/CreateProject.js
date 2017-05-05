@@ -62,11 +62,11 @@ class CreateProject extends React.Component {
             <input
                 type="text"
                 name="name"
+                className={this.state.nameErr ? 'err' : null}
                 value={this.state.name}
                 onChange={(e) => this.handleOnChange(e, this)}
                 onFocus={(e) => this.handleKeyPress(e)}
                 onBlur={(e) => this.validateCheckRequiredField(e, this)} />
-            {this.state.nameErr ? <div id="project-name-validation-error" style={{color: 'red'}}>Name can not be blank. Please enter a project name.</div> : null}
           </div>
 
           <div>
@@ -75,17 +75,17 @@ class CreateProject extends React.Component {
                 selected={this.state.date}
                 value={this.state.date}
                 name="date"
+                className={this.state.dateErr ? 'err' : null}
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
                 placeholderText="Click to select a date"
                 popoverAttachment="top right"
                 popoverTargetAttachment="top center"
-                popoverTargetOffset="30px 0px"
+                popoverTargetOffset="38px 250px"
                 onChange={(e) => this.handleDateOnChange(e, this)}
                 onFocus={(e) => this.handleDateKeyPress(e)}
                 onBlur={(e) => this.validateCheckRequiredField(e, this)} />
-            {this.state.dateErr ? <div id="project-date-validation-error" style={{color: 'red'}}>Date can not be blank. Please enter a project completed date.</div> : null}
           </div>
 
           <div>
@@ -93,16 +93,21 @@ class CreateProject extends React.Component {
             <input
                 type="textfield"
                 name="description"
+                className={this.state.descriptionErr ? 'err' : null}
                 value={this.state.description}
                 onChange={(e) => this.handleOnChange(e, this)}
                 onFocus={(e) => this.handleKeyPress(e)}
                 onBlur={(e) => this.validateCheckRequiredField(e, this)} />
-            {this.state.descriptionErr ? <div id="project-description-validation-error" style={{color: 'red'}}>Description can not be blank. Please enter a project description.</div> : null}
           </div>
           <div>
             <button disabled={this.requiredFieldsBlank} onClick={this.submitForm}>Submit</button>
           </div>
         </form>
+        <div className="errors">
+          {this.state.nameErr ? <div id="project-name-validation-error" style={{color: 'red'}}>Name can not be blank. Please enter a project name.</div> : null}
+          {this.state.dateErr ? <div id="project-date-validation-error" style={{color: 'red'}}>Date can not be blank. Please enter a project completed date.</div> : null}
+          {this.state.descriptionErr ? <div id="project-description-validation-error" style={{color: 'red'}}>Description can not be blank. Please enter a project description.</div> : null}
+        </div>
       </div>
     );
   }

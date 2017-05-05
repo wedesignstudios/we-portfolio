@@ -36,14 +36,8 @@ const FormHandlers = {
     });
   },
 
-  prependURL: function(event) {
-    if(!event.target.value) {
-      return event.target.value = 'http://';      
-    }
-  },
-
-  removePrependURL: function(event) {    
-    return event.target.value = '';    
+  prependURL: function(url) {
+    return url = `http:\/\/${url}`;
   },
 
   resetForm: function(formID) {

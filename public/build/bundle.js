@@ -7984,14 +7984,14 @@ var FormValidations = {
     }
   },
 
-  trimData: function trimData(stateObj) {
+  trimData: function trimData(stateObj, _this) {
     var keys = Object.keys(stateObj);
 
     for (var i = 0; i < keys.length; i++) {
       var data = stateObj[keys[i]];
 
       if (typeof data === 'string') {
-        stateObj[keys[i]] = data.trim();
+        _this.setState(_defineProperty({}, keys[i], data.trim()));
       }
     }
   },
@@ -11421,17 +11421,18 @@ var FormHandlersValidations = {
 
   validateHandleURL: function validateHandleURL(url, _this) {
     var validURL = FormValidations.checkForValidURL(url);
-    console.log('validURL: ', validURL);
 
     if (validURL === false) {
       _this.setState({
         urlErr: true,
         urlErrType: 'not valid'
       });
+      return;
     } else if (!FormValidations.urlHasProtocol(validURL)) {
-      console.log('prependURL: ', FormHandlers.prependURL(validURL));
-    } else {
-      console.log('validURL', validURL);
+      validURL = FormHandlers.prependURL(validURL);
+      _this.setState({
+        url: validURL
+      });
     }
   }
 
@@ -25300,10 +25301,14 @@ var CreateClient = function (_React$Component) {
     key: 'submitForm',
     value: function submitForm(event) {
       event.preventDefault();
-      FormValidations.trimData(this.state);
+      FormValidations.trimData(this.state, this);
       FormHandlersValidations.validateHandleURL(this.state.url, this);
-      return;
-      // DataActions.postRequest(this.state, '/projects', this.resetForm('create-client'));
+
+      this.forceUpdate(function () {
+        if (!this.state.urlErr) {
+          DataActions.postRequest(this.state, '/clients', this.resetForm('create-client'));
+        };
+      });
     }
   }, {
     key: 'render',
@@ -25357,7 +25362,6 @@ var CreateClient = function (_React$Component) {
               name: 'url',
               className: this.state.urlErr ? 'err' : null,
               value: this.state.url,
-              placeholder: 'http://  ',
               onChange: function onChange(e) {
                 return _this2.handleOnChange(e, _this2);
               },
@@ -25686,8 +25690,10 @@ var CreateProject = function (_React$Component) {
     key: 'submitForm',
     value: function submitForm(event) {
       event.preventDefault();
-      FormValidations.trimData(this.state);
-      DataActions.postRequest(this.state, '/projects', this.resetForm('create-project'));
+      FormValidations.trimData(this.state, this);
+      this.forceUpdate(function () {
+        DataActions.postRequest(this.state, '/projects', this.resetForm('create-project'));
+      });
     }
   }, {
     key: 'render',

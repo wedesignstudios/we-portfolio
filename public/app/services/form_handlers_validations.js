@@ -16,18 +16,19 @@ const FormHandlersValidations = {
   },
 
   validateHandleURL: function(url, _this) {
-    const validURL = FormValidations.checkForValidURL(url);
-    console.log('validURL: ', validURL)
+    var validURL = FormValidations.checkForValidURL(url);
 
     if(validURL === false) {
       _this.setState({
         urlErr: true,
         urlErrType: 'not valid'
       });
+      return;
     } else if(!FormValidations.urlHasProtocol(validURL)) {
-      console.log('prependURL: ', FormHandlers.prependURL(validURL));
-    } else {
-      console.log('validURL', validURL);
+      validURL = FormHandlers.prependURL(validURL);
+      _this.setState({
+        url: validURL
+      });
     }
   }
 

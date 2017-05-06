@@ -39,10 +39,15 @@ class CreateClient extends React.Component {
 
   submitForm(event) {
     event.preventDefault();
-    FormValidations.trimData(this.state);
+    FormValidations.trimData(this.state, this);
     FormHandlersValidations.validateHandleURL(this.state.url, this);
-    return
-    // DataActions.postRequest(this.state, '/projects', this.resetForm('create-client'));
+
+    this.forceUpdate(function() {
+      if (!this.state.urlErr) {
+        DataActions.postRequest(this.state, '/clients', this.resetForm('create-client'));
+      };
+    });
+
   }
 
   render() {
@@ -68,7 +73,6 @@ class CreateClient extends React.Component {
                 name="url"
                 className={this.state.urlErr ? 'err' : null}
                 value={this.state.url}
-                placeholder="http://  "
                 onChange={(e) => this.handleOnChange(e, this)}
                 onBlur={(e) => this.validateCheckRequiredField(e, this)} />
           </div>

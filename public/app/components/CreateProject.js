@@ -48,8 +48,10 @@ class CreateProject extends React.Component {
 
   submitForm(event) {
     event.preventDefault();
-    FormValidations.trimData(this.state);
-    DataActions.postRequest(this.state, '/projects', this.resetForm('create-project'));
+    FormValidations.trimData(this.state, this);
+    this.forceUpdate(function(){
+      DataActions.postRequest(this.state, '/projects', this.resetForm('create-project'));
+    })
   }
 
   render() {

@@ -78,7 +78,6 @@ class CreateClient extends React.Component {
         </form>
         <div className="errors">
           {this.state.nameErr ? <div id="client-name-validation-error" style={{color: 'red'}}>Client Name can not be blank. Please enter a Client Name.</div> : null}
-          {(this.state.urlErr && this.state.urlErrType === 'blank') ? <div id="client-url-validation-error" style={{color: 'red'}}>Website can not be blank. Please enter a valid website URL.</div> : null}
           {(this.state.urlErr && this.state.urlErrType === 'not valid') ? <div id="client-url-validation-error" style={{color: 'red'}}>Website URL is not valid. Please enter a valid Website URL.</div> : null}
         </div>
       </div>

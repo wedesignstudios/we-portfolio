@@ -13,25 +13,30 @@ const FormValidations = {
     return dateMoment === null;
   },
 
-  areAnyRequiredFieldsBlank: function(_this, nextState) {
-    let reqFields = _this.requiredFields;
+  isRequiredField: function(event, reqFieldsArr) {
+    const fieldName = event.target.name;
 
-    for(let i=0; i<reqFields.length; i++) {
-      if(nextState[reqFields[i]] === '') {
+    return reqFieldsArr.includes(fieldName);
+  },
+
+  areAnyRequiredFieldsBlank: function(reqFieldsArr, nextState) {
+    for(let i=0; i<reqFieldsArr.length; i++) {
+      if(nextState[reqFieldsArr[i]] === '') {
         return true;
       }
     }
     return false;
   },
 
-  checkRequiredField: function(event, _this) {
+  checkField: function(event, _this) {
     const target = event.target;
     const value = target.value;
     const fieldName = target.name;
     const err = event.target.name + 'Err';
     const errType = err + 'Type';
+    const isRequired = FormValidations.isRequiredField(event, _this.requiredFields);
 
-    if(FormValidations.isFieldBlank(event)) {
+    if(FormValidations.isFieldBlank(event) && isRequired) {
       _this.setState({
         [err]: true,
         [errType]: 'blank'

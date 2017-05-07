@@ -18,21 +18,17 @@ class CreateClient extends React.Component {
     }
 
     this.initialState = this.state;
-    this.requiredFields = ['name', 'url'];
+    this.requiredFields = ['name'];
     this.requiredFieldsBlank = true;
     this.handleOnChange = FormHandlers.handleOnChange;
-    this.validateCheckRequiredField = FormValidations.checkRequiredField;
+    this.validateCheckField = FormValidations.checkField;
     this.handleKeyPress = FormHandlers.preventSpaceKey;
     this.submitForm = this.submitForm;
     this.resetForm = FormHandlers.resetForm;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if(FormValidations.areAnyRequiredFieldsBlank(this, nextState)) {
-      this.requiredFieldsBlank = true;
-    } else {
-      this.requiredFieldsBlank = false;
-    };
+    this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
     return true;
   }
@@ -64,7 +60,7 @@ class CreateClient extends React.Component {
                 value={this.state.name}
                 onChange={(e) => this.handleOnChange(e, this)}
                 onFocus={(e) => this.handleKeyPress(e)}
-                onBlur={(e) => this.validateCheckRequiredField(e, this)} />
+                onBlur={(e) => this.validateCheckField(e, this)} />
           </div>
           <div>
             <label>Website: </label>
@@ -74,7 +70,7 @@ class CreateClient extends React.Component {
                 className={this.state.urlErr ? 'err' : null}
                 value={this.state.url}
                 onChange={(e) => this.handleOnChange(e, this)}
-                onBlur={(e) => this.validateCheckRequiredField(e, this)} />
+                onBlur={(e) => this.validateCheckField(e, this)} />
           </div>
           <div>
             <button disabled={this.requiredFieldsBlank} onClick={(e) => this.submitForm(e)}>Submit</button>

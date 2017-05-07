@@ -25390,11 +25390,6 @@ var CreateClient = function (_React$Component) {
             { id: 'client-name-validation-error', style: { color: 'red' } },
             'Client Name can not be blank. Please enter a Client Name.'
           ) : null,
-          this.state.urlErr && this.state.urlErrType === 'blank' ? _react2.default.createElement(
-            'div',
-            { id: 'client-url-validation-error', style: { color: 'red' } },
-            'Website can not be blank. Please enter a valid website URL.'
-          ) : null,
           this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
             'div',
             { id: 'client-url-validation-error', style: { color: 'red' } },
@@ -25435,18 +25430,62 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var DataActions = __webpack_require__(57);
+var FormHandlers = __webpack_require__(35);
+var FormValidations = __webpack_require__(28);
+var FormHandlersValidations = __webpack_require__(58);
+
 var CreateCollaborator = function (_React$Component) {
   _inherits(CreateCollaborator, _React$Component);
 
   function CreateCollaborator() {
     _classCallCheck(this, CreateCollaborator);
 
-    return _possibleConstructorReturn(this, (CreateCollaborator.__proto__ || Object.getPrototypeOf(CreateCollaborator)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (CreateCollaborator.__proto__ || Object.getPrototypeOf(CreateCollaborator)).call(this));
+
+    _this.state = {
+      name: '',
+      url: '',
+      nameErr: false,
+      urlErr: false
+    };
+
+    _this.initialState = _this.state;
+    _this.requiredFields = ['name'];
+    _this.requiredFieldsBlank = true;
+    _this.handleOnChange = FormHandlers.handleOnChange;
+    _this.validateCheckField = FormValidations.checkField;
+    _this.handleKeyPress = FormHandlers.preventSpaceKey;
+    _this.submitForm = _this.submitForm;
+    _this.resetForm = FormHandlers.resetForm;
+    return _this;
   }
 
   _createClass(CreateCollaborator, [{
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+      return true;
+    }
+  }, {
+    key: 'submitForm',
+    value: function submitForm(event) {
+      event.preventDefault();
+      FormValidations.trimData(this.state, this);
+      FormHandlersValidations.validateHandleURL(this.state.url, this);
+
+      this.forceUpdate(function () {
+        if (!this.state.urlErr) {
+          DataActions.postRequest(this.state, '/collaborators', this.resetForm('create-collaborator'));
+        };
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -25457,7 +25496,7 @@ var CreateCollaborator = function (_React$Component) {
         ),
         _react2.default.createElement(
           'form',
-          null,
+          { id: 'create-collaborator' },
           _react2.default.createElement(
             'div',
             null,
@@ -25466,7 +25505,20 @@ var CreateCollaborator = function (_React$Component) {
               null,
               'Collaborator Name: '
             ),
-            _react2.default.createElement('input', { type: 'text', name: 'name' })
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'name',
+              className: this.state.nameErr ? 'err' : null,
+              value: this.state.name,
+              onChange: function onChange(e) {
+                return _this2.handleOnChange(e, _this2);
+              },
+              onFocus: function onFocus(e) {
+                return _this2.handleKeyPress(e);
+              },
+              onBlur: function onBlur(e) {
+                return _this2.validateCheckField(e, _this2);
+              } })
           ),
           _react2.default.createElement(
             'div',
@@ -25476,17 +25528,43 @@ var CreateCollaborator = function (_React$Component) {
               null,
               'Website: '
             ),
-            _react2.default.createElement('input', { type: 'text', name: 'url' })
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'url',
+              className: this.state.urlErr ? 'err' : null,
+              value: this.state.url,
+              onChange: function onChange(e) {
+                return _this2.handleOnChange(e, _this2);
+              },
+              onBlur: function onBlur(e) {
+                return _this2.validateCheckField(e, _this2);
+              } })
           ),
           _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'button',
-              { type: 'submit' },
+              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
+                  return _this2.submitForm(e);
+                } },
               'Submit'
             )
           )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'errors' },
+          this.state.nameErr ? _react2.default.createElement(
+            'div',
+            { id: 'collaborator-name-validation-error', style: { color: 'red' } },
+            'Collaborator Name can not be blank. Please enter a Collaborator Name.'
+          ) : null,
+          this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
+            'div',
+            { id: 'collaborator-url-validation-error', style: { color: 'red' } },
+            'Website URL is not valid. Please enter a valid Website URL.'
+          ) : null
         )
       );
     }

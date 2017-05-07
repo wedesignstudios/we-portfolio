@@ -7949,25 +7949,30 @@ var FormValidations = {
     return dateMoment === null;
   },
 
-  areAnyRequiredFieldsBlank: function areAnyRequiredFieldsBlank(_this, nextState) {
-    var reqFields = _this.requiredFields;
+  isRequiredField: function isRequiredField(event, reqFieldsArr) {
+    var fieldName = event.target.name;
 
-    for (var i = 0; i < reqFields.length; i++) {
-      if (nextState[reqFields[i]] === '') {
+    return reqFieldsArr.includes(fieldName);
+  },
+
+  areAnyRequiredFieldsBlank: function areAnyRequiredFieldsBlank(reqFieldsArr, nextState) {
+    for (var i = 0; i < reqFieldsArr.length; i++) {
+      if (nextState[reqFieldsArr[i]] === '') {
         return true;
       }
     }
     return false;
   },
 
-  checkRequiredField: function checkRequiredField(event, _this) {
+  checkField: function checkField(event, _this) {
     var target = event.target;
     var value = target.value;
     var fieldName = target.name;
     var err = event.target.name + 'Err';
     var errType = err + 'Type';
+    var isRequired = FormValidations.isRequiredField(event, _this.requiredFields);
 
-    if (FormValidations.isFieldBlank(event)) {
+    if (FormValidations.isFieldBlank(event) && isRequired) {
       var _this$setState;
 
       _this.setState((_this$setState = {}, _defineProperty(_this$setState, err, true), _defineProperty(_this$setState, errType, 'blank'), _this$setState));
@@ -25276,10 +25281,10 @@ var CreateClient = function (_React$Component) {
     };
 
     _this.initialState = _this.state;
-    _this.requiredFields = ['name', 'url'];
+    _this.requiredFields = ['name'];
     _this.requiredFieldsBlank = true;
     _this.handleOnChange = FormHandlers.handleOnChange;
-    _this.validateCheckRequiredField = FormValidations.checkRequiredField;
+    _this.validateCheckField = FormValidations.checkField;
     _this.handleKeyPress = FormHandlers.preventSpaceKey;
     _this.submitForm = _this.submitForm;
     _this.resetForm = FormHandlers.resetForm;
@@ -25289,11 +25294,7 @@ var CreateClient = function (_React$Component) {
   _createClass(CreateClient, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps, nextState) {
-      if (FormValidations.areAnyRequiredFieldsBlank(this, nextState)) {
-        this.requiredFieldsBlank = true;
-      } else {
-        this.requiredFieldsBlank = false;
-      };
+      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
       return true;
     }
@@ -25346,7 +25347,7 @@ var CreateClient = function (_React$Component) {
                 return _this2.handleKeyPress(e);
               },
               onBlur: function onBlur(e) {
-                return _this2.validateCheckRequiredField(e, _this2);
+                return _this2.validateCheckField(e, _this2);
               } })
           ),
           _react2.default.createElement(
@@ -25366,7 +25367,7 @@ var CreateClient = function (_React$Component) {
                 return _this2.handleOnChange(e, _this2);
               },
               onBlur: function onBlur(e) {
-                return _this2.validateCheckRequiredField(e, _this2);
+                return _this2.validateCheckField(e, _this2);
               } })
           ),
           _react2.default.createElement(
@@ -25667,7 +25668,7 @@ var CreateProject = function (_React$Component) {
     _this.requiredFieldsBlank = true;
     _this.handleOnChange = FormHandlers.handleOnChange;
     _this.handleDateOnChange = FormHandlersValidations.handleDateOnChange;
-    _this.validateCheckRequiredField = FormValidations.checkRequiredField;
+    _this.validateCheckField = FormValidations.checkField;
     _this.handleKeyPress = FormHandlers.preventSpaceKey;
     _this.handleDateKeyPress = FormHandlers.preventAllButShiftAndTab;
     _this.submitForm = _this.submitForm.bind(_this);
@@ -25678,11 +25679,7 @@ var CreateProject = function (_React$Component) {
   _createClass(CreateProject, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps, nextState) {
-      if (FormValidations.areAnyRequiredFieldsBlank(this, nextState)) {
-        this.requiredFieldsBlank = true;
-      } else {
-        this.requiredFieldsBlank = false;
-      };
+      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
       return true;
     }
@@ -25731,7 +25728,7 @@ var CreateProject = function (_React$Component) {
                 return _this2.handleKeyPress(e);
               },
               onBlur: function onBlur(e) {
-                return _this2.validateCheckRequiredField(e, _this2);
+                return _this2.validateCheckField(e, _this2);
               } })
           ),
           _react2.default.createElement(
@@ -25761,7 +25758,7 @@ var CreateProject = function (_React$Component) {
                 return _this2.handleDateKeyPress(e);
               },
               onBlur: function onBlur(e) {
-                return _this2.validateCheckRequiredField(e, _this2);
+                return _this2.validateCheckField(e, _this2);
               } })
           ),
           _react2.default.createElement(
@@ -25784,7 +25781,7 @@ var CreateProject = function (_React$Component) {
                 return _this2.handleKeyPress(e);
               },
               onBlur: function onBlur(e) {
-                return _this2.validateCheckRequiredField(e, _this2);
+                return _this2.validateCheckField(e, _this2);
               } })
           ),
           _react2.default.createElement(

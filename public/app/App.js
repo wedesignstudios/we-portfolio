@@ -6,6 +6,7 @@ const CreateProject = require('./components/CreateProject');
 const CreateClient = require('./components/CreateClient');
 const CreateCollaborator = require('./components/CreateCollaborator');
 const CreateImage = require('./components/CreateImage');
+const UploadImages = require('./components/UploadImages');
 
 class App extends Component {
 
@@ -16,6 +17,7 @@ class App extends Component {
         <CreateClient />
         <CreateCollaborator />
         <CreateImage />
+        <UploadImages />
       </div>
     )
   }

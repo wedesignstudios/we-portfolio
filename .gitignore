@@ -38,3 +38,6 @@ jspm_packages
 
 # Project Notes
 notes.txt
+
+# DotEnv
+.env

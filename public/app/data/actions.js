@@ -9,7 +9,9 @@ const DataActions = {
       if (this.readyState === 4) {
         // console.log(this.responseText);
         if(xhr.status === 200) {
-          callback;
+          if(callback) {
+            callback;
+          }
         };
       }
     });
@@ -19,6 +21,26 @@ const DataActions = {
     xhr.setRequestHeader("cache-control", "no-cache");
 
     xhr.send(JSON.stringify(data));
+  },
+
+  uploadImages: (data, apiEndpoint, callback) => {
+    const xhr = new XMLHttpRequest();
+    const formData = new FormData();
+
+    xhr.upload.addEventListener('progress', function(event) {
+      console.log('progress: ', event.loaded);
+    });
+
+    xhr.upload.addEventListener('load', function(event) {
+      console.log('load: ', event);
+    });
+
+    xhr.upload.addEventListener('error', function(event) {
+      console.log('error: ', event);
+    });
+
+    xhr.open('post', apiEndpoint, true);
+    xhr.send(data);
   }
 
 };

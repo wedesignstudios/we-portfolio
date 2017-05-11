@@ -8,11 +8,11 @@ class UploadImages extends React.Component {
 
   onDrop(files) {
     files.forEach(file => {
-      const formData = new FormData();      
+      const formData = new FormData();
 
       formData.append('image', file);
       DataActions.uploadImages(formData, '/images/upload');
-    });    
+    });
   }
 
   render() {

@@ -5,8 +5,6 @@ const multer = require('multer');
 const Image = require('../models/image.js');
 const s3 = new AWS.S3({signatureVersion: 'v4'});
 
-console.log(s3);
-
 // AWS config
 AWS.config.update({
   subregion: process.env.region
@@ -54,8 +52,10 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-// POST images
+// UPLOAD images to AWS S3 + POST image URL
 router.post('/upload', upload.single('image'), (req, res, next) => {
+  const url = 'https://we-portfolio.s3.amazonaws.com/' + req.file.originalname;
+
   s3.putObject({
     Bucket: 'we-portfolio',
     Key: req.file.originalname,
@@ -63,10 +63,26 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
     ACL: 'public-read',
     Expires: 120,
     ContentType: req.file.mimetype
-  }, (err) => {
-    console.log('Error message: ', err);
-    if(err) return res.status(400).send(err);
-    res.send('File uploaded to S3');
+  }, (err, data) => {
+    if(err) {
+      console.log('Error message: ', err);
+      return res.status(400).send(err);
+    }
+    // Save URL to database
+    Image
+      .forge({url: url})
+      .save()
+      .then((image) => {
+        res.send('File uploaded to S3 and saved to database.');
+      })
+      .catch((err) => {
+        console.error(err);
+        if (err.name == 'DuplicateError') {
+          res.status(500).send(`${err.name}: An Image with this ${err.field} already exists.`);
+        } else {
+          res.sendStatus(500);
+        }
+      });
   });
 });
 

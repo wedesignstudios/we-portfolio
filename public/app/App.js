@@ -7,6 +7,7 @@ const CreateClient = require('./components/CreateClient');
 const CreateCollaborator = require('./components/CreateCollaborator');
 const CreateImage = require('./components/CreateImage');
 const UploadImages = require('./components/UploadImages');
+const GetImages = require('./components/GetImages');
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
         <CreateCollaborator />
         <CreateImage />
         <UploadImages />
+        <GetImages />
       </div>
     )
   }

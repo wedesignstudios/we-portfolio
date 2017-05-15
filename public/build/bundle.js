@@ -41205,6 +41205,7 @@ var CreateClient = __webpack_require__(202);
 var CreateCollaborator = __webpack_require__(203);
 var CreateImage = __webpack_require__(204);
 var UploadImages = __webpack_require__(206);
+var GetImages = __webpack_require__(325);
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -41225,7 +41226,8 @@ var App = function (_Component) {
         _react2.default.createElement(CreateClient, null),
         _react2.default.createElement(CreateCollaborator, null),
         _react2.default.createElement(CreateImage, null),
-        _react2.default.createElement(UploadImages, null)
+        _react2.default.createElement(UploadImages, null),
+        _react2.default.createElement(GetImages, null)
       );
     }
   }]);
@@ -41238,6 +41240,105 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(11);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(15);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UploadImages = __webpack_require__(206);
+
+var GetImages = function (_React$Component) {
+  _inherits(GetImages, _React$Component);
+
+  function GetImages() {
+    _classCallCheck(this, GetImages);
+
+    var _this = _possibleConstructorReturn(this, (GetImages.__proto__ || Object.getPrototypeOf(GetImages)).call(this));
+
+    _this.state = {
+      imageData: []
+    };
+
+    return _this;
+  }
+
+  _createClass(GetImages, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/images').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          imageData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Get All Images'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'image-grid' },
+          this.state.imageData.map(function (image) {
+            return _react2.default.createElement(
+              'div',
+              { key: image.id, className: 'image-grid-element' },
+              _react2.default.createElement('img', { src: image.url, title: image.title, alt: image.alt, width: '100%' })
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return GetImages;
+}(_react2.default.Component);
+
+;
+
+module.exports = GetImages;
 
 /***/ })
 /******/ ]);

@@ -17,7 +17,6 @@ class App extends Component {
         <CreateProject />
         <CreateClient />
         <CreateCollaborator />
-        <UpdateImage />
         <UploadImages />
         <GetImages />
       </div>

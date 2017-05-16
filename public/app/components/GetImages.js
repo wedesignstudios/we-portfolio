@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const UploadImages = require('./UploadImages');
+const UpdateImage = require('./UpdateImage');
 
 class GetImages extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      imageData: []
+      imageData: [],
+      imageId: null,
+      isUpdateImageOpen: false
     };
 
   }
@@ -26,6 +28,19 @@ class GetImages extends React.Component {
       });
   }
 
+  openUpdateImage(event, imageId) {
+    this.setState({
+      imageId: imageId,
+      isUpdateImageOpen: !this.state.isUpdateImageOpen
+    });
+  }
+
+  closeUpdateImage(e) {
+    this.setState({
+      isUpdateImageOpen: !this.state.isUpdateImageOpen
+    });
+  }
+
   render() {
     return(
       <div>
@@ -33,10 +48,16 @@ class GetImages extends React.Component {
         <div className="image-grid">
           {this.state.imageData.map(image =>
             <div key={image.id} className="image-grid-element">
-              <img src={image.url} title={image.title} alt={image.alt} width="100%" />
+              <img
+                src={image.url}
+                title={image.title}
+                alt={image.alt}
+                width="100%"
+                onClick={(e) => this.openUpdateImage(e, image.id)} />
             </div>
           )}
         </div>
+        {this.state.isUpdateImageOpen ? <UpdateImage imageId={this.state.imageId} isOpen={this.state.isUpdateImageOpen} onClose={(e) => this.closeUpdateImage(e)} /> : null}
       </div>
     );
   }

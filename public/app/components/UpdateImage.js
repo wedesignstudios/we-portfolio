@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-class CreateImage extends React.Component {
+class UpdateImage extends React.Component {
   render() {
     return (
       <div>
-        <h3>Add A New Image</h3>
+        <h3>Update An Image</h3>
         <form>
           <div>
             <label>Image Title: </label>
@@ -33,4 +33,4 @@ class CreateImage extends React.Component {
   }
 }
 
-module.exports = CreateImage;
+module.exports = UpdateImage;

@@ -1,3 +1,7 @@
+.image-grid-element {
+  display: inline-block;
+  width: 300px; }
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }

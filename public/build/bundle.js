@@ -8031,12 +8031,12 @@ module.exports = SyntheticUIEvent;
 
 var DataActions = {
 
-  postRequest: function postRequest(state, apiEndpoint, callback) {
+  sendRequest: function sendRequest(reqType, state, apiEndpoint, callback) {
     var data = state;
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function () {
+    xhr.addEventListener('readystatechange', function () {
       if (this.readyState === 4) {
         // console.log(this.responseText);
         if (xhr.status === 200) {
@@ -8047,9 +8047,9 @@ var DataActions = {
       }
     });
 
-    xhr.open("POST", apiEndpoint);
-    xhr.setRequestHeader("content-type", "application/json; charset=UTF-8");
-    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.open(reqType, apiEndpoint);
+    xhr.setRequestHeader('content-type', 'application/json; charset=UTF-8');
+    xhr.setRequestHeader('cache-control', 'no-cache');
 
     xhr.send(JSON.stringify(data));
   },
@@ -8070,7 +8070,7 @@ var DataActions = {
       console.log('error: ', event);
     });
 
-    xhr.open('post', apiEndpoint, true);
+    xhr.open('POST', apiEndpoint, true);
     xhr.send(data);
   }
 
@@ -8101,6 +8101,13 @@ var FormHandlers = {
     var name = target.name;
 
     _this.setState(_defineProperty({}, name, value));
+  },
+
+  checkboxChange: function checkboxChange(event, _this) {
+    var target = event.target;
+    var name = target.name;
+
+    _this.setState(_defineProperty({}, name, !_this.state[name]));
   },
 
   preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
@@ -11484,10 +11491,6 @@ var _reactDom = __webpack_require__(14);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactDropzone = __webpack_require__(302);
-
-var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -11496,65 +11499,179 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var FormHandlers = __webpack_require__(30);
+var FormValidations = __webpack_require__(24);
 var DataActions = __webpack_require__(29);
 
-var UploadImages = function (_React$Component) {
-  _inherits(UploadImages, _React$Component);
+var UpdateImage = function (_React$Component) {
+  _inherits(UpdateImage, _React$Component);
 
-  function UploadImages() {
-    _classCallCheck(this, UploadImages);
+  function UpdateImage() {
+    _classCallCheck(this, UpdateImage);
 
-    return _possibleConstructorReturn(this, (UploadImages.__proto__ || Object.getPrototypeOf(UploadImages)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (UpdateImage.__proto__ || Object.getPrototypeOf(UpdateImage)).call(this));
+
+    _this.state = {
+      title: '',
+      alt: '',
+      url: '',
+      index_page: false
+    };
+    return _this;
   }
 
-  _createClass(UploadImages, [{
-    key: 'onDrop',
-    value: function onDrop(files) {
-      files.forEach(function (file) {
-        var formData = new FormData();
+  _createClass(UpdateImage, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
 
-        formData.append('image', file);
-        DataActions.uploadImages(formData, '/images/upload');
+      fetch('/images/' + this.props.imageId).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          title: data.title ? data.title : '',
+          alt: data.alt ? data.alt : '',
+          url: data.url,
+          index_page: data.index_page ? data.index_page : false
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'submitForm',
+    value: function submitForm(event) {
+      event.preventDefault();
+      FormValidations.trimData(this.state, this);
+      this.forceUpdate(function () {
+        DataActions.sendRequest('PUT', this.state, '/images/' + this.props.imageId + '/update');
       });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
+
+      var _props = this.props,
+          imageId = _props.imageId,
+          isOpen = _props.isOpen,
+          onClose = _props.onClose;
+
 
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
-          'h3',
+          'h1',
           null,
-          'Upload Image(s)'
+          'Open?: ',
+          isOpen ? 'true' : 'false'
         ),
         _react2.default.createElement(
-          _reactDropzone2.default,
-          {
-            name: 'images',
-            accept: 'image/*',
-            onDrop: function onDrop(e) {
-              return _this2.onDrop(e);
-            }
-          },
+          'h3',
+          null,
+          'Update An Image'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: onClose },
+          'Close'
+        ),
+        _react2.default.createElement(
+          'form',
+          { id: 'update-image' },
           _react2.default.createElement(
             'div',
             null,
-            'Drag image(s) here. Or click to select image(s) to upload.'
+            _react2.default.createElement(
+              'label',
+              null,
+              'Image URL: ',
+              this.state.url
+            ),
+            _react2.default.createElement('input', { type: 'hidden', name: 'project_id' })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Image Title: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'title',
+              value: this.state.title,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this3);
+              },
+              onFocus: function onFocus(e) {
+                return FormHandlers.preventSpaceKey(e);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Alt Tag: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'alt',
+              value: this.state.alt,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this3);
+              },
+              onFocus: function onFocus(e) {
+                return FormHandlers.preventSpaceKey(e);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Use this image on index page?: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'checkbox',
+              name: 'index_page',
+              checked: this.state.index_page,
+              onChange: function onChange(e) {
+                return FormHandlers.checkboxChange(e, _this3);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              {
+                type: 'submit',
+                onClick: function onClick(e) {
+                  return _this3.submitForm(e);
+                } },
+              'Update'
+            )
           )
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: onClose },
+          'Cancel'
         )
       );
     }
   }]);
 
-  return UploadImages;
+  return UpdateImage;
 }(_react2.default.Component);
 
-;
-
-module.exports = UploadImages;
+module.exports = UpdateImage;
 
 /***/ }),
 /* 60 */
@@ -25439,7 +25556,7 @@ var CreateClient = function (_React$Component) {
 
       this.forceUpdate(function () {
         if (!this.state.urlErr) {
-          DataActions.postRequest(this.state, '/clients', this.resetForm('create-client'));
+          DataActions.sendRequest('POST', this.state, '/clients', this.resetForm('create-client'));
         };
       });
     }
@@ -25609,7 +25726,7 @@ var CreateCollaborator = function (_React$Component) {
 
       this.forceUpdate(function () {
         if (!this.state.urlErr) {
-          DataActions.postRequest(this.state, '/collaborators', this.resetForm('create-collaborator'));
+          DataActions.sendRequest('POST', this.state, '/collaborators', this.resetForm('create-collaborator'));
         };
       });
     }
@@ -25708,8 +25825,7 @@ var CreateCollaborator = function (_React$Component) {
 module.exports = CreateCollaborator;
 
 /***/ }),
-/* 205 */,
-/* 206 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25792,7 +25908,7 @@ var CreateProject = function (_React$Component) {
       event.preventDefault();
       FormValidations.trimData(this.state, this);
       this.forceUpdate(function () {
-        DataActions.postRequest(this.state, '/projects', this.resetForm('create-project'));
+        DataActions.sendRequest('POST', this.state, '/projects', this.resetForm('create-project'));
       });
     }
   }, {
@@ -25926,7 +26042,7 @@ var CreateProject = function (_React$Component) {
 module.exports = CreateProject;
 
 /***/ }),
-/* 207 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25950,7 +26066,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UpdateImage = __webpack_require__(326);
+var UpdateImage = __webpack_require__(59);
 
 var GetImages = function (_React$Component) {
   _inherits(GetImages, _React$Component);
@@ -26043,6 +26159,95 @@ var GetImages = function (_React$Component) {
 ;
 
 module.exports = GetImages;
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(11);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(14);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactDropzone = __webpack_require__(302);
+
+var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DataActions = __webpack_require__(29);
+
+var UploadImages = function (_React$Component) {
+  _inherits(UploadImages, _React$Component);
+
+  function UploadImages() {
+    _classCallCheck(this, UploadImages);
+
+    return _possibleConstructorReturn(this, (UploadImages.__proto__ || Object.getPrototypeOf(UploadImages)).apply(this, arguments));
+  }
+
+  _createClass(UploadImages, [{
+    key: 'onDrop',
+    value: function onDrop(files) {
+      files.forEach(function (file) {
+        var formData = new FormData();
+
+        formData.append('image', file);
+        DataActions.uploadImages(formData, '/images/upload');
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Upload Image(s)'
+        ),
+        _react2.default.createElement(
+          _reactDropzone2.default,
+          {
+            name: 'images',
+            accept: 'image/*',
+            onDrop: function onDrop(e) {
+              return _this2.onDrop(e);
+            }
+          },
+          _react2.default.createElement(
+            'div',
+            null,
+            'Drag image(s) here. Or click to select image(s) to upload.'
+          )
+        )
+      );
+    }
+  }]);
+
+  return UploadImages;
+}(_react2.default.Component);
+
+;
+
+module.exports = UploadImages;
 
 /***/ }),
 /* 208 */
@@ -41212,12 +41417,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // React code starts here
 
 
-var CreateProject = __webpack_require__(206);
+var CreateProject = __webpack_require__(205);
 var CreateClient = __webpack_require__(203);
 var CreateCollaborator = __webpack_require__(204);
-var UpdateImage = __webpack_require__(326);
-var UploadImages = __webpack_require__(59);
-var GetImages = __webpack_require__(207);
+var UpdateImage = __webpack_require__(59);
+var UploadImages = __webpack_require__(207);
+var GetImages = __webpack_require__(206);
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -41251,171 +41456,6 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
-
-/***/ }),
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(11);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(14);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var UpdateImage = function (_React$Component) {
-  _inherits(UpdateImage, _React$Component);
-
-  function UpdateImage() {
-    _classCallCheck(this, UpdateImage);
-
-    var _this = _possibleConstructorReturn(this, (UpdateImage.__proto__ || Object.getPrototypeOf(UpdateImage)).call(this));
-
-    _this.state = {
-      title: '',
-      alt: '',
-      url: '',
-      index_page: false
-    };
-    return _this;
-  }
-
-  _createClass(UpdateImage, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/images/' + this.props.imageId).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          title: data.title,
-          alt: data.alt,
-          url: data.url,
-          index_page: data.index_page
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          imageId = _props.imageId,
-          isOpen = _props.isOpen,
-          onClose = _props.onClose;
-
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Open?: ',
-          isOpen ? 'true' : 'false'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Update An Image'
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: onClose },
-          'Close'
-        ),
-        _react2.default.createElement(
-          'form',
-          null,
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Image URL: ',
-              this.state.url
-            ),
-            _react2.default.createElement('input', { type: 'hidden', name: 'project_id' })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Image Title: '
-            ),
-            _react2.default.createElement('input', { type: 'text', name: 'title', value: this.state.title })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Alt Tag: '
-            ),
-            _react2.default.createElement('input', { type: 'text', name: 'alt', value: this.state.alt })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Use this image on index page?: '
-            ),
-            _react2.default.createElement('input', { type: 'checkbox', name: 'index_page', checked: this.state.index_page })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { type: 'submit' },
-              'Update'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: onClose },
-          'Cancel'
-        )
-      );
-    }
-  }]);
-
-  return UpdateImage;
-}(_react2.default.Component);
-
-module.exports = UpdateImage;
 
 /***/ })
 /******/ ]);

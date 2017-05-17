@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
 const express = require('express');
 const router = express.Router();
+const params = require('params');
 const multer = require('multer');
 const Image = require('../models/image.js');
 const s3 = new AWS.S3({signatureVersion: 'v4'});
@@ -85,5 +86,31 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
       });
   });
 });
+
+router.put('/:id/update', (req, res, next) => {
+  const project_id = req.body.project_id;
+  const project_id_detach = req.body.project_id_detach;
+  const allowedKeys = ['title', 'alt', 'url','index_page'];
+  const formData = params(req.body).only(allowedKeys);
+
+  if (Object.keys(formData).length != 0) {
+    Image
+      .forge({id: req.params.id})
+      .save(formData, {method: 'update'})
+      .then((image) => {
+        if(project_id_detach) image.project().detach(project_id_detach);
+        if(project_id) image.project().attach(project_id);
+        image = image.toJSON();
+        res.send(`Image ${image.url} has been updated.`);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+    } else {
+      res.status(400).send('Bad Request');
+    };
+});
+
 
 module.exports = router;

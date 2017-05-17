@@ -40,7 +40,7 @@ class CreateClient extends React.Component {
 
     this.forceUpdate(function() {
       if (!this.state.urlErr) {
-        DataActions.postRequest(this.state, '/clients', this.resetForm('create-client'));
+        DataActions.sendRequest('POST', this.state, '/clients', this.resetForm('create-client'));
       };
     });
 

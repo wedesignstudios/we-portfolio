@@ -40,7 +40,7 @@ class CreateCollaborator extends React.Component {
 
     this.forceUpdate(function() {
       if (!this.state.urlErr) {
-        DataActions.postRequest(this.state, '/collaborators', this.resetForm('create-collaborator'));
+        DataActions.sendRequest('POST', this.state, '/collaborators', this.resetForm('create-collaborator'));
       };
     });
 

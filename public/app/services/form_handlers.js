@@ -14,7 +14,16 @@ const FormHandlers = {
     _this.setState({
       [name]: value
     });
-  },  
+  },
+
+  checkboxChange: function(event, _this) {
+    const target = event.target;
+    const name = target.name;
+
+    _this.setState({
+      [name]: !_this.state[name]
+    });
+  },
 
   preventAllButShiftAndTab: function(event) {
     event.target.addEventListener('keydown', function(event) {

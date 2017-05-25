@@ -44,6 +44,7 @@ app.use('/collaborators', collaborators);
 app.use('/images', images);
 app.use('/projects', projects);
 app.use('/users', users);
+app.use('/*', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

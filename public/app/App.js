@@ -1,25 +1,23 @@
 // React code starts here
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
-const CreateProject = require('./components/CreateProject');
-const CreateClient = require('./components/CreateClient');
-const CreateCollaborator = require('./components/CreateCollaborator');
-const UpdateImage = require('./components/UpdateImage');
-const UploadImages = require('./components/UploadImages');
-const GetImages = require('./components/GetImages');
+const Dashboard = require('./components/Dashboard');
 
 class App extends Component {
 
   render() {
     return (
-      <div>
-        <CreateProject />
-        <CreateClient />
-        <CreateCollaborator />
-        <UploadImages />
-        <GetImages />
-      </div>
+      <Router>
+        <div>
+          <Route path="/dashboard" component={Dashboard}/>
+        </div>
+      </Router>
     )
   }
 

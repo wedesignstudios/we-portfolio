@@ -3,9 +3,10 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
+  context: path.join(__dirname, 'public', 'app'),
   entry: {
-      app: './public/app/App.js',
-      dashboard: './public/app/components/Dashboard.js'
+      app: './App.js',
+      dashboard: './components/Dashboard.js'
   },
   output:{
       filename: 'public/build/[name].bundle.js',

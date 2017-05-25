@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 const CreateProject = require('./CreateProject');
 const CreateClient = require('./CreateClient');

@@ -4,10 +4,26 @@ import ReactDOM from 'react-dom'
 import {
   BrowserRouter as Router,
   Route,
-  Link
-} from 'react-router-dom'
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom';
 
+const CreateClient = require('./components/CreateClient');
 const Dashboard = require('./components/Dashboard');
+
+const PrivateRoute = ({ component: Component, path, auth }) => (
+  <Route path={path} render={props => (
+    auth ? (
+      <Component />
+    ) : (
+      <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
 
 class App extends Component {
 
@@ -15,6 +31,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <PrivateRoute path='/protected' component={CreateClient} auth={true} />
           <Route path="/dashboard" component={Dashboard}/>
         </div>
       </Router>

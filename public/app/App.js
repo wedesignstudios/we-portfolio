@@ -5,12 +5,14 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
+  Switch,
   Redirect,
   withRouter
 } from 'react-router-dom';
 
 const CreateClient = require('./components/CreateClient');
 const Dashboard = require('./components/Dashboard');
+const NotFound = require('./components/NotFound');
 
 const PrivateRoute = ({ component: Component, path, auth }) => (
   <Route path={path} render={props => (
@@ -31,8 +33,11 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <PrivateRoute path='/protected' component={CreateClient} auth={true} />
-          <Route path="/dashboard" component={Dashboard}/>
+          <Switch>
+            <Route path='/dashboard' component={Dashboard} />
+            <PrivateRoute path='/protected' component={CreateClient} auth={true} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </Router>
     )

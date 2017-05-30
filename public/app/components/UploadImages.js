@@ -11,7 +11,7 @@ class UploadImages extends React.Component {
       const formData = new FormData();
 
       formData.append('image', file);
-      DataActions.uploadImages(formData, '/images/upload');
+      DataActions.uploadImages(formData, '/api/images/upload');
     });
   }
 

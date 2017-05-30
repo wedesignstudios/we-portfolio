@@ -16,7 +16,7 @@ class GetImages extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/images')
+    fetch('/api/images')
       .then((res) => res.json())
       .then((data) => {
         this.setState({

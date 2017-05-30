@@ -19,7 +19,7 @@ class UpdateImage extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/images/${this.props.imageId}`)
+    fetch(`/api/images/${this.props.imageId}`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -38,7 +38,7 @@ class UpdateImage extends React.Component {
     event.preventDefault();
     FormValidations.trimData(this.state, this);
     this.forceUpdate(function() {
-      DataActions.sendRequest('PUT', this.state, `/images/${this.props.imageId}/update`);
+      DataActions.sendRequest('PUT', this.state, `/api/images/${this.props.imageId}/update`);
     });
   }
 

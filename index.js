@@ -57,11 +57,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use('/', index);
-app.use('/clients', clients);
-app.use('/collaborators', collaborators);
-app.use('/images', images);
-app.use('/projects', projects);
-app.use('/users', users);
+app.use('/api/clients', clients);
+app.use('/api/collaborators', collaborators);
+app.use('/api/images', images);
+app.use('/api/projects', projects);
+app.use('/api/users', users);
 app.use('/*', index);
 
 // catch 404 and forward to error handler

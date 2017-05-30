@@ -1,9 +1,13 @@
 const express = require('express');
+const redis = require('redis');
+const session = require('express-session');
+const redisStore = require('connect-redis')(session);
+const bodyParser = require('body-parser');
+const redisClient = redis.createClient();
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const knex = require('knex');
 
 const clients = require('./controllers/clients');
@@ -22,6 +26,20 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+// redis
+redisClient.on('connect', function() {
+  console.log('Redis connected');
+});
+
+// sessions
+app.use(session({
+  store: new redisStore({client: redisClient, host: 'localhost', port: 6379}),
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {maxAge: 60000}
+}));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

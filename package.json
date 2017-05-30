@@ -28,10 +28,12 @@
     "bookshelf": "^0.10.3",
     "bookshelf-cascade-delete": "^2.0.1",
     "bookshelf-check-duplicates": "^0.2.2",
+    "connect-redis": "^3.3.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.0",
+    "express-session": "^1.15.3",
     "hbs": "~4.0.1",
     "knex": "^0.12.7",
     "moment": "^2.18.1",
@@ -45,6 +47,7 @@
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.13.1",
     "react-router-dom": "^4.1.1",
+    "redis": "^2.7.1",
     "serve-favicon": "~2.3.2"
   },
   "devDependencies": {

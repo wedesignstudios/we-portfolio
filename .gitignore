@@ -41,3 +41,6 @@ notes.txt
 
 # DotEnv
 .env
+
+#Redis Dump
+dump.rdb

@@ -12,6 +12,7 @@ import {
 
 const CreateClient = require('./components/CreateClient');
 const Dashboard = require('./components/Dashboard');
+const Login = require('./components/Login');
 const NotFound = require('./components/NotFound');
 
 const PrivateRoute = ({ component: Component, path, auth }) => (
@@ -35,6 +36,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route path='/dashboard' component={Dashboard} />
+            <Route path='/login' component={Login} />
             <PrivateRoute path='/protected' component={CreateClient} auth={true} />
             <Route component={NotFound} />
           </Switch>

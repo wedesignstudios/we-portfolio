@@ -4,18 +4,23 @@ const session = require('express-session');
 const redisStore = require('connect-redis')(session);
 const bodyParser = require('body-parser');
 const redisClient = redis.createClient();
+const passport = require('passport');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const knex = require('knex');
 
+// controllers
 const clients = require('./controllers/clients');
 const collaborators = require('./controllers/collaborators');
 const images = require('./controllers/images');
 const index = require('./controllers/index');
 const projects = require('./controllers/projects');
 const users = require('./controllers/users');
+const loginFacebook = require('./controllers/loginFacebook');
+const loginGoogle = require('./controllers/loginGoogle');
+const logout = require('./controllers/logout');
 
 const ENV = process.env.NODE_ENV || 'development';
 const config = require('./knexfile');
@@ -40,6 +45,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {maxAge: 60000}
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -62,6 +69,9 @@ app.use('/api/collaborators', collaborators);
 app.use('/api/images', images);
 app.use('/api/projects', projects);
 app.use('/api/users', users);
+app.use('/login/facebook', loginFacebook);
+app.use('/login/google', loginGoogle);
+app.use('/logout', logout);
 app.use('/*', index);
 
 // catch 404 and forward to error handler

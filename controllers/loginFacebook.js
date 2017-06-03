@@ -41,8 +41,9 @@ router.get('/', passport.authenticate('facebook', { scope: 'email' }));
 
 router.get('/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log('USER: ', req.user);
-    console.log('SESSION: ', req.session);    
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Credentials', true);
+    req.session.cookie.user = req.user;
     res.redirect(`/api/users/${req.user.attributes.username}`);
 });
 

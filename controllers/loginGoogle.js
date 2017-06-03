@@ -41,8 +41,9 @@ router.get('/', passport.authenticate('google', { scope: 'openid email' }));
 
 router.get('/callback', passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    // console.log('EMAIL: ', req.user.emails[0].value);
-    console.log('USER: ', req.user);
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Credentials', true);
+    req.session.cookie.user = req.user;
     res.send('In Google callback.');
 });
 

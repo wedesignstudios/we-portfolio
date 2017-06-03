@@ -18,6 +18,7 @@ const images = require('./controllers/images');
 const index = require('./controllers/index');
 const projects = require('./controllers/projects');
 const users = require('./controllers/users');
+const userData = require('./controllers/user_data');
 const loginFacebook = require('./controllers/loginFacebook');
 const loginGoogle = require('./controllers/loginGoogle');
 const logout = require('./controllers/logout');
@@ -42,8 +43,7 @@ app.use(session({
   store: new redisStore({client: redisClient, host: 'localhost', port: 6379}),
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false,
-  cookie: {maxAge: 60000}
+  saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -69,6 +69,7 @@ app.use('/api/collaborators', collaborators);
 app.use('/api/images', images);
 app.use('/api/projects', projects);
 app.use('/api/users', users);
+app.use('/api/user_data', userData);
 app.use('/login/facebook', loginFacebook);
 app.use('/login/google', loginGoogle);
 app.use('/logout', logout);

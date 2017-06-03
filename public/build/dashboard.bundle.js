@@ -7519,8 +7519,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 26 */,
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7576,6 +7575,7 @@ var DataActions = {
 module.exports = DataActions;
 
 /***/ }),
+/* 27 */,
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11538,7 +11538,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DataActions = __webpack_require__(27);
+var DataActions = __webpack_require__(26);
 var FormHandlers = __webpack_require__(28);
 var FormValidations = __webpack_require__(21);
 var FormHandlersValidations = __webpack_require__(39);
@@ -25521,7 +25521,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DataActions = __webpack_require__(27);
+var DataActions = __webpack_require__(26);
 var FormHandlers = __webpack_require__(28);
 var FormValidations = __webpack_require__(21);
 var FormHandlersValidations = __webpack_require__(39);
@@ -25701,7 +25701,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DataActions = __webpack_require__(27);
+var DataActions = __webpack_require__(26);
 var FormHandlers = __webpack_require__(28);
 var FormValidations = __webpack_require__(21);
 var FormHandlersValidations = __webpack_require__(39);
@@ -26031,7 +26031,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DataActions = __webpack_require__(27);
+var DataActions = __webpack_require__(26);
 
 var UploadImages = function (_React$Component) {
   _inherits(UploadImages, _React$Component);
@@ -26178,7 +26178,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var FormHandlers = __webpack_require__(28);
 var FormValidations = __webpack_require__(21);
-var DataActions = __webpack_require__(27);
+var DataActions = __webpack_require__(26);
 
 var UpdateImage = function (_React$Component) {
   _inherits(UpdateImage, _React$Component);

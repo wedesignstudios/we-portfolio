@@ -10,7 +10,6 @@ import {
   withRouter
 } from 'react-router-dom';
 
-const CreateClient = require('./components/CreateClient');
 const Dashboard = require('./components/Dashboard');
 const Login = require('./components/Login');
 const NotFound = require('./components/NotFound');
@@ -29,15 +28,44 @@ const PrivateRoute = ({ component: Component, path, auth }) => (
 )
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      loggedIn: null
+    }
+  }
+
+  componentDidMount() {
+    fetch('/api/user_data', {credentials: 'include'})
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.length === 1) {
+          this.setState({
+            loggedIn: true
+          });
+        } else {
+          this.setState({
+            loggedIn: false
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 
   render() {
+    if(this.state.loggedIn === null) {
+      return null;
+    }
     return (
       <Router>
         <div>
+          <p>Logged In?: {this.state.loggedIn ? 'true' : 'false'}</p>
           <Switch>
-            <Route path='/dashboard' component={Dashboard} />
             <Route path='/login' component={Login} />
-            <PrivateRoute path='/protected' component={CreateClient} auth={true} />
+            <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} />
             <Route component={NotFound} />
           </Switch>
         </div>

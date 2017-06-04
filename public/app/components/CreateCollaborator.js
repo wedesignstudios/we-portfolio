@@ -23,7 +23,7 @@ class CreateCollaborator extends React.Component {
     this.requiredFieldsBlank = true;
     this.handleOnChange = FormHandlers.handleOnChange;
     this.validateCheckField = FormValidations.checkField;
-    this.handleKeyPress = FormHandlers.preventSpaceKey;    
+    this.handleKeyPress = FormHandlers.preventSpaceKey;
   }
 
   shouldComponentUpdate(nextProps, nextState) {

@@ -49,14 +49,26 @@ const FormHandlers = {
     return url = `http:\/\/${url}`;
   },
 
-  resetForm: function(formID) {
+  resetForm: function(formID, _this) {
     const form = document.forms[formID];
     const formInputs = form.getElementsByTagName("input");
 
     for(let i=0; i<formInputs.length; i++) {
       formInputs[i].value = '';
     }
-    this.setState(this.initialState);
+    _this.setState(_this.initialState);
+  },
+
+  successMessage: function(_this) {
+    _this.setState({
+      success: true
+    });
+    setTimeout(() => {_this.setState({success: false}) }, 2000);
+  },
+
+  successCallback: function(formID, _this) {
+    FormHandlers.resetForm(formID, _this);
+    FormHandlers.successMessage(_this);
   }
 
 };

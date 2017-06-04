@@ -20,7 +20,8 @@ class CreateProject extends React.Component {
       description: '',
       nameErr: false,
       dateErr: false,
-      descriptionErr: false
+      descriptionErr: false,
+      success: false
     }
 
     this.initialState = this.state;
@@ -32,8 +33,6 @@ class CreateProject extends React.Component {
     this.validateCheckField = FormValidations.checkField;
     this.handleKeyPress = FormHandlers.preventSpaceKey;
     this.handleDateKeyPress = FormHandlers.preventAllButShiftAndTab;
-    this.submitForm = this.submitForm.bind(this);
-    this.resetForm = FormHandlers.resetForm;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -46,7 +45,7 @@ class CreateProject extends React.Component {
     event.preventDefault();
     FormValidations.trimData(this.state, this);
     this.forceUpdate(function(){
-      DataActions.sendRequest('POST', this.state, '/api/projects', this.resetForm('create-project'));
+      DataActions.sendRequest('POST', this.state, '/api/projects', FormHandlers.successCallback('create-project', this));
     })
   }
 
@@ -54,6 +53,9 @@ class CreateProject extends React.Component {
     return (
       <div>
         <h3>Add A New Project</h3>
+        <div className="success">
+          {this.state.success ? <div id="project-added-success" style={{color: 'green'}}><p>New Project successfully added.</p></div> : null}
+        </div>
         <form id="create-project">
           <div>
             <label>Project Name: </label>
@@ -98,7 +100,7 @@ class CreateProject extends React.Component {
                 onBlur={(e) => this.validateCheckField(e, this)} />
           </div>
           <div>
-            <button disabled={this.requiredFieldsBlank} onClick={this.submitForm}>Submit</button>
+            <button disabled={this.requiredFieldsBlank} onClick={(e) => this.submitForm(e)}>Submit</button>
           </div>
         </form>
         <div className="errors">

@@ -14,7 +14,8 @@ class CreateClient extends React.Component {
       name: '',
       url: '',
       nameErr: false,
-      urlErr: false
+      urlErr: false,
+      success: false
     }
 
     this.initialState = this.state;
@@ -23,8 +24,6 @@ class CreateClient extends React.Component {
     this.handleOnChange = FormHandlers.handleOnChange;
     this.validateCheckField = FormValidations.checkField;
     this.handleKeyPress = FormHandlers.preventSpaceKey;
-    this.submitForm = this.submitForm;
-    this.resetForm = FormHandlers.resetForm;
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -40,7 +39,7 @@ class CreateClient extends React.Component {
 
     this.forceUpdate(function() {
       if (!this.state.urlErr) {
-        DataActions.sendRequest('POST', this.state, '/api/clients', this.resetForm('create-client'));
+        DataActions.sendRequest('POST', this.state, '/api/clients', FormHandlers.successCallback('create-client', this));
       };
     });
 
@@ -50,6 +49,9 @@ class CreateClient extends React.Component {
     return (
       <div>
         <h3>Add A New Client</h3>
+        <div className="success">
+          {this.state.success ? <div id="client-added-success" style={{color: 'green'}}><p>New Client successfully added.</p></div> : null}
+        </div>
         <form id="create-client">
           <div>
             <label>Client Name: </label>

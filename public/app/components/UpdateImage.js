@@ -14,7 +14,8 @@ class UpdateImage extends React.Component {
       title: '',
       alt: '',
       url: '',
-      index_page: false
+      index_page: false,
+      success: false
     }
   }
 
@@ -38,7 +39,7 @@ class UpdateImage extends React.Component {
     event.preventDefault();
     FormValidations.trimData(this.state, this);
     this.forceUpdate(function() {
-      DataActions.sendRequest('PUT', this.state, `/api/images/${this.props.imageId}/update`);
+      DataActions.sendRequest('PUT', this.state, `/api/images/${this.props.imageId}/update`, FormHandlers.successMessage(this));
     });
   }
 
@@ -50,6 +51,9 @@ class UpdateImage extends React.Component {
       <div>
         <h1>Open?: {isOpen ? 'true' : 'false'}</h1>
         <h3>Update An Image</h3>
+        <div className="success">
+          {this.state.success ? <div id="image-updated-success" style={{color: 'green'}}><p>Image successfully updated.</p></div> : null}
+        </div>
         <button onClick={onClose}>Close</button>
         <form id="update-image">
           <div>

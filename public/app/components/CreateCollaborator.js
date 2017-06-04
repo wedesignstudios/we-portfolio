@@ -14,7 +14,8 @@ class CreateCollaborator extends React.Component {
       name: '',
       url: '',
       nameErr: false,
-      urlErr: false
+      urlErr: false,
+      success: false
     }
 
     this.initialState = this.state;
@@ -22,9 +23,7 @@ class CreateCollaborator extends React.Component {
     this.requiredFieldsBlank = true;
     this.handleOnChange = FormHandlers.handleOnChange;
     this.validateCheckField = FormValidations.checkField;
-    this.handleKeyPress = FormHandlers.preventSpaceKey;
-    this.submitForm = this.submitForm;
-    this.resetForm = FormHandlers.resetForm;
+    this.handleKeyPress = FormHandlers.preventSpaceKey;    
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -40,7 +39,7 @@ class CreateCollaborator extends React.Component {
 
     this.forceUpdate(function() {
       if (!this.state.urlErr) {
-        DataActions.sendRequest('POST', this.state, '/api/collaborators', this.resetForm('create-collaborator'));
+        DataActions.sendRequest('POST', this.state, '/api/collaborators', FormHandlers.successCallback('create-collaborator', this));
       };
     });
 
@@ -50,6 +49,9 @@ class CreateCollaborator extends React.Component {
     return (
       <div>
         <h3>Add A New Collaborator</h3>
+        <div className="success">
+          {this.state.success ? <div id="collaborator-added-success" style={{color: 'green'}}><p>New Collaborator successfully added.</p></div> : null}
+        </div>
         <form id="create-collaborator">
           <div>
             <label>Collaborator Name: </label>

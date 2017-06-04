@@ -32,6 +32,7 @@ const DataActions = {
     });
 
     xhr.upload.addEventListener('load', function(event) {
+      callback;
       console.log('load: ', event);
     });
 

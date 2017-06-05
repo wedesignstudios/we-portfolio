@@ -88,9 +88,9 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
 });
 
 router.put('/:id/update', (req, res, next) => {
-  const project_id = req.body.project_id;
-  const project_id_detach = req.body.project_id_detach;
-  const allowedKeys = ['title', 'alt', 'url','index_page'];
+  req.body.project_id === '' ? req.body.project_id = null : req.body.project_id;
+
+  const allowedKeys = ['title', 'alt', 'url', 'project_id', 'index_page'];
   const formData = params(req.body).only(allowedKeys);
 
   if (Object.keys(formData).length != 0) {
@@ -98,8 +98,6 @@ router.put('/:id/update', (req, res, next) => {
       .forge({id: req.params.id})
       .save(formData, {method: 'update'})
       .then((image) => {
-        if(project_id_detach) image.project().detach(project_id_detach);
-        if(project_id) image.project().attach(project_id);
         image = image.toJSON();
         res.send(`Image ${image.url} has been updated.`);
       })

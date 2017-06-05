@@ -26266,6 +26266,10 @@ var UpdateImage = function (_React$Component) {
       title: '',
       alt: '',
       url: '',
+      projects: [],
+      projectName: '',
+      project_id: '',
+      project_id_detach: '',
       index_page: false,
       success: false
     };
@@ -26284,7 +26288,22 @@ var UpdateImage = function (_React$Component) {
           title: data.title ? data.title : '',
           alt: data.alt ? data.alt : '',
           url: data.url,
+          project_id: data.project_id ? data.project_id : '',
           index_page: data.index_page ? data.index_page : false
+        });
+        if (data.project) {
+          _this2.setState({
+            projectName: data.project.name
+          });
+        }
+      }).catch(function (err) {
+        console.error(err);
+      });
+      fetch('/api/projects').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          projects: data
         });
       }).catch(function (err) {
         console.error(err);
@@ -26353,8 +26372,7 @@ var UpdateImage = function (_React$Component) {
               null,
               'Image URL: ',
               this.state.url
-            ),
-            _react2.default.createElement('input', { type: 'hidden', name: 'project_id' })
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -26393,6 +26411,42 @@ var UpdateImage = function (_React$Component) {
               onFocus: function onFocus(e) {
                 return FormHandlers.preventSpaceKey(e);
               } })
+          ),
+          this.state.projectName ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Image attached to: ',
+              this.state.projectName
+            )
+          ) : _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Attach image to: '
+            ),
+            _react2.default.createElement(
+              'select',
+              { name: 'project_id', value: this.state.project_id, onChange: function onChange(e) {
+                  return FormHandlers.handleOnChange(e, _this3);
+                } },
+              _react2.default.createElement(
+                'option',
+                { value: '' },
+                'No Project'
+              ),
+              this.state.projects.map(function (project) {
+                return _react2.default.createElement(
+                  'option',
+                  { key: project.id, value: project.id },
+                  project.name
+                );
+              })
+            )
           ),
           _react2.default.createElement(
             'div',

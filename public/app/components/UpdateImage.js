@@ -14,6 +14,10 @@ class UpdateImage extends React.Component {
       title: '',
       alt: '',
       url: '',
+      projects: [],
+      projectName: '',
+      project_id: '',
+      project_id_detach: '',
       index_page: false,
       success: false
     }
@@ -27,8 +31,24 @@ class UpdateImage extends React.Component {
           title: data.title ? data.title : '',
           alt: data.alt ? data.alt : '',
           url: data.url,
+          project_id: data.project_id ? data.project_id : '',
           index_page: data.index_page ? data.index_page : false
         });
+        if(data.project) {
+          this.setState({
+            projectName: data.project.name
+          })
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    fetch('/api/projects')
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          projects: data
+        })
       })
       .catch((err) => {
         console.error(err);
@@ -58,7 +78,6 @@ class UpdateImage extends React.Component {
         <form id="update-image">
           <div>
             <label>Image URL: {this.state.url}</label>
-            <input type="hidden" name="project_id" />
           </div>
           <div>
             <label>Image Title: </label>
@@ -78,6 +97,17 @@ class UpdateImage extends React.Component {
               onChange={(e) => FormHandlers.handleOnChange(e, this)}
               onFocus={(e) => FormHandlers.preventSpaceKey(e)} />
           </div>
+          {this.state.projectName ?
+            <div><label>Image attached to: {this.state.projectName}</label></div> :
+            <div><label>Attach image to: </label>
+              <select name="project_id" value={this.state.project_id} onChange={(e) => FormHandlers.handleOnChange(e, this)}>
+                <option value=''>No Project</option>
+                {this.state.projects.map(project =>
+                  <option key={project.id} value={project.id}>{project.name}</option>
+                )}
+              </select>
+            </div>
+          }
           <div>
             <label>Use this image on index page?: </label>
             <input

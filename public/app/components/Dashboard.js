@@ -12,6 +12,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
+        <a href='/logout'>Logout</a>
         <CreateProject />
         <CreateClient />
         <CreateCollaborator />       

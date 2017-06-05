@@ -26211,6 +26211,11 @@ var Dashboard = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          'a',
+          { href: '/logout' },
+          'Logout'
+        ),
         _react2.default.createElement(CreateProject, null),
         _react2.default.createElement(CreateClient, null),
         _react2.default.createElement(CreateCollaborator, null),

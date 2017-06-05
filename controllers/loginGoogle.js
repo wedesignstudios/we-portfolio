@@ -44,7 +44,7 @@ router.get('/callback', passport.authenticate('google', { failureRedirect: '/log
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Credentials', true);
     req.session.cookie.user = req.user;
-    res.send('In Google callback.');
+    res.redirect('/dashboard');
 });
 
 module.exports = router;

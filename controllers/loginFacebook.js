@@ -44,7 +44,7 @@ router.get('/callback', passport.authenticate('facebook', { failureRedirect: '/l
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Credentials', true);
     req.session.cookie.user = req.user;
-    res.redirect(`/api/users/${req.user.attributes.username}`);
+    res.redirect('/dashboard');
 });
 
 module.exports = router;

@@ -5,7 +5,6 @@ exports.up = function(knex, Promise) {
       tbl.string('username');
       tbl.string('first_name');
       tbl.string('last_name');
-      tbl.boolean('is_logged_in');
       tbl.timestamps();
     })
   ]);  

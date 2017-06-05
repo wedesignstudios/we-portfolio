@@ -88,7 +88,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
   });
 });
 
-router.put('/:id/update', isLoggedIn, (req, res, next) => {
+router.put('/:id', isLoggedIn, (req, res, next) => {
   req.body.project_id === '' ? req.body.project_id = null : req.body.project_id;
 
   const allowedKeys = ['title', 'alt', 'url', 'project_id', 'index_page'];

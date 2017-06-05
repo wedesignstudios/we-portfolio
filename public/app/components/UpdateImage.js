@@ -59,7 +59,7 @@ class UpdateImage extends React.Component {
     event.preventDefault();
     FormValidations.trimData(this.state, this);
     this.forceUpdate(function() {
-      DataActions.sendRequest('PUT', this.state, `/api/images/${this.props.imageId}/update`, FormHandlers.successMessage(this));
+      DataActions.sendRequest('PUT', this.state, `/api/images/${this.props.imageId}`, FormHandlers.successMessage(this));
     });
   }
 

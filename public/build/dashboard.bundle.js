@@ -5206,7 +5206,7 @@ module.exports = ReactDOMComponentTree;
 "use strict";
 
 
-module.exports = __webpack_require__(25);
+module.exports = __webpack_require__(26);
 
 
 /***/ }),
@@ -5697,7 +5697,7 @@ var _prodInvariant = __webpack_require__(4),
 var CallbackQueue = __webpack_require__(183);
 var PooledClass = __webpack_require__(18);
 var ReactFeatureFlags = __webpack_require__(188);
-var ReactReconciler = __webpack_require__(24);
+var ReactReconciler = __webpack_require__(25);
 var Transaction = __webpack_require__(36);
 
 var invariant = __webpack_require__(2);
@@ -7012,6 +7012,90 @@ module.exports = reactProdInvariant;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var FormValidations = __webpack_require__(22);
+
+var FormHandlers = {
+
+  handleOnChange: function handleOnChange(event, _this) {
+    FormHandlers.inputChange(event, _this);
+  },
+
+  inputChange: function inputChange(event, _this) {
+    var target = event.target;
+    var value = target.value;
+    var name = target.name;
+
+    _this.setState(_defineProperty({}, name, value));
+  },
+
+  checkboxChange: function checkboxChange(event, _this) {
+    var target = event.target;
+    var name = target.name;
+
+    _this.setState(_defineProperty({}, name, !_this.state[name]));
+  },
+
+  preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
+    event.target.addEventListener('keydown', function (event) {
+      var key = event.key;
+
+      if (key !== 'Shift' && key !== 'Tab') {
+        event.preventDefault();
+      };
+    });
+  },
+
+  preventSpaceKey: function preventSpaceKey(event) {
+    event.target.addEventListener('keydown', function (event) {
+      var key = event.key;
+
+      if (key === ' ' && !event.target.value) {
+        event.preventDefault();
+      };
+    });
+  },
+
+  prependURL: function prependURL(url) {
+    return url = 'http://' + url;
+  },
+
+  resetForm: function resetForm(formID, _this) {
+    var form = document.forms[formID];
+    var formInputs = form.getElementsByTagName("input");
+
+    for (var i = 0; i < formInputs.length; i++) {
+      formInputs[i].value = '';
+    }
+    _this.setState(_this.initialState);
+  },
+
+  successMessage: function successMessage(_this) {
+    _this.setState({
+      success: true
+    });
+    setTimeout(function () {
+      _this.setState({ success: false });
+    }, 2000);
+  },
+
+  successCallback: function successCallback(formID, _this) {
+    FormHandlers.resetForm(formID, _this);
+    FormHandlers.successMessage(_this);
+  }
+
+};
+
+module.exports = FormHandlers;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var FormValidations = {
 
   isFieldBlank: function isFieldBlank(event) {
@@ -7101,7 +7185,7 @@ var FormValidations = {
 module.exports = FormValidations;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7127,7 +7211,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7250,7 +7334,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7424,7 +7508,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7519,8 +7603,8 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 26 */,
-/* 27 */
+/* 27 */,
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7575,90 +7659,6 @@ var DataActions = {
 };
 
 module.exports = DataActions;
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var FormValidations = __webpack_require__(21);
-
-var FormHandlers = {
-
-  handleOnChange: function handleOnChange(event, _this) {
-    FormHandlers.inputChange(event, _this);
-  },
-
-  inputChange: function inputChange(event, _this) {
-    var target = event.target;
-    var value = target.value;
-    var name = target.name;
-
-    _this.setState(_defineProperty({}, name, value));
-  },
-
-  checkboxChange: function checkboxChange(event, _this) {
-    var target = event.target;
-    var name = target.name;
-
-    _this.setState(_defineProperty({}, name, !_this.state[name]));
-  },
-
-  preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
-    event.target.addEventListener('keydown', function (event) {
-      var key = event.key;
-
-      if (key !== 'Shift' && key !== 'Tab') {
-        event.preventDefault();
-      };
-    });
-  },
-
-  preventSpaceKey: function preventSpaceKey(event) {
-    event.target.addEventListener('keydown', function (event) {
-      var key = event.key;
-
-      if (key === ' ' && !event.target.value) {
-        event.preventDefault();
-      };
-    });
-  },
-
-  prependURL: function prependURL(url) {
-    return url = 'http://' + url;
-  },
-
-  resetForm: function resetForm(formID, _this) {
-    var form = document.forms[formID];
-    var formInputs = form.getElementsByTagName("input");
-
-    for (var i = 0; i < formInputs.length; i++) {
-      formInputs[i].value = '';
-    }
-    _this.setState(_this.initialState);
-  },
-
-  successMessage: function successMessage(_this) {
-    _this.setState({
-      success: true
-    });
-    setTimeout(function () {
-      _this.setState({ success: false });
-    }, 2000);
-  },
-
-  successCallback: function successCallback(formID, _this) {
-    FormHandlers.resetForm(formID, _this);
-    FormHandlers.successMessage(_this);
-  }
-
-};
-
-module.exports = FormHandlers;
 
 /***/ }),
 /* 29 */
@@ -9341,8 +9341,8 @@ module.exports = setInnerHTML;
 "use strict";
 
 
-var FormHandlers = __webpack_require__(28);
-var FormValidations = __webpack_require__(21);
+var FormHandlers = __webpack_require__(21);
+var FormValidations = __webpack_require__(22);
 
 var FormHandlersValidations = {
 
@@ -9469,7 +9469,7 @@ module.exports = shallowEqual;
 
 
 
-var DOMLazyTree = __webpack_require__(23);
+var DOMLazyTree = __webpack_require__(24);
 var Danger = __webpack_require__(243);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(11);
@@ -10023,7 +10023,7 @@ module.exports = KeyEscapeUtils;
 
 var _prodInvariant = __webpack_require__(4);
 
-var React = __webpack_require__(25);
+var React = __webpack_require__(26);
 var ReactPropTypesSecret = __webpack_require__(193);
 
 var invariant = __webpack_require__(2);
@@ -11214,7 +11214,7 @@ var _prodInvariant = __webpack_require__(20);
 var ReactNoopUpdateQueue = __webpack_require__(57);
 
 var canDefineProperty = __webpack_require__(59);
-var emptyObject = __webpack_require__(22);
+var emptyObject = __webpack_require__(23);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -23826,9 +23826,9 @@ module.exports = ReactInputSelection;
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(23);
+var DOMLazyTree = __webpack_require__(24);
 var DOMProperty = __webpack_require__(16);
-var React = __webpack_require__(25);
+var React = __webpack_require__(26);
 var ReactBrowserEventEmitter = __webpack_require__(34);
 var ReactCurrentOwner = __webpack_require__(14);
 var ReactDOMComponentTree = __webpack_require__(6);
@@ -23838,11 +23838,11 @@ var ReactFeatureFlags = __webpack_require__(188);
 var ReactInstanceMap = __webpack_require__(31);
 var ReactInstrumentation = __webpack_require__(11);
 var ReactMarkupChecksum = __webpack_require__(275);
-var ReactReconciler = __webpack_require__(24);
+var ReactReconciler = __webpack_require__(25);
 var ReactUpdateQueue = __webpack_require__(48);
 var ReactUpdates = __webpack_require__(13);
 
-var emptyObject = __webpack_require__(22);
+var emptyObject = __webpack_require__(23);
 var instantiateReactComponent = __webpack_require__(199);
 var invariant = __webpack_require__(2);
 var setInnerHTML = __webpack_require__(38);
@@ -24371,7 +24371,7 @@ module.exports = ReactMount;
 
 var _prodInvariant = __webpack_require__(4);
 
-var React = __webpack_require__(25);
+var React = __webpack_require__(26);
 
 var invariant = __webpack_require__(2);
 
@@ -25366,9 +25366,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(28);
-var FormValidations = __webpack_require__(21);
+var DataActions = __webpack_require__(28);
+var FormHandlers = __webpack_require__(21);
+var FormValidations = __webpack_require__(22);
 var FormHandlersValidations = __webpack_require__(39);
 
 var CreateClient = function (_React$Component) {
@@ -25548,9 +25548,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(28);
-var FormValidations = __webpack_require__(21);
+var DataActions = __webpack_require__(28);
+var FormHandlers = __webpack_require__(21);
+var FormValidations = __webpack_require__(22);
 var FormHandlersValidations = __webpack_require__(39);
 
 var CreateCollaborator = function (_React$Component) {
@@ -25740,9 +25740,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(28);
-var FormValidations = __webpack_require__(21);
+var DataActions = __webpack_require__(28);
+var FormHandlers = __webpack_require__(21);
+var FormValidations = __webpack_require__(22);
 var FormHandlersValidations = __webpack_require__(39);
 
 var CreateProject = function (_React$Component) {
@@ -26084,8 +26084,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(28);
-var DataActions = __webpack_require__(27);
+var FormHandlers = __webpack_require__(21);
+var DataActions = __webpack_require__(28);
 
 var UploadImages = function (_React$Component) {
   _inherits(UploadImages, _React$Component);
@@ -26250,9 +26250,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(28);
-var FormValidations = __webpack_require__(21);
-var DataActions = __webpack_require__(27);
+var FormHandlers = __webpack_require__(21);
+var FormValidations = __webpack_require__(22);
+var DataActions = __webpack_require__(28);
 
 var UpdateImage = function (_React$Component) {
   _inherits(UpdateImage, _React$Component);
@@ -26412,22 +26412,13 @@ var UpdateImage = function (_React$Component) {
                 return FormHandlers.preventSpaceKey(e);
               } })
           ),
-          this.state.projectName ? _react2.default.createElement(
+          _react2.default.createElement(
             'div',
             null,
             _react2.default.createElement(
               'label',
               null,
-              'Image attached to: ',
-              this.state.projectName
-            )
-          ) : _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Attach image to: '
+              'Image attached to: '
             ),
             _react2.default.createElement(
               'select',
@@ -26511,7 +26502,7 @@ module.exports = UpdateImage;
 
 var _assign = __webpack_require__(5);
 
-var emptyObject = __webpack_require__(22);
+var emptyObject = __webpack_require__(23);
 var _invariant = __webpack_require__(2);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -29938,7 +29929,7 @@ module.exports = ChangeEventPlugin;
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(23);
+var DOMLazyTree = __webpack_require__(24);
 var ExecutionEnvironment = __webpack_require__(8);
 
 var createNodesFromMarkup = __webpack_require__(221);
@@ -30443,7 +30434,7 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 
-var ReactReconciler = __webpack_require__(24);
+var ReactReconciler = __webpack_require__(25);
 
 var instantiateReactComponent = __webpack_require__(199);
 var KeyEscapeUtils = __webpack_require__(44);
@@ -30641,20 +30632,20 @@ module.exports = ReactComponentBrowserEnvironment;
 var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
-var React = __webpack_require__(25);
+var React = __webpack_require__(26);
 var ReactComponentEnvironment = __webpack_require__(46);
 var ReactCurrentOwner = __webpack_require__(14);
 var ReactErrorUtils = __webpack_require__(47);
 var ReactInstanceMap = __webpack_require__(31);
 var ReactInstrumentation = __webpack_require__(11);
 var ReactNodeTypes = __webpack_require__(192);
-var ReactReconciler = __webpack_require__(24);
+var ReactReconciler = __webpack_require__(25);
 
 if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(298);
 }
 
-var emptyObject = __webpack_require__(22);
+var emptyObject = __webpack_require__(23);
 var invariant = __webpack_require__(2);
 var shallowEqual = __webpack_require__(40);
 var shouldUpdateReactComponent = __webpack_require__(54);
@@ -31551,7 +31542,7 @@ module.exports = ReactCompositeComponent;
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactDefaultInjection = __webpack_require__(268);
 var ReactMount = __webpack_require__(191);
-var ReactReconciler = __webpack_require__(24);
+var ReactReconciler = __webpack_require__(25);
 var ReactUpdates = __webpack_require__(13);
 var ReactVersion = __webpack_require__(283);
 
@@ -31670,7 +31661,7 @@ var _prodInvariant = __webpack_require__(4),
 
 var AutoFocusUtils = __webpack_require__(239);
 var CSSPropertyOperations = __webpack_require__(241);
-var DOMLazyTree = __webpack_require__(23);
+var DOMLazyTree = __webpack_require__(24);
 var DOMNamespaces = __webpack_require__(42);
 var DOMProperty = __webpack_require__(16);
 var DOMPropertyOperations = __webpack_require__(184);
@@ -32711,7 +32702,7 @@ module.exports = ReactDOMContainerInfo;
 
 var _assign = __webpack_require__(5);
 
-var DOMLazyTree = __webpack_require__(23);
+var DOMLazyTree = __webpack_require__(24);
 var ReactDOMComponentTree = __webpack_require__(6);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -33271,7 +33262,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 var _assign = __webpack_require__(5);
 
-var React = __webpack_require__(25);
+var React = __webpack_require__(26);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactDOMSelect = __webpack_require__(186);
 
@@ -33619,7 +33610,7 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
 var DOMChildrenOperations = __webpack_require__(41);
-var DOMLazyTree = __webpack_require__(23);
+var DOMLazyTree = __webpack_require__(24);
 var ReactDOMComponentTree = __webpack_require__(6);
 
 var escapeTextContentForBrowser = __webpack_require__(37);
@@ -35148,7 +35139,7 @@ var ReactInstanceMap = __webpack_require__(31);
 var ReactInstrumentation = __webpack_require__(11);
 
 var ReactCurrentOwner = __webpack_require__(14);
-var ReactReconciler = __webpack_require__(24);
+var ReactReconciler = __webpack_require__(25);
 var ReactChildReconciler = __webpack_require__(248);
 
 var emptyFunction = __webpack_require__(9);
@@ -39874,7 +39865,7 @@ var ReactElement = __webpack_require__(19);
 var ReactPropTypeLocationNames = __webpack_require__(58);
 var ReactNoopUpdateQueue = __webpack_require__(57);
 
-var emptyObject = __webpack_require__(22);
+var emptyObject = __webpack_require__(23);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -41210,7 +41201,7 @@ var _assign = __webpack_require__(5);
 var ReactComponent = __webpack_require__(56);
 var ReactNoopUpdateQueue = __webpack_require__(57);
 
-var emptyObject = __webpack_require__(22);
+var emptyObject = __webpack_require__(23);
 
 /**
  * Base class helpers for the updating state of a component.

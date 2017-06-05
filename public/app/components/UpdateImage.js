@@ -97,17 +97,14 @@ class UpdateImage extends React.Component {
               onChange={(e) => FormHandlers.handleOnChange(e, this)}
               onFocus={(e) => FormHandlers.preventSpaceKey(e)} />
           </div>
-          {this.state.projectName ?
-            <div><label>Image attached to: {this.state.projectName}</label></div> :
-            <div><label>Attach image to: </label>
-              <select name="project_id" value={this.state.project_id} onChange={(e) => FormHandlers.handleOnChange(e, this)}>
-                <option value=''>No Project</option>
-                {this.state.projects.map(project =>
-                  <option key={project.id} value={project.id}>{project.name}</option>
-                )}
-              </select>
-            </div>
-          }
+          <div><label>Image attached to: </label>
+            <select name="project_id" value={this.state.project_id} onChange={(e) => FormHandlers.handleOnChange(e, this)}>
+              <option value=''>No Project</option>
+              {this.state.projects.map(project =>
+                <option key={project.id} value={project.id}>{project.name}</option>
+              )}
+            </select>
+          </div>
           <div>
             <label>Use this image on index page?: </label>
             <input

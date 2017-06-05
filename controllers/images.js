@@ -5,6 +5,7 @@ const params = require('params');
 const multer = require('multer');
 const Image = require('../models/image.js');
 const s3 = new AWS.S3({signatureVersion: 'v4'});
+const isLoggedIn = require('../middleware/isLoggedIn');
 
 // AWS config
 AWS.config.update({
@@ -54,7 +55,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 // UPLOAD images to AWS S3 + POST image URL
-router.post('/upload', upload.single('image'), (req, res, next) => {
+router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
   const url = 'https://we-portfolio.s3.amazonaws.com/' + req.file.originalname;
 
   s3.putObject({
@@ -87,7 +88,7 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
   });
 });
 
-router.put('/:id/update', (req, res, next) => {
+router.put('/:id/update', isLoggedIn, (req, res, next) => {
   req.body.project_id === '' ? req.body.project_id = null : req.body.project_id;
 
   const allowedKeys = ['title', 'alt', 'url', 'project_id', 'index_page'];

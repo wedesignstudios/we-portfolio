@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const params = require('params');
+const isLoggedIn = require('../middleware/isLoggedIn');
 
 const Collaborator = require('../models/collaborator.js');
 
@@ -39,7 +40,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 // CREATE a new collaborator
-router.post('/', (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => {
   const projects_ids = req.body.projects_ids;
 
   const allowedKeys = ['name', 'url'];
@@ -67,7 +68,7 @@ router.post('/', (req, res, next) => {
 });
 
 // UPDATE a collaborator
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isLoggedIn, (req, res, next) => {
   const projects_ids = req.body.projects_ids;
   const projects_ids_detach = req.body.projects_ids_detach;
 
@@ -94,7 +95,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 // DELETE a collaborator
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', isLoggedIn, (req, res, next) => {
   Collaborator
     .forge({id: req.params.id})
     .destroy()

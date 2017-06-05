@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const params = require('params');
+const isLoggedIn = require('../middleware/isLoggedIn');
 
 const Project = require('../models/project');
 
@@ -39,7 +40,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 // CREATE a new project
-router.post('/', (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => {
   const clients_ids = req.body.clients_ids;
   const collaborators_ids = req.body.collaborators_ids;
 
@@ -69,7 +70,7 @@ router.post('/', (req, res, next) => {
 });
 
 // UPDATE a project
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isLoggedIn, (req, res, next) => {
   const clients_ids = req.body.clients_ids;
   const clients_ids_detach = req.body.clients_ids_detach;
   const collaborators_ids = req.body.collaborators_ids;
@@ -99,7 +100,7 @@ router.put('/:id', (req, res, next) => {
 });
 
 // DELETE a project
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', isLoggedIn, (req, res, next) => {
   Project
     .forge({id: req.params.id})
     .destroy()

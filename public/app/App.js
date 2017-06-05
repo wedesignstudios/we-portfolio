@@ -14,13 +14,13 @@ const Dashboard = require('./components/Dashboard');
 const Login = require('./components/Login');
 const NotFound = require('./components/NotFound');
 
-const PrivateRoute = ({ component: Component, path, auth }) => (
+const PrivateRoute = ({ component: Component, path, auth, redirectPath }) => (
   <Route path={path} render={props => (
     auth ? (
       <Component />
     ) : (
       <Redirect to={{
-        pathname: '/login',
+        pathname: redirectPath,
         state: { from: props.location }
       }}/>
     )
@@ -64,8 +64,8 @@ class App extends Component {
         <div>
           <p>Logged In?: {this.state.loggedIn ? 'true' : 'false'}</p>
           <Switch>
-            <Route path='/login' component={Login} />
-            <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} />
+            <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
+            <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />
             <Route component={NotFound} />
           </Switch>
         </div>

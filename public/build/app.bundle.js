@@ -44954,10 +44954,11 @@ var NotFound = __webpack_require__(329);
 var PrivateRoute = function PrivateRoute(_ref) {
   var Component = _ref.component,
       path = _ref.path,
-      auth = _ref.auth;
+      auth = _ref.auth,
+      redirectPath = _ref.redirectPath;
   return _react2.default.createElement(_reactRouterDom.Route, { path: path, render: function render(props) {
       return auth ? _react2.default.createElement(Component, null) : _react2.default.createElement(_reactRouterDom.Redirect, { to: {
-          pathname: '/login',
+          pathname: redirectPath,
           state: { from: props.location }
         } });
     } });
@@ -45019,8 +45020,8 @@ var App = function (_Component) {
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: Login }),
-            _react2.default.createElement(PrivateRoute, { path: '/dashboard', component: Dashboard, auth: this.state.loggedIn }),
+            _react2.default.createElement(PrivateRoute, { path: '/login', component: Login, auth: !this.state.loggedIn, redirectPath: '/dashboard' }),
+            _react2.default.createElement(PrivateRoute, { path: '/dashboard', component: Dashboard, auth: this.state.loggedIn, redirectPath: '/login' }),
             _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
           )
         )

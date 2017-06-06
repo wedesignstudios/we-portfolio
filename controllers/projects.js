@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
   Project
     .collection()
     .fetch({
-      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address'],     
+      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories'],
       debug: true
     })
     .then((projects) => {
@@ -27,7 +27,7 @@ router.get('/:id', (req, res, next) => {
   Project
     .forge({id: req.params.id})
     .fetch({
-      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address'],
+      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories'],
       debug: true
     })
     .then((project) => {      

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 const CreateProject = require('./CreateProject');
+const UpdateProject = require('./UpdateProject');
 const CreateClient = require('./CreateClient');
 const CreateCollaborator = require('./CreateCollaborator');
 const UploadImages = require('./UploadImages');
@@ -13,6 +14,7 @@ class Dashboard extends Component {
     return (
       <div>
         <a href='/logout'>Logout</a>
+        <UpdateProject projectId='79' />
         <CreateProject />
         <CreateClient />
         <CreateCollaborator />       

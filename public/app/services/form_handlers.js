@@ -49,6 +49,26 @@ const FormHandlers = {
     return url = `http:\/\/${url}`;
   },
 
+  resetDetached: function(_this, models) {
+    models.forEach(model => {
+      let model_ids_detach = model + '_ids_detach';
+
+      _this.setState({
+        [model_ids_detach]: []
+      })
+    })
+  },
+
+  resetToAttachIds: function(_this, models) {
+    models.forEach(model => {
+      let model_ids = model + '_ids';
+
+      _this.setState({
+        [model_ids]: []
+      })
+    })
+  },
+
   resetForm: function(formID, _this) {
     const form = document.forms[formID];
     const formInputs = form.getElementsByTagName("input");
@@ -69,6 +89,35 @@ const FormHandlers = {
   successCallback: function(formID, _this) {
     FormHandlers.resetForm(formID, _this);
     FormHandlers.successMessage(_this);
+  },
+
+  updateAttached: function(_this, models) {
+    models.forEach(model => {
+      let model_ids = model + '_ids';
+      let model_ids_attached = model_ids + '_attached';
+      let model_ids_detach = model_ids + '_detach';
+
+      let attached = _this.state[model_ids_attached];
+      let didAttach = _this.state[model_ids];
+      let didDetach = _this.state[model_ids_detach];
+
+      if(didAttach) {
+        didAttach.forEach(id => {
+          attached.push(id);
+        });
+      }
+
+      if(didDetach) {
+        didDetach.forEach(id => {
+          let index = attached.indexOf(id);
+          attached.splice(index, 1);
+        });
+      }
+
+      _this.setState({
+        [model_ids_attached]: attached
+      })
+    })
   }
 
 };

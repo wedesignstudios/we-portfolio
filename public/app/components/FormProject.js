@@ -78,8 +78,6 @@ class FormProject extends React.Component {
   }
 
   getClientData(data) {    
-    console.log('Data: ', data);
-    
     this.setState({
       clients_ids: data.toAttach,
       clients_ids_attached: data.attached,
@@ -96,9 +94,9 @@ class FormProject extends React.Component {
         DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', FormHandlers.successCallback('create-project', this));
       } else {
         DataActions.sendRequest(this.props.sendRequestType, this.state, `/api/projects/${this.props.projectId}`, FormHandlers.successMessage(this));
-        FormHandlers.updateAttached(this);
-        FormHandlers.resetDetached(this);
-        FormHandlers.resetToAttachIds(this);
+        FormHandlers.updateAttached(this, ['clients']);
+        FormHandlers.resetDetached(this, ['clients']);
+        FormHandlers.resetToAttachIds(this, ['clients']);
       }
     })
   }
@@ -152,7 +150,7 @@ class FormProject extends React.Component {
                 onChange={(e) => FormHandlers.handleOnChange(e, this)}
                 onFocus={(e) => FormHandlers.preventSpaceKey(e)}
                 onBlur={(e) => FormValidations.checkField(e, this)} />
-          </div>          
+          </div>
           {this.props.projectId ? 
             <ClientCheckboxes 
               preChecked={this.state.clients_ids_checked}

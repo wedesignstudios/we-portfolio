@@ -27233,6 +27233,8 @@ var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactRouterDom = __webpack_require__(69);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27258,6 +27260,11 @@ var UpdateProject = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/update-projects' },
+          'Back'
+        ),
         _react2.default.createElement(FormProject, { sendRequestType: 'PUT', projectId: this.props.match.params.id })
       );
     }
@@ -27437,6 +27444,11 @@ var Dashboard = function (_Component) {
             'h1',
             null,
             'WE Portfolio Dashboard'
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.NavLink,
+            { exact: true, to: '' + this.props.match.url, activeStyle: { fontWeight: 'bold', color: 'red' } },
+            'Dashboard Home'
           ),
           _react2.default.createElement(
             _reactRouterDom.Switch,

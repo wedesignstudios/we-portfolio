@@ -27405,12 +27405,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var DashboardHome = __webpack_require__(370);
 var CreateProject = __webpack_require__(219);
 var UpdateProject = __webpack_require__(221);
 var CreateClient = __webpack_require__(217);
 var CreateCollaborator = __webpack_require__(218);
 var UploadImages = __webpack_require__(222);
 var GetImages = __webpack_require__(220);
+var GetProjects = __webpack_require__(371);
 var NotFound = __webpack_require__(68);
 
 var Dashboard = function (_Component) {
@@ -27432,14 +27434,21 @@ var Dashboard = function (_Component) {
           'div',
           null,
           _react2.default.createElement(
+            'h1',
+            null,
+            'WE Portfolio Dashboard'
+          ),
+          _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '' + this.props.match.url, component: DashboardHome }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/create-project', component: CreateProject }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/create-client', component: CreateClient }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/create-collaborator', component: CreateCollaborator }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/upload-images', component: UploadImages }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-images', component: GetImages }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-project/:id', component: UpdateProject }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-projects/:id', component: UpdateProject }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-projects', component: GetProjects }),
             _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
           )
         )
@@ -45209,6 +45218,221 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(9);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(69);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DashboardHome = function (_Component) {
+  _inherits(DashboardHome, _Component);
+
+  function DashboardHome() {
+    _classCallCheck(this, DashboardHome);
+
+    return _possibleConstructorReturn(this, (DashboardHome.__proto__ || Object.getPrototypeOf(DashboardHome)).apply(this, arguments));
+  }
+
+  _createClass(DashboardHome, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'ul',
+          null,
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/create-project' },
+              'Add A New Project'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/create-client' },
+              'Add A New Client'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/create-collaborator' },
+              'Add A New Collaborator'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/upload-images' },
+              'Upload Images'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/update-images' },
+              'Update Images'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/update-projects' },
+              'Update Projects'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return DashboardHome;
+}(_react.Component);
+
+module.exports = DashboardHome;
+
+/***/ }),
+/* 371 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(9);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(69);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UpdateProject = __webpack_require__(221);
+
+var GetProjects = function (_Component) {
+  _inherits(GetProjects, _Component);
+
+  function GetProjects() {
+    _classCallCheck(this, GetProjects);
+
+    var _this = _possibleConstructorReturn(this, (GetProjects.__proto__ || Object.getPrototypeOf(GetProjects)).call(this));
+
+    _this.state = {
+      projectsData: []
+    };
+    return _this;
+  }
+
+  _createClass(GetProjects, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/projects').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          projectsData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Get All Projects'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.projectsData.map(function (project) {
+            return _react2.default.createElement(
+              'div',
+              { key: project.id },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: _this3.props.match.url + '/' + project.id },
+                project.name
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return GetProjects;
+}(_react.Component);
+
+module.exports = GetProjects;
 
 /***/ })
 /******/ ]);

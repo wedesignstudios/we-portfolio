@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
+  NavLink,
   Switch,
   Redirect,
   withRouter
@@ -20,12 +21,12 @@ const GetProjects = require('./GetProjects');
 const NotFound = require('./NotFound');
 
 class Dashboard extends Component {
-
   render() {
     return (
       <Router>
       <div>
         <h1>WE Portfolio Dashboard</h1>
+        <NavLink exact to={`${this.props.match.url}`} activeStyle={{fontWeight: 'bold',  color: 'red'}}>Dashboard Home</NavLink>
         <Switch>
           <Route exact path={`${this.props.match.url}`} component={DashboardHome} />
           <Route path={`${this.props.match.url}/create-project`} component={CreateProject} />

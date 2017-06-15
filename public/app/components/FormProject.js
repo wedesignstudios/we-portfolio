@@ -19,16 +19,18 @@ class FormProject extends React.Component {
       name: '',
       date: '',
       description: '',
-      project_categories_data: [],
       project_categories_ids: [],
-      project_categories_ids_detach: [],      
+      project_categories_attached: [],
+      project_categories_ids_detach: [],
+      project_categories_ids_checked: [],
       clients_ids: [],
       clients_ids_attached: [],
       clients_ids_detach: [],
       clients_ids_checked: [],
-      collaborators_data: [],
       collaborators_ids: [],
+      collaborators_attached: [],
       collaborators_ids_detach: [],
+      collaborators_ids_checked: [],
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
@@ -39,7 +41,7 @@ class FormProject extends React.Component {
 
     this.requiredFields = ['name', 'date', 'description'];
     this.requiredFieldsBlank = true;
-    this.getClientData = this.getClientData.bind(this);
+    this.getComponentData = this.getComponentData.bind(this);
   }
 
   componentDidMount() {    
@@ -77,12 +79,12 @@ class FormProject extends React.Component {
     return true;
   }
 
-  getClientData(data) {    
+  getComponentData(data, inputName) {
     this.setState({
-      clients_ids: data.toAttach,
-      clients_ids_attached: data.attached,
-      clients_ids_detach: data.detach,
-      clients_ids_checked: data.checked      
+      [inputName]: data.toAttach,
+      [inputName + '_attached']: data.attached,
+      [inputName + '_detach']: data.detach,
+      [inputName + '_checked']: data.checked
     })
   }
 
@@ -154,7 +156,7 @@ class FormProject extends React.Component {
           {this.props.projectId ? 
             <ClientCheckboxes 
               preChecked={this.state.clients_ids_checked}
-              sendClientData={this.getClientData} 
+              sendClientData={this.getComponentData}
               attached={this.state.clients_ids_attached}
               toAttach={this.state.clients_ids}
               detach={this.state.clients_ids_detach} /> : 

@@ -27783,7 +27783,7 @@ var ClientCheckboxes = function (_React$Component) {
         { id: 'clients-container' },
         _react2.default.createElement(
           'label',
-          { className: 'form-section-label' },
+          null,
           'Project Client(s): '
         ),
         _react2.default.createElement('br', null),

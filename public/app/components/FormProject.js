@@ -6,6 +6,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ClientCheckboxes = require('./ClientCheckboxes');
+const CollaboratorCheckboxes = require('./CollaboratorCheckboxes');
 const DataActions = require('../data/actions');
 const FormHandlers = require('../services/form_handlers');
 const FormValidations = require('../services/form_validations');
@@ -44,6 +45,19 @@ class FormProject extends React.Component {
     this.getComponentData = this.getComponentData.bind(this);
   }
 
+  setAttachedAndChecked(dataModel, dataModelName) {
+    let checked = [];
+    let ids = dataModel.map(model => {
+      checked.push(model.id);
+      return model.id;
+    });
+
+    this.setState({
+      [dataModelName + '_ids_attached']: ids,
+      [dataModelName + '_ids_checked']: checked
+    });
+  }
+
   componentDidMount() {    
     if(this.props.projectId) {
       fetch(`/api/projects/${this.props.projectId}`)
@@ -55,16 +69,10 @@ class FormProject extends React.Component {
             description: data.description
           });
         if(data.clients) {
-          let checked = [];
-          let ids = data.clients.map(client => {
-            checked.push(client.id);              
-            return client.id;
-          });
-
-          this.setState({              
-            clients_ids_attached: ids,
-            clients_ids_checked: checked
-          });
+          this.setAttachedAndChecked(data.clients, 'clients');
+        };
+        if(data.collaborators) {
+          this.setAttachedAndChecked(data.collaborators, 'collaborators');
         }
       })
       .catch((err) => {
@@ -153,13 +161,21 @@ class FormProject extends React.Component {
                 onFocus={(e) => FormHandlers.preventSpaceKey(e)}
                 onBlur={(e) => FormValidations.checkField(e, this)} />
           </div>
-          {this.props.projectId ? 
-            <ClientCheckboxes 
-              preChecked={this.state.clients_ids_checked}
-              sendClientData={this.getComponentData}
-              attached={this.state.clients_ids_attached}
-              toAttach={this.state.clients_ids}
-              detach={this.state.clients_ids_detach} /> : 
+          {this.props.projectId ?
+            <div id="update-components-container">
+              <ClientCheckboxes
+                preChecked={this.state.clients_ids_checked}
+                sendClientData={this.getComponentData}
+                attached={this.state.clients_ids_attached}
+                toAttach={this.state.clients_ids}
+                detach={this.state.clients_ids_detach} />
+              <CollaboratorCheckboxes
+                preChecked={this.state.collaborators_ids_checked}
+                sendCollaboratorData={this.getComponentData}
+                attached={this.state.collaborators_ids_attached}
+                toAttach={this.state.collaborators_ids}
+                detach={this.state.collaborators_ids_detach} />
+              </div> :
           null}
           <div>
             <button disabled={this.requiredFieldsBlank} onClick={(e) => this.submitForm(e)}>Submit</button>

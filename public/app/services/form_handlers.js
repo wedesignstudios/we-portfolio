@@ -25,6 +25,38 @@ const FormHandlers = {
     });
   },
 
+  multiCheckboxChange: function(event, _this, sendDataFunc) {
+    const target = event.target;
+    const name = target.name;
+    const value = parseInt(target.value);
+    var checked = _this.props.preChecked;
+    var attached = _this.props.attached;
+    var detach = _this.props.detach;
+    var toAttach = _this.props.toAttach;
+
+    if(attached.includes(value)) {
+      let index = detach.indexOf(value);
+      detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
+    } else {
+      let index = toAttach.indexOf(value);
+      toAttach.includes(value) ? toAttach.splice(index, 1) : toAttach.push(value);
+    }
+
+    if(checked.includes(value)) {
+      let index = checked.indexOf(value);
+      checked.splice(index, 1);
+    } else {
+      checked.push(value);
+    }
+
+    sendDataFunc({
+      checked: checked,
+      attached: attached,
+      toAttach: toAttach,
+      detach: detach
+    });
+  },
+
   preventAllButShiftAndTab: function(event) {
     event.target.addEventListener('keydown', function(event) {
       let key = event.key;

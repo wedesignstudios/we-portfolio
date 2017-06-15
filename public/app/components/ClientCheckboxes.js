@@ -31,7 +31,7 @@ class ClientCheckboxes extends React.Component {
     return (
       <div id="clients-container">
         <label>Project Client(s): </label><br />
-        <div id="client-checkboxes-container">
+        <div className="checkboxes-container">
           {this.state.clients_data.map(client => 
             <div key={client.id}>
               <input 

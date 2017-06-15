@@ -6568,6 +6568,38 @@ var FormHandlers = {
     _this.setState(_defineProperty({}, name, !_this.state[name]));
   },
 
+  multiCheckboxChange: function multiCheckboxChange(event, _this, sendDataFunc) {
+    var target = event.target;
+    var name = target.name;
+    var value = parseInt(target.value);
+    var checked = _this.props.preChecked;
+    var attached = _this.props.attached;
+    var detach = _this.props.detach;
+    var toAttach = _this.props.toAttach;
+
+    if (attached.includes(value)) {
+      var index = detach.indexOf(value);
+      detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
+    } else {
+      var _index = toAttach.indexOf(value);
+      toAttach.includes(value) ? toAttach.splice(_index, 1) : toAttach.push(value);
+    }
+
+    if (checked.includes(value)) {
+      var _index2 = checked.indexOf(value);
+      checked.splice(_index2, 1);
+    } else {
+      checked.push(value);
+    }
+
+    sendDataFunc({
+      checked: checked,
+      attached: attached,
+      toAttach: toAttach,
+      detach: detach
+    });
+  },
+
   preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
     event.target.addEventListener('keydown', function (event) {
       var key = event.key;
@@ -12358,6 +12390,8 @@ __webpack_require__(230);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -12382,16 +12416,18 @@ var FormProject = function (_React$Component) {
       name: '',
       date: '',
       description: '',
-      project_categories_data: [],
       project_categories_ids: [],
+      project_categories_attached: [],
       project_categories_ids_detach: [],
+      project_categories_ids_checked: [],
       clients_ids: [],
       clients_ids_attached: [],
       clients_ids_detach: [],
       clients_ids_checked: [],
-      collaborators_data: [],
       collaborators_ids: [],
+      collaborators_attached: [],
       collaborators_ids_detach: [],
+      collaborators_ids_checked: [],
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
@@ -12402,7 +12438,7 @@ var FormProject = function (_React$Component) {
 
     _this.requiredFields = ['name', 'date', 'description'];
     _this.requiredFieldsBlank = true;
-    _this.getClientData = _this.getClientData.bind(_this);
+    _this.getComponentData = _this.getComponentData.bind(_this);
     return _this;
   }
 
@@ -12445,14 +12481,11 @@ var FormProject = function (_React$Component) {
       return true;
     }
   }, {
-    key: 'getClientData',
-    value: function getClientData(data) {
-      this.setState({
-        clients_ids: data.toAttach,
-        clients_ids_attached: data.attached,
-        clients_ids_detach: data.detach,
-        clients_ids_checked: data.checked
-      });
+    key: 'getComponentData',
+    value: function getComponentData(data, inputName) {
+      var _setState;
+
+      this.setState((_setState = {}, _defineProperty(_setState, inputName, data.toAttach), _defineProperty(_setState, inputName + '_attached', data.attached), _defineProperty(_setState, inputName + '_detach', data.detach), _defineProperty(_setState, inputName + '_checked', data.checked), _setState));
     }
   }, {
     key: 'submitForm',
@@ -12577,7 +12610,7 @@ var FormProject = function (_React$Component) {
           ),
           this.props.projectId ? _react2.default.createElement(ClientCheckboxes, {
             preChecked: this.state.clients_ids_checked,
-            sendClientData: this.getClientData,
+            sendClientData: this.getComponentData,
             attached: this.state.clients_ids_attached,
             toAttach: this.state.clients_ids,
             detach: this.state.clients_ids_detach }) : null,
@@ -27734,39 +27767,6 @@ var ClientCheckboxes = function (_React$Component) {
       });
     }
   }, {
-    key: 'checkboxChange',
-    value: function checkboxChange(event) {
-      var target = event.target;
-      var name = target.name;
-      var value = parseInt(target.value);
-      var checked = this.props.preChecked;
-      var attached = this.props.attached;
-      var detach = this.props.detach;
-      var toAttach = this.props.toAttach;
-
-      if (attached.includes(value)) {
-        var index = detach.indexOf(value);
-        detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
-      } else {
-        var _index = toAttach.indexOf(value);
-        toAttach.includes(value) ? toAttach.splice(_index, 1) : toAttach.push(value);
-      }
-
-      if (checked.includes(value)) {
-        var _index2 = checked.indexOf(value);
-        checked.splice(_index2, 1);
-      } else {
-        checked.push(value);
-      }
-
-      this.props.sendClientData({
-        checked: checked,
-        attached: attached,
-        toAttach: toAttach,
-        detach: detach
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
@@ -27800,7 +27800,7 @@ var ClientCheckboxes = function (_React$Component) {
                 name: 'clients_ids',
                 checked: _this3.props.preChecked.includes(client.id),
                 onChange: function onChange(e) {
-                  return _this3.checkboxChange(e);
+                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendClientData);
                 } }),
               _react2.default.createElement(
                 'label',

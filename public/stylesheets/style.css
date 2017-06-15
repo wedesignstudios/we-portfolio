@@ -2,6 +2,14 @@
   display: inline-block;
   width: 300px; }
 
+#client-checkboxes-container {
+  border: 1px solid #DEDEDE;
+  display: inline-block;
+  margin: 1rem 0;
+  max-height: 240px;
+  overflow: scroll;
+  padding: 0.65rem; }
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }

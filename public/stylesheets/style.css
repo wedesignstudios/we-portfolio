@@ -2,11 +2,12 @@
   display: inline-block;
   width: 300px; }
 
-#client-checkboxes-container {
+.checkboxes-container {
   border: 1px solid #DEDEDE;
   display: inline-block;
   margin: 1rem 0;
-  max-height: 240px;
+  max-height: 20rem;
+  min-width: 15rem;
   overflow: scroll;
   padding: 0.65rem; }
 

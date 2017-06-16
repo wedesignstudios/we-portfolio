@@ -12400,6 +12400,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var ClientCheckboxes = __webpack_require__(226);
 var CollaboratorCheckboxes = __webpack_require__(372);
+var ProjectCategoriesCheckboxes = __webpack_require__(373);
 var DataActions = __webpack_require__(30);
 var FormHandlers = __webpack_require__(19);
 var FormValidations = __webpack_require__(24);
@@ -12475,6 +12476,9 @@ var FormProject = function (_React$Component) {
           };
           if (data.collaborators) {
             _this2.setAttachedAndChecked(data.collaborators, 'collaborators');
+          };
+          if (data.project_categories) {
+            _this2.setAttachedAndChecked(data.project_categories, 'project_categories');
           }
         }).catch(function (err) {
           console.error(err);
@@ -12505,9 +12509,9 @@ var FormProject = function (_React$Component) {
           DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', FormHandlers.successCallback('create-project', this));
         } else {
           DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects/' + this.props.projectId, FormHandlers.successMessage(this));
-          FormHandlers.updateAttached(this, ['clients']);
-          FormHandlers.resetDetached(this, ['clients']);
-          FormHandlers.resetToAttachIds(this, ['clients']);
+          FormHandlers.updateAttached(this, ['clients', 'collaborators', 'project_categories']);
+          FormHandlers.resetDetached(this, ['clients', 'collaborators', 'project_categories']);
+          FormHandlers.resetToAttachIds(this, ['clients', 'collaborators', 'project_categories']);
         }
       });
     }
@@ -12630,7 +12634,13 @@ var FormProject = function (_React$Component) {
               sendCollaboratorData: this.getComponentData,
               attached: this.state.collaborators_ids_attached,
               toAttach: this.state.collaborators_ids,
-              detach: this.state.collaborators_ids_detach })
+              detach: this.state.collaborators_ids_detach }),
+            _react2.default.createElement(ProjectCategoriesCheckboxes, {
+              preChecked: this.state.project_categories_ids_checked,
+              sendProjectCategoriesData: this.getComponentData,
+              attached: this.state.project_categories_ids_attached,
+              toAttach: this.state.project_categories_ids,
+              detach: this.state.project_categories_ids_detach })
           ) : null,
           _react2.default.createElement(
             'div',
@@ -45771,6 +45781,115 @@ var CollaboratorCheckboxes = function (_React$Component) {
 }(_react2.default.Component);
 
 module.exports = CollaboratorCheckboxes;
+
+/***/ }),
+/* 373 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(9);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(19);
+
+var ProjectCategoriesCheckboxes = function (_React$Component) {
+  _inherits(ProjectCategoriesCheckboxes, _React$Component);
+
+  function ProjectCategoriesCheckboxes() {
+    _classCallCheck(this, ProjectCategoriesCheckboxes);
+
+    var _this = _possibleConstructorReturn(this, (ProjectCategoriesCheckboxes.__proto__ || Object.getPrototypeOf(ProjectCategoriesCheckboxes)).call(this));
+
+    _this.state = {
+      project_categories_data: []
+    };
+    return _this;
+  }
+
+  _createClass(ProjectCategoriesCheckboxes, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/project-categories').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          project_categories_data: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props = this.props,
+          preChecked = _props.preChecked,
+          sendProjectCategoriesData = _props.sendProjectCategoriesData,
+          attached = _props.attached,
+          detach = _props.detach;
+
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'project-categories-container' },
+        _react2.default.createElement(
+          'label',
+          null,
+          'Project Category/Categories: '
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'div',
+          { className: 'checkboxes-container' },
+          this.state.project_categories_data.map(function (category) {
+            return _react2.default.createElement(
+              'div',
+              { key: category.id },
+              _react2.default.createElement('input', {
+                type: 'checkbox',
+                value: category.id,
+                name: 'project_categories_ids',
+                checked: _this3.props.preChecked.includes(category.id),
+                onChange: function onChange(e) {
+                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendProjectCategoriesData);
+                } }),
+              _react2.default.createElement(
+                'label',
+                null,
+                category.name
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return ProjectCategoriesCheckboxes;
+}(_react2.default.Component);
+
+module.exports = ProjectCategoriesCheckboxes;
 
 /***/ })
 /******/ ]);

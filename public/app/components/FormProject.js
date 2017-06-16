@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const ClientCheckboxes = require('./ClientCheckboxes');
 const CollaboratorCheckboxes = require('./CollaboratorCheckboxes');
+const ProjectCategoriesCheckboxes = require('./ProjectCategoriesCheckboxes');
 const DataActions = require('../data/actions');
 const FormHandlers = require('../services/form_handlers');
 const FormValidations = require('../services/form_validations');
@@ -73,6 +74,9 @@ class FormProject extends React.Component {
         };
         if(data.collaborators) {
           this.setAttachedAndChecked(data.collaborators, 'collaborators');
+        };
+        if(data.project_categories) {
+          this.setAttachedAndChecked(data.project_categories, 'project_categories');
         }
       })
       .catch((err) => {
@@ -104,9 +108,9 @@ class FormProject extends React.Component {
         DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', FormHandlers.successCallback('create-project', this));
       } else {
         DataActions.sendRequest(this.props.sendRequestType, this.state, `/api/projects/${this.props.projectId}`, FormHandlers.successMessage(this));
-        FormHandlers.updateAttached(this, ['clients']);
-        FormHandlers.resetDetached(this, ['clients']);
-        FormHandlers.resetToAttachIds(this, ['clients']);
+        FormHandlers.updateAttached(this, ['clients', 'collaborators', 'project_categories']);
+        FormHandlers.resetDetached(this, ['clients', 'collaborators', 'project_categories']);
+        FormHandlers.resetToAttachIds(this, ['clients', 'collaborators', 'project_categories']);
       }
     })
   }
@@ -175,6 +179,12 @@ class FormProject extends React.Component {
                 attached={this.state.collaborators_ids_attached}
                 toAttach={this.state.collaborators_ids}
                 detach={this.state.collaborators_ids_detach} />
+              <ProjectCategoriesCheckboxes
+                preChecked={this.state.project_categories_ids_checked}
+                sendProjectCategoriesData={this.getComponentData}
+                attached={this.state.project_categories_ids_attached}
+                toAttach={this.state.project_categories_ids}
+                detach={this.state.project_categories_ids_detach} />
               </div> :
           null}
           <div>

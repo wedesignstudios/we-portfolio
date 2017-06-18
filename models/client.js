@@ -1,7 +1,8 @@
 const bookshelf = require('../db/bookshelf');
 
-const Project = require('./project');
 const Address = require('./address');
+const AddressesClients = require('./addresses_clients');
+const Project = require('./project');
 const ProjectsClients = require('./projects_clients');
 
 const Client = bookshelf.Model.extend({
@@ -12,7 +13,7 @@ const Client = bookshelf.Model.extend({
     return this.belongsToMany('Project').through('ProjectsClients');
   },
   address: function() {
-    return this.hasOne('Address');
+    return this.hasOne('Address').through('AddressesClients', 'id', 'client_id');
   }
 }, {
   dependents: ['projects']

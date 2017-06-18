@@ -12,12 +12,14 @@ import {
 
 const DashboardHome = require('./DashboardHome');
 const CreateProject = require('./CreateProject');
+const GetProjects = require('./GetProjects');
 const UpdateProject = require('./UpdateProject');
 const CreateClient = require('./CreateClient');
+const GetClients = require('./GetClients');
+const UpdateClient = require('./UpdateClient');
 const CreateCollaborator = require('./CreateCollaborator');
 const UploadImages = require('./UploadImages');
 const GetImages = require('./GetImages');
-const GetProjects = require('./GetProjects');
 const NotFound = require('./NotFound');
 
 class Dashboard extends Component {
@@ -36,6 +38,8 @@ class Dashboard extends Component {
           <Route path={`${this.props.match.url}/update-images`} component={GetImages} />
           <Route path={`${this.props.match.url}/update-projects/:id`} component={UpdateProject} />
           <Route path={`${this.props.match.url}/update-projects`} component={GetProjects} />
+          <Route path={`${this.props.match.url}/update-clients/:id`} component={UpdateClient} />
+          <Route path={`${this.props.match.url}/update-clients`} component={GetClients} />
           <Route component={NotFound} />
         </Switch>
       </div>

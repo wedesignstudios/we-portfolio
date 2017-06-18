@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser');
 const knex = require('knex');
 
 // controllers
+const addresses = require('./controllers/addresses');
 const clients = require('./controllers/clients');
 const collaborators = require('./controllers/collaborators');
 const images = require('./controllers/images');
@@ -65,6 +66,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use('/', index);
+app.use('/api/addresses', addresses);
 app.use('/api/clients', clients);
 app.use('/api/collaborators', collaborators);
 app.use('/api/images', images);

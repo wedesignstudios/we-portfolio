@@ -24,8 +24,6 @@ exports.up = function(knex, Promise) {
       tbl.string('city');
       tbl.string('state');
       tbl.string('country');
-      tbl.integer('client_id').references('clients.id');
-      tbl.integer('collaborator_id').references('collaborators.id');
       tbl.timestamps();
     }),
     knex.schema.createTableIfNotExists('images', (tbl) => {

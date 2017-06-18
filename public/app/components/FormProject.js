@@ -166,7 +166,7 @@ class FormProject extends React.Component {
                 onBlur={(e) => FormValidations.checkField(e, this)} />
           </div>
           {this.props.projectId ?
-            <div id="update-components-container">
+            <div className="update-components-container">
               <ClientCheckboxes
                 preChecked={this.state.clients_ids_checked}
                 sendClientData={this.getComponentData}

@@ -7,13 +7,13 @@ const DataActions = {
 
     xhr.addEventListener('readystatechange', function() {
       if (this.readyState === 4) {
-        // console.log(this.responseText);
         if(xhr.status === 200) {
+          console.log(this.responseText);
           if(callback) {
-            callback;
-          }
+            callback();
+          };
         };
-      }
+      };
     });
 
     xhr.open(reqType, apiEndpoint);

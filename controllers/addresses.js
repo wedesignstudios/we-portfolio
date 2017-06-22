@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const params = require('params');
-const isLoggedIn = require('../middleware/isLoggedIn');
 
 const Address = require('../models/address.js');
 
@@ -9,6 +7,8 @@ const Address = require('../models/address.js');
 router.get('/', (req, res) => {
   Address
     .collection()
+    .query('distinct', 'city')
+    .orderBy('city', 'ASC')
     .fetch({
       debug: true
     })
@@ -19,11 +19,6 @@ router.get('/', (req, res) => {
       console.error(err);
       res.sendStatus(500);
     });
-})
-
-// CREATE a new address
-router.post('/', isLoggedIn, (req, res) => {
-  // do stuff to create new address
-})
+});
 
 module.exports = router;

@@ -4,11 +4,13 @@ const params = require('params');
 const isLoggedIn = require('../middleware/isLoggedIn');
 
 const Client = require('../models/client.js');
+const Address = require('../models/address.js');
 
 // INDEX all clients
 router.get('/', (req, res, next) => {
   Client
     .collection()
+    .orderBy('id', 'ASC')
     .fetch({
       withRelated: ['projects', 'address'],
       debug: true
@@ -41,18 +43,23 @@ router.get('/:id', (req, res, next) => {
 
 // CREATE a new client
 router.post('/', isLoggedIn, (req, res, next) => {
-  const projects_ids = req.body.projects_ids;
-
   const allowedKeys = ['name', 'url'];
+  const allowedAddressKeys = ['city', 'state', 'country'];
   const formData = params(req.body).only(allowedKeys);
+  const formAddressData = params(req.body).only(allowedAddressKeys);
 
   if (Object.keys(formData).length != 0) {
     Client
       .forge(formData)
       .save()
       .then((client) => {
-        if (projects_ids) client.projects().attach(projects_ids);
-        res.redirect(`/clients/${client.id}`);
+        Address
+          .forge(formAddressData)
+          .save()
+          .then((address) => {
+            client.address().attach(address.id);
+          });
+        res.status(200).send(`New Client successfully created.`);
       })
       .catch((err) => {
         console.error(err);        
@@ -69,21 +76,22 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 // UPDATE a client
 router.put('/:id', isLoggedIn, (req, res, next) => {
-  const projects_ids = req.body.projects_ids;
-  const projects_ids_detach = req.body.projects_ids_detach;
-
+  const address_id = req.body.address_id;
   const allowedKeys = ['name', 'url'];
+  const allowedAddressKeys = ['city', 'state', 'country'];
   const formData = params(req.body).only(allowedKeys);
+  const formAddressData = params(req.body).only(allowedAddressKeys);
 
   if (Object.keys(formData).length != 0) {
     Client
       .forge({id: req.params.id})
       .save(formData, {method: 'update'})
       .then((client) => {
-        if (projects_ids_detach) client.projects().detach(projects_ids_detach);
-        if (projects_ids) client.projects().attach(projects_ids);
+        Address
+          .forge({id: address_id})
+          .save(formAddressData, {method: 'update'});
         client = client.toJSON();
-        res.send(`Client ${client.name} has been updated.`);
+        res.status(200).send(`Client ${client.name} has been updated.`);
       })
       .catch((err) => {
         console.error(err);
@@ -95,12 +103,18 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 });
 
 // DELETE a client
-router.delete('/:id', isLoggedIn, (req, res, next) => {
+router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
+  const address_id = req.body.address_id;
+
   Client
     .forge({id: req.params.id})
     .destroy()
     .then(() => {
-      res.send(`Client ID: ${req.params.id} has been deleted.`);
+      Address
+        .forge({id: address_id})
+        .destroy();
+
+      res.status(200).send(`Client ID: ${req.params.id} has been deleted.`);
     })
     .catch((err) => {
       console.error(err);

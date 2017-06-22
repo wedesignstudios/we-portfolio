@@ -27,7 +27,7 @@ class GetClients extends Component {
   render() {
     return(
       <div>
-        <h3>Get All Clients</h3>
+        <h3>All Clients</h3>
           <div>
             {this.state.clientsData.map(client =>
               <div key={client.id}><Link to={`${this.props.match.url}/${client.id}`}>{client.name}</Link></div>

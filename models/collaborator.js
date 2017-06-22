@@ -13,10 +13,10 @@ const Collaborator = bookshelf.Model.extend({
     return this.belongsToMany('Project').through('ProjectsCollaborators');
   },
   address: function() {
-    return this.hasOne('Address').through('AddressesCollaborators', 'id', 'collaborator_id');
+    return this.belongsToMany('Address').through('AddressesCollaborators');
   }
 }, {
-  dependents: ['projects']
+  dependents: ['projects', 'address']
 });
 
 module.exports = bookshelf.model('Collaborator', Collaborator);

@@ -9,6 +9,7 @@ const Project = require('../models/project');
 router.get('/', (req, res, next) => {
   Project
     .collection()
+    .orderBy('name', 'ASC')
     .fetch({
       withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories'],
       debug: true

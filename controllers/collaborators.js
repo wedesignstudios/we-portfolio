@@ -4,17 +4,19 @@ const params = require('params');
 const isLoggedIn = require('../middleware/isLoggedIn');
 
 const Collaborator = require('../models/collaborator.js');
+const Address = require('../models/address.js');
 
 // INDEX all collaborators
 router.get('/', (req, res, next) => {
   Collaborator
     .collection()
+    .orderBy('name', 'ASC')
     .fetch({
       withRelated: ['projects', 'address'],
       debug: true
     })
-    .then((collabor) => {
-      res.json(collabor.toJSON());
+    .then((collaborator) => {
+      res.json(collaborator.toJSON());
     })
     .catch((err) => {
       console.error(err);
@@ -30,8 +32,12 @@ router.get('/:id', (req, res, next) => {
       withRelated: ['projects', 'address'],
       debug: true
     })
-    .then((collaborator) => {      
-      res.json(collaborator.toJSON());
+    .then((collaborator) => {
+      if(collaborator) {
+        res.json(collaborator.toJSON());
+      } else {
+        res.json(null);
+      }
     })
     .catch((err) => {
       console.error(err);
@@ -41,18 +47,23 @@ router.get('/:id', (req, res, next) => {
 
 // CREATE a new collaborator
 router.post('/', isLoggedIn, (req, res, next) => {
-  const projects_ids = req.body.projects_ids;
-
   const allowedKeys = ['name', 'url'];
+  const allowedAddressKeys = ['city', 'state', 'country'];
   const formData = params(req.body).only(allowedKeys);
+  const formAddressData = params(req.body).only(allowedAddressKeys);
 
   if (Object.keys(formData).length != 0) {
     Collaborator
       .forge(formData)
       .save()
       .then((collaborator) => {
-        if (projects_ids) collaborator.projects().attach(projects_ids);
-        res.redirect(`/collaborators/${collaborator.id}`);
+        Address
+          .forge(formAddressData)
+          .save()
+          .then((address) => {
+            collaborator.address().attach(address.id);
+          });
+        res.status(200).send(`New Collaborator successfully created.`);
       })
       .catch((err) => {
         console.error(err);
@@ -69,21 +80,22 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 // UPDATE a collaborator
 router.put('/:id', isLoggedIn, (req, res, next) => {
-  const projects_ids = req.body.projects_ids;
-  const projects_ids_detach = req.body.projects_ids_detach;
-
+  const address_id = req.body.address_id;
   const allowedKeys = ['name', 'url'];
+  const allowedAddressKeys = ['city', 'state', 'country'];
   const formData = params(req.body).only(allowedKeys);
+  const formAddressData = params(req.body).only(allowedAddressKeys);
 
   if (Object.keys(formData).length != 0) {
     Collaborator
       .forge({id: req.params.id})
       .save(formData, {method: 'update'})
       .then((collaborator) => {
-        if (projects_ids_detach) collaborator.projects().detach(projects_ids_detach);
-        if (projects_ids) collaborator.projects().attach(projects_ids);      
+        Address
+          .forge({id: address_id})
+          .save(formAddressData, {method: 'update'});
         collaborator = collaborator.toJSON();
-        res.send(`Collaborator ${collaborator.name} has been updated.`);
+        res.status(200).send(`Collaborator ${collaborator.name} has been updated.`);
       })
       .catch((err) => {
         console.error(err);
@@ -95,12 +107,18 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 });
 
 // DELETE a collaborator
-router.delete('/:id', isLoggedIn, (req, res, next) => {
+router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
+  const address_id = req.body.address_id;
+
   Collaborator
     .forge({id: req.params.id})
     .destroy()
     .then(() => {
-      res.send(`Collaborator ID: ${req.params.id} has been deleted.`);
+      Address
+        .forge({id: address_id})
+        .destroy();
+
+      res.status(200).send(`Collaborator ID: ${req.params.id} has been deleted.`);
     })
     .catch((err) => {
       console.error(err);

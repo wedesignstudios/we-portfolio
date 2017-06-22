@@ -14,6 +14,8 @@ const Address = bookshelf.Model.extend({
   collaborators: function() {
     return this.belongsToMany('Collaborator').through('AddressesCollaborators');
   }
+}, {
+  dependents: ['clients', 'collaborators']
 });
 
 module.exports = bookshelf.model('Address', Address);

@@ -28606,10 +28606,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DataActions = __webpack_require__(31);
-var FormHandlers = __webpack_require__(17);
-var FormValidations = __webpack_require__(26);
-var FormHandlersValidations = __webpack_require__(46);
+var FormCollaborator = __webpack_require__(393);
 
 var CreateCollaborator = function (_React$Component) {
   _inherits(CreateCollaborator, _React$Component);
@@ -28617,143 +28614,16 @@ var CreateCollaborator = function (_React$Component) {
   function CreateCollaborator() {
     _classCallCheck(this, CreateCollaborator);
 
-    var _this = _possibleConstructorReturn(this, (CreateCollaborator.__proto__ || Object.getPrototypeOf(CreateCollaborator)).call(this));
-
-    _this.state = {
-      name: '',
-      url: '',
-      nameErr: false,
-      urlErr: false,
-      success: false
-    };
-
-    _this.initialState = _this.state;
-    _this.requiredFields = ['name'];
-    _this.requiredFieldsBlank = true;
-    _this.handleOnChange = FormHandlers.handleOnChange;
-    _this.validateCheckField = FormValidations.checkField;
-    _this.handleKeyPress = FormHandlers.preventSpaceKey;
-    return _this;
+    return _possibleConstructorReturn(this, (CreateCollaborator.__proto__ || Object.getPrototypeOf(CreateCollaborator)).apply(this, arguments));
   }
 
   _createClass(CreateCollaborator, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
-
-      return true;
-    }
-  }, {
-    key: 'submitForm',
-    value: function submitForm(event) {
-      event.preventDefault();
-      FormValidations.trimData(this.state, this);
-      FormHandlersValidations.validateHandleURL(this.state.url, this);
-
-      this.forceUpdate(function () {
-        if (!this.state.urlErr) {
-          DataActions.sendRequest('POST', this.state, '/api/collaborators', FormHandlers.successCallback('create-collaborator', this));
-        };
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Add A New Collaborator'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'success' },
-          this.state.success ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-added-success', style: { color: 'green' } },
-            _react2.default.createElement(
-              'p',
-              null,
-              'New Collaborator successfully added.'
-            )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'form',
-          { id: 'create-collaborator' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Collaborator Name: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'name',
-              className: this.state.nameErr ? 'err' : null,
-              value: this.state.name,
-              onChange: function onChange(e) {
-                return _this2.handleOnChange(e, _this2);
-              },
-              onFocus: function onFocus(e) {
-                return _this2.handleKeyPress(e);
-              },
-              onBlur: function onBlur(e) {
-                return _this2.validateCheckField(e, _this2);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Website: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'url',
-              className: this.state.urlErr ? 'err' : null,
-              value: this.state.url,
-              onChange: function onChange(e) {
-                return _this2.handleOnChange(e, _this2);
-              },
-              onBlur: function onBlur(e) {
-                return _this2.validateCheckField(e, _this2);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this2.submitForm(e);
-                } },
-              'Submit'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'errors' },
-          this.state.nameErr ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-name-validation-error', style: { color: 'red' } },
-            'Collaborator Name can not be blank. Please enter a Collaborator Name.'
-          ) : null,
-          this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-url-validation-error', style: { color: 'red' } },
-            'Website URL is not valid. Please enter a valid Website URL.'
-          ) : null
-        )
+        _react2.default.createElement(FormCollaborator, { sendRequestType: 'POST' })
       );
     }
   }]);
@@ -29454,6 +29324,8 @@ var CreateClient = __webpack_require__(225);
 var GetClients = __webpack_require__(229);
 var UpdateClient = __webpack_require__(232);
 var CreateCollaborator = __webpack_require__(226);
+var GetCollaborators = __webpack_require__(394);
+var UpdateCollaborator = __webpack_require__(395);
 var UploadImages = __webpack_require__(233);
 var GetImages = __webpack_require__(230);
 var NotFound = __webpack_require__(73);
@@ -29499,6 +29371,8 @@ var Dashboard = function (_Component) {
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-projects', component: GetProjects }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-clients/:id', component: UpdateClient }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-clients', component: GetClients }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-collaborators/:id', component: UpdateCollaborator }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-collaborators', component: GetCollaborators }),
             _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
           )
         )
@@ -48988,6 +48862,433 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(6);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(19);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormAddress = __webpack_require__(237);
+var DataActions = __webpack_require__(31);
+var FormHandlers = __webpack_require__(17);
+var FormValidations = __webpack_require__(26);
+var FormHandlersValidations = __webpack_require__(46);
+
+var CreateCollaborator = function (_React$Component) {
+  _inherits(CreateCollaborator, _React$Component);
+
+  function CreateCollaborator() {
+    _classCallCheck(this, CreateCollaborator);
+
+    var _this = _possibleConstructorReturn(this, (CreateCollaborator.__proto__ || Object.getPrototypeOf(CreateCollaborator)).call(this));
+
+    _this.state = {
+      name: '',
+      url: '',
+      city: '',
+      state: '',
+      country: '',
+      address_id: '',
+      nameErr: false,
+      urlErr: false,
+      success: false,
+      redirect: false
+    };
+
+    _this.initialState = _this.state;
+    _this.requiredFields = ['name'];
+    _this.requiredFieldsBlank = true;
+    _this.getComponentData = _this.getComponentData.bind(_this);
+    _this.setRedirect = _this.setRedirect.bind(_this);
+    return _this;
+  }
+
+  _createClass(CreateCollaborator, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (this.props.collaboratorId) {
+        fetch('/api/collaborators/' + this.props.collaboratorId).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this2.setState({
+            name: data.name,
+            url: data.url
+          });
+          if (data.address.length > 0) {
+            _this2.setState({
+              city: data.address[0].city,
+              state: data.address[0].state,
+              country: data.address[0].country,
+              address_id: data.address[0].id
+            });
+          }
+        }).catch(function (err) {
+          console.error(err);
+        });
+      }
+    }
+  }, {
+    key: 'getComponentData',
+    value: function getComponentData(data, inputName) {
+      this.setState(_defineProperty({}, inputName, data[inputName]));
+    }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+      return true;
+    }
+  }, {
+    key: 'setRedirect',
+    value: function setRedirect() {
+      this.setState({
+        redirect: true
+      });
+    }
+  }, {
+    key: 'deleteCollaborator',
+    value: function deleteCollaborator() {
+      DataActions.sendRequest('DELETE', { address_id: this.state.address_id }, '/api/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirect);
+    }
+  }, {
+    key: 'submitForm',
+    value: function submitForm(event) {
+      event.preventDefault();
+      FormValidations.trimData(this.state, this);
+      if (this.state.url) {
+        FormHandlersValidations.validateHandleURL(this.state.url, this);
+      }
+
+      this.forceUpdate(function () {
+        var _this3 = this;
+
+        if (!this.state.urlErr) {
+          if (this.props.sendRequestType === 'POST') {
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators', function () {
+              return FormHandlers.successCallback('create-collaborator', _this3);
+            });
+          } else {
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators/' + this.props.collaboratorId, function () {
+              return FormHandlers.successMessage(_this3);
+            });
+          }
+        };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        this.state.redirect ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/dashboard/update-collaborators' }) : null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : 'Update Collaborator: ' + this.state.name
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'success' },
+          this.state.success ? _react2.default.createElement(
+            'div',
+            { id: 'collaborator-added-success', style: { color: 'green' } },
+            _react2.default.createElement(
+              'p',
+              null,
+              this.props.sendRequestType === 'POST' ? 'New Collaborator successfully added.' : 'Collaborator successfully updated.'
+            )
+          ) : null
+        ),
+        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return _this4.deleteCollaborator(e);
+            } },
+          'Delete ',
+          this.state.name
+        ) : null,
+        _react2.default.createElement(
+          'form',
+          { id: 'create-collaborator' },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Collaborator Name: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'name',
+              className: this.state.nameErr ? 'err' : null,
+              value: this.state.name,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this4);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this4);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Website: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'url',
+              className: this.state.urlErr ? 'err' : null,
+              value: this.state.url,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this4);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this4);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Address: '
+            ),
+            _react2.default.createElement(FormAddress, {
+              collaboratorId: this.props.collaboratorId,
+              sendAddressData: this.getComponentData })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
+                  return _this4.submitForm(e);
+                } },
+              this.props.sendRequestType === 'POST' ? 'Submit' : 'Update ' + this.state.name
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'errors' },
+          this.state.nameErr ? _react2.default.createElement(
+            'div',
+            { id: 'collaborator-name-validation-error', style: { color: 'red' } },
+            'Collaborator Name can not be blank. Please enter a Collaborator Name.'
+          ) : null,
+          this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
+            'div',
+            { id: 'collaborator-url-validation-error', style: { color: 'red' } },
+            'Website URL is not valid. Please enter a valid Website URL.'
+          ) : null
+        )
+      );
+    }
+  }]);
+
+  return CreateCollaborator;
+}(_react2.default.Component);
+
+module.exports = CreateCollaborator;
+
+/***/ }),
+/* 394 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(6);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(19);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GetCollaborators = function (_Component) {
+  _inherits(GetCollaborators, _Component);
+
+  function GetCollaborators() {
+    _classCallCheck(this, GetCollaborators);
+
+    var _this = _possibleConstructorReturn(this, (GetCollaborators.__proto__ || Object.getPrototypeOf(GetCollaborators)).call(this));
+
+    _this.state = {
+      collaboratorsData: []
+    };
+    return _this;
+  }
+
+  _createClass(GetCollaborators, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/collaborators').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          collaboratorsData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h3',
+          null,
+          'All Collaborators'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.collaboratorsData.map(function (collaborator) {
+            return _react2.default.createElement(
+              'div',
+              { key: collaborator.id },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: _this3.props.match.url + '/' + collaborator.id },
+                collaborator.name
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return GetCollaborators;
+}(_react.Component);
+
+module.exports = GetCollaborators;
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(6);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(19);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormCollaborator = __webpack_require__(393);
+
+var UpdateCollaborator = function (_Component) {
+  _inherits(UpdateCollaborator, _Component);
+
+  function UpdateCollaborator() {
+    _classCallCheck(this, UpdateCollaborator);
+
+    return _possibleConstructorReturn(this, (UpdateCollaborator.__proto__ || Object.getPrototypeOf(UpdateCollaborator)).apply(this, arguments));
+  }
+
+  _createClass(UpdateCollaborator, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/update-collaborators' },
+          'All Collaborators'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(FormCollaborator, { sendRequestType: 'PUT', collaboratorId: this.props.match.params.id })
+      );
+    }
+  }]);
+
+  return UpdateCollaborator;
+}(_react.Component);
+
+module.exports = UpdateCollaborator;
 
 /***/ })
 /******/ ]);

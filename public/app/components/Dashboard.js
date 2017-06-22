@@ -18,6 +18,8 @@ const CreateClient = require('./CreateClient');
 const GetClients = require('./GetClients');
 const UpdateClient = require('./UpdateClient');
 const CreateCollaborator = require('./CreateCollaborator');
+const GetCollaborators = require('./GetCollaborators');
+const UpdateCollaborator = require('./UpdateCollaborator');
 const UploadImages = require('./UploadImages');
 const GetImages = require('./GetImages');
 const NotFound = require('./NotFound');
@@ -40,6 +42,8 @@ class Dashboard extends Component {
           <Route path={`${this.props.match.url}/update-projects`} component={GetProjects} />
           <Route path={`${this.props.match.url}/update-clients/:id`} component={UpdateClient} />
           <Route path={`${this.props.match.url}/update-clients`} component={GetClients} />
+          <Route path={`${this.props.match.url}/update-collaborators/:id`} component={UpdateCollaborator} />
+          <Route path={`${this.props.match.url}/update-collaborators`} component={GetCollaborators} />
           <Route component={NotFound} />
         </Switch>
       </div>

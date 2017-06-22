@@ -25,6 +25,7 @@ const userData = require('./controllers/user_data');
 const loginFacebook = require('./controllers/loginFacebook');
 const loginGoogle = require('./controllers/loginGoogle');
 const logout = require('./controllers/logout');
+const states = require('./controllers/states');
 
 const ENV = process.env.NODE_ENV || 'development';
 const config = require('./knexfile');
@@ -74,6 +75,7 @@ app.use('/api/countries', countries);
 app.use('/api/images', images);
 app.use('/api/project-categories', projectCategories);
 app.use('/api/projects', projects);
+app.use('/api/states', states);
 app.use('/api/users', users);
 app.use('/api/user_data', userData);
 app.use('/login/facebook', loginFacebook);

@@ -11,12 +11,11 @@ class FormAddress extends Component {
       allCities: [],
       allStates: [],
       allCountries: [],
-      selectedCity: '',
-      selectedState: '',
-      selectedCountry: ''
+      city: '',
+      state: '',
+      country: '',
+      address_id: ''
     }
-
-    this.setSelectedCity = this.setSelectedCity.bind(this);
   }
 
   componentDidMount() {
@@ -26,16 +25,26 @@ class FormAddress extends Component {
         let arrCities = data.map(item => {
           return {value: item.city, label: item.city};
         });
-        let arrStates = data.map(item => {
-          return {value: item.state, label: item.state};
-        });
         this.setState({
-          allCities: arrCities,
-          allStates: arrStates
+          allCities: arrCities
         });
       })
       .catch((err) => {
         console.error(err);
+      });
+
+    fetch('/api/states')
+      .then((res) => res.json())
+      .then((data) => {
+        let arrStates = data.map(item => {
+          return {value: item.code, label: item.name};
+        });
+        this.setState({
+          allStates: arrStates
+        })
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
     fetch('/api/countries')
@@ -51,19 +60,31 @@ class FormAddress extends Component {
       .catch((err) => {
         console.error(err);
       });
+
+    if(this.props.clientId) {
+      this.getClientOrCollaboratorData('client');
+    }
+
+    if(this.props.collaboratorId) {
+      this.getClientOrCollaboratorData('collaborator');
+    }
   }
 
-  getOptions(columnName) {
-    return fetch('/api/addresses')
-      .then((res) => {
-        return res.json();
-      })
+  getClientOrCollaboratorData(model) {
+    let modelId = model + 'Id';
+    let models = model + 's';
+
+    fetch(`/api/${models}/${this.props[modelId]}`)
+      .then((res) => res.json())
       .then((data) => {
-        let arr = data.map(item => {
-          return {value: item[columnName], label: item[columnName]};
-        });
-        console.log(arr);
-        return {options: arr};
+        if(data.address.length > 0) {
+          this.setState({
+            city: data.address[0].city,
+            state: data.address[0].state,
+            country: data.address[0].country,
+            address_id: data.address[0].id
+          });
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -72,47 +93,53 @@ class FormAddress extends Component {
 
   setSelectedCity(val) {
     this.setState({
-      selectedCity: val ? val.value : ''
+      city: val ? val.value : ''
     });
   }
 
   setSelectedState(val) {
     this.setState({
-      selectedState: val ? val.value : ''
+      state: val ? val.value : ''
     });
   }
 
   setSelectedCountry(val) {
     this.setState({
-      selectedCountry: val ? val.value : ''
+      country: val ? val.value : ''
     });
+  }
+
+  selectOnBlurHandler(event, sendDataFunc, inputName) {
+    const data = {[inputName]: this.state[inputName]};
+    sendDataFunc(data, inputName);
   }
 
   render() {
     return(
       <div>
-        <p>City: {this.state.selectedCity}</p>
-        <p>State: {this.state.selectedState}</p>
         <Select
-          name="selectedCity"
-          value={this.state.selectedCity}
+          name="city"
+          value={this.state.city}
           options={this.state.allCities}
           onChange={(val) => this.setSelectedCity(val)}
-          placeholder="Select a city" />
+          onBlur={(e) => this.selectOnBlurHandler(e, this.props.sendAddressData, 'city')}
+          placeholder="Select A City" />
 
         <Select
-          name="selectedState"
-          value={this.state.selectedState}
+          name="state"
+          value={this.state.state}
           options={this.state.allStates}
           onChange={(val) => this.setSelectedState(val)}
-          placeholder="Select a state" />
+          onBlur={(e) => this.selectOnBlurHandler(e, this.props.sendAddressData, 'state')}
+          placeholder="Select A State" />
 
           <Select
-          name="selectedCountry"
-          value={this.state.selectedCountry}
+          name="country"
+          value={this.state.country}
           options={this.state.allCountries}
           onChange={(val) => this.setSelectedCountry(val)}
-          placeholder="Select a country" />
+          onBlur={(e) => this.selectOnBlurHandler(e, this.props.sendAddressData, 'country')}
+          placeholder="Select A Country" />
       </div>
     );
   }

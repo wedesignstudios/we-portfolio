@@ -10,7 +10,7 @@ const Address = require('../models/address.js');
 router.get('/', (req, res, next) => {
   Client
     .collection()
-    .orderBy('id', 'ASC')
+    .orderBy('name', 'ASC')
     .fetch({
       withRelated: ['projects', 'address'],
       debug: true
@@ -32,8 +32,12 @@ router.get('/:id', (req, res, next) => {
       withRelated: ['projects', 'address'],
       debug: true
     })
-    .then((client) => {      
-      res.json(client.toJSON());
+    .then((client) => {
+      if(client) {
+        res.json(client.toJSON());
+      } else {
+        res.json(null);
+      }
     })
     .catch((err) => {
       console.error(err);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {
-  Redirect
+  withRouter
 } from 'react-router-dom';
 
 const FormAddress = require('./FormAddress');
@@ -23,15 +23,13 @@ class CreateClient extends React.Component {
       address_id: '',
       nameErr: false,
       urlErr: false,
-      success: false,
-      redirect: false
+      success: false
     }
 
     this.initialState = this.state;
     this.requiredFields = ['name'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
-    this.setRedirect = this.setRedirect.bind(this);
   }
 
   componentDidMount() {
@@ -71,18 +69,12 @@ class CreateClient extends React.Component {
     return true;
   }
 
-  setRedirect() {
-    this.setState({
-      redirect: true
-    });
-  }
-
   deleteClient() {
     DataActions.sendRequest(
       'DELETE',
       {address_id: this.state.address_id},
       `/api/clients/${this.props.clientId}/delete`,
-      this.setRedirect
+      () => FormHandlers.setRedirect(this, '/dashboard/update-clients')
     );
   }
 
@@ -100,7 +92,7 @@ class CreateClient extends React.Component {
             this.props.sendRequestType,
             this.state,
             '/api/clients',
-            () => FormHandlers.successCallback('create-client', this)
+            () => FormHandlers.successCallback('create-client', this, '/dashboard/update-clients')
           );
         } else {
           DataActions.sendRequest(
@@ -118,7 +110,6 @@ class CreateClient extends React.Component {
   render() {
     return (
       <div>
-        {this.state.redirect ? <Redirect to='/dashboard/update-clients' /> : null}
         <h3>{this.props.sendRequestType === 'POST' ? 'Create A New Client' : `Update Client: ${this.state.name}`}</h3>
         <div className="success">
           {this.state.success ? <div id="client-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Client successfully added.' : 'Client successfully updated.'}</p></div> : null}
@@ -168,4 +159,4 @@ class CreateClient extends React.Component {
   }
 }
 
-module.exports = CreateClient;
+module.exports = withRouter(CreateClient);

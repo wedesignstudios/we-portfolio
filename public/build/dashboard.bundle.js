@@ -6219,8 +6219,8 @@ var FormHandlers = {
     _this.setState(_this.initialState);
   },
 
-  setRedirect: function setRedirect(_this, location) {
-    _this.props.history.push(location);
+  setRedirectWithMessage: function setRedirectWithMessage(location, message) {
+    this.props.history.push(location, { message: message });
   },
 
   successMessage: function successMessage(_this) {
@@ -6234,7 +6234,6 @@ var FormHandlers = {
 
   successCallback: function successCallback(formID, _this, location) {
     FormHandlers.resetForm(formID, _this);
-    FormHandlers.setRedirect(_this, location);
   },
 
   updateAttached: function updateAttached(_this, models) {
@@ -7899,7 +7898,7 @@ var DataActions = {
         if (xhr.status === 200) {
           console.log(this.responseText);
           if (callback) {
-            callback();
+            callback(this.responseText);
           };
         };
       };
@@ -13962,6 +13961,7 @@ var CreateClient = function (_React$Component) {
     _this.requiredFields = ['name'];
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
+    FormHandlers.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(_this, '/dashboard/update-clients');
     return _this;
   }
 
@@ -14006,11 +14006,7 @@ var CreateClient = function (_React$Component) {
   }, {
     key: 'deleteClient',
     value: function deleteClient() {
-      var _this3 = this;
-
-      DataActions.sendRequest('DELETE', { address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', function () {
-        return FormHandlers.setRedirect(_this3, '/dashboard/update-clients');
-      });
+      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', FormHandlers.setRedirectWithMessage);
     }
   }, {
     key: 'submitForm',
@@ -14022,16 +14018,14 @@ var CreateClient = function (_React$Component) {
       }
 
       this.forceUpdate(function () {
-        var _this4 = this;
+        var _this3 = this;
 
         if (!this.state.urlErr) {
           if (this.props.sendRequestType === 'POST') {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients', function () {
-              return FormHandlers.successCallback('create-client', _this4, '/dashboard/update-clients');
-            });
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients', FormHandlers.setRedirectWithMessage);
           } else {
             DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients/' + this.props.clientId, function () {
-              return FormHandlers.successMessage(_this4);
+              return FormHandlers.successMessage(_this3);
             });
           }
         };
@@ -14040,7 +14034,7 @@ var CreateClient = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
@@ -14066,7 +14060,7 @@ var CreateClient = function (_React$Component) {
         this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
           'button',
           { onClick: function onClick(e) {
-              return _this5.deleteClient(e);
+              return _this4.deleteClient(e);
             } },
           'Delete ',
           this.state.name
@@ -14088,10 +14082,10 @@ var CreateClient = function (_React$Component) {
               className: this.state.nameErr ? 'err' : null,
               value: this.state.name,
               onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this5);
+                return FormHandlers.handleOnChange(e, _this4);
               },
               onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this5);
+                return FormValidations.checkField(e, _this4);
               } })
           ),
           _react2.default.createElement(
@@ -14108,10 +14102,10 @@ var CreateClient = function (_React$Component) {
               className: this.state.urlErr ? 'err' : null,
               value: this.state.url,
               onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this5);
+                return FormHandlers.handleOnChange(e, _this4);
               },
               onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this5);
+                return FormValidations.checkField(e, _this4);
               } })
           ),
           _react2.default.createElement(
@@ -14132,7 +14126,7 @@ var CreateClient = function (_React$Component) {
             _react2.default.createElement(
               'button',
               { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this5.submitForm(e);
+                  return _this4.submitForm(e);
                 } },
               this.props.sendRequestType === 'POST' ? 'Submit' : 'Update ' + this.state.name
             )
@@ -29309,14 +29303,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var GetClients = function (_Component) {
   _inherits(GetClients, _Component);
 
-  function GetClients() {
+  function GetClients(props) {
     _classCallCheck(this, GetClients);
 
-    var _this = _possibleConstructorReturn(this, (GetClients.__proto__ || Object.getPrototypeOf(GetClients)).call(this));
+    var _this = _possibleConstructorReturn(this, (GetClients.__proto__ || Object.getPrototypeOf(GetClients)).call(this, props));
 
     _this.state = {
       clientsData: []
     };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: 'No message.' };
+      _this.flashMessage = _this.props.history.location.state.message;
+    }
+
     return _this;
   }
 
@@ -29336,6 +29336,11 @@ var GetClients = function (_Component) {
       });
     }
   }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
@@ -29343,6 +29348,12 @@ var GetClients = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Message: ',
+          this.flashMessage
+        ),
         _react2.default.createElement(
           'h3',
           null,

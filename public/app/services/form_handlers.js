@@ -111,8 +111,8 @@ const FormHandlers = {
     _this.setState(_this.initialState);
   },
 
-  setRedirect: function(_this, location) {
-    _this.props.history.push(location);
+  setRedirectWithMessage: function(location, message) {
+    this.props.history.push(location, {message: message});
   },
 
   successMessage: function(_this) {
@@ -124,7 +124,6 @@ const FormHandlers = {
 
   successCallback: function(formID, _this, location) {
     FormHandlers.resetForm(formID, _this);
-    FormHandlers.setRedirect(_this, location);
   },
 
   updateAttached: function(_this, models) {

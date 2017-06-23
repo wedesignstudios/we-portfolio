@@ -62,8 +62,9 @@ router.post('/', isLoggedIn, (req, res, next) => {
           .save()
           .then((address) => {
             client.address().attach(address.id);
-          });
-        res.status(200).send(`New Client successfully created.`);
+            client = client.toJSON();
+            return res.status(200).send(`${client.name} successfully created.`);
+          })
       })
       .catch((err) => {
         console.error(err);        
@@ -95,7 +96,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
           .forge({id: address_id})
           .save(formAddressData, {method: 'update'});
         client = client.toJSON();
-        res.status(200).send(`Client ${client.name} has been updated.`);
+        res.status(200).send(`${client.name} has been updated.`);
       })
       .catch((err) => {
         console.error(err);
@@ -108,6 +109,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 
 // DELETE a client
 router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
+  const client_name = req.body.name;
   const address_id = req.body.address_id;
 
   Client
@@ -117,8 +119,7 @@ router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
       Address
         .forge({id: address_id})
         .destroy();
-
-      res.status(200).send(`Client ID: ${req.params.id} has been deleted.`);
+      res.status(200).send(`${client_name} has been deleted.`);
     })
     .catch((err) => {
       console.error(err);

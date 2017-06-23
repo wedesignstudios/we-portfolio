@@ -10,7 +10,7 @@ const DataActions = {
         if(xhr.status === 200) {
           console.log(this.responseText);
           if(callback) {
-            callback();
+            callback(this.responseText);
           };
         };
       };

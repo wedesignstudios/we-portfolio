@@ -111,6 +111,10 @@ const FormHandlers = {
     _this.setState(_this.initialState);
   },
 
+  setRedirect: function(_this, location) {
+    _this.props.history.push(location);
+  },
+
   successMessage: function(_this) {
     _this.setState({
       success: true
@@ -118,9 +122,9 @@ const FormHandlers = {
     setTimeout(() => {_this.setState({success: false}) }, 2000);
   },
 
-  successCallback: function(formID, _this) {
+  successCallback: function(formID, _this, location) {
     FormHandlers.resetForm(formID, _this);
-    FormHandlers.successMessage(_this);
+    FormHandlers.setRedirect(_this, location);
   },
 
   updateAttached: function(_this, models) {

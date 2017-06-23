@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 class GetClients extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       clientsData: []
     }
+
+    if(this.props.history.location.state === undefined) {
+      this.props.history.location.state = {message: 'No message.'};
+      this.flashMessage = this.props.history.location.state.message;
+    }
+
   }
 
   componentDidMount() {
@@ -24,9 +30,14 @@ class GetClients extends Component {
       });
   }
 
+  componentWillUpdate(nextProps) {
+    this.flashMessage = nextProps.history.location.state.message;
+  }
+
   render() {
     return(
       <div>
+        <p>Message: {this.flashMessage}</p>
         <h3>All Clients</h3>
           <div>
             {this.state.clientsData.map(client =>

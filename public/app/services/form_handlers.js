@@ -111,8 +111,8 @@ const FormHandlers = {
     _this.setState(_this.initialState);
   },
 
-  setRedirectWithMessage: function(location, message) {
-    this.props.history.push(location, {message: message});
+  setRedirectWithMessage: function(_this, location, message) {
+    _this.props.history.push(location, {message: message});
   },
 
   successMessage: function(_this) {

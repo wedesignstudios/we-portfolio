@@ -30,7 +30,7 @@ class CreateClient extends React.Component {
     this.requiredFields = ['name'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
-    FormHandlers.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(this, '/dashboard/update-clients');
+    FormHandlers.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/update-clients');
   }
 
   componentDidMount() {

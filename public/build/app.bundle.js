@@ -6219,8 +6219,8 @@ var FormHandlers = {
     _this.setState(_this.initialState);
   },
 
-  setRedirectWithMessage: function setRedirectWithMessage(location, message) {
-    this.props.history.push(location, { message: message });
+  setRedirectWithMessage: function setRedirectWithMessage(_this, location, message) {
+    _this.props.history.push(location, { message: message });
   },
 
   successMessage: function successMessage(_this) {
@@ -13961,7 +13961,7 @@ var CreateClient = function (_React$Component) {
     _this.requiredFields = ['name'];
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
-    FormHandlers.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(_this, '/dashboard/update-clients');
+    FormHandlers.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/update-clients');
     return _this;
   }
 

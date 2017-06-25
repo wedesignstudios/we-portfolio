@@ -14425,6 +14425,8 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactRouterDom = __webpack_require__(13);
+
 var _reactDatepicker = __webpack_require__(268);
 
 var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
@@ -14488,6 +14490,7 @@ var FormProject = function (_React$Component) {
     _this.requiredFields = ['name', 'date', 'description'];
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
+    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/projects');
     return _this;
   }
 
@@ -14547,13 +14550,18 @@ var FormProject = function (_React$Component) {
       this.setState((_setState2 = {}, _defineProperty(_setState2, inputName, data.toAttach), _defineProperty(_setState2, inputName + '_attached', data.attached), _defineProperty(_setState2, inputName + '_detach', data.detach), _defineProperty(_setState2, inputName + '_checked', data.checked), _setState2));
     }
   }, {
+    key: 'deleteProject',
+    value: function deleteProject() {
+      DataActions.sendRequest('DELETE', { name: this.state.name }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage);
+    }
+  }, {
     key: 'submitForm',
     value: function submitForm(event) {
       event.preventDefault();
       FormValidations.trimData(this.state, this);
       this.forceUpdate(function () {
         if (this.props.sendRequestType === 'POST') {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', FormHandlers.successCallback('create-project', this));
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', this.setRedirectWithMessage);
         } else {
           DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects/' + this.props.projectId, FormHandlers.successMessage(this));
           FormHandlers.updateAttached(this, ['clients', 'collaborators', 'project_categories']);
@@ -14588,6 +14596,14 @@ var FormProject = function (_React$Component) {
             )
           ) : null
         ),
+        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return _this3.deleteProject(e);
+            } },
+          'Delete ',
+          this.state.name
+        ) : null,
         _react2.default.createElement(
           'form',
           { id: 'create-project' },
@@ -14727,7 +14743,7 @@ var FormProject = function (_React$Component) {
   return FormProject;
 }(_react2.default.Component);
 
-module.exports = FormProject;
+module.exports = (0, _reactRouterDom.withRouter)(FormProject);
 
 /***/ }),
 /* 78 */
@@ -29615,14 +29631,21 @@ var UpdateProject = __webpack_require__(72);
 var GetProjects = function (_Component) {
   _inherits(GetProjects, _Component);
 
-  function GetProjects() {
+  function GetProjects(props) {
     _classCallCheck(this, GetProjects);
 
-    var _this = _possibleConstructorReturn(this, (GetProjects.__proto__ || Object.getPrototypeOf(GetProjects)).call(this));
+    var _this = _possibleConstructorReturn(this, (GetProjects.__proto__ || Object.getPrototypeOf(GetProjects)).call(this, props));
 
     _this.state = {
       projectsData: []
     };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: 'No message.' };
+    }
+
+    _this.flashMessage = _this.props.history.location.state.message;
+
     return _this;
   }
 
@@ -29642,6 +29665,11 @@ var GetProjects = function (_Component) {
       });
     }
   }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
@@ -29649,6 +29677,12 @@ var GetProjects = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Message: ',
+          this.flashMessage
+        ),
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: this.props.match.url + '/create' },

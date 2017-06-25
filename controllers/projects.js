@@ -31,8 +31,12 @@ router.get('/:id', (req, res, next) => {
       withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories'],
       debug: true
     })
-    .then((project) => {      
-      res.json(project);
+    .then((project) => {
+      if(project) {
+        res.json(project);
+      } else {
+        res.json(null);
+      }
     })
     .catch((err) => {
       console.log('Error message: ', err);
@@ -42,9 +46,6 @@ router.get('/:id', (req, res, next) => {
 
 // CREATE a new project
 router.post('/', isLoggedIn, (req, res, next) => {
-  const clients_ids = req.body.clients_ids;
-  const collaborators_ids = req.body.collaborators_ids;
-
   const allowedKeys = ['name', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
 
@@ -53,9 +54,8 @@ router.post('/', isLoggedIn, (req, res, next) => {
       .forge(formData)
       .save()
       .then((project) => {
-        if (clients_ids) project.clients().attach(clients_ids);
-        if (collaborators_ids) project.collaborators().attach(collaborators_ids);
-        res.redirect(`/projects/${project.id}`);
+        project = project.toJSON();
+        return res.status(200).send(`${project.name} successfully created.`);
       })
       .catch((err) => {
         console.error(err);
@@ -95,7 +95,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
         if (project_categories_ids_detach) project.project_categories().detach(project_categories_ids_detach);
         if (project_categories_ids) project.project_categories().attach(project_categories_ids);
         project = project.toJSON();
-        res.send(`Project ${project.name} has been updated.`);
+        return res.status(200).send(`${project.name} has been updated.`);
       })
       .catch((err) => {
         console.error(err);
@@ -107,12 +107,14 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 });
 
 // DELETE a project
-router.delete('/:id', isLoggedIn, (req, res, next) => {
+router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
+  const project_name = req.body.name;
+
   Project
     .forge({id: req.params.id})
     .destroy()
     .then(() => {
-      res.send(`Project ID: ${req.params.id} has been deleted.`);
+      return res.status(200).send(`${project_name} has been deleted.`);
     })
     .catch((err) => {
       console.error(err);

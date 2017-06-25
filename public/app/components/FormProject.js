@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {
+  withRouter
+} from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
@@ -44,6 +47,7 @@ class FormProject extends React.Component {
     this.requiredFields = ['name', 'date', 'description'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
+    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/projects');
   }
 
   setAttachedAndChecked(dataModel, dataModelName) {
@@ -100,14 +104,33 @@ class FormProject extends React.Component {
     })
   }
 
+  deleteProject() {
+    DataActions.sendRequest(
+      'DELETE',
+      {name: this.state.name},
+      `/api/projects/${this.props.projectId}/delete`,
+      this.setRedirectWithMessage
+    );
+  }
+
   submitForm(event) {
     event.preventDefault();
     FormValidations.trimData(this.state, this);
     this.forceUpdate(function(){
       if(this.props.sendRequestType === 'POST') {
-        DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', FormHandlers.successCallback('create-project', this));
+        DataActions.sendRequest(
+          this.props.sendRequestType,
+          this.state,
+          '/api/projects',
+          this.setRedirectWithMessage
+        );
       } else {
-        DataActions.sendRequest(this.props.sendRequestType, this.state, `/api/projects/${this.props.projectId}`, FormHandlers.successMessage(this));
+        DataActions.sendRequest(
+          this.props.sendRequestType,
+          this.state,
+          `/api/projects/${this.props.projectId}`,
+          FormHandlers.successMessage(this)
+        );
         FormHandlers.updateAttached(this, ['clients', 'collaborators', 'project_categories']);
         FormHandlers.resetDetached(this, ['clients', 'collaborators', 'project_categories']);
         FormHandlers.resetToAttachIds(this, ['clients', 'collaborators', 'project_categories']);
@@ -122,6 +145,9 @@ class FormProject extends React.Component {
         <div className="success">
           {this.state.success ? <div id="project-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Project successfully added.' : 'Project successfully updated.'}</p></div> : null}
         </div>
+        {this.props.sendRequestType === 'PUT' ?
+          <button onClick={(e) => this.deleteProject(e)}>Delete {this.state.name}</button> :
+        null}
         <form id="create-project">
           <div>
             <label>Project Name: </label>
@@ -201,4 +227,4 @@ class FormProject extends React.Component {
   }
 }
 
-module.exports = FormProject;
+module.exports = withRouter(FormProject);

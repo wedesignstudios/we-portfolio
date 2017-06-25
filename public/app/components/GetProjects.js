@@ -5,12 +5,19 @@ import { Link } from 'react-router-dom';
 const UpdateProject = require('./UpdateProject');
 
 class GetProjects extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       projectsData: []
     }
+
+    if(this.props.history.location.state === undefined) {
+      this.props.history.location.state = {message: 'No message.'};
+    }
+
+    this.flashMessage = this.props.history.location.state.message;
+
   }
 
   componentDidMount() {
@@ -26,9 +33,14 @@ class GetProjects extends Component {
       });
   }
 
+  componentWillUpdate(nextProps) {
+    this.flashMessage = nextProps.history.location.state.message;
+  }
+
   render() {
     return(
       <div>
+        <p>Message: {this.flashMessage}</p>
         <Link to={`${this.props.match.url}/create`}>Add New Project</Link>
         <h3>All Projects</h3>
           <div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {
-  Redirect
+  withRouter
 } from 'react-router-dom';
 
 const FormAddress = require('./FormAddress');
@@ -23,15 +23,14 @@ class CreateCollaborator extends React.Component {
       address_id: '',
       nameErr: false,
       urlErr: false,
-      success: false,
-      redirect: false
+      success: false
     }
 
     this.initialState = this.state;
     this.requiredFields = ['name'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
-    this.setRedirect = this.setRedirect.bind(this);
+    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/collaborators');
   }
 
   componentDidMount() {
@@ -71,18 +70,12 @@ class CreateCollaborator extends React.Component {
     return true;
   }
 
-  setRedirect() {
-    this.setState({
-      redirect: true
-    });
-  }
-
   deleteCollaborator() {
     DataActions.sendRequest(
       'DELETE',
-      {address_id: this.state.address_id},
+      {name: this.state.name, address_id: this.state.address_id},
       `/api/collaborators/${this.props.collaboratorId}/delete`,
-      this.setRedirect
+      this.setRedirectWithMessage
     );
   }
 
@@ -100,7 +93,7 @@ class CreateCollaborator extends React.Component {
             this.props.sendRequestType,
             this.state,
             '/api/collaborators',
-            () => FormHandlers.successCallback('create-collaborator', this)
+            this.setRedirectWithMessage
           );
         } else {
           DataActions.sendRequest(
@@ -118,7 +111,6 @@ class CreateCollaborator extends React.Component {
   render() {
     return (
       <div>
-        {this.state.redirect ? <Redirect to='/dashboard/update-collaborators' /> : null}
         <h3>{this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : `Update Collaborator: ${this.state.name}`}</h3>
         <div className="success">
           {this.state.success ? <div id="collaborator-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Collaborator successfully added.' : 'Collaborator successfully updated.'}</p></div> : null}
@@ -168,4 +160,4 @@ class CreateCollaborator extends React.Component {
   }
 }
 
-module.exports = CreateCollaborator;
+module.exports = withRouter(CreateCollaborator);

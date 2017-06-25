@@ -25,7 +25,7 @@ const Project = bookshelf.Model.extend({
     return this.belongsToMany('ProjectCategory').through('ProjectsProjectCategories');
   }
 }, {
-  dependents: ['clients', 'collaborators', 'images', 'projectCategories']
+  dependents: ['clients', 'collaborators', 'images', 'project_categories']
 });
 
 module.exports = bookshelf.model('Project', Project);

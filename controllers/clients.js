@@ -57,7 +57,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
       .forge(formData)
       .save()
       .then((client) => {
-        Address
+        return Address
           .forge(formAddressData)
           .save()
           .then((address) => {
@@ -96,7 +96,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
           .forge({id: address_id})
           .save(formAddressData, {method: 'update'});
         client = client.toJSON();
-        res.status(200).send(`${client.name} has been updated.`);
+        return res.status(200).send(`${client.name} has been updated.`);
       })
       .catch((err) => {
         console.error(err);
@@ -116,10 +116,12 @@ router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
     .forge({id: req.params.id})
     .destroy()
     .then(() => {
-      Address
+      return Address
         .forge({id: address_id})
         .destroy();
-      res.status(200).send(`${client_name} has been deleted.`);
+    })
+    .then(() => {
+      return res.status(200).send(`${client_name} has been deleted.`);
     })
     .catch((err) => {
       console.error(err);

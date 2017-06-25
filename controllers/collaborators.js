@@ -57,13 +57,14 @@ router.post('/', isLoggedIn, (req, res, next) => {
       .forge(formData)
       .save()
       .then((collaborator) => {
-        Address
+        return Address
           .forge(formAddressData)
           .save()
           .then((address) => {
             collaborator.address().attach(address.id);
-          });
-        res.status(200).send(`New Collaborator successfully created.`);
+            collaborator = collaborator.toJSON();
+            return res.status(200).send(`${collaborator.name} successfully created.`);
+          })
       })
       .catch((err) => {
         console.error(err);
@@ -95,7 +96,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
           .forge({id: address_id})
           .save(formAddressData, {method: 'update'});
         collaborator = collaborator.toJSON();
-        res.status(200).send(`Collaborator ${collaborator.name} has been updated.`);
+        return res.status(200).send(`${collaborator.name} has been updated.`);
       })
       .catch((err) => {
         console.error(err);
@@ -108,17 +109,19 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 
 // DELETE a collaborator
 router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
+  const collaborator_name = req.body.name;
   const address_id = req.body.address_id;
 
   Collaborator
     .forge({id: req.params.id})
     .destroy()
     .then(() => {
-      Address
+       return Address
         .forge({id: address_id})
         .destroy();
-
-      res.status(200).send(`Collaborator ID: ${req.params.id} has been deleted.`);
+    })
+    .then(() => {
+      return res.status(200).send(`${collaborator_name} has been deleted.`);  
     })
     .catch((err) => {
       console.error(err);

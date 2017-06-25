@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
       debug: true
     })
     .then((collaborator) => {
-      res.json(collaborator.toJSON());
+      res.json(collaborator);
     })
     .catch((err) => {
       console.error(err);
@@ -34,7 +34,7 @@ router.get('/:id', (req, res, next) => {
     })
     .then((collaborator) => {
       if(collaborator) {
-        res.json(collaborator.toJSON());
+        res.json(collaborator);
       } else {
         res.json(null);
       }

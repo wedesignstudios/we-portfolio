@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 class GetCollaborators extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       collaboratorsData: []
     }
+
+    if(this.props.history.location.state === undefined) {
+      this.props.history.location.state = {message: 'No message.'};
+    }
+
+    this.flashMessage = this.props.history.location.state.message;
+
   }
 
   componentDidMount() {
@@ -24,9 +31,14 @@ class GetCollaborators extends Component {
       });
   }
 
+  componentWillUpdate(nextProps) {
+    this.flashMessage = nextProps.history.location.state.message;
+  }
+
   render() {
     return(
       <div>
+        <p>Message: {this.flashMessage}</p>
         <Link to={`${this.props.match.url}/create`}>Add New Collaborator</Link>
         <h3>All Collaborators</h3>
           <div>

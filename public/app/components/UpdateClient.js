@@ -8,7 +8,7 @@ class UpdateClient extends Component {
   render() {
     return(
       <div>
-        <Link to='/dashboard/update-clients'>All Clients</Link><br />
+        <Link to='/dashboard/clients'>All Clients</Link><br />
         <FormClient sendRequestType="PUT" clientId={this.props.match.params.id} />        
       </div>
     );

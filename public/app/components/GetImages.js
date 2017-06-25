@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 const UpdateImage = require('./UpdateImage');
 
@@ -44,7 +45,8 @@ class GetImages extends React.Component {
   render() {
     return(
       <div>
-        <h3>Get All Images</h3>
+        <Link to={`${this.props.match.url}/upload`}>Add New Image(s)</Link>
+        <h3>All Images</h3>
         <div className="image-grid">
           {this.state.imageData.map(image =>
             <div key={image.id} className="image-grid-element">

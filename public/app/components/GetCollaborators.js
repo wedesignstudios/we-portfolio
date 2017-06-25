@@ -27,10 +27,11 @@ class GetCollaborators extends Component {
   render() {
     return(
       <div>
+        <Link to={`${this.props.match.url}/create`}>Add New Collaborator</Link>
         <h3>All Collaborators</h3>
           <div>
             {this.state.collaboratorsData.map(collaborator =>
-              <div key={collaborator.id}><Link to={`${this.props.match.url}/${collaborator.id}`}>{collaborator.name}</Link></div>
+              <div key={collaborator.id}><Link to={`${this.props.match.url}/${collaborator.id}/update`}>{collaborator.name}</Link></div>
             )}
           </div>
       </div>

@@ -8,7 +8,7 @@ class UpdateProject extends React.Component {
   render() {
     return (
       <div>
-        <Link to='/dashboard/update-projects'>All Projects</Link>
+        <Link to='/dashboard/projects'>All Projects</Link>
         <FormProject sendRequestType="PUT" projectId={this.props.match.params.id} />
       </div>
     );

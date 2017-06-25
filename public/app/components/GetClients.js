@@ -38,10 +38,11 @@ class GetClients extends Component {
     return(
       <div>
         <p>Message: {this.flashMessage}</p>
+        <Link to={`${this.props.match.url}/create`}>Add New Client</Link>
         <h3>All Clients</h3>
           <div>
             {this.state.clientsData.map(client =>
-              <div key={client.id}><Link to={`${this.props.match.url}/${client.id}`}>{client.name}</Link></div>
+              <div key={client.id}><Link to={`${this.props.match.url}/${client.id}/update`}>{client.name}</Link></div>
             )}
           </div>
       </div>

@@ -33,17 +33,17 @@ class Dashboard extends Component {
         <NavLink exact to={`${this.props.match.url}`} activeStyle={{fontWeight: 'bold',  color: 'red'}}>Dashboard Home</NavLink>
         <Switch>
           <Route exact path={`${this.props.match.url}`} component={DashboardHome} />
-          <Route path={`${this.props.match.url}/create-project`} component={CreateProject} />
-          <Route path={`${this.props.match.url}/create-client`} component={CreateClient} />
-          <Route path={`${this.props.match.url}/create-collaborator`} component={CreateCollaborator} />
-          <Route path={`${this.props.match.url}/upload-images`} component={UploadImages} />
-          <Route path={`${this.props.match.url}/update-images`} component={GetImages} />
-          <Route path={`${this.props.match.url}/update-projects/:id`} component={UpdateProject} />
-          <Route path={`${this.props.match.url}/update-projects`} component={GetProjects} />
-          <Route path={`${this.props.match.url}/update-clients/:id`} component={UpdateClient} />
-          <Route path={`${this.props.match.url}/update-clients`} component={GetClients} />
-          <Route path={`${this.props.match.url}/update-collaborators/:id`} component={UpdateCollaborator} />
-          <Route path={`${this.props.match.url}/update-collaborators`} component={GetCollaborators} />
+          <Route path={`${this.props.match.url}/clients/create`} component={CreateClient} />
+          <Route path={`${this.props.match.url}/clients/:id/update`} component={UpdateClient} />
+          <Route path={`${this.props.match.url}/clients`} component={GetClients} />
+          <Route path={`${this.props.match.url}/collaborators/create`} component={CreateCollaborator} />
+          <Route path={`${this.props.match.url}/collaborators/:id/update`} component={UpdateCollaborator} />
+          <Route path={`${this.props.match.url}/collaborators`} component={GetCollaborators} />
+          <Route path={`${this.props.match.url}/images/upload`} component={UploadImages} />
+          <Route path={`${this.props.match.url}/images`} component={GetImages} />
+          <Route path={`${this.props.match.url}/projects/create`} component={CreateProject} />
+          <Route path={`${this.props.match.url}/projects/:id/update`} component={UpdateProject} />
+          <Route path={`${this.props.match.url}/projects`} component={GetProjects} />
           <Route component={NotFound} />
         </Switch>
       </div>

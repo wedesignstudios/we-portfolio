@@ -13630,7 +13630,7 @@ var UpdateProject = function (_React$Component) {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/dashboard/update-projects' },
+          { to: '/dashboard/projects' },
           'All Projects'
         ),
         _react2.default.createElement(FormProject, { sendRequestType: 'PUT', projectId: this.props.match.params.id })
@@ -13961,7 +13961,7 @@ var CreateClient = function (_React$Component) {
     _this.requiredFields = ['name'];
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
-    FormHandlers.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/update-clients');
+    FormHandlers.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/clients');
     return _this;
   }
 
@@ -29196,8 +29196,8 @@ var DashboardHome = function (_Component) {
             null,
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: this.props.match.url + '/create-project' },
-              'Add A New Project'
+              { to: this.props.match.url + '/clients' },
+              'Clients'
             )
           ),
           _react2.default.createElement(
@@ -29205,8 +29205,8 @@ var DashboardHome = function (_Component) {
             null,
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: this.props.match.url + '/create-client' },
-              'Add A New Client'
+              { to: this.props.match.url + '/collaborators' },
+              'Collaborators'
             )
           ),
           _react2.default.createElement(
@@ -29214,8 +29214,8 @@ var DashboardHome = function (_Component) {
             null,
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: this.props.match.url + '/create-collaborator' },
-              'Add A New Collaborator'
+              { to: this.props.match.url + '/images' },
+              'Images'
             )
           ),
           _react2.default.createElement(
@@ -29223,44 +29223,8 @@ var DashboardHome = function (_Component) {
             null,
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: this.props.match.url + '/upload-images' },
-              'Upload Images'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/update-images' },
-              'Update Images'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/update-projects' },
-              'Update Projects'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/update-clients' },
-              'Update Clients'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/update-collaborators' },
-              'Update Collaborators'
+              { to: this.props.match.url + '/projects' },
+              'Projects'
             )
           )
         )
@@ -29355,6 +29319,11 @@ var GetClients = function (_Component) {
           this.flashMessage
         ),
         _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/create' },
+          'Add New Client'
+        ),
+        _react2.default.createElement(
           'h3',
           null,
           'All Clients'
@@ -29368,7 +29337,7 @@ var GetClients = function (_Component) {
               { key: client.id },
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + client.id },
+                { to: _this3.props.match.url + '/' + client.id + '/update' },
                 client.name
               )
             );
@@ -29448,6 +29417,11 @@ var GetCollaborators = function (_Component) {
         'div',
         null,
         _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/create' },
+          'Add New Collaborator'
+        ),
+        _react2.default.createElement(
           'h3',
           null,
           'All Collaborators'
@@ -29461,7 +29435,7 @@ var GetCollaborators = function (_Component) {
               { key: collaborator.id },
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + collaborator.id },
+                { to: _this3.props.match.url + '/' + collaborator.id + '/update' },
                 collaborator.name
               )
             );
@@ -29492,6 +29466,8 @@ var _react2 = _interopRequireDefault(_react);
 var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29559,9 +29535,14 @@ var GetImages = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/upload' },
+          'Add New Image(s)'
+        ),
+        _react2.default.createElement(
           'h3',
           null,
-          'Get All Images'
+          'All Images'
         ),
         _react2.default.createElement(
           'div',
@@ -29662,9 +29643,14 @@ var GetProjects = function (_Component) {
         'div',
         null,
         _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/create' },
+          'Add New Project'
+        ),
+        _react2.default.createElement(
           'h3',
           null,
-          'Get All Projects'
+          'All Projects'
         ),
         _react2.default.createElement(
           'div',
@@ -29675,7 +29661,7 @@ var GetProjects = function (_Component) {
               { key: project.id },
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + project.id },
+                { to: _this3.props.match.url + '/' + project.id + '/update' },
                 project.name
               )
             );
@@ -29736,7 +29722,7 @@ var UpdateClient = function (_Component) {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/dashboard/update-clients' },
+          { to: '/dashboard/clients' },
           'All Clients'
         ),
         _react2.default.createElement('br', null),
@@ -29796,7 +29782,7 @@ var UpdateCollaborator = function (_Component) {
         null,
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/dashboard/update-collaborators' },
+          { to: '/dashboard/collaborators' },
           'All Collaborators'
         ),
         _react2.default.createElement('br', null),
@@ -29993,17 +29979,17 @@ var Dashboard = function (_Component) {
             _reactRouterDom.Switch,
             null,
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '' + this.props.match.url, component: DashboardHome }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/create-project', component: CreateProject }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/create-client', component: CreateClient }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/create-collaborator', component: CreateCollaborator }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/upload-images', component: UploadImages }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-images', component: GetImages }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-projects/:id', component: UpdateProject }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-projects', component: GetProjects }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-clients/:id', component: UpdateClient }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-clients', component: GetClients }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-collaborators/:id', component: UpdateCollaborator }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/update-collaborators', component: GetCollaborators }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/create', component: CreateClient }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/:id/update', component: UpdateClient }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients', component: GetClients }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/create', component: CreateCollaborator }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/:id/update', component: UpdateCollaborator }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images/upload', component: UploadImages }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images', component: GetImages }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/create', component: CreateProject }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/:id/update', component: UpdateProject }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects', component: GetProjects }),
             _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
           )
         )

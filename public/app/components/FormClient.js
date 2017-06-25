@@ -30,7 +30,7 @@ class CreateClient extends React.Component {
     this.requiredFields = ['name'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
-    FormHandlers.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/clients');
+    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/clients');
   }
 
   componentDidMount() {
@@ -75,7 +75,7 @@ class CreateClient extends React.Component {
       'DELETE',
       {name: this.state.name, address_id: this.state.address_id},
       `/api/clients/${this.props.clientId}/delete`,
-      FormHandlers.setRedirectWithMessage
+      this.setRedirectWithMessage
     );
   }
 
@@ -93,7 +93,7 @@ class CreateClient extends React.Component {
             this.props.sendRequestType,
             this.state,
             '/api/clients',
-            FormHandlers.setRedirectWithMessage
+            this.setRedirectWithMessage
           );
         } else {
           DataActions.sendRequest(

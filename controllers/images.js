@@ -24,6 +24,7 @@ const upload = multer({
 router.get('/', (req, res, next) => {
   Image
     .collection()
+    .orderBy('created_at', 'DESC')
     .fetch({
       withRelated: ['project'],
       debug: true

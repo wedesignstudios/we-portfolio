@@ -115,11 +115,17 @@ const FormHandlers = {
     _this.props.history.push(location, {message: message});
   },
 
+  setSubmitErrorMessage: function(_this, message) {
+    _this.setState({
+      submitError: message
+    })
+  },
+
   successMessage: function(_this) {
     _this.setState({
-      success: true
+      submitSuccess: true
     });
-    setTimeout(() => {_this.setState({success: false}) }, 2000);
+    setTimeout(() => {_this.setState({submitSuccess: false}) }, 2000);
   },
 
   successCallback: function(formID, _this, location) {

@@ -8,7 +8,7 @@ class UpdateClient extends Component {
   render() {
     return(
       <div>
-        <FormClient sendRequestType="PUT" clientId={this.props.match.params.id} />        
+        <FormClient sendRequestType="PUT" clientId={this.props.match.params.id} />
       </div>
     );
   }

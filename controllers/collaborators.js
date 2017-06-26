@@ -69,7 +69,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
       .catch((err) => {
         console.error(err);
         if (err.name == 'DuplicateError') {
-          res.status(500).send(`${err.name}: A collaborator with the ${err.field} {req.body.name} already exists.`);
+          res.status(500).send(`${err.name}: A collaborator with the ${err.field} ${req.body.name} already exists.`);
         } else {
           res.status(500).send(`Whoops! The following error occurred: ${err}`);
         }

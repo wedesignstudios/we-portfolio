@@ -85,7 +85,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
       .catch((err) => {
         console.error(err);
         if (err.name == 'DuplicateError') {
-          res.status(500).send(`${err.name}: An Image with this ${err.field} already exists.`);
+          res.status(500).send(`${err.name}: Image ${req.file.originalname} already exists and was not uploaded.`);
         } else {
           res.status(500).send(`Whoops! The following error occurred: ${err}`);
         }

@@ -4811,7 +4811,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -5299,6 +5299,65 @@ module.exports = ExecutionEnvironment;
 
 /***/ }),
 /* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(343);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(344);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HashRouter", function() { return __WEBPACK_IMPORTED_MODULE_1__HashRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(219);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(345);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(346);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_4__NavLink__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(347);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_5__Prompt__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(348);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(349);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(350);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(351);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(352);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__matchPath__ = __webpack_require__(353);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_11__matchPath__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__withRouter__ = __webpack_require__(354);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_12__withRouter__["a"]; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5342,7 +5401,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5680,65 +5739,6 @@ var ReactComponentTreeHook = {
 
 module.exports = ReactComponentTreeHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(343);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(344);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HashRouter", function() { return __WEBPACK_IMPORTED_MODULE_1__HashRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(219);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(345);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(346);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_4__NavLink__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(347);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_5__Prompt__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(348);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(349);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(350);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(351);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(352);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__matchPath__ = __webpack_require__(353);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_11__matchPath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__withRouter__ = __webpack_require__(354);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_12__withRouter__["a"]; });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /***/ }),
 /* 14 */
@@ -6112,6 +6112,8 @@ module.exports = ReactCurrentOwner;
 "use strict";
 
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var FormValidations = __webpack_require__(26);
@@ -6219,16 +6221,29 @@ var FormHandlers = {
     _this.setState(_this.initialState);
   },
 
-  setRedirectWithMessage: function setRedirectWithMessage(_this, location, message) {
-    _this.props.history.push(location, { message: message });
+  setRedirectWithMessage: function setRedirectWithMessage(_this, location, errMessage, message) {
+    var error = void 0;
+    errMessage ? error = errMessage : error = '';
+    _this.props.history.push(location, { message: message, messageError: error });
+  },
+
+  setSubmitErrorMessage: function setSubmitErrorMessage(_this, message) {
+    _this.setState(function (prevState) {
+      if (_typeof(prevState.submitError) === 'object') {
+        var errorArr = prevState.submitError;
+        errorArr.push(message);
+        return { submitError: errorArr };
+      };
+      return { submitError: message };
+    });
   },
 
   successMessage: function successMessage(_this) {
     _this.setState({
-      success: true
+      submitSuccess: true
     });
     setTimeout(function () {
-      _this.setState({ success: false });
+      _this.setState({ submitSuccess: false });
     }, 2000);
   },
 
@@ -6288,7 +6303,7 @@ var _assign = __webpack_require__(7);
 
 var PooledClass = __webpack_require__(22);
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var warning = __webpack_require__(4);
 
 var didWarnForAddedNewProperty = false;
@@ -7888,19 +7903,23 @@ module.exports = React;
 
 var DataActions = {
 
-  sendRequest: function sendRequest(reqType, state, apiEndpoint, callback) {
+  sendRequest: function sendRequest(reqType, state, apiEndpoint, callback, errCallback) {
     var data = state;
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
     xhr.addEventListener('readystatechange', function () {
       if (this.readyState === 4) {
-        if (xhr.status === 200) {
-          console.log(this.responseText);
+        if (xhr.status >= 200 && xhr.status < 300) {
           if (callback) {
             callback(this.responseText);
           };
         };
+        if (xhr.status === 500) {
+          if (errCallback) {
+            errCallback(this.responseText);
+          }
+        }
       };
     });
 
@@ -7911,17 +7930,20 @@ var DataActions = {
     xhr.send(JSON.stringify(data));
   },
 
-  uploadImages: function uploadImages(data, apiEndpoint, callback) {
+  uploadImages: function uploadImages(data, apiEndpoint, callback, errCallback) {
     var xhr = new XMLHttpRequest();
     var formData = new FormData();
 
     xhr.addEventListener('readystatechange', function () {
       if (this.readyState === 4) {
-        if (xhr.status === 200) {
+        if (xhr.status >= 200 && xhr.status < 300) {
           console.log('uploadImages responseText: ', this.responseText);
           if (callback) {
             callback(this.responseText);
           };
+        }
+        if (xhr.status === 500) {
+          errCallback(this.responseText);
         }
       }
     });
@@ -12696,7 +12718,7 @@ module.exports = shouldUpdateReactComponent;
 
 var _assign = __webpack_require__(7);
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var warning = __webpack_require__(4);
 
 var validateDOMNesting = emptyFunction;
@@ -13611,7 +13633,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13638,11 +13660,6 @@ var UpdateProject = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/projects' },
-          'All Projects'
-        ),
         _react2.default.createElement(FormProject, { sendRequestType: 'PUT', projectId: this.props.match.params.id })
       );
     }
@@ -13929,7 +13946,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13964,7 +13981,8 @@ var CreateClient = function (_React$Component) {
       address_id: '',
       nameErr: false,
       urlErr: false,
-      success: false
+      submitSuccess: false,
+      submitError: ''
     };
 
     _this.initialState = _this.state;
@@ -13972,6 +13990,7 @@ var CreateClient = function (_React$Component) {
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
     _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/clients');
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
     return _this;
   }
 
@@ -14016,7 +14035,7 @@ var CreateClient = function (_React$Component) {
   }, {
     key: 'deleteClient',
     value: function deleteClient() {
-      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', this.setRedirectWithMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'submitForm',
@@ -14032,7 +14051,7 @@ var CreateClient = function (_React$Component) {
 
         if (!this.state.urlErr) {
           if (this.props.sendRequestType === 'POST') {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients', this.setRedirectWithMessage);
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients', this.setRedirectWithMessage, this.setSubmitErrorMessage);
           } else {
             DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients/' + this.props.clientId, function () {
               return FormHandlers.successMessage(_this3);
@@ -14050,14 +14069,20 @@ var CreateClient = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/clients' },
+          'All Clients'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
           'h3',
           null,
           this.props.sendRequestType === 'POST' ? 'Create A New Client' : 'Update Client: ' + this.state.name
         ),
         _react2.default.createElement(
           'div',
-          { className: 'success' },
-          this.state.success ? _react2.default.createElement(
+          { className: 'submit-message-success' },
+          this.state.submitSuccess ? _react2.default.createElement(
             'div',
             { id: 'client-added-success', style: { color: 'green' } },
             _react2.default.createElement(
@@ -14066,6 +14091,15 @@ var CreateClient = function (_React$Component) {
               this.props.sendRequestType === 'POST' ? 'New Client successfully added.' : 'Client successfully updated.'
             )
           ) : null
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'p',
+            null,
+            this.state.submitError
+          )
         ),
         this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
           'button',
@@ -14182,7 +14216,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14217,7 +14251,8 @@ var CreateCollaborator = function (_React$Component) {
       address_id: '',
       nameErr: false,
       urlErr: false,
-      success: false
+      submitSuccess: false,
+      submitError: ''
     };
 
     _this.initialState = _this.state;
@@ -14225,6 +14260,7 @@ var CreateCollaborator = function (_React$Component) {
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
     _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/collaborators');
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
     return _this;
   }
 
@@ -14269,7 +14305,7 @@ var CreateCollaborator = function (_React$Component) {
   }, {
     key: 'deleteCollaborator',
     value: function deleteCollaborator() {
-      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirectWithMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'submitForm',
@@ -14285,7 +14321,7 @@ var CreateCollaborator = function (_React$Component) {
 
         if (!this.state.urlErr) {
           if (this.props.sendRequestType === 'POST') {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators', this.setRedirectWithMessage);
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators', this.setRedirectWithMessage, this.setSubmitErrorMessage);
           } else {
             DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators/' + this.props.collaboratorId, function () {
               return FormHandlers.successMessage(_this3);
@@ -14303,14 +14339,20 @@ var CreateCollaborator = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/collaborators' },
+          'All Collaborators'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
           'h3',
           null,
           this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : 'Update Collaborator: ' + this.state.name
         ),
         _react2.default.createElement(
           'div',
-          { className: 'success' },
-          this.state.success ? _react2.default.createElement(
+          { className: 'submit-message-success' },
+          this.state.submitSuccess ? _react2.default.createElement(
             'div',
             { id: 'collaborator-added-success', style: { color: 'green' } },
             _react2.default.createElement(
@@ -14319,6 +14361,15 @@ var CreateCollaborator = function (_React$Component) {
               this.props.sendRequestType === 'POST' ? 'New Collaborator successfully added.' : 'Collaborator successfully updated.'
             )
           ) : null
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'p',
+            null,
+            this.state.submitError
+          )
         ),
         this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
           'button',
@@ -14435,7 +14486,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 var _reactDatepicker = __webpack_require__(268);
 
@@ -14492,7 +14543,8 @@ var FormProject = function (_React$Component) {
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
-      success: false
+      submitSuccess: false,
+      submitError: ''
     };
 
     _this.initialState = _this.state;
@@ -14501,6 +14553,7 @@ var FormProject = function (_React$Component) {
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
     _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/projects');
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
     return _this;
   }
 
@@ -14562,7 +14615,7 @@ var FormProject = function (_React$Component) {
   }, {
     key: 'deleteProject',
     value: function deleteProject() {
-      DataActions.sendRequest('DELETE', { name: this.state.name }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.name }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'submitForm',
@@ -14571,7 +14624,7 @@ var FormProject = function (_React$Component) {
       FormValidations.trimData(this.state, this);
       this.forceUpdate(function () {
         if (this.props.sendRequestType === 'POST') {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', this.setRedirectWithMessage);
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', this.setRedirectWithMessage, this.setSubmitErrorMessage);
         } else {
           DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects/' + this.props.projectId, FormHandlers.successMessage(this));
           FormHandlers.updateAttached(this, ['clients', 'collaborators', 'project_categories']);
@@ -14589,14 +14642,20 @@ var FormProject = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/projects' },
+          'All Projects'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
           'h3',
           null,
           this.props.sendRequestType === 'POST' ? 'Create A New Project' : 'Update Project: ' + this.state.name
         ),
         _react2.default.createElement(
           'div',
-          { className: 'success' },
-          this.state.success ? _react2.default.createElement(
+          { className: 'submit-message-success' },
+          this.state.submitSuccess ? _react2.default.createElement(
             'div',
             { id: 'project-added-success', style: { color: 'green' } },
             _react2.default.createElement(
@@ -14605,6 +14664,15 @@ var FormProject = function (_React$Component) {
               this.props.sendRequestType === 'POST' ? 'New Project successfully added.' : 'Project successfully updated.'
             )
           ) : null
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'p',
+            null,
+            this.state.submitError
+          )
         ),
         this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
           'button',
@@ -14780,7 +14848,7 @@ module.exports = (0, _reactRouterDom.withRouter)(FormProject);
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -28768,7 +28836,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 var ReactCurrentOwner = __webpack_require__(17);
-var ReactComponentTreeHook = __webpack_require__(12);
+var ReactComponentTreeHook = __webpack_require__(13);
 var ReactElement = __webpack_require__(23);
 
 var checkReactTypeSpec = __webpack_require__(378);
@@ -29178,7 +29246,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29269,7 +29337,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29384,7 +29452,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29500,7 +29568,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29527,10 +29595,11 @@ var GetImages = function (_React$Component) {
     };
 
     if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
+      _this.props.history.location.state = { message: 'No message.', messageError: [] };
     }
 
     _this.flashMessage = _this.props.history.location.state.message;
+    _this.flashMessageError = _this.props.history.location.state.messageError;
 
     return _this;
   }
@@ -29549,11 +29618,13 @@ var GetImages = function (_React$Component) {
       }).catch(function (err) {
         console.error(err);
       });
+      console.log('HISTORY: ', this.props.history);
     }
   }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps) {
       this.flashMessage = nextProps.history.location.state.message;
+      this.flashMessageError = nextProps.history.location.state.messageError;
     }
   }, {
     key: 'openUpdateImage',
@@ -29583,6 +29654,26 @@ var GetImages = function (_React$Component) {
           null,
           'Message: ',
           this.flashMessage
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'Errors:'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'ul',
+            null,
+            this.flashMessageError.map(function (err, i) {
+              return _react2.default.createElement(
+                'li',
+                { key: i },
+                err
+              );
+            })
+          )
         ),
         _react2.default.createElement(
           _reactRouterDom.Link,
@@ -29643,7 +29734,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29761,7 +29852,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29788,12 +29879,6 @@ var UpdateClient = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/clients' },
-          'All Clients'
-        ),
-        _react2.default.createElement('br', null),
         _react2.default.createElement(FormClient, { sendRequestType: 'PUT', clientId: this.props.match.params.id })
       );
     }
@@ -29821,7 +29906,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29848,12 +29933,6 @@ var UpdateCollaborator = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/collaborators' },
-          'All Collaborators'
-        ),
-        _react2.default.createElement('br', null),
         _react2.default.createElement(FormCollaborator, { sendRequestType: 'PUT', collaboratorId: this.props.match.params.id })
       );
     }
@@ -29881,7 +29960,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 var _reactDropzone = __webpack_require__(340);
 
@@ -29907,10 +29986,11 @@ var UploadImages = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (UploadImages.__proto__ || Object.getPrototypeOf(UploadImages)).call(this));
 
     _this.state = {
-      success: false
+      submitError: []
     };
 
-    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/images');
+    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/images', _this.state.submitError);
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
     return _this;
   }
 
@@ -29923,7 +30003,7 @@ var UploadImages = function (_React$Component) {
         var formData = new FormData();
 
         formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload', _this2.setRedirectWithMessage);
+        DataActions.uploadImages(formData, '/api/images/upload', _this2.setRedirectWithMessage, _this2.setSubmitErrorMessage);
       });
     }
   }, {
@@ -29947,16 +30027,18 @@ var UploadImages = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'success' },
-          this.state.success ? _react2.default.createElement(
-            'div',
-            { id: 'image-uploaded-success', style: { color: 'green' } },
-            _react2.default.createElement(
-              'p',
-              null,
-              'Image(s) successfully uploaded.'
-            )
-          ) : null
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'ul',
+            null,
+            this.state.submitError.map(function (message, i) {
+              return _react2.default.createElement(
+                'li',
+                { key: i },
+                message
+              );
+            })
+          )
         ),
         _react2.default.createElement(
           _reactDropzone2.default,
@@ -30001,7 +30083,7 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(13);
+var _reactRouterDom = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33359,7 +33441,7 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var invariant = __webpack_require__(3);
 
 module.exports = function() {
@@ -33420,7 +33502,7 @@ module.exports = function() {
 
 
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
@@ -34964,7 +35046,7 @@ var DOMLazyTree = __webpack_require__(28);
 var ExecutionEnvironment = __webpack_require__(10);
 
 var createNodesFromMarkup = __webpack_require__(250);
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var invariant = __webpack_require__(3);
 
 var Danger = {
@@ -35481,7 +35563,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(12);
+  ReactComponentTreeHook = __webpack_require__(13);
 }
 
 function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -35489,7 +35571,7 @@ function instantiateChild(childInstances, child, name, selfDebugID) {
   var keyUnique = childInstances[name] === undefined;
   if (process.env.NODE_ENV !== 'production') {
     if (!ReactComponentTreeHook) {
-      ReactComponentTreeHook = __webpack_require__(12);
+      ReactComponentTreeHook = __webpack_require__(13);
     }
     if (!keyUnique) {
       process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -36709,7 +36791,7 @@ var ReactInstrumentation = __webpack_require__(14);
 var ReactMultiChild = __webpack_require__(307);
 var ReactServerRenderingTransaction = __webpack_require__(312);
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var escapeTextContentForBrowser = __webpack_require__(43);
 var invariant = __webpack_require__(3);
 var isEventSupported = __webpack_require__(62);
@@ -38144,7 +38226,7 @@ module.exports = ReactDOMInput;
 
 
 var DOMProperty = __webpack_require__(20);
-var ReactComponentTreeHook = __webpack_require__(12);
+var ReactComponentTreeHook = __webpack_require__(13);
 
 var warning = __webpack_require__(4);
 
@@ -38242,7 +38324,7 @@ module.exports = ReactDOMInvalidARIAHook;
 
 
 
-var ReactComponentTreeHook = __webpack_require__(12);
+var ReactComponentTreeHook = __webpack_require__(13);
 
 var warning = __webpack_require__(4);
 
@@ -39117,7 +39199,7 @@ module.exports = {
 
 var DOMProperty = __webpack_require__(20);
 var EventPluginRegistry = __webpack_require__(39);
-var ReactComponentTreeHook = __webpack_require__(12);
+var ReactComponentTreeHook = __webpack_require__(13);
 
 var warning = __webpack_require__(4);
 
@@ -39236,7 +39318,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 var ReactInvalidSetStateWarningHook = __webpack_require__(305);
 var ReactHostOperationHistoryHook = __webpack_require__(303);
-var ReactComponentTreeHook = __webpack_require__(12);
+var ReactComponentTreeHook = __webpack_require__(13);
 var ExecutionEnvironment = __webpack_require__(10);
 
 var performanceNow = __webpack_require__(259);
@@ -39605,7 +39687,7 @@ var _assign = __webpack_require__(7);
 var ReactUpdates = __webpack_require__(16);
 var Transaction = __webpack_require__(42);
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -40173,7 +40255,7 @@ var ReactCurrentOwner = __webpack_require__(17);
 var ReactReconciler = __webpack_require__(29);
 var ReactChildReconciler = __webpack_require__(279);
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var flattenChildren = __webpack_require__(332);
 var invariant = __webpack_require__(3);
 
@@ -41809,7 +41891,7 @@ var SyntheticTransitionEvent = __webpack_require__(326);
 var SyntheticUIEvent = __webpack_require__(36);
 var SyntheticWheelEvent = __webpack_require__(327);
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var getEventCharCode = __webpack_require__(59);
 var invariant = __webpack_require__(3);
 
@@ -42584,7 +42666,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(12);
+  ReactComponentTreeHook = __webpack_require__(13);
 }
 
 var loggedTypeFailures = {};
@@ -42626,7 +42708,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(12);
+            ReactComponentTreeHook = __webpack_require__(13);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -42825,7 +42907,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(12);
+  ReactComponentTreeHook = __webpack_require__(13);
 }
 
 /**
@@ -42841,7 +42923,7 @@ function flattenSingleChildIntoContext(traverseContext, child, name, selfDebugID
     var keyUnique = result[name] === undefined;
     if (process.env.NODE_ENV !== 'production') {
       if (!ReactComponentTreeHook) {
-        ReactComponentTreeHook = __webpack_require__(12);
+        ReactComponentTreeHook = __webpack_require__(13);
       }
       if (!keyUnique) {
         process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -47103,7 +47185,7 @@ module.exports = PooledClass;
 var PooledClass = __webpack_require__(371);
 var ReactElement = __webpack_require__(23);
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var traverseAllChildren = __webpack_require__(380);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -48199,7 +48281,7 @@ var ReactElement = __webpack_require__(23);
 var ReactPropTypeLocationNames = __webpack_require__(69);
 var ReactPropTypesSecret = __webpack_require__(226);
 
-var emptyFunction = __webpack_require__(11);
+var emptyFunction = __webpack_require__(12);
 var getIteratorFn = __webpack_require__(71);
 var warning = __webpack_require__(4);
 
@@ -48717,7 +48799,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(12);
+  ReactComponentTreeHook = __webpack_require__(13);
 }
 
 var loggedTypeFailures = {};
@@ -48759,7 +48841,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(12);
+            ReactComponentTreeHook = __webpack_require__(13);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);

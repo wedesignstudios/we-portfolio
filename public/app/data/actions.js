@@ -27,12 +27,22 @@ const DataActions = {
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
 
+    xhr.addEventListener('readystatechange', function() {
+      if (this.readyState === 4) {
+        if(xhr.status === 200) {
+          console.log('uploadImages responseText: ', this.responseText);
+          if(callback) {
+            callback(this.responseText);
+          };
+        }
+      }
+    });
+
     xhr.upload.addEventListener('progress', function(event) {
       console.log('progress: ', event.loaded);
     });
 
     xhr.upload.addEventListener('load', function(event) {
-      callback;
       console.log('load: ', event);
     });
 

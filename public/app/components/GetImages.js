@@ -5,14 +5,20 @@ import { Link } from 'react-router-dom';
 const UpdateImage = require('./UpdateImage');
 
 class GetImages extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       imageData: [],
       imageId: null,
       isUpdateImageOpen: false
-    };
+    }
+
+    if(this.props.history.location.state === undefined) {
+      this.props.history.location.state = {message: 'No message.'};
+    }
+
+    this.flashMessage = this.props.history.location.state.message;
 
   }
 
@@ -27,6 +33,10 @@ class GetImages extends React.Component {
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  componentWillUpdate(nextProps) {
+    this.flashMessage = nextProps.history.location.state.message;
   }
 
   openUpdateImage(event, imageId) {
@@ -45,6 +55,7 @@ class GetImages extends React.Component {
   render() {
     return(
       <div>
+        <p>Message: {this.flashMessage}</p>
         <Link to={`${this.props.match.url}/upload`}>Add New Image(s)</Link>
         <h3>All Images</h3>
         <div className="image-grid">

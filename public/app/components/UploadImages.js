@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {
+  Link,
+  withRouter
+} from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 
 const FormHandlers = require('../services/form_handlers');
@@ -12,6 +16,8 @@ class UploadImages extends React.Component {
     this.state = {
       success: false
     }
+
+    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/images');
   }
 
   onDrop(files) {
@@ -19,13 +25,18 @@ class UploadImages extends React.Component {
       const formData = new FormData();
 
       formData.append('image', file);
-      DataActions.uploadImages(formData, '/api/images/upload', FormHandlers.successMessage(this));
+      DataActions.uploadImages(
+        formData,
+        '/api/images/upload',
+        this.setRedirectWithMessage
+      );
     });
   }
 
   render() {
     return (
       <div>
+        <Link to='/dashboard/images'>All Images</Link><br />
         <h3>Upload Image(s)</h3>
         <div className="success">
           {this.state.success ? <div id="image-uploaded-success" style={{color: 'green'}}><p>Image(s) successfully uploaded.</p></div> : null}
@@ -42,4 +53,4 @@ class UploadImages extends React.Component {
   }
 };
 
-module.exports = UploadImages;
+module.exports = withRouter(UploadImages);

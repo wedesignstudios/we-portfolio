@@ -29,7 +29,7 @@ router.get('/', (req, res, next) => {
       withRelated: ['project'],
       debug: true
     })
-    .then((image) => {      
+    .then((image) => {
       res.json(image);
     })
     .catch((err) => {
@@ -46,8 +46,12 @@ router.get('/:id', (req, res, next) => {
       withRelated: ['project'],
       debug: true
     })
-    .then((image) => {      
-      res.json(image);
+    .then((image) => {
+      if(image) {
+        res.json(image);
+      } else {
+        res.json(null);
+      }
     })
     .catch((err) => {
       console.log('Error message: ', err);
@@ -76,7 +80,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
       .forge({url: url})
       .save()
       .then((image) => {
-        res.send('File uploaded to S3 and saved to database.');
+        return res.status(200).send(`Image(s) uploaded to S3 and saved to database.`);
       })
       .catch((err) => {
         console.error(err);
@@ -101,7 +105,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
       .save(formData, {method: 'update'})
       .then((image) => {
         image = image.toJSON();
-        res.send(`Image ${image.url} has been updated.`);
+        res.status(200).send(`Image ${image.url} has been updated.`);
       })
       .catch((err) => {
         console.error(err);

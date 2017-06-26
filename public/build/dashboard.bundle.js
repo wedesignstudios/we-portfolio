@@ -7915,12 +7915,22 @@ var DataActions = {
     var xhr = new XMLHttpRequest();
     var formData = new FormData();
 
+    xhr.addEventListener('readystatechange', function () {
+      if (this.readyState === 4) {
+        if (xhr.status === 200) {
+          console.log('uploadImages responseText: ', this.responseText);
+          if (callback) {
+            callback(this.responseText);
+          };
+        }
+      }
+    });
+
     xhr.upload.addEventListener('progress', function (event) {
       console.log('progress: ', event.loaded);
     });
 
     xhr.upload.addEventListener('load', function (event) {
-      callback;
       console.log('load: ', event);
     });
 
@@ -29505,16 +29515,22 @@ var UpdateImage = __webpack_require__(242);
 var GetImages = function (_React$Component) {
   _inherits(GetImages, _React$Component);
 
-  function GetImages() {
+  function GetImages(props) {
     _classCallCheck(this, GetImages);
 
-    var _this = _possibleConstructorReturn(this, (GetImages.__proto__ || Object.getPrototypeOf(GetImages)).call(this));
+    var _this = _possibleConstructorReturn(this, (GetImages.__proto__ || Object.getPrototypeOf(GetImages)).call(this, props));
 
     _this.state = {
       imageData: [],
       imageId: null,
       isUpdateImageOpen: false
     };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: 'No message.' };
+    }
+
+    _this.flashMessage = _this.props.history.location.state.message;
 
     return _this;
   }
@@ -29533,6 +29549,11 @@ var GetImages = function (_React$Component) {
       }).catch(function (err) {
         console.error(err);
       });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
     }
   }, {
     key: 'openUpdateImage',
@@ -29557,6 +29578,12 @@ var GetImages = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Message: ',
+          this.flashMessage
+        ),
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: this.props.match.url + '/upload' },
@@ -29854,6 +29881,8 @@ var _reactDom = __webpack_require__(6);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactRouterDom = __webpack_require__(13);
+
 var _reactDropzone = __webpack_require__(340);
 
 var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
@@ -29880,6 +29909,8 @@ var UploadImages = function (_React$Component) {
     _this.state = {
       success: false
     };
+
+    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/images');
     return _this;
   }
 
@@ -29892,7 +29923,7 @@ var UploadImages = function (_React$Component) {
         var formData = new FormData();
 
         formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload', FormHandlers.successMessage(_this2));
+        DataActions.uploadImages(formData, '/api/images/upload', _this2.setRedirectWithMessage);
       });
     }
   }, {
@@ -29903,6 +29934,12 @@ var UploadImages = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/images' },
+          'All Images'
+        ),
+        _react2.default.createElement('br', null),
         _react2.default.createElement(
           'h3',
           null,
@@ -29945,7 +29982,7 @@ var UploadImages = function (_React$Component) {
 
 ;
 
-module.exports = UploadImages;
+module.exports = (0, _reactRouterDom.withRouter)(UploadImages);
 
 /***/ }),
 /* 238 */

@@ -111,13 +111,20 @@ const FormHandlers = {
     _this.setState(_this.initialState);
   },
 
-  setRedirectWithMessage: function(_this, location, message) {
-    _this.props.history.push(location, {message: message});
+  setRedirectWithMessage: function(_this, location, errMessage, message) {
+    let error;
+    errMessage ? (error = errMessage) : (error = '');
+    _this.props.history.push(location, {message: message, messageError: error});
   },
 
   setSubmitErrorMessage: function(_this, message) {
-    _this.setState({
-      submitError: message
+    _this.setState((prevState) => {
+      if (typeof prevState.submitError === 'object') {
+        let errorArr = prevState.submitError;
+        errorArr.push(message);
+        return {submitError: errorArr}
+      };
+      return {submitError: message};
     })
   },
 

@@ -1,18 +1,20 @@
 const DataActions = {
 
-  sendRequest: (reqType, state, apiEndpoint, callback) => {
+  sendRequest: (reqType, state, apiEndpoint, callback, errCallback) => {
     const data = state;
     const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
     xhr.addEventListener('readystatechange', function() {
       if (this.readyState === 4) {
-        if(xhr.status === 200) {
-          console.log(this.responseText);
+        if(xhr.status >= 200 && xhr.status < 300) {
           if(callback) {
             callback(this.responseText);
           };
         };
+        if(xhr.status === 500) {
+          errCallback(this.responseText);
+        }
       };
     });
 

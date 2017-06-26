@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {
+  Link,
   withRouter
 } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
@@ -39,7 +40,8 @@ class FormProject extends React.Component {
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
-      success: false     
+      submitSuccess: false,
+      submitError: ''
     }
 
     this.initialState = this.state;
@@ -48,6 +50,7 @@ class FormProject extends React.Component {
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
     this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/projects');
+    this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
   setAttachedAndChecked(dataModel, dataModelName) {
@@ -109,7 +112,8 @@ class FormProject extends React.Component {
       'DELETE',
       {name: this.state.name},
       `/api/projects/${this.props.projectId}/delete`,
-      this.setRedirectWithMessage
+      this.setRedirectWithMessage,
+      this.setSubmitErrorMessage
     );
   }
 
@@ -122,7 +126,8 @@ class FormProject extends React.Component {
           this.props.sendRequestType,
           this.state,
           '/api/projects',
-          this.setRedirectWithMessage
+          this.setRedirectWithMessage,
+          this.setSubmitErrorMessage
         );
       } else {
         DataActions.sendRequest(
@@ -141,10 +146,12 @@ class FormProject extends React.Component {
   render() {
     return (
       <div>
+        <Link to='/dashboard/projects'>All Projects</Link><br />
         <h3>{this.props.sendRequestType === 'POST' ? 'Create A New Project' : `Update Project: ${this.state.name}`}</h3>
-        <div className="success">
-          {this.state.success ? <div id="project-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Project successfully added.' : 'Project successfully updated.'}</p></div> : null}
+        <div className="submit-message-success">
+          {this.state.submitSuccess ? <div id="project-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Project successfully added.' : 'Project successfully updated.'}</p></div> : null}
         </div>
+        <div className="submit-message-error" style={{color: 'red'}}><p>{this.state.submitError}</p></div>
         {this.props.sendRequestType === 'PUT' ?
           <button onClick={(e) => this.deleteProject(e)}>Delete {this.state.name}</button> :
         null}

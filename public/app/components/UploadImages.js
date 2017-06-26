@@ -14,10 +14,11 @@ class UploadImages extends React.Component {
     super();
 
     this.state = {
-      success: false
+      submitError: []
     }
 
-    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/images');
+    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/images', this.state.submitError);
+    this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
   onDrop(files) {
@@ -28,7 +29,8 @@ class UploadImages extends React.Component {
       DataActions.uploadImages(
         formData,
         '/api/images/upload',
-        this.setRedirectWithMessage
+        this.setRedirectWithMessage,
+        this.setSubmitErrorMessage
       );
     });
   }
@@ -38,8 +40,12 @@ class UploadImages extends React.Component {
       <div>
         <Link to='/dashboard/images'>All Images</Link><br />
         <h3>Upload Image(s)</h3>
-        <div className="success">
-          {this.state.success ? <div id="image-uploaded-success" style={{color: 'green'}}><p>Image(s) successfully uploaded.</p></div> : null}
+        <div className="submit-message-error" style={{color: 'red'}}>
+          <ul>
+          {this.state.submitError.map((message, i) => {
+            return <li key={i}>{message}</li>
+          })}
+          </ul>
         </div>
         <Dropzone
           name="images"

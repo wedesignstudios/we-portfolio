@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {
+  Link,
   withRouter
 } from 'react-router-dom';
 
@@ -23,7 +24,8 @@ class CreateClient extends React.Component {
       address_id: '',
       nameErr: false,
       urlErr: false,
-      success: false
+      submitSuccess: false,
+      submitError: ''
     }
 
     this.initialState = this.state;
@@ -31,6 +33,7 @@ class CreateClient extends React.Component {
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
     this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/clients');
+    this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
   componentDidMount() {
@@ -55,7 +58,6 @@ class CreateClient extends React.Component {
           console.error(err);
         });
     }
-
   }
 
   getComponentData(data, inputName) {
@@ -75,7 +77,8 @@ class CreateClient extends React.Component {
       'DELETE',
       {name: this.state.name, address_id: this.state.address_id},
       `/api/clients/${this.props.clientId}/delete`,
-      this.setRedirectWithMessage
+      this.setRedirectWithMessage,
+      this.setSubmitErrorMessage
     );
   }
 
@@ -93,7 +96,8 @@ class CreateClient extends React.Component {
             this.props.sendRequestType,
             this.state,
             '/api/clients',
-            this.setRedirectWithMessage
+            this.setRedirectWithMessage,
+            this.setSubmitErrorMessage
           );
         } else {
           DataActions.sendRequest(
@@ -111,10 +115,12 @@ class CreateClient extends React.Component {
   render() {
     return (
       <div>
+        <Link to='/dashboard/clients'>All Clients</Link><br />
         <h3>{this.props.sendRequestType === 'POST' ? 'Create A New Client' : `Update Client: ${this.state.name}`}</h3>
-        <div className="success">
-          {this.state.success ? <div id="client-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Client successfully added.' : 'Client successfully updated.'}</p></div> : null}
+        <div className="submit-message-success">
+          {this.state.submitSuccess ? <div id="client-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Client successfully added.' : 'Client successfully updated.'}</p></div> : null}
         </div>
+        <div className="submit-message-error" style={{color: 'red'}}><p>{this.state.submitError}</p></div>
         {this.props.sendRequestType === 'PUT' ?
           <button onClick={(e) => this.deleteClient(e)}>Delete {this.state.name}</button> :
         null}

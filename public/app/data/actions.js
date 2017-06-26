@@ -13,7 +13,9 @@ const DataActions = {
           };
         };
         if(xhr.status === 500) {
-          errCallback(this.responseText);
+          if(errCallback) {
+            errCallback(this.responseText);
+          }
         }
       };
     });
@@ -25,17 +27,20 @@ const DataActions = {
     xhr.send(JSON.stringify(data));
   },
 
-  uploadImages: (data, apiEndpoint, callback) => {
+  uploadImages: (data, apiEndpoint, callback, errCallback) => {
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
 
     xhr.addEventListener('readystatechange', function() {
       if (this.readyState === 4) {
-        if(xhr.status === 200) {
+        if(xhr.status >= 200 && xhr.status < 300) {
           console.log('uploadImages responseText: ', this.responseText);
           if(callback) {
             callback(this.responseText);
           };
+        }
+        if(xhr.status === 500) {
+          errCallback(this.responseText);
         }
       }
     });

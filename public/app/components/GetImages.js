@@ -15,10 +15,11 @@ class GetImages extends React.Component {
     }
 
     if(this.props.history.location.state === undefined) {
-      this.props.history.location.state = {message: 'No message.'};
+      this.props.history.location.state = {message: 'No message.', messageError: []};
     }
 
     this.flashMessage = this.props.history.location.state.message;
+    this.flashMessageError = this.props.history.location.state.messageError;
 
   }
 
@@ -33,10 +34,12 @@ class GetImages extends React.Component {
       .catch((err) => {
         console.error(err);
       });
+      console.log('HISTORY: ', this.props.history);
   }
 
   componentWillUpdate(nextProps) {
     this.flashMessage = nextProps.history.location.state.message;
+    this.flashMessageError = nextProps.history.location.state.messageError;
   }
 
   openUpdateImage(event, imageId) {
@@ -56,6 +59,14 @@ class GetImages extends React.Component {
     return(
       <div>
         <p>Message: {this.flashMessage}</p>
+        <p>Errors:</p>
+        <div className="submit-message-error" style={{color: 'red'}}>
+          <ul>
+            {this.flashMessageError.map((err, i) => {
+              return <li key={i}>{err}</li>
+            })}
+          </ul>
+        </div>
         <Link to={`${this.props.match.url}/upload`}>Add New Image(s)</Link>
         <h3>All Images</h3>
         <div className="image-grid">

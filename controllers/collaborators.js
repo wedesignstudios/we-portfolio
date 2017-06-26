@@ -69,9 +69,9 @@ router.post('/', isLoggedIn, (req, res, next) => {
       .catch((err) => {
         console.error(err);
         if (err.name == 'DuplicateError') {
-          res.status(500).send(`${err.name}: A Collaborator with this ${err.field} already exists.`);          
+          res.status(500).send(`${err.name}: A collaborator with the ${err.field} {req.body.name} already exists.`);
         } else {
-          res.sendStatus(500);
+          res.status(500).send(`Whoops! The following error occurred: ${err}`);
         }
     })
   } else {
@@ -100,7 +100,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
       })
       .catch((err) => {
         console.error(err);
-        res.sendStatus(500);
+        res.status(500).send(`Whoops! The following error occurred: ${err}`);
       });
     } else {
       res.status(400).send('Bad Request');
@@ -125,7 +125,7 @@ router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
     })
     .catch((err) => {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).send(`Whoops! The following error occurred: ${err}`);
     });
 });
 

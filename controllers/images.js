@@ -87,7 +87,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
         if (err.name == 'DuplicateError') {
           res.status(500).send(`${err.name}: An Image with this ${err.field} already exists.`);
         } else {
-          res.sendStatus(500);
+          res.status(500).send(`Whoops! The following error occurred: ${err}`);
         }
       });
   });
@@ -109,7 +109,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
       })
       .catch((err) => {
         console.error(err);
-        res.sendStatus(500);
+        res.status(500).send(`Whoops! The following error occurred: ${err}`);
       });
     } else {
       res.status(400).send('Bad Request');

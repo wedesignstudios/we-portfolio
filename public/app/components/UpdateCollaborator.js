@@ -8,7 +8,6 @@ class UpdateCollaborator extends Component {
   render() {
     return(
       <div>
-        <Link to='/dashboard/collaborators'>All Collaborators</Link><br />
         <FormCollaborator sendRequestType="PUT" collaboratorId={this.props.match.params.id} />
       </div>
     );

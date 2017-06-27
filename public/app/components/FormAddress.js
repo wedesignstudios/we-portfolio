@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
+import { Creatable } from 'react-select';
 import 'react-select/dist/react-select.css';
+
+const FormHandlers = require('../services/form_handlers');
 
 class FormAddress extends Component {
   constructor() {
@@ -109,21 +112,62 @@ class FormAddress extends Component {
     });
   }
 
+  checkIsValidNewOption(val) {
+    let regex = /[a-zA-Z\u00C0-\u00FC]/g;
+    let numSpecCharsRegex = /[\u0000-\u001f\u0021-\u0040\u005b-\u0060\u007b-\u00bf]/g;
+
+    if(numSpecCharsRegex.test(val.label) || val.label === undefined || val.label === '') {
+      return false
+    }
+    return true
+  }
+
   selectOnBlurHandler(event, sendDataFunc, inputName) {
-    const data = {[inputName]: this.state[inputName]};
+    var data = {[inputName]: this.state[inputName]};
+
+    if(inputName === 'city') {
+      let cityTitleCase = FormHandlers.titleCase(this.state.city);
+      data = {city: cityTitleCase};
+    }
     sendDataFunc(data, inputName);
+  }
+
+  createNewOption(val) {
+    if(val.label !== undefined) {
+      let inputValue = val.label;
+      inputValue = FormHandlers.titleCase(inputValue);
+      return {
+        value: inputValue,
+        label: inputValue
+      }
+    };
+    return {
+      value: val.label,
+      label: val.label
+    }
+  }
+
+  createPromptText(val) {
+    if(val !== undefined) {
+      return `Create new city: ${val}`;
+    }
+    return 'Type to add a new city.';
   }
 
   render() {
     return(
       <div>
-        <Select
+        <Select.Creatable
           name="city"
           value={this.state.city}
           options={this.state.allCities}
           onChange={(val) => this.setSelectedCity(val)}
           onBlur={(e) => this.selectOnBlurHandler(e, this.props.sendAddressData, 'city')}
-          placeholder="Select A City" />
+          onFocus={(e) => FormHandlers.preventSpaceKey(e)}
+          isValidNewOption={val => this.checkIsValidNewOption(val)}
+          newOptionCreator={val => this.createNewOption(val)}
+          promptTextCreator={val => this.createPromptText(val)}
+          placeholder="Select/Enter A City" />
 
         <Select
           name="state"

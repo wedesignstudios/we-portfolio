@@ -139,6 +139,14 @@ const FormHandlers = {
     FormHandlers.resetForm(formID, _this);
   },
 
+  titleCase: function(str) {
+    return str.toLowerCase().split(' ').map(word => {
+      if(word !== '') {
+        return word.replace(word[0], word[0].toUpperCase());
+      }
+    }).join(' ');
+  },
+
   updateAttached: function(_this, models) {
     models.forEach(model => {
       let model_ids = model + '_ids';

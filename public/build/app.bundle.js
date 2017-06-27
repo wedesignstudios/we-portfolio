@@ -6251,6 +6251,14 @@ var FormHandlers = {
     FormHandlers.resetForm(formID, _this);
   },
 
+  titleCase: function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function (word) {
+      if (word !== '') {
+        return word.replace(word[0], word[0].toUpperCase());
+      }
+    }).join(' ');
+  },
+
   updateAttached: function updateAttached(_this, models) {
     models.forEach(function (model) {
       var model_ids = model + '_ids';
@@ -13757,6 +13765,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var FormHandlers = __webpack_require__(18);
+
 var FormAddress = function (_Component) {
   _inherits(FormAddress, _Component);
 
@@ -13874,10 +13884,50 @@ var FormAddress = function (_Component) {
       });
     }
   }, {
+    key: 'checkIsValidNewOption',
+    value: function checkIsValidNewOption(val) {
+      var regex = /[a-zA-Z\u00C0-\u00FC]/g;
+      var numSpecCharsRegex = /[\u0000-\u001f\u0021-\u0040\u005b-\u0060\u007b-\u00bf]/g;
+
+      if (numSpecCharsRegex.test(val.label) || val.label === undefined || val.label === '') {
+        return false;
+      }
+      return true;
+    }
+  }, {
     key: 'selectOnBlurHandler',
     value: function selectOnBlurHandler(event, sendDataFunc, inputName) {
       var data = _defineProperty({}, inputName, this.state[inputName]);
+
+      if (inputName === 'city') {
+        var cityTitleCase = FormHandlers.titleCase(this.state.city);
+        data = { city: cityTitleCase };
+      }
       sendDataFunc(data, inputName);
+    }
+  }, {
+    key: 'createNewOption',
+    value: function createNewOption(val) {
+      if (val.label !== undefined) {
+        var inputValue = val.label;
+        inputValue = FormHandlers.titleCase(inputValue);
+        return {
+          value: inputValue,
+          label: inputValue
+        };
+      };
+      return {
+        value: val.label,
+        label: val.label
+      };
+    }
+  }, {
+    key: 'createPromptText',
+    value: function createPromptText(val) {
+      if (val !== undefined) {
+        return 'Create new city: ' + val;
+      }
+      return 'Type to add a new city.';
     }
   }, {
     key: 'render',
@@ -13887,7 +13937,7 @@ var FormAddress = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_reactSelect2.default, {
+        _react2.default.createElement(_reactSelect2.default.Creatable, {
           name: 'city',
           value: this.state.city,
           options: this.state.allCities,
@@ -13897,7 +13947,19 @@ var FormAddress = function (_Component) {
           onBlur: function onBlur(e) {
             return _this4.selectOnBlurHandler(e, _this4.props.sendAddressData, 'city');
           },
-          placeholder: 'Select A City' }),
+          onFocus: function onFocus(e) {
+            return FormHandlers.preventSpaceKey(e);
+          },
+          isValidNewOption: function isValidNewOption(val) {
+            return _this4.checkIsValidNewOption(val);
+          },
+          newOptionCreator: function newOptionCreator(val) {
+            return _this4.createNewOption(val);
+          },
+          promptTextCreator: function promptTextCreator(val) {
+            return _this4.createPromptText(val);
+          },
+          placeholder: 'Select/Enter A City' }),
         _react2.default.createElement(_reactSelect2.default, {
           name: 'state',
           value: this.state.state,

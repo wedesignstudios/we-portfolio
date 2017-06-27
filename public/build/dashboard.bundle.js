@@ -29605,8 +29605,8 @@ var GetImages = function (_React$Component) {
   }
 
   _createClass(GetImages, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'loadImages',
+    value: function loadImages() {
       var _this2 = this;
 
       fetch('/api/images').then(function (res) {
@@ -29618,7 +29618,16 @@ var GetImages = function (_React$Component) {
       }).catch(function (err) {
         console.error(err);
       });
-      console.log('HISTORY: ', this.props.history);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.loadImages();
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.loadImages();
     }
   }, {
     key: 'componentWillUpdate',

@@ -23,7 +23,7 @@ class GetImages extends React.Component {
 
   }
 
-  componentDidMount() {
+  loadImages() {
     fetch('/api/images')
       .then((res) => res.json())
       .then((data) => {
@@ -34,7 +34,14 @@ class GetImages extends React.Component {
       .catch((err) => {
         console.error(err);
       });
-      console.log('HISTORY: ', this.props.history);
+  }
+
+  componentDidMount() {
+    this.loadImages();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.loadImages();
   }
 
   componentWillUpdate(nextProps) {

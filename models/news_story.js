@@ -10,9 +10,11 @@ const NewsStory = bookshelf.Model.extend({
   image: function() {
     return this.hasOne('Image');
   },
-  news_category: function() {
+  news_categories: function() {
     return this.belongsToMany('NewsCategory').through('NewsStoriesNewsCategories');
   }
+}, {
+  dependents: ['news_categories']
 });
 
 module.exports = bookshelf.model('NewsStory', NewsStory);

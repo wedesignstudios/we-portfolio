@@ -5420,7 +5420,7 @@ module.exports = emptyFunction;
 
 var _prodInvariant = __webpack_require__(24);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -5817,6 +5817,191 @@ module.exports = { debugTool: debugTool };
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var FormValidations = __webpack_require__(26);
+
+var FormHandlers = {
+
+  handleOnChange: function handleOnChange(event, _this) {
+    FormHandlers.inputChange(event, _this);
+  },
+
+  inputChange: function inputChange(event, _this) {
+    var target = event.target;
+    var value = target.value;
+    var name = target.name;
+
+    _this.setState(_defineProperty({}, name, value));
+  },
+
+  checkboxChange: function checkboxChange(event, _this) {
+    var target = event.target;
+    var name = target.name;
+
+    _this.setState(_defineProperty({}, name, !_this.state[name]));
+  },
+
+  multiCheckboxChange: function multiCheckboxChange(event, _this, sendDataFunc) {
+    var target = event.target;
+    var name = target.name;
+    var value = parseInt(target.value);
+    var checked = _this.props.preChecked;
+    var attached = _this.props.attached;
+    var detach = _this.props.detach;
+    var toAttach = _this.props.toAttach;
+
+    if (attached.includes(value)) {
+      var index = detach.indexOf(value);
+      detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
+    } else {
+      var _index = toAttach.indexOf(value);
+      toAttach.includes(value) ? toAttach.splice(_index, 1) : toAttach.push(value);
+    }
+
+    if (checked.includes(value)) {
+      var _index2 = checked.indexOf(value);
+      checked.splice(_index2, 1);
+    } else {
+      checked.push(value);
+    }
+
+    sendDataFunc({
+      checked: checked,
+      attached: attached,
+      toAttach: toAttach,
+      detach: detach
+    });
+  },
+
+  preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
+    event.target.addEventListener('keydown', function (event) {
+      var key = event.key;
+
+      if (key !== 'Shift' && key !== 'Tab') {
+        event.preventDefault();
+      };
+    });
+  },
+
+  preventSpaceKey: function preventSpaceKey(event) {
+    event.target.addEventListener('keydown', function (event) {
+      var key = event.key;
+
+      if (key === ' ' && !event.target.value) {
+        event.preventDefault();
+      };
+    });
+  },
+
+  prependURL: function prependURL(url) {
+    return url = 'http://' + url;
+  },
+
+  resetDetached: function resetDetached(_this, models) {
+    models.forEach(function (model) {
+      var model_ids_detach = model + '_ids_detach';
+
+      _this.setState(_defineProperty({}, model_ids_detach, []));
+    });
+  },
+
+  resetToAttachIds: function resetToAttachIds(_this, models) {
+    models.forEach(function (model) {
+      var model_ids = model + '_ids';
+
+      _this.setState(_defineProperty({}, model_ids, []));
+    });
+  },
+
+  resetForm: function resetForm(formID, _this) {
+    var form = document.forms[formID];
+    var formInputs = form.getElementsByTagName("input");
+
+    for (var i = 0; i < formInputs.length; i++) {
+      formInputs[i].value = '';
+    }
+    _this.setState(_this.initialState);
+  },
+
+  setRedirectWithMessage: function setRedirectWithMessage(_this, location, errMessage, message) {
+    var error = void 0;
+    errMessage ? error = errMessage : error = '';
+    _this.props.history.push(location, { message: message, messageError: error });
+  },
+
+  setSubmitErrorMessage: function setSubmitErrorMessage(_this, message) {
+    _this.setState(function (prevState) {
+      if (_typeof(prevState.submitError) === 'object') {
+        var errorArr = prevState.submitError;
+        errorArr.push(message);
+        return { submitError: errorArr };
+      };
+      return { submitError: message };
+    });
+  },
+
+  successMessage: function successMessage(_this) {
+    _this.setState({
+      submitSuccess: true
+    });
+    setTimeout(function () {
+      _this.setState({ submitSuccess: false });
+    }, 2000);
+  },
+
+  successCallback: function successCallback(formID, _this, location) {
+    FormHandlers.resetForm(formID, _this);
+  },
+
+  titleCase: function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function (word) {
+      if (word !== '') {
+        return word.replace(word[0], word[0].toUpperCase());
+      }
+    }).join(' ');
+  },
+
+  updateAttached: function updateAttached(_this, models) {
+    models.forEach(function (model) {
+      var model_ids = model + '_ids';
+      var model_ids_attached = model_ids + '_attached';
+      var model_ids_detach = model_ids + '_detach';
+
+      var attached = _this.state[model_ids_attached];
+      var didAttach = _this.state[model_ids];
+      var didDetach = _this.state[model_ids_detach];
+
+      if (didAttach) {
+        didAttach.forEach(function (id) {
+          attached.push(id);
+        });
+      }
+
+      if (didDetach) {
+        didDetach.forEach(function (id) {
+          var index = attached.indexOf(id);
+          attached.splice(index, 1);
+        });
+      }
+
+      _this.setState(_defineProperty({}, model_ids_attached, attached));
+    });
+  }
+
+};
+
+module.exports = FormHandlers;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -6070,7 +6255,7 @@ module.exports = ReactUpdates;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6104,191 +6289,6 @@ var ReactCurrentOwner = {
 };
 
 module.exports = ReactCurrentOwner;
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var FormValidations = __webpack_require__(26);
-
-var FormHandlers = {
-
-  handleOnChange: function handleOnChange(event, _this) {
-    FormHandlers.inputChange(event, _this);
-  },
-
-  inputChange: function inputChange(event, _this) {
-    var target = event.target;
-    var value = target.value;
-    var name = target.name;
-
-    _this.setState(_defineProperty({}, name, value));
-  },
-
-  checkboxChange: function checkboxChange(event, _this) {
-    var target = event.target;
-    var name = target.name;
-
-    _this.setState(_defineProperty({}, name, !_this.state[name]));
-  },
-
-  multiCheckboxChange: function multiCheckboxChange(event, _this, sendDataFunc) {
-    var target = event.target;
-    var name = target.name;
-    var value = parseInt(target.value);
-    var checked = _this.props.preChecked;
-    var attached = _this.props.attached;
-    var detach = _this.props.detach;
-    var toAttach = _this.props.toAttach;
-
-    if (attached.includes(value)) {
-      var index = detach.indexOf(value);
-      detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
-    } else {
-      var _index = toAttach.indexOf(value);
-      toAttach.includes(value) ? toAttach.splice(_index, 1) : toAttach.push(value);
-    }
-
-    if (checked.includes(value)) {
-      var _index2 = checked.indexOf(value);
-      checked.splice(_index2, 1);
-    } else {
-      checked.push(value);
-    }
-
-    sendDataFunc({
-      checked: checked,
-      attached: attached,
-      toAttach: toAttach,
-      detach: detach
-    });
-  },
-
-  preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
-    event.target.addEventListener('keydown', function (event) {
-      var key = event.key;
-
-      if (key !== 'Shift' && key !== 'Tab') {
-        event.preventDefault();
-      };
-    });
-  },
-
-  preventSpaceKey: function preventSpaceKey(event) {
-    event.target.addEventListener('keydown', function (event) {
-      var key = event.key;
-
-      if (key === ' ' && !event.target.value) {
-        event.preventDefault();
-      };
-    });
-  },
-
-  prependURL: function prependURL(url) {
-    return url = 'http://' + url;
-  },
-
-  resetDetached: function resetDetached(_this, models) {
-    models.forEach(function (model) {
-      var model_ids_detach = model + '_ids_detach';
-
-      _this.setState(_defineProperty({}, model_ids_detach, []));
-    });
-  },
-
-  resetToAttachIds: function resetToAttachIds(_this, models) {
-    models.forEach(function (model) {
-      var model_ids = model + '_ids';
-
-      _this.setState(_defineProperty({}, model_ids, []));
-    });
-  },
-
-  resetForm: function resetForm(formID, _this) {
-    var form = document.forms[formID];
-    var formInputs = form.getElementsByTagName("input");
-
-    for (var i = 0; i < formInputs.length; i++) {
-      formInputs[i].value = '';
-    }
-    _this.setState(_this.initialState);
-  },
-
-  setRedirectWithMessage: function setRedirectWithMessage(_this, location, errMessage, message) {
-    var error = void 0;
-    errMessage ? error = errMessage : error = '';
-    _this.props.history.push(location, { message: message, messageError: error });
-  },
-
-  setSubmitErrorMessage: function setSubmitErrorMessage(_this, message) {
-    _this.setState(function (prevState) {
-      if (_typeof(prevState.submitError) === 'object') {
-        var errorArr = prevState.submitError;
-        errorArr.push(message);
-        return { submitError: errorArr };
-      };
-      return { submitError: message };
-    });
-  },
-
-  successMessage: function successMessage(_this) {
-    _this.setState({
-      submitSuccess: true
-    });
-    setTimeout(function () {
-      _this.setState({ submitSuccess: false });
-    }, 2000);
-  },
-
-  successCallback: function successCallback(formID, _this, location) {
-    FormHandlers.resetForm(formID, _this);
-  },
-
-  titleCase: function titleCase(str) {
-    return str.toLowerCase().split(' ').map(function (word) {
-      if (word !== '') {
-        return word.replace(word[0], word[0].toUpperCase());
-      }
-    }).join(' ');
-  },
-
-  updateAttached: function updateAttached(_this, models) {
-    models.forEach(function (model) {
-      var model_ids = model + '_ids';
-      var model_ids_attached = model_ids + '_attached';
-      var model_ids_detach = model_ids + '_detach';
-
-      var attached = _this.state[model_ids_attached];
-      var didAttach = _this.state[model_ids];
-      var didDetach = _this.state[model_ids_detach];
-
-      if (didAttach) {
-        didAttach.forEach(function (id) {
-          attached.push(id);
-        });
-      }
-
-      if (didDetach) {
-        didDetach.forEach(function (id) {
-          var index = attached.indexOf(id);
-          attached.splice(index, 1);
-        });
-      }
-
-      _this.setState(_defineProperty({}, model_ids_attached, attached));
-    });
-  }
-
-};
-
-module.exports = FormHandlers;
 
 /***/ }),
 /* 19 */
@@ -6947,7 +6947,7 @@ module.exports = PooledClass;
 
 var _assign = __webpack_require__(7);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 
 var warning = __webpack_require__(4);
 var canDefineProperty = __webpack_require__(70);
@@ -11084,7 +11084,7 @@ module.exports = exports['default'];
 "use strict";
 
 
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 var FormValidations = __webpack_require__(26);
 
 var FormHandlersValidations = {
@@ -12202,10 +12202,10 @@ module.exports = ReactErrorUtils;
 
 var _prodInvariant = __webpack_require__(5);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 var ReactInstanceMap = __webpack_require__(35);
 var ReactInstrumentation = __webpack_require__(14);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -13765,7 +13765,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 
 var FormAddress = function (_Component) {
   _inherits(FormAddress, _Component);
@@ -14022,7 +14022,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var FormAddress = __webpack_require__(74);
 var DataActions = __webpack_require__(31);
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 var FormValidations = __webpack_require__(26);
 var FormHandlersValidations = __webpack_require__(46);
 
@@ -14292,7 +14292,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var FormAddress = __webpack_require__(74);
 var DataActions = __webpack_require__(31);
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 var FormValidations = __webpack_require__(26);
 var FormHandlersValidations = __webpack_require__(46);
 
@@ -14574,7 +14574,7 @@ var ClientCheckboxes = __webpack_require__(239);
 var CollaboratorCheckboxes = __webpack_require__(240);
 var ProjectCategoriesCheckboxes = __webpack_require__(241);
 var DataActions = __webpack_require__(31);
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 var FormValidations = __webpack_require__(26);
 var FormHandlersValidations = __webpack_require__(46);
 
@@ -26774,7 +26774,7 @@ var _assign = __webpack_require__(7);
 
 var LinkedValueUtils = __webpack_require__(54);
 var ReactDOMComponentTree = __webpack_require__(8);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 
 var warning = __webpack_require__(4);
 
@@ -27247,7 +27247,7 @@ var DOMLazyTree = __webpack_require__(28);
 var DOMProperty = __webpack_require__(20);
 var React = __webpack_require__(30);
 var ReactBrowserEventEmitter = __webpack_require__(40);
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactDOMContainerInfo = __webpack_require__(284);
 var ReactDOMFeatureFlags = __webpack_require__(286);
@@ -27257,7 +27257,7 @@ var ReactInstrumentation = __webpack_require__(14);
 var ReactMarkupChecksum = __webpack_require__(306);
 var ReactReconciler = __webpack_require__(29);
 var ReactUpdateQueue = __webpack_require__(57);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 
 var emptyObject = __webpack_require__(27);
 var instantiateReactComponent = __webpack_require__(215);
@@ -28307,7 +28307,7 @@ module.exports = setTextContent;
 
 var _prodInvariant = __webpack_require__(5);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 var REACT_ELEMENT_TYPE = __webpack_require__(300);
 
 var getIteratorFn = __webpack_require__(334);
@@ -28897,7 +28897,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 var ReactComponentTreeHook = __webpack_require__(13);
 var ReactElement = __webpack_require__(23);
 
@@ -30045,7 +30045,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 var DataActions = __webpack_require__(31);
 
 var UploadImages = function (_React$Component) {
@@ -30258,7 +30258,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 
 var ClientCheckboxes = function (_React$Component) {
   _inherits(ClientCheckboxes, _React$Component);
@@ -30367,7 +30367,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 
 var CollaboratorCheckboxes = function (_React$Component) {
   _inherits(CollaboratorCheckboxes, _React$Component);
@@ -30476,7 +30476,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 
 var ProjectCategoriesCheckboxes = function (_React$Component) {
   _inherits(ProjectCategoriesCheckboxes, _React$Component);
@@ -30585,7 +30585,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(18);
+var FormHandlers = __webpack_require__(16);
 var FormValidations = __webpack_require__(26);
 var DataActions = __webpack_require__(31);
 
@@ -34789,7 +34789,7 @@ var EventPluginHub = __webpack_require__(33);
 var EventPropagators = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(8);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 var SyntheticEvent = __webpack_require__(19);
 
 var getEventTarget = __webpack_require__(61);
@@ -35818,7 +35818,7 @@ var _prodInvariant = __webpack_require__(5),
 
 var React = __webpack_require__(30);
 var ReactComponentEnvironment = __webpack_require__(55);
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 var ReactErrorUtils = __webpack_require__(56);
 var ReactInstanceMap = __webpack_require__(35);
 var ReactInstrumentation = __webpack_require__(14);
@@ -36727,7 +36727,7 @@ var ReactDOMComponentTree = __webpack_require__(8);
 var ReactDefaultInjection = __webpack_require__(299);
 var ReactMount = __webpack_require__(207);
 var ReactReconciler = __webpack_require__(29);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 var ReactVersion = __webpack_require__(314);
 
 var findDOMNode = __webpack_require__(331);
@@ -38018,7 +38018,7 @@ var _prodInvariant = __webpack_require__(5),
 var DOMPropertyOperations = __webpack_require__(200);
 var LinkedValueUtils = __webpack_require__(54);
 var ReactDOMComponentTree = __webpack_require__(8);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -38965,7 +38965,7 @@ var _prodInvariant = __webpack_require__(5),
 
 var LinkedValueUtils = __webpack_require__(54);
 var ReactDOMComponentTree = __webpack_require__(8);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -39755,7 +39755,7 @@ module.exports = ReactDebugTool;
 
 var _assign = __webpack_require__(7);
 
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 var Transaction = __webpack_require__(42);
 
 var emptyFunction = __webpack_require__(12);
@@ -39986,7 +39986,7 @@ var EventListener = __webpack_require__(78);
 var ExecutionEnvironment = __webpack_require__(10);
 var PooledClass = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(8);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 
 var getEventTarget = __webpack_require__(61);
 var getUnboundedScrollPosition = __webpack_require__(252);
@@ -40186,7 +40186,7 @@ var ReactComponentEnvironment = __webpack_require__(55);
 var ReactEmptyComponent = __webpack_require__(203);
 var ReactBrowserEventEmitter = __webpack_require__(40);
 var ReactHostComponent = __webpack_require__(205);
-var ReactUpdates = __webpack_require__(16);
+var ReactUpdates = __webpack_require__(17);
 
 var ReactInjection = {
   Component: ReactComponentEnvironment.injection,
@@ -40322,7 +40322,7 @@ var ReactComponentEnvironment = __webpack_require__(55);
 var ReactInstanceMap = __webpack_require__(35);
 var ReactInstrumentation = __webpack_require__(14);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 var ReactReconciler = __webpack_require__(29);
 var ReactChildReconciler = __webpack_require__(279);
 
@@ -42901,7 +42901,7 @@ module.exports = dangerousStyleValue;
 
 var _prodInvariant = __webpack_require__(5);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactInstanceMap = __webpack_require__(35);
 
@@ -48993,7 +48993,7 @@ module.exports = onlyChild;
 
 var _prodInvariant = __webpack_require__(24);
 
-var ReactCurrentOwner = __webpack_require__(17);
+var ReactCurrentOwner = __webpack_require__(18);
 var REACT_ELEMENT_TYPE = __webpack_require__(224);
 
 var getIteratorFn = __webpack_require__(71);

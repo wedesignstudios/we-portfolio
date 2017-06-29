@@ -93,6 +93,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
   });
 });
 
+// UPDATE an image
 router.put('/:id', isLoggedIn, (req, res, next) => {
   req.body.project_id === '' ? req.body.project_id = null : req.body.project_id;
 

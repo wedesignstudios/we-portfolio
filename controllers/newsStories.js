@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const params = require('params');
 const isLoggedIn = require('../middleware/isLoggedIn');
+const bookshelf = require('../db/bookshelf');
 
 const NewsStory = require('../models/news_story');
 const Image = require('../models/image');
@@ -68,7 +69,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
 });
 
 // UPDATE news story
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isLoggedIn, (req, res, next) => {
   const news_categories_ids = req.body.news_categories_ids;
   const news_categories_ids_detach = req.body.news_categories_ids_detach;
   const storyId = req.params.id;
@@ -94,7 +95,6 @@ router.put('/:id', (req, res, next) => {
           }
           // If NewsStory currently has an image and it is changing to a different imag: set current image news_story_id to null.
           if(image && (image.id !== image_id)) {
-            console.log('IMAGE BEFORE: ', image.toJSON());
             image.save({news_story_id: null}, {method: 'update', patch: true});
             return Image
               .forge({id: image_id})
@@ -123,8 +123,38 @@ router.put('/:id', (req, res, next) => {
   } else {
     res.status(400).send('Bad Request');
   };
-})
+});
 
 // DELETE news story
+router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
+  const story_name = req.body.name;
+
+  NewsStory
+    .forge({id: req.params.id})
+    .fetch()
+    .then((story) => {
+      let relation = story.image();
+      let tableName = relation.relatedData.targetTableName;
+      let foreignKey = relation.relatedData.key('foreignKey');
+
+      bookshelf.knex(tableName)
+      .where(foreignKey, story.id)
+      .update({[foreignKey]: null})
+      .then((numRows) => {
+        console.log(`${numRows} have been updated.`)
+      })
+      .catch((err) => {
+        console.error('KNEX ERR: ', err);
+      });
+      return story.destroy();
+    })
+    .then(() => {
+      return res.status(200).send(`${story_name} has been deleted.`);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(`Whoops! The following error occurred: ${err}`);
+    });
+});
 
 module.exports = router;

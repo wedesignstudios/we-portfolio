@@ -4,6 +4,7 @@ const params = require('params');
 const isLoggedIn = require('../middleware/isLoggedIn');
 
 const NewsStory = require('../models/news_story');
+const Image = require('../models/image');
 
 // GET all news stories
 router.get('/', (req, res, next) => {
@@ -67,6 +68,62 @@ router.post('/', isLoggedIn, (req, res, next) => {
 });
 
 // UPDATE news story
+router.put('/:id', (req, res, next) => {
+  const news_categories_ids = req.body.news_categories_ids;
+  const news_categories_ids_detach = req.body.news_categories_ids_detach;
+  const storyId = req.params.id;
+  const image_id = req.body.image_id;
+  const allowedKeys = ['title', 'date', 'description'];
+  const formData = params(req.body).only(allowedKeys);
+
+  if(Object.keys(formData).length != 0) {
+    NewsStory
+      .forge({id: req.params.id})
+      .save(formData, {method: 'update'})
+      .then((story) => {
+        // Attach/detach news categories
+        if(news_categories_ids_detach) story.news_categories().detach(news_categories_ids_detach);
+        if(news_categories_ids) story.news_categories().attach(news_categories_ids);
+        // Fetch related image
+        story.related('image')
+        .fetch()
+        .then((image) => {
+          // If NewsStory currently has an image and is not changing it: return
+          if(image && (image.id === image_id)) {
+            return
+          }
+          // If NewsStory currently has an image and it is changing to a different imag: set current image news_story_id to null.
+          if(image && (image.id !== image_id)) {
+            console.log('IMAGE BEFORE: ', image.toJSON());
+            image.save({news_story_id: null}, {method: 'update', patch: true});
+            return Image
+              .forge({id: image_id})
+              .fetch()
+              .then((img) => {
+                return img.save({news_story_id: storyId}, {method: 'update', patch: true})
+              })
+          }
+          // If NewsStory currently has no image: set an image
+          if(!image) {
+            return Image
+              .forge({id: image_id})
+              .fetch()
+              .then((img) => {
+                return img.save({news_story_id: storyId}, {method: 'update', patch: true})
+              })
+          }
+        });
+        story = story.toJSON();
+        return res.status(200).send(`${story.title} has been updated.`)
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send(`Whoops! The following error occurred: ${err}`);
+      });
+  } else {
+    res.status(400).send('Bad Request');
+  };
+})
 
 // DELETE news story
 

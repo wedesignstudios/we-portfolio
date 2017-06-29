@@ -1,7 +1,7 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.table('images', (tbl) => {
-      tbl.integer('news_story_id').references('news_stories.id');
+      tbl.integer('news_story_id').unique().references('news_stories.id');
     })
   ]);  
 };

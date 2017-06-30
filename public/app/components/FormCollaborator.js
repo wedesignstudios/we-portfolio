@@ -11,7 +11,7 @@ const FormHandlers = require('../services/form_handlers');
 const FormValidations = require('../services/form_validations');
 const FormHandlersValidations = require('../services/form_handlers_validations');
 
-class CreateCollaborator extends React.Component {
+class FormCollaborator extends React.Component {
   constructor() {
     super();
 
@@ -166,4 +166,4 @@ class CreateCollaborator extends React.Component {
   }
 }
 
-module.exports = withRouter(CreateCollaborator);
+module.exports = withRouter(FormCollaborator);

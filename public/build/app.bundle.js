@@ -14026,13 +14026,13 @@ var FormHandlers = __webpack_require__(16);
 var FormValidations = __webpack_require__(26);
 var FormHandlersValidations = __webpack_require__(46);
 
-var CreateClient = function (_React$Component) {
-  _inherits(CreateClient, _React$Component);
+var FormClient = function (_React$Component) {
+  _inherits(FormClient, _React$Component);
 
-  function CreateClient() {
-    _classCallCheck(this, CreateClient);
+  function FormClient() {
+    _classCallCheck(this, FormClient);
 
-    var _this = _possibleConstructorReturn(this, (CreateClient.__proto__ || Object.getPrototypeOf(CreateClient)).call(this));
+    var _this = _possibleConstructorReturn(this, (FormClient.__proto__ || Object.getPrototypeOf(FormClient)).call(this));
 
     _this.state = {
       name: '',
@@ -14056,7 +14056,7 @@ var CreateClient = function (_React$Component) {
     return _this;
   }
 
-  _createClass(CreateClient, [{
+  _createClass(FormClient, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -14256,10 +14256,10 @@ var CreateClient = function (_React$Component) {
     }
   }]);
 
-  return CreateClient;
+  return FormClient;
 }(_react2.default.Component);
 
-module.exports = (0, _reactRouterDom.withRouter)(CreateClient);
+module.exports = (0, _reactRouterDom.withRouter)(FormClient);
 
 /***/ }),
 /* 76 */
@@ -14296,13 +14296,13 @@ var FormHandlers = __webpack_require__(16);
 var FormValidations = __webpack_require__(26);
 var FormHandlersValidations = __webpack_require__(46);
 
-var CreateCollaborator = function (_React$Component) {
-  _inherits(CreateCollaborator, _React$Component);
+var FormCollaborator = function (_React$Component) {
+  _inherits(FormCollaborator, _React$Component);
 
-  function CreateCollaborator() {
-    _classCallCheck(this, CreateCollaborator);
+  function FormCollaborator() {
+    _classCallCheck(this, FormCollaborator);
 
-    var _this = _possibleConstructorReturn(this, (CreateCollaborator.__proto__ || Object.getPrototypeOf(CreateCollaborator)).call(this));
+    var _this = _possibleConstructorReturn(this, (FormCollaborator.__proto__ || Object.getPrototypeOf(FormCollaborator)).call(this));
 
     _this.state = {
       name: '',
@@ -14326,7 +14326,7 @@ var CreateCollaborator = function (_React$Component) {
     return _this;
   }
 
-  _createClass(CreateCollaborator, [{
+  _createClass(FormCollaborator, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -14526,10 +14526,10 @@ var CreateCollaborator = function (_React$Component) {
     }
   }]);
 
-  return CreateCollaborator;
+  return FormCollaborator;
 }(_react2.default.Component);
 
-module.exports = (0, _reactRouterDom.withRouter)(CreateCollaborator);
+module.exports = (0, _reactRouterDom.withRouter)(FormCollaborator);
 
 /***/ }),
 /* 77 */
@@ -29368,6 +29368,15 @@ var DashboardHome = function (_Component) {
             null,
             _react2.default.createElement(
               _reactRouterDom.Link,
+              { to: this.props.match.url + '/news-stories' },
+              'News Stories'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
               { to: this.props.match.url + '/projects' },
               'Projects'
             )
@@ -30176,6 +30185,9 @@ var GetCollaborators = __webpack_require__(232);
 var UpdateCollaborator = __webpack_require__(236);
 var UploadImages = __webpack_require__(237);
 var GetImages = __webpack_require__(233);
+var CreateNewsStory = __webpack_require__(397);
+var GetNewsStories = __webpack_require__(399);
+var UpdateNewsStory = __webpack_require__(398);
 var NotFound = __webpack_require__(73);
 
 var Dashboard = function (_Component) {
@@ -30218,6 +30230,9 @@ var Dashboard = function (_Component) {
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images/upload', component: UploadImages }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images', component: GetImages }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/create', component: CreateNewsStory }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/:id/update', component: UpdateNewsStory }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories', component: GetNewsStories }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/create', component: CreateProject }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/:id/update', component: UpdateProject }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects', component: GetProjects }),
@@ -49505,6 +49520,304 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(6);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(11);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DataActions = __webpack_require__(31);
+var FormHandlers = __webpack_require__(16);
+var FormValidations = __webpack_require__(26);
+var FormHandlersValidations = __webpack_require__(46);
+
+var FormNewsStory = function (_React$Component) {
+  _inherits(FormNewsStory, _React$Component);
+
+  function FormNewsStory() {
+    _classCallCheck(this, FormNewsStory);
+
+    var _this = _possibleConstructorReturn(this, (FormNewsStory.__proto__ || Object.getPrototypeOf(FormNewsStory)).call(this));
+
+    _this.state = {};
+
+    return _this;
+  }
+
+  _createClass(FormNewsStory, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/news-stories' },
+          'All News Stories'
+        ),
+        _react2.default.createElement('br', null),
+        'FormNewsStory component!'
+      );
+    }
+  }]);
+
+  return FormNewsStory;
+}(_react2.default.Component);
+
+;
+
+module.exports = (0, _reactRouterDom.withRouter)(FormNewsStory);
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(6);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormNewsStory = __webpack_require__(396);
+
+var CreateNewsStory = function (_React$Component) {
+  _inherits(CreateNewsStory, _React$Component);
+
+  function CreateNewsStory() {
+    _classCallCheck(this, CreateNewsStory);
+
+    return _possibleConstructorReturn(this, (CreateNewsStory.__proto__ || Object.getPrototypeOf(CreateNewsStory)).apply(this, arguments));
+  }
+
+  _createClass(CreateNewsStory, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormNewsStory, { sendRequestType: 'POST' })
+      );
+    }
+  }]);
+
+  return CreateNewsStory;
+}(_react2.default.Component);
+
+module.exports = CreateNewsStory;
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(6);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormNewsStory = __webpack_require__(396);
+
+var UpdateNewsStory = function (_Component) {
+  _inherits(UpdateNewsStory, _Component);
+
+  function UpdateNewsStory() {
+    _classCallCheck(this, UpdateNewsStory);
+
+    return _possibleConstructorReturn(this, (UpdateNewsStory.__proto__ || Object.getPrototypeOf(UpdateNewsStory)).apply(this, arguments));
+  }
+
+  _createClass(UpdateNewsStory, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormNewsStory, { sendRequestType: 'PUT' })
+      );
+    }
+  }]);
+
+  return UpdateNewsStory;
+}(_react.Component);
+
+module.exports = UpdateNewsStory;
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(6);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(11);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GetNewsStories = function (_Component) {
+  _inherits(GetNewsStories, _Component);
+
+  function GetNewsStories(props) {
+    _classCallCheck(this, GetNewsStories);
+
+    var _this = _possibleConstructorReturn(this, (GetNewsStories.__proto__ || Object.getPrototypeOf(GetNewsStories)).call(this, props));
+
+    _this.state = {
+      newsStoriesData: []
+    };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: 'No message.' };
+      _this.flashMessage = _this.props.history.location.state.message;
+    }
+
+    return _this;
+  }
+
+  _createClass(GetNewsStories, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/news-stories').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          newsStoriesData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Message: ',
+          this.flashMessage
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/create' },
+          'Add New Story'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'All News Stories'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.newsStoriesData.map(function (story) {
+            return _react2.default.createElement(
+              'div',
+              { key: story.id },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: _this3.props.match.url + '/' + story.id + '/update' },
+                story.title
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return GetNewsStories;
+}(_react.Component);
+
+module.exports = GetNewsStories;
 
 /***/ })
 /******/ ]);

@@ -22,6 +22,9 @@ const GetCollaborators = require('./GetCollaborators');
 const UpdateCollaborator = require('./UpdateCollaborator');
 const UploadImages = require('./UploadImages');
 const GetImages = require('./GetImages');
+const CreateNewsStory = require('./CreateNewsStory');
+const GetNewsStories = require('./GetNewsStories');
+const UpdateNewsStory = require('./UpdateNewsStory');
 const NotFound = require('./NotFound');
 
 class Dashboard extends Component {
@@ -41,6 +44,9 @@ class Dashboard extends Component {
           <Route path={`${this.props.match.url}/collaborators`} component={GetCollaborators} />
           <Route path={`${this.props.match.url}/images/upload`} component={UploadImages} />
           <Route path={`${this.props.match.url}/images`} component={GetImages} />
+          <Route path={`${this.props.match.url}/news-stories/create`} component={CreateNewsStory} />
+          <Route path={`${this.props.match.url}/news-stories/:id/update`} component={UpdateNewsStory} />
+          <Route path={`${this.props.match.url}/news-stories`} component={GetNewsStories} />
           <Route path={`${this.props.match.url}/projects/create`} component={CreateProject} />
           <Route path={`${this.props.match.url}/projects/:id/update`} component={UpdateProject} />
           <Route path={`${this.props.match.url}/projects`} component={GetProjects} />

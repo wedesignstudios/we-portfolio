@@ -49,7 +49,7 @@ class FormProject extends React.Component {
     this.requiredFields = ['name', 'date', 'description'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
-    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/projects');
+    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/projects', this.state.submitError);
     this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
@@ -92,7 +92,7 @@ class FormProject extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  componentWillUpdate(nextProps, nextState) {
     this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
     return true;

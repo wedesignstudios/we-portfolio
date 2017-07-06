@@ -12,15 +12,15 @@ class GetNewsStories extends Component {
 
     if(this.props.history.location.state === undefined) {
       this.props.history.location.state = {message: 'No message.'};
-      this.flashMessage = this.props.history.location.state.message;
     }
 
+    this.flashMessage = this.props.history.location.state.message;
   }
 
   componentDidMount() {
     fetch('/api/news-stories')
       .then((res) => res.json())
-      .then((data) => {        
+      .then((data) => {
         this.setState({
           newsStoriesData: data
         })
@@ -38,10 +38,10 @@ class GetNewsStories extends Component {
     return(
       <div>
         <p>Message: {this.flashMessage}</p>
-        <Link to={`${this.props.match.url}/create`}>Add New Story</Link>
+        <Link to={`${this.props.match.url}/create`}>Add News Story</Link>
         <h3>All News Stories</h3>
           <div>
-            {this.state.newsStoriesData.map(story =>              
+            {this.state.newsStoriesData.map(story =>
               <div key={story.id}><Link to={`${this.props.match.url}/${story.id}/update`}>{story.title}</Link></div>
             )}
           </div>

@@ -54,7 +54,7 @@ const FormHandlers = {
       attached: attached,
       toAttach: toAttach,
       detach: detach
-    });
+    }, name);
   },
 
   preventAllButShiftAndTab: function(event) {

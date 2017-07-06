@@ -48,6 +48,8 @@ router.get('/:id', (req, res, next) => {
 
 // CREATE new news story
 router.post('/', isLoggedIn, (req, res, next) => {
+  const news_categories_ids = req.body.news_categories_ids;
+  const image_id = req.body.image_id;
   const allowedKeys = ['title', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
 
@@ -56,6 +58,19 @@ router.post('/', isLoggedIn, (req, res, next) => {
       .forge(formData)
       .save()
       .then((story) => {
+        story.news_categories().attach(news_categories_ids);
+        story.related('image')
+        .fetch()
+        .then((image) => {
+          if(!image) {
+            return Image
+              .forge({id: image_id})
+              .fetch()
+              .then((img) => {
+                return img.save({news_story_id: story.id}, {method: 'update', patch: true})
+              });
+          }
+        });
         story = story.toJSON();
         return res.status(200).send(`${story.title} successfully created.`);
       })
@@ -93,7 +108,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
           if(image && (image.id === image_id)) {
             return
           }
-          // If NewsStory currently has an image and it is changing to a different imag: set current image news_story_id to null.
+          // If NewsStory currently has an image and it is changing to a different image: set current image news_story_id to null.
           if(image && (image.id !== image_id)) {
             image.save({news_story_id: null}, {method: 'update', patch: true});
             return Image
@@ -127,7 +142,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 
 // DELETE news story
 router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
-  const story_name = req.body.name;
+  const story_title = req.body.title;
 
   NewsStory
     .forge({id: req.params.id})
@@ -149,7 +164,7 @@ router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
       return story.destroy();
     })
     .then(() => {
-      return res.status(200).send(`${story_name} has been deleted.`);
+      return res.status(200).send(`${story_title} has been deleted.`);
     })
     .catch((err) => {
       console.error(err);

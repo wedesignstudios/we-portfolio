@@ -2,14 +2,23 @@
   display: inline-block;
   width: 300px; }
 
-.checkboxes-container {
+.checkboxes-container,
+.images-select-container {
   border: 1px solid #DEDEDE;
   display: inline-block;
   margin: 1rem 0;
   max-height: 20rem;
+  max-width: 30rem;
   min-width: 15rem;
   overflow: scroll;
   padding: 0.65rem; }
+  .checkboxes-container img,
+  .images-select-container img {
+    margin: 0.5rem;
+    border: 5px solid transparent; }
+  .checkboxes-container img.selected,
+  .images-select-container img.selected {
+    border-color: orange; }
 
 body {
   padding: 50px;

@@ -1,0 +1,22 @@
+// Form component styles
+
+.checkboxes-container, 
+.images-select-container {
+  border: 1px solid #DEDEDE;
+  display: inline-block;
+  margin: 1rem 0;
+  max-height: 20rem;
+  max-width: 30rem;
+  min-width: 15rem;
+  overflow: scroll;
+  padding: 0.65rem;
+
+  img {
+    margin: 0.5rem;
+    border: 5px solid transparent;
+  }
+  
+  img.selected {
+    border-color: orange;
+  }
+}

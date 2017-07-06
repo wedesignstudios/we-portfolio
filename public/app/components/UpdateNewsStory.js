@@ -7,7 +7,7 @@ class UpdateNewsStory extends Component {
   render() {
     return(
       <div>
-        <FormNewsStory sendRequestType="PUT" />
+        <FormNewsStory sendRequestType="PUT" newsStoryId={this.props.match.params.id}/>
       </div>
     );
   }

@@ -21,7 +21,7 @@ const FormValidations = {
 
   areAnyRequiredFieldsBlank: function(reqFieldsArr, nextState) {
     for(let i=0; i<reqFieldsArr.length; i++) {
-      if(nextState[reqFieldsArr[i]] === '') {
+      if(nextState[reqFieldsArr[i]] === '' || nextState[reqFieldsArr[i]].length < 1) {
         return true;
       }
     }

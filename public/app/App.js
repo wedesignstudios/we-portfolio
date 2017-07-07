@@ -10,6 +10,7 @@ import {
   withRouter
 } from 'react-router-dom';
 
+const Home = require('./components/frontend/Home');
 const Dashboard = require('./components/backend/Dashboard');
 const Login = require('./components/backend/Login');
 const NotFound = require('./components/backend/NotFound');
@@ -62,9 +63,9 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <p>Logged In?: {this.state.loggedIn ? 'true' : 'false'}</p>
           <p>{this.state.loggedIn ? <a href='/logout'>Logout</a> : null}</p>
           <Switch>
+            <Route path='/' component={Home} />
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
             <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />
             <Route component={NotFound} />

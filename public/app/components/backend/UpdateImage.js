@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const FormHandlers = require('../services/form_handlers');
-const FormValidations = require('../services/form_validations');
-const DataActions = require('../data/actions');
+const FormHandlers = require('../../services/form_handlers');
+const FormValidations = require('../../services/form_validations');
+const DataActions = require('../../data/actions');
 
 class UpdateImage extends React.Component {
 

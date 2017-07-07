@@ -10,9 +10,9 @@ import {
   withRouter
 } from 'react-router-dom';
 
-const Dashboard = require('./components/Dashboard');
-const Login = require('./components/Login');
-const NotFound = require('./components/NotFound');
+const Dashboard = require('./components/backend/Dashboard');
+const Login = require('./components/backend/Login');
+const NotFound = require('./components/backend/NotFound');
 
 const PrivateRoute = ({ component: Component, path, auth, redirectPath }) => (
   <Route path={path} render={props => (

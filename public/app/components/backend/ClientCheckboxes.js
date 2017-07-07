@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const FormHandlers = require('../services/form_handlers');
+const FormHandlers = require('../../services/form_handlers');
 
 class ClientCheckboxes extends React.Component {
   constructor() {

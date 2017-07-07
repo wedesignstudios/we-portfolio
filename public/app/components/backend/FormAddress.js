@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { Creatable } from 'react-select';
 import 'react-select/dist/react-select.css';
 
-const FormHandlers = require('../services/form_handlers');
+const FormHandlers = require('../../services/form_handlers');
 
 class FormAddress extends Component {
   constructor() {

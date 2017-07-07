@@ -6,7 +6,7 @@ module.exports = {
   context: path.join(__dirname, 'public', 'app'),
   entry: {
       app: './App.js',
-      dashboard: './components/Dashboard.js'
+      dashboard: './components/backend/Dashboard.js'
   },
   output:{
       filename: 'public/build/[name].bundle.js',

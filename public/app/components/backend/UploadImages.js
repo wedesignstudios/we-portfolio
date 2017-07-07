@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 
-const FormHandlers = require('../services/form_handlers');
-const DataActions = require('../data/actions');
+const FormHandlers = require('../../services/form_handlers');
+const DataActions = require('../../data/actions');
 
 class UploadImages extends React.Component {
   constructor() {

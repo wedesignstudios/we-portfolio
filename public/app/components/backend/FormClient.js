@@ -6,12 +6,12 @@ import {
 } from 'react-router-dom';
 
 const FormAddress = require('./FormAddress');
-const DataActions = require('../data/actions');
-const FormHandlers = require('../services/form_handlers');
-const FormValidations = require('../services/form_validations');
-const FormHandlersValidations = require('../services/form_handlers_validations');
+const DataActions = require('../../data/actions');
+const FormHandlers = require('../../services/form_handlers');
+const FormValidations = require('../../services/form_validations');
+const FormHandlersValidations = require('../../services/form_handlers_validations');
 
-class FormCollaborator extends React.Component {
+class FormClient extends React.Component {
   constructor() {
     super();
 
@@ -32,13 +32,13 @@ class FormCollaborator extends React.Component {
     this.requiredFields = ['name'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
-    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/collaborators', this.state.submitError);
+    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/clients', this.state.submitError);
     this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
   componentDidMount() {
-    if(this.props.collaboratorId) {
-      fetch(`/api/collaborators/${this.props.collaboratorId}`)
+    if(this.props.clientId) {
+      fetch(`/api/clients/${this.props.clientId}`)
         .then((res) => res.json())
         .then((data) => {
           this.setState({
@@ -72,11 +72,11 @@ class FormCollaborator extends React.Component {
     return true;
   }
 
-  deleteCollaborator() {
+  deleteClient() {
     DataActions.sendRequest(
       'DELETE',
       {name: this.state.name, address_id: this.state.address_id},
-      `/api/collaborators/${this.props.collaboratorId}/delete`,
+      `/api/clients/${this.props.clientId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage
     );
@@ -95,7 +95,7 @@ class FormCollaborator extends React.Component {
           DataActions.sendRequest(
             this.props.sendRequestType,
             this.state,
-            '/api/collaborators',
+            '/api/clients',
             this.setRedirectWithMessage,
             this.setSubmitErrorMessage
           );
@@ -103,7 +103,7 @@ class FormCollaborator extends React.Component {
           DataActions.sendRequest(
             this.props.sendRequestType,
             this.state,
-            `/api/collaborators/${this.props.collaboratorId}`,
+            `/api/clients/${this.props.clientId}`,
             () => FormHandlers.successMessage(this)
           );
         }
@@ -115,18 +115,18 @@ class FormCollaborator extends React.Component {
   render() {
     return (
       <div>
-      <Link to='/dashboard/collaborators'>All Collaborators</Link><br />
-        <h3>{this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : `Update Collaborator: ${this.state.name}`}</h3>
+        <Link to='/dashboard/clients'>All Clients</Link><br />
+        <h3>{this.props.sendRequestType === 'POST' ? 'Create A New Client' : `Update Client: ${this.state.name}`}</h3>
         <div className="submit-message-success">
-          {this.state.submitSuccess ? <div id="collaborator-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Collaborator successfully added.' : 'Collaborator successfully updated.'}</p></div> : null}
+          {this.state.submitSuccess ? <div id="client-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Client successfully added.' : 'Client successfully updated.'}</p></div> : null}
         </div>
         <div className="submit-message-error" style={{color: 'red'}}><p>{this.state.submitError}</p></div>
         {this.props.sendRequestType === 'PUT' ?
-          <button onClick={(e) => this.deleteCollaborator(e)}>Delete {this.state.name}</button> :
+          <button onClick={(e) => this.deleteClient(e)}>Delete {this.state.name}</button> :
         null}
-        <form id="create-collaborator">
+        <form id="create-client">
           <div>
-            <label>Collaborator Name: </label>
+            <label>Client Name: </label>
             <input
                 type="text"
                 name="name"
@@ -148,7 +148,7 @@ class FormCollaborator extends React.Component {
           <div>
             <label>Address: </label>
             <FormAddress
-              collaboratorId={this.props.collaboratorId}
+              clientId={this.props.clientId}
               sendAddressData={this.getComponentData} />
           </div>
           <div>
@@ -158,12 +158,12 @@ class FormCollaborator extends React.Component {
           </div>
         </form>
         <div className="errors">
-          {this.state.nameErr ? <div id="collaborator-name-validation-error" style={{color: 'red'}}>Collaborator Name can not be blank. Please enter a Collaborator Name.</div> : null}
-          {(this.state.urlErr && this.state.urlErrType === 'not valid') ? <div id="collaborator-url-validation-error" style={{color: 'red'}}>Website URL is not valid. Please enter a valid Website URL.</div> : null}
+          {this.state.nameErr ? <div id="client-name-validation-error" style={{color: 'red'}}>Client Name can not be blank. Please enter a Client Name.</div> : null}
+          {(this.state.urlErr && this.state.urlErrType === 'not valid') ? <div id="client-url-validation-error" style={{color: 'red'}}>Website URL is not valid. Please enter a valid Website URL.</div> : null}
         </div>
       </div>
     );
   }
 }
 
-module.exports = withRouter(FormCollaborator);
+module.exports = withRouter(FormClient);

@@ -12,10 +12,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 const ClientCheckboxes = require('./ClientCheckboxes');
 const CollaboratorCheckboxes = require('./CollaboratorCheckboxes');
 const ProjectCategoriesCheckboxes = require('./ProjectCategoriesCheckboxes');
-const DataActions = require('../data/actions');
-const FormHandlers = require('../services/form_handlers');
-const FormValidations = require('../services/form_validations');
-const FormHandlersValidations = require('../services/form_handlers_validations');
+const DataActions = require('../../data/actions');
+const FormHandlers = require('../../services/form_handlers');
+const FormValidations = require('../../services/form_validations');
+const FormHandlersValidations = require('../../services/form_handlers_validations');
 
 class FormProject extends React.Component {
   constructor() {

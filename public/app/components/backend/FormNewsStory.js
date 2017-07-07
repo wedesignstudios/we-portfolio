@@ -9,10 +9,10 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-const DataActions = require('../data/actions');
-const FormHandlers = require('../services/form_handlers');
-const FormValidations = require('../services/form_validations');
-const FormHandlersValidations = require('../services/form_handlers_validations');
+const DataActions = require('../../data/actions');
+const FormHandlers = require('../../services/form_handlers');
+const FormValidations = require('../../services/form_validations');
+const FormHandlersValidations = require('../../services/form_handlers_validations');
 const NewsCategoriesCheckboxes = require('./NewsCategoriesCheckboxes');
 const GetImagesNewsStory = require('./GetImagesNewsStory');
 

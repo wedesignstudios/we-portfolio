@@ -65,9 +65,9 @@ class App extends Component {
         <div>
           <p>{this.state.loggedIn ? <a href='/logout'>Logout</a> : null}</p>
           <Switch>
-            <Route path='/' component={Home} />
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
             <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />
+            <Route path='/' component={Home} />
             <Route component={NotFound} />
           </Switch>
         </div>

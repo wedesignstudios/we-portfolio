@@ -50345,7 +50345,7 @@ var App = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/user_data', { credentials: 'include' }).then(function (res) {
+      fetch('/api/user-data', { credentials: 'include' }).then(function (res) {
         return res.json();
       }).then(function (data) {
         if (data.length === 1) {

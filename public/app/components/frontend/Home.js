@@ -10,6 +10,7 @@ import {
   withRouter
 } from 'react-router-dom';
 
+const NavBar = require('./NavBar');
 const HomeLayout = require('./HomeLayout');
 const About = require('./About');
 const Press = require('./Press');
@@ -22,7 +23,8 @@ class Home extends Component {
   render() {
     return (
       <Router>
-        <div>          
+        <div>
+          <NavBar />
           <Switch>
             <Route exact path={this.props.match.url} component={HomeLayout} />
             <Route exact path={`${this.props.match.url}about`} component={About} />

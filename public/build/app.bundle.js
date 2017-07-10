@@ -50548,7 +50548,7 @@ var NavBar = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'navbar-main' },
         _react2.default.createElement(
           'ul',
           null,
@@ -50569,6 +50569,11 @@ var NavBar = function (_Component) {
               { to: '/about' },
               'About'
             )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement('img', { src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg' })
           ),
           _react2.default.createElement(
             'li',

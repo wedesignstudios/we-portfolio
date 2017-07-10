@@ -1,3 +1,22 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0; }
+
+a {
+  color: #00B7FF; }
+
+input {
+  margin-bottom: 0.85rem;
+  padding: 0.25rem 0.4rem; }
+  input.err {
+    border: 2px solid red; }
+
+input:focus {
+  outline: none; }
+
+#navbar-main {
+  background-color: orange; }
+
 .image-grid-element {
   display: inline-block;
   width: 300px; }
@@ -19,21 +38,5 @@
   .checkboxes-container img.selected,
   .images-select-container img.selected {
     border-color: orange; }
-
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
-
-a {
-  color: #00B7FF; }
-
-input {
-  margin-bottom: 0.85rem;
-  padding: 0.25rem 0.4rem; }
-  input.err {
-    border: 2px solid red; }
-
-input:focus {
-  outline: none; }
 
 /*# sourceMappingURL=style.css.map */

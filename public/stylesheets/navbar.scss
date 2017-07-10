@@ -1,4 +1,15 @@
 // Navbar component styles
 #navbar-main {
   background-color: orange;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+
+  a {
+    color: white;
+
+    &.nav-active {
+      box-shadow: 0 2px 0 white;
+      display: inline-block;
+    }
+  }
 }

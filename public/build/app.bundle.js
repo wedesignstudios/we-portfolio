@@ -50309,6 +50309,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var NavBar = __webpack_require__(395);
+var Footer = __webpack_require__(412);
 var HomeLayout = __webpack_require__(394);
 var About = __webpack_require__(392);
 var Press = __webpack_require__(398);
@@ -50346,7 +50347,8 @@ var Home = function (_Component) {
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', component: Contact }),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', component: Post }),
             _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
-          )
+          ),
+          _react2.default.createElement(Footer, null)
         )
       );
     }
@@ -50554,7 +50556,7 @@ var NavBar = function (_Component) {
           { className: 'col-9' },
           _react2.default.createElement(
             'ul',
-            { className: 'nav nav-fill align-items-center justify-content-center' },
+            { className: 'nav nav-justified align-items-center justify-content-center' },
             _react2.default.createElement(
               'li',
               { className: 'nav-item' },
@@ -51011,6 +51013,81 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
+
+  function Footer() {
+    _classCallCheck(this, Footer);
+
+    var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this));
+
+    _this.today = new Date();
+    return _this;
+  }
+
+  _createClass(Footer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'footer', className: 'row justify-content-center' },
+        _react2.default.createElement(
+          'div',
+          { className: 'col' },
+          _react2.default.createElement(
+            'div',
+            { className: 'd-flex justify-content-center' },
+            '\xA92010-',
+            this.today.getFullYear(),
+            ' WE Design Studios LLC'
+          )
+        )
+      );
+    }
+  }]);
+
+  return Footer;
+}(_react.Component);
+
+module.exports = Footer;
 
 /***/ })
 /******/ ]);

@@ -44,3 +44,6 @@ notes.txt
 
 #Redis Dump
 dump.rdb
+
+#NGROK
+ngrok

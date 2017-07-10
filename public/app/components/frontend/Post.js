@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 const PostLayout = require('./PostLayout');
-const NotFound = require('../backend/NotFound');
+const NotFound = require('../dashboard/NotFound');
 
 class Post extends Component {
   constructor() {

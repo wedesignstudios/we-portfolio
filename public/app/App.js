@@ -11,9 +11,9 @@ import {
 } from 'react-router-dom';
 
 const Home = require('./components/frontend/Home');
-const Dashboard = require('./components/backend/Dashboard');
-const Login = require('./components/backend/Login');
-const NotFound = require('./components/backend/NotFound');
+const Dashboard = require('./components/dashboard/Dashboard');
+const Login = require('./components/dashboard/Login');
+const NotFound = require('./components/dashboard/NotFound');
 
 const PrivateRoute = ({ component: Component, path, auth, redirectPath }) => (
   <Route path={path} render={props => (

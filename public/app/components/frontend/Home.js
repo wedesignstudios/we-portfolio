@@ -18,7 +18,7 @@ const Press = require('./Press');
 const Work = require('./Work');
 const Contact = require('./Contact');
 const Post = require('./Post');
-const NotFound = require('../backend/NotFound');
+const NotFound = require('../dashboard/NotFound');
 
 class Home extends Component {
   render() {

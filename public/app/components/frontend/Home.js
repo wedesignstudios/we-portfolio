@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 
 const NavBar = require('./NavBar');
+const Footer = require('./Footer');
 const HomeLayout = require('./HomeLayout');
 const About = require('./About');
 const Press = require('./Press');
@@ -34,6 +35,7 @@ class Home extends Component {
             <Route exact path={`${this.props.match.url}:post_name`} component={Post} />
             <Route component={NotFound} />
           </Switch>
+          <Footer />
         </div>
       </Router>
     );

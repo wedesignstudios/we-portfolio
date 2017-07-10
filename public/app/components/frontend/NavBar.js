@@ -10,7 +10,7 @@ class NavBar extends Component {
     return (
       <div id="navbar-main" className="row justify-content-center">
         <div className="col-9">
-          <ul className="nav nav-fill align-items-center justify-content-center">
+          <ul className="nav nav-justified align-items-center justify-content-center">
             <li className="nav-item">
               <NavLink to="/work" className="nav-link" activeClassName="nav-active">Work</NavLink>
             </li>

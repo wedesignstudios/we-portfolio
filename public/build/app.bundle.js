@@ -50548,49 +50548,57 @@ var NavBar = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { id: 'navbar-main' },
+        { id: 'navbar-main', className: 'row justify-content-center' },
         _react2.default.createElement(
-          'ul',
-          null,
+          'div',
+          { className: 'col-9' },
           _react2.default.createElement(
-            'li',
-            null,
+            'ul',
+            { className: 'nav nav-fill align-items-center justify-content-center' },
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/press' },
-              'Press'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { to: '/work', className: 'nav-link', activeClassName: 'nav-active' },
+                'Work'
+              )
+            ),
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/about' },
-              'About'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement('img', { src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg' })
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { to: '/about', className: 'nav-link', activeClassName: 'nav-active' },
+                'About'
+              )
+            ),
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/work' },
-              'Work'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/' },
+                _react2.default.createElement('img', { className: 'nav-link mx-auto', src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg' })
+              )
+            ),
             _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/contact' },
-              'Contact'
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { to: '/press', className: 'nav-link', activeClassName: 'nav-active' },
+                'Press'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { to: '/contact', className: 'nav-link', activeClassName: 'nav-active' },
+                'Contact'
+              )
             )
           )
         )

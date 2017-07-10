@@ -15,7 +15,14 @@ input:focus {
   outline: none; }
 
 #navbar-main {
-  background-color: orange; }
+  background-color: orange;
+  font-size: 1.25rem;
+  text-transform: uppercase; }
+  #navbar-main a {
+    color: white; }
+    #navbar-main a.nav-active {
+      box-shadow: 0 2px 0 white;
+      display: inline-block; }
 
 .image-grid-element {
   display: inline-block;

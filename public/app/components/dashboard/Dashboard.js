@@ -32,8 +32,12 @@ class Dashboard extends Component {
     return (
       <Router>
       <div>
-        <h1>WE Portfolio Dashboard</h1>
-        <NavLink exact to={`${this.props.match.url}`} activeStyle={{fontWeight: 'bold',  color: 'red'}}>Dashboard Home</NavLink>
+        <div className="row justify-content-center">
+          <div className="col-sm-6">
+            <h1>WE Portfolio Dashboard</h1>
+            <NavLink exact to={`${this.props.match.url}`} activeStyle={{fontWeight: 'bold',  color: 'red'}}>Dashboard Home</NavLink>
+          </div>
+        </div>
         <Switch>
           <Route exact path={`${this.props.match.url}`} component={DashboardHome} />
           <Route path={`${this.props.match.url}/clients/create`} component={CreateClient} />

@@ -30908,14 +30908,22 @@ var Dashboard = function (_Component) {
           'div',
           null,
           _react2.default.createElement(
-            'h1',
-            null,
-            'WE Portfolio Dashboard'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.NavLink,
-            { exact: true, to: '' + this.props.match.url, activeStyle: { fontWeight: 'bold', color: 'red' } },
-            'Dashboard Home'
+            'div',
+            { className: 'row justify-content-center' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-6' },
+              _react2.default.createElement(
+                'h1',
+                null,
+                'WE Portfolio Dashboard'
+              ),
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { exact: true, to: '' + this.props.match.url, activeStyle: { fontWeight: 'bold', color: 'red' } },
+                'Dashboard Home'
+              )
+            )
           ),
           _react2.default.createElement(
             _reactRouterDom.Switch,

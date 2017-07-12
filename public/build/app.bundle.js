@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 401);
+/******/ 	return __webpack_require__(__webpack_require__.s = 402);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11123,7 +11123,60 @@ exports['default'] = Select;
 module.exports = exports['default'];
 
 /***/ }),
-/* 47 */,
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NotFound = function (_Component) {
+  _inherits(NotFound, _Component);
+
+  function NotFound() {
+    _classCallCheck(this, NotFound);
+
+    return _possibleConstructorReturn(this, (NotFound.__proto__ || Object.getPrototypeOf(NotFound)).apply(this, arguments));
+  }
+
+  _createClass(NotFound, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          '404 Error: Page Not Found'
+        )
+      );
+    }
+  }]);
+
+  return NotFound;
+}(_react.Component);
+
+module.exports = NotFound;
+
+/***/ }),
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13626,12 +13679,1676 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormProject = __webpack_require__(78);
+
+var UpdateProject = function (_React$Component) {
+  _inherits(UpdateProject, _React$Component);
+
+  function UpdateProject() {
+    _classCallCheck(this, UpdateProject);
+
+    return _possibleConstructorReturn(this, (UpdateProject.__proto__ || Object.getPrototypeOf(UpdateProject)).apply(this, arguments));
+  }
+
+  _createClass(UpdateProject, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormProject, { sendRequestType: 'PUT', projectId: this.props.match.params.id })
+      );
+    }
+  }]);
+
+  return UpdateProject;
+}(_react2.default.Component);
+
+module.exports = UpdateProject;
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactSelect = __webpack_require__(46);
+
+var _reactSelect2 = _interopRequireDefault(_reactSelect);
+
+__webpack_require__(252);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(14);
+
+var FormAddress = function (_Component) {
+  _inherits(FormAddress, _Component);
+
+  function FormAddress() {
+    _classCallCheck(this, FormAddress);
+
+    var _this = _possibleConstructorReturn(this, (FormAddress.__proto__ || Object.getPrototypeOf(FormAddress)).call(this));
+
+    _this.state = {
+      allCities: [],
+      allStates: [],
+      allCountries: [],
+      city: '',
+      state: '',
+      country: '',
+      address_id: ''
+    };
+    return _this;
+  }
+
+  _createClass(FormAddress, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/addresses').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        var arrCities = data.map(function (item) {
+          return { value: item.city, label: item.city };
+        });
+        _this2.setState({
+          allCities: arrCities
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+
+      fetch('/api/states').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        var arrStates = data.map(function (item) {
+          return { value: item.code, label: item.name };
+        });
+        _this2.setState({
+          allStates: arrStates
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+
+      fetch('/api/countries').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        var arrCountries = data.map(function (item) {
+          return { value: item.code, label: item.name };
+        });
+        _this2.setState({
+          allCountries: arrCountries
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+
+      if (this.props.clientId) {
+        this.getClientOrCollaboratorData('client');
+      }
+
+      if (this.props.collaboratorId) {
+        this.getClientOrCollaboratorData('collaborator');
+      }
+    }
+  }, {
+    key: 'getClientOrCollaboratorData',
+    value: function getClientOrCollaboratorData(model) {
+      var _this3 = this;
+
+      var modelId = model + 'Id';
+      var models = model + 's';
+
+      fetch('/api/' + models + '/' + this.props[modelId]).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        if (data.address.length > 0) {
+          _this3.setState({
+            city: data.address[0].city,
+            state: data.address[0].state,
+            country: data.address[0].country,
+            address_id: data.address[0].id
+          });
+        }
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'setSelectedCity',
+    value: function setSelectedCity(val) {
+      this.setState({
+        city: val ? val.value : ''
+      });
+    }
+  }, {
+    key: 'setSelectedState',
+    value: function setSelectedState(val) {
+      this.setState({
+        state: val ? val.value : ''
+      });
+    }
+  }, {
+    key: 'setSelectedCountry',
+    value: function setSelectedCountry(val) {
+      this.setState({
+        country: val ? val.value : ''
+      });
+    }
+  }, {
+    key: 'checkIsValidNewOption',
+    value: function checkIsValidNewOption(val) {
+      var regex = /[a-zA-Z\u00C0-\u00FC]/g;
+      var numSpecCharsRegex = /[\u0000-\u001f\u0021-\u0040\u005b-\u0060\u007b-\u00bf]/g;
+
+      if (numSpecCharsRegex.test(val.label) || val.label === undefined || val.label === '') {
+        return false;
+      }
+      return true;
+    }
+  }, {
+    key: 'selectOnBlurHandler',
+    value: function selectOnBlurHandler(event, sendDataFunc, inputName) {
+      var data = _defineProperty({}, inputName, this.state[inputName]);
+
+      if (inputName === 'city') {
+        var cityTitleCase = FormHandlers.titleCase(this.state.city);
+        data = { city: cityTitleCase };
+      }
+      sendDataFunc(data, inputName);
+    }
+  }, {
+    key: 'createNewOption',
+    value: function createNewOption(val) {
+      if (val.label !== undefined) {
+        var inputValue = val.label;
+        inputValue = FormHandlers.titleCase(inputValue);
+        return {
+          value: inputValue,
+          label: inputValue
+        };
+      };
+      return {
+        value: val.label,
+        label: val.label
+      };
+    }
+  }, {
+    key: 'createPromptText',
+    value: function createPromptText(val) {
+      if (val !== undefined) {
+        return 'Create new city: ' + val;
+      }
+      return 'Type to add a new city.';
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_reactSelect2.default.Creatable, {
+          name: 'city',
+          value: this.state.city,
+          options: this.state.allCities,
+          onChange: function onChange(val) {
+            return _this4.setSelectedCity(val);
+          },
+          onBlur: function onBlur(e) {
+            return _this4.selectOnBlurHandler(e, _this4.props.sendAddressData, 'city');
+          },
+          onFocus: function onFocus(e) {
+            return FormHandlers.preventSpaceKey(e);
+          },
+          isValidNewOption: function isValidNewOption(val) {
+            return _this4.checkIsValidNewOption(val);
+          },
+          newOptionCreator: function newOptionCreator(val) {
+            return _this4.createNewOption(val);
+          },
+          promptTextCreator: function promptTextCreator(val) {
+            return _this4.createPromptText(val);
+          },
+          placeholder: 'Select/Enter A City' }),
+        _react2.default.createElement(_reactSelect2.default, {
+          name: 'state',
+          value: this.state.state,
+          options: this.state.allStates,
+          onChange: function onChange(val) {
+            return _this4.setSelectedState(val);
+          },
+          onBlur: function onBlur(e) {
+            return _this4.selectOnBlurHandler(e, _this4.props.sendAddressData, 'state');
+          },
+          placeholder: 'Select A State' }),
+        _react2.default.createElement(_reactSelect2.default, {
+          name: 'country',
+          value: this.state.country,
+          options: this.state.allCountries,
+          onChange: function onChange(val) {
+            return _this4.setSelectedCountry(val);
+          },
+          onBlur: function onBlur(e) {
+            return _this4.selectOnBlurHandler(e, _this4.props.sendAddressData, 'country');
+          },
+          placeholder: 'Select A Country' })
+      );
+    }
+  }]);
+
+  return FormAddress;
+}(_react.Component);
+
+module.exports = FormAddress;
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormAddress = __webpack_require__(74);
+var DataActions = __webpack_require__(27);
+var FormHandlers = __webpack_require__(14);
+var FormValidations = __webpack_require__(21);
+var FormHandlersValidations = __webpack_require__(37);
+
+var FormClient = function (_React$Component) {
+  _inherits(FormClient, _React$Component);
+
+  function FormClient() {
+    _classCallCheck(this, FormClient);
+
+    var _this = _possibleConstructorReturn(this, (FormClient.__proto__ || Object.getPrototypeOf(FormClient)).call(this));
+
+    _this.state = {
+      name: '',
+      url: '',
+      city: '',
+      state: '',
+      country: '',
+      address_id: '',
+      nameErr: false,
+      urlErr: false,
+      submitSuccess: false,
+      submitError: ''
+    };
+
+    _this.initialState = _this.state;
+    _this.requiredFields = ['name'];
+    _this.requiredFieldsBlank = true;
+    _this.getComponentData = _this.getComponentData.bind(_this);
+    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/clients', _this.state.submitError);
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
+    return _this;
+  }
+
+  _createClass(FormClient, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (this.props.clientId) {
+        fetch('/api/clients/' + this.props.clientId).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this2.setState({
+            name: data.name,
+            url: data.url
+          });
+          if (data.address.length > 0) {
+            _this2.setState({
+              city: data.address[0].city,
+              state: data.address[0].state,
+              country: data.address[0].country,
+              address_id: data.address[0].id
+            });
+          }
+        }).catch(function (err) {
+          console.error(err);
+        });
+      }
+    }
+  }, {
+    key: 'getComponentData',
+    value: function getComponentData(data, inputName) {
+      this.setState(_defineProperty({}, inputName, data[inputName]));
+    }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+      return true;
+    }
+  }, {
+    key: 'deleteClient',
+    value: function deleteClient() {
+      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+    }
+  }, {
+    key: 'submitForm',
+    value: function submitForm(event) {
+      event.preventDefault();
+      FormValidations.trimData(this.state, this);
+      if (this.state.url) {
+        FormHandlersValidations.validateHandleURL(this.state.url, this);
+      }
+
+      this.forceUpdate(function () {
+        var _this3 = this;
+
+        if (!this.state.urlErr) {
+          if (this.props.sendRequestType === 'POST') {
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+          } else {
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients/' + this.props.clientId, function () {
+              return FormHandlers.successMessage(_this3);
+            });
+          }
+        };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/clients' },
+          'All Clients'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'h3',
+          null,
+          this.props.sendRequestType === 'POST' ? 'Create A New Client' : 'Update Client: ' + this.state.name
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-success' },
+          this.state.submitSuccess ? _react2.default.createElement(
+            'div',
+            { id: 'client-added-success', style: { color: 'green' } },
+            _react2.default.createElement(
+              'p',
+              null,
+              this.props.sendRequestType === 'POST' ? 'New Client successfully added.' : 'Client successfully updated.'
+            )
+          ) : null
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'p',
+            null,
+            this.state.submitError
+          )
+        ),
+        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return _this4.deleteClient(e);
+            } },
+          'Delete ',
+          this.state.name
+        ) : null,
+        _react2.default.createElement(
+          'form',
+          { id: 'create-client' },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Client Name: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'name',
+              className: this.state.nameErr ? 'err' : null,
+              value: this.state.name,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this4);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this4);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Website: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'url',
+              className: this.state.urlErr ? 'err' : null,
+              value: this.state.url,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this4);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this4);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Address: '
+            ),
+            _react2.default.createElement(FormAddress, {
+              clientId: this.props.clientId,
+              sendAddressData: this.getComponentData })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
+                  return _this4.submitForm(e);
+                } },
+              this.props.sendRequestType === 'POST' ? 'Submit' : 'Update ' + this.state.name
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'errors' },
+          this.state.nameErr ? _react2.default.createElement(
+            'div',
+            { id: 'client-name-validation-error', style: { color: 'red' } },
+            'Client Name can not be blank. Please enter a Client Name.'
+          ) : null,
+          this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
+            'div',
+            { id: 'client-url-validation-error', style: { color: 'red' } },
+            'Website URL is not valid. Please enter a valid Website URL.'
+          ) : null
+        )
+      );
+    }
+  }]);
+
+  return FormClient;
+}(_react2.default.Component);
+
+module.exports = (0, _reactRouterDom.withRouter)(FormClient);
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormAddress = __webpack_require__(74);
+var DataActions = __webpack_require__(27);
+var FormHandlers = __webpack_require__(14);
+var FormValidations = __webpack_require__(21);
+var FormHandlersValidations = __webpack_require__(37);
+
+var FormCollaborator = function (_React$Component) {
+  _inherits(FormCollaborator, _React$Component);
+
+  function FormCollaborator() {
+    _classCallCheck(this, FormCollaborator);
+
+    var _this = _possibleConstructorReturn(this, (FormCollaborator.__proto__ || Object.getPrototypeOf(FormCollaborator)).call(this));
+
+    _this.state = {
+      name: '',
+      url: '',
+      city: '',
+      state: '',
+      country: '',
+      address_id: '',
+      nameErr: false,
+      urlErr: false,
+      submitSuccess: false,
+      submitError: ''
+    };
+
+    _this.initialState = _this.state;
+    _this.requiredFields = ['name'];
+    _this.requiredFieldsBlank = true;
+    _this.getComponentData = _this.getComponentData.bind(_this);
+    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/collaborators', _this.state.submitError);
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
+    return _this;
+  }
+
+  _createClass(FormCollaborator, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (this.props.collaboratorId) {
+        fetch('/api/collaborators/' + this.props.collaboratorId).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this2.setState({
+            name: data.name,
+            url: data.url
+          });
+          if (data.address.length > 0) {
+            _this2.setState({
+              city: data.address[0].city,
+              state: data.address[0].state,
+              country: data.address[0].country,
+              address_id: data.address[0].id
+            });
+          }
+        }).catch(function (err) {
+          console.error(err);
+        });
+      }
+    }
+  }, {
+    key: 'getComponentData',
+    value: function getComponentData(data, inputName) {
+      this.setState(_defineProperty({}, inputName, data[inputName]));
+    }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+      return true;
+    }
+  }, {
+    key: 'deleteCollaborator',
+    value: function deleteCollaborator() {
+      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+    }
+  }, {
+    key: 'submitForm',
+    value: function submitForm(event) {
+      event.preventDefault();
+      FormValidations.trimData(this.state, this);
+      if (this.state.url) {
+        FormHandlersValidations.validateHandleURL(this.state.url, this);
+      }
+
+      this.forceUpdate(function () {
+        var _this3 = this;
+
+        if (!this.state.urlErr) {
+          if (this.props.sendRequestType === 'POST') {
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+          } else {
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators/' + this.props.collaboratorId, function () {
+              return FormHandlers.successMessage(_this3);
+            });
+          }
+        };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/collaborators' },
+          'All Collaborators'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'h3',
+          null,
+          this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : 'Update Collaborator: ' + this.state.name
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-success' },
+          this.state.submitSuccess ? _react2.default.createElement(
+            'div',
+            { id: 'collaborator-added-success', style: { color: 'green' } },
+            _react2.default.createElement(
+              'p',
+              null,
+              this.props.sendRequestType === 'POST' ? 'New Collaborator successfully added.' : 'Collaborator successfully updated.'
+            )
+          ) : null
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'p',
+            null,
+            this.state.submitError
+          )
+        ),
+        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return _this4.deleteCollaborator(e);
+            } },
+          'Delete ',
+          this.state.name
+        ) : null,
+        _react2.default.createElement(
+          'form',
+          { id: 'create-collaborator' },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Collaborator Name: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'name',
+              className: this.state.nameErr ? 'err' : null,
+              value: this.state.name,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this4);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this4);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Website: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'url',
+              className: this.state.urlErr ? 'err' : null,
+              value: this.state.url,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this4);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this4);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Address: '
+            ),
+            _react2.default.createElement(FormAddress, {
+              collaboratorId: this.props.collaboratorId,
+              sendAddressData: this.getComponentData })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
+                  return _this4.submitForm(e);
+                } },
+              this.props.sendRequestType === 'POST' ? 'Submit' : 'Update ' + this.state.name
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'errors' },
+          this.state.nameErr ? _react2.default.createElement(
+            'div',
+            { id: 'collaborator-name-validation-error', style: { color: 'red' } },
+            'Collaborator Name can not be blank. Please enter a Collaborator Name.'
+          ) : null,
+          this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
+            'div',
+            { id: 'collaborator-url-validation-error', style: { color: 'red' } },
+            'Website URL is not valid. Please enter a valid Website URL.'
+          ) : null
+        )
+      );
+    }
+  }]);
+
+  return FormCollaborator;
+}(_react2.default.Component);
+
+module.exports = (0, _reactRouterDom.withRouter)(FormCollaborator);
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _reactDatepicker = __webpack_require__(200);
+
+var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
+
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+__webpack_require__(79);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DataActions = __webpack_require__(27);
+var FormHandlers = __webpack_require__(14);
+var FormValidations = __webpack_require__(21);
+var FormHandlersValidations = __webpack_require__(37);
+var NewsCategoriesCheckboxes = __webpack_require__(248);
+var GetImagesNewsStory = __webpack_require__(247);
+
+var FormNewsStory = function (_React$Component) {
+  _inherits(FormNewsStory, _React$Component);
+
+  function FormNewsStory() {
+    _classCallCheck(this, FormNewsStory);
+
+    var _this = _possibleConstructorReturn(this, (FormNewsStory.__proto__ || Object.getPrototypeOf(FormNewsStory)).call(this));
+
+    _this.state = {
+      title: '',
+      date: '',
+      description: '',
+      initial_image_id: '',
+      image_id: '',
+      initial_image_url: '',
+      image_url: '',
+      news_categories_ids: [],
+      news_categories_ids_attached: [],
+      news_categories_ids_detach: [],
+      news_categories_ids_checked: [],
+      titleErr: false,
+      dateErr: false,
+      descriptionErr: false,
+      imageErr: false,
+      categoriesErr: false,
+      imageSelectOpen: false,
+      submitError: ''
+    };
+
+    _this.initialState = _this.state;
+
+    _this.requiredFields = ['title', 'date', 'description', 'image_id', 'news_categories_ids_checked'];
+    _this.requiredFieldsBlank = true;
+    _this.getComponentData = _this.getComponentData.bind(_this);
+    _this.getImageData = _this.getImageData.bind(_this);
+    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/news-stories', _this.state.submitError);
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
+    return _this;
+  }
+
+  _createClass(FormNewsStory, [{
+    key: 'getComponentData',
+    value: function getComponentData(data, inputName) {
+      var _setState;
+
+      this.setState((_setState = {}, _defineProperty(_setState, inputName, data.toAttach), _defineProperty(_setState, inputName + '_attached', data.attached), _defineProperty(_setState, inputName + '_detach', data.detach), _defineProperty(_setState, inputName + '_checked', data.checked), _setState));
+    }
+  }, {
+    key: 'getImageData',
+    value: function getImageData(data, closeImageSelect) {
+      this.setState({
+        image_id: data.id,
+        image_url: data.url
+      });
+      if (closeImageSelect === false) {
+        this.setState({
+          imageSelectOpen: closeImageSelect
+        });
+      };
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+      return true;
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (this.props.newsStoryId) {
+        fetch('/api/news-stories/' + this.props.newsStoryId).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this2.setState({
+            title: data.title,
+            date: data.date,
+            description: data.description,
+            image_id: data.image.id ? data.image.id : '',
+            initial_image_id: data.image.id ? data.image.id : ''
+          });
+          if (data.news_categories) {
+            _this2.setAttachedAndChecked(data.news_categories, 'news_categories');
+          };
+          if (data.image) {
+            fetch('/api/images/' + data.image.id).then(function (res) {
+              return res.json();
+            }).then(function (data) {
+              return _this2.setState({
+                image_url: data.url,
+                initial_image_url: data.url
+              });
+            });
+          };
+        });
+      }
+    }
+  }, {
+    key: 'setAttachedAndChecked',
+    value: function setAttachedAndChecked(dataModel, dataModelName) {
+      var _setState2;
+
+      var checked = [];
+      var ids = dataModel.map(function (model) {
+        checked.push(model.id);
+        return model.id;
+      });
+
+      this.setState((_setState2 = {}, _defineProperty(_setState2, dataModelName + '_ids_attached', ids), _defineProperty(_setState2, dataModelName + '_ids_checked', checked), _setState2));
+    }
+  }, {
+    key: 'deleteNewsStory',
+    value: function deleteNewsStory() {
+      DataActions.sendRequest('DELETE', { title: this.state.title }, '/api/news-stories/' + this.props.newsStoryId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+    }
+  }, {
+    key: 'openImageSelect',
+    value: function openImageSelect(event) {
+      event.preventDefault();
+      this.setState({
+        imageSelectOpen: true
+      });
+    }
+  }, {
+    key: 'submitForm',
+    value: function submitForm(event) {
+      event.preventDefault();
+      FormValidations.trimData(this.state, this);
+
+      this.forceUpdate(function () {
+        if (this.props.sendRequestType === 'POST') {
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+        } else {
+          var newUrl = this.state.image_url;
+
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories/' + this.props.newsStoryId, FormHandlers.successMessage(this));
+          FormHandlers.updateAttached(this, ['news_categories']);
+          FormHandlers.resetDetached(this, ['news_categories']);
+          FormHandlers.resetToAttachIds(this, ['news_categories']);
+          this.setState({
+            initial_image_url: newUrl,
+            imageSelectOpen: false
+          });
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/news-stories' },
+          'All News Stories'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'h3',
+          null,
+          this.props.sendRequestType === 'POST' ? 'Create A News Story' : 'Update News Story: ' + this.state.title
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          _react2.default.createElement(
+            'em',
+            null,
+            'All fields required.'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-success' },
+          this.state.submitSuccess ? _react2.default.createElement(
+            'div',
+            { id: 'news-story-added-success', style: { color: 'green' } },
+            _react2.default.createElement(
+              'p',
+              null,
+              this.props.sendRequestType === 'POST' ? 'New Story successfully added.' : 'Story successfully updated.'
+            )
+          ) : null
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'p',
+            null,
+            this.state.submitError
+          )
+        ),
+        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+          'button',
+          { onClick: function onClick(e) {
+              return _this3.deleteNewsStory(e);
+            } },
+          'Delete ',
+          this.state.title
+        ) : null,
+        _react2.default.createElement(
+          'form',
+          { id: 'create-news-story' },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Story Title: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'title',
+              className: this.state.titleErr ? 'err' : null,
+              value: this.state.title,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this3);
+              },
+              onFocus: function onFocus(e) {
+                return FormHandlers.preventSpaceKey(e);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this3);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Date Published: '
+            ),
+            _react2.default.createElement(_reactDatepicker2.default, {
+              selected: this.state.date,
+              value: this.state.date,
+              name: 'date',
+              className: this.state.dateErr ? 'err' : null,
+              showMonthDropdown: true,
+              showYearDropdown: true,
+              dropdownMode: 'select',
+              placeholderText: 'Click to select a date',
+              popoverAttachment: 'top right',
+              popoverTargetAttachment: 'top center',
+              popoverTargetOffset: '38px 250px',
+              onChange: function onChange(e) {
+                return FormHandlersValidations.handleDateOnChange(e, _this3);
+              },
+              onFocus: function onFocus(e) {
+                return FormHandlers.preventAllButShiftAndTab(e);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this3);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Description: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'textfield',
+              name: 'description',
+              className: this.state.descriptionErr ? 'err' : null,
+              value: this.state.description,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this3);
+              },
+              onFocus: function onFocus(e) {
+                return FormHandlers.preventSpaceKey(e);
+              },
+              onBlur: function onBlur(e) {
+                return FormValidations.checkField(e, _this3);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            this.state.initial_image_id ? _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement('img', {
+                src: this.state.initial_image_url, height: '150' }),
+              _react2.default.createElement('br', null),
+              _react2.default.createElement(
+                'button',
+                { onClick: function onClick(e) {
+                    return _this3.openImageSelect(e);
+                  } },
+                'Change Current Image'
+              )
+            ) : _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'label',
+                null,
+                'Select An Image: '
+              ),
+              _react2.default.createElement(GetImagesNewsStory, {
+                sendImageData: this.getImageData,
+                canCancel: false })
+            ),
+            this.state.imageSelectOpen ? _react2.default.createElement(GetImagesNewsStory, {
+              name: 'image',
+              value: this.state.image_id,
+              initialImageId: this.state.initial_image_id,
+              sendImageData: this.getImageData,
+              canCancel: true }) : null
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(NewsCategoriesCheckboxes, {
+              name: 'categories',
+              value: this.state.news_categories_ids,
+              sendNewsCategoriesData: this.getComponentData,
+              preChecked: this.state.news_categories_ids_checked,
+              attached: this.state.news_categories_ids_attached,
+              toAttach: this.state.news_categories_ids,
+              detach: this.state.news_categories_ids_detach })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
+                  return _this3.submitForm(e);
+                } },
+              'Submit'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'errors' },
+          this.state.titleErr ? _react2.default.createElement(
+            'div',
+            { id: 'news-story-title-validation-error', style: { color: 'red' } },
+            'Title can not be blank. Please enter a story title.'
+          ) : null,
+          this.state.dateErr ? _react2.default.createElement(
+            'div',
+            { id: 'news-story-date-validation-error', style: { color: 'red' } },
+            'Date can not be blank. Please enter a story published date.'
+          ) : null,
+          this.state.descriptionErr ? _react2.default.createElement(
+            'div',
+            { id: 'news-story-description-validation-error', style: { color: 'red' } },
+            'Description can not be blank. Please enter a story description.'
+          ) : null,
+          this.state.imageErr ? _react2.default.createElement(
+            'div',
+            { id: 'news-story-image-validation-error', style: { color: 'red' } },
+            'An image must be selected. Please select an image.'
+          ) : null,
+          this.state.categoriesErr ? _react2.default.createElement(
+            'div',
+            { id: 'news-story-categories-validation-error', style: { color: 'red' } },
+            'At least one category must be selected. Please select an category.'
+          ) : null
+        )
+      );
+    }
+  }]);
+
+  return FormNewsStory;
+}(_react2.default.Component);
+
+;
+
+module.exports = (0, _reactRouterDom.withRouter)(FormNewsStory);
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _reactDatepicker = __webpack_require__(200);
+
+var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
+
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+__webpack_require__(79);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ClientCheckboxes = __webpack_require__(245);
+var CollaboratorCheckboxes = __webpack_require__(246);
+var ProjectCategoriesCheckboxes = __webpack_require__(249);
+var DataActions = __webpack_require__(27);
+var FormHandlers = __webpack_require__(14);
+var FormValidations = __webpack_require__(21);
+var FormHandlersValidations = __webpack_require__(37);
+
+var FormProject = function (_React$Component) {
+  _inherits(FormProject, _React$Component);
+
+  function FormProject() {
+    _classCallCheck(this, FormProject);
+
+    var _this = _possibleConstructorReturn(this, (FormProject.__proto__ || Object.getPrototypeOf(FormProject)).call(this));
+
+    _this.state = {
+      name: '',
+      initialName: '',
+      date: '',
+      description: '',
+      project_categories_ids: [],
+      project_categories_ids_attached: [],
+      project_categories_ids_detach: [],
+      project_categories_ids_checked: [],
+      clients_ids: [],
+      clients_ids_attached: [],
+      clients_ids_detach: [],
+      clients_ids_checked: [],
+      collaborators_ids: [],
+      collaborators_ids_attached: [],
+      collaborators_ids_detach: [],
+      collaborators_ids_checked: [],
+      nameErr: false,
+      dateErr: false,
+      descriptionErr: false,
+      submitSuccess: false,
+      submitError: ''
+    };
+
+    _this.initialState = _this.state;
+
+    _this.requiredFields = ['name', 'date', 'description'];
+    _this.requiredFieldsBlank = true;
+    _this.getComponentData = _this.getComponentData.bind(_this);
+    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/projects', _this.state.submitError);
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
+    return _this;
+  }
+
+  _createClass(FormProject, [{
+    key: 'setAttachedAndChecked',
+    value: function setAttachedAndChecked(dataModel, dataModelName) {
+      var _setState;
+
+      var checked = [];
+      var ids = dataModel.map(function (model) {
+        checked.push(model.id);
+        return model.id;
+      });
+
+      this.setState((_setState = {}, _defineProperty(_setState, dataModelName + '_ids_attached', ids), _defineProperty(_setState, dataModelName + '_ids_checked', checked), _setState));
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (this.props.projectId) {
+        fetch('/api/projects/' + this.props.projectId).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this2.setState({
+            name: data.name,
+            initialName: data.name,
+            date: (0, _moment2.default)(data.date),
+            description: data.description
+          });
+          if (data.clients) {
+            _this2.setAttachedAndChecked(data.clients, 'clients');
+          };
+          if (data.collaborators) {
+            _this2.setAttachedAndChecked(data.collaborators, 'collaborators');
+          };
+          if (data.project_categories) {
+            _this2.setAttachedAndChecked(data.project_categories, 'project_categories');
+          }
+        }).catch(function (err) {
+          console.error(err);
+        });
+      }
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+      return true;
+    }
+  }, {
+    key: 'getComponentData',
+    value: function getComponentData(data, inputName) {
+      var _setState2;
+
+      this.setState((_setState2 = {}, _defineProperty(_setState2, inputName, data.toAttach), _defineProperty(_setState2, inputName + '_attached', data.attached), _defineProperty(_setState2, inputName + '_detach', data.detach), _defineProperty(_setState2, inputName + '_checked', data.checked), _setState2));
+    }
+  }, {
+    key: 'deleteProject',
+    value: function deleteProject() {
+      DataActions.sendRequest('DELETE', { name: this.state.name }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+    }
+  }, {
+    key: 'submitForm',
+    value: function submitForm(event) {
+      event.preventDefault();
+      FormValidations.trimData(this.state, this);
+      this.forceUpdate(function () {
+        if (this.props.sendRequestType === 'POST') {
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+        } else {
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects/' + this.props.projectId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'row justify-content-center' },
+        _react2.default.createElement(
+          'div',
+          { className: 'col-6' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/dashboard/projects', className: 'btn btn-outline-primary mb-3' },
+            'All Projects'
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'h1',
+            null,
+            _react2.default.createElement(
+              'span',
+              { className: 'badge badge-default' },
+              this.props.sendRequestType === 'POST' ? 'Create A New Project' : 'Update Project: ' + this.state.initialName
+            )
+          ),
+          this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+            'button',
+            {
+              className: 'btn btn-danger mb-3',
+              onClick: function onClick(e) {
+                return _this3.deleteProject(e);
+              } },
+            'Delete ',
+            this.state.initialName
+          ) : null,
+          _react2.default.createElement(
+            'div',
+            { className: 'submit-message-success' },
+            this.state.submitSuccess ? _react2.default.createElement(
+              'div',
+              { id: 'project-added-success',
+                className: 'alert alert-success' },
+              this.props.sendRequestType === 'POST' ? 'New Project successfully added.' : 'Project successfully updated.'
+            ) : null
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'submit-message-error' },
+            this.state.submitError ? '<div className="alert alert-danger">\n                ' + this.state.submitError + '\n              </div>' : null
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
+              'form',
+              { id: 'create-project' },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Project Name: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-8' },
+                  _react2.default.createElement('input', {
+                    type: 'text',
+                    name: 'name',
+                    className: this.state.nameErr ? 'err form-control' : 'form-control',
+                    value: this.state.name,
+                    onChange: function onChange(e) {
+                      return FormHandlers.handleOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventSpaceKey(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Date Completed: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-8' },
+                  _react2.default.createElement(_reactDatepicker2.default, {
+                    selected: this.state.date,
+                    value: this.state.date,
+                    name: 'date',
+                    className: this.state.dateErr ? 'err form-control' : 'form-control',
+                    showMonthDropdown: true,
+                    showYearDropdown: true,
+                    dropdownMode: 'select',
+                    placeholderText: 'Click to select a date',
+                    popoverAttachment: 'top right',
+                    popoverTargetAttachment: 'top center',
+                    popoverTargetOffset: '38px 250px',
+                    onChange: function onChange(e) {
+                      return FormHandlersValidations.handleDateOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventAllButShiftAndTab(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Description: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-8' },
+                  _react2.default.createElement('textarea', {
+                    type: 'textfield',
+                    name: 'description',
+                    className: this.state.descriptionErr ? 'err form-control' : 'form-control',
+                    value: this.state.description,
+                    onChange: function onChange(e) {
+                      return FormHandlers.handleOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventSpaceKey(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
+              ),
+              _react2.default.createElement(ClientCheckboxes, {
+                preChecked: this.state.clients_ids_checked,
+                sendClientData: this.getComponentData,
+                attached: this.state.clients_ids_attached,
+                toAttach: this.state.clients_ids,
+                detach: this.state.clients_ids_detach }),
+              _react2.default.createElement(CollaboratorCheckboxes, {
+                preChecked: this.state.collaborators_ids_checked,
+                sendCollaboratorData: this.getComponentData,
+                attached: this.state.collaborators_ids_attached,
+                toAttach: this.state.collaborators_ids,
+                detach: this.state.collaborators_ids_detach }),
+              _react2.default.createElement(ProjectCategoriesCheckboxes, {
+                preChecked: this.state.project_categories_ids_checked,
+                sendProjectCategoriesData: this.getComponentData,
+                attached: this.state.project_categories_ids_attached,
+                toAttach: this.state.project_categories_ids,
+                detach: this.state.project_categories_ids_detach }),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-10 d-flex justify-content-end' },
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      className: 'btn btn-outline-primary',
+                      disabled: this.requiredFieldsBlank,
+                      onClick: function onClick(e) {
+                        return _this3.submitForm(e);
+                      } },
+                    this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialName : 'Create New Project'
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'errors row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-10' },
+                this.state.nameErr ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'project-name-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Name can not be blank. Please enter a project name.'
+                ) : null,
+                this.state.dateErr ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'project-date-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Date can not be blank. Please enter a project completed date.'
+                ) : null,
+                this.state.descriptionErr ? _react2.default.createElement(
+                  'div',
+                  { id: 'project-description-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Description can not be blank. Please enter a project description.'
+                ) : null
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return FormProject;
+}(_react2.default.Component);
+
+module.exports = (0, _reactRouterDom.withRouter)(FormProject);
+
+/***/ }),
 /* 79 */
 /***/ (function(module, exports) {
 
@@ -27900,27 +29617,2178 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormClient = __webpack_require__(75);
+
+var CreateClient = function (_React$Component) {
+  _inherits(CreateClient, _React$Component);
+
+  function CreateClient() {
+    _classCallCheck(this, CreateClient);
+
+    return _possibleConstructorReturn(this, (CreateClient.__proto__ || Object.getPrototypeOf(CreateClient)).apply(this, arguments));
+  }
+
+  _createClass(CreateClient, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormClient, { sendRequestType: 'POST' })
+      );
+    }
+  }]);
+
+  return CreateClient;
+}(_react2.default.Component);
+
+module.exports = CreateClient;
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormCollaborator = __webpack_require__(76);
+
+var CreateCollaborator = function (_React$Component) {
+  _inherits(CreateCollaborator, _React$Component);
+
+  function CreateCollaborator() {
+    _classCallCheck(this, CreateCollaborator);
+
+    return _possibleConstructorReturn(this, (CreateCollaborator.__proto__ || Object.getPrototypeOf(CreateCollaborator)).apply(this, arguments));
+  }
+
+  _createClass(CreateCollaborator, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormCollaborator, { sendRequestType: 'POST' })
+      );
+    }
+  }]);
+
+  return CreateCollaborator;
+}(_react2.default.Component);
+
+module.exports = CreateCollaborator;
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormNewsStory = __webpack_require__(77);
+
+var CreateNewsStory = function (_React$Component) {
+  _inherits(CreateNewsStory, _React$Component);
+
+  function CreateNewsStory() {
+    _classCallCheck(this, CreateNewsStory);
+
+    return _possibleConstructorReturn(this, (CreateNewsStory.__proto__ || Object.getPrototypeOf(CreateNewsStory)).apply(this, arguments));
+  }
+
+  _createClass(CreateNewsStory, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormNewsStory, { sendRequestType: 'POST' })
+      );
+    }
+  }]);
+
+  return CreateNewsStory;
+}(_react2.default.Component);
+
+module.exports = CreateNewsStory;
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormProject = __webpack_require__(78);
+
+var CreateProject = function (_React$Component) {
+  _inherits(CreateProject, _React$Component);
+
+  function CreateProject() {
+    _classCallCheck(this, CreateProject);
+
+    return _possibleConstructorReturn(this, (CreateProject.__proto__ || Object.getPrototypeOf(CreateProject)).apply(this, arguments));
+  }
+
+  _createClass(CreateProject, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormProject, { sendRequestType: 'POST' })
+      );
+    }
+  }]);
+
+  return CreateProject;
+}(_react2.default.Component);
+
+module.exports = CreateProject;
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DashboardHome = function (_Component) {
+  _inherits(DashboardHome, _Component);
+
+  function DashboardHome() {
+    _classCallCheck(this, DashboardHome);
+
+    return _possibleConstructorReturn(this, (DashboardHome.__proto__ || Object.getPrototypeOf(DashboardHome)).apply(this, arguments));
+  }
+
+  _createClass(DashboardHome, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'ul',
+          null,
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/clients' },
+              'Clients'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/collaborators' },
+              'Collaborators'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/images' },
+              'Images'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/news-stories' },
+              'News Stories'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: this.props.match.url + '/projects' },
+              'Projects'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return DashboardHome;
+}(_react.Component);
+
+module.exports = DashboardHome;
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GetClients = function (_Component) {
+  _inherits(GetClients, _Component);
+
+  function GetClients(props) {
+    _classCallCheck(this, GetClients);
+
+    var _this = _possibleConstructorReturn(this, (GetClients.__proto__ || Object.getPrototypeOf(GetClients)).call(this, props));
+
+    _this.state = {
+      clientsData: []
+    };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: 'No message.' };
+      _this.flashMessage = _this.props.history.location.state.message;
+    }
+
+    return _this;
+  }
+
+  _createClass(GetClients, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/clients').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          clientsData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Message: ',
+          this.flashMessage
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/create' },
+          'Add New Client'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'All Clients'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.clientsData.map(function (client) {
+            return _react2.default.createElement(
+              'div',
+              { key: client.id },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: _this3.props.match.url + '/' + client.id + '/update' },
+                client.name
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return GetClients;
+}(_react.Component);
+
+module.exports = GetClients;
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GetCollaborators = function (_Component) {
+  _inherits(GetCollaborators, _Component);
+
+  function GetCollaborators(props) {
+    _classCallCheck(this, GetCollaborators);
+
+    var _this = _possibleConstructorReturn(this, (GetCollaborators.__proto__ || Object.getPrototypeOf(GetCollaborators)).call(this, props));
+
+    _this.state = {
+      collaboratorsData: []
+    };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: 'No message.' };
+    }
+
+    _this.flashMessage = _this.props.history.location.state.message;
+
+    return _this;
+  }
+
+  _createClass(GetCollaborators, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/collaborators').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          collaboratorsData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Message: ',
+          this.flashMessage
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/create' },
+          'Add New Collaborator'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'All Collaborators'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.collaboratorsData.map(function (collaborator) {
+            return _react2.default.createElement(
+              'div',
+              { key: collaborator.id },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: _this3.props.match.url + '/' + collaborator.id + '/update' },
+                collaborator.name
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return GetCollaborators;
+}(_react.Component);
+
+module.exports = GetCollaborators;
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UpdateImage = __webpack_require__(250);
+
+var GetImages = function (_React$Component) {
+  _inherits(GetImages, _React$Component);
+
+  function GetImages(props) {
+    _classCallCheck(this, GetImages);
+
+    var _this = _possibleConstructorReturn(this, (GetImages.__proto__ || Object.getPrototypeOf(GetImages)).call(this, props));
+
+    _this.state = {
+      imageData: [],
+      imageId: null,
+      isUpdateImageOpen: false
+    };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: 'No message.', messageError: [] };
+    }
+
+    _this.flashMessage = _this.props.history.location.state.message;
+    _this.flashMessageError = _this.props.history.location.state.messageError;
+
+    return _this;
+  }
+
+  _createClass(GetImages, [{
+    key: 'loadImages',
+    value: function loadImages() {
+      var _this2 = this;
+
+      fetch('/api/images').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          imageData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.loadImages();
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.loadImages();
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
+      this.flashMessageError = nextProps.history.location.state.messageError;
+    }
+  }, {
+    key: 'openUpdateImage',
+    value: function openUpdateImage(event, imageId) {
+      this.setState({
+        imageId: imageId,
+        isUpdateImageOpen: !this.state.isUpdateImageOpen
+      });
+    }
+  }, {
+    key: 'closeUpdateImage',
+    value: function closeUpdateImage(e) {
+      this.setState({
+        isUpdateImageOpen: !this.state.isUpdateImageOpen
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Message: ',
+          this.flashMessage
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'Errors:'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'ul',
+            null,
+            this.flashMessageError.map(function (err, i) {
+              return _react2.default.createElement(
+                'li',
+                { key: i },
+                err
+              );
+            })
+          )
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/upload' },
+          'Add New Image(s)'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'All Images'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'image-grid' },
+          this.state.imageData.map(function (image) {
+            return _react2.default.createElement(
+              'div',
+              { key: image.id, className: 'image-grid-element' },
+              _react2.default.createElement('img', {
+                src: image.url,
+                title: image.title,
+                alt: image.alt,
+                width: '100%',
+                onClick: function onClick(e) {
+                  return _this3.openUpdateImage(e, image.id);
+                } })
+            );
+          })
+        ),
+        this.state.isUpdateImageOpen ? _react2.default.createElement(UpdateImage, { imageId: this.state.imageId, isOpen: this.state.isUpdateImageOpen, onClose: function onClose(e) {
+            return _this3.closeUpdateImage(e);
+          } }) : null
+      );
+    }
+  }]);
+
+  return GetImages;
+}(_react2.default.Component);
+
+;
+
+module.exports = GetImages;
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GetNewsStories = function (_Component) {
+  _inherits(GetNewsStories, _Component);
+
+  function GetNewsStories(props) {
+    _classCallCheck(this, GetNewsStories);
+
+    var _this = _possibleConstructorReturn(this, (GetNewsStories.__proto__ || Object.getPrototypeOf(GetNewsStories)).call(this, props));
+
+    _this.state = {
+      newsStoriesData: []
+    };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: 'No message.' };
+    }
+
+    _this.flashMessage = _this.props.history.location.state.message;
+    return _this;
+  }
+
+  _createClass(GetNewsStories, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/news-stories').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          newsStoriesData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Message: ',
+          this.flashMessage
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/create' },
+          'Add News Story'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'All News Stories'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.newsStoriesData.map(function (story) {
+            return _react2.default.createElement(
+              'div',
+              { key: story.id },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: _this3.props.match.url + '/' + story.id + '/update' },
+                story.title
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return GetNewsStories;
+}(_react.Component);
+
+module.exports = GetNewsStories;
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UpdateProject = __webpack_require__(73);
+
+var GetProjects = function (_Component) {
+  _inherits(GetProjects, _Component);
+
+  function GetProjects(props) {
+    _classCallCheck(this, GetProjects);
+
+    var _this = _possibleConstructorReturn(this, (GetProjects.__proto__ || Object.getPrototypeOf(GetProjects)).call(this, props));
+
+    _this.state = {
+      projectsData: []
+    };
+
+    if (_this.props.history.location.state === undefined) {
+      _this.props.history.location.state = { message: '' };
+    }
+
+    _this.flashMessage = _this.props.history.location.state.message;
+
+    return _this;
+  }
+
+  _createClass(GetProjects, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/projects').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          projectsData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps) {
+      this.flashMessage = nextProps.history.location.state.message;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        this.flashMessage ? _react2.default.createElement(
+          'div',
+          { className: 'alert alert-success' },
+          this.flashMessage
+        ) : null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.match.url + '/create' },
+          'Add New Project'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'All Projects'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.state.projectsData.map(function (project) {
+            return _react2.default.createElement(
+              'div',
+              { key: project.id },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: _this3.props.match.url + '/' + project.id + '/update' },
+                project.name
+              )
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return GetProjects;
+}(_react.Component);
+
+module.exports = GetProjects;
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormClient = __webpack_require__(75);
+
+var UpdateClient = function (_Component) {
+  _inherits(UpdateClient, _Component);
+
+  function UpdateClient() {
+    _classCallCheck(this, UpdateClient);
+
+    return _possibleConstructorReturn(this, (UpdateClient.__proto__ || Object.getPrototypeOf(UpdateClient)).apply(this, arguments));
+  }
+
+  _createClass(UpdateClient, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormClient, { sendRequestType: 'PUT', clientId: this.props.match.params.id })
+      );
+    }
+  }]);
+
+  return UpdateClient;
+}(_react.Component);
+
+module.exports = UpdateClient;
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormCollaborator = __webpack_require__(76);
+
+var UpdateCollaborator = function (_Component) {
+  _inherits(UpdateCollaborator, _Component);
+
+  function UpdateCollaborator() {
+    _classCallCheck(this, UpdateCollaborator);
+
+    return _possibleConstructorReturn(this, (UpdateCollaborator.__proto__ || Object.getPrototypeOf(UpdateCollaborator)).apply(this, arguments));
+  }
+
+  _createClass(UpdateCollaborator, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormCollaborator, { sendRequestType: 'PUT', collaboratorId: this.props.match.params.id })
+      );
+    }
+  }]);
+
+  return UpdateCollaborator;
+}(_react.Component);
+
+module.exports = UpdateCollaborator;
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormNewsStory = __webpack_require__(77);
+
+var UpdateNewsStory = function (_Component) {
+  _inherits(UpdateNewsStory, _Component);
+
+  function UpdateNewsStory() {
+    _classCallCheck(this, UpdateNewsStory);
+
+    return _possibleConstructorReturn(this, (UpdateNewsStory.__proto__ || Object.getPrototypeOf(UpdateNewsStory)).apply(this, arguments));
+  }
+
+  _createClass(UpdateNewsStory, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(FormNewsStory, { sendRequestType: 'PUT', newsStoryId: this.props.match.params.id })
+      );
+    }
+  }]);
+
+  return UpdateNewsStory;
+}(_react.Component);
+
+module.exports = UpdateNewsStory;
+
+/***/ }),
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _reactDropzone = __webpack_require__(346);
+
+var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(14);
+var DataActions = __webpack_require__(27);
+
+var UploadImages = function (_React$Component) {
+  _inherits(UploadImages, _React$Component);
+
+  function UploadImages() {
+    _classCallCheck(this, UploadImages);
+
+    var _this = _possibleConstructorReturn(this, (UploadImages.__proto__ || Object.getPrototypeOf(UploadImages)).call(this));
+
+    _this.state = {
+      submitError: []
+    };
+
+    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/images', _this.state.submitError);
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
+    return _this;
+  }
+
+  _createClass(UploadImages, [{
+    key: 'onDrop',
+    value: function onDrop(files) {
+      var _this2 = this;
+
+      files.forEach(function (file) {
+        var formData = new FormData();
+
+        formData.append('image', file);
+        DataActions.uploadImages(formData, '/api/images/upload', _this2.setRedirectWithMessage, _this2.setSubmitErrorMessage);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard/images' },
+          'All Images'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Upload Image(s)'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error', style: { color: 'red' } },
+          _react2.default.createElement(
+            'ul',
+            null,
+            this.state.submitError.map(function (message, i) {
+              return _react2.default.createElement(
+                'li',
+                { key: i },
+                message
+              );
+            })
+          )
+        ),
+        _react2.default.createElement(
+          _reactDropzone2.default,
+          {
+            name: 'images',
+            accept: 'image/*',
+            onDrop: function onDrop(e) {
+              return _this3.onDrop(e);
+            }
+          },
+          _react2.default.createElement(
+            'div',
+            null,
+            'Drag image(s) here. Or click to select image(s) to upload.'
+          )
+        )
+      );
+    }
+  }]);
+
+  return UploadImages;
+}(_react2.default.Component);
+
+;
+
+module.exports = (0, _reactRouterDom.withRouter)(UploadImages);
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DashboardHome = __webpack_require__(234);
+var CreateProject = __webpack_require__(233);
+var GetProjects = __webpack_require__(239);
+var UpdateProject = __webpack_require__(73);
+var CreateClient = __webpack_require__(230);
+var GetClients = __webpack_require__(235);
+var UpdateClient = __webpack_require__(240);
+var CreateCollaborator = __webpack_require__(231);
+var GetCollaborators = __webpack_require__(236);
+var UpdateCollaborator = __webpack_require__(241);
+var UploadImages = __webpack_require__(243);
+var GetImages = __webpack_require__(237);
+var CreateNewsStory = __webpack_require__(232);
+var GetNewsStories = __webpack_require__(238);
+var UpdateNewsStory = __webpack_require__(242);
+var NotFound = __webpack_require__(47);
+
+var Dashboard = function (_Component) {
+  _inherits(Dashboard, _Component);
+
+  function Dashboard() {
+    _classCallCheck(this, Dashboard);
+
+    return _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).apply(this, arguments));
+  }
+
+  _createClass(Dashboard, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _reactRouterDom.BrowserRouter,
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'h1',
+            null,
+            'WE Portfolio Dashboard'
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.NavLink,
+            { exact: true, to: '' + this.props.match.url, activeStyle: { fontWeight: 'bold', color: 'red' } },
+            'Dashboard Home'
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Switch,
+            null,
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '' + this.props.match.url, component: DashboardHome }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/create', component: CreateClient }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/:id/update', component: UpdateClient }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients', component: GetClients }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/create', component: CreateCollaborator }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/:id/update', component: UpdateCollaborator }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images/upload', component: UploadImages }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images', component: GetImages }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/create', component: CreateNewsStory }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/:id/update', component: UpdateNewsStory }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories', component: GetNewsStories }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/create', component: CreateProject }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/:id/update', component: UpdateProject }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects', component: GetProjects }),
+            _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+          )
+        )
+      );
+    }
+  }]);
+
+  return Dashboard;
+}(_react.Component);
+
+module.exports = Dashboard;
+
+/***/ }),
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(14);
+
+var ClientCheckboxes = function (_React$Component) {
+  _inherits(ClientCheckboxes, _React$Component);
+
+  function ClientCheckboxes() {
+    _classCallCheck(this, ClientCheckboxes);
+
+    var _this = _possibleConstructorReturn(this, (ClientCheckboxes.__proto__ || Object.getPrototypeOf(ClientCheckboxes)).call(this));
+
+    _this.state = {
+      clients_data: []
+    };
+    return _this;
+  }
+
+  _createClass(ClientCheckboxes, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/clients').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          clients_data: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props = this.props,
+          preChecked = _props.preChecked,
+          sendClientData = _props.sendClientData,
+          attached = _props.attached,
+          detach = _props.detach;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'form-group row' },
+        _react2.default.createElement(
+          'label',
+          { className: 'col-sm-2' },
+          'Project Client(s): '
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'col-sm-8' },
+          _react2.default.createElement(
+            'div',
+            { className: 'checkboxes-container form-control' },
+            this.state.clients_data.map(function (client) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'form-check', key: client.id },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-check-label' },
+                  _react2.default.createElement('input', {
+                    className: 'form-check-input mr-2',
+                    type: 'checkbox',
+                    value: client.id,
+                    name: 'clients_ids',
+                    checked: _this3.props.preChecked.includes(client.id),
+                    onChange: function onChange(e) {
+                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendClientData);
+                    } }),
+                  client.name
+                )
+              );
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return ClientCheckboxes;
+}(_react2.default.Component);
+
+module.exports = ClientCheckboxes;
+
+/***/ }),
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(14);
+
+var CollaboratorCheckboxes = function (_React$Component) {
+  _inherits(CollaboratorCheckboxes, _React$Component);
+
+  function CollaboratorCheckboxes() {
+    _classCallCheck(this, CollaboratorCheckboxes);
+
+    var _this = _possibleConstructorReturn(this, (CollaboratorCheckboxes.__proto__ || Object.getPrototypeOf(CollaboratorCheckboxes)).call(this));
+
+    _this.state = {
+      collaborators_data: []
+    };
+    return _this;
+  }
+
+  _createClass(CollaboratorCheckboxes, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/collaborators').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          collaborators_data: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props = this.props,
+          preChecked = _props.preChecked,
+          sendCollaboratorData = _props.sendCollaboratorData,
+          attached = _props.attached,
+          detach = _props.detach;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'form-group row' },
+        _react2.default.createElement(
+          'label',
+          { className: 'col-sm-2' },
+          'Project Collaborator(s): '
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'col-sm-8' },
+          _react2.default.createElement(
+            'div',
+            { className: 'checkboxes-container form-control' },
+            this.state.collaborators_data.map(function (collaborator) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'form-check', key: collaborator.id },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-check-label' },
+                  _react2.default.createElement('input', {
+                    className: 'form-check-input mr-2',
+                    type: 'checkbox',
+                    value: collaborator.id,
+                    name: 'collaborators_ids',
+                    checked: _this3.props.preChecked.includes(collaborator.id),
+                    onChange: function onChange(e) {
+                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendCollaboratorData);
+                    } }),
+                  collaborator.name
+                )
+              );
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return CollaboratorCheckboxes;
+}(_react2.default.Component);
+
+module.exports = CollaboratorCheckboxes;
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GetImagesNewsStory = function (_React$Component) {
+  _inherits(GetImagesNewsStory, _React$Component);
+
+  function GetImagesNewsStory() {
+    _classCallCheck(this, GetImagesNewsStory);
+
+    var _this = _possibleConstructorReturn(this, (GetImagesNewsStory.__proto__ || Object.getPrototypeOf(GetImagesNewsStory)).call(this));
+
+    _this.state = {
+      imageData: [],
+      imageId: null
+    };
+    return _this;
+  }
+
+  _createClass(GetImagesNewsStory, [{
+    key: 'loadImages',
+    value: function loadImages() {
+      var _this2 = this;
+
+      fetch('/api/images').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        data = data.filter(function (obj) {
+          return obj.news_story_id === null;
+        });
+
+        _this2.setState({
+          imageData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'selectImage',
+    value: function selectImage(event, sendImageDataFunc) {
+      var target = event.target;
+      var selectedImageId = target.id;
+      var selectedImageUrl = target.src;
+
+      this.setState({
+        imageId: target.id
+      });
+
+      sendImageDataFunc({ id: selectedImageId, url: selectedImageUrl });
+    }
+  }, {
+    key: 'imageSelectCancel',
+    value: function imageSelectCancel(event, sendImageIdFunc) {
+      event.preventDefault();
+      this.setState({
+        imageId: ''
+      });
+      sendImageIdFunc({ id: this.props.initialImageId, url: '' }, false);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.loadImages();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'get-images-news-story' },
+        _react2.default.createElement(
+          'div',
+          { className: 'images-select-container' },
+          this.state.imageData.map(function (image) {
+
+            return _react2.default.createElement('img', {
+              key: image.id,
+              id: image.id,
+              className: _this3.state.imageId == image.id ? 'selected' : '',
+              src: image.url,
+              height: '100',
+              onClick: function onClick(e) {
+                return _this3.selectImage(e, _this3.props.sendImageData);
+              } });
+          })
+        ),
+        this.props.canCancel ? _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick(e) {
+                return _this3.imageSelectCancel(e, _this3.props.sendImageData);
+              } },
+            'Cancel'
+          )
+        ) : null
+      );
+    }
+  }]);
+
+  return GetImagesNewsStory;
+}(_react2.default.Component);
+
+module.exports = GetImagesNewsStory;
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(14);
+
+var NewsCategoriesCheckboxes = function (_React$Component) {
+  _inherits(NewsCategoriesCheckboxes, _React$Component);
+
+  function NewsCategoriesCheckboxes() {
+    _classCallCheck(this, NewsCategoriesCheckboxes);
+
+    var _this = _possibleConstructorReturn(this, (NewsCategoriesCheckboxes.__proto__ || Object.getPrototypeOf(NewsCategoriesCheckboxes)).call(this));
+
+    _this.state = {
+      news_categories_data: []
+    };
+    return _this;
+  }
+
+  _createClass(NewsCategoriesCheckboxes, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/news-categories').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          news_categories_data: data
+        });
+      }).catch(function (err) {
+        console.log(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props = this.props,
+          preChecked = _props.preChecked,
+          sendNewsCategoriesData = _props.sendNewsCategoriesData,
+          attached = _props.attached,
+          detach = _props.detach;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'form-group row' },
+        _react2.default.createElement(
+          'label',
+          { className: 'col-sm-2' },
+          'News Category/Categories'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'div',
+          { className: 'col-sm-8' },
+          _react2.default.createElement(
+            'div',
+            { className: 'checkboxes-container form-control' },
+            this.state.news_categories_data.map(function (category) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'form-check', key: category.id },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-check-label' },
+                  _react2.default.createElement('input', {
+                    className: 'form-check-input mr-2',
+                    type: 'checkbox',
+                    value: category.id,
+                    name: 'news_categories_ids',
+                    checked: _this3.props.preChecked.includes(category.id),
+                    onChange: function onChange(e) {
+                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendNewsCategoriesData);
+                    } }),
+                  category.name
+                )
+              );
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return NewsCategoriesCheckboxes;
+}(_react2.default.Component);
+
+module.exports = NewsCategoriesCheckboxes;
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(14);
+
+var ProjectCategoriesCheckboxes = function (_React$Component) {
+  _inherits(ProjectCategoriesCheckboxes, _React$Component);
+
+  function ProjectCategoriesCheckboxes() {
+    _classCallCheck(this, ProjectCategoriesCheckboxes);
+
+    var _this = _possibleConstructorReturn(this, (ProjectCategoriesCheckboxes.__proto__ || Object.getPrototypeOf(ProjectCategoriesCheckboxes)).call(this));
+
+    _this.state = {
+      project_categories_data: []
+    };
+    return _this;
+  }
+
+  _createClass(ProjectCategoriesCheckboxes, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/project-categories').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          project_categories_data: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props = this.props,
+          preChecked = _props.preChecked,
+          sendProjectCategoriesData = _props.sendProjectCategoriesData,
+          attached = _props.attached,
+          detach = _props.detach;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'form-group row' },
+        _react2.default.createElement(
+          'label',
+          { className: 'col-sm-2' },
+          'Project Category/Categories: '
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'col-sm-8' },
+          _react2.default.createElement(
+            'div',
+            { className: 'checkboxes-container form-control' },
+            this.state.project_categories_data.map(function (category) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'form-check', key: category.id },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-check-label' },
+                  _react2.default.createElement('input', {
+                    className: 'form-check-input mr-2',
+                    type: 'checkbox',
+                    value: category.id,
+                    name: 'project_categories_ids',
+                    checked: _this3.props.preChecked.includes(category.id),
+                    onChange: function onChange(e) {
+                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendProjectCategoriesData);
+                    } }),
+                  category.name
+                )
+              );
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return ProjectCategoriesCheckboxes;
+}(_react2.default.Component);
+
+module.exports = ProjectCategoriesCheckboxes;
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(14);
+var FormValidations = __webpack_require__(21);
+var DataActions = __webpack_require__(27);
+
+var UpdateImage = function (_React$Component) {
+  _inherits(UpdateImage, _React$Component);
+
+  function UpdateImage() {
+    _classCallCheck(this, UpdateImage);
+
+    var _this = _possibleConstructorReturn(this, (UpdateImage.__proto__ || Object.getPrototypeOf(UpdateImage)).call(this));
+
+    _this.state = {
+      title: '',
+      alt: '',
+      url: '',
+      projects: [],
+      projectName: '',
+      project_id: '',
+      project_id_detach: '',
+      index_page: false,
+      success: false
+    };
+    return _this;
+  }
+
+  _createClass(UpdateImage, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/images/' + this.props.imageId).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          title: data.title ? data.title : '',
+          alt: data.alt ? data.alt : '',
+          url: data.url,
+          project_id: data.project_id ? data.project_id : '',
+          index_page: data.index_page ? data.index_page : false
+        });
+        if (data.project) {
+          _this2.setState({
+            projectName: data.project.name
+          });
+        }
+      }).catch(function (err) {
+        console.error(err);
+      });
+      fetch('/api/projects').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          projects: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'submitForm',
+    value: function submitForm(event) {
+      event.preventDefault();
+      FormValidations.trimData(this.state, this);
+      this.forceUpdate(function () {
+        DataActions.sendRequest('PUT', this.state, '/api/images/' + this.props.imageId, FormHandlers.successMessage(this));
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props = this.props,
+          imageId = _props.imageId,
+          isOpen = _props.isOpen,
+          onClose = _props.onClose;
+
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Open?: ',
+          isOpen ? 'true' : 'false'
+        ),
+        _react2.default.createElement(
+          'h3',
+          null,
+          'Update An Image'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'success' },
+          this.state.success ? _react2.default.createElement(
+            'div',
+            { id: 'image-updated-success', style: { color: 'green' } },
+            _react2.default.createElement(
+              'p',
+              null,
+              'Image successfully updated.'
+            )
+          ) : null
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: onClose },
+          'Close'
+        ),
+        _react2.default.createElement(
+          'form',
+          { id: 'update-image' },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Image URL: ',
+              this.state.url
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Image Title: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'title',
+              value: this.state.title,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this3);
+              },
+              onFocus: function onFocus(e) {
+                return FormHandlers.preventSpaceKey(e);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Alt Tag: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'text',
+              name: 'alt',
+              value: this.state.alt,
+              onChange: function onChange(e) {
+                return FormHandlers.handleOnChange(e, _this3);
+              },
+              onFocus: function onFocus(e) {
+                return FormHandlers.preventSpaceKey(e);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Image attached to: '
+            ),
+            _react2.default.createElement(
+              'select',
+              { name: 'project_id', value: this.state.project_id, onChange: function onChange(e) {
+                  return FormHandlers.handleOnChange(e, _this3);
+                } },
+              _react2.default.createElement(
+                'option',
+                { value: '' },
+                'No Project'
+              ),
+              this.state.projects.map(function (project) {
+                return _react2.default.createElement(
+                  'option',
+                  { key: project.id, value: project.id },
+                  project.name
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'label',
+              null,
+              'Use this image on index page?: '
+            ),
+            _react2.default.createElement('input', {
+              type: 'checkbox',
+              name: 'index_page',
+              checked: this.state.index_page,
+              onChange: function onChange(e) {
+                return FormHandlers.checkboxChange(e, _this3);
+              } })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              {
+                type: 'submit',
+                onClick: function onClick(e) {
+                  return _this3.submitForm(e);
+                } },
+              'Update'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: onClose },
+          'Cancel'
+        )
+      );
+    }
+  }]);
+
+  return UpdateImage;
+}(_react2.default.Component);
+
+module.exports = UpdateImage;
+
+/***/ }),
 /* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -46391,7 +50259,78 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 390 */,
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Login = function (_Component) {
+  _inherits(Login, _Component);
+
+  function Login() {
+    _classCallCheck(this, Login);
+
+    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
+  }
+
+  _createClass(Login, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Login'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          _react2.default.createElement(
+            'a',
+            { href: '/login/facebook' },
+            'Facebook Login'
+          )
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          _react2.default.createElement(
+            'a',
+            { href: '/login/google' },
+            'Google Login'
+          )
+        )
+      );
+    }
+  }]);
+
+  return Login;
+}(_react.Component);
+
+module.exports = Login;
+
+/***/ }),
 /* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -46418,15 +50357,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NavBar = __webpack_require__(395);
-var Footer = __webpack_require__(412);
-var HomeLayout = __webpack_require__(394);
+var NavBar = __webpack_require__(396);
+var Footer = __webpack_require__(394);
+var HomeLayout = __webpack_require__(395);
 var About = __webpack_require__(392);
-var Press = __webpack_require__(398);
-var Work = __webpack_require__(399);
+var Press = __webpack_require__(399);
+var Work = __webpack_require__(400);
 var Contact = __webpack_require__(393);
-var Post = __webpack_require__(396);
-var NotFound = __webpack_require__(413);
+var Post = __webpack_require__(397);
+var NotFound = __webpack_require__(47);
 
 var Home = function (_Component) {
   _inherits(Home, _Component);
@@ -46586,6 +50525,71 @@ var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
+
+  function Footer() {
+    _classCallCheck(this, Footer);
+
+    var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this));
+
+    _this.today = new Date();
+    return _this;
+  }
+
+  _createClass(Footer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'footer', className: 'row justify-content-center' },
+        _react2.default.createElement(
+          'div',
+          { className: 'col' },
+          _react2.default.createElement(
+            'div',
+            { className: 'd-flex justify-content-center' },
+            '\xA92010-',
+            this.today.getFullYear(),
+            ' WE Design Studios LLC'
+          )
+        )
+      );
+    }
+  }]);
+
+  return Footer;
+}(_react.Component);
+
+module.exports = Footer;
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46620,7 +50624,7 @@ var HomeLayout = function (_Component) {
 module.exports = HomeLayout;
 
 /***/ }),
-/* 395 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46724,7 +50728,7 @@ var NavBar = function (_Component) {
 module.exports = NavBar;
 
 /***/ }),
-/* 396 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46748,8 +50752,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var PostLayout = __webpack_require__(397);
-var NotFound = __webpack_require__(413);
+var PostLayout = __webpack_require__(398);
+var NotFound = __webpack_require__(47);
 
 var Post = function (_Component) {
   _inherits(Post, _Component);
@@ -46803,7 +50807,7 @@ var Post = function (_Component) {
 module.exports = Post;
 
 /***/ }),
-/* 397 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46827,7 +50831,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DateFormatter = __webpack_require__(400);
+var DateFormatter = __webpack_require__(401);
 
 var PostLayout = function (_Component) {
   _inherits(PostLayout, _Component);
@@ -46876,7 +50880,7 @@ var PostLayout = function (_Component) {
 module.exports = PostLayout;
 
 /***/ }),
-/* 398 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46926,7 +50930,7 @@ var Press = function (_Component) {
 module.exports = Press;
 
 /***/ }),
-/* 399 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46976,7 +50980,7 @@ var Work = function (_Component) {
 module.exports = Work;
 
 /***/ }),
-/* 400 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47001,7 +51005,7 @@ var DateFormatter = {
 module.exports = DateFormatter;
 
 /***/ }),
-/* 401 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47029,9 +51033,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var Home = __webpack_require__(391);
-var Dashboard = __webpack_require__(420);
-var Login = __webpack_require__(421);
-var NotFound = __webpack_require__(413);
+var Dashboard = __webpack_require__(244);
+var Login = __webpack_require__(390);
+var NotFound = __webpack_require__(47);
 
 var PrivateRoute = function PrivateRoute(_ref) {
   var Component = _ref.component,
@@ -47123,4000 +51127,6 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
-
-/***/ }),
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Footer = function (_Component) {
-  _inherits(Footer, _Component);
-
-  function Footer() {
-    _classCallCheck(this, Footer);
-
-    var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this));
-
-    _this.today = new Date();
-    return _this;
-  }
-
-  _createClass(Footer, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        { id: 'footer', className: 'row justify-content-center' },
-        _react2.default.createElement(
-          'div',
-          { className: 'col' },
-          _react2.default.createElement(
-            'div',
-            { className: 'd-flex justify-content-center' },
-            '\xA92010-',
-            this.today.getFullYear(),
-            ' WE Design Studios LLC'
-          )
-        )
-      );
-    }
-  }]);
-
-  return Footer;
-}(_react.Component);
-
-module.exports = Footer;
-
-/***/ }),
-/* 413 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var NotFound = function (_Component) {
-  _inherits(NotFound, _Component);
-
-  function NotFound() {
-    _classCallCheck(this, NotFound);
-
-    return _possibleConstructorReturn(this, (NotFound.__proto__ || Object.getPrototypeOf(NotFound)).apply(this, arguments));
-  }
-
-  _createClass(NotFound, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          null,
-          '404 Error: Page Not Found'
-        )
-      );
-    }
-  }]);
-
-  return NotFound;
-}(_react.Component);
-
-module.exports = NotFound;
-
-/***/ }),
-/* 414 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactSelect = __webpack_require__(46);
-
-var _reactSelect2 = _interopRequireDefault(_reactSelect);
-
-__webpack_require__(252);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(14);
-
-var FormAddress = function (_Component) {
-  _inherits(FormAddress, _Component);
-
-  function FormAddress() {
-    _classCallCheck(this, FormAddress);
-
-    var _this = _possibleConstructorReturn(this, (FormAddress.__proto__ || Object.getPrototypeOf(FormAddress)).call(this));
-
-    _this.state = {
-      allCities: [],
-      allStates: [],
-      allCountries: [],
-      city: '',
-      state: '',
-      country: '',
-      address_id: ''
-    };
-    return _this;
-  }
-
-  _createClass(FormAddress, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/addresses').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        var arrCities = data.map(function (item) {
-          return { value: item.city, label: item.city };
-        });
-        _this2.setState({
-          allCities: arrCities
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-
-      fetch('/api/states').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        var arrStates = data.map(function (item) {
-          return { value: item.code, label: item.name };
-        });
-        _this2.setState({
-          allStates: arrStates
-        });
-      }).catch(function (err) {
-        console.log(err);
-      });
-
-      fetch('/api/countries').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        var arrCountries = data.map(function (item) {
-          return { value: item.code, label: item.name };
-        });
-        _this2.setState({
-          allCountries: arrCountries
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-
-      if (this.props.clientId) {
-        this.getClientOrCollaboratorData('client');
-      }
-
-      if (this.props.collaboratorId) {
-        this.getClientOrCollaboratorData('collaborator');
-      }
-    }
-  }, {
-    key: 'getClientOrCollaboratorData',
-    value: function getClientOrCollaboratorData(model) {
-      var _this3 = this;
-
-      var modelId = model + 'Id';
-      var models = model + 's';
-
-      fetch('/api/' + models + '/' + this.props[modelId]).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        if (data.address.length > 0) {
-          _this3.setState({
-            city: data.address[0].city,
-            state: data.address[0].state,
-            country: data.address[0].country,
-            address_id: data.address[0].id
-          });
-        }
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'setSelectedCity',
-    value: function setSelectedCity(val) {
-      this.setState({
-        city: val ? val.value : ''
-      });
-    }
-  }, {
-    key: 'setSelectedState',
-    value: function setSelectedState(val) {
-      this.setState({
-        state: val ? val.value : ''
-      });
-    }
-  }, {
-    key: 'setSelectedCountry',
-    value: function setSelectedCountry(val) {
-      this.setState({
-        country: val ? val.value : ''
-      });
-    }
-  }, {
-    key: 'checkIsValidNewOption',
-    value: function checkIsValidNewOption(val) {
-      var regex = /[a-zA-Z\u00C0-\u00FC]/g;
-      var numSpecCharsRegex = /[\u0000-\u001f\u0021-\u0040\u005b-\u0060\u007b-\u00bf]/g;
-
-      if (numSpecCharsRegex.test(val.label) || val.label === undefined || val.label === '') {
-        return false;
-      }
-      return true;
-    }
-  }, {
-    key: 'selectOnBlurHandler',
-    value: function selectOnBlurHandler(event, sendDataFunc, inputName) {
-      var data = _defineProperty({}, inputName, this.state[inputName]);
-
-      if (inputName === 'city') {
-        var cityTitleCase = FormHandlers.titleCase(this.state.city);
-        data = { city: cityTitleCase };
-      }
-      sendDataFunc(data, inputName);
-    }
-  }, {
-    key: 'createNewOption',
-    value: function createNewOption(val) {
-      if (val.label !== undefined) {
-        var inputValue = val.label;
-        inputValue = FormHandlers.titleCase(inputValue);
-        return {
-          value: inputValue,
-          label: inputValue
-        };
-      };
-      return {
-        value: val.label,
-        label: val.label
-      };
-    }
-  }, {
-    key: 'createPromptText',
-    value: function createPromptText(val) {
-      if (val !== undefined) {
-        return 'Create new city: ' + val;
-      }
-      return 'Type to add a new city.';
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_reactSelect2.default.Creatable, {
-          name: 'city',
-          value: this.state.city,
-          options: this.state.allCities,
-          onChange: function onChange(val) {
-            return _this4.setSelectedCity(val);
-          },
-          onBlur: function onBlur(e) {
-            return _this4.selectOnBlurHandler(e, _this4.props.sendAddressData, 'city');
-          },
-          onFocus: function onFocus(e) {
-            return FormHandlers.preventSpaceKey(e);
-          },
-          isValidNewOption: function isValidNewOption(val) {
-            return _this4.checkIsValidNewOption(val);
-          },
-          newOptionCreator: function newOptionCreator(val) {
-            return _this4.createNewOption(val);
-          },
-          promptTextCreator: function promptTextCreator(val) {
-            return _this4.createPromptText(val);
-          },
-          placeholder: 'Select/Enter A City' }),
-        _react2.default.createElement(_reactSelect2.default, {
-          name: 'state',
-          value: this.state.state,
-          options: this.state.allStates,
-          onChange: function onChange(val) {
-            return _this4.setSelectedState(val);
-          },
-          onBlur: function onBlur(e) {
-            return _this4.selectOnBlurHandler(e, _this4.props.sendAddressData, 'state');
-          },
-          placeholder: 'Select A State' }),
-        _react2.default.createElement(_reactSelect2.default, {
-          name: 'country',
-          value: this.state.country,
-          options: this.state.allCountries,
-          onChange: function onChange(val) {
-            return _this4.setSelectedCountry(val);
-          },
-          onBlur: function onBlur(e) {
-            return _this4.selectOnBlurHandler(e, _this4.props.sendAddressData, 'country');
-          },
-          placeholder: 'Select A Country' })
-      );
-    }
-  }]);
-
-  return FormAddress;
-}(_react.Component);
-
-module.exports = FormAddress;
-
-/***/ }),
-/* 415 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormAddress = __webpack_require__(414);
-var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(14);
-var FormValidations = __webpack_require__(21);
-var FormHandlersValidations = __webpack_require__(37);
-
-var FormClient = function (_React$Component) {
-  _inherits(FormClient, _React$Component);
-
-  function FormClient() {
-    _classCallCheck(this, FormClient);
-
-    var _this = _possibleConstructorReturn(this, (FormClient.__proto__ || Object.getPrototypeOf(FormClient)).call(this));
-
-    _this.state = {
-      name: '',
-      url: '',
-      city: '',
-      state: '',
-      country: '',
-      address_id: '',
-      nameErr: false,
-      urlErr: false,
-      submitSuccess: false,
-      submitError: ''
-    };
-
-    _this.initialState = _this.state;
-    _this.requiredFields = ['name'];
-    _this.requiredFieldsBlank = true;
-    _this.getComponentData = _this.getComponentData.bind(_this);
-    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/clients', _this.state.submitError);
-    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
-    return _this;
-  }
-
-  _createClass(FormClient, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      if (this.props.clientId) {
-        fetch('/api/clients/' + this.props.clientId).then(function (res) {
-          return res.json();
-        }).then(function (data) {
-          _this2.setState({
-            name: data.name,
-            url: data.url
-          });
-          if (data.address.length > 0) {
-            _this2.setState({
-              city: data.address[0].city,
-              state: data.address[0].state,
-              country: data.address[0].country,
-              address_id: data.address[0].id
-            });
-          }
-        }).catch(function (err) {
-          console.error(err);
-        });
-      }
-    }
-  }, {
-    key: 'getComponentData',
-    value: function getComponentData(data, inputName) {
-      this.setState(_defineProperty({}, inputName, data[inputName]));
-    }
-  }, {
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
-
-      return true;
-    }
-  }, {
-    key: 'deleteClient',
-    value: function deleteClient() {
-      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
-    }
-  }, {
-    key: 'submitForm',
-    value: function submitForm(event) {
-      event.preventDefault();
-      FormValidations.trimData(this.state, this);
-      if (this.state.url) {
-        FormHandlersValidations.validateHandleURL(this.state.url, this);
-      }
-
-      this.forceUpdate(function () {
-        var _this3 = this;
-
-        if (!this.state.urlErr) {
-          if (this.props.sendRequestType === 'POST') {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients', this.setRedirectWithMessage, this.setSubmitErrorMessage);
-          } else {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients/' + this.props.clientId, function () {
-              return FormHandlers.successMessage(_this3);
-            });
-          }
-        };
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/clients' },
-          'All Clients'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          this.props.sendRequestType === 'POST' ? 'Create A New Client' : 'Update Client: ' + this.state.name
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-success' },
-          this.state.submitSuccess ? _react2.default.createElement(
-            'div',
-            { id: 'client-added-success', style: { color: 'green' } },
-            _react2.default.createElement(
-              'p',
-              null,
-              this.props.sendRequestType === 'POST' ? 'New Client successfully added.' : 'Client successfully updated.'
-            )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'p',
-            null,
-            this.state.submitError
-          )
-        ),
-        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return _this4.deleteClient(e);
-            } },
-          'Delete ',
-          this.state.name
-        ) : null,
-        _react2.default.createElement(
-          'form',
-          { id: 'create-client' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Client Name: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'name',
-              className: this.state.nameErr ? 'err' : null,
-              value: this.state.name,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this4);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this4);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Website: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'url',
-              className: this.state.urlErr ? 'err' : null,
-              value: this.state.url,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this4);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this4);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Address: '
-            ),
-            _react2.default.createElement(FormAddress, {
-              clientId: this.props.clientId,
-              sendAddressData: this.getComponentData })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this4.submitForm(e);
-                } },
-              this.props.sendRequestType === 'POST' ? 'Submit' : 'Update ' + this.state.name
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'errors' },
-          this.state.nameErr ? _react2.default.createElement(
-            'div',
-            { id: 'client-name-validation-error', style: { color: 'red' } },
-            'Client Name can not be blank. Please enter a Client Name.'
-          ) : null,
-          this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
-            'div',
-            { id: 'client-url-validation-error', style: { color: 'red' } },
-            'Website URL is not valid. Please enter a valid Website URL.'
-          ) : null
-        )
-      );
-    }
-  }]);
-
-  return FormClient;
-}(_react2.default.Component);
-
-module.exports = (0, _reactRouterDom.withRouter)(FormClient);
-
-/***/ }),
-/* 416 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormAddress = __webpack_require__(414);
-var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(14);
-var FormValidations = __webpack_require__(21);
-var FormHandlersValidations = __webpack_require__(37);
-
-var FormCollaborator = function (_React$Component) {
-  _inherits(FormCollaborator, _React$Component);
-
-  function FormCollaborator() {
-    _classCallCheck(this, FormCollaborator);
-
-    var _this = _possibleConstructorReturn(this, (FormCollaborator.__proto__ || Object.getPrototypeOf(FormCollaborator)).call(this));
-
-    _this.state = {
-      name: '',
-      url: '',
-      city: '',
-      state: '',
-      country: '',
-      address_id: '',
-      nameErr: false,
-      urlErr: false,
-      submitSuccess: false,
-      submitError: ''
-    };
-
-    _this.initialState = _this.state;
-    _this.requiredFields = ['name'];
-    _this.requiredFieldsBlank = true;
-    _this.getComponentData = _this.getComponentData.bind(_this);
-    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/collaborators', _this.state.submitError);
-    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
-    return _this;
-  }
-
-  _createClass(FormCollaborator, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      if (this.props.collaboratorId) {
-        fetch('/api/collaborators/' + this.props.collaboratorId).then(function (res) {
-          return res.json();
-        }).then(function (data) {
-          _this2.setState({
-            name: data.name,
-            url: data.url
-          });
-          if (data.address.length > 0) {
-            _this2.setState({
-              city: data.address[0].city,
-              state: data.address[0].state,
-              country: data.address[0].country,
-              address_id: data.address[0].id
-            });
-          }
-        }).catch(function (err) {
-          console.error(err);
-        });
-      }
-    }
-  }, {
-    key: 'getComponentData',
-    value: function getComponentData(data, inputName) {
-      this.setState(_defineProperty({}, inputName, data[inputName]));
-    }
-  }, {
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
-
-      return true;
-    }
-  }, {
-    key: 'deleteCollaborator',
-    value: function deleteCollaborator() {
-      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
-    }
-  }, {
-    key: 'submitForm',
-    value: function submitForm(event) {
-      event.preventDefault();
-      FormValidations.trimData(this.state, this);
-      if (this.state.url) {
-        FormHandlersValidations.validateHandleURL(this.state.url, this);
-      }
-
-      this.forceUpdate(function () {
-        var _this3 = this;
-
-        if (!this.state.urlErr) {
-          if (this.props.sendRequestType === 'POST') {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators', this.setRedirectWithMessage, this.setSubmitErrorMessage);
-          } else {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators/' + this.props.collaboratorId, function () {
-              return FormHandlers.successMessage(_this3);
-            });
-          }
-        };
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/collaborators' },
-          'All Collaborators'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : 'Update Collaborator: ' + this.state.name
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-success' },
-          this.state.submitSuccess ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-added-success', style: { color: 'green' } },
-            _react2.default.createElement(
-              'p',
-              null,
-              this.props.sendRequestType === 'POST' ? 'New Collaborator successfully added.' : 'Collaborator successfully updated.'
-            )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'p',
-            null,
-            this.state.submitError
-          )
-        ),
-        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return _this4.deleteCollaborator(e);
-            } },
-          'Delete ',
-          this.state.name
-        ) : null,
-        _react2.default.createElement(
-          'form',
-          { id: 'create-collaborator' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Collaborator Name: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'name',
-              className: this.state.nameErr ? 'err' : null,
-              value: this.state.name,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this4);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this4);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Website: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'url',
-              className: this.state.urlErr ? 'err' : null,
-              value: this.state.url,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this4);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this4);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Address: '
-            ),
-            _react2.default.createElement(FormAddress, {
-              collaboratorId: this.props.collaboratorId,
-              sendAddressData: this.getComponentData })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this4.submitForm(e);
-                } },
-              this.props.sendRequestType === 'POST' ? 'Submit' : 'Update ' + this.state.name
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'errors' },
-          this.state.nameErr ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-name-validation-error', style: { color: 'red' } },
-            'Collaborator Name can not be blank. Please enter a Collaborator Name.'
-          ) : null,
-          this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-url-validation-error', style: { color: 'red' } },
-            'Website URL is not valid. Please enter a valid Website URL.'
-          ) : null
-        )
-      );
-    }
-  }]);
-
-  return FormCollaborator;
-}(_react2.default.Component);
-
-module.exports = (0, _reactRouterDom.withRouter)(FormCollaborator);
-
-/***/ }),
-/* 417 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-var _reactDatepicker = __webpack_require__(200);
-
-var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
-
-var _moment = __webpack_require__(0);
-
-var _moment2 = _interopRequireDefault(_moment);
-
-__webpack_require__(79);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(14);
-var FormValidations = __webpack_require__(21);
-var FormHandlersValidations = __webpack_require__(37);
-var NewsCategoriesCheckboxes = __webpack_require__(435);
-var GetImagesNewsStory = __webpack_require__(432);
-
-var FormNewsStory = function (_React$Component) {
-  _inherits(FormNewsStory, _React$Component);
-
-  function FormNewsStory() {
-    _classCallCheck(this, FormNewsStory);
-
-    var _this = _possibleConstructorReturn(this, (FormNewsStory.__proto__ || Object.getPrototypeOf(FormNewsStory)).call(this));
-
-    _this.state = {
-      title: '',
-      date: '',
-      description: '',
-      initial_image_id: '',
-      image_id: '',
-      initial_image_url: '',
-      image_url: '',
-      news_categories_ids: [],
-      news_categories_ids_attached: [],
-      news_categories_ids_detach: [],
-      news_categories_ids_checked: [],
-      titleErr: false,
-      dateErr: false,
-      descriptionErr: false,
-      imageErr: false,
-      categoriesErr: false,
-      imageSelectOpen: false,
-      submitError: ''
-    };
-
-    _this.initialState = _this.state;
-
-    _this.requiredFields = ['title', 'date', 'description', 'image_id', 'news_categories_ids_checked'];
-    _this.requiredFieldsBlank = true;
-    _this.getComponentData = _this.getComponentData.bind(_this);
-    _this.getImageData = _this.getImageData.bind(_this);
-    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/news-stories', _this.state.submitError);
-    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
-    return _this;
-  }
-
-  _createClass(FormNewsStory, [{
-    key: 'getComponentData',
-    value: function getComponentData(data, inputName) {
-      var _setState;
-
-      this.setState((_setState = {}, _defineProperty(_setState, inputName, data.toAttach), _defineProperty(_setState, inputName + '_attached', data.attached), _defineProperty(_setState, inputName + '_detach', data.detach), _defineProperty(_setState, inputName + '_checked', data.checked), _setState));
-    }
-  }, {
-    key: 'getImageData',
-    value: function getImageData(data, closeImageSelect) {
-      this.setState({
-        image_id: data.id,
-        image_url: data.url
-      });
-      if (closeImageSelect === false) {
-        this.setState({
-          imageSelectOpen: closeImageSelect
-        });
-      };
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps, nextState) {
-      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
-
-      return true;
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      if (this.props.newsStoryId) {
-        fetch('/api/news-stories/' + this.props.newsStoryId).then(function (res) {
-          return res.json();
-        }).then(function (data) {
-          _this2.setState({
-            title: data.title,
-            date: data.date,
-            description: data.description,
-            image_id: data.image.id ? data.image.id : '',
-            initial_image_id: data.image.id ? data.image.id : ''
-          });
-          if (data.news_categories) {
-            _this2.setAttachedAndChecked(data.news_categories, 'news_categories');
-          };
-          if (data.image) {
-            fetch('/api/images/' + data.image.id).then(function (res) {
-              return res.json();
-            }).then(function (data) {
-              return _this2.setState({
-                image_url: data.url,
-                initial_image_url: data.url
-              });
-            });
-          };
-        });
-      }
-    }
-  }, {
-    key: 'setAttachedAndChecked',
-    value: function setAttachedAndChecked(dataModel, dataModelName) {
-      var _setState2;
-
-      var checked = [];
-      var ids = dataModel.map(function (model) {
-        checked.push(model.id);
-        return model.id;
-      });
-
-      this.setState((_setState2 = {}, _defineProperty(_setState2, dataModelName + '_ids_attached', ids), _defineProperty(_setState2, dataModelName + '_ids_checked', checked), _setState2));
-    }
-  }, {
-    key: 'deleteNewsStory',
-    value: function deleteNewsStory() {
-      DataActions.sendRequest('DELETE', { title: this.state.title }, '/api/news-stories/' + this.props.newsStoryId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
-    }
-  }, {
-    key: 'openImageSelect',
-    value: function openImageSelect(event) {
-      event.preventDefault();
-      this.setState({
-        imageSelectOpen: true
-      });
-    }
-  }, {
-    key: 'submitForm',
-    value: function submitForm(event) {
-      event.preventDefault();
-      FormValidations.trimData(this.state, this);
-
-      this.forceUpdate(function () {
-        if (this.props.sendRequestType === 'POST') {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories', this.setRedirectWithMessage, this.setSubmitErrorMessage);
-        } else {
-          var newUrl = this.state.image_url;
-
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories/' + this.props.newsStoryId, FormHandlers.successMessage(this));
-          FormHandlers.updateAttached(this, ['news_categories']);
-          FormHandlers.resetDetached(this, ['news_categories']);
-          FormHandlers.resetToAttachIds(this, ['news_categories']);
-          this.setState({
-            initial_image_url: newUrl,
-            imageSelectOpen: false
-          });
-        }
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/news-stories' },
-          'All News Stories'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          this.props.sendRequestType === 'POST' ? 'Create A News Story' : 'Update News Story: ' + this.state.title
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          _react2.default.createElement(
-            'em',
-            null,
-            'All fields required.'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-success' },
-          this.state.submitSuccess ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-added-success', style: { color: 'green' } },
-            _react2.default.createElement(
-              'p',
-              null,
-              this.props.sendRequestType === 'POST' ? 'New Story successfully added.' : 'Story successfully updated.'
-            )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'p',
-            null,
-            this.state.submitError
-          )
-        ),
-        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return _this3.deleteNewsStory(e);
-            } },
-          'Delete ',
-          this.state.title
-        ) : null,
-        _react2.default.createElement(
-          'form',
-          { id: 'create-news-story' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Story Title: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'title',
-              className: this.state.titleErr ? 'err' : null,
-              value: this.state.title,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Date Published: '
-            ),
-            _react2.default.createElement(_reactDatepicker2.default, {
-              selected: this.state.date,
-              value: this.state.date,
-              name: 'date',
-              className: this.state.dateErr ? 'err' : null,
-              showMonthDropdown: true,
-              showYearDropdown: true,
-              dropdownMode: 'select',
-              placeholderText: 'Click to select a date',
-              popoverAttachment: 'top right',
-              popoverTargetAttachment: 'top center',
-              popoverTargetOffset: '38px 250px',
-              onChange: function onChange(e) {
-                return FormHandlersValidations.handleDateOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventAllButShiftAndTab(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Description: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'textfield',
-              name: 'description',
-              className: this.state.descriptionErr ? 'err' : null,
-              value: this.state.description,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            this.state.initial_image_id ? _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement('img', {
-                src: this.state.initial_image_url, height: '150' }),
-              _react2.default.createElement('br', null),
-              _react2.default.createElement(
-                'button',
-                { onClick: function onClick(e) {
-                    return _this3.openImageSelect(e);
-                  } },
-                'Change Current Image'
-              )
-            ) : _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'label',
-                null,
-                'Select An Image: '
-              ),
-              _react2.default.createElement(GetImagesNewsStory, {
-                sendImageData: this.getImageData,
-                canCancel: false })
-            ),
-            this.state.imageSelectOpen ? _react2.default.createElement(GetImagesNewsStory, {
-              name: 'image',
-              value: this.state.image_id,
-              initialImageId: this.state.initial_image_id,
-              sendImageData: this.getImageData,
-              canCancel: true }) : null
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(NewsCategoriesCheckboxes, {
-              name: 'categories',
-              value: this.state.news_categories_ids,
-              sendNewsCategoriesData: this.getComponentData,
-              preChecked: this.state.news_categories_ids_checked,
-              attached: this.state.news_categories_ids_attached,
-              toAttach: this.state.news_categories_ids,
-              detach: this.state.news_categories_ids_detach })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this3.submitForm(e);
-                } },
-              'Submit'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'errors' },
-          this.state.titleErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-title-validation-error', style: { color: 'red' } },
-            'Title can not be blank. Please enter a story title.'
-          ) : null,
-          this.state.dateErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-date-validation-error', style: { color: 'red' } },
-            'Date can not be blank. Please enter a story published date.'
-          ) : null,
-          this.state.descriptionErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-description-validation-error', style: { color: 'red' } },
-            'Description can not be blank. Please enter a story description.'
-          ) : null,
-          this.state.imageErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-image-validation-error', style: { color: 'red' } },
-            'An image must be selected. Please select an image.'
-          ) : null,
-          this.state.categoriesErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-categories-validation-error', style: { color: 'red' } },
-            'At least one category must be selected. Please select an category.'
-          ) : null
-        )
-      );
-    }
-  }]);
-
-  return FormNewsStory;
-}(_react2.default.Component);
-
-;
-
-module.exports = (0, _reactRouterDom.withRouter)(FormNewsStory);
-
-/***/ }),
-/* 418 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-var _reactDatepicker = __webpack_require__(200);
-
-var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
-
-var _moment = __webpack_require__(0);
-
-var _moment2 = _interopRequireDefault(_moment);
-
-__webpack_require__(79);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ClientCheckboxes = __webpack_require__(422);
-var CollaboratorCheckboxes = __webpack_require__(423);
-var ProjectCategoriesCheckboxes = __webpack_require__(436);
-var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(14);
-var FormValidations = __webpack_require__(21);
-var FormHandlersValidations = __webpack_require__(37);
-
-var FormProject = function (_React$Component) {
-  _inherits(FormProject, _React$Component);
-
-  function FormProject() {
-    _classCallCheck(this, FormProject);
-
-    var _this = _possibleConstructorReturn(this, (FormProject.__proto__ || Object.getPrototypeOf(FormProject)).call(this));
-
-    _this.state = {
-      name: '',
-      date: '',
-      description: '',
-      project_categories_ids: [],
-      project_categories_attached: [],
-      project_categories_ids_detach: [],
-      project_categories_ids_checked: [],
-      clients_ids: [],
-      clients_ids_attached: [],
-      clients_ids_detach: [],
-      clients_ids_checked: [],
-      collaborators_ids: [],
-      collaborators_attached: [],
-      collaborators_ids_detach: [],
-      collaborators_ids_checked: [],
-      nameErr: false,
-      dateErr: false,
-      descriptionErr: false,
-      submitSuccess: false,
-      submitError: ''
-    };
-
-    _this.initialState = _this.state;
-
-    _this.requiredFields = ['name', 'date', 'description'];
-    _this.requiredFieldsBlank = true;
-    _this.getComponentData = _this.getComponentData.bind(_this);
-    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/projects', _this.state.submitError);
-    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
-    return _this;
-  }
-
-  _createClass(FormProject, [{
-    key: 'setAttachedAndChecked',
-    value: function setAttachedAndChecked(dataModel, dataModelName) {
-      var _setState;
-
-      var checked = [];
-      var ids = dataModel.map(function (model) {
-        checked.push(model.id);
-        return model.id;
-      });
-
-      this.setState((_setState = {}, _defineProperty(_setState, dataModelName + '_ids_attached', ids), _defineProperty(_setState, dataModelName + '_ids_checked', checked), _setState));
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      if (this.props.projectId) {
-        fetch('/api/projects/' + this.props.projectId).then(function (res) {
-          return res.json();
-        }).then(function (data) {
-          _this2.setState({
-            name: data.name,
-            date: data.date,
-            description: data.description
-          });
-          if (data.clients) {
-            _this2.setAttachedAndChecked(data.clients, 'clients');
-          };
-          if (data.collaborators) {
-            _this2.setAttachedAndChecked(data.collaborators, 'collaborators');
-          };
-          if (data.project_categories) {
-            _this2.setAttachedAndChecked(data.project_categories, 'project_categories');
-          }
-        }).catch(function (err) {
-          console.error(err);
-        });
-      }
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps, nextState) {
-      this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
-
-      return true;
-    }
-  }, {
-    key: 'getComponentData',
-    value: function getComponentData(data, inputName) {
-      var _setState2;
-
-      this.setState((_setState2 = {}, _defineProperty(_setState2, inputName, data.toAttach), _defineProperty(_setState2, inputName + '_attached', data.attached), _defineProperty(_setState2, inputName + '_detach', data.detach), _defineProperty(_setState2, inputName + '_checked', data.checked), _setState2));
-    }
-  }, {
-    key: 'deleteProject',
-    value: function deleteProject() {
-      DataActions.sendRequest('DELETE', { name: this.state.name }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
-    }
-  }, {
-    key: 'submitForm',
-    value: function submitForm(event) {
-      event.preventDefault();
-      FormValidations.trimData(this.state, this);
-      this.forceUpdate(function () {
-        if (this.props.sendRequestType === 'POST') {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', this.setRedirectWithMessage, this.setSubmitErrorMessage);
-        } else {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects/' + this.props.projectId, FormHandlers.successMessage(this));
-          FormHandlers.updateAttached(this, ['clients', 'collaborators', 'project_categories']);
-          FormHandlers.resetDetached(this, ['clients', 'collaborators', 'project_categories']);
-          FormHandlers.resetToAttachIds(this, ['clients', 'collaborators', 'project_categories']);
-        }
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/projects' },
-          'All Projects'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          this.props.sendRequestType === 'POST' ? 'Create A New Project' : 'Update Project: ' + this.state.name
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-success' },
-          this.state.submitSuccess ? _react2.default.createElement(
-            'div',
-            { id: 'project-added-success', style: { color: 'green' } },
-            _react2.default.createElement(
-              'p',
-              null,
-              this.props.sendRequestType === 'POST' ? 'New Project successfully added.' : 'Project successfully updated.'
-            )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'p',
-            null,
-            this.state.submitError
-          )
-        ),
-        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return _this3.deleteProject(e);
-            } },
-          'Delete ',
-          this.state.name
-        ) : null,
-        _react2.default.createElement(
-          'form',
-          { id: 'create-project' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Project Name: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'name',
-              className: this.state.nameErr ? 'err' : null,
-              value: this.state.name,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Date Completed: '
-            ),
-            _react2.default.createElement(_reactDatepicker2.default, {
-              selected: this.state.date,
-              value: this.state.date,
-              name: 'date',
-              className: this.state.dateErr ? 'err' : null,
-              showMonthDropdown: true,
-              showYearDropdown: true,
-              dropdownMode: 'select',
-              placeholderText: 'Click to select a date',
-              popoverAttachment: 'top right',
-              popoverTargetAttachment: 'top center',
-              popoverTargetOffset: '38px 250px',
-              onChange: function onChange(e) {
-                return FormHandlersValidations.handleDateOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventAllButShiftAndTab(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Description: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'textfield',
-              name: 'description',
-              className: this.state.descriptionErr ? 'err' : null,
-              value: this.state.description,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          this.props.projectId ? _react2.default.createElement(
-            'div',
-            { className: 'update-components-container' },
-            _react2.default.createElement(ClientCheckboxes, {
-              preChecked: this.state.clients_ids_checked,
-              sendClientData: this.getComponentData,
-              attached: this.state.clients_ids_attached,
-              toAttach: this.state.clients_ids,
-              detach: this.state.clients_ids_detach }),
-            _react2.default.createElement(CollaboratorCheckboxes, {
-              preChecked: this.state.collaborators_ids_checked,
-              sendCollaboratorData: this.getComponentData,
-              attached: this.state.collaborators_ids_attached,
-              toAttach: this.state.collaborators_ids,
-              detach: this.state.collaborators_ids_detach }),
-            _react2.default.createElement(ProjectCategoriesCheckboxes, {
-              preChecked: this.state.project_categories_ids_checked,
-              sendProjectCategoriesData: this.getComponentData,
-              attached: this.state.project_categories_ids_attached,
-              toAttach: this.state.project_categories_ids,
-              detach: this.state.project_categories_ids_detach })
-          ) : null,
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this3.submitForm(e);
-                } },
-              'Submit'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'errors' },
-          this.state.nameErr ? _react2.default.createElement(
-            'div',
-            { id: 'project-name-validation-error', style: { color: 'red' } },
-            'Name can not be blank. Please enter a project name.'
-          ) : null,
-          this.state.dateErr ? _react2.default.createElement(
-            'div',
-            { id: 'project-date-validation-error', style: { color: 'red' } },
-            'Date can not be blank. Please enter a project completed date.'
-          ) : null,
-          this.state.descriptionErr ? _react2.default.createElement(
-            'div',
-            { id: 'project-description-validation-error', style: { color: 'red' } },
-            'Description can not be blank. Please enter a project description.'
-          ) : null
-        )
-      );
-    }
-  }]);
-
-  return FormProject;
-}(_react2.default.Component);
-
-module.exports = (0, _reactRouterDom.withRouter)(FormProject);
-
-/***/ }),
-/* 419 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormProject = __webpack_require__(418);
-
-var UpdateProject = function (_React$Component) {
-  _inherits(UpdateProject, _React$Component);
-
-  function UpdateProject() {
-    _classCallCheck(this, UpdateProject);
-
-    return _possibleConstructorReturn(this, (UpdateProject.__proto__ || Object.getPrototypeOf(UpdateProject)).apply(this, arguments));
-  }
-
-  _createClass(UpdateProject, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(FormProject, { sendRequestType: 'PUT', projectId: this.props.match.params.id })
-      );
-    }
-  }]);
-
-  return UpdateProject;
-}(_react2.default.Component);
-
-module.exports = UpdateProject;
-
-/***/ }),
-/* 420 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DashboardHome = __webpack_require__(428);
-var CreateProject = __webpack_require__(427);
-var GetProjects = __webpack_require__(434);
-var UpdateProject = __webpack_require__(419);
-var CreateClient = __webpack_require__(424);
-var GetClients = __webpack_require__(429);
-var UpdateClient = __webpack_require__(437);
-var CreateCollaborator = __webpack_require__(425);
-var GetCollaborators = __webpack_require__(430);
-var UpdateCollaborator = __webpack_require__(438);
-var UploadImages = __webpack_require__(441);
-var GetImages = __webpack_require__(431);
-var CreateNewsStory = __webpack_require__(426);
-var GetNewsStories = __webpack_require__(433);
-var UpdateNewsStory = __webpack_require__(440);
-var NotFound = __webpack_require__(413);
-
-var Dashboard = function (_Component) {
-  _inherits(Dashboard, _Component);
-
-  function Dashboard() {
-    _classCallCheck(this, Dashboard);
-
-    return _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).apply(this, arguments));
-  }
-
-  _createClass(Dashboard, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        _reactRouterDom.BrowserRouter,
-        null,
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'h1',
-            null,
-            'WE Portfolio Dashboard'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.NavLink,
-            { exact: true, to: '' + this.props.match.url, activeStyle: { fontWeight: 'bold', color: 'red' } },
-            'Dashboard Home'
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Switch,
-            null,
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '' + this.props.match.url, component: DashboardHome }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/create', component: CreateClient }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/:id/update', component: UpdateClient }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients', component: GetClients }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/create', component: CreateCollaborator }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/:id/update', component: UpdateCollaborator }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images/upload', component: UploadImages }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images', component: GetImages }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/create', component: CreateNewsStory }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/:id/update', component: UpdateNewsStory }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories', component: GetNewsStories }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/create', component: CreateProject }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/:id/update', component: UpdateProject }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects', component: GetProjects }),
-            _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
-          )
-        )
-      );
-    }
-  }]);
-
-  return Dashboard;
-}(_react.Component);
-
-module.exports = Dashboard;
-
-/***/ }),
-/* 421 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Login = function (_Component) {
-  _inherits(Login, _Component);
-
-  function Login() {
-    _classCallCheck(this, Login);
-
-    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
-  }
-
-  _createClass(Login, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Login'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          _react2.default.createElement(
-            'a',
-            { href: '/login/facebook' },
-            'Facebook Login'
-          )
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          _react2.default.createElement(
-            'a',
-            { href: '/login/google' },
-            'Google Login'
-          )
-        )
-      );
-    }
-  }]);
-
-  return Login;
-}(_react.Component);
-
-module.exports = Login;
-
-/***/ }),
-/* 422 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(14);
-
-var ClientCheckboxes = function (_React$Component) {
-  _inherits(ClientCheckboxes, _React$Component);
-
-  function ClientCheckboxes() {
-    _classCallCheck(this, ClientCheckboxes);
-
-    var _this = _possibleConstructorReturn(this, (ClientCheckboxes.__proto__ || Object.getPrototypeOf(ClientCheckboxes)).call(this));
-
-    _this.state = {
-      clients_data: []
-    };
-    return _this;
-  }
-
-  _createClass(ClientCheckboxes, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/clients').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          clients_data: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var _props = this.props,
-          preChecked = _props.preChecked,
-          sendClientData = _props.sendClientData,
-          attached = _props.attached,
-          detach = _props.detach;
-
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'clients-container' },
-        _react2.default.createElement(
-          'label',
-          null,
-          'Project Client(s): '
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          { className: 'checkboxes-container' },
-          this.state.clients_data.map(function (client) {
-            return _react2.default.createElement(
-              'div',
-              { key: client.id },
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                value: client.id,
-                name: 'clients_ids',
-                checked: _this3.props.preChecked.includes(client.id),
-                onChange: function onChange(e) {
-                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendClientData);
-                } }),
-              _react2.default.createElement(
-                'label',
-                null,
-                client.name
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return ClientCheckboxes;
-}(_react2.default.Component);
-
-module.exports = ClientCheckboxes;
-
-/***/ }),
-/* 423 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(14);
-
-var CollaboratorCheckboxes = function (_React$Component) {
-  _inherits(CollaboratorCheckboxes, _React$Component);
-
-  function CollaboratorCheckboxes() {
-    _classCallCheck(this, CollaboratorCheckboxes);
-
-    var _this = _possibleConstructorReturn(this, (CollaboratorCheckboxes.__proto__ || Object.getPrototypeOf(CollaboratorCheckboxes)).call(this));
-
-    _this.state = {
-      collaborators_data: []
-    };
-    return _this;
-  }
-
-  _createClass(CollaboratorCheckboxes, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/collaborators').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          collaborators_data: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var _props = this.props,
-          preChecked = _props.preChecked,
-          sendCollaboratorData = _props.sendCollaboratorData,
-          attached = _props.attached,
-          detach = _props.detach;
-
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'collaborators-container' },
-        _react2.default.createElement(
-          'label',
-          null,
-          'Project Collaborator(s): '
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          { className: 'checkboxes-container' },
-          this.state.collaborators_data.map(function (collaborator) {
-            return _react2.default.createElement(
-              'div',
-              { key: collaborator.id },
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                value: collaborator.id,
-                name: 'collaborators_ids',
-                checked: _this3.props.preChecked.includes(collaborator.id),
-                onChange: function onChange(e) {
-                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendCollaboratorData);
-                } }),
-              _react2.default.createElement(
-                'label',
-                null,
-                collaborator.name
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return CollaboratorCheckboxes;
-}(_react2.default.Component);
-
-module.exports = CollaboratorCheckboxes;
-
-/***/ }),
-/* 424 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormClient = __webpack_require__(415);
-
-var CreateClient = function (_React$Component) {
-  _inherits(CreateClient, _React$Component);
-
-  function CreateClient() {
-    _classCallCheck(this, CreateClient);
-
-    return _possibleConstructorReturn(this, (CreateClient.__proto__ || Object.getPrototypeOf(CreateClient)).apply(this, arguments));
-  }
-
-  _createClass(CreateClient, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(FormClient, { sendRequestType: 'POST' })
-      );
-    }
-  }]);
-
-  return CreateClient;
-}(_react2.default.Component);
-
-module.exports = CreateClient;
-
-/***/ }),
-/* 425 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormCollaborator = __webpack_require__(416);
-
-var CreateCollaborator = function (_React$Component) {
-  _inherits(CreateCollaborator, _React$Component);
-
-  function CreateCollaborator() {
-    _classCallCheck(this, CreateCollaborator);
-
-    return _possibleConstructorReturn(this, (CreateCollaborator.__proto__ || Object.getPrototypeOf(CreateCollaborator)).apply(this, arguments));
-  }
-
-  _createClass(CreateCollaborator, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(FormCollaborator, { sendRequestType: 'POST' })
-      );
-    }
-  }]);
-
-  return CreateCollaborator;
-}(_react2.default.Component);
-
-module.exports = CreateCollaborator;
-
-/***/ }),
-/* 426 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormNewsStory = __webpack_require__(417);
-
-var CreateNewsStory = function (_React$Component) {
-  _inherits(CreateNewsStory, _React$Component);
-
-  function CreateNewsStory() {
-    _classCallCheck(this, CreateNewsStory);
-
-    return _possibleConstructorReturn(this, (CreateNewsStory.__proto__ || Object.getPrototypeOf(CreateNewsStory)).apply(this, arguments));
-  }
-
-  _createClass(CreateNewsStory, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(FormNewsStory, { sendRequestType: 'POST' })
-      );
-    }
-  }]);
-
-  return CreateNewsStory;
-}(_react2.default.Component);
-
-module.exports = CreateNewsStory;
-
-/***/ }),
-/* 427 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormProject = __webpack_require__(418);
-
-var CreateProject = function (_React$Component) {
-  _inherits(CreateProject, _React$Component);
-
-  function CreateProject() {
-    _classCallCheck(this, CreateProject);
-
-    return _possibleConstructorReturn(this, (CreateProject.__proto__ || Object.getPrototypeOf(CreateProject)).apply(this, arguments));
-  }
-
-  _createClass(CreateProject, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(FormProject, { sendRequestType: 'POST' })
-      );
-    }
-  }]);
-
-  return CreateProject;
-}(_react2.default.Component);
-
-module.exports = CreateProject;
-
-/***/ }),
-/* 428 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DashboardHome = function (_Component) {
-  _inherits(DashboardHome, _Component);
-
-  function DashboardHome() {
-    _classCallCheck(this, DashboardHome);
-
-    return _possibleConstructorReturn(this, (DashboardHome.__proto__ || Object.getPrototypeOf(DashboardHome)).apply(this, arguments));
-  }
-
-  _createClass(DashboardHome, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'ul',
-          null,
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/clients' },
-              'Clients'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/collaborators' },
-              'Collaborators'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/images' },
-              'Images'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/news-stories' },
-              'News Stories'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/projects' },
-              'Projects'
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return DashboardHome;
-}(_react.Component);
-
-module.exports = DashboardHome;
-
-/***/ }),
-/* 429 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var GetClients = function (_Component) {
-  _inherits(GetClients, _Component);
-
-  function GetClients(props) {
-    _classCallCheck(this, GetClients);
-
-    var _this = _possibleConstructorReturn(this, (GetClients.__proto__ || Object.getPrototypeOf(GetClients)).call(this, props));
-
-    _this.state = {
-      clientsData: []
-    };
-
-    if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
-      _this.flashMessage = _this.props.history.location.state.message;
-    }
-
-    return _this;
-  }
-
-  _createClass(GetClients, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/clients').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          clientsData: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps) {
-      this.flashMessage = nextProps.history.location.state.message;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
-          this.flashMessage
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/create' },
-          'Add New Client'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All Clients'
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.clientsData.map(function (client) {
-            return _react2.default.createElement(
-              'div',
-              { key: client.id },
-              _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + client.id + '/update' },
-                client.name
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return GetClients;
-}(_react.Component);
-
-module.exports = GetClients;
-
-/***/ }),
-/* 430 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var GetCollaborators = function (_Component) {
-  _inherits(GetCollaborators, _Component);
-
-  function GetCollaborators(props) {
-    _classCallCheck(this, GetCollaborators);
-
-    var _this = _possibleConstructorReturn(this, (GetCollaborators.__proto__ || Object.getPrototypeOf(GetCollaborators)).call(this, props));
-
-    _this.state = {
-      collaboratorsData: []
-    };
-
-    if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
-    }
-
-    _this.flashMessage = _this.props.history.location.state.message;
-
-    return _this;
-  }
-
-  _createClass(GetCollaborators, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/collaborators').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          collaboratorsData: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps) {
-      this.flashMessage = nextProps.history.location.state.message;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
-          this.flashMessage
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/create' },
-          'Add New Collaborator'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All Collaborators'
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.collaboratorsData.map(function (collaborator) {
-            return _react2.default.createElement(
-              'div',
-              { key: collaborator.id },
-              _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + collaborator.id + '/update' },
-                collaborator.name
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return GetCollaborators;
-}(_react.Component);
-
-module.exports = GetCollaborators;
-
-/***/ }),
-/* 431 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var UpdateImage = __webpack_require__(439);
-
-var GetImages = function (_React$Component) {
-  _inherits(GetImages, _React$Component);
-
-  function GetImages(props) {
-    _classCallCheck(this, GetImages);
-
-    var _this = _possibleConstructorReturn(this, (GetImages.__proto__ || Object.getPrototypeOf(GetImages)).call(this, props));
-
-    _this.state = {
-      imageData: [],
-      imageId: null,
-      isUpdateImageOpen: false
-    };
-
-    if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.', messageError: [] };
-    }
-
-    _this.flashMessage = _this.props.history.location.state.message;
-    _this.flashMessageError = _this.props.history.location.state.messageError;
-
-    return _this;
-  }
-
-  _createClass(GetImages, [{
-    key: 'loadImages',
-    value: function loadImages() {
-      var _this2 = this;
-
-      fetch('/api/images').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          imageData: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.loadImages();
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      this.loadImages();
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps) {
-      this.flashMessage = nextProps.history.location.state.message;
-      this.flashMessageError = nextProps.history.location.state.messageError;
-    }
-  }, {
-    key: 'openUpdateImage',
-    value: function openUpdateImage(event, imageId) {
-      this.setState({
-        imageId: imageId,
-        isUpdateImageOpen: !this.state.isUpdateImageOpen
-      });
-    }
-  }, {
-    key: 'closeUpdateImage',
-    value: function closeUpdateImage(e) {
-      this.setState({
-        isUpdateImageOpen: !this.state.isUpdateImageOpen
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
-          this.flashMessage
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'Errors:'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'ul',
-            null,
-            this.flashMessageError.map(function (err, i) {
-              return _react2.default.createElement(
-                'li',
-                { key: i },
-                err
-              );
-            })
-          )
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/upload' },
-          'Add New Image(s)'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All Images'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'image-grid' },
-          this.state.imageData.map(function (image) {
-            return _react2.default.createElement(
-              'div',
-              { key: image.id, className: 'image-grid-element' },
-              _react2.default.createElement('img', {
-                src: image.url,
-                title: image.title,
-                alt: image.alt,
-                width: '100%',
-                onClick: function onClick(e) {
-                  return _this3.openUpdateImage(e, image.id);
-                } })
-            );
-          })
-        ),
-        this.state.isUpdateImageOpen ? _react2.default.createElement(UpdateImage, { imageId: this.state.imageId, isOpen: this.state.isUpdateImageOpen, onClose: function onClose(e) {
-            return _this3.closeUpdateImage(e);
-          } }) : null
-      );
-    }
-  }]);
-
-  return GetImages;
-}(_react2.default.Component);
-
-;
-
-module.exports = GetImages;
-
-/***/ }),
-/* 432 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var GetImagesNewsStory = function (_React$Component) {
-  _inherits(GetImagesNewsStory, _React$Component);
-
-  function GetImagesNewsStory() {
-    _classCallCheck(this, GetImagesNewsStory);
-
-    var _this = _possibleConstructorReturn(this, (GetImagesNewsStory.__proto__ || Object.getPrototypeOf(GetImagesNewsStory)).call(this));
-
-    _this.state = {
-      imageData: [],
-      imageId: null
-    };
-    return _this;
-  }
-
-  _createClass(GetImagesNewsStory, [{
-    key: 'loadImages',
-    value: function loadImages() {
-      var _this2 = this;
-
-      fetch('/api/images').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        data = data.filter(function (obj) {
-          return obj.news_story_id === null;
-        });
-
-        _this2.setState({
-          imageData: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'selectImage',
-    value: function selectImage(event, sendImageDataFunc) {
-      var target = event.target;
-      var selectedImageId = target.id;
-      var selectedImageUrl = target.src;
-
-      this.setState({
-        imageId: target.id
-      });
-
-      sendImageDataFunc({ id: selectedImageId, url: selectedImageUrl });
-    }
-  }, {
-    key: 'imageSelectCancel',
-    value: function imageSelectCancel(event, sendImageIdFunc) {
-      event.preventDefault();
-      this.setState({
-        imageId: ''
-      });
-      sendImageIdFunc({ id: this.props.initialImageId, url: '' }, false);
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.loadImages();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'get-images-news-story' },
-        _react2.default.createElement(
-          'div',
-          { className: 'images-select-container' },
-          this.state.imageData.map(function (image) {
-
-            return _react2.default.createElement('img', {
-              key: image.id,
-              id: image.id,
-              className: _this3.state.imageId == image.id ? 'selected' : '',
-              src: image.url,
-              height: '100',
-              onClick: function onClick(e) {
-                return _this3.selectImage(e, _this3.props.sendImageData);
-              } });
-          })
-        ),
-        this.props.canCancel ? _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'button',
-            { onClick: function onClick(e) {
-                return _this3.imageSelectCancel(e, _this3.props.sendImageData);
-              } },
-            'Cancel'
-          )
-        ) : null
-      );
-    }
-  }]);
-
-  return GetImagesNewsStory;
-}(_react2.default.Component);
-
-module.exports = GetImagesNewsStory;
-
-/***/ }),
-/* 433 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var GetNewsStories = function (_Component) {
-  _inherits(GetNewsStories, _Component);
-
-  function GetNewsStories(props) {
-    _classCallCheck(this, GetNewsStories);
-
-    var _this = _possibleConstructorReturn(this, (GetNewsStories.__proto__ || Object.getPrototypeOf(GetNewsStories)).call(this, props));
-
-    _this.state = {
-      newsStoriesData: []
-    };
-
-    if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
-    }
-
-    _this.flashMessage = _this.props.history.location.state.message;
-    return _this;
-  }
-
-  _createClass(GetNewsStories, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/news-stories').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          newsStoriesData: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps) {
-      this.flashMessage = nextProps.history.location.state.message;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
-          this.flashMessage
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/create' },
-          'Add News Story'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All News Stories'
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.newsStoriesData.map(function (story) {
-            return _react2.default.createElement(
-              'div',
-              { key: story.id },
-              _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + story.id + '/update' },
-                story.title
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return GetNewsStories;
-}(_react.Component);
-
-module.exports = GetNewsStories;
-
-/***/ }),
-/* 434 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var UpdateProject = __webpack_require__(419);
-
-var GetProjects = function (_Component) {
-  _inherits(GetProjects, _Component);
-
-  function GetProjects(props) {
-    _classCallCheck(this, GetProjects);
-
-    var _this = _possibleConstructorReturn(this, (GetProjects.__proto__ || Object.getPrototypeOf(GetProjects)).call(this, props));
-
-    _this.state = {
-      projectsData: []
-    };
-
-    if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
-    }
-
-    _this.flashMessage = _this.props.history.location.state.message;
-
-    return _this;
-  }
-
-  _createClass(GetProjects, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/projects').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          projectsData: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps) {
-      this.flashMessage = nextProps.history.location.state.message;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
-          this.flashMessage
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/create' },
-          'Add New Project'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All Projects'
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.state.projectsData.map(function (project) {
-            return _react2.default.createElement(
-              'div',
-              { key: project.id },
-              _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + project.id + '/update' },
-                project.name
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return GetProjects;
-}(_react.Component);
-
-module.exports = GetProjects;
-
-/***/ }),
-/* 435 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(14);
-
-var NewsCategoriesCheckboxes = function (_React$Component) {
-  _inherits(NewsCategoriesCheckboxes, _React$Component);
-
-  function NewsCategoriesCheckboxes() {
-    _classCallCheck(this, NewsCategoriesCheckboxes);
-
-    var _this = _possibleConstructorReturn(this, (NewsCategoriesCheckboxes.__proto__ || Object.getPrototypeOf(NewsCategoriesCheckboxes)).call(this));
-
-    _this.state = {
-      news_categories_data: []
-    };
-    return _this;
-  }
-
-  _createClass(NewsCategoriesCheckboxes, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/news-categories').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          news_categories_data: data
-        });
-      }).catch(function (err) {
-        console.log(err);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var _props = this.props,
-          preChecked = _props.preChecked,
-          sendNewsCategoriesData = _props.sendNewsCategoriesData,
-          attached = _props.attached,
-          detach = _props.detach;
-
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'news-categories-container' },
-        _react2.default.createElement(
-          'label',
-          null,
-          'News Category/Categories'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          { className: 'checkboxes-container' },
-          this.state.news_categories_data.map(function (category) {
-            return _react2.default.createElement(
-              'div',
-              { key: category.id },
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                value: category.id,
-                name: 'news_categories_ids',
-                checked: _this3.props.preChecked.includes(category.id),
-                onChange: function onChange(e) {
-                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendNewsCategoriesData);
-                } }),
-              _react2.default.createElement(
-                'label',
-                null,
-                category.name
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return NewsCategoriesCheckboxes;
-}(_react2.default.Component);
-
-module.exports = NewsCategoriesCheckboxes;
-
-/***/ }),
-/* 436 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(14);
-
-var ProjectCategoriesCheckboxes = function (_React$Component) {
-  _inherits(ProjectCategoriesCheckboxes, _React$Component);
-
-  function ProjectCategoriesCheckboxes() {
-    _classCallCheck(this, ProjectCategoriesCheckboxes);
-
-    var _this = _possibleConstructorReturn(this, (ProjectCategoriesCheckboxes.__proto__ || Object.getPrototypeOf(ProjectCategoriesCheckboxes)).call(this));
-
-    _this.state = {
-      project_categories_data: []
-    };
-    return _this;
-  }
-
-  _createClass(ProjectCategoriesCheckboxes, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/project-categories').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          project_categories_data: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var _props = this.props,
-          preChecked = _props.preChecked,
-          sendProjectCategoriesData = _props.sendProjectCategoriesData,
-          attached = _props.attached,
-          detach = _props.detach;
-
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'project-categories-container' },
-        _react2.default.createElement(
-          'label',
-          null,
-          'Project Category/Categories: '
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'div',
-          { className: 'checkboxes-container' },
-          this.state.project_categories_data.map(function (category) {
-            return _react2.default.createElement(
-              'div',
-              { key: category.id },
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                value: category.id,
-                name: 'project_categories_ids',
-                checked: _this3.props.preChecked.includes(category.id),
-                onChange: function onChange(e) {
-                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendProjectCategoriesData);
-                } }),
-              _react2.default.createElement(
-                'label',
-                null,
-                category.name
-              )
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return ProjectCategoriesCheckboxes;
-}(_react2.default.Component);
-
-module.exports = ProjectCategoriesCheckboxes;
-
-/***/ }),
-/* 437 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormClient = __webpack_require__(415);
-
-var UpdateClient = function (_Component) {
-  _inherits(UpdateClient, _Component);
-
-  function UpdateClient() {
-    _classCallCheck(this, UpdateClient);
-
-    return _possibleConstructorReturn(this, (UpdateClient.__proto__ || Object.getPrototypeOf(UpdateClient)).apply(this, arguments));
-  }
-
-  _createClass(UpdateClient, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(FormClient, { sendRequestType: 'PUT', clientId: this.props.match.params.id })
-      );
-    }
-  }]);
-
-  return UpdateClient;
-}(_react.Component);
-
-module.exports = UpdateClient;
-
-/***/ }),
-/* 438 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormCollaborator = __webpack_require__(416);
-
-var UpdateCollaborator = function (_Component) {
-  _inherits(UpdateCollaborator, _Component);
-
-  function UpdateCollaborator() {
-    _classCallCheck(this, UpdateCollaborator);
-
-    return _possibleConstructorReturn(this, (UpdateCollaborator.__proto__ || Object.getPrototypeOf(UpdateCollaborator)).apply(this, arguments));
-  }
-
-  _createClass(UpdateCollaborator, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(FormCollaborator, { sendRequestType: 'PUT', collaboratorId: this.props.match.params.id })
-      );
-    }
-  }]);
-
-  return UpdateCollaborator;
-}(_react.Component);
-
-module.exports = UpdateCollaborator;
-
-/***/ }),
-/* 439 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(14);
-var FormValidations = __webpack_require__(21);
-var DataActions = __webpack_require__(27);
-
-var UpdateImage = function (_React$Component) {
-  _inherits(UpdateImage, _React$Component);
-
-  function UpdateImage() {
-    _classCallCheck(this, UpdateImage);
-
-    var _this = _possibleConstructorReturn(this, (UpdateImage.__proto__ || Object.getPrototypeOf(UpdateImage)).call(this));
-
-    _this.state = {
-      title: '',
-      alt: '',
-      url: '',
-      projects: [],
-      projectName: '',
-      project_id: '',
-      project_id_detach: '',
-      index_page: false,
-      success: false
-    };
-    return _this;
-  }
-
-  _createClass(UpdateImage, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/images/' + this.props.imageId).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          title: data.title ? data.title : '',
-          alt: data.alt ? data.alt : '',
-          url: data.url,
-          project_id: data.project_id ? data.project_id : '',
-          index_page: data.index_page ? data.index_page : false
-        });
-        if (data.project) {
-          _this2.setState({
-            projectName: data.project.name
-          });
-        }
-      }).catch(function (err) {
-        console.error(err);
-      });
-      fetch('/api/projects').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          projects: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'submitForm',
-    value: function submitForm(event) {
-      event.preventDefault();
-      FormValidations.trimData(this.state, this);
-      this.forceUpdate(function () {
-        DataActions.sendRequest('PUT', this.state, '/api/images/' + this.props.imageId, FormHandlers.successMessage(this));
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var _props = this.props,
-          imageId = _props.imageId,
-          isOpen = _props.isOpen,
-          onClose = _props.onClose;
-
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Open?: ',
-          isOpen ? 'true' : 'false'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Update An Image'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'success' },
-          this.state.success ? _react2.default.createElement(
-            'div',
-            { id: 'image-updated-success', style: { color: 'green' } },
-            _react2.default.createElement(
-              'p',
-              null,
-              'Image successfully updated.'
-            )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: onClose },
-          'Close'
-        ),
-        _react2.default.createElement(
-          'form',
-          { id: 'update-image' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Image URL: ',
-              this.state.url
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Image Title: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'title',
-              value: this.state.title,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Alt Tag: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'alt',
-              value: this.state.alt,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Image attached to: '
-            ),
-            _react2.default.createElement(
-              'select',
-              { name: 'project_id', value: this.state.project_id, onChange: function onChange(e) {
-                  return FormHandlers.handleOnChange(e, _this3);
-                } },
-              _react2.default.createElement(
-                'option',
-                { value: '' },
-                'No Project'
-              ),
-              this.state.projects.map(function (project) {
-                return _react2.default.createElement(
-                  'option',
-                  { key: project.id, value: project.id },
-                  project.name
-                );
-              })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Use this image on index page?: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'checkbox',
-              name: 'index_page',
-              checked: this.state.index_page,
-              onChange: function onChange(e) {
-                return FormHandlers.checkboxChange(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              {
-                type: 'submit',
-                onClick: function onClick(e) {
-                  return _this3.submitForm(e);
-                } },
-              'Update'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: onClose },
-          'Cancel'
-        )
-      );
-    }
-  }]);
-
-  return UpdateImage;
-}(_react2.default.Component);
-
-module.exports = UpdateImage;
-
-/***/ }),
-/* 440 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormNewsStory = __webpack_require__(417);
-
-var UpdateNewsStory = function (_Component) {
-  _inherits(UpdateNewsStory, _Component);
-
-  function UpdateNewsStory() {
-    _classCallCheck(this, UpdateNewsStory);
-
-    return _possibleConstructorReturn(this, (UpdateNewsStory.__proto__ || Object.getPrototypeOf(UpdateNewsStory)).apply(this, arguments));
-  }
-
-  _createClass(UpdateNewsStory, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(FormNewsStory, { sendRequestType: 'PUT', newsStoryId: this.props.match.params.id })
-      );
-    }
-  }]);
-
-  return UpdateNewsStory;
-}(_react.Component);
-
-module.exports = UpdateNewsStory;
-
-/***/ }),
-/* 441 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-var _reactDropzone = __webpack_require__(346);
-
-var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(14);
-var DataActions = __webpack_require__(27);
-
-var UploadImages = function (_React$Component) {
-  _inherits(UploadImages, _React$Component);
-
-  function UploadImages() {
-    _classCallCheck(this, UploadImages);
-
-    var _this = _possibleConstructorReturn(this, (UploadImages.__proto__ || Object.getPrototypeOf(UploadImages)).call(this));
-
-    _this.state = {
-      submitError: []
-    };
-
-    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/images', _this.state.submitError);
-    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
-    return _this;
-  }
-
-  _createClass(UploadImages, [{
-    key: 'onDrop',
-    value: function onDrop(files) {
-      var _this2 = this;
-
-      files.forEach(function (file) {
-        var formData = new FormData();
-
-        formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload', _this2.setRedirectWithMessage, _this2.setSubmitErrorMessage);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/images' },
-          'All Images'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Upload Image(s)'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'ul',
-            null,
-            this.state.submitError.map(function (message, i) {
-              return _react2.default.createElement(
-                'li',
-                { key: i },
-                message
-              );
-            })
-          )
-        ),
-        _react2.default.createElement(
-          _reactDropzone2.default,
-          {
-            name: 'images',
-            accept: 'image/*',
-            onDrop: function onDrop(e) {
-              return _this3.onDrop(e);
-            }
-          },
-          _react2.default.createElement(
-            'div',
-            null,
-            'Drag image(s) here. Or click to select image(s) to upload.'
-          )
-        )
-      );
-    }
-  }]);
-
-  return UploadImages;
-}(_react2.default.Component);
-
-;
-
-module.exports = (0, _reactRouterDom.withRouter)(UploadImages);
 
 /***/ })
 /******/ ]);

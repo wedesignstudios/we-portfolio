@@ -10,9 +10,11 @@ input {
   padding: 0.25rem 0.4rem; }
   input.err {
     border: 2px solid red; }
+  input:focus {
+    outline: none; }
 
-input:focus {
-  outline: none; }
+textarea.err {
+  border: 2px solid red; }
 
 #navbar-main {
   background-color: orange; }
@@ -31,14 +33,8 @@ input:focus {
 
 .checkboxes-container,
 .images-select-container {
-  border: 1px solid #DEDEDE;
-  display: inline-block;
-  margin: 1rem 0;
-  max-height: 20rem;
-  max-width: 30rem;
-  min-width: 15rem;
-  overflow: scroll;
-  padding: 0.65rem; }
+  max-height: 21.4rem;
+  overflow: scroll; }
   .checkboxes-container img,
   .images-select-container img {
     margin: 0.5rem;

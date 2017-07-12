@@ -15018,10 +15018,11 @@ var FormProject = function (_React$Component) {
 
     _this.state = {
       name: '',
+      initialName: '',
       date: '',
       description: '',
       project_categories_ids: [],
-      project_categories_attached: [],
+      project_categories_ids_attached: [],
       project_categories_ids_detach: [],
       project_categories_ids_checked: [],
       clients_ids: [],
@@ -15029,7 +15030,7 @@ var FormProject = function (_React$Component) {
       clients_ids_detach: [],
       clients_ids_checked: [],
       collaborators_ids: [],
-      collaborators_attached: [],
+      collaborators_ids_attached: [],
       collaborators_ids_detach: [],
       collaborators_ids_checked: [],
       nameErr: false,
@@ -15073,7 +15074,8 @@ var FormProject = function (_React$Component) {
         }).then(function (data) {
           _this2.setState({
             name: data.name,
-            date: data.date,
+            initialName: data.name,
+            date: (0, _moment2.default)(data.date),
             description: data.description
           });
           if (data.clients) {
@@ -15118,10 +15120,7 @@ var FormProject = function (_React$Component) {
         if (this.props.sendRequestType === 'POST') {
           DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', this.setRedirectWithMessage, this.setSubmitErrorMessage);
         } else {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects/' + this.props.projectId, FormHandlers.successMessage(this));
-          FormHandlers.updateAttached(this, ['clients', 'collaborators', 'project_categories']);
-          FormHandlers.resetDetached(this, ['clients', 'collaborators', 'project_categories']);
-          FormHandlers.resetToAttachIds(this, ['clients', 'collaborators', 'project_categories']);
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects/' + this.props.projectId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
         }
       });
     }
@@ -15132,179 +15131,213 @@ var FormProject = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/projects' },
-          'All Projects'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          this.props.sendRequestType === 'POST' ? 'Create A New Project' : 'Update Project: ' + this.state.name
-        ),
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          { className: 'submit-message-success' },
-          this.state.submitSuccess ? _react2.default.createElement(
-            'div',
-            { id: 'project-added-success', style: { color: 'green' } },
+          { className: 'col-6' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/dashboard/projects', className: 'btn btn-outline-primary mb-3' },
+            'All Projects'
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'h1',
+            null,
             _react2.default.createElement(
-              'p',
-              null,
+              'span',
+              { className: 'badge badge-default' },
+              this.props.sendRequestType === 'POST' ? 'Create A New Project' : 'Update Project: ' + this.state.initialName
+            )
+          ),
+          this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+            'button',
+            {
+              className: 'btn btn-danger mb-3',
+              onClick: function onClick(e) {
+                return _this3.deleteProject(e);
+              } },
+            'Delete ',
+            this.state.initialName
+          ) : null,
+          _react2.default.createElement(
+            'div',
+            { className: 'submit-message-success' },
+            this.state.submitSuccess ? _react2.default.createElement(
+              'div',
+              { id: 'project-added-success',
+                className: 'alert alert-success' },
               this.props.sendRequestType === 'POST' ? 'New Project successfully added.' : 'Project successfully updated.'
+            ) : null
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'submit-message-error' },
+            this.state.submitError ? '<div className="alert alert-danger">\n                ' + this.state.submitError + '\n              </div>' : null
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
+              'form',
+              { id: 'create-project' },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Project Name: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-8' },
+                  _react2.default.createElement('input', {
+                    type: 'text',
+                    name: 'name',
+                    className: this.state.nameErr ? 'err form-control' : 'form-control',
+                    value: this.state.name,
+                    onChange: function onChange(e) {
+                      return FormHandlers.handleOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventSpaceKey(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Date Completed: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-8' },
+                  _react2.default.createElement(_reactDatepicker2.default, {
+                    selected: this.state.date,
+                    value: this.state.date,
+                    name: 'date',
+                    className: this.state.dateErr ? 'err form-control' : 'form-control',
+                    showMonthDropdown: true,
+                    showYearDropdown: true,
+                    dropdownMode: 'select',
+                    placeholderText: 'Click to select a date',
+                    popoverAttachment: 'top right',
+                    popoverTargetAttachment: 'top center',
+                    popoverTargetOffset: '38px 250px',
+                    onChange: function onChange(e) {
+                      return FormHandlersValidations.handleDateOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventAllButShiftAndTab(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Description: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-8' },
+                  _react2.default.createElement('textarea', {
+                    type: 'textfield',
+                    name: 'description',
+                    className: this.state.descriptionErr ? 'err form-control' : 'form-control',
+                    value: this.state.description,
+                    onChange: function onChange(e) {
+                      return FormHandlers.handleOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventSpaceKey(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
+              ),
+              _react2.default.createElement(ClientCheckboxes, {
+                preChecked: this.state.clients_ids_checked,
+                sendClientData: this.getComponentData,
+                attached: this.state.clients_ids_attached,
+                toAttach: this.state.clients_ids,
+                detach: this.state.clients_ids_detach }),
+              _react2.default.createElement(CollaboratorCheckboxes, {
+                preChecked: this.state.collaborators_ids_checked,
+                sendCollaboratorData: this.getComponentData,
+                attached: this.state.collaborators_ids_attached,
+                toAttach: this.state.collaborators_ids,
+                detach: this.state.collaborators_ids_detach }),
+              _react2.default.createElement(ProjectCategoriesCheckboxes, {
+                preChecked: this.state.project_categories_ids_checked,
+                sendProjectCategoriesData: this.getComponentData,
+                attached: this.state.project_categories_ids_attached,
+                toAttach: this.state.project_categories_ids,
+                detach: this.state.project_categories_ids_detach }),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-10 d-flex justify-content-end' },
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      className: 'btn btn-outline-primary',
+                      disabled: this.requiredFieldsBlank,
+                      onClick: function onClick(e) {
+                        return _this3.submitForm(e);
+                      } },
+                    this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialName : 'Create New Project'
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'errors row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-10' },
+                this.state.nameErr ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'project-name-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Name can not be blank. Please enter a project name.'
+                ) : null,
+                this.state.dateErr ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'project-date-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Date can not be blank. Please enter a project completed date.'
+                ) : null,
+                this.state.descriptionErr ? _react2.default.createElement(
+                  'div',
+                  { id: 'project-description-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Description can not be blank. Please enter a project description.'
+                ) : null
+              )
             )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'p',
-            null,
-            this.state.submitError
           )
-        ),
-        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return _this3.deleteProject(e);
-            } },
-          'Delete ',
-          this.state.name
-        ) : null,
-        _react2.default.createElement(
-          'form',
-          { id: 'create-project' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Project Name: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'name',
-              className: this.state.nameErr ? 'err' : null,
-              value: this.state.name,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Date Completed: '
-            ),
-            _react2.default.createElement(_reactDatepicker2.default, {
-              selected: this.state.date,
-              value: this.state.date,
-              name: 'date',
-              className: this.state.dateErr ? 'err' : null,
-              showMonthDropdown: true,
-              showYearDropdown: true,
-              dropdownMode: 'select',
-              placeholderText: 'Click to select a date',
-              popoverAttachment: 'top right',
-              popoverTargetAttachment: 'top center',
-              popoverTargetOffset: '38px 250px',
-              onChange: function onChange(e) {
-                return FormHandlersValidations.handleDateOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventAllButShiftAndTab(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Description: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'textfield',
-              name: 'description',
-              className: this.state.descriptionErr ? 'err' : null,
-              value: this.state.description,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          this.props.projectId ? _react2.default.createElement(
-            'div',
-            { className: 'update-components-container' },
-            _react2.default.createElement(ClientCheckboxes, {
-              preChecked: this.state.clients_ids_checked,
-              sendClientData: this.getComponentData,
-              attached: this.state.clients_ids_attached,
-              toAttach: this.state.clients_ids,
-              detach: this.state.clients_ids_detach }),
-            _react2.default.createElement(CollaboratorCheckboxes, {
-              preChecked: this.state.collaborators_ids_checked,
-              sendCollaboratorData: this.getComponentData,
-              attached: this.state.collaborators_ids_attached,
-              toAttach: this.state.collaborators_ids,
-              detach: this.state.collaborators_ids_detach }),
-            _react2.default.createElement(ProjectCategoriesCheckboxes, {
-              preChecked: this.state.project_categories_ids_checked,
-              sendProjectCategoriesData: this.getComponentData,
-              attached: this.state.project_categories_ids_attached,
-              toAttach: this.state.project_categories_ids,
-              detach: this.state.project_categories_ids_detach })
-          ) : null,
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this3.submitForm(e);
-                } },
-              'Submit'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'errors' },
-          this.state.nameErr ? _react2.default.createElement(
-            'div',
-            { id: 'project-name-validation-error', style: { color: 'red' } },
-            'Name can not be blank. Please enter a project name.'
-          ) : null,
-          this.state.dateErr ? _react2.default.createElement(
-            'div',
-            { id: 'project-date-validation-error', style: { color: 'red' } },
-            'Date can not be blank. Please enter a project completed date.'
-          ) : null,
-          this.state.descriptionErr ? _react2.default.createElement(
-            'div',
-            { id: 'project-description-validation-error', style: { color: 'red' } },
-            'Description can not be blank. Please enter a project description.'
-          ) : null
         )
       );
     }
@@ -30454,7 +30487,7 @@ var GetProjects = function (_Component) {
     };
 
     if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
+      _this.props.history.location.state = { message: '' };
     }
 
     _this.flashMessage = _this.props.history.location.state.message;
@@ -30490,12 +30523,11 @@ var GetProjects = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
+        this.flashMessage ? _react2.default.createElement(
+          'div',
+          { className: 'alert alert-success' },
           this.flashMessage
-        ),
+        ) : null,
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: this.props.match.url + '/create' },
@@ -30985,35 +31017,39 @@ var ClientCheckboxes = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { id: 'clients-container' },
+        { className: 'form-group row' },
         _react2.default.createElement(
           'label',
-          null,
+          { className: 'col-sm-2' },
           'Project Client(s): '
         ),
-        _react2.default.createElement('br', null),
         _react2.default.createElement(
           'div',
-          { className: 'checkboxes-container' },
-          this.state.clients_data.map(function (client) {
-            return _react2.default.createElement(
-              'div',
-              { key: client.id },
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                value: client.id,
-                name: 'clients_ids',
-                checked: _this3.props.preChecked.includes(client.id),
-                onChange: function onChange(e) {
-                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendClientData);
-                } }),
-              _react2.default.createElement(
-                'label',
-                null,
-                client.name
-              )
-            );
-          })
+          { className: 'col-sm-8' },
+          _react2.default.createElement(
+            'div',
+            { className: 'checkboxes-container form-control' },
+            this.state.clients_data.map(function (client) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'form-check', key: client.id },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-check-label' },
+                  _react2.default.createElement('input', {
+                    className: 'form-check-input mr-2',
+                    type: 'checkbox',
+                    value: client.id,
+                    name: 'clients_ids',
+                    checked: _this3.props.preChecked.includes(client.id),
+                    onChange: function onChange(e) {
+                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendClientData);
+                    } }),
+                  client.name
+                )
+              );
+            })
+          )
         )
       );
     }
@@ -31094,35 +31130,39 @@ var CollaboratorCheckboxes = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { id: 'collaborators-container' },
+        { className: 'form-group row' },
         _react2.default.createElement(
           'label',
-          null,
+          { className: 'col-sm-2' },
           'Project Collaborator(s): '
         ),
-        _react2.default.createElement('br', null),
         _react2.default.createElement(
           'div',
-          { className: 'checkboxes-container' },
-          this.state.collaborators_data.map(function (collaborator) {
-            return _react2.default.createElement(
-              'div',
-              { key: collaborator.id },
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                value: collaborator.id,
-                name: 'collaborators_ids',
-                checked: _this3.props.preChecked.includes(collaborator.id),
-                onChange: function onChange(e) {
-                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendCollaboratorData);
-                } }),
-              _react2.default.createElement(
-                'label',
-                null,
-                collaborator.name
-              )
-            );
-          })
+          { className: 'col-sm-8' },
+          _react2.default.createElement(
+            'div',
+            { className: 'checkboxes-container form-control' },
+            this.state.collaborators_data.map(function (collaborator) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'form-check', key: collaborator.id },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-check-label' },
+                  _react2.default.createElement('input', {
+                    className: 'form-check-input mr-2',
+                    type: 'checkbox',
+                    value: collaborator.id,
+                    name: 'collaborators_ids',
+                    checked: _this3.props.preChecked.includes(collaborator.id),
+                    onChange: function onChange(e) {
+                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendCollaboratorData);
+                    } }),
+                  collaborator.name
+                )
+              );
+            })
+          )
         )
       );
     }
@@ -31333,35 +31373,40 @@ var NewsCategoriesCheckboxes = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { id: 'news-categories-container' },
+        { className: 'form-group row' },
         _react2.default.createElement(
           'label',
-          null,
+          { className: 'col-sm-2' },
           'News Category/Categories'
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement(
           'div',
-          { className: 'checkboxes-container' },
-          this.state.news_categories_data.map(function (category) {
-            return _react2.default.createElement(
-              'div',
-              { key: category.id },
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                value: category.id,
-                name: 'news_categories_ids',
-                checked: _this3.props.preChecked.includes(category.id),
-                onChange: function onChange(e) {
-                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendNewsCategoriesData);
-                } }),
-              _react2.default.createElement(
-                'label',
-                null,
-                category.name
-              )
-            );
-          })
+          { className: 'col-sm-8' },
+          _react2.default.createElement(
+            'div',
+            { className: 'checkboxes-container form-control' },
+            this.state.news_categories_data.map(function (category) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'form-check', key: category.id },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-check-label' },
+                  _react2.default.createElement('input', {
+                    className: 'form-check-input mr-2',
+                    type: 'checkbox',
+                    value: category.id,
+                    name: 'news_categories_ids',
+                    checked: _this3.props.preChecked.includes(category.id),
+                    onChange: function onChange(e) {
+                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendNewsCategoriesData);
+                    } }),
+                  category.name
+                )
+              );
+            })
+          )
         )
       );
     }
@@ -31442,35 +31487,39 @@ var ProjectCategoriesCheckboxes = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { id: 'project-categories-container' },
+        { className: 'form-group row' },
         _react2.default.createElement(
           'label',
-          null,
+          { className: 'col-sm-2' },
           'Project Category/Categories: '
         ),
-        _react2.default.createElement('br', null),
         _react2.default.createElement(
           'div',
-          { className: 'checkboxes-container' },
-          this.state.project_categories_data.map(function (category) {
-            return _react2.default.createElement(
-              'div',
-              { key: category.id },
-              _react2.default.createElement('input', {
-                type: 'checkbox',
-                value: category.id,
-                name: 'project_categories_ids',
-                checked: _this3.props.preChecked.includes(category.id),
-                onChange: function onChange(e) {
-                  return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendProjectCategoriesData);
-                } }),
-              _react2.default.createElement(
-                'label',
-                null,
-                category.name
-              )
-            );
-          })
+          { className: 'col-sm-8' },
+          _react2.default.createElement(
+            'div',
+            { className: 'checkboxes-container form-control' },
+            this.state.project_categories_data.map(function (category) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'form-check', key: category.id },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-check-label' },
+                  _react2.default.createElement('input', {
+                    className: 'form-check-input mr-2',
+                    type: 'checkbox',
+                    value: category.id,
+                    name: 'project_categories_ids',
+                    checked: _this3.props.preChecked.includes(category.id),
+                    onChange: function onChange(e) {
+                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendProjectCategoriesData);
+                    } }),
+                  category.name
+                )
+              );
+            })
+          )
         )
       );
     }

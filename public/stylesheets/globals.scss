@@ -14,10 +14,15 @@ input {
   padding: 0.25rem 0.4rem;
 
   &.err  {
-   border: 2px solid red;    
+   border: 2px solid red;
+  }
+  &:focus {
+    outline: none;
   }
 }
-  
-input:focus {
-  outline: none;  
+
+textarea {
+  &.err {
+    border: 2px solid red;
+  }
 }

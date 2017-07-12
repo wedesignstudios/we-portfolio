@@ -13,7 +13,7 @@ class GetProjects extends Component {
     }
 
     if(this.props.history.location.state === undefined) {
-      this.props.history.location.state = {message: 'No message.'};
+      this.props.history.location.state = {message: ''};
     }
 
     this.flashMessage = this.props.history.location.state.message;
@@ -40,7 +40,12 @@ class GetProjects extends Component {
   render() {
     return(
       <div>
-        <p>Message: {this.flashMessage}</p>
+        {this.flashMessage ?
+          <div className="alert alert-success">
+            {this.flashMessage}
+          </div> :
+        null}
+
         <Link to={`${this.props.match.url}/create`}>Add New Project</Link>
         <h3>All Projects</h3>
           <div>

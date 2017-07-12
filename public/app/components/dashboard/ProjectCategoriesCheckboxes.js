@@ -29,19 +29,24 @@ class ProjectCategoriesCheckboxes extends React.Component {
     const { preChecked, sendProjectCategoriesData, attached, detach } = this.props;
 
     return (
-      <div id="project-categories-container">
-        <label>Project Category/Categories: </label><br />
-        <div className="checkboxes-container">
-          {this.state.project_categories_data.map(category => 
-            <div key={category.id}>
-              <input 
-                type="checkbox"
-                value={category.id}
-                name="project_categories_ids"
-                checked={this.props.preChecked.includes(category.id)}
-                onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendProjectCategoriesData)} />
-              <label>{category.name}</label>
-            </div>)}
+      <div className="form-group row">
+        <label className="col-sm-2">Project Category/Categories: </label>
+        <div className="col-sm-8">
+          <div className="checkboxes-container form-control">
+            {this.state.project_categories_data.map(category =>
+              <div className="form-check" key={category.id}>
+                <label className="form-check-label">
+                  <input
+                    className="form-check-input mr-2"
+                    type="checkbox"
+                    value={category.id}
+                    name="project_categories_ids"
+                    checked={this.props.preChecked.includes(category.id)}
+                    onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendProjectCategoriesData)} />
+                  {category.name}
+                </label>
+              </div>)}
+          </div>
         </div>
       </div>
     );

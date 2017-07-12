@@ -15,7 +15,7 @@ class ClientCheckboxes extends React.Component {
   componentDidMount() {
     fetch(`/api/clients`)
       .then((res) => res.json())
-      .then((data) => {          
+      .then((data) => {
         this.setState({
           clients_data: data
         })
@@ -29,20 +29,25 @@ class ClientCheckboxes extends React.Component {
     const { preChecked, sendClientData, attached, detach } = this.props;
 
     return (
-      <div id="clients-container">
-        <label>Project Client(s): </label><br />
-        <div className="checkboxes-container">
-          {this.state.clients_data.map(client => 
-            <div key={client.id}>
-              <input 
-                type="checkbox"
-                value={client.id}
-                name="clients_ids"
-                checked={this.props.preChecked.includes(client.id)}
-                onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendClientData)} />
-              <label>{client.name}</label>
-            </div>)}
-        </div>        
+      <div className="form-group row">
+        <label className="col-sm-2">Project Client(s): </label>
+        <div className="col-sm-8">
+          <div className="checkboxes-container form-control">
+            {this.state.clients_data.map(client =>
+              <div className="form-check" key={client.id}>
+                <label className="form-check-label">
+                  <input
+                    className="form-check-input mr-2"
+                    type="checkbox"
+                    value={client.id}
+                    name="clients_ids"
+                    checked={this.props.preChecked.includes(client.id)}
+                    onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendClientData)} />
+                    {client.name}
+                  </label>
+              </div>)}
+          </div>
+        </div>
       </div>
     );
   }

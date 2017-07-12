@@ -29,19 +29,24 @@ class CollaboratorCheckboxes extends React.Component {
     const { preChecked, sendCollaboratorData, attached, detach } = this.props;
 
     return (
-      <div id="collaborators-container">
-        <label>Project Collaborator(s): </label><br />
-        <div className="checkboxes-container">
-          {this.state.collaborators_data.map(collaborator =>
-            <div key={collaborator.id}>
-              <input 
-                type="checkbox"
-                value={collaborator.id}
-                name="collaborators_ids"
-                checked={this.props.preChecked.includes(collaborator.id)}
-                onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendCollaboratorData)} />
-              <label>{collaborator.name}</label>
-            </div>)}
+      <div className="form-group row">
+        <label className="col-sm-2">Project Collaborator(s): </label>
+        <div className="col-sm-8">
+          <div className="checkboxes-container form-control">
+            {this.state.collaborators_data.map(collaborator =>
+              <div className="form-check" key={collaborator.id}>
+                <label className="form-check-label">
+                  <input
+                    className="form-check-input mr-2"
+                    type="checkbox"
+                    value={collaborator.id}
+                    name="collaborators_ids"
+                    checked={this.props.preChecked.includes(collaborator.id)}
+                    onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendCollaboratorData)} />
+                    {collaborator.name}
+                  </label>
+              </div>)}
+          </div>
         </div>
       </div>
     );

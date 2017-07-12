@@ -46,6 +46,9 @@ router.get('/:id', (req, res, next) => {
 
 // CREATE a new project
 router.post('/', isLoggedIn, (req, res, next) => {
+  const clients_ids = req.body.clients_ids;
+  const collaborators_ids = req.body.collaborators_ids;
+  const project_categories_ids = req.body.project_categories_ids;
   const allowedKeys = ['name', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
 
@@ -54,6 +57,9 @@ router.post('/', isLoggedIn, (req, res, next) => {
       .forge(formData)
       .save()
       .then((project) => {
+        project.clients().attach(clients_ids);
+        project.collaborators().attach(collaborators_ids);
+        project.project_categories().attach(project_categories_ids);
         project = project.toJSON();
         return res.status(200).send(`${project.name} successfully created.`);
       })

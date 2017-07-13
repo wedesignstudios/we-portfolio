@@ -15002,6 +15002,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var ClientCheckboxes = __webpack_require__(245);
 var CollaboratorCheckboxes = __webpack_require__(246);
+var ModalAddImages = __webpack_require__(413);
 var ProjectCategoriesCheckboxes = __webpack_require__(249);
 var DataActions = __webpack_require__(27);
 var FormHandlers = __webpack_require__(14);
@@ -15105,6 +15106,12 @@ var FormProject = function (_React$Component) {
       var _setState2;
 
       this.setState((_setState2 = {}, _defineProperty(_setState2, inputName, data.toAttach), _defineProperty(_setState2, inputName + '_attached', data.attached), _defineProperty(_setState2, inputName + '_detach', data.detach), _defineProperty(_setState2, inputName + '_checked', data.checked), _setState2));
+    }
+  }, {
+    key: 'openImageModal',
+    value: function openImageModal(event) {
+      event.preventDefault();
+      $(_reactDom2.default.findDOMNode(this.refs.modal)).modal();
     }
   }, {
     key: 'deleteProject',
@@ -15269,6 +15276,29 @@ var FormProject = function (_React$Component) {
                     } })
                 )
               ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Image(s): '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-8' },
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      className: 'btn btn-secondary',
+                      onClick: function onClick(e) {
+                        return _this3.openImageModal(e);
+                      } },
+                    'Add Image(s)'
+                  )
+                )
+              ),
+              _react2.default.createElement(ModalAddImages, { ref: 'modal' }),
               _react2.default.createElement(ClientCheckboxes, {
                 preChecked: this.state.clients_ids_checked,
                 sendClientData: this.getComponentData,
@@ -51135,6 +51165,363 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GetImagesProjects = __webpack_require__(414);
+
+var ModalAddImages = function (_Component) {
+  _inherits(ModalAddImages, _Component);
+
+  function ModalAddImages() {
+    _classCallCheck(this, ModalAddImages);
+
+    var _this = _possibleConstructorReturn(this, (ModalAddImages.__proto__ || Object.getPrototypeOf(ModalAddImages)).call(this));
+
+    _this.state = {
+      openDropzone: false
+    };
+
+    _this.getOpenCloseData = _this.getOpenCloseData.bind(_this);
+    return _this;
+  }
+
+  _createClass(ModalAddImages, [{
+    key: 'openCloseDropZone',
+    value: function openCloseDropZone() {
+      this.setState({
+        openDropzone: !this.state.openDropzone
+      });
+    }
+  }, {
+    key: 'getOpenCloseData',
+    value: function getOpenCloseData() {
+      this.openCloseDropZone();
+    }
+  }, {
+    key: 'addImages',
+    value: function addImages(event) {
+      event.preventDefault();
+      console.log('this: ', this);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'modal fade', id: 'addImages', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'exampleModalLabel', 'aria-hidden': 'true' },
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-dialog modal-lg', role: 'document' },
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-content' },
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-header d-flex justify-content-start' },
+              _react2.default.createElement(
+                'h5',
+                { className: 'modal-title p-2' },
+                'Select Image(s)'
+              ),
+              _react2.default.createElement(
+                'button',
+                {
+                  type: 'button',
+                  className: 'btn btn-primary p-2',
+                  onClick: function onClick(e) {
+                    return _this2.openCloseDropZone(e);
+                  } },
+                'Add New'
+              ),
+              _react2.default.createElement(
+                'button',
+                {
+                  type: 'button',
+                  className: 'close ml-auto p-2',
+                  'data-dismiss': 'modal',
+                  'aria-label': 'Close' },
+                _react2.default.createElement(
+                  'span',
+                  { 'aria-hidden': 'true' },
+                  '\xD7'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-body' },
+              _react2.default.createElement(GetImagesProjects, {
+                openDropzone: this.state.openDropzone,
+                sendOpenCloseData: this.getOpenCloseData })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-footer' },
+              _react2.default.createElement(
+                'button',
+                {
+                  type: 'button',
+                  className: 'btn btn-secondary',
+                  'data-dismiss': 'modal' },
+                'Cancel'
+              ),
+              _react2.default.createElement(
+                'button',
+                {
+                  type: 'button',
+                  className: 'btn btn-primary',
+                  'data-dismiss': 'modal',
+                  onClick: function onClick(e) {
+                    return _this2.addImages(e);
+                  } },
+                'Add Image(s)'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return ModalAddImages;
+}(_react.Component);
+
+;
+
+module.exports = ModalAddImages;
+
+/***/ }),
+/* 414 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactDropzone = __webpack_require__(346);
+
+var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GetImagesProjects = function (_React$Component) {
+  _inherits(GetImagesProjects, _React$Component);
+
+  function GetImagesProjects() {
+    _classCallCheck(this, GetImagesProjects);
+
+    var _this = _possibleConstructorReturn(this, (GetImagesProjects.__proto__ || Object.getPrototypeOf(GetImagesProjects)).call(this));
+
+    _this.state = {
+      imageData: [],
+      imageId: null
+    };
+
+    _this.dropzoneClickDisabled = false;
+    return _this;
+  }
+
+  _createClass(GetImagesProjects, [{
+    key: 'loadImages',
+    value: function loadImages() {
+      var _this2 = this;
+
+      fetch('/api/images').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        data = data.filter(function (obj) {
+          return obj.project_id === null;
+        });
+
+        _this2.setState({
+          imageData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'onDrop',
+    value: function onDrop(files) {
+      files.forEach(function (file) {
+        var formData = new FormData();
+
+        formData.append('image', file);
+        DataActions.uploadImages(formData, '/api/images/upload');
+      });
+    }
+  }, {
+    key: 'selectImages',
+    value: function selectImages(event, sendImageDataFunc) {
+      var target = event.target;
+      var selectedImageId = target.id;
+      var selectedImageUrl = target.src;
+
+      this.setState({
+        imageId: target.id
+      });
+
+      // sendImageDataFunc({id: selectedImageId, url: selectedImageUrl});
+    }
+  }, {
+    key: 'imageSelectCancel',
+    value: function imageSelectCancel(event, sendImageIdFunc) {
+      event.preventDefault();
+      this.setState({
+        imageId: ''
+      });
+      sendImageIdFunc({ id: this.props.initialImageId, url: '' }, false);
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.loadImages();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var dropzoneRef = void 0;
+      return _react2.default.createElement(
+        'div',
+        { id: 'get-images-projects' },
+        this.props.openDropzone ? _react2.default.createElement(
+          _reactDropzone2.default,
+          {
+            ref: function ref(node) {
+              dropzoneRef = node;
+            },
+            name: 'images',
+            accept: 'image/*',
+            className: 'dropzone-styles',
+            disableClick: true,
+            onDrop: function onDrop(e) {
+              return _this3.onDrop(e);
+            }
+          },
+          _react2.default.createElement(
+            'button',
+            {
+              id: 'close-dropzone',
+              type: 'button',
+              className: 'close',
+              onClick: function onClick(e) {
+                return _this3.props.sendOpenCloseData(e);
+              } },
+            _react2.default.createElement(
+              'span',
+              null,
+              '\xD7'
+            )
+          ),
+          _react2.default.createElement(
+            'h5',
+            null,
+            'Drag image(s) here.'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'or'
+          ),
+          _react2.default.createElement(
+            'button',
+            {
+              type: 'button',
+              className: 'btn btn-secondary',
+              onClick: function onClick() {
+                dropzoneRef.open();
+              } },
+            'Select Image(s)'
+          )
+        ) : null,
+        _react2.default.createElement(
+          'div',
+          { className: 'images-select-container' },
+          this.state.imageData.map(function (image) {
+
+            return _react2.default.createElement('img', {
+              key: image.id,
+              id: image.id,
+              className: _this3.state.imageId == image.id ? 'selected' : '',
+              src: image.url,
+              height: '100',
+              onClick: function onClick(e) {
+                return _this3.selectImages(e, _this3.props.sendImageData);
+              } });
+          })
+        ),
+        this.props.canCancel ? _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick(e) {
+                return _this3.imageSelectCancel(e, _this3.props.sendImageData);
+              } },
+            'Cancel'
+          )
+        ) : null
+      );
+    }
+  }]);
+
+  return GetImagesProjects;
+}(_react2.default.Component);
+
+module.exports = GetImagesProjects;
 
 /***/ })
 /******/ ]);

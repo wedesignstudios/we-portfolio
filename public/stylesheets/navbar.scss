@@ -1,16 +1,16 @@
 // Navbar component styles
 #navbar-main {
-  background-color: orange;
+  background-color: $barberry;
 
   ul li {
     font-size: 1.25rem;
     text-transform: uppercase;
 
   a {
-    color: white;
+    color: $white;
 
       &.nav-active {
-        box-shadow: 0 2px 0 white;
+        box-shadow: 0 2px 0 $white;
         display: inline-block;
       }
     }

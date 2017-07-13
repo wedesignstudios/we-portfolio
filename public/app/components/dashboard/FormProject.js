@@ -251,7 +251,9 @@ class FormProject extends React.Component {
                 </div>
               </div>
 
-              <ModalAddImages ref="modal" />
+              <ModalAddImages
+                ref="modal"
+                sendImageData={this.getComponentData} />
 
               <ClientCheckboxes
                 preChecked={this.state.clients_ids_checked}

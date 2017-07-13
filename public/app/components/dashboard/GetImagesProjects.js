@@ -7,28 +7,10 @@ class GetImagesProjects extends React.Component {
     super();
 
     this.state = {
-      imageData: [],
-      imageId: null
+      image_data: [],
+      image_ids: []
     }
 
-    this.dropzoneClickDisabled = false;
-  }
-
-  loadImages() {
-    fetch('/api/images')
-      .then((res) => res.json())
-      .then((data) => {
-        data = data.filter(obj => {
-          return obj.project_id === null;
-        });
-
-        this.setState({
-          imageData: data
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
   }
 
   onDrop(files) {
@@ -43,24 +25,43 @@ class GetImagesProjects extends React.Component {
     });
   }
 
-  selectImages(event, sendImageDataFunc) {
-    const target = event.target;
-    const selectedImageId = target.id
-    const selectedImageUrl = target.src;
+  loadImages() {
+    fetch('/api/images')
+      .then((res) => res.json())
+      .then((data) => {
+        data = data.filter(obj => {
+          return obj.project_id === null;
+        });
 
-    this.setState({
-      imageId: target.id
-    });
-
-    // sendImageDataFunc({id: selectedImageId, url: selectedImageUrl});
+        this.setState({
+          image_data: data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
-  imageSelectCancel(event, sendImageIdFunc) {
-    event.preventDefault();
-    this.setState({
-      imageId: ''
-    });
-    sendImageIdFunc({id: this.props.initialImageId, url: ''}, false);
+  selectImages(event, sendImageDataFunc) {
+    const target = event.target;
+    const selectedImageId = parseInt(target.id);
+    const selectedImageUrl = target.src;
+    var stateImageIdsArr = this.state.image_ids;
+
+    if(stateImageIdsArr.includes(selectedImageId)) {
+      let index = stateImageIdsArr.indexOf(selectedImageId);
+      stateImageIdsArr.splice(index, 1);
+
+      this.setState({
+        image_ids: stateImageIdsArr
+      });
+    } else {
+      this.setState({
+        image_ids: this.state.image_ids.concat(selectedImageId)
+      });
+    }
+
+    // sendImageDataFunc({imgId: selectedImageId, imgUrl: selectedImageUrl});
   }
 
   componentDidMount() {
@@ -68,9 +69,12 @@ class GetImagesProjects extends React.Component {
   }
 
   render() {
+
     let dropzoneRef;
+
     return(
       <div id="get-images-projects">
+
       {this.props.openDropzone ?
           <Dropzone
             ref={(node) => {dropzoneRef = node}}
@@ -97,24 +101,20 @@ class GetImagesProjects extends React.Component {
             </button>
           </Dropzone> :
         null}
-        <div className="images-select-container">
-        {this.state.imageData.map(image => {
 
+        <div className="images-select-container">
+        {this.state.image_data.map(image => {
           return <img
                     key={image.id}
                     id={image.id}
-                    className={this.state.imageId == image.id ? 'selected' : ''}
+                    className={this.state.image_ids.includes(image.id) ? 'selected' : ''}
                     src={image.url}
                     height="100"
-                    onClick={(e) => this.selectImages(e, this.props.sendImageData)} />
+                    onClick={(e) => this.selectImages(e, this.props.sendImageDataToModal)} />
           })
         }
-      </div>
-      {this.props.canCancel ?
-        <div>
-          <button onClick={(e) => this.imageSelectCancel(e, this.props.sendImageData)}>Cancel</button>
-        </div> :
-      null}
+
+        </div>
     </div>
     )
   }

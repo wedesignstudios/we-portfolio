@@ -8,7 +8,10 @@ class ModalAddImages extends Component {
     super();
 
     this.state = {
-      openDropzone: false
+      openDropzone: false,
+      image_ids_attached: [],
+      image_ids_detach: [],
+      image_ids_selected: []
     }
 
     this.getOpenCloseData = this.getOpenCloseData.bind(this);
@@ -24,9 +27,13 @@ class ModalAddImages extends Component {
     this.openCloseDropZone();
   }
 
-  addImages(event) {
+  addImages(event, sendImageDataFunc) {
     event.preventDefault();
     console.log('this: ', this);
+  }
+
+  getImageData(data) {
+    console.log('ModalAddImages getImageData DATA: ', data);
   }
 
   render() {
@@ -53,7 +60,8 @@ class ModalAddImages extends Component {
             <div className="modal-body">
               <GetImagesProjects
                 openDropzone={this.state.openDropzone}
-                sendOpenCloseData={this.getOpenCloseData} />
+                sendOpenCloseData={this.getOpenCloseData}
+                sendImageDataToModal={this.getImageData} />
             </div>
             <div className="modal-footer">
               <button

@@ -57,6 +57,14 @@ const FormHandlers = {
     }, name);
   },
 
+  multiImageSelect: function(event, _this, sendDataFunc) {
+    const target = event.target;
+    const selectedImageId = target.id
+    const selectedImageUrl = target.src;
+
+    console.log('sendDataFunc', sendDataFunc);
+  },
+
   preventAllButShiftAndTab: function(event) {
     event.target.addEventListener('keydown', function(event) {
       let key = event.key;

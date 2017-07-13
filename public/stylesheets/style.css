@@ -20,15 +20,22 @@ textarea.err {
   border: 2px solid red; }
 
 #navbar-main {
-  background-color: #E6E31A; }
+  background-color: #00B7FF; }
   #navbar-main ul li {
     font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.06rem;
     text-transform: uppercase; }
+    #navbar-main ul li#nav-we-eye-logo a:hover {
+      box-shadow: none; }
     #navbar-main ul li a {
       color: #FFFFFF; }
-      #navbar-main ul li a.nav-active {
-        box-shadow: 0 2px 0 #FFFFFF;
+      #navbar-main ul li a.nav-active, #navbar-main ul li a:hover {
+        box-shadow: 0 7px 0 #E6E31A;
         display: inline-block; }
+      #navbar-main ul li a.nav-link {
+        display: inline-block;
+        padding: 0.5rem 0; }
 
 .checkboxes-container,
 .images-select-container {

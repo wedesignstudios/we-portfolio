@@ -1,17 +1,28 @@
 // Navbar component styles
 #navbar-main {
-  background-color: $barberry;
+  background-color: $dodger-blue;
 
   ul li {
     font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.06rem;
     text-transform: uppercase;
 
-  a {
-    color: $white;
+  &#nav-we-eye-logo a:hover {
+    box-shadow: none; 
+  }
 
-      &.nav-active {
-        box-shadow: 0 2px 0 $white;
+  a {
+    color: $white;      
+
+      &.nav-active,
+      &:hover {
+        box-shadow: 0 7px 0 $barberry;
         display: inline-block;
+      }
+      &.nav-link {
+        display: inline-block;
+        padding: 0.5rem 0;
       }
     }
   }

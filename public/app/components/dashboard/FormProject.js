@@ -11,6 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const ClientCheckboxes = require('./ClientCheckboxes');
 const CollaboratorCheckboxes = require('./CollaboratorCheckboxes');
+const ModalAddImages = require('./ModalAddImages');
 const ProjectCategoriesCheckboxes = require('./ProjectCategoriesCheckboxes');
 const DataActions = require('../../data/actions');
 const FormHandlers = require('../../services/form_handlers');
@@ -107,6 +108,11 @@ class FormProject extends React.Component {
       [inputName + '_detach']: data.detach,
       [inputName + '_checked']: data.checked
     })
+  }
+
+  openImageModal(event) {
+    event.preventDefault();
+    $(ReactDOM.findDOMNode(this.refs.modal)).modal();
   }
 
   deleteProject() {
@@ -233,6 +239,19 @@ class FormProject extends React.Component {
                       onBlur={(e) => FormValidations.checkField(e, this)} />
                 </div>
               </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Image(s): </label>
+                <div className="col-sm-8">
+                  <button
+                    className="btn btn-secondary"
+                    onClick={(e) => this.openImageModal(e)} >
+                      Add Image(s)
+                  </button>
+                </div>
+              </div>
+
+              <ModalAddImages ref="modal" />
 
               <ClientCheckboxes
                 preChecked={this.state.clients_ids_checked}

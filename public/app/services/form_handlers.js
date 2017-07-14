@@ -25,44 +25,74 @@ const FormHandlers = {
     });
   },
 
-  multiCheckboxChange: function(event, _this, sendDataFunc) {
+  multiSelect: function(event, _this, sendDataFunc) {
     const target = event.target;
     const name = target.name;
-    const value = parseInt(target.value);
-    var checked = _this.props.preChecked;
+    const value = target.value ? parseInt(target.value) : parseInt(target.id);
+    var selected = _this.props.preSelected;
     var attached = _this.props.attached;
     var detach = _this.props.detach;
     var toAttach = _this.props.toAttach;
+    var toAttachImgUrls = _this.props.toAttachImgUrls;
 
+    this.attachDetachValue(attached, value, detach, toAttach);
+
+    this.attachDetachImage(target, toAttachImgUrls);
+
+    this.selectValue(selected, value);
+
+    sendDataFunc(this.selectObj(selected, attached, toAttach, detach, toAttachImgUrls), name);
+  },
+
+  attachDetachValue: function(attached, value, detach, toAttach) {
     if(attached.includes(value)) {
       let index = detach.indexOf(value);
       detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
+      return detach;
     } else {
       let index = toAttach.indexOf(value);
       toAttach.includes(value) ? toAttach.splice(index, 1) : toAttach.push(value);
+      return toAttach;
     }
-
-    if(checked.includes(value)) {
-      let index = checked.indexOf(value);
-      checked.splice(index, 1);
-    } else {
-      checked.push(value);
-    }
-
-    sendDataFunc({
-      checked: checked,
-      attached: attached,
-      toAttach: toAttach,
-      detach: detach
-    }, name);
   },
 
-  multiImageSelect: function(event, _this, sendDataFunc) {
-    const target = event.target;
-    const selectedImageId = target.id
-    const selectedImageUrl = target.src;
+  attachDetachImage: function(target, toAttachImgUrls) {
+    let url = target.src;
+    if(toAttachImgUrls && toAttachImgUrls.includes(url)) {
+      let index = toAttachImgUrls.indexOf(url);
+      toAttachImgUrls.splice(index, 1);
+    } else {
+      toAttachImgUrls ? toAttachImgUrls.push(url) : null
+    }
+    return toAttachImgUrls;
+  },
 
-    console.log('sendDataFunc', sendDataFunc);
+  selectValue: function(selected, value) {
+    if(selected && selected.includes(value)) {
+      let index = selected.indexOf(value);
+      selected.splice(index, 1);
+    } else {
+      selected ? selected.push(value) : null;
+    }
+    return selected;
+  },
+
+  selectObj: function(selected, attached, toAttach, detach, toAttachImgUrls) {
+    if(toAttachImgUrls && toAttachImgUrls.length > 0) {
+      return {
+        toAttachImgUrls: toAttachImgUrls,
+        attached: attached,
+        toAttach: toAttach,
+        detach: detach
+      }
+    } else {
+      return {
+        selected: selected,
+        attached: attached,
+        toAttach: toAttach,
+        detach: detach
+      }
+    }
   },
 
   preventAllButShiftAndTab: function(event) {

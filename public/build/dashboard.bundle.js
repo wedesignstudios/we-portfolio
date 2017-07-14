@@ -5786,7 +5786,7 @@ var FormHandlers = {
 
     this.attachDetachValue(attached, value, detach, toAttach);
 
-    this.attachDetachImage(target, toAttachImgUrls);
+    this.attachDetachImage(target, attached, toAttachImgUrls);
 
     this.selectValue(selected, value);
 
@@ -5805,13 +5805,17 @@ var FormHandlers = {
     }
   },
 
-  attachDetachImage: function attachDetachImage(target, toAttachImgUrls) {
+  attachDetachImage: function attachDetachImage(target, attached, toAttachImgUrls) {
     var url = target.src;
+    var id = parseInt(target.id);
+
     if (toAttachImgUrls && toAttachImgUrls.includes(url)) {
       var index = toAttachImgUrls.indexOf(url);
       toAttachImgUrls.splice(index, 1);
     } else {
-      toAttachImgUrls ? toAttachImgUrls.push(url) : null;
+      if (!attached.includes(id)) {
+        toAttachImgUrls ? toAttachImgUrls.push(url) : null;
+      }
     }
     return toAttachImgUrls;
   },
@@ -15063,7 +15067,7 @@ var FormProject = function (_React$Component) {
       images_ids: [],
       images_ids_urls: [],
       images_ids_attached: [],
-      images_ids_attached_urls: [],
+      images_ids_attached_data: [],
       images_ids_detach: [],
       clients_ids: [],
       clients_ids_attached: [],
@@ -15120,7 +15124,7 @@ var FormProject = function (_React$Component) {
           };
           if (data.images) {
             _this2.setAttachedAndSelected(data.images, 'images');
-            _this2.setAttachedImageUrls(data.images);
+            _this2.setAttachedData(data.images, 'images');
           }
         }).catch(function (err) {
           console.error(err);
@@ -15152,27 +15156,22 @@ var FormProject = function (_React$Component) {
       }
     }
   }, {
-    key: 'setAttachedImageUrls',
-    value: function setAttachedImageUrls(dataModel) {
-      var urls = dataModel.map(function (model) {
-        return model.url;
-      });
-
-      this.setState({
-        images_ids_attached_urls: urls
-      });
+    key: 'setAttachedData',
+    value: function setAttachedData(dataModel, dataModelName) {
+      console.log('setAttachedData: ', dataModel);
+      this.setState(_defineProperty({}, dataModelName + '_ids_attached_data', dataModel));
     }
   }, {
     key: 'getComponentData',
     value: function getComponentData(data, inputName) {
-      var _setState4;
+      var _setState5;
 
       console.log('getComponentData: ', data);
       if (inputName === 'images_ids') {
         this.setState(_defineProperty({}, inputName + '_urls', data.toAttachImgUrls));
       }
 
-      this.setState((_setState4 = {}, _defineProperty(_setState4, inputName, data.toAttach), _defineProperty(_setState4, inputName + '_attached', data.attached), _defineProperty(_setState4, inputName + '_detach', data.detach), _defineProperty(_setState4, inputName + '_selected', data.selected), _setState4));
+      this.setState((_setState5 = {}, _defineProperty(_setState5, inputName, data.toAttach), _defineProperty(_setState5, inputName + '_attached', data.attached), _defineProperty(_setState5, inputName + '_detach', data.detach), _defineProperty(_setState5, inputName + '_selected', data.selected), _setState5));
     }
   }, {
     key: 'openImageModal',
@@ -15184,6 +15183,23 @@ var FormProject = function (_React$Component) {
     key: 'deleteProject',
     value: function deleteProject() {
       DataActions.sendRequest('DELETE', { name: this.state.name }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+    }
+  }, {
+    key: 'showAttachedImages',
+    value: function showAttachedImages() {
+      var _this3 = this;
+
+      var images = this.state.images_ids_attached_data.filter(function (img) {
+        return !_this3.state.images_ids_detach.includes(img.id);
+      });
+
+      return images.map(function (img, i) {
+        return _react2.default.createElement('img', {
+          key: i,
+          src: img.url,
+          className: 'mb-3 mr-3',
+          height: '100' });
+      });
     }
   }, {
     key: 'submitForm',
@@ -15201,7 +15217,7 @@ var FormProject = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
@@ -15229,7 +15245,7 @@ var FormProject = function (_React$Component) {
             {
               className: 'btn btn-danger mb-3',
               onClick: function onClick(e) {
-                return _this3.deleteProject(e);
+                return _this4.deleteProject(e);
               } },
             'Delete ',
             this.state.initialName
@@ -15272,13 +15288,13 @@ var FormProject = function (_React$Component) {
                     className: this.state.nameErr ? 'err form-control' : 'form-control',
                     value: this.state.name,
                     onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this3);
+                      return FormHandlers.handleOnChange(e, _this4);
                     },
                     onFocus: function onFocus(e) {
                       return FormHandlers.preventSpaceKey(e);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
+                      return FormValidations.checkField(e, _this4);
                     } })
                 )
               ),
@@ -15306,13 +15322,13 @@ var FormProject = function (_React$Component) {
                     popoverTargetAttachment: 'top center',
                     popoverTargetOffset: '38px 250px',
                     onChange: function onChange(e) {
-                      return FormHandlersValidations.handleDateOnChange(e, _this3);
+                      return FormHandlersValidations.handleDateOnChange(e, _this4);
                     },
                     onFocus: function onFocus(e) {
                       return FormHandlers.preventAllButShiftAndTab(e);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
+                      return FormValidations.checkField(e, _this4);
                     } })
                 )
               ),
@@ -15333,13 +15349,13 @@ var FormProject = function (_React$Component) {
                     className: this.state.descriptionErr ? 'err form-control' : 'form-control',
                     value: this.state.description,
                     onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this3);
+                      return FormHandlers.handleOnChange(e, _this4);
                     },
                     onFocus: function onFocus(e) {
                       return FormHandlers.preventSpaceKey(e);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
+                      return FormValidations.checkField(e, _this4);
                     } })
                 )
               ),
@@ -15355,35 +15371,29 @@ var FormProject = function (_React$Component) {
                   'div',
                   { className: 'col-sm-8' },
                   _react2.default.createElement(
-                    'button',
-                    {
-                      className: 'btn btn-secondary',
-                      onClick: function onClick(e) {
-                        return _this3.openImageModal(e);
-                      } },
-                    this.state.images_ids_attached_urls.length > 0 ? 'Add/Remove Image(s)' : 'Add Image(s)'
-                  ),
-                  _react2.default.createElement(
                     'div',
                     { className: 'row' },
                     _react2.default.createElement(
                       'div',
                       { className: 'col-sm-12' },
-                      this.state.images_ids_attached_urls.map(function (url, i) {
-                        return _react2.default.createElement('img', {
-                          key: i,
-                          src: url,
-                          className: 'mt-3 mr-3',
-                          height: '100' });
-                      }),
+                      this.showAttachedImages(),
                       this.state.images_ids_urls.map(function (url, i) {
                         return _react2.default.createElement('img', {
                           key: i,
                           src: url,
-                          className: 'mt-3 mr-3',
+                          className: 'mb-3 mr-3',
                           height: '100' });
                       })
                     )
+                  ),
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      className: 'btn btn-secondary',
+                      onClick: function onClick(e) {
+                        return _this4.openImageModal(e);
+                      } },
+                    this.state.images_ids_attached_data.length > 0 ? 'Add/Remove Image(s)' : 'Add Image(s)'
                   )
                 )
               ),
@@ -15424,7 +15434,7 @@ var FormProject = function (_React$Component) {
                       className: 'btn btn-outline-primary',
                       disabled: this.requiredFieldsBlank,
                       onClick: function onClick(e) {
-                        return _this3.submitForm(e);
+                        return _this4.submitForm(e);
                       } },
                     this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialName : 'Create New Project'
                   )
@@ -32408,7 +32418,7 @@ var GetImagesProjects = function (_React$Component) {
   }, {
     key: 'selectedImage',
     value: function selectedImage(imageObj) {
-      if (this.props.toAttach.includes(imageObj.id) || this.props.attached.includes(imageObj.id)) {
+      if (this.props.toAttach.includes(imageObj.id) || this.props.attached.includes(imageObj.id) && !this.props.detach.includes(imageObj.id)) {
         return 'selected';
       } else {
         return '';
@@ -32561,12 +32571,6 @@ var ModalAddImages = function (_Component) {
       this.props.sendImageData(data, targetName);
     }
   }, {
-    key: 'addImages',
-    value: function addImages(event, sendImageDataFunc) {
-      event.preventDefault();
-      console.log('this: ', this);
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -32631,20 +32635,9 @@ var ModalAddImages = function (_Component) {
                 'button',
                 {
                   type: 'button',
-                  className: 'btn btn-secondary',
-                  'data-dismiss': 'modal' },
-                'Cancel'
-              ),
-              _react2.default.createElement(
-                'button',
-                {
-                  type: 'button',
                   className: 'btn btn-primary',
-                  'data-dismiss': 'modal',
-                  onClick: function onClick(e) {
-                    return _this2.addImages(e, _this2.props.sendImageData);
-                  } },
-                'Add Image(s)'
+                  'data-dismiss': 'modal' },
+                'Close'
               )
             )
           )

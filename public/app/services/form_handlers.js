@@ -37,7 +37,7 @@ const FormHandlers = {
 
     this.attachDetachValue(attached, value, detach, toAttach);
 
-    this.attachDetachImage(target, toAttachImgUrls);
+    this.attachDetachImage(target, attached, toAttachImgUrls);
 
     this.selectValue(selected, value);
 
@@ -56,13 +56,17 @@ const FormHandlers = {
     }
   },
 
-  attachDetachImage: function(target, toAttachImgUrls) {
+  attachDetachImage: function(target, attached, toAttachImgUrls) {
     let url = target.src;
+    let id = parseInt(target.id);
+
     if(toAttachImgUrls && toAttachImgUrls.includes(url)) {
       let index = toAttachImgUrls.indexOf(url);
       toAttachImgUrls.splice(index, 1);
     } else {
-      toAttachImgUrls ? toAttachImgUrls.push(url) : null
+      if(!attached.includes(id)) {
+        toAttachImgUrls ? toAttachImgUrls.push(url) : null
+      }
     }
     return toAttachImgUrls;
   },

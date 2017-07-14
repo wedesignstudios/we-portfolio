@@ -30,7 +30,7 @@ class FormProject extends React.Component {
       images_ids: [],
       images_ids_urls: [],
       images_ids_attached: [],
-      images_ids_attached_urls: [],
+      images_ids_attached_data: [],
       images_ids_detach: [],
       clients_ids: [],
       clients_ids_attached: [],
@@ -83,7 +83,7 @@ class FormProject extends React.Component {
         };
         if(data.images) {
           this.setAttachedAndSelected(data.images, 'images');
-          this.setAttachedImageUrls(data.images);
+          this.setAttachedData(data.images, 'images');
         }
       })
       .catch((err) => {
@@ -117,13 +117,10 @@ class FormProject extends React.Component {
     }
   }
 
-  setAttachedImageUrls(dataModel) {
-    let urls = dataModel.map(model => {
-      return model.url;
-    });
-
+  setAttachedData(dataModel, dataModelName) {
+    console.log('setAttachedData: ', dataModel);
     this.setState({
-      images_ids_attached_urls: urls
+      [dataModelName + '_ids_attached_data']: dataModel
     });
   }
 
@@ -156,6 +153,20 @@ class FormProject extends React.Component {
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage
     );
+  }
+
+  showAttachedImages() {
+    let images = this.state.images_ids_attached_data.filter(img => {
+      return !this.state.images_ids_detach.includes(img.id);
+    });
+
+    return images.map((img, i) => {
+      return <img
+          key={i}
+          src={img.url}
+          className="mb-3 mr-3"
+          height="100" />
+    })
   }
 
   submitForm(event) {
@@ -276,31 +287,25 @@ class FormProject extends React.Component {
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Image(s): </label>
                 <div className="col-sm-8">
-                  <button
-                      className="btn btn-secondary"
-                      onClick={(e) => this.openImageModal(e)} >
-                      {this.state.images_ids_attached_urls.length > 0 ?
-                        'Add/Remove Image(s)' : 'Add Image(s)'}
-                    </button>
                     <div className="row">
                       <div className="col-sm-12">
-                        {this.state.images_ids_attached_urls.map((url, i) => {
-                          return <img
-                              key={i}
-                              src={url}
-                              className="mt-3 mr-3"
-                              height="100" />
-                        })}
+                        {this.showAttachedImages()}
 
                         {this.state.images_ids_urls.map((url, i) => {
                           return <img
                               key={i}
                               src={url}
-                              className="mt-3 mr-3"
+                              className="mb-3 mr-3"
                               height="100" />
                         })}
                       </div>
                     </div>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={(e) => this.openImageModal(e)} >
+                      {this.state.images_ids_attached_data.length > 0 ?
+                        'Add/Remove Image(s)' : 'Add Image(s)'}
+                    </button>
                 </div>
               </div>
 

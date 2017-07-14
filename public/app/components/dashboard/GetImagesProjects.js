@@ -54,7 +54,7 @@ class GetImagesProjects extends React.Component {
   }
 
   selectedImage(imageObj) {
-    if(this.props.toAttach.includes(imageObj.id) || this.props.attached.includes(imageObj.id)) {
+    if(this.props.toAttach.includes(imageObj.id) || this.props.attached.includes(imageObj.id) && !this.props.detach.includes(imageObj.id)) {
       return 'selected';
     } else {
       return '';

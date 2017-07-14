@@ -31,7 +31,7 @@ class FormNewsStory extends React.Component {
       news_categories_ids: [],
       news_categories_ids_attached: [],
       news_categories_ids_detach: [],
-      news_categories_ids_checked: [],
+      news_categories_ids_selected: [],
       titleErr: false,
       dateErr: false,
       descriptionErr: false,
@@ -43,7 +43,7 @@ class FormNewsStory extends React.Component {
 
     this.initialState = this.state;
 
-    this.requiredFields = ['title', 'date', 'description', 'image_id', 'news_categories_ids_checked'];
+    this.requiredFields = ['title', 'date', 'description', 'image_id', 'news_categories_ids_selected'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
     this.getImageData = this.getImageData.bind(this);
@@ -56,7 +56,7 @@ class FormNewsStory extends React.Component {
       [inputName]: data.toAttach,
       [inputName + '_attached']: data.attached,
       [inputName + '_detach']: data.detach,
-      [inputName + '_checked']: data.checked
+      [inputName + '_selected']: data.selected
     })
   }
 
@@ -91,7 +91,7 @@ class FormNewsStory extends React.Component {
             initial_image_id: data.image.id ? data.image.id : ''
           });
           if(data.news_categories) {
-            this.setAttachedAndChecked(data.news_categories, 'news_categories');
+            this.setAttachedAndSelected(data.news_categories, 'news_categories');
           };
           if(data.image) {
             fetch(`/api/images/${data.image.id}`)
@@ -107,16 +107,16 @@ class FormNewsStory extends React.Component {
     }
   }
 
-  setAttachedAndChecked(dataModel, dataModelName) {
-    let checked = [];
+  setAttachedAndSelected(dataModel, dataModelName) {
+    let selected = [];
     let ids = dataModel.map(model => {
-      checked.push(model.id);
+      selected.push(model.id);
       return model.id;
     });
 
     this.setState({
       [dataModelName + '_ids_attached']: ids,
-      [dataModelName + '_ids_checked']: checked
+      [dataModelName + '_ids_selected']: selected
     });
   }
 
@@ -256,7 +256,7 @@ class FormNewsStory extends React.Component {
               name="categories"
               value={this.state.news_categories_ids}
               sendNewsCategoriesData={this.getComponentData}
-              preChecked={this.state.news_categories_ids_checked}
+              preSelected={this.state.news_categories_ids_selected}
               attached={this.state.news_categories_ids_attached}
               toAttach={this.state.news_categories_ids}
               detach={this.state.news_categories_ids_detach} />

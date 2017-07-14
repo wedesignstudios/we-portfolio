@@ -29,11 +29,6 @@ class ModalAddImages extends Component {
     this.props.sendImageData(data, targetName);
   }
 
-  addImages(event, sendImageDataFunc) {
-    event.preventDefault();
-    console.log('this: ', this);
-  }
-
   render() {
     return(
       <div className="modal fade" id="addImages"tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -68,15 +63,10 @@ class ModalAddImages extends Component {
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal">
-                  Cancel
-              </button>
-              <button
-                type="button"
                 className="btn btn-primary"
-                data-dismiss="modal"
-                onClick={(e) => this.addImages(e, this.props.sendImageData)}>Add Image(s)</button>
+                data-dismiss="modal">
+                  Close
+                </button>
             </div>
           </div>
         </div>

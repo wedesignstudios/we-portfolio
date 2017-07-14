@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Dropzone from 'react-dropzone';
 
+const FormHandlers = require('../../services/form_handlers');
+
 class GetImagesProjects extends React.Component {
   constructor() {
     super();
@@ -30,9 +32,8 @@ class GetImagesProjects extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         data = data.filter(obj => {
-          return obj.project_id === null;
+          return obj.project_id === null || this.props.attached.includes(obj.id);
         });
-
         this.setState({
           image_data: data
         });
@@ -42,30 +43,22 @@ class GetImagesProjects extends React.Component {
       });
   }
 
-  selectImages(event, sendImageDataFunc) {
-    const target = event.target;
-    const selectedImageId = parseInt(target.id);
-    const selectedImageUrl = target.src;
-    var stateImageIdsArr = this.state.image_ids;
-
-    if(stateImageIdsArr.includes(selectedImageId)) {
-      let index = stateImageIdsArr.indexOf(selectedImageId);
-      stateImageIdsArr.splice(index, 1);
-
-      this.setState({
-        image_ids: stateImageIdsArr
-      });
-    } else {
-      this.setState({
-        image_ids: this.state.image_ids.concat(selectedImageId)
-      });
-    }
-
-    // sendImageDataFunc({imgId: selectedImageId, imgUrl: selectedImageUrl});
-  }
-
   componentDidMount() {
     this.loadImages();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.attached !== this.props.attached) {
+      this.loadImages();
+    }
+  }
+
+  selectedImage(imageObj) {
+    if(this.props.toAttach.includes(imageObj.id) || this.props.attached.includes(imageObj.id)) {
+      return 'selected';
+    } else {
+      return '';
+    }
   }
 
   render() {
@@ -74,7 +67,6 @@ class GetImagesProjects extends React.Component {
 
     return(
       <div id="get-images-projects">
-
       {this.props.openDropzone ?
           <Dropzone
             ref={(node) => {dropzoneRef = node}}
@@ -107,10 +99,11 @@ class GetImagesProjects extends React.Component {
           return <img
                     key={image.id}
                     id={image.id}
-                    className={this.state.image_ids.includes(image.id) ? 'selected' : ''}
+                    name="image_ids"
+                    className={this.selectedImage(image)}
                     src={image.url}
                     height="100"
-                    onClick={(e) => this.selectImages(e, this.props.sendImageDataToModal)} />
+                    onClick={(e) => FormHandlers.multiSelect(e, this, this.props.sendImageDataToModal)} />
           })
         }
 

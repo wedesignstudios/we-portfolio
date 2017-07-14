@@ -22,11 +22,11 @@ class ClientCheckboxes extends React.Component {
       })
       .catch((err) => {
         console.error(err);
-      });    
+      });
   }
 
   render() {
-    const { preChecked, sendClientData, attached, detach } = this.props;
+    const { preSelected, sendClientData, attached, detach } = this.props;
 
     return (
       <div className="form-group row">
@@ -41,8 +41,8 @@ class ClientCheckboxes extends React.Component {
                     type="checkbox"
                     value={client.id}
                     name="clients_ids"
-                    checked={this.props.preChecked.includes(client.id)}
-                    onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendClientData)} />
+                    checked={this.props.preSelected.includes(client.id)}
+                    onChange={(e) => FormHandlers.multiSelect(e, this, this.props.sendClientData)} />
                     {client.name}
                   </label>
               </div>)}

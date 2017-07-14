@@ -26,7 +26,7 @@ class CollaboratorCheckboxes extends React.Component {
   }
 
   render() {
-    const { preChecked, sendCollaboratorData, attached, detach } = this.props;
+    const { preSelected, sendCollaboratorData, attached, detach } = this.props;
 
     return (
       <div className="form-group row">
@@ -41,8 +41,8 @@ class CollaboratorCheckboxes extends React.Component {
                     type="checkbox"
                     value={collaborator.id}
                     name="collaborators_ids"
-                    checked={this.props.preChecked.includes(collaborator.id)}
-                    onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendCollaboratorData)} />
+                    checked={this.props.preSelected.includes(collaborator.id)}
+                    onChange={(e) => FormHandlers.multiSelect(e, this, this.props.sendCollaboratorData)} />
                     {collaborator.name}
                   </label>
               </div>)}

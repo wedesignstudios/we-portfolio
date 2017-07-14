@@ -26,7 +26,7 @@ class NewsCategoriesCheckboxes extends React.Component {
   }
 
   render() {
-    const { preChecked, sendNewsCategoriesData, attached, detach } = this.props;
+    const { preSelected, sendNewsCategoriesData, attached, detach } = this.props;
 
     return(
       <div className="form-group row">
@@ -41,8 +41,8 @@ class NewsCategoriesCheckboxes extends React.Component {
                   type="checkbox"
                   value={category.id}
                   name="news_categories_ids"
-                  checked={this.props.preChecked.includes(category.id)}
-                  onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendNewsCategoriesData)} />
+                  checked={this.props.preSelected.includes(category.id)}
+                  onChange={(e) => FormHandlers.multiSelect(e, this, this.props.sendNewsCategoriesData)} />
                   {category.name}
                 </label>
             </div>)}

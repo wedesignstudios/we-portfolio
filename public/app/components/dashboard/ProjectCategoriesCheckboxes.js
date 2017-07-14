@@ -26,7 +26,7 @@ class ProjectCategoriesCheckboxes extends React.Component {
   }
 
   render() {
-    const { preChecked, sendProjectCategoriesData, attached, detach } = this.props;
+    const { preSelected, sendProjectCategoriesData, attached, detach } = this.props;
 
     return (
       <div className="form-group row">
@@ -41,8 +41,8 @@ class ProjectCategoriesCheckboxes extends React.Component {
                     type="checkbox"
                     value={category.id}
                     name="project_categories_ids"
-                    checked={this.props.preChecked.includes(category.id)}
-                    onChange={(e) => FormHandlers.multiCheckboxChange(e, this, this.props.sendProjectCategoriesData)} />
+                    checked={this.props.preSelected.includes(category.id)}
+                    onChange={(e) => FormHandlers.multiSelect(e, this, this.props.sendProjectCategoriesData)} />
                   {category.name}
                 </label>
               </div>)}

@@ -27,18 +27,23 @@ class FormProject extends React.Component {
       initialName: '',
       date: '',
       description: '',
-      project_categories_ids: [],
-      project_categories_ids_attached: [],
-      project_categories_ids_detach: [],
-      project_categories_ids_checked: [],
+      images_ids: [],
+      images_ids_urls: [],
+      images_ids_attached: [],
+      images_ids_attached_urls: [],
+      images_ids_detach: [],
       clients_ids: [],
       clients_ids_attached: [],
       clients_ids_detach: [],
-      clients_ids_checked: [],
+      clients_ids_selected: [],
       collaborators_ids: [],
       collaborators_ids_attached: [],
       collaborators_ids_detach: [],
-      collaborators_ids_checked: [],
+      collaborators_ids_selected: [],
+      project_categories_ids: [],
+      project_categories_ids_attached: [],
+      project_categories_ids_detach: [],
+      project_categories_ids_selected: [],
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
@@ -55,18 +60,6 @@ class FormProject extends React.Component {
     this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
-  setAttachedAndChecked(dataModel, dataModelName) {
-    let checked = [];
-    let ids = dataModel.map(model => {
-      checked.push(model.id);
-      return model.id;
-    });
-
-    this.setState({
-      [dataModelName + '_ids_attached']: ids,
-      [dataModelName + '_ids_checked']: checked
-    });
-  }
 
   componentDidMount() {    
     if(this.props.projectId) {
@@ -80,13 +73,17 @@ class FormProject extends React.Component {
             description: data.description
           });
         if(data.clients) {
-          this.setAttachedAndChecked(data.clients, 'clients');
+          this.setAttachedAndSelected(data.clients, 'clients');
         };
         if(data.collaborators) {
-          this.setAttachedAndChecked(data.collaborators, 'collaborators');
+          this.setAttachedAndSelected(data.collaborators, 'collaborators');
         };
         if(data.project_categories) {
-          this.setAttachedAndChecked(data.project_categories, 'project_categories');
+          this.setAttachedAndSelected(data.project_categories, 'project_categories');
+        };
+        if(data.images) {
+          this.setAttachedAndSelected(data.images, 'images');
+          this.setAttachedImageUrls(data.images);
         }
       })
       .catch((err) => {
@@ -101,13 +98,49 @@ class FormProject extends React.Component {
     return true;
   }
 
+  setAttachedAndSelected(dataModel, dataModelName) {
+    let selected = [];
+    let ids = dataModel.map(model => {
+      selected.push(model.id);
+      return model.id;
+    });
+
+    if(dataModelName === 'images') {
+      this.setState({
+        [dataModelName + '_ids_attached']: ids
+      })
+    } else {
+      this.setState({
+        [dataModelName + '_ids_attached']: ids,
+        [dataModelName + '_ids_selected']: selected
+      });
+    }
+  }
+
+  setAttachedImageUrls(dataModel) {
+    let urls = dataModel.map(model => {
+      return model.url;
+    });
+
+    this.setState({
+      images_ids_attached_urls: urls
+    });
+  }
+
   getComponentData(data, inputName) {
+    console.log('getComponentData: ', data);
+    if(inputName === 'images_ids') {
+      this.setState({
+        [inputName + '_urls']: data.toAttachImgUrls
+      })
+    }
+
     this.setState({
       [inputName]: data.toAttach,
       [inputName + '_attached']: data.attached,
       [inputName + '_detach']: data.detach,
-      [inputName + '_checked']: data.checked
-    })
+      [inputName + '_selected']: data.selected
+    });
   }
 
   openImageModal(event) {
@@ -244,33 +277,57 @@ class FormProject extends React.Component {
                 <label className="col-sm-2 col-form-label">Image(s): </label>
                 <div className="col-sm-8">
                   <button
-                    className="btn btn-secondary"
-                    onClick={(e) => this.openImageModal(e)} >
-                      Add Image(s)
-                  </button>
+                      className="btn btn-secondary"
+                      onClick={(e) => this.openImageModal(e)} >
+                      {this.state.images_ids_attached_urls.length > 0 ?
+                        'Add/Remove Image(s)' : 'Add Image(s)'}
+                    </button>
+                    <div className="row">
+                      <div className="col-sm-12">
+                        {this.state.images_ids_attached_urls.map((url, i) => {
+                          return <img
+                              key={i}
+                              src={url}
+                              className="mt-3 mr-3"
+                              height="100" />
+                        })}
+
+                        {this.state.images_ids_urls.map((url, i) => {
+                          return <img
+                              key={i}
+                              src={url}
+                              className="mt-3 mr-3"
+                              height="100" />
+                        })}
+                      </div>
+                    </div>
                 </div>
               </div>
 
               <ModalAddImages
                 ref="modal"
-                sendImageData={this.getComponentData} />
+                sendImageData={this.getComponentData}
+                attached={this.state.images_ids_attached}
+                detach={this.state.images_ids_detach}
+                toAttach={this.state.images_ids}
+                toAttachImgUrls={this.state.images_ids_urls} />
 
               <ClientCheckboxes
-                preChecked={this.state.clients_ids_checked}
+                preSelected={this.state.clients_ids_selected}
                 sendClientData={this.getComponentData}
                 attached={this.state.clients_ids_attached}
                 toAttach={this.state.clients_ids}
                 detach={this.state.clients_ids_detach} />
 
               <CollaboratorCheckboxes
-                preChecked={this.state.collaborators_ids_checked}
+                preSelected={this.state.collaborators_ids_selected}
                 sendCollaboratorData={this.getComponentData}
                 attached={this.state.collaborators_ids_attached}
                 toAttach={this.state.collaborators_ids}
                 detach={this.state.collaborators_ids_detach} />
 
               <ProjectCategoriesCheckboxes
-                preChecked={this.state.project_categories_ids_checked}
+                preSelected={this.state.project_categories_ids_selected}
                 sendProjectCategoriesData={this.getComponentData}
                 attached={this.state.project_categories_ids_attached}
                 toAttach={this.state.project_categories_ids}

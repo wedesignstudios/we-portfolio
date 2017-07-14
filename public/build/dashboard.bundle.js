@@ -5774,44 +5774,74 @@ var FormHandlers = {
     _this.setState(_defineProperty({}, name, !_this.state[name]));
   },
 
-  multiCheckboxChange: function multiCheckboxChange(event, _this, sendDataFunc) {
+  multiSelect: function multiSelect(event, _this, sendDataFunc) {
     var target = event.target;
     var name = target.name;
-    var value = parseInt(target.value);
-    var checked = _this.props.preChecked;
+    var value = target.value ? parseInt(target.value) : parseInt(target.id);
+    var selected = _this.props.preSelected;
     var attached = _this.props.attached;
     var detach = _this.props.detach;
     var toAttach = _this.props.toAttach;
+    var toAttachImgUrls = _this.props.toAttachImgUrls;
 
+    this.attachDetachValue(attached, value, detach, toAttach);
+
+    this.attachDetachImage(target, toAttachImgUrls);
+
+    this.selectValue(selected, value);
+
+    sendDataFunc(this.selectObj(selected, attached, toAttach, detach, toAttachImgUrls), name);
+  },
+
+  attachDetachValue: function attachDetachValue(attached, value, detach, toAttach) {
     if (attached.includes(value)) {
       var index = detach.indexOf(value);
       detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
+      return detach;
     } else {
       var _index = toAttach.indexOf(value);
       toAttach.includes(value) ? toAttach.splice(_index, 1) : toAttach.push(value);
+      return toAttach;
     }
-
-    if (checked.includes(value)) {
-      var _index2 = checked.indexOf(value);
-      checked.splice(_index2, 1);
-    } else {
-      checked.push(value);
-    }
-
-    sendDataFunc({
-      checked: checked,
-      attached: attached,
-      toAttach: toAttach,
-      detach: detach
-    }, name);
   },
 
-  multiImageSelect: function multiImageSelect(event, _this, sendDataFunc) {
-    var target = event.target;
-    var selectedImageId = target.id;
-    var selectedImageUrl = target.src;
+  attachDetachImage: function attachDetachImage(target, toAttachImgUrls) {
+    var url = target.src;
+    if (toAttachImgUrls && toAttachImgUrls.includes(url)) {
+      var index = toAttachImgUrls.indexOf(url);
+      toAttachImgUrls.splice(index, 1);
+    } else {
+      toAttachImgUrls ? toAttachImgUrls.push(url) : null;
+    }
+    return toAttachImgUrls;
+  },
 
-    console.log('sendDataFunc', sendDataFunc);
+  selectValue: function selectValue(selected, value) {
+    if (selected && selected.includes(value)) {
+      var index = selected.indexOf(value);
+      selected.splice(index, 1);
+    } else {
+      selected ? selected.push(value) : null;
+    }
+    return selected;
+  },
+
+  selectObj: function selectObj(selected, attached, toAttach, detach, toAttachImgUrls) {
+    if (toAttachImgUrls && toAttachImgUrls.length > 0) {
+      return {
+        toAttachImgUrls: toAttachImgUrls,
+        attached: attached,
+        toAttach: toAttach,
+        detach: detach
+      };
+    } else {
+      return {
+        selected: selected,
+        attached: attached,
+        toAttach: toAttach,
+        detach: detach
+      };
+    }
   },
 
   preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
@@ -14604,7 +14634,7 @@ var FormNewsStory = function (_React$Component) {
       news_categories_ids: [],
       news_categories_ids_attached: [],
       news_categories_ids_detach: [],
-      news_categories_ids_checked: [],
+      news_categories_ids_selected: [],
       titleErr: false,
       dateErr: false,
       descriptionErr: false,
@@ -14616,7 +14646,7 @@ var FormNewsStory = function (_React$Component) {
 
     _this.initialState = _this.state;
 
-    _this.requiredFields = ['title', 'date', 'description', 'image_id', 'news_categories_ids_checked'];
+    _this.requiredFields = ['title', 'date', 'description', 'image_id', 'news_categories_ids_selected'];
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
     _this.getImageData = _this.getImageData.bind(_this);
@@ -14630,7 +14660,7 @@ var FormNewsStory = function (_React$Component) {
     value: function getComponentData(data, inputName) {
       var _setState;
 
-      this.setState((_setState = {}, _defineProperty(_setState, inputName, data.toAttach), _defineProperty(_setState, inputName + '_attached', data.attached), _defineProperty(_setState, inputName + '_detach', data.detach), _defineProperty(_setState, inputName + '_checked', data.checked), _setState));
+      this.setState((_setState = {}, _defineProperty(_setState, inputName, data.toAttach), _defineProperty(_setState, inputName + '_attached', data.attached), _defineProperty(_setState, inputName + '_detach', data.detach), _defineProperty(_setState, inputName + '_selected', data.selected), _setState));
     }
   }, {
     key: 'getImageData',
@@ -14669,7 +14699,7 @@ var FormNewsStory = function (_React$Component) {
             initial_image_id: data.image.id ? data.image.id : ''
           });
           if (data.news_categories) {
-            _this2.setAttachedAndChecked(data.news_categories, 'news_categories');
+            _this2.setAttachedAndSelected(data.news_categories, 'news_categories');
           };
           if (data.image) {
             fetch('/api/images/' + data.image.id).then(function (res) {
@@ -14685,17 +14715,17 @@ var FormNewsStory = function (_React$Component) {
       }
     }
   }, {
-    key: 'setAttachedAndChecked',
-    value: function setAttachedAndChecked(dataModel, dataModelName) {
+    key: 'setAttachedAndSelected',
+    value: function setAttachedAndSelected(dataModel, dataModelName) {
       var _setState2;
 
-      var checked = [];
+      var selected = [];
       var ids = dataModel.map(function (model) {
-        checked.push(model.id);
+        selected.push(model.id);
         return model.id;
       });
 
-      this.setState((_setState2 = {}, _defineProperty(_setState2, dataModelName + '_ids_attached', ids), _defineProperty(_setState2, dataModelName + '_ids_checked', checked), _setState2));
+      this.setState((_setState2 = {}, _defineProperty(_setState2, dataModelName + '_ids_attached', ids), _defineProperty(_setState2, dataModelName + '_ids_selected', selected), _setState2));
     }
   }, {
     key: 'deleteNewsStory',
@@ -14912,7 +14942,7 @@ var FormNewsStory = function (_React$Component) {
               name: 'categories',
               value: this.state.news_categories_ids,
               sendNewsCategoriesData: this.getComponentData,
-              preChecked: this.state.news_categories_ids_checked,
+              preSelected: this.state.news_categories_ids_selected,
               attached: this.state.news_categories_ids_attached,
               toAttach: this.state.news_categories_ids,
               detach: this.state.news_categories_ids_detach })
@@ -15030,18 +15060,23 @@ var FormProject = function (_React$Component) {
       initialName: '',
       date: '',
       description: '',
-      project_categories_ids: [],
-      project_categories_ids_attached: [],
-      project_categories_ids_detach: [],
-      project_categories_ids_checked: [],
+      images_ids: [],
+      images_ids_urls: [],
+      images_ids_attached: [],
+      images_ids_attached_urls: [],
+      images_ids_detach: [],
       clients_ids: [],
       clients_ids_attached: [],
       clients_ids_detach: [],
-      clients_ids_checked: [],
+      clients_ids_selected: [],
       collaborators_ids: [],
       collaborators_ids_attached: [],
       collaborators_ids_detach: [],
-      collaborators_ids_checked: [],
+      collaborators_ids_selected: [],
+      project_categories_ids: [],
+      project_categories_ids_attached: [],
+      project_categories_ids_detach: [],
+      project_categories_ids_selected: [],
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
@@ -15060,19 +15095,6 @@ var FormProject = function (_React$Component) {
   }
 
   _createClass(FormProject, [{
-    key: 'setAttachedAndChecked',
-    value: function setAttachedAndChecked(dataModel, dataModelName) {
-      var _setState;
-
-      var checked = [];
-      var ids = dataModel.map(function (model) {
-        checked.push(model.id);
-        return model.id;
-      });
-
-      this.setState((_setState = {}, _defineProperty(_setState, dataModelName + '_ids_attached', ids), _defineProperty(_setState, dataModelName + '_ids_checked', checked), _setState));
-    }
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -15088,13 +15110,17 @@ var FormProject = function (_React$Component) {
             description: data.description
           });
           if (data.clients) {
-            _this2.setAttachedAndChecked(data.clients, 'clients');
+            _this2.setAttachedAndSelected(data.clients, 'clients');
           };
           if (data.collaborators) {
-            _this2.setAttachedAndChecked(data.collaborators, 'collaborators');
+            _this2.setAttachedAndSelected(data.collaborators, 'collaborators');
           };
           if (data.project_categories) {
-            _this2.setAttachedAndChecked(data.project_categories, 'project_categories');
+            _this2.setAttachedAndSelected(data.project_categories, 'project_categories');
+          };
+          if (data.images) {
+            _this2.setAttachedAndSelected(data.images, 'images');
+            _this2.setAttachedImageUrls(data.images);
           }
         }).catch(function (err) {
           console.error(err);
@@ -15109,11 +15135,44 @@ var FormProject = function (_React$Component) {
       return true;
     }
   }, {
+    key: 'setAttachedAndSelected',
+    value: function setAttachedAndSelected(dataModel, dataModelName) {
+      var selected = [];
+      var ids = dataModel.map(function (model) {
+        selected.push(model.id);
+        return model.id;
+      });
+
+      if (dataModelName === 'images') {
+        this.setState(_defineProperty({}, dataModelName + '_ids_attached', ids));
+      } else {
+        var _setState2;
+
+        this.setState((_setState2 = {}, _defineProperty(_setState2, dataModelName + '_ids_attached', ids), _defineProperty(_setState2, dataModelName + '_ids_selected', selected), _setState2));
+      }
+    }
+  }, {
+    key: 'setAttachedImageUrls',
+    value: function setAttachedImageUrls(dataModel) {
+      var urls = dataModel.map(function (model) {
+        return model.url;
+      });
+
+      this.setState({
+        images_ids_attached_urls: urls
+      });
+    }
+  }, {
     key: 'getComponentData',
     value: function getComponentData(data, inputName) {
-      var _setState2;
+      var _setState4;
 
-      this.setState((_setState2 = {}, _defineProperty(_setState2, inputName, data.toAttach), _defineProperty(_setState2, inputName + '_attached', data.attached), _defineProperty(_setState2, inputName + '_detach', data.detach), _defineProperty(_setState2, inputName + '_checked', data.checked), _setState2));
+      console.log('getComponentData: ', data);
+      if (inputName === 'images_ids') {
+        this.setState(_defineProperty({}, inputName + '_urls', data.toAttachImgUrls));
+      }
+
+      this.setState((_setState4 = {}, _defineProperty(_setState4, inputName, data.toAttach), _defineProperty(_setState4, inputName + '_attached', data.attached), _defineProperty(_setState4, inputName + '_detach', data.detach), _defineProperty(_setState4, inputName + '_selected', data.selected), _setState4));
     }
   }, {
     key: 'openImageModal',
@@ -15302,27 +15361,53 @@ var FormProject = function (_React$Component) {
                       onClick: function onClick(e) {
                         return _this3.openImageModal(e);
                       } },
-                    'Add Image(s)'
+                    this.state.images_ids_attached_urls.length > 0 ? 'Add/Remove Image(s)' : 'Add Image(s)'
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'col-sm-12' },
+                      this.state.images_ids_attached_urls.map(function (url, i) {
+                        return _react2.default.createElement('img', {
+                          key: i,
+                          src: url,
+                          className: 'mt-3 mr-3',
+                          height: '100' });
+                      }),
+                      this.state.images_ids_urls.map(function (url, i) {
+                        return _react2.default.createElement('img', {
+                          key: i,
+                          src: url,
+                          className: 'mt-3 mr-3',
+                          height: '100' });
+                      })
+                    )
                   )
                 )
               ),
               _react2.default.createElement(ModalAddImages, {
                 ref: 'modal',
-                sendImageData: this.getComponentData }),
+                sendImageData: this.getComponentData,
+                attached: this.state.images_ids_attached,
+                detach: this.state.images_ids_detach,
+                toAttach: this.state.images_ids,
+                toAttachImgUrls: this.state.images_ids_urls }),
               _react2.default.createElement(ClientCheckboxes, {
-                preChecked: this.state.clients_ids_checked,
+                preSelected: this.state.clients_ids_selected,
                 sendClientData: this.getComponentData,
                 attached: this.state.clients_ids_attached,
                 toAttach: this.state.clients_ids,
                 detach: this.state.clients_ids_detach }),
               _react2.default.createElement(CollaboratorCheckboxes, {
-                preChecked: this.state.collaborators_ids_checked,
+                preSelected: this.state.collaborators_ids_selected,
                 sendCollaboratorData: this.getComponentData,
                 attached: this.state.collaborators_ids_attached,
                 toAttach: this.state.collaborators_ids,
                 detach: this.state.collaborators_ids_detach }),
               _react2.default.createElement(ProjectCategoriesCheckboxes, {
-                preChecked: this.state.project_categories_ids_checked,
+                preSelected: this.state.project_categories_ids_selected,
                 sendProjectCategoriesData: this.getComponentData,
                 attached: this.state.project_categories_ids_attached,
                 toAttach: this.state.project_categories_ids,
@@ -31939,7 +32024,7 @@ var ClientCheckboxes = function (_React$Component) {
       var _this3 = this;
 
       var _props = this.props,
-          preChecked = _props.preChecked,
+          preSelected = _props.preSelected,
           sendClientData = _props.sendClientData,
           attached = _props.attached,
           detach = _props.detach;
@@ -31971,9 +32056,9 @@ var ClientCheckboxes = function (_React$Component) {
                     type: 'checkbox',
                     value: client.id,
                     name: 'clients_ids',
-                    checked: _this3.props.preChecked.includes(client.id),
+                    checked: _this3.props.preSelected.includes(client.id),
                     onChange: function onChange(e) {
-                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendClientData);
+                      return FormHandlers.multiSelect(e, _this3, _this3.props.sendClientData);
                     } }),
                   client.name
                 )
@@ -32052,7 +32137,7 @@ var CollaboratorCheckboxes = function (_React$Component) {
       var _this3 = this;
 
       var _props = this.props,
-          preChecked = _props.preChecked,
+          preSelected = _props.preSelected,
           sendCollaboratorData = _props.sendCollaboratorData,
           attached = _props.attached,
           detach = _props.detach;
@@ -32084,9 +32169,9 @@ var CollaboratorCheckboxes = function (_React$Component) {
                     type: 'checkbox',
                     value: collaborator.id,
                     name: 'collaborators_ids',
-                    checked: _this3.props.preChecked.includes(collaborator.id),
+                    checked: _this3.props.preSelected.includes(collaborator.id),
                     onChange: function onChange(e) {
-                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendCollaboratorData);
+                      return FormHandlers.multiSelect(e, _this3, _this3.props.sendCollaboratorData);
                     } }),
                   collaborator.name
                 )
@@ -32262,6 +32347,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var FormHandlers = __webpack_require__(14);
+
 var GetImagesProjects = function (_React$Component) {
   _inherits(GetImagesProjects, _React$Component);
 
@@ -32297,9 +32384,8 @@ var GetImagesProjects = function (_React$Component) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
-          return obj.project_id === null;
+          return obj.project_id === null || _this2.props.attached.includes(obj.id);
         });
-
         _this2.setState({
           image_data: data
         });
@@ -32308,32 +32394,25 @@ var GetImagesProjects = function (_React$Component) {
       });
     }
   }, {
-    key: 'selectImages',
-    value: function selectImages(event, sendImageDataFunc) {
-      var target = event.target;
-      var selectedImageId = parseInt(target.id);
-      var selectedImageUrl = target.src;
-      var stateImageIdsArr = this.state.image_ids;
-
-      if (stateImageIdsArr.includes(selectedImageId)) {
-        var index = stateImageIdsArr.indexOf(selectedImageId);
-        stateImageIdsArr.splice(index, 1);
-
-        this.setState({
-          image_ids: stateImageIdsArr
-        });
-      } else {
-        this.setState({
-          image_ids: this.state.image_ids.concat(selectedImageId)
-        });
-      }
-
-      // sendImageDataFunc({imgId: selectedImageId, imgUrl: selectedImageUrl});
-    }
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.loadImages();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.attached !== this.props.attached) {
+        this.loadImages();
+      }
+    }
+  }, {
+    key: 'selectedImage',
+    value: function selectedImage(imageObj) {
+      if (this.props.toAttach.includes(imageObj.id) || this.props.attached.includes(imageObj.id)) {
+        return 'selected';
+      } else {
+        return '';
+      }
     }
   }, {
     key: 'render',
@@ -32402,11 +32481,12 @@ var GetImagesProjects = function (_React$Component) {
             return _react2.default.createElement('img', {
               key: image.id,
               id: image.id,
-              className: _this3.state.image_ids.includes(image.id) ? 'selected' : '',
+              name: 'image_ids',
+              className: _this3.selectedImage(image),
               src: image.url,
               height: '100',
               onClick: function onClick(e) {
-                return _this3.selectImages(e, _this3.props.sendImageDataToModal);
+                return FormHandlers.multiSelect(e, _this3, _this3.props.sendImageDataToModal);
               } });
           })
         )
@@ -32455,13 +32535,11 @@ var ModalAddImages = function (_Component) {
     var _this = _possibleConstructorReturn(this, (ModalAddImages.__proto__ || Object.getPrototypeOf(ModalAddImages)).call(this));
 
     _this.state = {
-      openDropzone: false,
-      image_ids_attached: [],
-      image_ids_detach: [],
-      image_ids_selected: []
+      openDropzone: false
     };
 
     _this.getOpenCloseData = _this.getOpenCloseData.bind(_this);
+    _this.getImageData = _this.getImageData.bind(_this);
     return _this;
   }
 
@@ -32478,15 +32556,15 @@ var ModalAddImages = function (_Component) {
       this.openCloseDropZone();
     }
   }, {
+    key: 'getImageData',
+    value: function getImageData(data, targetName) {
+      this.props.sendImageData(data, targetName);
+    }
+  }, {
     key: 'addImages',
     value: function addImages(event, sendImageDataFunc) {
       event.preventDefault();
       console.log('this: ', this);
-    }
-  }, {
-    key: 'getImageData',
-    value: function getImageData(data) {
-      console.log('ModalAddImages getImageData DATA: ', data);
     }
   }, {
     key: 'render',
@@ -32540,7 +32618,11 @@ var ModalAddImages = function (_Component) {
               _react2.default.createElement(GetImagesProjects, {
                 openDropzone: this.state.openDropzone,
                 sendOpenCloseData: this.getOpenCloseData,
-                sendImageDataToModal: this.getImageData })
+                sendImageDataToModal: this.getImageData,
+                toAttachImgUrls: this.props.toAttachImgUrls,
+                attached: this.props.attached,
+                detach: this.props.detach,
+                toAttach: this.props.toAttach })
             ),
             _react2.default.createElement(
               'div',
@@ -32560,7 +32642,7 @@ var ModalAddImages = function (_Component) {
                   className: 'btn btn-primary',
                   'data-dismiss': 'modal',
                   onClick: function onClick(e) {
-                    return _this2.addImages(e);
+                    return _this2.addImages(e, _this2.props.sendImageData);
                   } },
                 'Add Image(s)'
               )
@@ -32640,7 +32722,7 @@ var NewsCategoriesCheckboxes = function (_React$Component) {
       var _this3 = this;
 
       var _props = this.props,
-          preChecked = _props.preChecked,
+          preSelected = _props.preSelected,
           sendNewsCategoriesData = _props.sendNewsCategoriesData,
           attached = _props.attached,
           detach = _props.detach;
@@ -32673,9 +32755,9 @@ var NewsCategoriesCheckboxes = function (_React$Component) {
                     type: 'checkbox',
                     value: category.id,
                     name: 'news_categories_ids',
-                    checked: _this3.props.preChecked.includes(category.id),
+                    checked: _this3.props.preSelected.includes(category.id),
                     onChange: function onChange(e) {
-                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendNewsCategoriesData);
+                      return FormHandlers.multiSelect(e, _this3, _this3.props.sendNewsCategoriesData);
                     } }),
                   category.name
                 )
@@ -32754,7 +32836,7 @@ var ProjectCategoriesCheckboxes = function (_React$Component) {
       var _this3 = this;
 
       var _props = this.props,
-          preChecked = _props.preChecked,
+          preSelected = _props.preSelected,
           sendProjectCategoriesData = _props.sendProjectCategoriesData,
           attached = _props.attached,
           detach = _props.detach;
@@ -32786,9 +32868,9 @@ var ProjectCategoriesCheckboxes = function (_React$Component) {
                     type: 'checkbox',
                     value: category.id,
                     name: 'project_categories_ids',
-                    checked: _this3.props.preChecked.includes(category.id),
+                    checked: _this3.props.preSelected.includes(category.id),
                     onChange: function onChange(e) {
-                      return FormHandlers.multiCheckboxChange(e, _this3, _this3.props.sendProjectCategoriesData);
+                      return FormHandlers.multiSelect(e, _this3, _this3.props.sendProjectCategoriesData);
                     } }),
                   category.name
                 )

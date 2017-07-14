@@ -8,13 +8,11 @@ class ModalAddImages extends Component {
     super();
 
     this.state = {
-      openDropzone: false,
-      image_ids_attached: [],
-      image_ids_detach: [],
-      image_ids_selected: []
+      openDropzone: false
     }
 
     this.getOpenCloseData = this.getOpenCloseData.bind(this);
+    this.getImageData = this.getImageData.bind(this);
   }
 
   openCloseDropZone() {
@@ -27,13 +25,13 @@ class ModalAddImages extends Component {
     this.openCloseDropZone();
   }
 
+  getImageData(data, targetName) {
+    this.props.sendImageData(data, targetName);
+  }
+
   addImages(event, sendImageDataFunc) {
     event.preventDefault();
     console.log('this: ', this);
-  }
-
-  getImageData(data) {
-    console.log('ModalAddImages getImageData DATA: ', data);
   }
 
   render() {
@@ -61,7 +59,11 @@ class ModalAddImages extends Component {
               <GetImagesProjects
                 openDropzone={this.state.openDropzone}
                 sendOpenCloseData={this.getOpenCloseData}
-                sendImageDataToModal={this.getImageData} />
+                sendImageDataToModal={this.getImageData}
+                toAttachImgUrls={this.props.toAttachImgUrls}
+                attached={this.props.attached}
+                detach={this.props.detach}
+                toAttach={this.props.toAttach} />
             </div>
             <div className="modal-footer">
               <button
@@ -74,7 +76,7 @@ class ModalAddImages extends Component {
                 type="button"
                 className="btn btn-primary"
                 data-dismiss="modal"
-                onClick={(e) => this.addImages(e)}>Add Image(s)</button>
+                onClick={(e) => this.addImages(e, this.props.sendImageData)}>Add Image(s)</button>
             </div>
           </div>
         </div>

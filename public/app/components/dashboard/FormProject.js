@@ -98,6 +98,23 @@ class FormProject extends React.Component {
     return true;
   }
 
+  componentDidUpdate() {
+    this.clearErrsIfNoneBeforeOnBlur();
+  }
+
+  clearErrsIfNoneBeforeOnBlur() {
+    let s = this.state;
+    let errArr = [s.nameErr, s.dateErr, s.descriptionErr]
+
+    if(this.requiredFieldsBlank === false && errArr.includes(true)) {
+      this.setState({
+        nameErr: false,
+        dateErr: false,
+        descriptionErr: false
+      })
+    }
+  }
+
   setAttachedAndSelected(dataModel, dataModelName) {
     let selected = [];
     let ids = dataModel.map(model => {
@@ -231,6 +248,34 @@ class FormProject extends React.Component {
               null}
           </div>
 
+          <div className="errors row">
+            <div className="col-sm-10">
+              {this.state.nameErr ?
+                <div
+                  id="project-name-validation-error"
+                  className="alert alert-danger"
+                  role="alert">
+                    Name can not be blank. Please enter a project name.
+                </div> :
+              null}
+              {this.state.dateErr ?
+                <div
+                  id="project-date-validation-error"
+                  className="alert alert-danger"
+                  role="alert">
+                    Date can not be blank. Please enter a project completed date.
+                </div> :
+              null}
+              {this.state.descriptionErr ?
+                <div id="project-description-validation-error"
+                className="alert alert-danger"
+                role="alert">
+                  Description can not be blank. Please enter a project description.
+                </div> :
+              null}
+            </div>
+          </div>
+
           <div className="container-fluid">
             <form id="create-project">
               <div className="form-group row">
@@ -348,34 +393,6 @@ class FormProject extends React.Component {
                 </div>
               </div>
             </form>
-
-            <div className="errors row">
-              <div className="col-sm-10">
-                {this.state.nameErr ?
-                  <div
-                    id="project-name-validation-error"
-                    className="alert alert-danger"
-                    role="alert">
-                      Name can not be blank. Please enter a project name.
-                  </div> :
-                null}
-                {this.state.dateErr ?
-                  <div
-                    id="project-date-validation-error"
-                    className="alert alert-danger"
-                    role="alert">
-                      Date can not be blank. Please enter a project completed date.
-                  </div> :
-                null}
-                {this.state.descriptionErr ?
-                  <div id="project-description-validation-error"
-                  className="alert alert-danger"
-                  role="alert">
-                    Description can not be blank. Please enter a project description.
-                  </div> :
-                null}
-              </div>
-            </div>
 
           </div>
         </div>

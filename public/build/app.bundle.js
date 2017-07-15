@@ -15139,6 +15139,25 @@ var FormProject = function (_React$Component) {
       return true;
     }
   }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.clearErrsIfNoneBeforeOnBlur();
+    }
+  }, {
+    key: 'clearErrsIfNoneBeforeOnBlur',
+    value: function clearErrsIfNoneBeforeOnBlur() {
+      var s = this.state;
+      var errArr = [s.nameErr, s.dateErr, s.descriptionErr];
+
+      if (this.requiredFieldsBlank === false && errArr.includes(true)) {
+        this.setState({
+          nameErr: false,
+          dateErr: false,
+          descriptionErr: false
+        });
+      }
+    }
+  }, {
     key: 'setAttachedAndSelected',
     value: function setAttachedAndSelected(dataModel, dataModelName) {
       var selected = [];
@@ -15262,6 +15281,37 @@ var FormProject = function (_React$Component) {
             'div',
             { className: 'submit-message-error' },
             this.state.submitError ? '<div className="alert alert-danger">\n                ' + this.state.submitError + '\n              </div>' : null
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'errors row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-10' },
+              this.state.nameErr ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'project-name-validation-error',
+                  className: 'alert alert-danger',
+                  role: 'alert' },
+                'Name can not be blank. Please enter a project name.'
+              ) : null,
+              this.state.dateErr ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'project-date-validation-error',
+                  className: 'alert alert-danger',
+                  role: 'alert' },
+                'Date can not be blank. Please enter a project completed date.'
+              ) : null,
+              this.state.descriptionErr ? _react2.default.createElement(
+                'div',
+                { id: 'project-description-validation-error',
+                  className: 'alert alert-danger',
+                  role: 'alert' },
+                'Description can not be blank. Please enter a project description.'
+              ) : null
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -15437,37 +15487,6 @@ var FormProject = function (_React$Component) {
                     this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialName : 'Create New Project'
                   )
                 )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'errors row' },
-              _react2.default.createElement(
-                'div',
-                { className: 'col-sm-10' },
-                this.state.nameErr ? _react2.default.createElement(
-                  'div',
-                  {
-                    id: 'project-name-validation-error',
-                    className: 'alert alert-danger',
-                    role: 'alert' },
-                  'Name can not be blank. Please enter a project name.'
-                ) : null,
-                this.state.dateErr ? _react2.default.createElement(
-                  'div',
-                  {
-                    id: 'project-date-validation-error',
-                    className: 'alert alert-danger',
-                    role: 'alert' },
-                  'Date can not be blank. Please enter a project completed date.'
-                ) : null,
-                this.state.descriptionErr ? _react2.default.createElement(
-                  'div',
-                  { id: 'project-description-validation-error',
-                    className: 'alert alert-danger',
-                    role: 'alert' },
-                  'Description can not be blank. Please enter a project description.'
-                ) : null
               )
             )
           )

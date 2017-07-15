@@ -301,8 +301,7 @@ class FormProject extends React.Component {
                     <button
                       className="btn btn-secondary"
                       onClick={(e) => this.openImageModal(e)} >
-                      {this.state.images_ids_attached_data.length > 0 ?
-                        'Add/Remove Image(s)' : 'Add Image(s)'}
+                        Add/Remove Image(s)
                     </button>
                 </div>
               </div>

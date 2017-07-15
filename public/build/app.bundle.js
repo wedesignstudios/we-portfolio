@@ -15391,7 +15391,7 @@ var FormProject = function (_React$Component) {
                       onClick: function onClick(e) {
                         return _this4.openImageModal(e);
                       } },
-                    this.state.images_ids_attached_data.length > 0 ? 'Add/Remove Image(s)' : 'Add Image(s)'
+                    'Add/Remove Image(s)'
                   )
                 )
               ),
@@ -32635,7 +32635,7 @@ var ModalAddImages = function (_Component) {
                   type: 'button',
                   className: 'btn btn-primary',
                   'data-dismiss': 'modal' },
-                'Close'
+                'OK'
               )
             )
           )

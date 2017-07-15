@@ -118,14 +118,12 @@ class FormProject extends React.Component {
   }
 
   setAttachedData(dataModel, dataModelName) {
-    console.log('setAttachedData: ', dataModel);
     this.setState({
       [dataModelName + '_ids_attached_data']: dataModel
     });
   }
 
   getComponentData(data, inputName) {
-    console.log('getComponentData: ', data);
     if(inputName === 'images_ids') {
       this.setState({
         [inputName + '_urls']: data.toAttachImgUrls

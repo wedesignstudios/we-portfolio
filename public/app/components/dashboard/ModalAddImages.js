@@ -65,7 +65,7 @@ class ModalAddImages extends Component {
                 type="button"
                 className="btn btn-primary"
                 data-dismiss="modal">
-                  Close
+                  OK
                 </button>
             </div>
           </div>

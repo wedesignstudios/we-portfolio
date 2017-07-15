@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const params = require('params');
 const isLoggedIn = require('../middleware/isLoggedIn');
+const bookshelf = require('../db/bookshelf');
 
 const Project = require('../models/project');
+const Image = require('../models/image');
 
 // INDEX all projects
 router.get('/', (req, res, next) => {
@@ -46,6 +48,7 @@ router.get('/:id', (req, res, next) => {
 
 // CREATE a new project
 router.post('/', isLoggedIn, (req, res, next) => {
+  const images_ids = req.body.images_ids;
   const clients_ids = req.body.clients_ids;
   const collaborators_ids = req.body.collaborators_ids;
   const project_categories_ids = req.body.project_categories_ids;
@@ -60,6 +63,21 @@ router.post('/', isLoggedIn, (req, res, next) => {
         project.clients().attach(clients_ids);
         project.collaborators().attach(collaborators_ids);
         project.project_categories().attach(project_categories_ids);
+        // Add images
+        project.related('images')
+          .fetch()
+          .then((images) => {
+            if(images.length === 0 && images_ids.length > 0) {
+              images_ids.forEach(imageId => {
+                return Image
+                  .forge({id: imageId})
+                  .fetch()
+                  .then(img => {
+                    return img.save({project_id: project.id}, {method: 'update', patch: true})
+                  });
+              });
+            };
+          });
         project = project.toJSON();
         return res.status(200).send(`${project.name} successfully created.`);
       })
@@ -69,7 +87,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
           res.status(500).send(`${err.name}: A project with the ${err.field} ${req.body.name} already exists.`);
         } else {
           res.status(500).send(`Whoops! The following error occurred: ${err}`);
-        }        
+        }
       });
     } else {
       res.status(400).send('Bad Request');
@@ -78,6 +96,8 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 // UPDATE a project
 router.put('/:id', isLoggedIn, (req, res, next) => {
+  const images_ids = req.body.images_ids;
+  const images_ids_detach = req.body.images_ids_detach;
   const clients_ids = req.body.clients_ids;
   const clients_ids_detach = req.body.clients_ids_detach;
   const collaborators_ids = req.body.collaborators_ids;
@@ -100,6 +120,37 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 
         if (project_categories_ids_detach) project.project_categories().detach(project_categories_ids_detach);
         if (project_categories_ids) project.project_categories().attach(project_categories_ids);
+
+        // Fetch related images
+        project.related('images')
+          .fetch()
+          .then((images) => {
+            // If Project currently has images and is not changing them: return
+            if(images.length > 0 && images_ids.length === 0 && images_ids_detach.length === 0) {
+              return
+            }
+            // If Project is removing images
+            if(images.length > 0 && images_ids_detach.length > 0) {
+              images.forEach(img => {
+                let imgJSON = img.toJSON();
+                if(images_ids_detach.includes(imgJSON.id)) {
+                  img.save({project_id: null}, {method: 'update', patch: true});
+                }
+              });
+            }
+            // If Project currently has no images: set images
+            if(images_ids.length > 0) {
+              images_ids.forEach(imageId => {
+                return Image
+                  .forge({id: imageId})
+                  .fetch()
+                  .then(img => {
+                    return img.save({project_id: project.id}, {method: 'update', patch: true})
+                  });
+              });
+            };
+          });
+
         project = project.toJSON();
         return res.status(200).send(`${project.name} has been updated.`);
       })
@@ -118,7 +169,23 @@ router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
 
   Project
     .forge({id: req.params.id})
-    .destroy()
+    .fetch()
+    .then((project) => {
+      let relation = project.images();
+      let tableName = relation.relatedData.targetTableName;
+      let foreignKey = relation.relatedData.key('foreignKey');
+
+      bookshelf.knex(tableName)
+        .where(foreignKey, project.id)
+        .update({[foreignKey]: null})
+        .then(numRows => {
+          console.log(`${numRows} have been updated.`)
+        })
+        .catch(err => {
+          console.error('KNEX ERR: ', err);
+        });
+      return project.destroy();
+    })
     .then(() => {
       return res.status(200).send(`${project_name} has been deleted.`);
     })

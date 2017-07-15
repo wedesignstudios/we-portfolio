@@ -4811,7 +4811,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -5363,6 +5363,233 @@ module.exports = ExecutionEnvironment;
 "use strict";
 
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var FormValidations = __webpack_require__(21);
+
+var FormHandlers = {
+
+  handleOnChange: function handleOnChange(event, _this) {
+    FormHandlers.inputChange(event, _this);
+  },
+
+  inputChange: function inputChange(event, _this) {
+    var target = event.target;
+    var value = target.value;
+    var name = target.name;
+
+    _this.setState(_defineProperty({}, name, value));
+  },
+
+  checkboxChange: function checkboxChange(event, _this) {
+    var target = event.target;
+    var name = target.name;
+
+    _this.setState(_defineProperty({}, name, !_this.state[name]));
+  },
+
+  multiSelect: function multiSelect(event, _this, sendDataFunc) {
+    var target = event.target;
+    var name = target.name;
+    var value = target.value ? parseInt(target.value) : parseInt(target.id);
+    var selected = _this.props.preSelected;
+    var attached = _this.props.attached;
+    var detach = _this.props.detach;
+    var toAttach = _this.props.toAttach;
+    var toAttachImgUrls = _this.props.toAttachImgUrls;
+
+    this.attachDetachValue(attached, value, detach, toAttach);
+
+    this.attachDetachImage(target, attached, toAttachImgUrls);
+
+    this.selectValue(selected, value);
+
+    sendDataFunc(this.selectObj(selected, attached, toAttach, detach, toAttachImgUrls), name);
+  },
+
+  attachDetachValue: function attachDetachValue(attached, value, detach, toAttach) {
+    if (attached.includes(value)) {
+      var index = detach.indexOf(value);
+      detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
+      return detach;
+    } else {
+      var _index = toAttach.indexOf(value);
+      toAttach.includes(value) ? toAttach.splice(_index, 1) : toAttach.push(value);
+      return toAttach;
+    }
+  },
+
+  attachDetachImage: function attachDetachImage(target, attached, toAttachImgUrls) {
+    var url = target.src;
+    var id = parseInt(target.id);
+
+    if (toAttachImgUrls && toAttachImgUrls.includes(url)) {
+      var index = toAttachImgUrls.indexOf(url);
+      toAttachImgUrls.splice(index, 1);
+    } else {
+      if (!attached.includes(id)) {
+        toAttachImgUrls ? toAttachImgUrls.push(url) : null;
+      }
+    }
+    return toAttachImgUrls;
+  },
+
+  selectValue: function selectValue(selected, value) {
+    if (selected && selected.includes(value)) {
+      var index = selected.indexOf(value);
+      selected.splice(index, 1);
+    } else {
+      selected ? selected.push(value) : null;
+    }
+    return selected;
+  },
+
+  selectObj: function selectObj(selected, attached, toAttach, detach, toAttachImgUrls) {
+    if (toAttachImgUrls && toAttachImgUrls.length > 0) {
+      return {
+        toAttachImgUrls: toAttachImgUrls,
+        attached: attached,
+        toAttach: toAttach,
+        detach: detach
+      };
+    } else {
+      return {
+        selected: selected,
+        attached: attached,
+        toAttach: toAttach,
+        detach: detach
+      };
+    }
+  },
+
+  preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
+    event.target.addEventListener('keydown', function (event) {
+      var key = event.key;
+
+      if (key !== 'Shift' && key !== 'Tab') {
+        event.preventDefault();
+      };
+    });
+  },
+
+  preventSpaceKey: function preventSpaceKey(event) {
+    event.target.addEventListener('keydown', function (event) {
+      var key = event.key;
+
+      if (key === ' ' && !event.target.value) {
+        event.preventDefault();
+      };
+    });
+  },
+
+  prependURL: function prependURL(url) {
+    return url = 'http://' + url;
+  },
+
+  resetDetached: function resetDetached(_this, models) {
+    models.forEach(function (model) {
+      var model_ids_detach = model + '_ids_detach';
+
+      _this.setState(_defineProperty({}, model_ids_detach, []));
+    });
+  },
+
+  resetToAttachIds: function resetToAttachIds(_this, models) {
+    models.forEach(function (model) {
+      var model_ids = model + '_ids';
+
+      _this.setState(_defineProperty({}, model_ids, []));
+    });
+  },
+
+  resetForm: function resetForm(formID, _this) {
+    var form = document.forms[formID];
+    var formInputs = form.getElementsByTagName("input");
+
+    for (var i = 0; i < formInputs.length; i++) {
+      formInputs[i].value = '';
+    }
+    _this.setState(_this.initialState);
+  },
+
+  setRedirectWithMessage: function setRedirectWithMessage(_this, location, errMessage, message) {
+    var error = void 0;
+    errMessage ? error = errMessage : error = '';
+    _this.props.history.push(location, { message: message, messageError: error });
+  },
+
+  setSubmitErrorMessage: function setSubmitErrorMessage(_this, message) {
+    _this.setState(function (prevState) {
+      if (_typeof(prevState.submitError) === 'object') {
+        var errorArr = prevState.submitError;
+        errorArr.push(message);
+        return { submitError: errorArr };
+      };
+      return { submitError: message };
+    });
+  },
+
+  successMessage: function successMessage(_this) {
+    _this.setState({
+      submitSuccess: true
+    });
+    setTimeout(function () {
+      _this.setState({ submitSuccess: false });
+    }, 2000);
+  },
+
+  successCallback: function successCallback(formID, _this, location) {
+    FormHandlers.resetForm(formID, _this);
+  },
+
+  titleCase: function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function (word) {
+      if (word !== '') {
+        return word.replace(word[0], word[0].toUpperCase());
+      }
+    }).join(' ');
+  },
+
+  updateAttached: function updateAttached(_this, models) {
+    models.forEach(function (model) {
+      var model_ids = model + '_ids';
+      var model_ids_attached = model_ids + '_attached';
+      var model_ids_detach = model_ids + '_detach';
+
+      var attached = _this.state[model_ids_attached];
+      var didAttach = _this.state[model_ids];
+      var didDetach = _this.state[model_ids_detach];
+
+      if (didAttach) {
+        didAttach.forEach(function (id) {
+          attached.push(id);
+        });
+      }
+
+      if (didDetach) {
+        didDetach.forEach(function (id) {
+          var index = attached.indexOf(id);
+          attached.splice(index, 1);
+        });
+      }
+
+      _this.setState(_defineProperty({}, model_ids_attached, attached));
+    });
+  }
+
+};
+
+module.exports = FormHandlers;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -5401,7 +5628,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5739,233 +5966,6 @@ var ReactComponentTreeHook = {
 
 module.exports = ReactComponentTreeHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var FormValidations = __webpack_require__(21);
-
-var FormHandlers = {
-
-  handleOnChange: function handleOnChange(event, _this) {
-    FormHandlers.inputChange(event, _this);
-  },
-
-  inputChange: function inputChange(event, _this) {
-    var target = event.target;
-    var value = target.value;
-    var name = target.name;
-
-    _this.setState(_defineProperty({}, name, value));
-  },
-
-  checkboxChange: function checkboxChange(event, _this) {
-    var target = event.target;
-    var name = target.name;
-
-    _this.setState(_defineProperty({}, name, !_this.state[name]));
-  },
-
-  multiSelect: function multiSelect(event, _this, sendDataFunc) {
-    var target = event.target;
-    var name = target.name;
-    var value = target.value ? parseInt(target.value) : parseInt(target.id);
-    var selected = _this.props.preSelected;
-    var attached = _this.props.attached;
-    var detach = _this.props.detach;
-    var toAttach = _this.props.toAttach;
-    var toAttachImgUrls = _this.props.toAttachImgUrls;
-
-    this.attachDetachValue(attached, value, detach, toAttach);
-
-    this.attachDetachImage(target, attached, toAttachImgUrls);
-
-    this.selectValue(selected, value);
-
-    sendDataFunc(this.selectObj(selected, attached, toAttach, detach, toAttachImgUrls), name);
-  },
-
-  attachDetachValue: function attachDetachValue(attached, value, detach, toAttach) {
-    if (attached.includes(value)) {
-      var index = detach.indexOf(value);
-      detach.includes(value) ? detach.splice(index, 1) : detach.push(value);
-      return detach;
-    } else {
-      var _index = toAttach.indexOf(value);
-      toAttach.includes(value) ? toAttach.splice(_index, 1) : toAttach.push(value);
-      return toAttach;
-    }
-  },
-
-  attachDetachImage: function attachDetachImage(target, attached, toAttachImgUrls) {
-    var url = target.src;
-    var id = parseInt(target.id);
-
-    if (toAttachImgUrls && toAttachImgUrls.includes(url)) {
-      var index = toAttachImgUrls.indexOf(url);
-      toAttachImgUrls.splice(index, 1);
-    } else {
-      if (!attached.includes(id)) {
-        toAttachImgUrls ? toAttachImgUrls.push(url) : null;
-      }
-    }
-    return toAttachImgUrls;
-  },
-
-  selectValue: function selectValue(selected, value) {
-    if (selected && selected.includes(value)) {
-      var index = selected.indexOf(value);
-      selected.splice(index, 1);
-    } else {
-      selected ? selected.push(value) : null;
-    }
-    return selected;
-  },
-
-  selectObj: function selectObj(selected, attached, toAttach, detach, toAttachImgUrls) {
-    if (toAttachImgUrls && toAttachImgUrls.length > 0) {
-      return {
-        toAttachImgUrls: toAttachImgUrls,
-        attached: attached,
-        toAttach: toAttach,
-        detach: detach
-      };
-    } else {
-      return {
-        selected: selected,
-        attached: attached,
-        toAttach: toAttach,
-        detach: detach
-      };
-    }
-  },
-
-  preventAllButShiftAndTab: function preventAllButShiftAndTab(event) {
-    event.target.addEventListener('keydown', function (event) {
-      var key = event.key;
-
-      if (key !== 'Shift' && key !== 'Tab') {
-        event.preventDefault();
-      };
-    });
-  },
-
-  preventSpaceKey: function preventSpaceKey(event) {
-    event.target.addEventListener('keydown', function (event) {
-      var key = event.key;
-
-      if (key === ' ' && !event.target.value) {
-        event.preventDefault();
-      };
-    });
-  },
-
-  prependURL: function prependURL(url) {
-    return url = 'http://' + url;
-  },
-
-  resetDetached: function resetDetached(_this, models) {
-    models.forEach(function (model) {
-      var model_ids_detach = model + '_ids_detach';
-
-      _this.setState(_defineProperty({}, model_ids_detach, []));
-    });
-  },
-
-  resetToAttachIds: function resetToAttachIds(_this, models) {
-    models.forEach(function (model) {
-      var model_ids = model + '_ids';
-
-      _this.setState(_defineProperty({}, model_ids, []));
-    });
-  },
-
-  resetForm: function resetForm(formID, _this) {
-    var form = document.forms[formID];
-    var formInputs = form.getElementsByTagName("input");
-
-    for (var i = 0; i < formInputs.length; i++) {
-      formInputs[i].value = '';
-    }
-    _this.setState(_this.initialState);
-  },
-
-  setRedirectWithMessage: function setRedirectWithMessage(_this, location, errMessage, message) {
-    var error = void 0;
-    errMessage ? error = errMessage : error = '';
-    _this.props.history.push(location, { message: message, messageError: error });
-  },
-
-  setSubmitErrorMessage: function setSubmitErrorMessage(_this, message) {
-    _this.setState(function (prevState) {
-      if (_typeof(prevState.submitError) === 'object') {
-        var errorArr = prevState.submitError;
-        errorArr.push(message);
-        return { submitError: errorArr };
-      };
-      return { submitError: message };
-    });
-  },
-
-  successMessage: function successMessage(_this) {
-    _this.setState({
-      submitSuccess: true
-    });
-    setTimeout(function () {
-      _this.setState({ submitSuccess: false });
-    }, 2000);
-  },
-
-  successCallback: function successCallback(formID, _this, location) {
-    FormHandlers.resetForm(formID, _this);
-  },
-
-  titleCase: function titleCase(str) {
-    return str.toLowerCase().split(' ').map(function (word) {
-      if (word !== '') {
-        return word.replace(word[0], word[0].toUpperCase());
-      }
-    }).join(' ');
-  },
-
-  updateAttached: function updateAttached(_this, models) {
-    models.forEach(function (model) {
-      var model_ids = model + '_ids';
-      var model_ids_attached = model_ids + '_attached';
-      var model_ids_detach = model_ids + '_detach';
-
-      var attached = _this.state[model_ids_attached];
-      var didAttach = _this.state[model_ids];
-      var didDetach = _this.state[model_ids_detach];
-
-      if (didAttach) {
-        didAttach.forEach(function (id) {
-          attached.push(id);
-        });
-      }
-
-      if (didDetach) {
-        didDetach.forEach(function (id) {
-          var index = attached.indexOf(id);
-          attached.splice(index, 1);
-        });
-      }
-
-      _this.setState(_defineProperty({}, model_ids_attached, attached));
-    });
-  }
-
-};
-
-module.exports = FormHandlers;
 
 /***/ }),
 /* 15 */
@@ -6353,7 +6353,7 @@ var _assign = __webpack_require__(7);
 
 var PooledClass = __webpack_require__(23);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var warning = __webpack_require__(4);
 
 var didWarnForAddedNewProperty = false;
@@ -8631,7 +8631,7 @@ module.exports = SyntheticUIEvent;
 "use strict";
 
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 var FormValidations = __webpack_require__(21);
 
 var FormHandlersValidations = {
@@ -12822,7 +12822,7 @@ module.exports = shouldUpdateReactComponent;
 
 var _assign = __webpack_require__(7);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var warning = __webpack_require__(4);
 
 var validateDOMNesting = emptyFunction;
@@ -13807,7 +13807,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 
 var FormAddress = function (_Component) {
   _inherits(FormAddress, _Component);
@@ -14064,7 +14064,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var FormAddress = __webpack_require__(74);
 var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 var FormValidations = __webpack_require__(21);
 var FormHandlersValidations = __webpack_require__(37);
 
@@ -14334,7 +14334,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var FormAddress = __webpack_require__(74);
 var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 var FormValidations = __webpack_require__(21);
 var FormHandlersValidations = __webpack_require__(37);
 
@@ -14613,7 +14613,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 var FormValidations = __webpack_require__(21);
 var FormHandlersValidations = __webpack_require__(37);
 var NewsCategoriesCheckboxes = __webpack_require__(251);
@@ -15047,7 +15047,7 @@ var CollaboratorCheckboxes = __webpack_require__(247);
 var ModalAddImages = __webpack_require__(250);
 var ProjectCategoriesCheckboxes = __webpack_require__(252);
 var DataActions = __webpack_require__(27);
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 var FormValidations = __webpack_require__(21);
 var FormHandlersValidations = __webpack_require__(37);
 
@@ -15158,7 +15158,6 @@ var FormProject = function (_React$Component) {
   }, {
     key: 'setAttachedData',
     value: function setAttachedData(dataModel, dataModelName) {
-      console.log('setAttachedData: ', dataModel);
       this.setState(_defineProperty({}, dataModelName + '_ids_attached_data', dataModel));
     }
   }, {
@@ -15166,7 +15165,6 @@ var FormProject = function (_React$Component) {
     value: function getComponentData(data, inputName) {
       var _setState5;
 
-      console.log('getComponentData: ', data);
       if (inputName === 'images_ids') {
         this.setState(_defineProperty({}, inputName + '_urls', data.toAttachImgUrls));
       }
@@ -15514,7 +15512,7 @@ module.exports = (0, _reactRouterDom.withRouter)(FormProject);
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -30396,7 +30394,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 var ReactCurrentOwner = __webpack_require__(18);
-var ReactComponentTreeHook = __webpack_require__(13);
+var ReactComponentTreeHook = __webpack_require__(14);
 var ReactElement = __webpack_require__(24);
 
 var checkReactTypeSpec = __webpack_require__(386);
@@ -31770,7 +31768,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 var DataActions = __webpack_require__(27);
 
 var UploadImages = function (_React$Component) {
@@ -31997,7 +31995,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 
 var ClientCheckboxes = function (_React$Component) {
   _inherits(ClientCheckboxes, _React$Component);
@@ -32110,7 +32108,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 
 var CollaboratorCheckboxes = function (_React$Component) {
   _inherits(CollaboratorCheckboxes, _React$Component);
@@ -32357,7 +32355,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 
 var GetImagesProjects = function (_React$Component) {
   _inherits(GetImagesProjects, _React$Component);
@@ -32678,7 +32676,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 
 var NewsCategoriesCheckboxes = function (_React$Component) {
   _inherits(NewsCategoriesCheckboxes, _React$Component);
@@ -32792,7 +32790,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 
 var ProjectCategoriesCheckboxes = function (_React$Component) {
   _inherits(ProjectCategoriesCheckboxes, _React$Component);
@@ -32905,7 +32903,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var FormHandlers = __webpack_require__(14);
+var FormHandlers = __webpack_require__(12);
 var FormValidations = __webpack_require__(21);
 var DataActions = __webpack_require__(27);
 
@@ -35826,7 +35824,7 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(3);
 
 module.exports = function() {
@@ -35887,7 +35885,7 @@ module.exports = function() {
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
@@ -37419,7 +37417,7 @@ var DOMLazyTree = __webpack_require__(29);
 var ExecutionEnvironment = __webpack_require__(11);
 
 var createNodesFromMarkup = __webpack_require__(260);
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var invariant = __webpack_require__(3);
 
 var Danger = {
@@ -37936,7 +37934,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(13);
+  ReactComponentTreeHook = __webpack_require__(14);
 }
 
 function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -37944,7 +37942,7 @@ function instantiateChild(childInstances, child, name, selfDebugID) {
   var keyUnique = childInstances[name] === undefined;
   if (process.env.NODE_ENV !== 'production') {
     if (!ReactComponentTreeHook) {
-      ReactComponentTreeHook = __webpack_require__(13);
+      ReactComponentTreeHook = __webpack_require__(14);
     }
     if (!keyUnique) {
       process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -39164,7 +39162,7 @@ var ReactInstrumentation = __webpack_require__(15);
 var ReactMultiChild = __webpack_require__(316);
 var ReactServerRenderingTransaction = __webpack_require__(321);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var escapeTextContentForBrowser = __webpack_require__(44);
 var invariant = __webpack_require__(3);
 var isEventSupported = __webpack_require__(63);
@@ -40599,7 +40597,7 @@ module.exports = ReactDOMInput;
 
 
 var DOMProperty = __webpack_require__(20);
-var ReactComponentTreeHook = __webpack_require__(13);
+var ReactComponentTreeHook = __webpack_require__(14);
 
 var warning = __webpack_require__(4);
 
@@ -40697,7 +40695,7 @@ module.exports = ReactDOMInvalidARIAHook;
 
 
 
-var ReactComponentTreeHook = __webpack_require__(13);
+var ReactComponentTreeHook = __webpack_require__(14);
 
 var warning = __webpack_require__(4);
 
@@ -41572,7 +41570,7 @@ module.exports = {
 
 var DOMProperty = __webpack_require__(20);
 var EventPluginRegistry = __webpack_require__(40);
-var ReactComponentTreeHook = __webpack_require__(13);
+var ReactComponentTreeHook = __webpack_require__(14);
 
 var warning = __webpack_require__(4);
 
@@ -41691,7 +41689,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 var ReactInvalidSetStateWarningHook = __webpack_require__(314);
 var ReactHostOperationHistoryHook = __webpack_require__(312);
-var ReactComponentTreeHook = __webpack_require__(13);
+var ReactComponentTreeHook = __webpack_require__(14);
 var ExecutionEnvironment = __webpack_require__(11);
 
 var performanceNow = __webpack_require__(269);
@@ -42060,7 +42058,7 @@ var _assign = __webpack_require__(7);
 var ReactUpdates = __webpack_require__(17);
 var Transaction = __webpack_require__(43);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -42628,7 +42626,7 @@ var ReactCurrentOwner = __webpack_require__(18);
 var ReactReconciler = __webpack_require__(30);
 var ReactChildReconciler = __webpack_require__(288);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var flattenChildren = __webpack_require__(341);
 var invariant = __webpack_require__(3);
 
@@ -44264,7 +44262,7 @@ var SyntheticTransitionEvent = __webpack_require__(335);
 var SyntheticUIEvent = __webpack_require__(36);
 var SyntheticWheelEvent = __webpack_require__(336);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var getEventCharCode = __webpack_require__(60);
 var invariant = __webpack_require__(3);
 
@@ -45039,7 +45037,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(13);
+  ReactComponentTreeHook = __webpack_require__(14);
 }
 
 var loggedTypeFailures = {};
@@ -45081,7 +45079,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(13);
+            ReactComponentTreeHook = __webpack_require__(14);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -45280,7 +45278,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(13);
+  ReactComponentTreeHook = __webpack_require__(14);
 }
 
 /**
@@ -45296,7 +45294,7 @@ function flattenSingleChildIntoContext(traverseContext, child, name, selfDebugID
     var keyUnique = result[name] === undefined;
     if (process.env.NODE_ENV !== 'production') {
       if (!ReactComponentTreeHook) {
-        ReactComponentTreeHook = __webpack_require__(13);
+        ReactComponentTreeHook = __webpack_require__(14);
       }
       if (!keyUnique) {
         process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -48676,7 +48674,7 @@ module.exports = PooledClass;
 var PooledClass = __webpack_require__(379);
 var ReactElement = __webpack_require__(24);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var traverseAllChildren = __webpack_require__(388);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -49772,7 +49770,7 @@ var ReactElement = __webpack_require__(24);
 var ReactPropTypeLocationNames = __webpack_require__(70);
 var ReactPropTypesSecret = __webpack_require__(230);
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(13);
 var getIteratorFn = __webpack_require__(72);
 var warning = __webpack_require__(4);
 
@@ -50290,7 +50288,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(13);
+  ReactComponentTreeHook = __webpack_require__(14);
 }
 
 var loggedTypeFailures = {};
@@ -50332,7 +50330,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(13);
+            ReactComponentTreeHook = __webpack_require__(14);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);

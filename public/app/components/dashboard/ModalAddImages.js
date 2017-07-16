@@ -58,7 +58,8 @@ class ModalAddImages extends Component {
                 toAttachImgUrls={this.props.toAttachImgUrls}
                 attached={this.props.attached}
                 detach={this.props.detach}
-                toAttach={this.props.toAttach} />
+                toAttach={this.props.toAttach}
+                clearModalErrs={this.props.clearModalErrs} />
             </div>
             <div className="modal-footer">
               <button

@@ -48,7 +48,8 @@ class FormProject extends React.Component {
       dateErr: false,
       descriptionErr: false,
       submitSuccess: false,
-      submitError: ''
+      submitError: '',
+      clearModalErrs: false
     }
 
     this.initialState = this.state;
@@ -158,6 +159,7 @@ class FormProject extends React.Component {
   openImageModal(event) {
     event.preventDefault();
     $(ReactDOM.findDOMNode(this.refs.modal)).modal();
+    this.setState({clearModalErrs: true});
   }
 
   deleteProject() {
@@ -357,7 +359,8 @@ class FormProject extends React.Component {
                 attached={this.state.images_ids_attached}
                 detach={this.state.images_ids_detach}
                 toAttach={this.state.images_ids}
-                toAttachImgUrls={this.state.images_ids_urls} />
+                toAttachImgUrls={this.state.images_ids_urls}
+                clearModalErrs={this.state.clearModalErrs} />
 
               <ClientCheckboxes
                 preSelected={this.state.clients_ids_selected}

@@ -15085,7 +15085,8 @@ var FormProject = function (_React$Component) {
       dateErr: false,
       descriptionErr: false,
       submitSuccess: false,
-      submitError: ''
+      submitError: '',
+      clearModalErrs: false
     };
 
     _this.initialState = _this.state;
@@ -15195,6 +15196,7 @@ var FormProject = function (_React$Component) {
     value: function openImageModal(event) {
       event.preventDefault();
       $(_reactDom2.default.findDOMNode(this.refs.modal)).modal();
+      this.setState({ clearModalErrs: true });
     }
   }, {
     key: 'deleteProject',
@@ -15451,7 +15453,8 @@ var FormProject = function (_React$Component) {
                 attached: this.state.images_ids_attached,
                 detach: this.state.images_ids_detach,
                 toAttach: this.state.images_ids,
-                toAttachImgUrls: this.state.images_ids_urls }),
+                toAttachImgUrls: this.state.images_ids_urls,
+                clearModalErrs: this.state.clearModalErrs }),
               _react2.default.createElement(ClientCheckboxes, {
                 preSelected: this.state.clients_ids_selected,
                 sendClientData: this.getComponentData,
@@ -32388,10 +32391,12 @@ var GetImagesProjects = function (_React$Component) {
     _this.state = {
       image_data: [],
       image_ids: [],
-      image_added: false
+      imageAddSuccess: false,
+      submitError: []
     };
 
     _this.imageAdded = _this.imageAdded.bind(_this);
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
 
     return _this;
   }
@@ -32405,14 +32410,14 @@ var GetImagesProjects = function (_React$Component) {
         var formData = new FormData();
 
         formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload', _this2.imageAdded);
+        DataActions.uploadImages(formData, '/api/images/upload', _this2.imageAdded, _this2.setSubmitErrorMessage);
       });
     }
   }, {
     key: 'imageAdded',
     value: function imageAdded(message) {
       if (message) {
-        this.setState({ image_added: true });
+        this.setState({ imageAddSuccess: true });
       }
     }
   }, {
@@ -32441,14 +32446,20 @@ var GetImagesProjects = function (_React$Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
-      console.log('Inside componentDidUpdate');
-      if (this.state.image_added) {
+      if (this.state.imageAddSuccess) {
         this.loadImages();
-        this.setState({ image_added: false });
+        this.setState({ imageAddSuccess: false });
       }
 
       if (prevProps.attached !== this.props.attached) {
         this.loadImages();
+      }
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.clearModalErrs) {
+        this.setState({ submitError: [] });
       }
     }
   }, {
@@ -32482,8 +32493,7 @@ var GetImagesProjects = function (_React$Component) {
             disableClick: true,
             onDrop: function onDrop(e) {
               return _this4.onDrop(e);
-            }
-          },
+            } },
           _react2.default.createElement(
             'button',
             {
@@ -32520,6 +32530,17 @@ var GetImagesProjects = function (_React$Component) {
             'Select Image(s)'
           )
         ) : null,
+        _react2.default.createElement(
+          'div',
+          { className: 'submit-message-error mt-3' },
+          this.state.submitError.map(function (message, i) {
+            return _react2.default.createElement(
+              'div',
+              { className: 'alert alert-danger', role: 'alert', key: i },
+              message
+            );
+          })
+        ),
         _react2.default.createElement(
           'div',
           { className: 'images-select-container' },
@@ -32662,7 +32683,8 @@ var ModalAddImages = function (_Component) {
                 toAttachImgUrls: this.props.toAttachImgUrls,
                 attached: this.props.attached,
                 detach: this.props.detach,
-                toAttach: this.props.toAttach })
+                toAttach: this.props.toAttach,
+                clearModalErrs: this.props.clearModalErrs })
             ),
             _react2.default.createElement(
               'div',

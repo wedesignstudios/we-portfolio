@@ -15484,6 +15484,12 @@ var FormProject = function (_React$Component) {
                   'div',
                   { className: 'col-sm-12 d-flex justify-content-end' },
                   _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/dashboard/projects', className: 'btn btn-secondary mr-3' },
+                    'Cancel'
+                  ),
+                  _react2.default.createElement('br', null),
+                  _react2.default.createElement(
                     'button',
                     {
                       className: 'btn btn-primary',

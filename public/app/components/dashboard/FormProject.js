@@ -387,6 +387,7 @@ class FormProject extends React.Component {
 
               <div className="form-group row">
                 <div className="col-sm-12 d-flex justify-content-end">
+                  <Link to='/dashboard/projects' className="btn btn-secondary mr-3">Cancel</Link><br />
                   <button
                     className="btn btn-primary"
                     disabled={this.requiredFieldsBlank}

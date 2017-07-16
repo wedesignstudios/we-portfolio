@@ -15246,7 +15246,7 @@ var FormProject = function (_React$Component) {
           { className: 'col-6' },
           _react2.default.createElement(
             _reactRouterDom.Link,
-            { to: '/dashboard/projects', className: 'btn btn-outline-primary mb-3' },
+            { to: '/dashboard/projects', className: 'btn btn-primary mb-3' },
             'All Projects'
           ),
           _react2.default.createElement('br', null),
@@ -15255,19 +15255,23 @@ var FormProject = function (_React$Component) {
             null,
             _react2.default.createElement(
               'span',
-              { className: 'badge badge-default' },
+              { className: 'badge badge-default p-3' },
               this.props.sendRequestType === 'POST' ? 'Create A New Project' : 'Update Project: ' + this.state.initialName
             )
           ),
           this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-            'button',
-            {
-              className: 'btn btn-danger mb-3',
-              onClick: function onClick(e) {
-                return _this4.deleteProject(e);
-              } },
-            'Delete ',
-            this.state.initialName
+            'div',
+            { className: 'd-flex justify-content-end pr-3' },
+            _react2.default.createElement(
+              'button',
+              {
+                className: 'btn btn-danger mb-3',
+                onClick: function onClick(e) {
+                  return _this4.deleteProject(e);
+                } },
+              'Delete ',
+              this.state.initialName
+            )
           ) : null,
           _react2.default.createElement(
             'div',
@@ -15331,7 +15335,7 @@ var FormProject = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-sm-8' },
+                  { className: 'col-sm-10' },
                   _react2.default.createElement('input', {
                     type: 'text',
                     name: 'name',
@@ -15358,7 +15362,7 @@ var FormProject = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-sm-8' },
+                  { className: 'col-sm-10' },
                   _react2.default.createElement(_reactDatepicker2.default, {
                     selected: this.state.date,
                     value: this.state.date,
@@ -15392,7 +15396,7 @@ var FormProject = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-sm-8' },
+                  { className: 'col-sm-10' },
                   _react2.default.createElement('textarea', {
                     type: 'textfield',
                     name: 'description',
@@ -15419,7 +15423,7 @@ var FormProject = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-sm-8' },
+                  { className: 'col-sm-10' },
                   _react2.default.createElement(
                     'div',
                     { className: 'row' },
@@ -15478,11 +15482,11 @@ var FormProject = function (_React$Component) {
                 { className: 'form-group row' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-10 d-flex justify-content-end' },
+                  { className: 'col-sm-12 d-flex justify-content-end' },
                   _react2.default.createElement(
                     'button',
                     {
-                      className: 'btn btn-outline-primary',
+                      className: 'btn btn-primary',
                       disabled: this.requiredFieldsBlank,
                       onClick: function onClick(e) {
                         return _this4.submitForm(e);
@@ -32070,7 +32074,7 @@ var ClientCheckboxes = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'col-sm-8' },
+          { className: 'col-sm-10' },
           _react2.default.createElement(
             'div',
             { className: 'checkboxes-container form-control' },
@@ -32183,7 +32187,7 @@ var CollaboratorCheckboxes = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'col-sm-8' },
+          { className: 'col-sm-10' },
           _react2.default.createElement(
             'div',
             { className: 'checkboxes-container form-control' },
@@ -32903,7 +32907,7 @@ var ProjectCategoriesCheckboxes = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'col-sm-8' },
+          { className: 'col-sm-10' },
           _react2.default.createElement(
             'div',
             { className: 'checkboxes-container form-control' },

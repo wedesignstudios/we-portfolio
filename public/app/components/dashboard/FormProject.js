@@ -214,9 +214,9 @@ class FormProject extends React.Component {
     return (
       <div className="row justify-content-center">
         <div className="col-6">
-          <Link to='/dashboard/projects' className="btn btn-outline-primary mb-3">All Projects</Link><br />
+          <Link to='/dashboard/projects' className="btn btn-primary mb-3">All Projects</Link><br />
           <h1>
-            <span className="badge badge-default">
+            <span className="badge badge-default p-3">
               {this.props.sendRequestType === 'POST' ?
                 'Create A New Project' :
                 `Update Project: ${this.state.initialName}`}
@@ -224,11 +224,13 @@ class FormProject extends React.Component {
           </h1>
 
           {this.props.sendRequestType === 'PUT' ?
-            <button
-              className="btn btn-danger mb-3"
-              onClick={(e) => this.deleteProject(e)}>
-                Delete {this.state.initialName}
-            </button> :
+            <div className="d-flex justify-content-end pr-3">
+              <button
+                className="btn btn-danger mb-3"
+                onClick={(e) => this.deleteProject(e)}>
+                  Delete {this.state.initialName}
+              </button>
+            </div> :
           null}
 
           <div className="submit-message-success">
@@ -282,7 +284,7 @@ class FormProject extends React.Component {
             <form id="create-project">
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Project Name: </label>
-                <div className="col-sm-8">
+                <div className="col-sm-10">
                   <input
                       type="text"
                       name="name"
@@ -296,7 +298,7 @@ class FormProject extends React.Component {
 
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Date Completed: </label>
-                <div className="col-sm-8">
+                <div className="col-sm-10">
                   <DatePicker
                       selected={this.state.date}
                       value={this.state.date}
@@ -317,7 +319,7 @@ class FormProject extends React.Component {
 
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Description: </label>
-                <div className="col-sm-8">
+                <div className="col-sm-10">
                   <textarea
                       type="textfield"
                       name="description"
@@ -331,7 +333,7 @@ class FormProject extends React.Component {
 
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Image(s): </label>
-                <div className="col-sm-8">
+                <div className="col-sm-10">
                     <div className="row">
                       <div className="col-sm-12">
                         {this.showAttachedImages()}
@@ -384,9 +386,9 @@ class FormProject extends React.Component {
                 detach={this.state.project_categories_ids_detach} />
 
               <div className="form-group row">
-                <div className="col-10 d-flex justify-content-end">
+                <div className="col-sm-12 d-flex justify-content-end">
                   <button
-                    className="btn btn-outline-primary"
+                    className="btn btn-primary"
                     disabled={this.requiredFieldsBlank}
                     onClick={(e) => this.submitForm(e)}>
                       {this.props.sendRequestType === 'PUT' ?

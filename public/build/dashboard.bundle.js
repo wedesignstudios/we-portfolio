@@ -32375,6 +32375,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var FormHandlers = __webpack_require__(12);
+var DataActions = __webpack_require__(27);
 
 var GetImagesProjects = function (_React$Component) {
   _inherits(GetImagesProjects, _React$Component);
@@ -32386,8 +32387,11 @@ var GetImagesProjects = function (_React$Component) {
 
     _this.state = {
       image_data: [],
-      image_ids: []
+      image_ids: [],
+      image_added: false
     };
+
+    _this.imageAdded = _this.imageAdded.bind(_this);
 
     return _this;
   }
@@ -32395,25 +32399,34 @@ var GetImagesProjects = function (_React$Component) {
   _createClass(GetImagesProjects, [{
     key: 'onDrop',
     value: function onDrop(files) {
+      var _this2 = this;
+
       files.forEach(function (file) {
         var formData = new FormData();
 
         formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload');
+        DataActions.uploadImages(formData, '/api/images/upload', _this2.imageAdded);
       });
+    }
+  }, {
+    key: 'imageAdded',
+    value: function imageAdded(message) {
+      if (message) {
+        this.setState({ image_added: true });
+      }
     }
   }, {
     key: 'loadImages',
     value: function loadImages() {
-      var _this2 = this;
+      var _this3 = this;
 
       fetch('/api/images').then(function (res) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
-          return obj.project_id === null || _this2.props.attached.includes(obj.id);
+          return obj.project_id === null || _this3.props.attached.includes(obj.id);
         });
-        _this2.setState({
+        _this3.setState({
           image_data: data
         });
       }).catch(function (err) {
@@ -32428,6 +32441,12 @@ var GetImagesProjects = function (_React$Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
+      console.log('Inside componentDidUpdate');
+      if (this.state.image_added) {
+        this.loadImages();
+        this.setState({ image_added: false });
+      }
+
       if (prevProps.attached !== this.props.attached) {
         this.loadImages();
       }
@@ -32444,7 +32463,7 @@ var GetImagesProjects = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var dropzoneRef = void 0;
 
@@ -32462,7 +32481,7 @@ var GetImagesProjects = function (_React$Component) {
             className: 'dropzone-styles',
             disableClick: true,
             onDrop: function onDrop(e) {
-              return _this3.onDrop(e);
+              return _this4.onDrop(e);
             }
           },
           _react2.default.createElement(
@@ -32472,7 +32491,7 @@ var GetImagesProjects = function (_React$Component) {
               type: 'button',
               className: 'close',
               onClick: function onClick(e) {
-                return _this3.props.sendOpenCloseData(e);
+                return _this4.props.sendOpenCloseData(e);
               } },
             _react2.default.createElement(
               'span',
@@ -32509,11 +32528,11 @@ var GetImagesProjects = function (_React$Component) {
               key: image.id,
               id: image.id,
               name: 'image_ids',
-              className: _this3.selectedImage(image),
+              className: _this4.selectedImage(image),
               src: image.url,
               height: '100',
               onClick: function onClick(e) {
-                return FormHandlers.multiSelect(e, _this3, _this3.props.sendImageDataToModal);
+                return FormHandlers.multiSelect(e, _this4, _this4.props.sendImageDataToModal);
               } });
           })
         )

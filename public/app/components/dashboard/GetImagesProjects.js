@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Dropzone from 'react-dropzone';
 
 const FormHandlers = require('../../services/form_handlers');
+const DataActions = require('../../data/actions');
 
 class GetImagesProjects extends React.Component {
   constructor() {
@@ -10,8 +11,11 @@ class GetImagesProjects extends React.Component {
 
     this.state = {
       image_data: [],
-      image_ids: []
+      image_ids: [],
+      image_added: false
     }
+
+    this.imageAdded = this.imageAdded.bind(this);
 
   }
 
@@ -22,9 +26,16 @@ class GetImagesProjects extends React.Component {
       formData.append('image', file);
       DataActions.uploadImages(
         formData,
-        '/api/images/upload'
+        '/api/images/upload',
+        this.imageAdded
       );
     });
+  }
+
+  imageAdded(message) {
+    if(message) {
+      this.setState({image_added: true});
+    }
   }
 
   loadImages() {
@@ -48,6 +59,12 @@ class GetImagesProjects extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log('Inside componentDidUpdate');
+    if(this.state.image_added) {
+      this.loadImages();
+      this.setState({image_added: false});
+    }
+
     if(prevProps.attached !== this.props.attached) {
       this.loadImages();
     }

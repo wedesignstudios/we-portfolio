@@ -1,0 +1,19 @@
+// Dropzone component styles
+
+.dropzone-styles {
+  align-items: center;
+  border: 2px dashed gray;
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;
+  width: 100%;
+
+  button {
+    margin-bottom: 2rem;
+
+    &#close-dropzone {
+      align-self: flex-end;
+      margin: 0.5rem 0.75rem;
+    }
+  }
+}

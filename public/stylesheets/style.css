@@ -53,12 +53,6 @@ textarea.err {
   display: inline-block;
   width: 300px; }
 
-#get-images-projects button {
-  margin-bottom: 2rem; }
-  #get-images-projects button#close-dropzone {
-    align-self: flex-end;
-    margin: 0.5rem 0.75rem; }
-
 .dropzone-styles {
   align-items: center;
   border: 2px dashed gray;
@@ -66,5 +60,10 @@ textarea.err {
   flex-direction: column;
   justify-content: center;
   width: 100%; }
+  .dropzone-styles button {
+    margin-bottom: 2rem; }
+    .dropzone-styles button#close-dropzone {
+      align-self: flex-end;
+      margin: 0.5rem 0.75rem; }
 
 /*# sourceMappingURL=style.css.map */

@@ -47,7 +47,6 @@ class FormProject extends React.Component {
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
-      submitSuccess: false,
       submitError: '',
       clearModalErrs: false
     }
@@ -214,7 +213,7 @@ class FormProject extends React.Component {
     return (
       <div className="row justify-content-center">
         <div className="col-6">
-          <Link to='/dashboard/projects' className="btn btn-primary mb-3">All Projects</Link><br />
+          <Link to='/dashboard/projects' className="btn btn-primary mb-3">All Projects</Link>
           <h1>
             <span className="badge badge-default p-3">
               {this.props.sendRequestType === 'POST' ?
@@ -232,17 +231,6 @@ class FormProject extends React.Component {
               </button>
             </div> :
           null}
-
-          <div className="submit-message-success">
-            {this.state.submitSuccess ?
-              <div id="project-added-success"
-                className="alert alert-success">
-                {this.props.sendRequestType === 'POST' ?
-                  'New Project successfully added.' :
-                  'Project successfully updated.'}
-              </div> :
-            null}
-          </div>
 
           <div className="submit-message-error">
             {this.state.submitError ?

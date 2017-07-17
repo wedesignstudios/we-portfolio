@@ -1,18 +1,57 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Dropzone from 'react-dropzone';
 
+const FormHandlers = require('../../services/form_handlers');
+const DataActions = require('../../data/actions');
 const GetImagesProjects = require('./GetImagesProjects');
+const GetImagesNewsStory = require('./GetImagesNewsStory');
 
 class ModalAddImages extends Component {
   constructor() {
     super();
 
     this.state = {
-      openDropzone: false
+      openDropzone: false,
+      imageAddSuccess: false,
+      submitError: []
     }
 
     this.getOpenCloseData = this.getOpenCloseData.bind(this);
     this.getImageData = this.getImageData.bind(this);
+    this.imageAdded = this.imageAdded.bind(this);
+    this.resetImageAdded = this.resetImageAdded.bind(this);
+    this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.clearModalErrs) {
+      this.setState({submitError: []});
+    }
+  }
+
+  onDrop(files) {
+    files.forEach(file => {
+      const formData = new FormData();
+
+      formData.append('image', file);
+      DataActions.uploadImages(
+        formData,
+        '/api/images/upload',
+        this.imageAdded,
+        this.setSubmitErrorMessage
+      );
+    });
+  }
+
+  imageAdded(message) {
+    if(message) {
+      this.setState({imageAddSuccess: true});
+    }
+  }
+
+  resetImageAdded() {
+    this.setState({imageAddSuccess: false});
   }
 
   openCloseDropZone() {
@@ -30,12 +69,16 @@ class ModalAddImages extends Component {
   }
 
   render() {
+    let dropzoneRef;
     return(
       <div className="modal fade" id="addImages"tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header d-flex justify-content-start">
-              <h5 className="modal-title p-2">Select Image(s)</h5>
+              <h5 className="modal-title p-2">
+                {this.props.parentForm === 'project' ? 'Select Image(s)' : null}
+                {this.props.parentForm === 'newsStory' ? 'Select Image' : null}
+              </h5>
               <button
                 type="button"
                 className="btn btn-primary p-2"
@@ -51,15 +94,63 @@ class ModalAddImages extends Component {
               </button>
             </div>
             <div className="modal-body">
-              <GetImagesProjects
-                openDropzone={this.state.openDropzone}
-                sendOpenCloseData={this.getOpenCloseData}
-                sendImageDataToModal={this.getImageData}
-                toAttachImgUrls={this.props.toAttachImgUrls}
-                attached={this.props.attached}
-                detach={this.props.detach}
-                toAttach={this.props.toAttach}
-                clearModalErrs={this.props.clearModalErrs} />
+
+              {this.state.openDropzone ?
+                <Dropzone
+                  ref={(node) => {dropzoneRef = node}}
+                  name="images"
+                  accept="image/*"
+                  className="dropzone-styles"
+                  disableClick={true}
+                  onDrop={e => this.onDrop(e)}>
+                    <button
+                      id="close-dropzone"
+                      type="button"
+                      className="close"
+                      onClick={(e) => this.openCloseDropZone(e)}>
+                        <span>&times;</span>
+                    </button>
+                    <h5>Drag image(s) here.</h5>
+                    <p>or</p>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => {dropzoneRef.open()}} >
+                        Select Image(s)
+                    </button>
+                </Dropzone> :
+              null}
+
+              <div className="submit-message-error mt-3">
+                {this.state.submitError.map((message, i) => {
+                  return <div className="alert alert-danger" role="alert" key={i}>
+                           {message}
+                         </div>
+                  })
+                }
+              </div>
+
+              {this.props.parentForm === 'project' ?
+                <GetImagesProjects
+                  openDropzone={this.state.openDropzone}
+                  sendOpenCloseData={this.getOpenCloseData}
+                  sendImageDataToModal={this.getImageData}
+                  toAttachImgUrls={this.props.toAttachImgUrls}
+                  attached={this.props.attached}
+                  detach={this.props.detach}
+                  toAttach={this.props.toAttach}
+                  imageAddSuccess={this.state.imageAddSuccess}
+                  resetImageAdded={this.resetImageAdded} /> :
+              null}
+              {this.props.parentForm === 'newsStory' ?
+                <GetImagesNewsStory
+                  openDropzone={this.state.openDropzone}
+                  sendOpenCloseData={this.getOpenCloseData}
+                  sendImageDataToModal={this.props.sendImageData}
+                  newsStoryId={this.props.newsStoryId}
+                  imageAddSuccess={this.state.imageAddSuccess}
+                  resetImageAdded={this.resetImageAdded} /> :
+              null}
             </div>
             <div className="modal-footer">
               <button

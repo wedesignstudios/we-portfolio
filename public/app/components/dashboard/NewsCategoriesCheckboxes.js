@@ -31,7 +31,7 @@ class NewsCategoriesCheckboxes extends React.Component {
     return(
       <div className="form-group row">
         <label className="col-sm-2">News Category/Categories</label><br />
-        <div className="col-sm-8">
+        <div className="col-sm-10">
           <div className="checkboxes-container form-control">
             {this.state.news_categories_data.map(category =>
               <div className="form-check" key={category.id}>

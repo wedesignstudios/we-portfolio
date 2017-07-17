@@ -13,6 +13,7 @@ const DataActions = require('../../data/actions');
 const FormHandlers = require('../../services/form_handlers');
 const FormValidations = require('../../services/form_validations');
 const FormHandlersValidations = require('../../services/form_handlers_validations');
+const ModalAddImages = require('./ModalAddImages');
 const NewsCategoriesCheckboxes = require('./NewsCategoriesCheckboxes');
 const GetImagesNewsStory = require('./GetImagesNewsStory');
 
@@ -22,11 +23,10 @@ class FormNewsStory extends React.Component {
 
     this.state = {
       title: '',
+      initialTitle: '',
       date: '',
       description: '',
-      initial_image_id: '',
       image_id: '',
-      initial_image_url: '',
       image_url: '',
       news_categories_ids: [],
       news_categories_ids_attached: [],
@@ -38,7 +38,8 @@ class FormNewsStory extends React.Component {
       imageErr: false,
       categoriesErr: false,
       imageSelectOpen: false,
-      submitError: ''
+      submitError: '',
+      clearModalErrs: false
     }
 
     this.initialState = this.state;
@@ -60,16 +61,11 @@ class FormNewsStory extends React.Component {
     })
   }
 
-  getImageData(data, closeImageSelect) {
+  getImageData(data) {
     this.setState({
       image_id: data.id,
       image_url: data.url
     });
-    if(closeImageSelect === false) {
-      this.setState({
-        imageSelectOpen: closeImageSelect
-      })
-    };
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -85,23 +81,14 @@ class FormNewsStory extends React.Component {
         .then((data) => {
           this.setState({
             title: data.title,
-            date: data.date,
+            initialTitle: data.title,
+            date: moment(data.date),
             description: data.description,
             image_id: data.image.id ? data.image.id : '',
-            initial_image_id: data.image.id ? data.image.id : ''
+            image_url: data.image.url ? data.image.url : ''
           });
           if(data.news_categories) {
             this.setAttachedAndSelected(data.news_categories, 'news_categories');
-          };
-          if(data.image) {
-            fetch(`/api/images/${data.image.id}`)
-              .then(res => res.json())
-              .then(data =>
-                this.setState({
-                  image_url: data.url,
-                  initial_image_url: data.url
-                })
-              )
           };
         })
     }
@@ -118,6 +105,12 @@ class FormNewsStory extends React.Component {
       [dataModelName + '_ids_attached']: ids,
       [dataModelName + '_ids_selected']: selected
     });
+  }
+
+  openImageModal(event) {
+    event.preventDefault();
+    $(ReactDOM.findDOMNode(this.refs.modal)).modal();
+    this.setState({clearModalErrs: true});
   }
 
   deleteNewsStory() {
@@ -151,127 +144,194 @@ class FormNewsStory extends React.Component {
          this.setSubmitErrorMessage
        );
      } else {
-        let newUrl = this.state.image_url;
-
         DataActions.sendRequest(
           this.props.sendRequestType,
           this.state,
           `/api/news-stories/${this.props.newsStoryId}`,
-          FormHandlers.successMessage(this)
+          this.setRedirectWithMessage,
+          this.setSubmitErrorMessage
         );
-        FormHandlers.updateAttached(this, ['news_categories']);
-        FormHandlers.resetDetached(this, ['news_categories']);
-        FormHandlers.resetToAttachIds(this, ['news_categories']);
-        this.setState({
-          initial_image_url: newUrl,
-          imageSelectOpen: false
-        });
       }
     });
   }
 
   render() {
     return(
-      <div>
-        <Link to='/dashboard/news-stories'>All News Stories</Link><br />
-        <h3>{this.props.sendRequestType === 'POST' ? 'Create A News Story' : `Update News Story: ${this.state.title}`}</h3>
-        <p><em>All fields required.</em></p>
-        <div className="submit-message-success">
-          {this.state.submitSuccess ? <div id="news-story-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Story successfully added.' : 'Story successfully updated.'}</p></div> : null}
-        </div>
-        <div className="submit-message-error" style={{color: 'red'}}><p>{this.state.submitError}</p></div>
-        {this.props.sendRequestType === 'PUT' ?
-          <button onClick={(e) => this.deleteNewsStory(e)}>Delete {this.state.title}</button> :
-        null}
-        <form id="create-news-story">
-          <div>
-            <label>Story Title: </label>
-            <input
-              type="text"
-              name="title"
-              className={this.state.titleErr ? 'err' : null}
-              value={this.state.title}
-              onChange={(e) => FormHandlers.handleOnChange(e, this)}
-              onFocus={(e) => FormHandlers.preventSpaceKey(e)}
-              onBlur={(e) => FormValidations.checkField(e, this)} />
-          </div>
+      <div className="row justify-content-center">
+        <div className="col-6">
+          <Link to='/dashboard/news-stories' className="btn btn-primary mb-3">All News Stories</Link>
+          <h1>
+            <span className="badge badge-default p-3">
+              {this.props.sendRequestType === 'POST' ? 'Create A News Story' : `Update News Story: ${this.state.initialTitle}`}
+            </span>
+          </h1>
 
-          <div>
-            <label>Date Published: </label>
-            <DatePicker
-                selected={this.state.date}
-                value={this.state.date}
-                name="date"
-                className={this.state.dateErr ? 'err' : null}
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-                placeholderText="Click to select a date"
-                popoverAttachment="top right"
-                popoverTargetAttachment="top center"
-                popoverTargetOffset="38px 250px"
-                onChange={(e) => FormHandlersValidations.handleDateOnChange(e, this)}
-                onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
-                onBlur={(e) => FormValidations.checkField(e, this)} />
-          </div>
-
-          <div>
-            <label>Description: </label>
-            <input
-                type="textfield"
-                name="description"
-                className={this.state.descriptionErr ? 'err' : null}
-                value={this.state.description}
-                onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                onFocus={(e) => FormHandlers.preventSpaceKey(e)}
-                onBlur={(e) => FormValidations.checkField(e, this)} />
-          </div>
-
-          <div>
-            {this.state.initial_image_id ?
-              <div>
-                <img
-                  src={this.state.initial_image_url} height="150" /><br />
-                <button onClick={(e) => this.openImageSelect(e)}>Change Current Image</button>
+          {this.props.sendRequestType === 'PUT' ?
+            <div className="d-flex justify-content-end pr-3">
+              <button
+                className="btn btn-danger mb-3"
+                onClick={(e) => this.deleteNewsStory(e)}>
+                  Delete {this.state.initialTitle}
+                </button>
               </div> :
-              <div>
-                <label>Select An Image: </label>
-                <GetImagesNewsStory
-                  sendImageData={this.getImageData}
-                  canCancel={false} />
-              </div>}
+          null}
 
-            {this.state.imageSelectOpen ?
-              <GetImagesNewsStory
-                name="image"
-                value={this.state.image_id}
-                initialImageId={this.state.initial_image_id}
+          <p><em>All fields required.</em></p>
+
+          <div className="submit-message-error">
+            {this.state.submitError ?
+              `<div className="alert alert-danger">
+                ${this.state.submitError}
+              </div>` :
+              null}
+          </div>
+
+          <div className="errors row">
+            <div className="col-sm-10">
+              {this.state.titleErr ?
+                <div
+                  id="news-story-title-validation-error"
+                  className="alert alert-danger">
+                    Title can not be blank. Please enter a story title.
+                </div> :
+              null}
+              {this.state.dateErr ?
+                <div
+                  id="news-story-date-validation-error"
+                  className="alert alert-danger">
+                    Date can not be blank. Please enter a story published date.
+                </div> :
+              null}
+              {this.state.descriptionErr ?
+                <div
+                  id="news-story-description-validation-error"
+                  className="alert alert-danger">
+                    Description can not be blank. Please enter a story description.
+                </div> :
+              null}
+              {this.state.imageErr ?
+                <div
+                  id="news-story-image-validation-error"
+                  className="alert alert-danger">
+                    An image must be selected. Please select an image.
+                </div> :
+              null}
+              {this.state.categoriesErr ?
+                <div
+                  id="news-story-categories-validation-error"
+                  className="alert alert-danger">
+                    At least one category must be selected. Please select an category.
+                </div> :
+              null}
+            </div>
+          </div>
+
+          <div className="container-fluid">
+            <form id="create-news-story">
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Story Title: </label>
+                  <div className="col-sm-10">
+                    <input
+                      type="text"
+                      name="title"
+                      className={this.state.titleErr ? 'err form-control' : 'form-control'}
+                      value={this.state.title}
+                      onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                      onFocus={(e) => FormHandlers.preventSpaceKey(e)}
+                      onBlur={(e) => FormValidations.checkField(e, this)} />
+                  </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Date Published: </label>
+                <div className="col-sm-10">
+                  <DatePicker
+                      selected={this.state.date}
+                      value={this.state.date}
+                      name="date"
+                      className={this.state.dateErr ? 'err form-control' : 'form-control'}
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      placeholderText="Click to select a date"
+                      popoverAttachment="top right"
+                      popoverTargetAttachment="top center"
+                      popoverTargetOffset="38px 250px"
+                      onChange={(e) => FormHandlersValidations.handleDateOnChange(e, this)}
+                      onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
+                      onBlur={(e) => FormValidations.checkField(e, this)} />
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Description: </label>
+                <div className="col-sm-10">
+                  <textarea
+                      type="textfield"
+                      name="description"
+                      className={this.state.descriptionErr ? 'err form-control' : 'form-control'}
+                      value={this.state.description}
+                      onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                      onFocus={(e) => FormHandlers.preventSpaceKey(e)}
+                      onBlur={(e) => FormValidations.checkField(e, this)} />
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Image: </label>
+                <div className="col-sm-10">
+                  {this.state.image_id ?
+                    <div className="row">
+                      <div className="col-sm-12">
+                        <img
+                          id={this.state.image_id}
+                          src={this.state.image_url}
+                          className="mb-3 mr-3"
+                          height="100" />
+                      </div>
+                    </div> :
+                  null}
+                    <button
+                      className="btn btn-secondary"
+                      onClick={(e) => this.openImageModal(e)} >
+                        {this.state.image_id ?
+                          'Change Image' : 'Add Image'
+                        }
+                    </button>
+                </div>
+              </div>
+
+              <ModalAddImages
+                ref="modal"
+                parentForm="newsStory"
                 sendImageData={this.getImageData}
-                canCancel={true} /> :
-             null}
-          </div>
+                newsStoryId={this.props.newsStoryId}
+                clearModalErrs={this.state.clearModalErrs} />
 
-          <div>
-            <NewsCategoriesCheckboxes
-              name="categories"
-              value={this.state.news_categories_ids}
-              sendNewsCategoriesData={this.getComponentData}
-              preSelected={this.state.news_categories_ids_selected}
-              attached={this.state.news_categories_ids_attached}
-              toAttach={this.state.news_categories_ids}
-              detach={this.state.news_categories_ids_detach} />
-          </div>
+                <NewsCategoriesCheckboxes
+                  name="categories"
+                  value={this.state.news_categories_ids}
+                  sendNewsCategoriesData={this.getComponentData}
+                  preSelected={this.state.news_categories_ids_selected}
+                  attached={this.state.news_categories_ids_attached}
+                  toAttach={this.state.news_categories_ids}
+                  detach={this.state.news_categories_ids_detach} />
 
-          <div>
-            <button disabled={this.requiredFieldsBlank} onClick={(e) => this.submitForm(e)}>Submit</button>
+              <div className="form-group row">
+                <div className="col-sm-12 d-flex justify-content-end">
+                  <Link to='/dashboard/news-stories' className="btn btn-secondary mr-3">Cancel</Link><br />
+                  <button
+                    className="btn btn-primary"
+                    disabled={this.requiredFieldsBlank}
+                    onClick={(e) => this.submitForm(e)}>
+                      {this.props.sendRequestType === 'PUT' ?
+                        `Update ${this.state.initialTitle}`:
+                        'Create New Story'}
+                    </button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
-        <div className="errors">
-          {this.state.titleErr ? <div id="news-story-title-validation-error" style={{color: 'red'}}>Title can not be blank. Please enter a story title.</div> : null}
-          {this.state.dateErr ? <div id="news-story-date-validation-error" style={{color: 'red'}}>Date can not be blank. Please enter a story published date.</div> : null}
-          {this.state.descriptionErr ? <div id="news-story-description-validation-error" style={{color: 'red'}}>Description can not be blank. Please enter a story description.</div> : null}
-          {this.state.imageErr ? <div id="news-story-image-validation-error" style={{color: 'red'}}>An image must be selected. Please select an image.</div> : null}
-          {this.state.categoriesErr ? <div id="news-story-categories-validation-error" style={{color: 'red'}}>At least one category must be selected. Please select an category.</div> : null}
         </div>
       </div>
     );

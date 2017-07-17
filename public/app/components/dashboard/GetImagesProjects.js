@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Dropzone from 'react-dropzone';
 
 const FormHandlers = require('../../services/form_handlers');
-const DataActions = require('../../data/actions');
 
 class GetImagesProjects extends React.Component {
   constructor() {
@@ -11,34 +9,9 @@ class GetImagesProjects extends React.Component {
 
     this.state = {
       image_data: [],
-      image_ids: [],
-      imageAddSuccess: false,
-      submitError: []
+      image_ids: []
     }
 
-    this.imageAdded = this.imageAdded.bind(this);
-    this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
-
-  }
-
-  onDrop(files) {
-    files.forEach(file => {
-      const formData = new FormData();
-
-      formData.append('image', file);
-      DataActions.uploadImages(
-        formData,
-        '/api/images/upload',
-        this.imageAdded,
-        this.setSubmitErrorMessage
-      );
-    });
-  }
-
-  imageAdded(message) {
-    if(message) {
-      this.setState({imageAddSuccess: true});
-    }
   }
 
   loadImages() {
@@ -62,19 +35,13 @@ class GetImagesProjects extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(this.state.imageAddSuccess) {
+    if(this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
       this.loadImages();
-      this.setState({imageAddSuccess: false});
+      this.props.resetImageAdded();
     }
 
     if(prevProps.attached !== this.props.attached) {
       this.loadImages();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.clearModalErrs) {
-      this.setState({submitError: []});
     }
   }
 
@@ -87,46 +54,8 @@ class GetImagesProjects extends React.Component {
   }
 
   render() {
-
-    let dropzoneRef;
-
     return(
       <div id="get-images-projects">
-        {this.props.openDropzone ?
-            <Dropzone
-              ref={(node) => {dropzoneRef = node}}
-              name="images"
-              accept="image/*"
-              className="dropzone-styles"
-              disableClick={true}
-              onDrop={e => this.onDrop(e)}>
-              <button
-              id="close-dropzone"
-                type="button"
-                className="close"
-                onClick={(e) => this.props.sendOpenCloseData(e)}>
-                  <span>&times;</span>
-              </button>
-              <h5>Drag image(s) here.</h5>
-              <p>or</p>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => {dropzoneRef.open()}} >
-                  Select Image(s)
-              </button>
-            </Dropzone> :
-          null}
-
-        <div className="submit-message-error mt-3">
-          {this.state.submitError.map((message, i) => {
-            return <div className="alert alert-danger" role="alert" key={i}>
-                     {message}
-                   </div>
-            })
-          }
-        </div>
-
         <div className="images-select-container">
         {this.state.image_data.map(image => {
           return <img

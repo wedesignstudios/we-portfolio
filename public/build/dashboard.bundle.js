@@ -14616,6 +14616,7 @@ var DataActions = __webpack_require__(27);
 var FormHandlers = __webpack_require__(12);
 var FormValidations = __webpack_require__(21);
 var FormHandlersValidations = __webpack_require__(37);
+var ModalAddImages = __webpack_require__(250);
 var NewsCategoriesCheckboxes = __webpack_require__(251);
 var GetImagesNewsStory = __webpack_require__(248);
 
@@ -14629,11 +14630,10 @@ var FormNewsStory = function (_React$Component) {
 
     _this.state = {
       title: '',
+      initialTitle: '',
       date: '',
       description: '',
-      initial_image_id: '',
       image_id: '',
-      initial_image_url: '',
       image_url: '',
       news_categories_ids: [],
       news_categories_ids_attached: [],
@@ -14645,7 +14645,8 @@ var FormNewsStory = function (_React$Component) {
       imageErr: false,
       categoriesErr: false,
       imageSelectOpen: false,
-      submitError: ''
+      submitError: '',
+      clearModalErrs: false
     };
 
     _this.initialState = _this.state;
@@ -14668,16 +14669,11 @@ var FormNewsStory = function (_React$Component) {
     }
   }, {
     key: 'getImageData',
-    value: function getImageData(data, closeImageSelect) {
+    value: function getImageData(data) {
       this.setState({
         image_id: data.id,
         image_url: data.url
       });
-      if (closeImageSelect === false) {
-        this.setState({
-          imageSelectOpen: closeImageSelect
-        });
-      };
     }
   }, {
     key: 'componentWillUpdate',
@@ -14697,23 +14693,14 @@ var FormNewsStory = function (_React$Component) {
         }).then(function (data) {
           _this2.setState({
             title: data.title,
-            date: data.date,
+            initialTitle: data.title,
+            date: (0, _moment2.default)(data.date),
             description: data.description,
             image_id: data.image.id ? data.image.id : '',
-            initial_image_id: data.image.id ? data.image.id : ''
+            image_url: data.image.url ? data.image.url : ''
           });
           if (data.news_categories) {
             _this2.setAttachedAndSelected(data.news_categories, 'news_categories');
-          };
-          if (data.image) {
-            fetch('/api/images/' + data.image.id).then(function (res) {
-              return res.json();
-            }).then(function (data) {
-              return _this2.setState({
-                image_url: data.url,
-                initial_image_url: data.url
-              });
-            });
           };
         });
       }
@@ -14730,6 +14717,13 @@ var FormNewsStory = function (_React$Component) {
       });
 
       this.setState((_setState2 = {}, _defineProperty(_setState2, dataModelName + '_ids_attached', ids), _defineProperty(_setState2, dataModelName + '_ids_selected', selected), _setState2));
+    }
+  }, {
+    key: 'openImageModal',
+    value: function openImageModal(event) {
+      event.preventDefault();
+      $(_reactDom2.default.findDOMNode(this.refs.modal)).modal();
+      this.setState({ clearModalErrs: true });
     }
   }, {
     key: 'deleteNewsStory',
@@ -14754,16 +14748,7 @@ var FormNewsStory = function (_React$Component) {
         if (this.props.sendRequestType === 'POST') {
           DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories', this.setRedirectWithMessage, this.setSubmitErrorMessage);
         } else {
-          var newUrl = this.state.image_url;
-
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories/' + this.props.newsStoryId, FormHandlers.successMessage(this));
-          FormHandlers.updateAttached(this, ['news_categories']);
-          FormHandlers.resetDetached(this, ['news_categories']);
-          FormHandlers.resetToAttachIds(this, ['news_categories']);
-          this.setState({
-            initial_image_url: newUrl,
-            imageSelectOpen: false
-          });
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories/' + this.props.newsStoryId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
         }
       });
     }
@@ -14774,223 +14759,264 @@ var FormNewsStory = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/news-stories' },
-          'All News Stories'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          this.props.sendRequestType === 'POST' ? 'Create A News Story' : 'Update News Story: ' + this.state.title
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
+          'div',
+          { className: 'col-6' },
           _react2.default.createElement(
-            'em',
+            _reactRouterDom.Link,
+            { to: '/dashboard/news-stories', className: 'btn btn-primary mb-3' },
+            'All News Stories'
+          ),
+          _react2.default.createElement(
+            'h1',
             null,
-            'All fields required.'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-success' },
-          this.state.submitSuccess ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-added-success', style: { color: 'green' } },
             _react2.default.createElement(
-              'p',
-              null,
-              this.props.sendRequestType === 'POST' ? 'New Story successfully added.' : 'Story successfully updated.'
+              'span',
+              { className: 'badge badge-default p-3' },
+              this.props.sendRequestType === 'POST' ? 'Create A News Story' : 'Update News Story: ' + this.state.initialTitle
             )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
+          ),
+          this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+            'div',
+            { className: 'd-flex justify-content-end pr-3' },
+            _react2.default.createElement(
+              'button',
+              {
+                className: 'btn btn-danger mb-3',
+                onClick: function onClick(e) {
+                  return _this3.deleteNewsStory(e);
+                } },
+              'Delete ',
+              this.state.initialTitle
+            )
+          ) : null,
           _react2.default.createElement(
             'p',
             null,
-            this.state.submitError
-          )
-        ),
-        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return _this3.deleteNewsStory(e);
-            } },
-          'Delete ',
-          this.state.title
-        ) : null,
-        _react2.default.createElement(
-          'form',
-          { id: 'create-news-story' },
-          _react2.default.createElement(
-            'div',
-            null,
             _react2.default.createElement(
-              'label',
+              'em',
               null,
-              'Story Title: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'title',
-              className: this.state.titleErr ? 'err' : null,
-              value: this.state.title,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
+              'All fields required.'
+            )
           ),
           _react2.default.createElement(
             'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Date Published: '
-            ),
-            _react2.default.createElement(_reactDatepicker2.default, {
-              selected: this.state.date,
-              value: this.state.date,
-              name: 'date',
-              className: this.state.dateErr ? 'err' : null,
-              showMonthDropdown: true,
-              showYearDropdown: true,
-              dropdownMode: 'select',
-              placeholderText: 'Click to select a date',
-              popoverAttachment: 'top right',
-              popoverTargetAttachment: 'top center',
-              popoverTargetOffset: '38px 250px',
-              onChange: function onChange(e) {
-                return FormHandlersValidations.handleDateOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventAllButShiftAndTab(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
+            { className: 'submit-message-error' },
+            this.state.submitError ? '<div className="alert alert-danger">\n                ' + this.state.submitError + '\n              </div>' : null
           ),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'errors row' },
             _react2.default.createElement(
-              'label',
-              null,
-              'Description: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'textfield',
-              name: 'description',
-              className: this.state.descriptionErr ? 'err' : null,
-              value: this.state.description,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            this.state.initial_image_id ? _react2.default.createElement(
               'div',
-              null,
-              _react2.default.createElement('img', {
-                src: this.state.initial_image_url, height: '150' }),
-              _react2.default.createElement('br', null),
+              { className: 'col-sm-10' },
+              this.state.titleErr ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'news-story-title-validation-error',
+                  className: 'alert alert-danger' },
+                'Title can not be blank. Please enter a story title.'
+              ) : null,
+              this.state.dateErr ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'news-story-date-validation-error',
+                  className: 'alert alert-danger' },
+                'Date can not be blank. Please enter a story published date.'
+              ) : null,
+              this.state.descriptionErr ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'news-story-description-validation-error',
+                  className: 'alert alert-danger' },
+                'Description can not be blank. Please enter a story description.'
+              ) : null,
+              this.state.imageErr ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'news-story-image-validation-error',
+                  className: 'alert alert-danger' },
+                'An image must be selected. Please select an image.'
+              ) : null,
+              this.state.categoriesErr ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'news-story-categories-validation-error',
+                  className: 'alert alert-danger' },
+                'At least one category must be selected. Please select an category.'
+              ) : null
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
+              'form',
+              { id: 'create-news-story' },
               _react2.default.createElement(
-                'button',
-                { onClick: function onClick(e) {
-                    return _this3.openImageSelect(e);
-                  } },
-                'Change Current Image'
-              )
-            ) : _react2.default.createElement(
-              'div',
-              null,
-              _react2.default.createElement(
-                'label',
-                null,
-                'Select An Image: '
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Story Title: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-10' },
+                  _react2.default.createElement('input', {
+                    type: 'text',
+                    name: 'title',
+                    className: this.state.titleErr ? 'err form-control' : 'form-control',
+                    value: this.state.title,
+                    onChange: function onChange(e) {
+                      return FormHandlers.handleOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventSpaceKey(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
               ),
-              _react2.default.createElement(GetImagesNewsStory, {
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Date Published: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-10' },
+                  _react2.default.createElement(_reactDatepicker2.default, {
+                    selected: this.state.date,
+                    value: this.state.date,
+                    name: 'date',
+                    className: this.state.dateErr ? 'err form-control' : 'form-control',
+                    showMonthDropdown: true,
+                    showYearDropdown: true,
+                    dropdownMode: 'select',
+                    placeholderText: 'Click to select a date',
+                    popoverAttachment: 'top right',
+                    popoverTargetAttachment: 'top center',
+                    popoverTargetOffset: '38px 250px',
+                    onChange: function onChange(e) {
+                      return FormHandlersValidations.handleDateOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventAllButShiftAndTab(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Description: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-10' },
+                  _react2.default.createElement('textarea', {
+                    type: 'textfield',
+                    name: 'description',
+                    className: this.state.descriptionErr ? 'err form-control' : 'form-control',
+                    value: this.state.description,
+                    onChange: function onChange(e) {
+                      return FormHandlers.handleOnChange(e, _this3);
+                    },
+                    onFocus: function onFocus(e) {
+                      return FormHandlers.preventSpaceKey(e);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this3);
+                    } })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Image: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-10' },
+                  this.state.image_id ? _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'col-sm-12' },
+                      _react2.default.createElement('img', {
+                        id: this.state.image_id,
+                        src: this.state.image_url,
+                        className: 'mb-3 mr-3',
+                        height: '100' })
+                    )
+                  ) : null,
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      className: 'btn btn-secondary',
+                      onClick: function onClick(e) {
+                        return _this3.openImageModal(e);
+                      } },
+                    this.state.image_id ? 'Change Image' : 'Add Image'
+                  )
+                )
+              ),
+              _react2.default.createElement(ModalAddImages, {
+                ref: 'modal',
+                parentForm: 'newsStory',
                 sendImageData: this.getImageData,
-                canCancel: false })
-            ),
-            this.state.imageSelectOpen ? _react2.default.createElement(GetImagesNewsStory, {
-              name: 'image',
-              value: this.state.image_id,
-              initialImageId: this.state.initial_image_id,
-              sendImageData: this.getImageData,
-              canCancel: true }) : null
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(NewsCategoriesCheckboxes, {
-              name: 'categories',
-              value: this.state.news_categories_ids,
-              sendNewsCategoriesData: this.getComponentData,
-              preSelected: this.state.news_categories_ids_selected,
-              attached: this.state.news_categories_ids_attached,
-              toAttach: this.state.news_categories_ids,
-              detach: this.state.news_categories_ids_detach })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this3.submitForm(e);
-                } },
-              'Submit'
+                newsStoryId: this.props.newsStoryId,
+                clearModalErrs: this.state.clearModalErrs }),
+              _react2.default.createElement(NewsCategoriesCheckboxes, {
+                name: 'categories',
+                value: this.state.news_categories_ids,
+                sendNewsCategoriesData: this.getComponentData,
+                preSelected: this.state.news_categories_ids_selected,
+                attached: this.state.news_categories_ids_attached,
+                toAttach: this.state.news_categories_ids,
+                detach: this.state.news_categories_ids_detach }),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-12 d-flex justify-content-end' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/dashboard/news-stories', className: 'btn btn-secondary mr-3' },
+                    'Cancel'
+                  ),
+                  _react2.default.createElement('br', null),
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      className: 'btn btn-primary',
+                      disabled: this.requiredFieldsBlank,
+                      onClick: function onClick(e) {
+                        return _this3.submitForm(e);
+                      } },
+                    this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialTitle : 'Create New Story'
+                  )
+                )
+              )
             )
           )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'errors' },
-          this.state.titleErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-title-validation-error', style: { color: 'red' } },
-            'Title can not be blank. Please enter a story title.'
-          ) : null,
-          this.state.dateErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-date-validation-error', style: { color: 'red' } },
-            'Date can not be blank. Please enter a story published date.'
-          ) : null,
-          this.state.descriptionErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-description-validation-error', style: { color: 'red' } },
-            'Description can not be blank. Please enter a story description.'
-          ) : null,
-          this.state.imageErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-image-validation-error', style: { color: 'red' } },
-            'An image must be selected. Please select an image.'
-          ) : null,
-          this.state.categoriesErr ? _react2.default.createElement(
-            'div',
-            { id: 'news-story-categories-validation-error', style: { color: 'red' } },
-            'At least one category must be selected. Please select an category.'
-          ) : null
         )
       );
     }
@@ -15084,7 +15110,6 @@ var FormProject = function (_React$Component) {
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
-      submitSuccess: false,
       submitError: '',
       clearModalErrs: false
     };
@@ -15249,7 +15274,6 @@ var FormProject = function (_React$Component) {
             { to: '/dashboard/projects', className: 'btn btn-primary mb-3' },
             'All Projects'
           ),
-          _react2.default.createElement('br', null),
           _react2.default.createElement(
             'h1',
             null,
@@ -15273,16 +15297,6 @@ var FormProject = function (_React$Component) {
               this.state.initialName
             )
           ) : null,
-          _react2.default.createElement(
-            'div',
-            { className: 'submit-message-success' },
-            this.state.submitSuccess ? _react2.default.createElement(
-              'div',
-              { id: 'project-added-success',
-                className: 'alert alert-success' },
-              this.props.sendRequestType === 'POST' ? 'New Project successfully added.' : 'Project successfully updated.'
-            ) : null
-          ),
           _react2.default.createElement(
             'div',
             { className: 'submit-message-error' },
@@ -15453,6 +15467,7 @@ var FormProject = function (_React$Component) {
               ),
               _react2.default.createElement(ModalAddImages, {
                 ref: 'modal',
+                parentForm: 'project',
                 sendImageData: this.getComponentData,
                 attached: this.state.images_ids_attached,
                 detach: this.state.images_ids_detach,
@@ -32262,8 +32277,8 @@ var GetImagesNewsStory = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (GetImagesNewsStory.__proto__ || Object.getPrototypeOf(GetImagesNewsStory)).call(this));
 
     _this.state = {
-      imageData: [],
-      imageId: null
+      image_data: [],
+      image_id: null
     };
     return _this;
   }
@@ -32277,15 +32292,28 @@ var GetImagesNewsStory = function (_React$Component) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
-          return obj.news_story_id === null;
+          return obj.news_story_id === null || obj.news_story_id == _this2.props.newsStoryId;
         });
-
         _this2.setState({
-          imageData: data
+          image_data: data
         });
       }).catch(function (err) {
         console.error(err);
       });
+    }
+  }, {
+    key: 'setImageId',
+    value: function setImageId(imageData) {
+      var _this3 = this;
+
+      if (this.props.newsStoryId) {
+        var image = imageData.filter(function (img) {
+          return img.news_story_id == _this3.props.newsStoryId;
+        });
+        this.setState({
+          image_id: image[0].id
+        });
+      }
     }
   }, {
     key: 'selectImage',
@@ -32295,19 +32323,10 @@ var GetImagesNewsStory = function (_React$Component) {
       var selectedImageUrl = target.src;
 
       this.setState({
-        imageId: target.id
+        image_id: target.id
       });
 
       sendImageDataFunc({ id: selectedImageId, url: selectedImageUrl });
-    }
-  }, {
-    key: 'imageSelectCancel',
-    value: function imageSelectCancel(event, sendImageIdFunc) {
-      event.preventDefault();
-      this.setState({
-        imageId: ''
-      });
-      sendImageIdFunc({ id: this.props.initialImageId, url: '' }, false);
     }
   }, {
     key: 'componentDidMount',
@@ -32315,9 +32334,21 @@ var GetImagesNewsStory = function (_React$Component) {
       this.loadImages();
     }
   }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
+        this.loadImages();
+        this.props.resetImageAdded();
+      }
+
+      if (this.state.image_id === null && this.props.newsStoryId) {
+        this.setImageId(this.state.image_data);
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
@@ -32325,30 +32356,18 @@ var GetImagesNewsStory = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'images-select-container' },
-          this.state.imageData.map(function (image) {
-
+          this.state.image_data.map(function (image) {
             return _react2.default.createElement('img', {
               key: image.id,
               id: image.id,
-              className: _this3.state.imageId == image.id ? 'selected' : '',
+              className: _this4.state.image_id == image.id ? 'selected' : '',
               src: image.url,
               height: '100',
               onClick: function onClick(e) {
-                return _this3.selectImage(e, _this3.props.sendImageData);
+                return _this4.selectImage(e, _this4.props.sendImageDataToModal);
               } });
           })
-        ),
-        this.props.canCancel ? _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'button',
-            { onClick: function onClick(e) {
-                return _this3.imageSelectCancel(e, _this3.props.sendImageData);
-              } },
-            'Cancel'
-          )
-        ) : null
+        )
       );
     }
   }]);
@@ -32375,10 +32394,6 @@ var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactDropzone = __webpack_require__(222);
-
-var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32388,7 +32403,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var FormHandlers = __webpack_require__(12);
-var DataActions = __webpack_require__(27);
 
 var GetImagesProjects = function (_React$Component) {
   _inherits(GetImagesProjects, _React$Component);
@@ -32400,48 +32414,24 @@ var GetImagesProjects = function (_React$Component) {
 
     _this.state = {
       image_data: [],
-      image_ids: [],
-      imageAddSuccess: false,
-      submitError: []
+      image_ids: []
     };
-
-    _this.imageAdded = _this.imageAdded.bind(_this);
-    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
 
     return _this;
   }
 
   _createClass(GetImagesProjects, [{
-    key: 'onDrop',
-    value: function onDrop(files) {
-      var _this2 = this;
-
-      files.forEach(function (file) {
-        var formData = new FormData();
-
-        formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload', _this2.imageAdded, _this2.setSubmitErrorMessage);
-      });
-    }
-  }, {
-    key: 'imageAdded',
-    value: function imageAdded(message) {
-      if (message) {
-        this.setState({ imageAddSuccess: true });
-      }
-    }
-  }, {
     key: 'loadImages',
     value: function loadImages() {
-      var _this3 = this;
+      var _this2 = this;
 
       fetch('/api/images').then(function (res) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
-          return obj.project_id === null || _this3.props.attached.includes(obj.id);
+          return obj.project_id === null || _this2.props.attached.includes(obj.id);
         });
-        _this3.setState({
+        _this2.setState({
           image_data: data
         });
       }).catch(function (err) {
@@ -32456,20 +32446,13 @@ var GetImagesProjects = function (_React$Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
-      if (this.state.imageAddSuccess) {
+      if (this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
         this.loadImages();
-        this.setState({ imageAddSuccess: false });
+        this.props.resetImageAdded();
       }
 
       if (prevProps.attached !== this.props.attached) {
         this.loadImages();
-      }
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.clearModalErrs) {
-        this.setState({ submitError: [] });
       }
     }
   }, {
@@ -32484,73 +32467,11 @@ var GetImagesProjects = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
-
-      var dropzoneRef = void 0;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
         { id: 'get-images-projects' },
-        this.props.openDropzone ? _react2.default.createElement(
-          _reactDropzone2.default,
-          {
-            ref: function ref(node) {
-              dropzoneRef = node;
-            },
-            name: 'images',
-            accept: 'image/*',
-            className: 'dropzone-styles',
-            disableClick: true,
-            onDrop: function onDrop(e) {
-              return _this4.onDrop(e);
-            } },
-          _react2.default.createElement(
-            'button',
-            {
-              id: 'close-dropzone',
-              type: 'button',
-              className: 'close',
-              onClick: function onClick(e) {
-                return _this4.props.sendOpenCloseData(e);
-              } },
-            _react2.default.createElement(
-              'span',
-              null,
-              '\xD7'
-            )
-          ),
-          _react2.default.createElement(
-            'h5',
-            null,
-            'Drag image(s) here.'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'or'
-          ),
-          _react2.default.createElement(
-            'button',
-            {
-              type: 'button',
-              className: 'btn btn-secondary',
-              onClick: function onClick() {
-                dropzoneRef.open();
-              } },
-            'Select Image(s)'
-          )
-        ) : null,
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error mt-3' },
-          this.state.submitError.map(function (message, i) {
-            return _react2.default.createElement(
-              'div',
-              { className: 'alert alert-danger', role: 'alert', key: i },
-              message
-            );
-          })
-        ),
         _react2.default.createElement(
           'div',
           { className: 'images-select-container' },
@@ -32559,11 +32480,11 @@ var GetImagesProjects = function (_React$Component) {
               key: image.id,
               id: image.id,
               name: 'image_ids',
-              className: _this4.selectedImage(image),
+              className: _this3.selectedImage(image),
               src: image.url,
               height: '100',
               onClick: function onClick(e) {
-                return FormHandlers.multiSelect(e, _this4, _this4.props.sendImageDataToModal);
+                return FormHandlers.multiSelect(e, _this3, _this3.props.sendImageDataToModal);
               } });
           })
         )
@@ -32593,6 +32514,10 @@ var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactDropzone = __webpack_require__(222);
+
+var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32601,7 +32526,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var FormHandlers = __webpack_require__(12);
+var DataActions = __webpack_require__(27);
 var GetImagesProjects = __webpack_require__(249);
+var GetImagesNewsStory = __webpack_require__(248);
 
 var ModalAddImages = function (_Component) {
   _inherits(ModalAddImages, _Component);
@@ -32612,15 +32540,51 @@ var ModalAddImages = function (_Component) {
     var _this = _possibleConstructorReturn(this, (ModalAddImages.__proto__ || Object.getPrototypeOf(ModalAddImages)).call(this));
 
     _this.state = {
-      openDropzone: false
+      openDropzone: false,
+      imageAddSuccess: false,
+      submitError: []
     };
 
     _this.getOpenCloseData = _this.getOpenCloseData.bind(_this);
     _this.getImageData = _this.getImageData.bind(_this);
+    _this.imageAdded = _this.imageAdded.bind(_this);
+    _this.resetImageAdded = _this.resetImageAdded.bind(_this);
+    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
     return _this;
   }
 
   _createClass(ModalAddImages, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.clearModalErrs) {
+        this.setState({ submitError: [] });
+      }
+    }
+  }, {
+    key: 'onDrop',
+    value: function onDrop(files) {
+      var _this2 = this;
+
+      files.forEach(function (file) {
+        var formData = new FormData();
+
+        formData.append('image', file);
+        DataActions.uploadImages(formData, '/api/images/upload', _this2.imageAdded, _this2.setSubmitErrorMessage);
+      });
+    }
+  }, {
+    key: 'imageAdded',
+    value: function imageAdded(message) {
+      if (message) {
+        this.setState({ imageAddSuccess: true });
+      }
+    }
+  }, {
+    key: 'resetImageAdded',
+    value: function resetImageAdded() {
+      this.setState({ imageAddSuccess: false });
+    }
+  }, {
     key: 'openCloseDropZone',
     value: function openCloseDropZone() {
       this.setState({
@@ -32640,8 +32604,9 @@ var ModalAddImages = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
+      var dropzoneRef = void 0;
       return _react2.default.createElement(
         'div',
         { className: 'modal fade', id: 'addImages', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'exampleModalLabel', 'aria-hidden': 'true' },
@@ -32657,7 +32622,8 @@ var ModalAddImages = function (_Component) {
               _react2.default.createElement(
                 'h5',
                 { className: 'modal-title p-2' },
-                'Select Image(s)'
+                this.props.parentForm === 'project' ? 'Select Image(s)' : null,
+                this.props.parentForm === 'newsStory' ? 'Select Image' : null
               ),
               _react2.default.createElement(
                 'button',
@@ -32665,7 +32631,7 @@ var ModalAddImages = function (_Component) {
                   type: 'button',
                   className: 'btn btn-primary p-2',
                   onClick: function onClick(e) {
-                    return _this2.openCloseDropZone(e);
+                    return _this3.openCloseDropZone(e);
                   } },
                 'Add New'
               ),
@@ -32686,7 +32652,67 @@ var ModalAddImages = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'modal-body' },
-              _react2.default.createElement(GetImagesProjects, {
+              this.state.openDropzone ? _react2.default.createElement(
+                _reactDropzone2.default,
+                {
+                  ref: function ref(node) {
+                    dropzoneRef = node;
+                  },
+                  name: 'images',
+                  accept: 'image/*',
+                  className: 'dropzone-styles',
+                  disableClick: true,
+                  onDrop: function onDrop(e) {
+                    return _this3.onDrop(e);
+                  } },
+                _react2.default.createElement(
+                  'button',
+                  {
+                    id: 'close-dropzone',
+                    type: 'button',
+                    className: 'close',
+                    onClick: function onClick(e) {
+                      return _this3.openCloseDropZone(e);
+                    } },
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    '\xD7'
+                  )
+                ),
+                _react2.default.createElement(
+                  'h5',
+                  null,
+                  'Drag image(s) here.'
+                ),
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'or'
+                ),
+                _react2.default.createElement(
+                  'button',
+                  {
+                    type: 'button',
+                    className: 'btn btn-secondary',
+                    onClick: function onClick() {
+                      dropzoneRef.open();
+                    } },
+                  'Select Image(s)'
+                )
+              ) : null,
+              _react2.default.createElement(
+                'div',
+                { className: 'submit-message-error mt-3' },
+                this.state.submitError.map(function (message, i) {
+                  return _react2.default.createElement(
+                    'div',
+                    { className: 'alert alert-danger', role: 'alert', key: i },
+                    message
+                  );
+                })
+              ),
+              this.props.parentForm === 'project' ? _react2.default.createElement(GetImagesProjects, {
                 openDropzone: this.state.openDropzone,
                 sendOpenCloseData: this.getOpenCloseData,
                 sendImageDataToModal: this.getImageData,
@@ -32694,7 +32720,15 @@ var ModalAddImages = function (_Component) {
                 attached: this.props.attached,
                 detach: this.props.detach,
                 toAttach: this.props.toAttach,
-                clearModalErrs: this.props.clearModalErrs })
+                imageAddSuccess: this.state.imageAddSuccess,
+                resetImageAdded: this.resetImageAdded }) : null,
+              this.props.parentForm === 'newsStory' ? _react2.default.createElement(GetImagesNewsStory, {
+                openDropzone: this.state.openDropzone,
+                sendOpenCloseData: this.getOpenCloseData,
+                sendImageDataToModal: this.props.sendImageData,
+                newsStoryId: this.props.newsStoryId,
+                imageAddSuccess: this.state.imageAddSuccess,
+                resetImageAdded: this.resetImageAdded }) : null
             ),
             _react2.default.createElement(
               'div',
@@ -32800,7 +32834,7 @@ var NewsCategoriesCheckboxes = function (_React$Component) {
         _react2.default.createElement('br', null),
         _react2.default.createElement(
           'div',
-          { className: 'col-sm-8' },
+          { className: 'col-sm-10' },
           _react2.default.createElement(
             'div',
             { className: 'checkboxes-container form-control' },

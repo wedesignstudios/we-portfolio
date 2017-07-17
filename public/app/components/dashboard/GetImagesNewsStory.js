@@ -6,8 +6,8 @@ class GetImagesNewsStory extends React.Component {
     super();
 
     this.state = {
-      imageData: [],
-      imageId: null      
+      image_data: [],
+      image_id: null
     }
   }
 
@@ -16,16 +16,26 @@ class GetImagesNewsStory extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         data = data.filter(obj => {
-          return obj.news_story_id === null;
+          return obj.news_story_id === null || obj.news_story_id == this.props.newsStoryId;
         });
-
         this.setState({
-          imageData: data
+          image_data: data
         });
       })
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  setImageId(imageData) {
+    if(this.props.newsStoryId) {
+      let image = imageData.filter(img => {
+        return img.news_story_id == this.props.newsStoryId;
+      });
+      this.setState({
+        image_id: image[0].id
+      });
+    }
   }
 
   selectImage(event, sendImageDataFunc) {
@@ -34,45 +44,42 @@ class GetImagesNewsStory extends React.Component {
     const selectedImageUrl = target.src;
 
     this.setState({
-      imageId: target.id
+      image_id: target.id
     });
 
     sendImageDataFunc({id: selectedImageId, url: selectedImageUrl});
   }
 
-  imageSelectCancel(event, sendImageIdFunc) {
-    event.preventDefault();
-    this.setState({
-      imageId: ''
-    });
-    sendImageIdFunc({id: this.props.initialImageId, url: ''}, false);
+  componentDidMount() {
+    this.loadImages();
   }
 
-  componentDidMount() {
-    this.loadImages();    
+  componentDidUpdate(prevProps) {
+    if(this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
+      this.loadImages();
+      this.props.resetImageAdded();
+    }
+
+    if(this.state.image_id === null && this.props.newsStoryId) {
+      this.setImageId(this.state.image_data);
+    }
   }
 
   render() {
     return(
-      <div id="get-images-news-story">        
+      <div id="get-images-news-story">
         <div className="images-select-container">
-        {this.state.imageData.map(image => {
-
+        {this.state.image_data.map(image => {
           return <img 
                     key={image.id}                    
                     id={image.id}
-                    className={this.state.imageId == image.id ? 'selected' : ''}
+                    className={this.state.image_id == image.id ? 'selected' : ''}
                     src={image.url} 
                     height="100"
-                    onClick={(e) => this.selectImage(e, this.props.sendImageData)} />
+                    onClick={(e) => this.selectImage(e, this.props.sendImageDataToModal)} />
           })
         }
       </div>
-      {this.props.canCancel ? 
-        <div>
-          <button onClick={(e) => this.imageSelectCancel(e, this.props.sendImageData)}>Cancel</button>
-        </div> : 
-      null}      
     </div>
     )
   }

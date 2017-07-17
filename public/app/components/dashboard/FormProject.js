@@ -345,6 +345,7 @@ class FormProject extends React.Component {
 
               <ModalAddImages
                 ref="modal"
+                parentForm="project"
                 sendImageData={this.getComponentData}
                 attached={this.state.images_ids_attached}
                 detach={this.state.images_ids_detach}

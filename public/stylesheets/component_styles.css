@@ -356,9 +356,10 @@
   opacity: 0.35;
 }
 .Select-control {
-  background-color: #fff;  
+  background-color: #fff;
+  border-color: #d9d9d9 #ccc #b3b3b3;
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid #ccc;
   color: #333;
   cursor: default;
   display: table;
@@ -367,7 +368,6 @@
   height: 36px;
   outline: none;
   overflow: hidden;
-  padding: 0.05rem 0.75rem;
   position: relative;
   width: 100%;
 }

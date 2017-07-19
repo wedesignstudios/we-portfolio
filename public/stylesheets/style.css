@@ -37,16 +37,21 @@ textarea.err {
         display: inline-block;
         padding: 0.5rem 0; }
 
-.checkboxes-container,
-.images-select-container {
+form .Select-control {
+  border-color: none;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0.05rem 0.75rem; }
+
+form .checkboxes-container,
+form .images-select-container {
   max-height: 21.4rem;
   overflow: scroll; }
-  .checkboxes-container img,
-  .images-select-container img {
+  form .checkboxes-container img,
+  form .images-select-container img {
     margin: 0.5rem;
     border: 5px solid transparent; }
-  .checkboxes-container img.selected,
-  .images-select-container img.selected {
+  form .checkboxes-container img.selected,
+  form .images-select-container img.selected {
     border-color: orange; }
 
 .image-grid-element {

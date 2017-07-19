@@ -180,9 +180,9 @@ class FormNewsStory extends React.Component {
 
           <div className="submit-message-error">
             {this.state.submitError ?
-              `<div className="alert alert-danger">
-                ${this.state.submitError}
-              </div>` :
+              <div className="alert alert-danger">
+                {this.state.submitError}
+              </div> :
               null}
           </div>
 
@@ -327,7 +327,7 @@ class FormNewsStory extends React.Component {
                       {this.props.sendRequestType === 'PUT' ?
                         `Update ${this.state.initialTitle}`:
                         'Create New Story'}
-                    </button>
+                  </button>
                 </div>
               </div>
             </form>

@@ -31522,7 +31522,7 @@ var GetClients = function (_Component) {
     };
 
     if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
+      _this.props.history.location.state = { message: '' };
       _this.flashMessage = _this.props.history.location.state.message;
     }
 
@@ -31557,12 +31557,11 @@ var GetClients = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
+        this.flashMessage ? _react2.default.createElement(
+          'div',
+          { className: 'alert alert-success' },
           this.flashMessage
-        ),
+        ) : null,
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: this.props.match.url + '/create' },
@@ -31757,7 +31756,7 @@ var GetImages = function (_React$Component) {
     };
 
     if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.', messageError: [] };
+      _this.props.history.location.state = { message: '', messageError: [] };
     }
 
     _this.flashMessage = _this.props.history.location.state.message;
@@ -31820,17 +31819,11 @@ var GetImages = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
+        this.flashMessage ? _react2.default.createElement(
+          'div',
+          { className: 'alert alert-success' },
           this.flashMessage
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'Errors:'
-        ),
+        ) : null,
         _react2.default.createElement(
           'div',
           { className: 'submit-message-error', style: { color: 'red' } },
@@ -31928,7 +31921,7 @@ var GetNewsStories = function (_Component) {
     };
 
     if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
+      _this.props.history.location.state = { message: '' };
     }
 
     _this.flashMessage = _this.props.history.location.state.message;
@@ -31963,12 +31956,11 @@ var GetNewsStories = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
+        this.flashMessage ? _react2.default.createElement(
+          'div',
+          { className: 'alert alert-success' },
           this.flashMessage
-        ),
+        ) : null,
         _react2.default.createElement(
           _reactRouterDom.Link,
           { to: this.props.match.url + '/create' },

@@ -11,7 +11,7 @@ class GetNewsStories extends Component {
     }
 
     if(this.props.history.location.state === undefined) {
-      this.props.history.location.state = {message: 'No message.'};
+      this.props.history.location.state = {message: ''};
     }
 
     this.flashMessage = this.props.history.location.state.message;
@@ -37,7 +37,12 @@ class GetNewsStories extends Component {
   render() {
     return(
       <div>
-        <p>Message: {this.flashMessage}</p>
+        {this.flashMessage ?
+          <div className="alert alert-success">
+            {this.flashMessage}
+          </div> :
+        null}
+
         <Link to={`${this.props.match.url}/create`}>Add News Story</Link>
         <h3>All News Stories</h3>
           <div>

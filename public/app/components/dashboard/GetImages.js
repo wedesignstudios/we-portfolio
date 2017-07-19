@@ -15,7 +15,7 @@ class GetImages extends React.Component {
     }
 
     if(this.props.history.location.state === undefined) {
-      this.props.history.location.state = {message: 'No message.', messageError: []};
+      this.props.history.location.state = {message: '', messageError: []};
     }
 
     this.flashMessage = this.props.history.location.state.message;
@@ -65,8 +65,11 @@ class GetImages extends React.Component {
   render() {
     return(
       <div>
-        <p>Message: {this.flashMessage}</p>
-        <p>Errors:</p>
+        {this.flashMessage ?
+          <div className="alert alert-success">
+            {this.flashMessage}
+          </div> :
+        null}
         <div className="submit-message-error" style={{color: 'red'}}>
           <ul>
             {this.flashMessageError.map((err, i) => {

@@ -106,7 +106,8 @@ class FormClient extends React.Component {
             this.props.sendRequestType,
             this.state,
             `/api/clients/${this.props.clientId}`,
-            () => FormHandlers.successMessage(this)
+            this.setRedirectWithMessage,
+            this.setSubmitErrorMessage
           );
         }
       };

@@ -14156,15 +14156,11 @@ var FormClient = function (_React$Component) {
       }
 
       this.forceUpdate(function () {
-        var _this3 = this;
-
         if (!this.state.urlErr) {
           if (this.props.sendRequestType === 'POST') {
             DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients', this.setRedirectWithMessage, this.setSubmitErrorMessage);
           } else {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients/' + this.props.clientId, function () {
-              return FormHandlers.successMessage(_this3);
-            });
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients/' + this.props.clientId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
           }
         };
       });
@@ -14172,7 +14168,7 @@ var FormClient = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
@@ -14202,7 +14198,7 @@ var FormClient = function (_React$Component) {
               {
                 className: 'btn btn-danger mb-3',
                 onClick: function onClick(e) {
-                  return _this4.deleteClient(e);
+                  return _this3.deleteClient(e);
                 } },
               'Delete ',
               this.state.initialName
@@ -14262,10 +14258,10 @@ var FormClient = function (_React$Component) {
                     className: this.state.nameErr ? 'err form-control' : 'form-control',
                     value: this.state.name,
                     onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this4);
+                      return FormHandlers.handleOnChange(e, _this3);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this4);
+                      return FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -14286,10 +14282,10 @@ var FormClient = function (_React$Component) {
                     className: this.state.urlErr ? 'err form-control' : 'form-control',
                     value: this.state.url,
                     onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this4);
+                      return FormHandlers.handleOnChange(e, _this3);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this4);
+                      return FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -14327,7 +14323,7 @@ var FormClient = function (_React$Component) {
                       className: 'btn btn-primary',
                       disabled: this.requiredFieldsBlank,
                       onClick: function onClick(e) {
-                        return _this4.submitForm(e);
+                        return _this3.submitForm(e);
                       } },
                     this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialName : 'Submit'
                   )
@@ -14465,15 +14461,11 @@ var FormCollaborator = function (_React$Component) {
       }
 
       this.forceUpdate(function () {
-        var _this3 = this;
-
         if (!this.state.urlErr) {
           if (this.props.sendRequestType === 'POST') {
             DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators', this.setRedirectWithMessage, this.setSubmitErrorMessage);
           } else {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators/' + this.props.collaboratorId, function () {
-              return FormHandlers.successMessage(_this3);
-            });
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators/' + this.props.collaboratorId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
           }
         };
       });
@@ -14481,7 +14473,7 @@ var FormCollaborator = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       return _react2.default.createElement(
         'div',
@@ -14511,7 +14503,7 @@ var FormCollaborator = function (_React$Component) {
               {
                 className: 'btn btn-danger mb-3',
                 onClick: function onClick(e) {
-                  return _this4.deleteCollaborator(e);
+                  return _this3.deleteCollaborator(e);
                 } },
               'Delete ',
               this.state.initialName
@@ -14571,10 +14563,10 @@ var FormCollaborator = function (_React$Component) {
                     className: this.state.nameErr ? 'err form-control' : 'form-control',
                     value: this.state.name,
                     onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this4);
+                      return FormHandlers.handleOnChange(e, _this3);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this4);
+                      return FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -14595,10 +14587,10 @@ var FormCollaborator = function (_React$Component) {
                     className: this.state.urlErr ? 'err form-control' : 'form-control',
                     value: this.state.url,
                     onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this4);
+                      return FormHandlers.handleOnChange(e, _this3);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this4);
+                      return FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -14636,7 +14628,7 @@ var FormCollaborator = function (_React$Component) {
                       className: 'btn btn-primary',
                       disabled: this.requiredFieldsBlank,
                       onClick: function onClick(e) {
-                        return _this4.submitForm(e);
+                        return _this3.submitForm(e);
                       } },
                     this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialName : 'Submit'
                   )

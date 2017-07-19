@@ -106,7 +106,8 @@ class FormCollaborator extends React.Component {
             this.props.sendRequestType,
             this.state,
             `/api/collaborators/${this.props.collaboratorId}`,
-            () => FormHandlers.successMessage(this)
+            this.setRedirectWithMessage,
+            this.setSubmitErrorMessage
           );
         }
       };

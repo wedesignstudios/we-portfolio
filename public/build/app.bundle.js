@@ -14144,7 +14144,7 @@ var FormClient = function (_React$Component) {
   }, {
     key: 'deleteClient',
     value: function deleteClient() {
-      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.initialName, address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'submitForm',
@@ -14390,6 +14390,7 @@ var FormCollaborator = function (_React$Component) {
 
     _this.state = {
       name: '',
+      initialName: '',
       url: '',
       city: '',
       state: '',
@@ -14421,6 +14422,7 @@ var FormCollaborator = function (_React$Component) {
         }).then(function (data) {
           _this2.setState({
             name: data.name,
+            initialName: data.name,
             url: data.url
           });
           if (data.address.length > 0) {
@@ -14451,7 +14453,7 @@ var FormCollaborator = function (_React$Component) {
   }, {
     key: 'deleteCollaborator',
     value: function deleteCollaborator() {
-      DataActions.sendRequest('DELETE', { name: this.state.name, address_id: this.state.address_id }, '/api/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.initialName, address_id: this.state.address_id }, '/api/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'submitForm',
@@ -14483,128 +14485,165 @@ var FormCollaborator = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/collaborators' },
-          'All Collaborators'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : 'Update Collaborator: ' + this.state.name
-        ),
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          { className: 'submit-message-success' },
-          this.state.submitSuccess ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-added-success', style: { color: 'green' } },
+          { className: 'col-6' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/dashboard/collaborators', className: 'btn btn-primary mb-3' },
+            'All Collaborators'
+          ),
+          _react2.default.createElement(
+            'h1',
+            null,
             _react2.default.createElement(
-              'p',
-              null,
-              this.props.sendRequestType === 'POST' ? 'New Collaborator successfully added.' : 'Collaborator successfully updated.'
+              'span',
+              { className: 'badge badge-default p-3' },
+              this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : 'Update Collaborator: ' + this.state.initialName
             )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'p',
-            null,
-            this.state.submitError
-          )
-        ),
-        this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-          'button',
-          { onClick: function onClick(e) {
-              return _this4.deleteCollaborator(e);
-            } },
-          'Delete ',
-          this.state.name
-        ) : null,
-        _react2.default.createElement(
-          'form',
-          { id: 'create-collaborator' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Collaborator Name: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'name',
-              className: this.state.nameErr ? 'err' : null,
-              value: this.state.name,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this4);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this4);
-              } })
           ),
-          _react2.default.createElement(
+          this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
             'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Website: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'url',
-              className: this.state.urlErr ? 'err' : null,
-              value: this.state.url,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this4);
-              },
-              onBlur: function onBlur(e) {
-                return FormValidations.checkField(e, _this4);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Address: '
-            ),
-            _react2.default.createElement(FormAddress, {
-              collaboratorId: this.props.collaboratorId,
-              sendAddressData: this.getComponentData })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
+            { className: 'd-flex justify-content-end pr-3' },
             _react2.default.createElement(
               'button',
-              { disabled: this.requiredFieldsBlank, onClick: function onClick(e) {
-                  return _this4.submitForm(e);
+              {
+                className: 'btn btn-danger mb-3',
+                onClick: function onClick(e) {
+                  return _this4.deleteCollaborator(e);
                 } },
-              this.props.sendRequestType === 'POST' ? 'Submit' : 'Update ' + this.state.name
+              'Delete ',
+              this.state.initialName
+            )
+          ) : null,
+          _react2.default.createElement(
+            'div',
+            { className: 'submit-message-error' },
+            this.state.submitError ? _react2.default.createElement(
+              'div',
+              { className: 'alert alert-danger' },
+              this.state.submitError
+            ) : null
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'errors row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-10' },
+              this.state.nameErr ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'collaborator-name-validation-error',
+                  className: 'alert alert-danger' },
+                'Collaborator Name can not be blank. Please enter a Collaborator Name.'
+              ) : null,
+              this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
+                'div',
+                {
+                  id: 'collaborator-name-validation-error',
+                  className: 'alert alert-danger' },
+                'Website URL is not valid. Please enter a valid Website URL.'
+              ) : null
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
+              'form',
+              { id: 'create-collaborator' },
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Collaborator Name: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-10' },
+                  _react2.default.createElement('input', {
+                    type: 'text',
+                    name: 'name',
+                    className: this.state.nameErr ? 'err form-control' : 'form-control',
+                    value: this.state.name,
+                    onChange: function onChange(e) {
+                      return FormHandlers.handleOnChange(e, _this4);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this4);
+                    } })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Website: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-10' },
+                  _react2.default.createElement('input', {
+                    type: 'text',
+                    name: 'url',
+                    className: this.state.urlErr ? 'err form-control' : 'form-control',
+                    value: this.state.url,
+                    onChange: function onChange(e) {
+                      return FormHandlers.handleOnChange(e, _this4);
+                    },
+                    onBlur: function onBlur(e) {
+                      return FormValidations.checkField(e, _this4);
+                    } })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
+                  'Address: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-10' },
+                  _react2.default.createElement(FormAddress, {
+                    collaboratorId: this.props.collaboratorId,
+                    sendAddressData: this.getComponentData })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-12 d-flex justify-content-end' },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/dashboard/clients', className: 'btn btn-secondary mr-3' },
+                    'Cancel'
+                  ),
+                  _react2.default.createElement('br', null),
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      className: 'btn btn-primary',
+                      disabled: this.requiredFieldsBlank,
+                      onClick: function onClick(e) {
+                        return _this4.submitForm(e);
+                      } },
+                    this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialName : 'Submit'
+                  )
+                )
+              )
             )
           )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'errors' },
-          this.state.nameErr ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-name-validation-error', style: { color: 'red' } },
-            'Collaborator Name can not be blank. Please enter a Collaborator Name.'
-          ) : null,
-          this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
-            'div',
-            { id: 'collaborator-url-validation-error', style: { color: 'red' } },
-            'Website URL is not valid. Please enter a valid Website URL.'
-          ) : null
         )
       );
     }
@@ -14770,7 +14809,7 @@ var FormNewsStory = function (_React$Component) {
   }, {
     key: 'deleteNewsStory',
     value: function deleteNewsStory() {
-      DataActions.sendRequest('DELETE', { title: this.state.title }, '/api/news-stories/' + this.props.newsStoryId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+      DataActions.sendRequest('DELETE', { title: this.state.initialTitle }, '/api/news-stories/' + this.props.newsStoryId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'openImageSelect',
@@ -15272,7 +15311,7 @@ var FormProject = function (_React$Component) {
   }, {
     key: 'deleteProject',
     value: function deleteProject() {
-      DataActions.sendRequest('DELETE', { name: this.state.name }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.initialName }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'showAttachedImages',

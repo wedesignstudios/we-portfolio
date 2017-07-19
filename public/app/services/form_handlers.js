@@ -25,6 +25,16 @@ const FormHandlers = {
     });
   },
 
+  makeTitleCase: function(event, _this) {
+    const target = event.target;
+    const name = target.name;
+    var value = this.titleCase(target.value);
+
+    _this.setState({
+      [name]: value
+    })
+  },
+
   multiSelect: function(event, _this, sendDataFunc) {
     const target = event.target;
     const name = target.name;
@@ -182,11 +192,14 @@ const FormHandlers = {
   },
 
   titleCase: function(str) {
-    return str.toLowerCase().split(' ').map(word => {
-      if(word !== '') {
-        return word.replace(word[0], word[0].toUpperCase());
-      }
-    }).join(' ');
+      return str.split(' ').map(word => {
+        if(word !== '' && !word.startsWith('Mc') && !word.startsWith('Mac')) {
+          word = word.toLowerCase();
+          return word.replace(word[0], word[0].toUpperCase());
+        } else {
+          return word;
+        }
+      }).join(' ');
   },
 
   updateAttached: function(_this, models) {

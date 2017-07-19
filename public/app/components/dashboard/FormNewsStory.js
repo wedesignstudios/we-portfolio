@@ -116,7 +116,7 @@ class FormNewsStory extends React.Component {
   deleteNewsStory() {
     DataActions.sendRequest(
       'DELETE',
-      {title: this.state.title},
+      {title: this.state.initialTitle},
       `/api/news-stories/${this.props.newsStoryId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage

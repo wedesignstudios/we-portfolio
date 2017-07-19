@@ -164,7 +164,7 @@ class FormProject extends React.Component {
   deleteProject() {
     DataActions.sendRequest(
       'DELETE',
-      {name: this.state.name},
+      {name: this.state.initialName},
       `/api/projects/${this.props.projectId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage

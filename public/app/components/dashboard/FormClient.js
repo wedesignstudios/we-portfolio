@@ -77,7 +77,7 @@ class FormClient extends React.Component {
   deleteClient() {
     DataActions.sendRequest(
       'DELETE',
-      {name: this.state.name, address_id: this.state.address_id},
+      {name: this.state.initialName, address_id: this.state.address_id},
       `/api/clients/${this.props.clientId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage

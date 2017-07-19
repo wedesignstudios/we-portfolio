@@ -37,6 +37,10 @@ class FormClient extends React.Component {
     this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
+  componentDidUpdate() {
+    FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['nameErr']);
+  }
+
   componentDidMount() {
     if(this.props.clientId) {
       fetch(`/api/clients/${this.props.clientId}`)

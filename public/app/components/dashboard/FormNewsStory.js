@@ -74,6 +74,10 @@ class FormNewsStory extends React.Component {
     return true;
   }
 
+  componentDidUpdate() {
+    FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['titleErr', 'dateErr', 'descriptionErr']);
+  }
+
   componentDidMount() {
     if(this.props.newsStoryId) {
       fetch(`/api/news-stories/${this.props.newsStoryId}`)

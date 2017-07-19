@@ -55,6 +55,17 @@ const FormValidations = {
     }
   },
 
+  clearErrsIfNoneBeforeOnBlur: function(_this, errArr) {
+    let clearErrObj = {};
+    let stateErrArr = errArr.map(err => {return _this.state[err]});
+
+    errArr.forEach(err => {clearErrObj[err] = false});
+
+    if(_this.requiredFieldsBlank === false && stateErrArr.includes(true)) {
+      _this.setState(clearErrObj);
+    }
+  },
+
   trimData: function(stateObj, _this) {
     let keys = Object.keys(stateObj);
 

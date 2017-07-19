@@ -37,6 +37,10 @@ class FormCollaborator extends React.Component {
     this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
+  componentDidUpdate() {
+    FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['nameErr']);
+  }
+
   componentDidMount() {
     if(this.props.collaboratorId) {
       fetch(`/api/collaborators/${this.props.collaboratorId}`)

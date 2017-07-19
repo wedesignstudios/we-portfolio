@@ -6960,6 +6960,21 @@ var FormValidations = {
     }
   },
 
+  clearErrsIfNoneBeforeOnBlur: function clearErrsIfNoneBeforeOnBlur(_this, errArr) {
+    var clearErrObj = {};
+    var stateErrArr = errArr.map(function (err) {
+      return _this.state[err];
+    });
+
+    errArr.forEach(function (err) {
+      clearErrObj[err] = false;
+    });
+
+    if (_this.requiredFieldsBlank === false && stateErrArr.includes(true)) {
+      _this.setState(clearErrObj);
+    }
+  },
+
   trimData: function trimData(stateObj, _this) {
     var keys = Object.keys(stateObj);
 
@@ -14103,6 +14118,11 @@ var FormClient = function (_React$Component) {
   }
 
   _createClass(FormClient, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['nameErr']);
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -14408,6 +14428,11 @@ var FormCollaborator = function (_React$Component) {
   }
 
   _createClass(FormCollaborator, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['nameErr']);
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -14754,6 +14779,11 @@ var FormNewsStory = function (_React$Component) {
       this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
       return true;
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['titleErr', 'dateErr', 'descriptionErr']);
     }
   }, {
     key: 'componentDidMount',
@@ -15244,21 +15274,7 @@ var FormProject = function (_React$Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      this.clearErrsIfNoneBeforeOnBlur();
-    }
-  }, {
-    key: 'clearErrsIfNoneBeforeOnBlur',
-    value: function clearErrsIfNoneBeforeOnBlur() {
-      var s = this.state;
-      var errArr = [s.nameErr, s.dateErr, s.descriptionErr];
-
-      if (this.requiredFieldsBlank === false && errArr.includes(true)) {
-        this.setState({
-          nameErr: false,
-          dateErr: false,
-          descriptionErr: false
-        });
-      }
+      FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['nameErr', 'dateErr', 'descriptionErr']);
     }
   }, {
     key: 'setAttachedAndSelected',

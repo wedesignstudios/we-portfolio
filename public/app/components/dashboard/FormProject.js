@@ -99,20 +99,7 @@ class FormProject extends React.Component {
   }
 
   componentDidUpdate() {
-    this.clearErrsIfNoneBeforeOnBlur();
-  }
-
-  clearErrsIfNoneBeforeOnBlur() {
-    let s = this.state;
-    let errArr = [s.nameErr, s.dateErr, s.descriptionErr]
-
-    if(this.requiredFieldsBlank === false && errArr.includes(true)) {
-      this.setState({
-        nameErr: false,
-        dateErr: false,
-        descriptionErr: false
-      })
-    }
+    FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['nameErr', 'dateErr', 'descriptionErr']);
   }
 
   setAttachedAndSelected(dataModel, dataModelName) {

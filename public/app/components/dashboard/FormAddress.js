@@ -159,6 +159,7 @@ class FormAddress extends Component {
       <div>
         <Select.Creatable
           name="city"
+          className="mb-3"
           value={this.state.city}
           options={this.state.allCities}
           onChange={(val) => this.setSelectedCity(val)}
@@ -171,6 +172,7 @@ class FormAddress extends Component {
 
         <Select
           name="state"
+          className="mb-3"
           value={this.state.state}
           options={this.state.allStates}
           onChange={(val) => this.setSelectedState(val)}
@@ -179,6 +181,7 @@ class FormAddress extends Component {
 
           <Select
           name="country"
+          className="mb-3"
           value={this.state.country}
           options={this.state.allCountries}
           onChange={(val) => this.setSelectedCountry(val)}

@@ -5390,6 +5390,14 @@ var FormHandlers = {
     _this.setState(_defineProperty({}, name, !_this.state[name]));
   },
 
+  makeTitleCase: function makeTitleCase(event, _this) {
+    var target = event.target;
+    var name = target.name;
+    var value = this.titleCase(target.value);
+
+    _this.setState(_defineProperty({}, name, value));
+  },
+
   multiSelect: function multiSelect(event, _this, sendDataFunc) {
     var target = event.target;
     var name = target.name;
@@ -5545,9 +5553,12 @@ var FormHandlers = {
   },
 
   titleCase: function titleCase(str) {
-    return str.toLowerCase().split(' ').map(function (word) {
-      if (word !== '') {
+    return str.split(' ').map(function (word) {
+      if (word !== '' && !word.startsWith('Mc') && !word.startsWith('Mac')) {
+        word = word.toLowerCase();
         return word.replace(word[0], word[0].toUpperCase());
+      } else {
+        return word;
       }
     }).join(' ');
   },
@@ -14281,7 +14292,7 @@ var FormClient = function (_React$Component) {
                       return FormHandlers.handleOnChange(e, _this3);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
+                      FormHandlers.makeTitleCase(e, _this3);FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -14591,7 +14602,7 @@ var FormCollaborator = function (_React$Component) {
                       return FormHandlers.handleOnChange(e, _this3);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
+                      FormHandlers.makeTitleCase(e, _this3);FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -14984,7 +14995,7 @@ var FormNewsStory = function (_React$Component) {
                       return FormHandlers.preventSpaceKey(e);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
+                      FormHandlers.makeTitleCase(e, _this3);FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -15455,7 +15466,7 @@ var FormProject = function (_React$Component) {
                       return FormHandlers.preventSpaceKey(e);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this4);
+                      FormHandlers.makeTitleCase(e, _this4);FormValidations.checkField(e, _this4);
                     } })
                 )
               ),

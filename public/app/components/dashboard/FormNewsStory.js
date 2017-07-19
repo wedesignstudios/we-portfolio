@@ -242,7 +242,7 @@ class FormNewsStory extends React.Component {
                       value={this.state.title}
                       onChange={(e) => FormHandlers.handleOnChange(e, this)}
                       onFocus={(e) => FormHandlers.preventSpaceKey(e)}
-                      onBlur={(e) => FormValidations.checkField(e, this)} />
+                      onBlur={(e) => {FormHandlers.makeTitleCase(e, this);FormValidations.checkField(e, this);}} />
                   </div>
               </div>
 

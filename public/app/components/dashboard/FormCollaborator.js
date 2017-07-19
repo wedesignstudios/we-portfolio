@@ -17,6 +17,7 @@ class FormCollaborator extends React.Component {
 
     this.state = {
       name: '',
+      initialName: '',
       url: '',
       city: '',
       state: '',
@@ -43,6 +44,7 @@ class FormCollaborator extends React.Component {
         .then((data) => {
           this.setState({
             name: data.name,
+            initialName: data.name,
             url: data.url,
           });
           if(data.address.length > 0) {
@@ -75,7 +77,7 @@ class FormCollaborator extends React.Component {
   deleteCollaborator() {
     DataActions.sendRequest(
       'DELETE',
-      {name: this.state.name, address_id: this.state.address_id},
+      {name: this.state.initialName, address_id: this.state.address_id},
       `/api/collaborators/${this.props.collaboratorId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage
@@ -114,52 +116,104 @@ class FormCollaborator extends React.Component {
 
   render() {
     return (
-      <div>
-      <Link to='/dashboard/collaborators'>All Collaborators</Link><br />
-        <h3>{this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : `Update Collaborator: ${this.state.name}`}</h3>
-        <div className="submit-message-success">
-          {this.state.submitSuccess ? <div id="collaborator-added-success" style={{color: 'green'}}><p>{this.props.sendRequestType === 'POST' ? 'New Collaborator successfully added.' : 'Collaborator successfully updated.'}</p></div> : null}
-        </div>
-        <div className="submit-message-error" style={{color: 'red'}}><p>{this.state.submitError}</p></div>
-        {this.props.sendRequestType === 'PUT' ?
-          <button onClick={(e) => this.deleteCollaborator(e)}>Delete {this.state.name}</button> :
-        null}
-        <form id="create-collaborator">
-          <div>
-            <label>Collaborator Name: </label>
-            <input
-                type="text"
-                name="name"
-                className={this.state.nameErr ? 'err' : null}
-                value={this.state.name}
-                onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                onBlur={(e) => FormValidations.checkField(e, this)} />
+      <div className="row justify-content-center">
+        <div className="col-6">
+          <Link to='/dashboard/collaborators' className="btn btn-primary mb-3">All Collaborators</Link>
+            <h1>
+              <span className="badge badge-default p-3">
+              {this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : `Update Collaborator: ${this.state.initialName}`}
+              </span>
+            </h1>
+
+            {this.props.sendRequestType === 'PUT' ?
+              <div className="d-flex justify-content-end pr-3">
+                <button
+                  className="btn btn-danger mb-3"
+                  onClick={(e) => this.deleteCollaborator(e)}>
+                    Delete {this.state.initialName}
+                </button>
+              </div> :
+            null}
+
+            <div className="submit-message-error">
+              {this.state.submitError ?
+                <div className="alert alert-danger">
+                  {this.state.submitError}
+                </div> :
+              null}
+            </div>
+
+            <div className="errors row">
+              <div className="col-sm-10">
+                {this.state.nameErr ?
+                  <div
+                    id="collaborator-name-validation-error"
+                    className="alert alert-danger">
+                      Collaborator Name can not be blank. Please enter a Collaborator Name.
+                  </div> :
+                null}
+                {(this.state.urlErr && this.state.urlErrType === 'not valid') ?
+                  <div
+                    id="collaborator-name-validation-error"
+                    className="alert alert-danger">
+                      Website URL is not valid. Please enter a valid Website URL.
+                  </div> :
+                null}
+              </div>
+            </div>
+
+            <div className="container-fluid">
+              <form id="create-collaborator">
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label">Collaborator Name: </label>
+                    <div className="col-sm-10">
+                      <input
+                          type="text"
+                          name="name"
+                          className={this.state.nameErr ? 'err form-control' : 'form-control'}
+                          value={this.state.name}
+                          onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                          onBlur={(e) => FormValidations.checkField(e, this)} />
+                    </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label">Website: </label>
+                    <div className="col-sm-10">
+                      <input
+                          type="text"
+                          name="url"
+                          className={this.state.urlErr ? 'err form-control' : 'form-control'}
+                          value={this.state.url}
+                          onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                          onBlur={(e) => FormValidations.checkField(e, this)} />
+                    </div>
+                </div>
+
+                <div className="form-group row">
+                  <label className="col-sm-2 col-form-label">Address: </label>
+                  <div className="col-sm-10">
+                    <FormAddress
+                      collaboratorId={this.props.collaboratorId}
+                      sendAddressData={this.getComponentData} />
+                  </div>
+                </div>
+
+                <div className="form-group row">
+                  <div className="col-sm-12 d-flex justify-content-end">
+                    <Link to='/dashboard/clients' className="btn btn-secondary mr-3">Cancel</Link><br />
+                    <button
+                      className="btn btn-primary"
+                      disabled={this.requiredFieldsBlank}
+                      onClick={(e) => this.submitForm(e)}>
+                        {this.props.sendRequestType === 'PUT' ?
+                          `Update ${this.state.initialName}` :
+                          'Submit'}
+                    </button>
+                  </div>
+                </div>
+            </form>
           </div>
-          <div>
-            <label>Website: </label>
-            <input
-                type="text"
-                name="url"
-                className={this.state.urlErr ? 'err' : null}
-                value={this.state.url}
-                onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                onBlur={(e) => FormValidations.checkField(e, this)} />
-          </div>
-          <div>
-            <label>Address: </label>
-            <FormAddress
-              collaboratorId={this.props.collaboratorId}
-              sendAddressData={this.getComponentData} />
-          </div>
-          <div>
-            <button disabled={this.requiredFieldsBlank} onClick={(e) => this.submitForm(e)}>
-              {this.props.sendRequestType === 'POST' ? 'Submit' : `Update ${this.state.name}`}
-            </button>
-          </div>
-        </form>
-        <div className="errors">
-          {this.state.nameErr ? <div id="collaborator-name-validation-error" style={{color: 'red'}}>Collaborator Name can not be blank. Please enter a Collaborator Name.</div> : null}
-          {(this.state.urlErr && this.state.urlErrType === 'not valid') ? <div id="collaborator-url-validation-error" style={{color: 'red'}}>Website URL is not valid. Please enter a valid Website URL.</div> : null}
         </div>
       </div>
     );

@@ -81,6 +81,9 @@ form .images-select-container {
   form .images-select-container img.selected {
     border-color: orange; }
 
+form textarea.form-control {
+  min-height: 10rem; }
+
 .image-grid-element {
   display: inline-block;
   width: 300px; }

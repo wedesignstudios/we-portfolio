@@ -32010,6 +32010,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var UpdateProject = __webpack_require__(73);
+var DateFormatter = __webpack_require__(404);
 
 var GetProjects = function (_Component) {
   _inherits(GetProjects, _Component);
@@ -32028,13 +32029,14 @@ var GetProjects = function (_Component) {
     }
 
     _this.flashMessage = _this.props.history.location.state.message;
+    _this.resetFlashMessage = _this.resetFlashMessage.bind(_this);
 
     return _this;
   }
 
   _createClass(GetProjects, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'loadProjects',
+    value: function loadProjects() {
       var _this2 = this;
 
       fetch('/api/projects').then(function (res) {
@@ -32048,9 +32050,29 @@ var GetProjects = function (_Component) {
       });
     }
   }, {
+    key: 'resetFlashMessage',
+    value: function resetFlashMessage() {
+      this.props.history.push(location, { message: '' });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.loadProjects();
+    }
+  }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps) {
       this.flashMessage = nextProps.history.location.state.message;
+      if (this.props.history.location.state.message !== '') {
+        setTimeout(this.resetFlashMessage, 3000);
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.projectsData.length !== this.state.projectsData.length) {
+        this.loadProjects();
+      }
     }
   }, {
     key: 'render',
@@ -32093,21 +32115,59 @@ var GetProjects = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'row' },
-              _react2.default.createElement(
-                'div',
-                null,
-                this.state.projectsData.map(function (project) {
-                  return _react2.default.createElement(
+              this.state.projectsData.map(function (project) {
+                var projectDate = new Date(project.date);
+                return _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-3 mb-3', key: project.id },
+                  _react2.default.createElement(
                     'div',
-                    { key: project.id },
-                    _react2.default.createElement(
+                    { className: 'card' },
+                    project.images.length > 0 ? _react2.default.createElement(
                       _reactRouterDom.Link,
                       { to: _this3.props.match.url + '/' + project.id + '/update' },
-                      project.name
+                      _react2.default.createElement('img', { className: 'card-img-top img-fluid', src: project.images[0].url, alt: project.images[0].alt })
+                    ) : null,
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-block' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-title h5' },
+                        _react2.default.createElement(
+                          _reactRouterDom.Link,
+                          { to: _this3.props.match.url + '/' + project.id + '/update', className: 'text-muted' },
+                          project.name
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-text mb-0' },
+                        _react2.default.createElement(
+                          'small',
+                          { className: 'text-muted' },
+                          DateFormatter.monthYear(projectDate)
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'ul',
+                        { className: 'card-text list-inline' },
+                        project.project_categories.length > 0 ? project.project_categories.map(function (category) {
+                          return _react2.default.createElement(
+                            'li',
+                            { key: category.id, className: 'list-inline-item list-inline-item-separator' },
+                            _react2.default.createElement(
+                              'small',
+                              { className: 'text-muted' },
+                              category.name
+                            )
+                          );
+                        }) : null
+                      )
                     )
-                  );
-                })
-              )
+                  )
+                );
+              })
             )
           )
         )
@@ -51037,6 +51097,49 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var DateFormatter = {
+
+  monthNames: function monthNames() {
+    return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  },
+
+  monthDayYear: function monthDayYear(dateObj) {
+    var month = this.monthNames()[dateObj.getMonth()];
+    var day = dateObj.getDate();
+    var year = dateObj.getFullYear();
+
+    return month + ' ' + day + ', ' + year;
+  },
+
+  monthYear: function monthYear(dateObj) {
+    var month = this.monthNames()[dateObj.getMonth()];
+    var year = dateObj.getFullYear();
+
+    return month + ' ' + year;
+  }
+
+};
+
+module.exports = DateFormatter;
 
 /***/ })
 /******/ ]);

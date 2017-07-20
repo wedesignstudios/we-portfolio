@@ -22,6 +22,21 @@ input {
 textarea.err {
   border: 2px solid red; }
 
+.line-height-1-rem {
+  line-height: 1rem; }
+
+.line-height-1-25-rem {
+  line-height: 1.25rem; }
+
+.line-height-1-5rem {
+  line-height: 1.5rem; }
+
+.line-height-1-75rem {
+  line-height: 1.75rem; }
+
+.line-height-2-rem {
+  line-height: 2rem; }
+
 .list-inline-item-separator:after {
   color: gray;
   content: '•';

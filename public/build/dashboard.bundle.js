@@ -32097,8 +32097,8 @@ var GetProjects = function (_Component) {
               'div',
               { className: 'row' },
               _react2.default.createElement(
-                'h3',
-                null,
+                'h2',
+                { className: 'font-weight-bold' },
                 'All Projects'
               ),
               _react2.default.createElement(
@@ -32119,10 +32119,10 @@ var GetProjects = function (_Component) {
                 var projectDate = new Date(project.date);
                 return _react2.default.createElement(
                   'div',
-                  { className: 'col-sm-3 mb-3', key: project.id },
+                  { className: 'col-sm-2 mb-3', key: project.id },
                   _react2.default.createElement(
                     'div',
-                    { className: 'card' },
+                    { className: 'card line-height-1-25-rem' },
                     project.images.length > 0 ? _react2.default.createElement(
                       _reactRouterDom.Link,
                       { to: _this3.props.match.url + '/' + project.id + '/update' },
@@ -32130,16 +32130,20 @@ var GetProjects = function (_Component) {
                     ) : null,
                     _react2.default.createElement(
                       'div',
-                      { className: 'card-block' },
+                      { className: 'card-block p-3' },
                       _react2.default.createElement(
                         'p',
-                        { className: 'card-title h5' },
+                        { className: 'card-title mb-2' },
                         _react2.default.createElement(
                           _reactRouterDom.Link,
                           { to: _this3.props.match.url + '/' + project.id + '/update', className: 'text-muted' },
                           project.name
                         )
-                      ),
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-footer text-muted px-3 py-1' },
                       _react2.default.createElement(
                         'p',
                         { className: 'card-text mb-0' },
@@ -32148,21 +32152,6 @@ var GetProjects = function (_Component) {
                           { className: 'text-muted' },
                           DateFormatter.monthYear(projectDate)
                         )
-                      ),
-                      _react2.default.createElement(
-                        'ul',
-                        { className: 'card-text list-inline' },
-                        project.project_categories.length > 0 ? project.project_categories.map(function (category) {
-                          return _react2.default.createElement(
-                            'li',
-                            { key: category.id, className: 'list-inline-item list-inline-item-separator' },
-                            _react2.default.createElement(
-                              'small',
-                              { className: 'text-muted' },
-                              category.name
-                            )
-                          );
-                        }) : null
                       )
                     )
                   )

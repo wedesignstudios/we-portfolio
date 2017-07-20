@@ -15,7 +15,7 @@ class NavDashboard extends Component {
             <li className="nav-item"><Link className="nav-link" to={`${this.props.match.url}/clients`}>Clients</Link></li>
             <li className="nav-item"><Link className="nav-link" to={`${this.props.match.url}/collaborators`}>Collaborators</Link></li>
             <li className="nav-item"><Link className="nav-link" to={`${this.props.match.url}/images`}>Images</Link></li>
-            <li className="nav-item ml-auto"><Link className="nav-link btn btn-outline-secondary" to="/logout">Logout</Link></li>
+            <li className="nav-item ml-auto"><a className="nav-link btn btn-outline-secondary" href="/logout">Logout</a></li>
           </ul>
         </div>
       </nav>

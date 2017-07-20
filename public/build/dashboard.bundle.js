@@ -31454,12 +31454,12 @@ var DashboardHome = function (_Component) {
           'div',
           { className: 'col-sm-6' },
           _react2.default.createElement(
-            'h1',
-            null,
+            'h2',
+            { className: 'font-weight-bold' },
             'WE Portfolio Dashboard'
           ),
           _react2.default.createElement(
-            'h3',
+            'h5',
             null,
             'Hi, ',
             this.state.user[0].first_name

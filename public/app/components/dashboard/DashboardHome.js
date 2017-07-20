@@ -23,8 +23,8 @@ class DashboardHome extends Component {
     return(
       <div className="row justify-content-center">
         <div className="col-sm-6">
-          <h1>WE Portfolio Dashboard</h1>
-          <h3>Hi, {this.state.user[0].first_name}</h3>
+          <h2 className="font-weight-bold">WE Portfolio Dashboard</h2>
+          <h5>Hi, {this.state.user[0].first_name}</h5>
         </div>
       </div>
     );

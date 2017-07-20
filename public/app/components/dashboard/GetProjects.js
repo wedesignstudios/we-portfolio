@@ -60,11 +60,6 @@ class GetProjects extends Component {
     return(
       <div className="row justify-content-center">
         <div className="col-sm-6">
-        {this.flashMessage ?
-          <div className="alert alert-success">
-            {this.flashMessage}
-          </div> :
-        null}
 
           <div className="container-fluid">
             <div className="row">
@@ -74,6 +69,12 @@ class GetProjects extends Component {
             <div className="row">
               <hr className="col" />
             </div>
+
+            {this.flashMessage ?
+              <div className="alert alert-success">
+                {this.flashMessage}
+              </div> :
+            null}
 
             <div className="row">
               {this.state.projectsData.map(project => {

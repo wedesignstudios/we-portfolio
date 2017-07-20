@@ -32059,36 +32059,57 @@ var GetProjects = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
-        this.flashMessage ? _react2.default.createElement(
-          'div',
-          { className: 'alert alert-success' },
-          this.flashMessage
-        ) : null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/create' },
-          'Add New Project'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All Projects'
-        ),
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          null,
-          this.state.projectsData.map(function (project) {
-            return _react2.default.createElement(
+          { className: 'col-sm-6' },
+          this.flashMessage ? _react2.default.createElement(
+            'div',
+            { className: 'alert alert-success' },
+            this.flashMessage
+          ) : null,
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
               'div',
-              { key: project.id },
+              { className: 'row' },
+              _react2.default.createElement(
+                'h3',
+                null,
+                'All Projects'
+              ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + project.id + '/update' },
-                project.name
+                { to: this.props.match.url + '/create', className: 'btn btn-primary ml-auto' },
+                'Add New Project'
               )
-            );
-          })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'div',
+                null,
+                this.state.projectsData.map(function (project) {
+                  return _react2.default.createElement(
+                    'div',
+                    { key: project.id },
+                    _react2.default.createElement(
+                      _reactRouterDom.Link,
+                      { to: _this3.props.match.url + '/' + project.id + '/update' },
+                      project.name
+                    )
+                  );
+                })
+              )
+            )
+          )
         )
       );
     }

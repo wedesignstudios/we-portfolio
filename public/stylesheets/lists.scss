@@ -1,0 +1,15 @@
+// Custom <ul> <ol> lists styles 
+
+.list-inline-item-separator {
+  
+  &:after {
+    color: gray;
+    content: '•';
+    font-size: 0.75rem;
+    margin: 0 0 0 0.25rem;
+  }
+
+  &:last-child:after {
+    content: '';
+  }
+}

@@ -9,7 +9,11 @@ body {
 } 
 
 a {
-  color: $dodger-blue;  
+  color: $dodger-blue;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 input {

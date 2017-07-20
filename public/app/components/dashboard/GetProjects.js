@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 const UpdateProject = require('./UpdateProject');
+const DateFormatter = require('../../services/date_formatter')
 
 class GetProjects extends Component {
   constructor(props) {
@@ -17,10 +18,11 @@ class GetProjects extends Component {
     }
 
     this.flashMessage = this.props.history.location.state.message;
+    this.resetFlashMessage = this.resetFlashMessage.bind(this);
 
   }
 
-  componentDidMount() {
+  loadProjects() {
     fetch('/api/projects')
       .then((res) => res.json())
       .then((data) => {
@@ -33,8 +35,25 @@ class GetProjects extends Component {
       });
   }
 
+  resetFlashMessage() {
+    this.props.history.push(location, {message: ''});
+  }
+
+  componentDidMount() {
+    this.loadProjects();
+  }
+
   componentWillUpdate(nextProps) {
     this.flashMessage = nextProps.history.location.state.message;
+    if(this.props.history.location.state.message !== '') {
+      setTimeout(this.resetFlashMessage, 3000);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.projectsData.length !== this.state.projectsData.length) {
+      this.loadProjects();
+    }
   }
 
   render() {
@@ -55,13 +74,47 @@ class GetProjects extends Component {
             <div className="row">
               <hr className="col" />
             </div>
+
             <div className="row">
-                <div>
-                  {this.state.projectsData.map(project =>
-                    <div key={project.id}><Link to={`${this.props.match.url}/${project.id}/update`}>{project.name}</Link></div>
-                  )}
-                </div>
-              </div>
+              {this.state.projectsData.map(project => {
+                let projectDate = new Date(project.date);
+                return (
+                  <div className="col-sm-3 mb-3" key={project.id}>
+                    <div className="card">
+                      {project.images.length > 0 ?
+                        <Link to={`${this.props.match.url}/${project.id}/update`}>
+                          <img className="card-img-top img-fluid" src={project.images[0].url} alt={project.images[0].alt} />
+                        </Link> :
+                      null}
+                      <div className="card-block">
+                          <p className="card-title h5">
+                            <Link to={`${this.props.match.url}/${project.id}/update`} className="text-muted">
+                              {project.name}
+                            </Link>
+                          </p>
+                          <p className="card-text mb-0">
+                            <small className="text-muted">
+                              {DateFormatter.monthYear(projectDate)}
+                            </small>
+                          </p>
+                          <ul className="card-text list-inline">
+                              {project.project_categories.length > 0 ?
+                                project.project_categories.map(category =>
+                                  <li key={category.id} className="list-inline-item list-inline-item-separator">
+                                    <small className="text-muted">
+                                      {category.name}
+                                    </small>
+                                  </li>
+                                ) :
+                              null}
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              )}
+            </div>
+
           </div>
         </div>
       </div>

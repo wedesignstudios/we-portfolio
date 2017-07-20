@@ -68,7 +68,7 @@ class GetProjects extends Component {
 
           <div className="container-fluid">
             <div className="row">
-              <h3>All Projects</h3>
+              <h2 className="font-weight-bold">All Projects</h2>
               <Link to={`${this.props.match.url}/create`} className="btn btn-primary ml-auto">Add New Project</Link>
             </div>
             <div className="row">
@@ -79,35 +79,26 @@ class GetProjects extends Component {
               {this.state.projectsData.map(project => {
                 let projectDate = new Date(project.date);
                 return (
-                  <div className="col-sm-3 mb-3" key={project.id}>
-                    <div className="card">
+                  <div className="col-sm-2 mb-3" key={project.id}>
+                    <div className="card line-height-1-25-rem">
                       {project.images.length > 0 ?
                         <Link to={`${this.props.match.url}/${project.id}/update`}>
                           <img className="card-img-top img-fluid" src={project.images[0].url} alt={project.images[0].alt} />
                         </Link> :
                       null}
-                      <div className="card-block">
-                          <p className="card-title h5">
-                            <Link to={`${this.props.match.url}/${project.id}/update`} className="text-muted">
-                              {project.name}
-                            </Link>
-                          </p>
-                          <p className="card-text mb-0">
-                            <small className="text-muted">
-                              {DateFormatter.monthYear(projectDate)}
-                            </small>
-                          </p>
-                          <ul className="card-text list-inline">
-                              {project.project_categories.length > 0 ?
-                                project.project_categories.map(category =>
-                                  <li key={category.id} className="list-inline-item list-inline-item-separator">
-                                    <small className="text-muted">
-                                      {category.name}
-                                    </small>
-                                  </li>
-                                ) :
-                              null}
-                          </ul>
+                      <div className="card-block p-3">
+                        <p className="card-title mb-2">
+                          <Link to={`${this.props.match.url}/${project.id}/update`} className="text-muted">
+                            {project.name}
+                          </Link>
+                        </p>
+                      </div>
+                      <div className="card-footer text-muted px-3 py-1">
+                        <p className="card-text mb-0">
+                          <small className="text-muted">
+                            {DateFormatter.monthYear(projectDate)}
+                          </small>
+                        </p>
                       </div>
                     </div>
                   </div>

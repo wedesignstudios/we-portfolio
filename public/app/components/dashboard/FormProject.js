@@ -199,63 +199,67 @@ class FormProject extends React.Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="col-6">
-          <Link to='/dashboard/projects' className="btn btn-primary mb-3">All Projects</Link>
-          <h1>
-            <span className="badge badge-default p-3">
-              {this.props.sendRequestType === 'POST' ?
-                'Create A New Project' :
-                `Update Project: ${this.state.initialName}`}
-            </span>
-          </h1>
-
-          {this.props.sendRequestType === 'PUT' ?
-            <div className="d-flex justify-content-end pr-3">
-              <button
-                className="btn btn-danger mb-3"
-                onClick={(e) => this.deleteProject(e)}>
-                  Delete {this.state.initialName}
-              </button>
-            </div> :
-          null}
-
-          <div className="submit-message-error">
-            {this.state.submitError ?
-              `<div className="alert alert-danger">
-                ${this.state.submitError}
-              </div>` :
-              null}
-          </div>
-
-          <div className="errors row">
-            <div className="col-sm-10">
-              {this.state.nameErr ?
-                <div
-                  id="project-name-validation-error"
-                  className="alert alert-danger"
-                  role="alert">
-                    Name can not be blank. Please enter a project name.
-                </div> :
-              null}
-              {this.state.dateErr ?
-                <div
-                  id="project-date-validation-error"
-                  className="alert alert-danger"
-                  role="alert">
-                    Date can not be blank. Please enter a project completed date.
-                </div> :
-              null}
-              {this.state.descriptionErr ?
-                <div id="project-description-validation-error"
-                className="alert alert-danger"
-                role="alert">
-                  Description can not be blank. Please enter a project description.
-                </div> :
-              null}
-            </div>
-          </div>
+        <div className="col-sm-6">
 
           <div className="container-fluid">
+            <div className="row">
+              <h2 className="font-weight-bold">
+                {this.props.sendRequestType === 'POST' ?
+                  'Add A New Project' :
+                  `Update: ${this.state.initialName}`}
+              </h2>
+              <Link to='/dashboard/projects' className="btn btn-primary ml-auto">All Projects</Link>
+            </div>
+            <div className="row">
+              <hr className="col" />
+            </div>
+
+            {this.props.sendRequestType === 'PUT' ?
+              <div>
+                <button
+                  className="btn btn-danger mb-3"
+                  onClick={(e) => this.deleteProject(e)}>
+                    Delete {this.state.initialName}
+                </button>
+              </div> :
+            null}
+
+            <div className="col submit-message-error">
+              {this.state.submitError ?
+                `<div className="alert alert-danger">
+                  ${this.state.submitError}
+                </div>` :
+                null}
+            </div>
+
+            <div className="errors row">
+              <div className="col">
+                {this.state.nameErr ?
+                  <div
+                    id="project-name-validation-error"
+                    className="alert alert-danger"
+                    role="alert">
+                      Name can not be blank. Please enter a project name.
+                  </div> :
+                null}
+                {this.state.dateErr ?
+                  <div
+                    id="project-date-validation-error"
+                    className="alert alert-danger"
+                    role="alert">
+                      Date can not be blank. Please enter a project completed date.
+                  </div> :
+                null}
+                {this.state.descriptionErr ?
+                  <div id="project-description-validation-error"
+                  className="alert alert-danger"
+                  role="alert">
+                    Description can not be blank. Please enter a project description.
+                  </div> :
+                null}
+              </div>
+            </div>
+
             <form id="create-project">
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Project Name: </label>

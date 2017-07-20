@@ -15372,74 +15372,79 @@ var FormProject = function (_React$Component) {
         { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          { className: 'col-6' },
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/dashboard/projects', className: 'btn btn-primary mb-3' },
-            'All Projects'
-          ),
-          _react2.default.createElement(
-            'h1',
-            null,
-            _react2.default.createElement(
-              'span',
-              { className: 'badge badge-default p-3' },
-              this.props.sendRequestType === 'POST' ? 'Create A New Project' : 'Update Project: ' + this.state.initialName
-            )
-          ),
-          this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-            'div',
-            { className: 'd-flex justify-content-end pr-3' },
-            _react2.default.createElement(
-              'button',
-              {
-                className: 'btn btn-danger mb-3',
-                onClick: function onClick(e) {
-                  return _this4.deleteProject(e);
-                } },
-              'Delete ',
-              this.state.initialName
-            )
-          ) : null,
-          _react2.default.createElement(
-            'div',
-            { className: 'submit-message-error' },
-            this.state.submitError ? '<div className="alert alert-danger">\n                ' + this.state.submitError + '\n              </div>' : null
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'errors row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-10' },
-              this.state.nameErr ? _react2.default.createElement(
-                'div',
-                {
-                  id: 'project-name-validation-error',
-                  className: 'alert alert-danger',
-                  role: 'alert' },
-                'Name can not be blank. Please enter a project name.'
-              ) : null,
-              this.state.dateErr ? _react2.default.createElement(
-                'div',
-                {
-                  id: 'project-date-validation-error',
-                  className: 'alert alert-danger',
-                  role: 'alert' },
-                'Date can not be blank. Please enter a project completed date.'
-              ) : null,
-              this.state.descriptionErr ? _react2.default.createElement(
-                'div',
-                { id: 'project-description-validation-error',
-                  className: 'alert alert-danger',
-                  role: 'alert' },
-                'Description can not be blank. Please enter a project description.'
-              ) : null
-            )
-          ),
+          { className: 'col-sm-6' },
           _react2.default.createElement(
             'div',
             { className: 'container-fluid' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'font-weight-bold' },
+                this.props.sendRequestType === 'POST' ? 'Add A New Project' : 'Update: ' + this.state.initialName
+              ),
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/dashboard/projects', className: 'btn btn-primary ml-auto' },
+                'All Projects'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'button',
+                {
+                  className: 'btn btn-danger mb-3',
+                  onClick: function onClick(e) {
+                    return _this4.deleteProject(e);
+                  } },
+                'Delete ',
+                this.state.initialName
+              )
+            ) : null,
+            _react2.default.createElement(
+              'div',
+              { className: 'col submit-message-error' },
+              this.state.submitError ? '<div className="alert alert-danger">\n                  ' + this.state.submitError + '\n                </div>' : null
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'errors row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col' },
+                this.state.nameErr ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'project-name-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Name can not be blank. Please enter a project name.'
+                ) : null,
+                this.state.dateErr ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'project-date-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Date can not be blank. Please enter a project completed date.'
+                ) : null,
+                this.state.descriptionErr ? _react2.default.createElement(
+                  'div',
+                  { id: 'project-description-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Description can not be blank. Please enter a project description.'
+                ) : null
+              )
+            ),
             _react2.default.createElement(
               'form',
               { id: 'create-project' },
@@ -32085,11 +32090,6 @@ var GetProjects = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
-          this.flashMessage ? _react2.default.createElement(
-            'div',
-            { className: 'alert alert-success' },
-            this.flashMessage
-          ) : null,
           _react2.default.createElement(
             'div',
             { className: 'container-fluid' },
@@ -32112,6 +32112,11 @@ var GetProjects = function (_Component) {
               { className: 'row' },
               _react2.default.createElement('hr', { className: 'col' })
             ),
+            this.flashMessage ? _react2.default.createElement(
+              'div',
+              { className: 'alert alert-success' },
+              this.flashMessage
+            ) : null,
             _react2.default.createElement(
               'div',
               { className: 'row' },

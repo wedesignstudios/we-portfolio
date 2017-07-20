@@ -10,6 +10,7 @@ import {
   withRouter
 } from 'react-router-dom';
 
+const NavDashboard = require('./NavDashboard');
 const DashboardHome = require('./DashboardHome');
 const CreateProject = require('./CreateProject');
 const GetProjects = require('./GetProjects');
@@ -32,12 +33,7 @@ class Dashboard extends Component {
     return (
       <Router>
       <div>
-        <div className="row justify-content-center">
-          <div className="col-sm-6">
-            <h1>WE Portfolio Dashboard</h1>
-            <NavLink exact to={`${this.props.match.url}`} activeStyle={{fontWeight: 'bold',  color: 'red'}}>Dashboard Home</NavLink>
-          </div>
-        </div>
+        <NavDashboard match={this.props.match} loggedIn={this.props.auth} />
         <Switch>
           <Route exact path={`${this.props.match.url}`} component={DashboardHome} />
           <Route path={`${this.props.match.url}/clients/create`} component={CreateClient} />

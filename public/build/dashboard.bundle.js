@@ -31415,62 +31415,49 @@ var DashboardHome = function (_Component) {
   function DashboardHome() {
     _classCallCheck(this, DashboardHome);
 
-    return _possibleConstructorReturn(this, (DashboardHome.__proto__ || Object.getPrototypeOf(DashboardHome)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (DashboardHome.__proto__ || Object.getPrototypeOf(DashboardHome)).call(this));
+
+    _this.state = {
+      user: ''
+    };
+    return _this;
   }
 
   _createClass(DashboardHome, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/user-data', { credentials: 'include' }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        return _this2.setState({ user: data });
+      }).catch(function (err) {
+        return console.error(err);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      if (!this.state.user) {
+        return null;
+      }
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
-          'ul',
-          null,
+          'div',
+          { className: 'col-sm-6' },
           _react2.default.createElement(
-            'li',
+            'h1',
             null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/clients' },
-              'Clients'
-            )
+            'WE Portfolio Dashboard'
           ),
           _react2.default.createElement(
-            'li',
+            'h3',
             null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/collaborators' },
-              'Collaborators'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/images' },
-              'Images'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/news-stories' },
-              'News Stories'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: this.props.match.url + '/projects' },
-              'Projects'
-            )
+            'Hi, ',
+            this.state.user[0].first_name
           )
         )
       );
@@ -32422,6 +32409,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var NavDashboard = __webpack_require__(415);
 var DashboardHome = __webpack_require__(237);
 var CreateProject = __webpack_require__(236);
 var GetProjects = __webpack_require__(242);
@@ -32457,24 +32445,7 @@ var Dashboard = function (_Component) {
         _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(
-            'div',
-            { className: 'row justify-content-center' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-6' },
-              _react2.default.createElement(
-                'h1',
-                null,
-                'WE Portfolio Dashboard'
-              ),
-              _react2.default.createElement(
-                _reactRouterDom.NavLink,
-                { exact: true, to: '' + this.props.match.url, activeStyle: { fontWeight: 'bold', color: 'red' } },
-                'Dashboard Home'
-              )
-            )
-          ),
+          _react2.default.createElement(NavDashboard, { match: this.props.match, loggedIn: this.props.auth }),
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
@@ -50923,6 +50894,151 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NavDashboard = function (_Component) {
+  _inherits(NavDashboard, _Component);
+
+  function NavDashboard() {
+    _classCallCheck(this, NavDashboard);
+
+    return _possibleConstructorReturn(this, (NavDashboard.__proto__ || Object.getPrototypeOf(NavDashboard)).apply(this, arguments));
+  }
+
+  _createClass(NavDashboard, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'nav',
+        { className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mb-3' },
+        _react2.default.createElement(
+          'div',
+          { className: 'col-6' },
+          _react2.default.createElement(
+            'ul',
+            { className: 'navbar-nav mr-auto' },
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { className: 'nav-link', to: '' + this.props.match.url },
+                'Home'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { className: 'nav-link', to: this.props.match.url + '/projects' },
+                'Projects'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { className: 'nav-link', to: this.props.match.url + '/news-stories' },
+                'News Stories'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { className: 'nav-link', to: this.props.match.url + '/clients' },
+                'Clients'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { className: 'nav-link', to: this.props.match.url + '/collaborators' },
+                'Collaborators'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { className: 'nav-link', to: this.props.match.url + '/images' },
+                'Images'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item ml-auto' },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { className: 'nav-link btn btn-outline-secondary', to: '/logout' },
+                'Logout'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return NavDashboard;
+}(_react.Component);
+
+module.exports = NavDashboard;
 
 /***/ })
 /******/ ]);

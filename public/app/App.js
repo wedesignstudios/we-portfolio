@@ -18,7 +18,7 @@ const NotFound = require('./components/dashboard/NotFound');
 const PrivateRoute = ({ component: Component, path, auth, redirectPath }) => (
   <Route path={path} render={props => (
     auth ? (
-      <Component match={props.match} />
+      <Component match={props.match} auth={auth} />
     ) : (
       <Redirect to={{
         pathname: redirectPath,
@@ -63,7 +63,6 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <p>{this.state.loggedIn ? <a href='/logout'>Logout</a> : null}</p>
           <Switch>
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
             <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />

@@ -32119,7 +32119,7 @@ var GetProjects = function (_Component) {
                 var projectDate = new Date(project.date);
                 return _react2.default.createElement(
                   'div',
-                  { className: 'col-sm-2 mb-3', key: project.id },
+                  { className: 'col-sm-2 mb-4', key: project.id },
                   _react2.default.createElement(
                     'div',
                     { className: 'card line-height-1-25-rem' },

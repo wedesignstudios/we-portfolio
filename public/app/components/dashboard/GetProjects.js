@@ -79,7 +79,7 @@ class GetProjects extends Component {
               {this.state.projectsData.map(project => {
                 let projectDate = new Date(project.date);
                 return (
-                  <div className="col-sm-2 mb-3" key={project.id}>
+                  <div className="col-sm-2 mb-4" key={project.id}>
                     <div className="card line-height-1-25-rem">
                       {project.images.length > 0 ?
                         <Link to={`${this.props.match.url}/${project.id}/update`}>

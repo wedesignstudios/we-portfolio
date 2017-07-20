@@ -25,6 +25,13 @@ const DateFormatter = {
     let year = dateObj.getFullYear();
     
     return `${month} ${day}, ${year}`;
+  },
+
+  monthYear: function(dateObj) {
+    let month = this.monthNames()[dateObj.getMonth()];
+    let year = dateObj.getFullYear();
+
+    return `${month} ${year}`;
   }
 
 }

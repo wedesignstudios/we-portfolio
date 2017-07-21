@@ -122,16 +122,21 @@ class FormCollaborator extends React.Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="col-6">
-          <Link to='/dashboard/collaborators' className="btn btn-primary mb-3">All Collaborators</Link>
-            <h1>
-              <span className="badge badge-default p-3">
-              {this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : `Update Collaborator: ${this.state.initialName}`}
-              </span>
-            </h1>
+        <div className="col-sm-6">
+
+          <div className="container-fluid">
+            <div className="row">
+              <h2 className="font-weight-bold">
+                {this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : `Update: ${this.state.initialName}`}
+              </h2>
+              <Link to='/dashboard/collaborators' className="btn btn-primary ml-auto">All Collaborators</Link>
+            </div>
+            <div className="row">
+              <hr className="col" />
+            </div>
 
             {this.props.sendRequestType === 'PUT' ?
-              <div className="d-flex justify-content-end pr-3">
+              <div>
                 <button
                   className="btn btn-danger mb-3"
                   onClick={(e) => this.deleteCollaborator(e)}>
@@ -140,7 +145,7 @@ class FormCollaborator extends React.Component {
               </div> :
             null}
 
-            <div className="submit-message-error">
+            <div className="col submit-message-error">
               {this.state.submitError ?
                 <div className="alert alert-danger">
                   {this.state.submitError}
@@ -149,7 +154,7 @@ class FormCollaborator extends React.Component {
             </div>
 
             <div className="errors row">
-              <div className="col-sm-10">
+              <div className="col">
                 {this.state.nameErr ?
                   <div
                     id="collaborator-name-validation-error"
@@ -167,56 +172,55 @@ class FormCollaborator extends React.Component {
               </div>
             </div>
 
-            <div className="container-fluid">
-              <form id="create-collaborator">
-                <div className="form-group row">
-                  <label className="col-sm-2 col-form-label">Collaborator Name: </label>
-                    <div className="col-sm-10">
-                      <input
-                          type="text"
-                          name="name"
-                          className={this.state.nameErr ? 'err form-control' : 'form-control'}
-                          value={this.state.name}
-                          onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                          onBlur={(e) => {FormHandlers.makeTitleCase(e, this); FormValidations.checkField(e, this);}} />
-                    </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-2 col-form-label">Website: </label>
-                    <div className="col-sm-10">
-                      <input
-                          type="text"
-                          name="url"
-                          className={this.state.urlErr ? 'err form-control' : 'form-control'}
-                          value={this.state.url}
-                          onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                          onBlur={(e) => FormValidations.checkField(e, this)} />
-                    </div>
-                </div>
-
-                <div className="form-group row">
-                  <label className="col-sm-2 col-form-label">Address: </label>
+            <form id="create-collaborator">
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Collaborator Name: </label>
                   <div className="col-sm-10">
-                    <FormAddress
-                      collaboratorId={this.props.collaboratorId}
-                      sendAddressData={this.getComponentData} />
+                    <input
+                        type="text"
+                        name="name"
+                        className={this.state.nameErr ? 'err form-control' : 'form-control'}
+                        value={this.state.name}
+                        onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                        onBlur={(e) => {FormHandlers.makeTitleCase(e, this); FormValidations.checkField(e, this);}} />
                   </div>
-                </div>
+              </div>
 
-                <div className="form-group row">
-                  <div className="col-sm-12 d-flex justify-content-end">
-                    <Link to='/dashboard/clients' className="btn btn-secondary mr-3">Cancel</Link><br />
-                    <button
-                      className="btn btn-primary"
-                      disabled={this.requiredFieldsBlank}
-                      onClick={(e) => this.submitForm(e)}>
-                        {this.props.sendRequestType === 'PUT' ?
-                          `Update ${this.state.initialName}` :
-                          'Submit'}
-                    </button>
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Website: </label>
+                  <div className="col-sm-10">
+                    <input
+                        type="text"
+                        name="url"
+                        className={this.state.urlErr ? 'err form-control' : 'form-control'}
+                        value={this.state.url}
+                        onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                        onBlur={(e) => FormValidations.checkField(e, this)} />
                   </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Address: </label>
+                <div className="col-sm-10">
+                  <FormAddress
+                    collaboratorId={this.props.collaboratorId}
+                    sendAddressData={this.getComponentData} />
                 </div>
+              </div>
+
+              <div className="form-group row">
+                <div className="col-sm-12 d-flex justify-content-end">
+                  <Link to='/dashboard/clients' className="btn btn-secondary mr-3">Cancel</Link><br />
+                  <button
+                    className="btn btn-primary"
+                    disabled={this.requiredFieldsBlank}
+                    onClick={(e) => this.submitForm(e)}>
+                      {this.props.sendRequestType === 'PUT' ?
+                        `Update ${this.state.initialName}` :
+                        'Submit'}
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
         </div>

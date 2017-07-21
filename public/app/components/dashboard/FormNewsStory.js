@@ -162,75 +162,82 @@ class FormNewsStory extends React.Component {
   render() {
     return(
       <div className="row justify-content-center">
-        <div className="col-6">
-          <Link to='/dashboard/news-stories' className="btn btn-primary mb-3">All News Stories</Link>
-          <h1>
-            <span className="badge badge-default p-3">
-              {this.props.sendRequestType === 'POST' ? 'Create A News Story' : `Update News Story: ${this.state.initialTitle}`}
-            </span>
-          </h1>
-
-          {this.props.sendRequestType === 'PUT' ?
-            <div className="d-flex justify-content-end pr-3">
-              <button
-                className="btn btn-danger mb-3"
-                onClick={(e) => this.deleteNewsStory(e)}>
-                  Delete {this.state.initialTitle}
-                </button>
-              </div> :
-          null}
-
-          <p><em>All fields required.</em></p>
-
-          <div className="submit-message-error">
-            {this.state.submitError ?
-              <div className="alert alert-danger">
-                {this.state.submitError}
-              </div> :
-              null}
-          </div>
-
-          <div className="errors row">
-            <div className="col-sm-10">
-              {this.state.titleErr ?
-                <div
-                  id="news-story-title-validation-error"
-                  className="alert alert-danger">
-                    Title can not be blank. Please enter a story title.
-                </div> :
-              null}
-              {this.state.dateErr ?
-                <div
-                  id="news-story-date-validation-error"
-                  className="alert alert-danger">
-                    Date can not be blank. Please enter a story published date.
-                </div> :
-              null}
-              {this.state.descriptionErr ?
-                <div
-                  id="news-story-description-validation-error"
-                  className="alert alert-danger">
-                    Description can not be blank. Please enter a story description.
-                </div> :
-              null}
-              {this.state.imageErr ?
-                <div
-                  id="news-story-image-validation-error"
-                  className="alert alert-danger">
-                    An image must be selected. Please select an image.
-                </div> :
-              null}
-              {this.state.categoriesErr ?
-                <div
-                  id="news-story-categories-validation-error"
-                  className="alert alert-danger">
-                    At least one category must be selected. Please select an category.
-                </div> :
-              null}
-            </div>
-          </div>
+        <div className="col-sm-6">
 
           <div className="container-fluid">
+            <div className="row">
+              <h2 className="font-weight-bold">
+                {this.props.sendRequestType === 'POST' ?
+                  'Create A News Story' :
+                  `Update News Story: ${this.state.initialTitle}`}
+              </h2>
+              <Link to='/dashboard/news-stories' className="btn btn-primary ml-auto">All News Stories</Link>
+            </div>
+            <div className="row">
+              <hr className="col" />
+            </div>
+
+            {this.props.sendRequestType === 'PUT' ?
+              <div>
+                <button
+                  className="btn btn-danger mb-3"
+                  onClick={(e) => this.deleteNewsStory(e)}>
+                    Delete {this.state.initialTitle}
+                  </button>
+                </div> :
+            null}
+
+
+            <div className="col submit-message-error">
+              {this.state.submitError ?
+                <div className="alert alert-danger">
+                  {this.state.submitError}
+                </div> :
+                null}
+            </div>
+
+            <div className="errors row">
+              <div className="col">
+                {this.state.titleErr ?
+                  <div
+                    id="news-story-title-validation-error"
+                    className="alert alert-danger">
+                      Title can not be blank. Please enter a story title.
+                  </div> :
+                null}
+                {this.state.dateErr ?
+                  <div
+                    id="news-story-date-validation-error"
+                    className="alert alert-danger">
+                      Date can not be blank. Please enter a story published date.
+                  </div> :
+                null}
+                {this.state.descriptionErr ?
+                  <div
+                    id="news-story-description-validation-error"
+                    className="alert alert-danger">
+                      Description can not be blank. Please enter a story description.
+                  </div> :
+                null}
+                {this.state.imageErr ?
+                  <div
+                    id="news-story-image-validation-error"
+                    className="alert alert-danger">
+                      An image must be selected. Please select an image.
+                  </div> :
+                null}
+                {this.state.categoriesErr ?
+                  <div
+                    id="news-story-categories-validation-error"
+                    className="alert alert-danger">
+                      At least one category must be selected. Please select an category.
+                  </div> :
+                null}
+              </div>
+            </div>
+
+            <p><em>All fields required.</em></p>
+
             <form id="create-news-story">
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Story Title: </label>

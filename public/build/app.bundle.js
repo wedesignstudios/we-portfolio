@@ -31859,6 +31859,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var UpdateImage = __webpack_require__(255);
+var ModalUpdateImage = __webpack_require__(416);
 var FormValidations = __webpack_require__(19);
 
 var GetImages = function (_React$Component) {
@@ -31942,6 +31943,13 @@ var GetImages = function (_React$Component) {
       });
     }
   }, {
+    key: 'openImageModal',
+    value: function openImageModal(event) {
+      event.preventDefault();
+      $(_reactDom2.default.findDOMNode(this.refs.modal)).modal();
+      this.setState({ clearModalErrs: true });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this4 = this;
@@ -31952,6 +31960,8 @@ var GetImages = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
+          _react2.default.createElement(ModalUpdateImage, {
+            ref: 'modal' }),
           _react2.default.createElement(
             'div',
             { className: 'container-fluid' },
@@ -32013,7 +32023,7 @@ var GetImages = function (_React$Component) {
                       alt: image.alt,
                       width: '100%',
                       onClick: function onClick(e) {
-                        return _this4.openUpdateImage(e, image.id);
+                        return _this4.openImageModal(e);
                       } }),
                     image.project.name || image.news_story.title ? _react2.default.createElement(
                       'div',
@@ -52254,6 +52264,118 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormHandlers = __webpack_require__(12);
+var FormValidations = __webpack_require__(19);
+var DataActions = __webpack_require__(22);
+
+var ModalUpdateImage = function (_Component) {
+  _inherits(ModalUpdateImage, _Component);
+
+  function ModalUpdateImage() {
+    _classCallCheck(this, ModalUpdateImage);
+
+    return _possibleConstructorReturn(this, (ModalUpdateImage.__proto__ || Object.getPrototypeOf(ModalUpdateImage)).apply(this, arguments));
+  }
+
+  _createClass(ModalUpdateImage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'modal fade', id: 'addImages', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'exampleModalLabel', 'aria-hidden': 'true' },
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-dialog modal-lg', role: 'document' },
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-content' },
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-header d-flex justify-content-start' },
+              _react2.default.createElement(
+                'h5',
+                { className: 'modal-title p-2' },
+                'Update Image'
+              ),
+              _react2.default.createElement(
+                'button',
+                {
+                  type: 'button',
+                  className: 'close ml-auto p-2',
+                  'data-dismiss': 'modal',
+                  'aria-label': 'Close' },
+                _react2.default.createElement(
+                  'span',
+                  { 'aria-hidden': 'true' },
+                  '\xD7'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-body' },
+              'Modal Body'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-footer' },
+              _react2.default.createElement(
+                'button',
+                {
+                  type: 'button',
+                  className: 'btn btn-primary',
+                  'data-dismiss': 'modal' },
+                'OK'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return ModalUpdateImage;
+}(_react.Component);
+
+;
+
+module.exports = ModalUpdateImage;
 
 /***/ })
 /******/ ]);

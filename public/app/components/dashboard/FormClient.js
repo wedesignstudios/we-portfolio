@@ -127,7 +127,7 @@ class FormClient extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <h2 className="font-weight-bold">
-                {this.props.sendRequestType === 'POST' ? 'Create A New Client' : `Update Client: ${this.state.initialName}`}
+                {this.props.sendRequestType === 'POST' ? 'Create A New Client' : `Update: ${this.state.initialName}`}
               </h2>
               <Link to='/dashboard/clients' className="btn btn-primary ml-auto">All Clients</Link>
             </div>

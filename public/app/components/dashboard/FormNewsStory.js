@@ -169,7 +169,7 @@ class FormNewsStory extends React.Component {
               <h2 className="font-weight-bold">
                 {this.props.sendRequestType === 'POST' ?
                   'Create A News Story' :
-                  `Update News Story: ${this.state.initialTitle}`}
+                  `Update: ${this.state.initialTitle}`}
               </h2>
               <Link to='/dashboard/news-stories' className="btn btn-primary ml-auto">All News Stories</Link>
             </div>

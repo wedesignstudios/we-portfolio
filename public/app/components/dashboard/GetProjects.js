@@ -38,9 +38,12 @@ class GetProjects extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    this.flashMessage = nextProps.history.location.state.message;
-    if(this.props.history.location.state.message !== '') {
-      setTimeout(() => FormValidations.resetFlashMessage(this), 3000);
+    if(this.props.history.location.state !== undefined) {
+      this.flashMessage = nextProps.history.location.state.message;
+
+      if(this.props.history.location.state.message !== '') {
+        setTimeout(() => FormValidations.resetFlashMessage(this), 3000);
+      }
     }
   }
 

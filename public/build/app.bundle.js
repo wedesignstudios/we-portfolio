@@ -14198,7 +14198,7 @@ var FormClient = function (_React$Component) {
               _react2.default.createElement(
                 'h2',
                 { className: 'font-weight-bold' },
-                this.props.sendRequestType === 'POST' ? 'Create A New Client' : 'Update Client: ' + this.state.initialName
+                this.props.sendRequestType === 'POST' ? 'Create A New Client' : 'Update: ' + this.state.initialName
               ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
@@ -14504,69 +14504,74 @@ var FormCollaborator = function (_React$Component) {
         { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          { className: 'col-6' },
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/dashboard/collaborators', className: 'btn btn-primary mb-3' },
-            'All Collaborators'
-          ),
-          _react2.default.createElement(
-            'h1',
-            null,
-            _react2.default.createElement(
-              'span',
-              { className: 'badge badge-default p-3' },
-              this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : 'Update Collaborator: ' + this.state.initialName
-            )
-          ),
-          this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-            'div',
-            { className: 'd-flex justify-content-end pr-3' },
-            _react2.default.createElement(
-              'button',
-              {
-                className: 'btn btn-danger mb-3',
-                onClick: function onClick(e) {
-                  return _this3.deleteCollaborator(e);
-                } },
-              'Delete ',
-              this.state.initialName
-            )
-          ) : null,
-          _react2.default.createElement(
-            'div',
-            { className: 'submit-message-error' },
-            this.state.submitError ? _react2.default.createElement(
-              'div',
-              { className: 'alert alert-danger' },
-              this.state.submitError
-            ) : null
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'errors row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-10' },
-              this.state.nameErr ? _react2.default.createElement(
-                'div',
-                {
-                  id: 'collaborator-name-validation-error',
-                  className: 'alert alert-danger' },
-                'Collaborator Name can not be blank. Please enter a Collaborator Name.'
-              ) : null,
-              this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
-                'div',
-                {
-                  id: 'collaborator-name-validation-error',
-                  className: 'alert alert-danger' },
-                'Website URL is not valid. Please enter a valid Website URL.'
-              ) : null
-            )
-          ),
+          { className: 'col-sm-6' },
           _react2.default.createElement(
             'div',
             { className: 'container-fluid' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'font-weight-bold' },
+                this.props.sendRequestType === 'POST' ? 'Create A New Collaborator' : 'Update: ' + this.state.initialName
+              ),
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/dashboard/collaborators', className: 'btn btn-primary ml-auto' },
+                'All Collaborators'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'button',
+                {
+                  className: 'btn btn-danger mb-3',
+                  onClick: function onClick(e) {
+                    return _this3.deleteCollaborator(e);
+                  } },
+                'Delete ',
+                this.state.initialName
+              )
+            ) : null,
+            _react2.default.createElement(
+              'div',
+              { className: 'col submit-message-error' },
+              this.state.submitError ? _react2.default.createElement(
+                'div',
+                { className: 'alert alert-danger' },
+                this.state.submitError
+              ) : null
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'errors row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col' },
+                this.state.nameErr ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'collaborator-name-validation-error',
+                    className: 'alert alert-danger' },
+                  'Collaborator Name can not be blank. Please enter a Collaborator Name.'
+                ) : null,
+                this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'collaborator-name-validation-error',
+                    className: 'alert alert-danger' },
+                  'Website URL is not valid. Please enter a valid Website URL.'
+                ) : null
+              )
+            ),
             _react2.default.createElement(
               'form',
               { id: 'create-collaborator' },
@@ -14874,7 +14879,7 @@ var FormNewsStory = function (_React$Component) {
               _react2.default.createElement(
                 'h2',
                 { className: 'font-weight-bold' },
-                this.props.sendRequestType === 'POST' ? 'Create A News Story' : 'Update News Story: ' + this.state.initialTitle
+                this.props.sendRequestType === 'POST' ? 'Create A News Story' : 'Update: ' + this.state.initialTitle
               ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
@@ -31551,11 +31556,14 @@ var GetClients = function (_Component) {
     value: function componentWillUpdate(nextProps) {
       var _this3 = this;
 
-      this.flashMessage = nextProps.history.location.state.message;
-      if (this.props.history.location.state.message !== '') {
-        setTimeout(function () {
-          return FormValidations.resetFlashMessage(_this3);
-        }, 3000);
+      if (this.props.history.location.state !== undefined) {
+        this.flashMessage = nextProps.history.location.state.message;
+
+        if (this.props.history.location.state.message !== '') {
+          setTimeout(function () {
+            return FormValidations.resetFlashMessage(_this3);
+          }, 3000);
+        }
       }
     }
   }, {
@@ -31678,6 +31686,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var FormValidations = __webpack_require__(19);
+
 var GetCollaborators = function (_Component) {
   _inherits(GetCollaborators, _Component);
 
@@ -31691,9 +31701,8 @@ var GetCollaborators = function (_Component) {
     };
 
     if (_this.props.history.location.state === undefined) {
-      _this.props.history.location.state = { message: 'No message.' };
+      _this.props.history.location.state = { message: '' };
     }
-
     _this.flashMessage = _this.props.history.location.state.message;
 
     return _this;
@@ -31717,46 +31726,101 @@ var GetCollaborators = function (_Component) {
   }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps) {
-      this.flashMessage = nextProps.history.location.state.message;
+      var _this3 = this;
+
+      if (this.props.history.location.state !== undefined) {
+        this.flashMessage = nextProps.history.location.state.message;
+
+        if (this.props.history.location.state.message !== '') {
+          setTimeout(function () {
+            return FormValidations.resetFlashMessage(_this3);
+          }, 3000);
+        }
+      }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          null,
-          'Message: ',
-          this.flashMessage
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/create' },
-          'Add New Collaborator'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All Collaborators'
-        ),
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          null,
-          this.state.collaboratorsData.map(function (collaborator) {
-            return _react2.default.createElement(
+          { className: 'col-sm-6' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
               'div',
-              { key: collaborator.id },
+              { className: 'row' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'font-weight-bold' },
+                'All Collaborators'
+              ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + collaborator.id + '/update' },
-                collaborator.name
+                { to: this.props.match.url + '/create', className: 'btn btn-primary ml-auto' },
+                'Add New Collaborator'
               )
-            );
-          })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            this.flashMessage ? _react2.default.createElement(
+              'div',
+              { className: 'alert alert-success' },
+              this.flashMessage
+            ) : null,
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              this.state.collaboratorsData.map(function (collaborator) {
+                return _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-2 mb-4', key: collaborator.id },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'card line-height-1-25-rem' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-block p-3' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-title mb-2' },
+                        _react2.default.createElement(
+                          _reactRouterDom.Link,
+                          { to: _this4.props.match.url + '/' + collaborator.id + '/update', className: 'text-muted' },
+                          collaborator.name
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-footer text-muted px-3 py-1' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-text mb-0' },
+                        _react2.default.createElement(
+                          'small',
+                          { className: 'text-muted' },
+                          collaborator.address.length > 0 ? collaborator.address[0].city + ', ' + collaborator.address[0].state : _react2.default.createElement(
+                            'span',
+                            { className: 'font-italic' },
+                            'Please add address'
+                          )
+                        )
+                      )
+                    )
+                  )
+                );
+              })
+            )
+          )
         )
       );
     }
@@ -32011,11 +32075,14 @@ var GetNewsStories = function (_Component) {
     value: function componentWillUpdate(nextProps) {
       var _this3 = this;
 
-      this.flashMessage = nextProps.history.location.state.message;
-      if (this.props.history.location.state.message !== '') {
-        setTimeout(function () {
-          return FormValidations.resetFlashMessage(_this3);
-        }, 3000);
+      if (this.props.history.location.state !== undefined) {
+        this.flashMessage = nextProps.history.location.state.message;
+
+        if (this.props.history.location.state.message !== '') {
+          setTimeout(function () {
+            return FormValidations.resetFlashMessage(_this3);
+          }, 3000);
+        }
       }
     }
   }, {
@@ -32195,11 +32262,14 @@ var GetProjects = function (_Component) {
     value: function componentWillUpdate(nextProps) {
       var _this3 = this;
 
-      this.flashMessage = nextProps.history.location.state.message;
-      if (this.props.history.location.state.message !== '') {
-        setTimeout(function () {
-          return FormValidations.resetFlashMessage(_this3);
-        }, 3000);
+      if (this.props.history.location.state !== undefined) {
+        this.flashMessage = nextProps.history.location.state.message;
+
+        if (this.props.history.location.state.message !== '') {
+          setTimeout(function () {
+            return FormValidations.resetFlashMessage(_this3);
+          }, 3000);
+        }
       }
     }
   }, {

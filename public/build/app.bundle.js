@@ -14188,69 +14188,75 @@ var FormClient = function (_React$Component) {
         { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          { className: 'col-6' },
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/dashboard/clients', className: 'btn btn-primary mb-3' },
-            'All Clients'
-          ),
-          _react2.default.createElement(
-            'h1',
-            null,
-            _react2.default.createElement(
-              'span',
-              { className: 'badge badge-default p-3' },
-              this.props.sendRequestType === 'POST' ? 'Create A New Client' : 'Update Client: ' + this.state.initialName
-            )
-          ),
-          this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
-            'div',
-            { className: 'd-flex justify-content-end pr-3' },
-            _react2.default.createElement(
-              'button',
-              {
-                className: 'btn btn-danger mb-3',
-                onClick: function onClick(e) {
-                  return _this3.deleteClient(e);
-                } },
-              'Delete ',
-              this.state.initialName
-            )
-          ) : null,
-          _react2.default.createElement(
-            'div',
-            { className: 'submit-message-error' },
-            this.state.submitError ? _react2.default.createElement(
-              'div',
-              { className: 'alert alert-danger' },
-              this.state.submitError
-            ) : null
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'errors row' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-sm-10' },
-              this.state.nameErr ? _react2.default.createElement(
-                'div',
-                {
-                  id: 'client-name-validation-error',
-                  className: 'alert alert-danger' },
-                'Client Name can not be blank. Please enter a Client Name.'
-              ) : null,
-              this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
-                'div',
-                {
-                  id: 'client-url-validation-error',
-                  className: 'alert alert-danger' },
-                'Website URL is not valid. Please enter a valid Website URL.'
-              ) : null
-            )
-          ),
+          { className: 'col-sm-6' },
           _react2.default.createElement(
             'div',
             { className: 'container-fluid' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'font-weight-bold' },
+                this.props.sendRequestType === 'POST' ? 'Create A New Client' : 'Update Client: ' + this.state.initialName
+              ),
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/dashboard/clients', className: 'btn btn-primary ml-auto' },
+                'All Clients'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            this.props.sendRequestType === 'PUT' ? _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'button',
+                {
+                  className: 'btn btn-danger mb-3',
+                  onClick: function onClick(e) {
+                    return _this3.deleteClient(e);
+                  } },
+                'Delete ',
+                this.state.initialName
+              )
+            ) : null,
+            _react2.default.createElement(
+              'div',
+              { className: 'col submit-message-error' },
+              this.state.submitError ? _react2.default.createElement(
+                'div',
+                { className: 'alert alert-danger' },
+                this.state.submitError
+              ) : null
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'errors row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col' },
+                this.state.nameErr ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'client-name-validation-error',
+                    className: 'alert alert-danger',
+                    role: 'alert' },
+                  'Client Name can not be blank. Please enter a Client Name.'
+                ) : null,
+                this.state.urlErr && this.state.urlErrType === 'not valid' ? _react2.default.createElement(
+                  'div',
+                  {
+                    id: 'client-url-validation-error',
+                    className: 'alert alert-danger' },
+                  'Website URL is not valid. Please enter a valid Website URL.'
+                ) : null
+              )
+            ),
             _react2.default.createElement(
               'form',
               { id: 'create-client' },
@@ -31503,6 +31509,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var FormValidations = __webpack_require__(19);
+
 var GetClients = function (_Component) {
   _inherits(GetClients, _Component);
 
@@ -31517,9 +31525,9 @@ var GetClients = function (_Component) {
 
     if (_this.props.history.location.state === undefined) {
       _this.props.history.location.state = { message: '' };
-      _this.flashMessage = _this.props.history.location.state.message;
     }
 
+    _this.flashMessage = _this.props.history.location.state.message;
     return _this;
   }
 
@@ -31541,45 +31549,98 @@ var GetClients = function (_Component) {
   }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps) {
+      var _this3 = this;
+
       this.flashMessage = nextProps.history.location.state.message;
+      if (this.props.history.location.state.message !== '') {
+        setTimeout(function () {
+          return FormValidations.resetFlashMessage(_this3);
+        }, 3000);
+      }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
-        null,
-        this.flashMessage ? _react2.default.createElement(
-          'div',
-          { className: 'alert alert-success' },
-          this.flashMessage
-        ) : null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/create' },
-          'Add New Client'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All Clients'
-        ),
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          null,
-          this.state.clientsData.map(function (client) {
-            return _react2.default.createElement(
+          { className: 'col-sm-6' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
               'div',
-              { key: client.id },
+              { className: 'row' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'font-weight-bold' },
+                'All Clients'
+              ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + client.id + '/update' },
-                client.name
+                { to: this.props.match.url + '/create', className: 'btn btn-primary ml-auto' },
+                'Add New Client'
               )
-            );
-          })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            this.flashMessage ? _react2.default.createElement(
+              'div',
+              { className: 'alert alert-success' },
+              this.flashMessage
+            ) : null,
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              this.state.clientsData.map(function (client) {
+                return _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-2 mb-4', key: client.id },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'card line-height-1-25-rem' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-block p-3' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-title mb-2' },
+                        _react2.default.createElement(
+                          _reactRouterDom.Link,
+                          { to: _this4.props.match.url + '/' + client.id + '/update', className: 'text-muted' },
+                          client.name
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-footer text-muted px-3 py-1' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-text mb-0' },
+                        _react2.default.createElement(
+                          'small',
+                          { className: 'text-muted' },
+                          client.address.length > 0 ? client.address[0].city + ', ' + client.address[0].state : _react2.default.createElement(
+                            'span',
+                            { className: 'font-italic' },
+                            'Please add address'
+                          )
+                        )
+                      )
+                    )
+                  )
+                );
+              })
+            )
+          )
         )
       );
     }

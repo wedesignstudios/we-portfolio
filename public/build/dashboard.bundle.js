@@ -14280,7 +14280,7 @@ var FormClient = function (_React$Component) {
                       return FormHandlers.handleOnChange(e, _this3);
                     },
                     onBlur: function onBlur(e) {
-                      FormHandlers.makeTitleCase(e, _this3);FormValidations.checkField(e, _this3);
+                      FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -14595,7 +14595,7 @@ var FormCollaborator = function (_React$Component) {
                       return FormHandlers.handleOnChange(e, _this3);
                     },
                     onBlur: function onBlur(e) {
-                      FormHandlers.makeTitleCase(e, _this3);FormValidations.checkField(e, _this3);
+                      FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -14993,7 +14993,7 @@ var FormNewsStory = function (_React$Component) {
                       return FormHandlers.preventSpaceKey(e);
                     },
                     onBlur: function onBlur(e) {
-                      FormHandlers.makeTitleCase(e, _this3);FormValidations.checkField(e, _this3);
+                      FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -15469,7 +15469,7 @@ var FormProject = function (_React$Component) {
                       return FormHandlers.preventSpaceKey(e);
                     },
                     onBlur: function onBlur(e) {
-                      FormHandlers.makeTitleCase(e, _this4);FormValidations.checkField(e, _this4);
+                      FormValidations.checkField(e, _this4);
                     } })
                 )
               ),

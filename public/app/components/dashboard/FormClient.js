@@ -183,7 +183,7 @@ class FormClient extends React.Component {
                         className={this.state.nameErr ? 'err form-control' : 'form-control'}
                         value={this.state.name}
                         onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                        onBlur={(e) => {FormHandlers.makeTitleCase(e, this);FormValidations.checkField(e, this);}} />
+                        onBlur={(e) => {FormValidations.checkField(e, this);}} />
                   </div>
               </div>
 

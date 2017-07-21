@@ -66,6 +66,10 @@ const FormValidations = {
     }
   },
 
+  resetFlashMessage: function(_this) {
+    _this.props.history.push(location, {message: ''});
+  },
+
   trimData: function(stateObj, _this) {
     let keys = Object.keys(stateObj);
 

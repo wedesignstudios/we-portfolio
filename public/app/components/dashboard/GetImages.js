@@ -70,7 +70,7 @@ class GetImages extends React.Component {
     });
   }
 
-  openImageModal(event) {
+  openUpdateImageModal(event) {
     event.preventDefault();
     $(ReactDOM.findDOMNode(this.refs.modal)).modal();
     this.setState({clearModalErrs: true});
@@ -125,7 +125,7 @@ class GetImages extends React.Component {
                       title={image.title}
                       alt={image.alt}
                       width="100%"
-                      onClick={(e) => this.openImageModal(e)} />
+                      onClick={(e) => this.openUpdateImageModal(e)} />
 
                       {image.project.name || image.news_story.title ?
                         <div className="card-footer text-muted px-3 py-1">

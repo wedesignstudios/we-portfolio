@@ -31943,8 +31943,8 @@ var GetImages = function (_React$Component) {
       });
     }
   }, {
-    key: 'openImageModal',
-    value: function openImageModal(event) {
+    key: 'openUpdateImageModal',
+    value: function openUpdateImageModal(event) {
       event.preventDefault();
       $(_reactDom2.default.findDOMNode(this.refs.modal)).modal();
       this.setState({ clearModalErrs: true });
@@ -32023,7 +32023,7 @@ var GetImages = function (_React$Component) {
                       alt: image.alt,
                       width: '100%',
                       onClick: function onClick(e) {
-                        return _this4.openImageModal(e);
+                        return _this4.openUpdateImageModal(e);
                       } }),
                     image.project.name || image.news_story.title ? _react2.default.createElement(
                       'div',

@@ -6986,6 +6986,10 @@ var FormValidations = {
     }
   },
 
+  resetFlashMessage: function resetFlashMessage(_this) {
+    _this.props.history.push(location, { message: '' });
+  },
+
   trimData: function trimData(stateObj, _this) {
     var keys = Object.keys(stateObj);
 
@@ -31900,6 +31904,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var DateFormatter = __webpack_require__(404);
+var FormValidations = __webpack_require__(22);
+
 var GetNewsStories = function (_Component) {
   _inherits(GetNewsStories, _Component);
 
@@ -31921,8 +31928,8 @@ var GetNewsStories = function (_Component) {
   }
 
   _createClass(GetNewsStories, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
+    key: 'loadStories',
+    value: function loadStories() {
       var _this2 = this;
 
       fetch('/api/news-stories').then(function (res) {
@@ -31936,47 +31943,114 @@ var GetNewsStories = function (_Component) {
       });
     }
   }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.loadStories();
+    }
+  }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps) {
+      var _this3 = this;
+
       this.flashMessage = nextProps.history.location.state.message;
+      if (this.props.history.location.state.message !== '') {
+        setTimeout(function () {
+          return FormValidations.resetFlashMessage(_this3);
+        }, 3000);
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.newsStoriesData.length !== this.state.newsStoriesData.length) {
+        this.loadStories();
+      }
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
-        null,
-        this.flashMessage ? _react2.default.createElement(
-          'div',
-          { className: 'alert alert-success' },
-          this.flashMessage
-        ) : null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/create' },
-          'Add News Story'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All News Stories'
-        ),
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          null,
-          this.state.newsStoriesData.map(function (story) {
-            return _react2.default.createElement(
+          { className: 'col-sm-6' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
               'div',
-              { key: story.id },
+              { className: 'row' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'font-weight-bold' },
+                'All News Stories'
+              ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: _this3.props.match.url + '/' + story.id + '/update' },
-                story.title
+                { to: this.props.match.url + '/create', className: 'btn btn-primary ml-auto' },
+                'Add News Story'
               )
-            );
-          })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            this.flashMessage ? _react2.default.createElement(
+              'div',
+              { className: 'alert alert-success' },
+              this.flashMessage
+            ) : null,
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              this.state.newsStoriesData.map(function (story) {
+                var storyDate = new Date(story.date);
+                return _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-2 mb-4', key: story.id },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'card line-height-1-25-rem' },
+                    _react2.default.createElement(
+                      _reactRouterDom.Link,
+                      { to: _this4.props.match.url + '/' + story.id + '/update' },
+                      _react2.default.createElement('img', { className: 'card-img-top img-fluid', src: story.image.url, alt: story.image.alt })
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-block p-3' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-title mb-2' },
+                        _react2.default.createElement(
+                          _reactRouterDom.Link,
+                          { to: _this4.props.match.url + '/' + story.id + '/update', className: 'text-muted' },
+                          story.title
+                        )
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-footer text-muted px-3 py-1' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-text mb-0' },
+                        _react2.default.createElement(
+                          'small',
+                          { className: 'text-muted' },
+                          DateFormatter.monthYear(storyDate)
+                        )
+                      )
+                    )
+                  )
+                );
+              })
+            )
+          )
         )
       );
     }
@@ -32014,8 +32088,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UpdateProject = __webpack_require__(73);
 var DateFormatter = __webpack_require__(404);
+var FormValidations = __webpack_require__(22);
 
 var GetProjects = function (_Component) {
   _inherits(GetProjects, _Component);
@@ -32034,8 +32108,6 @@ var GetProjects = function (_Component) {
     }
 
     _this.flashMessage = _this.props.history.location.state.message;
-    _this.resetFlashMessage = _this.resetFlashMessage.bind(_this);
-
     return _this;
   }
 
@@ -32055,11 +32127,6 @@ var GetProjects = function (_Component) {
       });
     }
   }, {
-    key: 'resetFlashMessage',
-    value: function resetFlashMessage() {
-      this.props.history.push(location, { message: '' });
-    }
-  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.loadProjects();
@@ -32067,9 +32134,13 @@ var GetProjects = function (_Component) {
   }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps) {
+      var _this3 = this;
+
       this.flashMessage = nextProps.history.location.state.message;
       if (this.props.history.location.state.message !== '') {
-        setTimeout(this.resetFlashMessage, 3000);
+        setTimeout(function () {
+          return FormValidations.resetFlashMessage(_this3);
+        }, 3000);
       }
     }
   }, {
@@ -32082,7 +32153,7 @@ var GetProjects = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
@@ -32130,7 +32201,7 @@ var GetProjects = function (_Component) {
                     { className: 'card line-height-1-25-rem' },
                     project.images.length > 0 ? _react2.default.createElement(
                       _reactRouterDom.Link,
-                      { to: _this3.props.match.url + '/' + project.id + '/update' },
+                      { to: _this4.props.match.url + '/' + project.id + '/update' },
                       _react2.default.createElement('img', { className: 'card-img-top img-fluid', src: project.images[0].url, alt: project.images[0].alt })
                     ) : null,
                     _react2.default.createElement(
@@ -32141,7 +32212,7 @@ var GetProjects = function (_Component) {
                         { className: 'card-title mb-2' },
                         _react2.default.createElement(
                           _reactRouterDom.Link,
-                          { to: _this3.props.match.url + '/' + project.id + '/update', className: 'text-muted' },
+                          { to: _this4.props.match.url + '/' + project.id + '/update', className: 'text-muted' },
                           project.name
                         )
                       )

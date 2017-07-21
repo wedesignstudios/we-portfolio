@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
+const DateFormatter = require('../../services/date_formatter');
+const FormValidations = require('../../services/form_validations');
+
 class GetNewsStories extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +20,7 @@ class GetNewsStories extends Component {
     this.flashMessage = this.props.history.location.state.message;
   }
 
-  componentDidMount() {
+  loadStories() {
     fetch('/api/news-stories')
       .then((res) => res.json())
       .then((data) => {
@@ -30,26 +33,73 @@ class GetNewsStories extends Component {
       });
   }
 
+  componentDidMount() {
+    this.loadStories();
+  }
+
   componentWillUpdate(nextProps) {
     this.flashMessage = nextProps.history.location.state.message;
+    if(this.props.history.location.state.message !== '') {
+      setTimeout(() => FormValidations.resetFlashMessage(this), 3000);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.newsStoriesData.length !== this.state.newsStoriesData.length) {
+      this.loadStories();
+    }
   }
 
   render() {
     return(
-      <div>
-        {this.flashMessage ?
-          <div className="alert alert-success">
-            {this.flashMessage}
-          </div> :
-        null}
+      <div className="row justify-content-center">
+        <div className="col-sm-6">
 
-        <Link to={`${this.props.match.url}/create`}>Add News Story</Link>
-        <h3>All News Stories</h3>
-          <div>
-            {this.state.newsStoriesData.map(story =>
-              <div key={story.id}><Link to={`${this.props.match.url}/${story.id}/update`}>{story.title}</Link></div>
+        <div className="container-fluid">
+          <div className="row">
+            <h2 className="font-weight-bold">All News Stories</h2>
+            <Link to={`${this.props.match.url}/create`} className="btn btn-primary ml-auto">Add News Story</Link>
+          </div>
+          <div className="row">
+            <hr className="col" />
+          </div>
+
+          {this.flashMessage ?
+            <div className="alert alert-success">
+              {this.flashMessage}
+            </div> :
+          null}
+
+          <div className="row">
+            {this.state.newsStoriesData.map(story => {
+              let storyDate = new Date(story.date);
+              return (
+                <div className="col-sm-2 mb-4" key={story.id}>
+                  <div className="card line-height-1-25-rem">
+                    <Link to={`${this.props.match.url}/${story.id}/update`}>
+                      <img className="card-img-top img-fluid" src={story.image.url} alt={story.image.alt} />
+                    </Link>
+                    <div className="card-block p-3">
+                      <p className="card-title mb-2">
+                        <Link to={`${this.props.match.url}/${story.id}/update`} className="text-muted">
+                          {story.title}
+                        </Link>
+                      </p>
+                    </div>
+                    <div className="card-footer text-muted px-3 py-1">
+                      <p className="card-text mb-0">
+                        <small className="text-muted">
+                          {DateFormatter.monthYear(storyDate)}
+                        </small>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             )}
           </div>
+        </div>
+        </div>
       </div>
     );
   }

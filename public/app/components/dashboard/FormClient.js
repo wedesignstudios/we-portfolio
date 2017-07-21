@@ -122,52 +122,57 @@ class FormClient extends React.Component {
   render() {
     return (
       <div className="row justify-content-center">
-        <div className="col-6">
-          <Link to='/dashboard/clients' className="btn btn-primary mb-3">All Clients</Link>
-          <h1>
-            <span className="badge badge-default p-3">
-            {this.props.sendRequestType === 'POST' ? 'Create A New Client' : `Update Client: ${this.state.initialName}`}
-            </span>
-          </h1>
-
-          {this.props.sendRequestType === 'PUT' ?
-            <div className="d-flex justify-content-end pr-3">
-              <button
-                className="btn btn-danger mb-3"
-                onClick={(e) => this.deleteClient(e)}>
-                  Delete {this.state.initialName}
-              </button>
-            </div> :
-          null}
-
-          <div className="submit-message-error">
-            {this.state.submitError ?
-              <div className="alert alert-danger">
-                {this.state.submitError}
-              </div>
-            : null}
-          </div>
-
-          <div className="errors row">
-            <div className="col-sm-10">
-              {this.state.nameErr ?
-                <div
-                  id="client-name-validation-error"
-                  className="alert alert-danger">
-                    Client Name can not be blank. Please enter a Client Name.
-                </div> :
-              null}
-              {(this.state.urlErr && this.state.urlErrType === 'not valid') ?
-                <div
-                  id="client-url-validation-error"
-                  className="alert alert-danger">
-                    Website URL is not valid. Please enter a valid Website URL.
-                </div> :
-              null}
-            </div>
-          </div>
+        <div className="col-sm-6">
 
           <div className="container-fluid">
+            <div className="row">
+              <h2 className="font-weight-bold">
+                {this.props.sendRequestType === 'POST' ? 'Create A New Client' : `Update Client: ${this.state.initialName}`}
+              </h2>
+              <Link to='/dashboard/clients' className="btn btn-primary ml-auto">All Clients</Link>
+            </div>
+            <div className="row">
+              <hr className="col" />
+            </div>
+
+            {this.props.sendRequestType === 'PUT' ?
+              <div>
+                <button
+                  className="btn btn-danger mb-3"
+                  onClick={(e) => this.deleteClient(e)}>
+                    Delete {this.state.initialName}
+                </button>
+              </div> :
+            null}
+
+            <div className="col submit-message-error">
+              {this.state.submitError ?
+                <div className="alert alert-danger">
+                  {this.state.submitError}
+                </div>
+              : null}
+            </div>
+
+            <div className="errors row">
+              <div className="col">
+                {this.state.nameErr ?
+                  <div
+                    id="client-name-validation-error"
+                    className="alert alert-danger"
+                    role="alert">
+                      Client Name can not be blank. Please enter a Client Name.
+                  </div> :
+                null}
+                {(this.state.urlErr && this.state.urlErrType === 'not valid') ?
+                  <div
+                    id="client-url-validation-error"
+                    className="alert alert-danger">
+                      Website URL is not valid. Please enter a valid Website URL.
+                  </div> :
+                null}
+              </div>
+            </div>
+
             <form id="create-client">
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Client Name: </label>

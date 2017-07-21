@@ -31858,7 +31858,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UpdateImage = __webpack_require__(255);
 var ModalUpdateImage = __webpack_require__(416);
 var FormValidations = __webpack_require__(19);
 
@@ -31872,8 +31871,7 @@ var GetImages = function (_React$Component) {
 
     _this.state = {
       imageData: [],
-      imageId: null,
-      isUpdateImageOpen: false
+      imageId: null
     };
 
     if (_this.props.history.location.state === undefined) {
@@ -31928,26 +31926,11 @@ var GetImages = function (_React$Component) {
       }
     }
   }, {
-    key: 'openUpdateImage',
-    value: function openUpdateImage(event, imageId) {
-      this.setState({
-        imageId: imageId,
-        isUpdateImageOpen: !this.state.isUpdateImageOpen
-      });
-    }
-  }, {
-    key: 'closeUpdateImage',
-    value: function closeUpdateImage(e) {
-      this.setState({
-        isUpdateImageOpen: !this.state.isUpdateImageOpen
-      });
-    }
-  }, {
     key: 'openUpdateImageModal',
     value: function openUpdateImageModal(event) {
       event.preventDefault();
+      this.setState({ imageId: event.target.id });
       $(_reactDom2.default.findDOMNode(this.refs.modal)).modal();
-      this.setState({ clearModalErrs: true });
     }
   }, {
     key: 'render',
@@ -31961,7 +31944,8 @@ var GetImages = function (_React$Component) {
           'div',
           { className: 'col-sm-6' },
           _react2.default.createElement(ModalUpdateImage, {
-            ref: 'modal' }),
+            ref: 'modal',
+            imageId: this.state.imageId }),
           _react2.default.createElement(
             'div',
             { className: 'container-fluid' },
@@ -32018,6 +32002,7 @@ var GetImages = function (_React$Component) {
                     'div',
                     { className: 'card line-height-1-25-rem' },
                     _react2.default.createElement('img', {
+                      id: image.id,
                       src: image.url,
                       title: image.title,
                       alt: image.alt,
@@ -32066,10 +32051,7 @@ var GetImages = function (_React$Component) {
                   )
                 );
               })
-            ),
-            this.state.isUpdateImageOpen ? _react2.default.createElement(UpdateImage, { imageId: this.state.imageId, isOpen: this.state.isUpdateImageOpen, onClose: function onClose(e) {
-                return _this4.closeUpdateImage(e);
-              } }) : null
+            )
           )
         )
       );
@@ -33584,264 +33566,7 @@ var ProjectCategoriesCheckboxes = function (_React$Component) {
 module.exports = ProjectCategoriesCheckboxes;
 
 /***/ }),
-/* 255 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(12);
-var FormValidations = __webpack_require__(19);
-var DataActions = __webpack_require__(22);
-
-var UpdateImage = function (_React$Component) {
-  _inherits(UpdateImage, _React$Component);
-
-  function UpdateImage() {
-    _classCallCheck(this, UpdateImage);
-
-    var _this = _possibleConstructorReturn(this, (UpdateImage.__proto__ || Object.getPrototypeOf(UpdateImage)).call(this));
-
-    _this.state = {
-      title: '',
-      alt: '',
-      url: '',
-      projects: [],
-      projectName: '',
-      project_id: '',
-      project_id_detach: '',
-      index_page: false,
-      success: false
-    };
-    return _this;
-  }
-
-  _createClass(UpdateImage, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      fetch('/api/images/' + this.props.imageId).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          title: data.title ? data.title : '',
-          alt: data.alt ? data.alt : '',
-          url: data.url,
-          project_id: data.project_id ? data.project_id : '',
-          index_page: data.index_page ? data.index_page : false
-        });
-        if (data.project) {
-          _this2.setState({
-            projectName: data.project.name
-          });
-        }
-      }).catch(function (err) {
-        console.error(err);
-      });
-      fetch('/api/projects').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.setState({
-          projects: data
-        });
-      }).catch(function (err) {
-        console.error(err);
-      });
-    }
-  }, {
-    key: 'submitForm',
-    value: function submitForm(event) {
-      event.preventDefault();
-      FormValidations.trimData(this.state, this);
-      this.forceUpdate(function () {
-        DataActions.sendRequest('PUT', this.state, '/api/images/' + this.props.imageId, FormHandlers.successMessage(this));
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var _props = this.props,
-          imageId = _props.imageId,
-          isOpen = _props.isOpen,
-          onClose = _props.onClose;
-
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Open?: ',
-          isOpen ? 'true' : 'false'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Update An Image'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'success' },
-          this.state.success ? _react2.default.createElement(
-            'div',
-            { id: 'image-updated-success', style: { color: 'green' } },
-            _react2.default.createElement(
-              'p',
-              null,
-              'Image successfully updated.'
-            )
-          ) : null
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: onClose },
-          'Close'
-        ),
-        _react2.default.createElement(
-          'form',
-          { id: 'update-image' },
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Image URL: ',
-              this.state.url
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Image Title: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'title',
-              value: this.state.title,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Alt Tag: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'text',
-              name: 'alt',
-              value: this.state.alt,
-              onChange: function onChange(e) {
-                return FormHandlers.handleOnChange(e, _this3);
-              },
-              onFocus: function onFocus(e) {
-                return FormHandlers.preventSpaceKey(e);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Image attached to: '
-            ),
-            _react2.default.createElement(
-              'select',
-              { name: 'project_id', value: this.state.project_id, onChange: function onChange(e) {
-                  return FormHandlers.handleOnChange(e, _this3);
-                } },
-              _react2.default.createElement(
-                'option',
-                { value: '' },
-                'No Project'
-              ),
-              this.state.projects.map(function (project) {
-                return _react2.default.createElement(
-                  'option',
-                  { key: project.id, value: project.id },
-                  project.name
-                );
-              })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Use this image on index page?: '
-            ),
-            _react2.default.createElement('input', {
-              type: 'checkbox',
-              name: 'index_page',
-              checked: this.state.index_page,
-              onChange: function onChange(e) {
-                return FormHandlers.checkboxChange(e, _this3);
-              } })
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'button',
-              {
-                type: 'submit',
-                onClick: function onClick(e) {
-                  return _this3.submitForm(e);
-                } },
-              'Update'
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: onClose },
-          'Cancel'
-        )
-      );
-    }
-  }]);
-
-  return UpdateImage;
-}(_react2.default.Component);
-
-module.exports = UpdateImage;
-
-/***/ }),
+/* 255 */,
 /* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52310,12 +52035,58 @@ var ModalUpdateImage = function (_Component) {
   function ModalUpdateImage() {
     _classCallCheck(this, ModalUpdateImage);
 
-    return _possibleConstructorReturn(this, (ModalUpdateImage.__proto__ || Object.getPrototypeOf(ModalUpdateImage)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (ModalUpdateImage.__proto__ || Object.getPrototypeOf(ModalUpdateImage)).call(this));
+
+    _this.state = {
+      title: '',
+      alt: '',
+      url: '',
+      projects: [],
+      projectName: '',
+      project_id: '',
+      project_id_detach: '',
+      index_page: false,
+      success: false
+    };
+    return _this;
   }
 
   _createClass(ModalUpdateImage, [{
+    key: 'loadImage',
+    value: function loadImage() {
+      var _this2 = this;
+
+      fetch('/api/images/' + this.props.imageId).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          title: data.title ? data.title : '',
+          alt: data.alt ? data.alt : '',
+          url: data.url,
+          project_id: data.project_id ? data.project_id : '',
+          index_page: data.index_page ? data.index_page : false
+        });
+        if (data.project) {
+          _this2.setState({
+            projectName: data.project.name
+          });
+        }
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.imageId !== this.props.imageId) {
+        this.loadImage();
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       return _react2.default.createElement(
         'div',
         { className: 'modal fade', id: 'addImages', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'exampleModalLabel', 'aria-hidden': 'true' },
@@ -52349,8 +52120,115 @@ var ModalUpdateImage = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { className: 'modal-body' },
-              'Modal Body'
+              { className: 'modal-body container-fluid' },
+              _react2.default.createElement(
+                'form',
+                { id: 'update-image' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group row' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'col-sm-2 col-form-label' },
+                    'Image: '
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-10' },
+                    _react2.default.createElement('img', {
+                      src: this.state.url,
+                      alt: this.state.alt,
+                      width: '25%' })
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group row' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'col-sm-2 col-form-label' },
+                    'URL: '
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-10' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'form-control border-0 pl-0' },
+                      this.state.url
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group row' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'col-sm-2 col-form-label' },
+                    'Title: '
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-10' },
+                    _react2.default.createElement('input', {
+                      type: 'text',
+                      name: 'title',
+                      className: 'form-control',
+                      value: this.state.title,
+                      onChange: function onChange(e) {
+                        return FormHandlers.handleOnChange(e, _this3);
+                      },
+                      onFocus: function onFocus(e) {
+                        return FormHandlers.preventSpaceKey(e);
+                      } })
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group row' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'col-sm-2 col-form-label' },
+                    'Alt Tag: '
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-10' },
+                    _react2.default.createElement('input', {
+                      type: 'text',
+                      name: 'alt',
+                      className: 'form-control',
+                      value: this.state.alt,
+                      onChange: function onChange(e) {
+                        return FormHandlers.handleOnChange(e, _this3);
+                      },
+                      onFocus: function onFocus(e) {
+                        return FormHandlers.preventSpaceKey(e);
+                      } })
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group row' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'col-sm-2 col-form-label' },
+                    'Home page: '
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-sm-10' },
+                    _react2.default.createElement('input', {
+                      type: 'checkbox',
+                      name: 'index_page',
+                      className: 'form-control mt-3',
+                      checked: this.state.index_page,
+                      onChange: function onChange(e) {
+                        return FormHandlers.checkboxChange(e, _this3);
+                      } })
+                  )
+                )
+              )
             ),
             _react2.default.createElement(
               'div',

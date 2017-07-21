@@ -31859,6 +31859,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var UpdateImage = __webpack_require__(255);
+var FormValidations = __webpack_require__(19);
 
 var GetImages = function (_React$Component) {
   _inherits(GetImages, _React$Component);
@@ -31912,8 +31913,18 @@ var GetImages = function (_React$Component) {
   }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps) {
-      this.flashMessage = nextProps.history.location.state.message;
-      this.flashMessageError = nextProps.history.location.state.messageError;
+      var _this3 = this;
+
+      if (this.props.history.location.state !== undefined) {
+        this.flashMessage = nextProps.history.location.state.message;
+        this.flashMessageError = nextProps.history.location.state.messageError;
+
+        if (this.props.history.location.state.message !== '') {
+          setTimeout(function () {
+            return FormValidations.resetFlashMessage(_this3);
+          }, 3000);
+        }
+      }
     }
   }, {
     key: 'openUpdateImage',
@@ -31933,62 +31944,124 @@ var GetImages = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return _react2.default.createElement(
         'div',
-        null,
-        this.flashMessage ? _react2.default.createElement(
-          'div',
-          { className: 'alert alert-success' },
-          this.flashMessage
-        ) : null,
+        { className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
+          { className: 'col-sm-6' },
           _react2.default.createElement(
-            'ul',
-            null,
-            this.flashMessageError.map(function (err, i) {
-              return _react2.default.createElement(
-                'li',
-                { key: i },
-                err
-              );
-            })
-          )
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: this.props.match.url + '/upload' },
-          'Add New Image(s)'
-        ),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'All Images'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'image-grid' },
-          this.state.imageData.map(function (image) {
-            return _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
               'div',
-              { key: image.id, className: 'image-grid-element' },
-              _react2.default.createElement('img', {
-                src: image.url,
-                title: image.title,
-                alt: image.alt,
-                width: '100%',
-                onClick: function onClick(e) {
-                  return _this3.openUpdateImage(e, image.id);
-                } })
-            );
-          })
-        ),
-        this.state.isUpdateImageOpen ? _react2.default.createElement(UpdateImage, { imageId: this.state.imageId, isOpen: this.state.isUpdateImageOpen, onClose: function onClose(e) {
-            return _this3.closeUpdateImage(e);
-          } }) : null
+              { className: 'row' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'font-weight-bold' },
+                'All Images'
+              ),
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: this.props.match.url + '/upload', className: 'btn btn-primary ml-auto' },
+                'Add New Image(s)'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            this.flashMessage ? _react2.default.createElement(
+              'div',
+              { className: 'alert alert-success' },
+              this.flashMessage
+            ) : null,
+            _react2.default.createElement(
+              'div',
+              { className: 'errors row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col' },
+                this.flashMessageError && this.flashMessageError.length > 0 ? this.flashMessageError.map(function (err, i) {
+                  return _react2.default.createElement(
+                    'div',
+                    {
+                      key: i,
+                      className: 'alert alert-danger',
+                      role: 'alert' },
+                    err
+                  );
+                }) : null
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              this.state.imageData.map(function (image) {
+                return _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-3 mb-4', key: image.id },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'card line-height-1-25-rem' },
+                    _react2.default.createElement('img', {
+                      src: image.url,
+                      title: image.title,
+                      alt: image.alt,
+                      width: '100%',
+                      onClick: function onClick(e) {
+                        return _this4.openUpdateImage(e, image.id);
+                      } }),
+                    image.project.name || image.news_story.title ? _react2.default.createElement(
+                      'div',
+                      { className: 'card-footer text-muted px-3 py-1' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'card-text mb-0' },
+                        image.project.name ? _react2.default.createElement(
+                          'div',
+                          null,
+                          _react2.default.createElement(
+                            'small',
+                            { className: 'text-muted' },
+                            _react2.default.createElement(
+                              'span',
+                              { className: 'font-weight-bold' },
+                              'Project:'
+                            ),
+                            ' ',
+                            image.project.name
+                          )
+                        ) : null,
+                        image.news_story.title ? _react2.default.createElement(
+                          'div',
+                          null,
+                          _react2.default.createElement(
+                            'small',
+                            { className: 'text-muted' },
+                            _react2.default.createElement(
+                              'span',
+                              { className: 'font-weight-bold' },
+                              'News Story:'
+                            ),
+                            ' ',
+                            image.news_story.title
+                          )
+                        ) : null
+                      )
+                    ) : null
+                  )
+                );
+              })
+            ),
+            this.state.isUpdateImageOpen ? _react2.default.createElement(UpdateImage, { imageId: this.state.imageId, isOpen: this.state.isUpdateImageOpen, onClose: function onClose(e) {
+                return _this4.closeUpdateImage(e);
+              } }) : null
+          )
+        )
       );
     }
   }]);

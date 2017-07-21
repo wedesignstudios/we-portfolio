@@ -11,6 +11,13 @@ a {
   a:hover {
     text-decoration: none; }
 
+input,
+button,
+optgroup,
+select,
+textarea {
+  font-family: inherit; }
+
 input {
   margin-bottom: 0.85rem;
   padding: 0.25rem 0.4rem; }
@@ -68,6 +75,8 @@ form .Select-control {
   border-color: none;
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding: 0.05rem 0.75rem; }
+  form .Select-control .Select-input {
+    padding-left: 0; }
 
 form .checkboxes-container,
 form .images-select-container {

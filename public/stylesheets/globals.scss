@@ -16,6 +16,14 @@ a {
   }
 }
 
+input,
+button,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
 input {
   margin-bottom: 0.85rem;
   padding: 0.25rem 0.4rem;

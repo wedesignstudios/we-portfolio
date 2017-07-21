@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 const UpdateImage = require('./UpdateImage');
+const ModalUpdateImage = require('./ModalUpdateImage');
 const FormValidations = require('../../services/form_validations');
 
 class GetImages extends React.Component {
@@ -69,10 +70,19 @@ class GetImages extends React.Component {
     });
   }
 
+  openImageModal(event) {
+    event.preventDefault();
+    $(ReactDOM.findDOMNode(this.refs.modal)).modal();
+    this.setState({clearModalErrs: true});
+  }
+
   render() {
     return(
       <div className="row justify-content-center">
         <div className="col-sm-6">
+
+        <ModalUpdateImage
+          ref="modal" />
 
         <div className="container-fluid">
           <div className="row">
@@ -115,7 +125,7 @@ class GetImages extends React.Component {
                       title={image.title}
                       alt={image.alt}
                       width="100%"
-                      onClick={(e) => this.openUpdateImage(e, image.id)} />
+                      onClick={(e) => this.openImageModal(e)} />
 
                       {image.project.name || image.news_story.title ?
                         <div className="card-footer text-muted px-3 py-1">
@@ -140,8 +150,7 @@ class GetImages extends React.Component {
 
                   </div>
                 </div>
-              )
-            }
+              )}
             )}
           </div>
 

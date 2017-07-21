@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 const UpdateImage = require('./UpdateImage');
+const FormValidations = require('../../services/form_validations');
 
 class GetImages extends React.Component {
   constructor(props) {
@@ -45,8 +46,14 @@ class GetImages extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    this.flashMessage = nextProps.history.location.state.message;
-    this.flashMessageError = nextProps.history.location.state.messageError;
+    if(this.props.history.location.state !== undefined) {
+      this.flashMessage = nextProps.history.location.state.message;
+      this.flashMessageError = nextProps.history.location.state.messageError;
+
+      if(this.props.history.location.state.message !== '') {
+        setTimeout(() => FormValidations.resetFlashMessage(this), 3000);
+      }
+    }
   }
 
   openUpdateImage(event, imageId) {
@@ -64,34 +71,84 @@ class GetImages extends React.Component {
 
   render() {
     return(
-      <div>
-        {this.flashMessage ?
-          <div className="alert alert-success">
-            {this.flashMessage}
-          </div> :
-        null}
-        <div className="submit-message-error" style={{color: 'red'}}>
-          <ul>
-            {this.flashMessageError.map((err, i) => {
-              return <li key={i}>{err}</li>
-            })}
-          </ul>
-        </div>
-        <Link to={`${this.props.match.url}/upload`}>Add New Image(s)</Link>
-        <h3>All Images</h3>
-        <div className="image-grid">
-          {this.state.imageData.map(image =>
-            <div key={image.id} className="image-grid-element">
-              <img
-                src={image.url}
-                title={image.title}
-                alt={image.alt}
-                width="100%"
-                onClick={(e) => this.openUpdateImage(e, image.id)} />
+      <div className="row justify-content-center">
+        <div className="col-sm-6">
+
+        <div className="container-fluid">
+          <div className="row">
+            <h2 className="font-weight-bold">All Images</h2>
+            <Link to={`${this.props.match.url}/upload`} className="btn btn-primary ml-auto">Add New Image(s)</Link>
+          </div>
+          <div className="row">
+            <hr className="col" />
+          </div>
+
+          {this.flashMessage ?
+            <div className="alert alert-success">
+              {this.flashMessage}
+            </div> :
+          null}
+
+          <div className="errors row">
+            <div className="col">
+              {(this.flashMessageError && this.flashMessageError.length > 0) ?
+                this.flashMessageError.map((err, i) => {
+                  return(
+                    <div
+                      key={i}
+                      className="alert alert-danger"
+                      role="alert">
+                        {err}
+                    </div>
+                  )}) :
+              null}
             </div>
-          )}
+          </div>
+
+          <div className="row">
+            {this.state.imageData.map(image => {
+              return(
+                <div className="col-sm-3 mb-4" key={image.id}>
+                  <div className="card line-height-1-25-rem">
+                    <img
+                      src={image.url}
+                      title={image.title}
+                      alt={image.alt}
+                      width="100%"
+                      onClick={(e) => this.openUpdateImage(e, image.id)} />
+
+                      {image.project.name || image.news_story.title ?
+                        <div className="card-footer text-muted px-3 py-1">
+                          <div className="card-text mb-0">
+                              {image.project.name ?
+                                <div>
+                                <small className="text-muted">
+                                  <span className="font-weight-bold">Project:</span> {image.project.name}
+                                </small>
+                                </div> :
+                              null}
+                              {image.news_story.title ?
+                                <div>
+                                <small className="text-muted">
+                                  <span className="font-weight-bold">News Story:</span> {image.news_story.title}
+                                </small>
+                                </div> :
+                              null}
+                          </div>
+                        </div> :
+                      null}
+
+                  </div>
+                </div>
+              )
+            }
+            )}
+          </div>
+
+            {this.state.isUpdateImageOpen ? <UpdateImage imageId={this.state.imageId} isOpen={this.state.isUpdateImageOpen} onClose={(e) => this.closeUpdateImage(e)} /> : null}
+
+          </div>
         </div>
-        {this.state.isUpdateImageOpen ? <UpdateImage imageId={this.state.imageId} isOpen={this.state.isUpdateImageOpen} onClose={(e) => this.closeUpdateImage(e)} /> : null}
       </div>
     );
   }

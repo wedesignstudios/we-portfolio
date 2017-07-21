@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom'
 
 class DashboardHome extends Component {
   constructor() {
@@ -23,8 +22,19 @@ class DashboardHome extends Component {
     return(
       <div className="row justify-content-center">
         <div className="col-sm-6">
-          <h2 className="font-weight-bold">WE Portfolio Dashboard</h2>
-          <h5>Hi, {this.state.user[0].first_name}</h5>
+
+          <div className="container-fluid">
+            <div className="row">
+              <h2 className="font-weight-bold">WE Portfolio Dashboard</h2>
+            </div>
+            <div className="row">
+              <hr className="col" />
+            </div>
+            <div className="row">
+              <h5>Hi, {this.state.user[0].first_name}</h5>
+            </div>
+          </div>
+
         </div>
       </div>
     );

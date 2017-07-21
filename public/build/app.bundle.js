@@ -31408,8 +31408,6 @@ var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(10);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31458,15 +31456,32 @@ var DashboardHome = function (_Component) {
           'div',
           { className: 'col-sm-6' },
           _react2.default.createElement(
-            'h2',
-            { className: 'font-weight-bold' },
-            'WE Portfolio Dashboard'
-          ),
-          _react2.default.createElement(
-            'h5',
-            null,
-            'Hi, ',
-            this.state.user[0].first_name
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'font-weight-bold' },
+                'WE Portfolio Dashboard'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement('hr', { className: 'col' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'h5',
+                null,
+                'Hi, ',
+                this.state.user[0].first_name
+              )
+            )
           )
         )
       );

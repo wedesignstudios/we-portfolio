@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
-const UpdateProject = require('./UpdateProject');
-const DateFormatter = require('../../services/date_formatter')
+const DateFormatter = require('../../services/date_formatter');
+const FormValidations = require('../../services/form_validations');
 
 class GetProjects extends Component {
   constructor(props) {
@@ -18,8 +18,6 @@ class GetProjects extends Component {
     }
 
     this.flashMessage = this.props.history.location.state.message;
-    this.resetFlashMessage = this.resetFlashMessage.bind(this);
-
   }
 
   loadProjects() {
@@ -35,10 +33,6 @@ class GetProjects extends Component {
       });
   }
 
-  resetFlashMessage() {
-    this.props.history.push(location, {message: ''});
-  }
-
   componentDidMount() {
     this.loadProjects();
   }
@@ -46,7 +40,7 @@ class GetProjects extends Component {
   componentWillUpdate(nextProps) {
     this.flashMessage = nextProps.history.location.state.message;
     if(this.props.history.location.state.message !== '') {
-      setTimeout(this.resetFlashMessage, 3000);
+      setTimeout(() => FormValidations.resetFlashMessage(this), 3000);
     }
   }
 

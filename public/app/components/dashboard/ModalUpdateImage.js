@@ -13,13 +13,11 @@ class ModalUpdateImage extends Component {
       title: '',
       alt: '',
       url: '',
-      projects: [],
-      projectName: '',
-      project_id: '',
-      project_id_detach: '',
       index_page: false,
       success: false
     }
+
+    this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/images', this.state.submitError);
   }
 
   loadImage() {
@@ -30,14 +28,8 @@ class ModalUpdateImage extends Component {
           title: data.title ? data.title : '',
           alt: data.alt ? data.alt : '',
           url: data.url,
-          project_id: data.project_id ? data.project_id : '',
           index_page: data.index_page ? data.index_page : false
         });
-        if(data.project) {
-          this.setState({
-            projectName: data.project.name
-          })
-        }
       })
       .catch((err) => {
         console.error(err);
@@ -48,6 +40,19 @@ class ModalUpdateImage extends Component {
     if(prevProps.imageId !== this.props.imageId) {
       this.loadImage();
     }
+  }
+
+  submitForm(event) {
+    event.preventDefault();
+    FormValidations.trimData(this.state, this);
+    this.forceUpdate(function() {
+      DataActions.sendRequest(
+        'PUT',
+        this.state,
+        `/api/images/${this.props.imageId}`,
+        this.setRedirectWithMessage
+      );
+    });
   }
 
   render() {
@@ -127,16 +132,22 @@ class ModalUpdateImage extends Component {
                       onChange={(e) => FormHandlers.checkboxChange(e, this)} />
                   </div>
                 </div>
-
               </form>
             </div>
 
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-secondary"
                 data-dismiss="modal">
-                  OK
+                  Cancel
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-dismiss="modal"
+                onClick={(e) => this.submitForm(e)}>
+                  Update
               </button>
             </div>
           </div>

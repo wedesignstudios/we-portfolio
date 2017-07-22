@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import {
+  Link,
+  withRouter
+} from 'react-router-dom';
 
 const ModalUpdateImage = require('./ModalUpdateImage');
 const FormValidations = require('../../services/form_validations');
@@ -68,7 +71,8 @@ class GetImages extends React.Component {
 
           <ModalUpdateImage
             ref="modal"
-            imageId={this.state.imageId} />
+            imageId={this.state.imageId}
+            history={this.props.history} />
 
           <div className="container-fluid">
             <div className="row">
@@ -80,7 +84,7 @@ class GetImages extends React.Component {
             </div>
 
             {this.flashMessage ?
-              <div className="alert alert-success">
+              <div className="alert alert-success sticky-top">
                 {this.flashMessage}
               </div> :
             null}
@@ -146,4 +150,4 @@ class GetImages extends React.Component {
   }
 };
 
-module.exports = GetImages;
+module.exports = withRouter(GetImages);

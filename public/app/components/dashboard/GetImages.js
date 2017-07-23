@@ -4,6 +4,8 @@ import {
   Link,
   withRouter
 } from 'react-router-dom';
+import Dropzone from 'react-dropzone';
+
 
 const ModalUpdateImage = require('./ModalUpdateImage');
 const FormValidations = require('../../services/form_validations');
@@ -14,7 +16,9 @@ class GetImages extends React.Component {
 
     this.state = {
       imageData: [],
-      imageId: null
+      imageId: null,
+      openDropzone: false,
+      submitError: []
     }
 
     if(this.props.history.location.state === undefined) {
@@ -37,6 +41,12 @@ class GetImages extends React.Component {
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  openCloseDropZone() {
+    this.setState({
+      openDropzone: !this.state.openDropzone
+    })
   }
 
   componentDidMount() {
@@ -65,6 +75,7 @@ class GetImages extends React.Component {
   }
 
   render() {
+    let dropzoneRef;
     return(
       <div className="row justify-content-center">
         <div className="col-sm-6">
@@ -77,7 +88,12 @@ class GetImages extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <h2 className="font-weight-bold">All Images</h2>
-              <Link to={`${this.props.match.url}/upload`} className="btn btn-primary ml-auto">Add New Image(s)</Link>
+              <button
+                type="button"
+                className="btn btn-primary ml-auto"
+                onClick={(e) => this.openCloseDropZone(e)} >
+                  Add New Image(s)
+              </button>
             </div>
             <div className="row">
               <hr className="col" />
@@ -104,6 +120,36 @@ class GetImages extends React.Component {
                 null}
               </div>
             </div>
+
+            {this.state.openDropzone ?
+              <div className="errors row">
+                <div className="col mb-4">
+                  <Dropzone
+                    ref={(node) => {dropzoneRef = node}}
+                    name="images"
+                    accept="image/*"
+                    className="dropzone-styles"
+                    disableClick={true}
+                    onDrop={e => this.onDrop(e)}>
+                      <button
+                        id="close-dropzone"
+                        type="button"
+                        className="close"
+                        onClick={(e) => this.openCloseDropZone(e)}>
+                          <span>&times;</span>
+                      </button>
+                      <h5>Drag image(s) here.</h5>
+                      <p>or</p>
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => {dropzoneRef.open()}} >
+                          Select Image(s)
+                      </button>
+                  </Dropzone>
+                </div>
+              </div> :
+            null}
 
             <div className="row">
               {this.state.imageData.map((image) => {

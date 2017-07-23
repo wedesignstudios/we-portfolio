@@ -31850,6 +31850,10 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouterDom = __webpack_require__(10);
 
+var _reactDropzone = __webpack_require__(224);
+
+var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31871,7 +31875,9 @@ var GetImages = function (_React$Component) {
 
     _this.state = {
       imageData: [],
-      imageId: null
+      imageId: null,
+      openDropzone: false,
+      submitError: []
     };
 
     if (_this.props.history.location.state === undefined) {
@@ -31897,6 +31903,13 @@ var GetImages = function (_React$Component) {
         });
       }).catch(function (err) {
         console.error(err);
+      });
+    }
+  }, {
+    key: 'openCloseDropZone',
+    value: function openCloseDropZone() {
+      this.setState({
+        openDropzone: !this.state.openDropzone
       });
     }
   }, {
@@ -31937,6 +31950,7 @@ var GetImages = function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
+      var dropzoneRef = void 0;
       return _react2.default.createElement(
         'div',
         { className: 'row justify-content-center' },
@@ -31959,8 +31973,13 @@ var GetImages = function (_React$Component) {
                 'All Images'
               ),
               _react2.default.createElement(
-                _reactRouterDom.Link,
-                { to: this.props.match.url + '/upload', className: 'btn btn-primary ml-auto' },
+                'button',
+                {
+                  type: 'button',
+                  className: 'btn btn-primary ml-auto',
+                  onClick: function onClick(e) {
+                    return _this4.openCloseDropZone(e);
+                  } },
                 'Add New Image(s)'
               )
             ),
@@ -31992,6 +32011,63 @@ var GetImages = function (_React$Component) {
                 }) : null
               )
             ),
+            this.state.openDropzone ? _react2.default.createElement(
+              'div',
+              { className: 'errors row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col mb-4' },
+                _react2.default.createElement(
+                  _reactDropzone2.default,
+                  {
+                    ref: function ref(node) {
+                      dropzoneRef = node;
+                    },
+                    name: 'images',
+                    accept: 'image/*',
+                    className: 'dropzone-styles',
+                    disableClick: true,
+                    onDrop: function onDrop(e) {
+                      return _this4.onDrop(e);
+                    } },
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      id: 'close-dropzone',
+                      type: 'button',
+                      className: 'close',
+                      onClick: function onClick(e) {
+                        return _this4.openCloseDropZone(e);
+                      } },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      '\xD7'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'h5',
+                    null,
+                    'Drag image(s) here.'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'or'
+                  ),
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      type: 'button',
+                      className: 'btn btn-secondary',
+                      onClick: function onClick() {
+                        dropzoneRef.open();
+                      } },
+                    'Select Image(s)'
+                  )
+                )
+              )
+            ) : null,
             _react2.default.createElement(
               'div',
               { className: 'row' },

@@ -32904,129 +32904,7 @@ var UpdateProject = function (_React$Component) {
 module.exports = UpdateProject;
 
 /***/ }),
-/* 248 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRouterDom = __webpack_require__(10);
-
-var _reactDropzone = __webpack_require__(66);
-
-var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FormHandlers = __webpack_require__(12);
-var DataActions = __webpack_require__(22);
-
-var UploadImages = function (_React$Component) {
-  _inherits(UploadImages, _React$Component);
-
-  function UploadImages() {
-    _classCallCheck(this, UploadImages);
-
-    var _this = _possibleConstructorReturn(this, (UploadImages.__proto__ || Object.getPrototypeOf(UploadImages)).call(this));
-
-    _this.state = {
-      submitError: []
-    };
-
-    _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/images', _this.state.submitError);
-    _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
-    return _this;
-  }
-
-  _createClass(UploadImages, [{
-    key: 'onDrop',
-    value: function onDrop(files) {
-      var _this2 = this;
-
-      files.forEach(function (file) {
-        var formData = new FormData();
-
-        formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload', _this2.setRedirectWithMessage, _this2.setSubmitErrorMessage);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/dashboard/images' },
-          'All Images'
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'h3',
-          null,
-          'Upload Image(s)'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'submit-message-error', style: { color: 'red' } },
-          _react2.default.createElement(
-            'ul',
-            null,
-            this.state.submitError.map(function (message, i) {
-              return _react2.default.createElement(
-                'li',
-                { key: i },
-                message
-              );
-            })
-          )
-        ),
-        _react2.default.createElement(
-          _reactDropzone2.default,
-          {
-            name: 'images',
-            accept: 'image/*',
-            onDrop: function onDrop(e) {
-              return _this3.onDrop(e);
-            }
-          },
-          _react2.default.createElement(
-            'div',
-            null,
-            'Drag image(s) here. Or click to select image(s) to upload.'
-          )
-        )
-      );
-    }
-  }]);
-
-  return UploadImages;
-}(_react2.default.Component);
-
-;
-
-module.exports = (0, _reactRouterDom.withRouter)(UploadImages);
-
-/***/ }),
+/* 248 */,
 /* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33064,7 +32942,6 @@ var UpdateClient = __webpack_require__(244);
 var CreateCollaborator = __webpack_require__(234);
 var GetCollaborators = __webpack_require__(239);
 var UpdateCollaborator = __webpack_require__(245);
-var UploadImages = __webpack_require__(248);
 var GetImages = __webpack_require__(240);
 var CreateNewsStory = __webpack_require__(235);
 var GetNewsStories = __webpack_require__(241);
@@ -33100,8 +32977,7 @@ var Dashboard = function (_Component) {
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/create', component: CreateCollaborator }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/:id/update', component: UpdateCollaborator }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images/upload', component: UploadImages }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/images', component: GetImages }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + '/images', component: GetImages }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/create', component: CreateNewsStory }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/:id/update', component: UpdateNewsStory }),
             _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories', component: GetNewsStories }),

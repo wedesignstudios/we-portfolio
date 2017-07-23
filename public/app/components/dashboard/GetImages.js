@@ -6,9 +6,10 @@ import {
 } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 
-
+const DataActions = require('../../data/actions');
 const ModalUpdateImage = require('./ModalUpdateImage');
 const FormValidations = require('../../services/form_validations');
+const FormHandlers = require('../../services/form_handlers');
 
 class GetImages extends React.Component {
   constructor(props) {
@@ -17,17 +18,24 @@ class GetImages extends React.Component {
     this.state = {
       imageData: [],
       imageId: null,
+      imageAddSuccess: false,
       openDropzone: false,
       submitError: []
     }
 
     if(this.props.history.location.state === undefined) {
-      this.props.history.location.state = {message: '', messageError: []};
+      this.props.history.location.state = {message: ''};
     }
 
     this.flashMessage = this.props.history.location.state.message;
-    this.flashMessageError = this.props.history.location.state.messageError;
+    this.imageAdded = this.imageAdded.bind(this);
+    this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
+  }
 
+  imageAdded(message) {
+    if(message) {
+      this.setState({imageAddSuccess: true});
+    }
   }
 
   loadImages() {
@@ -43,14 +51,39 @@ class GetImages extends React.Component {
       });
   }
 
+  onDrop(files) {
+    files.forEach(file => {
+      const formData = new FormData();
+
+      formData.append('image', file);
+      DataActions.uploadImages(
+        formData,
+        '/api/images/upload',
+        this.imageAdded,
+        this.setSubmitErrorMessage
+      );
+    });
+  }
+
   openCloseDropZone() {
     this.setState({
       openDropzone: !this.state.openDropzone
     })
   }
 
+  resetImageAdded() {
+    this.setState({imageAddSuccess: false});
+  }
+
   componentDidMount() {
     this.loadImages();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.imageAddSuccess && this.state.imageAddSuccess !== prevState.imageAddSuccess) {
+      this.loadImages();
+      this.resetImageAdded();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,7 +93,6 @@ class GetImages extends React.Component {
   componentWillUpdate(nextProps) {
     if(this.props.history.location.state !== undefined) {
       this.flashMessage = nextProps.history.location.state.message;
-      this.flashMessageError = nextProps.history.location.state.messageError;
 
       if(this.props.history.location.state.message !== '') {
         setTimeout(() => FormValidations.resetFlashMessage(this), 3000);
@@ -105,24 +137,35 @@ class GetImages extends React.Component {
               </div> :
             null}
 
-            <div className="errors row">
-              <div className="col">
-                {(this.flashMessageError && this.flashMessageError.length > 0) ?
-                  this.flashMessageError.map((err, i) => {
-                    return(
-                      <div
-                        key={i}
-                        className="alert alert-danger"
-                        role="alert">
-                          {err}
-                      </div>
-                    )}) :
-                null}
-              </div>
-            </div>
+            {this.state.submitError.length > 0 ?
+              <div className="errors row">
+                <div className="col mb-4">
+                  <div className="submit-message-error mt-3">
+                    {this.state.submitError.map((message, i) => {
+                      return (
+                        <div
+                          key={i}
+                          className="alert alert-danger alert-dismissible"
+                          role="alert">
+                        <button
+                          type="button"
+                          className="close"
+                          data-dismiss="alert"
+                          aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                            {message}
+                        </div>
+                        )
+                      })
+                    }
+                  </div>
+                </div>
+              </div> :
+            null}
 
             {this.state.openDropzone ?
-              <div className="errors row">
+              <div className="row">
                 <div className="col mb-4">
                   <Dropzone
                     ref={(node) => {dropzoneRef = node}}

@@ -51523,6 +51523,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var NavAdmin = __webpack_require__(416);
 var NavBar = __webpack_require__(400);
 var Footer = __webpack_require__(398);
 var HomeLayout = __webpack_require__(399);
@@ -51551,6 +51552,7 @@ var Home = function (_Component) {
         _react2.default.createElement(
           'div',
           null,
+          this.props.auth ? _react2.default.createElement(NavAdmin, null) : null,
           _react2.default.createElement(NavBar, null),
           _react2.default.createElement(
             _reactRouterDom.Switch,
@@ -52152,6 +52154,8 @@ module.exports = Work;
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(2);
@@ -52229,6 +52233,8 @@ var App = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       if (this.state.loggedIn === null) {
         return null;
       }
@@ -52243,7 +52249,9 @@ var App = function (_Component) {
             null,
             _react2.default.createElement(PrivateRoute, { path: '/login', component: Login, auth: !this.state.loggedIn, redirectPath: '/dashboard' }),
             _react2.default.createElement(PrivateRoute, { path: '/dashboard', component: Dashboard, auth: this.state.loggedIn, redirectPath: '/login' }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: Home }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: function component(props) {
+                return _react2.default.createElement(Home, _extends({}, props, { auth: _this3.state.loggedIn }));
+              } }),
             _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
           )
         )
@@ -52259,6 +52267,118 @@ _reactDom2.default.render(_react2.default.createElement(
   null,
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NavAdmin = function (_Component) {
+  _inherits(NavAdmin, _Component);
+
+  function NavAdmin() {
+    _classCallCheck(this, NavAdmin);
+
+    var _this = _possibleConstructorReturn(this, (NavAdmin.__proto__ || Object.getPrototypeOf(NavAdmin)).call(this));
+
+    _this.state = {
+      user: ''
+    };
+    return _this;
+  }
+
+  _createClass(NavAdmin, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/user-data', { credentials: 'include' }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        return _this2.setState({ user: data });
+      }).catch(function (err) {
+        return console.error(err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      if (!this.state.user) {
+        return null;
+      }
+      return _react2.default.createElement(
+        'nav',
+        { className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center' },
+        _react2.default.createElement(
+          'div',
+          { className: 'col-6 collapse navbar-collapse' },
+          _react2.default.createElement(
+            'span',
+            { className: 'navbar-text mr-auto' },
+            'Hi, ',
+            this.state.user[0].first_name
+          ),
+          _react2.default.createElement(
+            'ul',
+            { className: 'navbar-nav ml-auto' },
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                'a',
+                { className: 'nav-link', href: '/dashboard' },
+                'Dashboard'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: 'nav-item' },
+              _react2.default.createElement(
+                'a',
+                { className: 'nav-link btn btn-outline-secondary', href: '/logout' },
+                'Logout'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return NavAdmin;
+}(_react.Component);
+
+module.exports = NavAdmin;
 
 /***/ })
 /******/ ]);

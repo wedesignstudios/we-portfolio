@@ -10,6 +10,7 @@ import {
   withRouter
 } from 'react-router-dom';
 
+const NavAdmin = require('./NavAdmin');
 const NavBar = require('./NavBar');
 const Footer = require('./Footer');
 const HomeLayout = require('./HomeLayout');
@@ -25,6 +26,7 @@ class Home extends Component {
     return (
       <Router>
         <div>
+          {this.props.auth ? <NavAdmin /> : null}
           <NavBar />
           <Switch>
             <Route exact path={this.props.match.url} component={HomeLayout} />

@@ -66,7 +66,7 @@ class App extends Component {
           <Switch>
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
             <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />
-            <Route path='/' component={Home} />
+            <Route path='/' component={props => <Home {...props} auth={this.state.loggedIn} />} />
             <Route component={NotFound} />
           </Switch>
         </div>

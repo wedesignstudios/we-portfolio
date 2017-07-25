@@ -6,6 +6,8 @@ const multer = require('multer');
 const Image = require('../models/image.js');
 const s3 = new AWS.S3({signatureVersion: 'v4'});
 const isLoggedIn = require('../middleware/isLoggedIn');
+const fs = require('fs');
+const gm = require('gm');
 
 // AWS config
 AWS.config.update({
@@ -63,34 +65,50 @@ router.get('/:id', (req, res, next) => {
 router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
   const url = 'https://we-portfolio.s3.amazonaws.com/' + req.file.originalname;
 
-  s3.putObject({
-    Bucket: 'we-portfolio',
-    Key: req.file.originalname,
-    Body: req.file.buffer,
-    ACL: 'public-read',
-    Expires: 120,
-    ContentType: req.file.mimetype
-  }, (err, data) => {
-    if(err) {
-      console.log('Error message: ', err);
-      return res.status(400).send(err);
-    }
-    // Save URL to database
-    Image
-      .forge({url: url})
-      .save()
-      .then((image) => {
-        return res.status(200).send(`Image(s) uploaded to S3 and saved to database.`);
+  let updatedBuffer;
+
+  let gmPromise = new Promise((resolve, reject) => {
+    gm(req.file.buffer, req.file.originalname)
+      .autoOrient()
+      .noProfile()
+      .toBuffer((err, buffer) => {
+        if (err) return handle(err);
+        updatedBuffer = buffer;
+        resolve('Success!');
       })
-      .catch((err) => {
-        console.error(err);
-        if (err.name == 'DuplicateError') {
-          res.status(500).send(`${err.name}: Image ${req.file.originalname} already exists and was not uploaded.`);
-        } else {
-          res.status(500).send(`Whoops! The following error occurred: ${err}`);
-        }
-      });
   });
+
+  gmPromise
+    .then(() => {
+      s3.putObject({
+        Bucket: 'we-portfolio',
+        Key: req.file.originalname,
+        Body: updatedBuffer,
+        ACL: 'public-read',
+        Expires: 120,
+        ContentType: req.file.mimetype
+      }, (err, data) => {
+        if(err) {
+          console.log('Error message: ', err);
+          return res.status(400).send(err);
+        }
+        // Save URL to database
+        Image
+          .forge({url: url})
+          .save()
+          .then((image) => {
+            return res.status(200).send(`Image(s) uploaded to S3 and saved to database.`);
+          })
+          .catch((err) => {
+            console.error(err);
+            if (err.name == 'DuplicateError') {
+              res.status(500).send(`${err.name}: Image ${req.file.originalname} already exists and was not uploaded.`);
+            } else {
+              res.status(500).send(`Whoops! The following error occurred: ${err}`);
+            }
+          });
+      });
+    });
 });
 
 // UPDATE an image

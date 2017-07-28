@@ -94,7 +94,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
         }
         // Save URL to database
         Image
-          .forge({url: url})
+          .forge({url: url, orig_name: req.file.originalname})
           .save()
           .then((image) => {
             return res.status(200).send(`Image(s) uploaded to S3 and saved to database.`);

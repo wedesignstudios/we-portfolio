@@ -1,4 +1,6 @@
 const FormValidations = require('./form_validations');
+const _groupBy = require('lodash/groupBy');
+const _includes = require('lodash/includes');
 
 const FormHandlers = {
 
@@ -66,19 +68,21 @@ const FormHandlers = {
     }
   },
 
-  attachDetachImage: function(target, attached, toAttachImgUrls) {
+  attachDetachImage: function(target, attached, toAttachImages) {
     let url = target.src;
     let id = parseInt(target.id);
+    let image = {id: id, url: url};
+    let toAttachGroups = _groupBy(toAttachImages, 'id');
 
-    if(toAttachImgUrls && toAttachImgUrls.includes(url)) {
-      let index = toAttachImgUrls.indexOf(url);
-      toAttachImgUrls.splice(index, 1);
+    if(toAttachImages && toAttachGroups[id]) {
+      let index = toAttachImages.findIndex(i => i.id === id);
+      toAttachImages.splice(index, 1);
     } else {
       if(!attached.includes(id)) {
-        toAttachImgUrls ? toAttachImgUrls.push(url) : null
+        toAttachImages.push(image);
       }
     }
-    return toAttachImgUrls;
+    return toAttachImages;
   },
 
   selectValue: function(selected, value) {

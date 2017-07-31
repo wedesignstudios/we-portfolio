@@ -28,7 +28,7 @@ class FormProject extends React.Component {
       date: '',
       description: '',
       images_ids: [],
-      images_ids_urls: [],
+      images_ids_to_attach: [],
       images_ids_attached: [],
       images_ids_attached_data: [],
       images_ids_detach: [],
@@ -130,7 +130,7 @@ class FormProject extends React.Component {
   getComponentData(data, inputName) {
     if(inputName === 'images_ids') {
       this.setState({
-        [inputName + '_urls']: data.toAttachImgUrls
+        [inputName + '_to_attach']: data.toAttachImgUrls
       })
     }
 
@@ -166,6 +166,7 @@ class FormProject extends React.Component {
     return images.map((img, i) => {
       return <img
           key={i}
+          id={img.id}
           src={img.url}
           className="mb-3 mr-3"
           height="100" />
@@ -317,13 +318,15 @@ class FormProject extends React.Component {
                       <div className="col-sm-12">
                         {this.showAttachedImages()}
 
-                        {this.state.images_ids_urls.map((url, i) => {
+                        {this.state.images_ids_to_attach.map((image, i) => {
                           return <img
                               key={i}
-                              src={url}
+                              id={image.id}
+                              src={image.url}
                               className="mb-3 mr-3"
                               height="100" />
                         })}
+                        {console.log(this.state.images_ids_to_attach)}
                       </div>
                     </div>
                     <button
@@ -341,7 +344,7 @@ class FormProject extends React.Component {
                 attached={this.state.images_ids_attached}
                 detach={this.state.images_ids_detach}
                 toAttach={this.state.images_ids}
-                toAttachImgUrls={this.state.images_ids_urls}
+                toAttachImgUrls={this.state.images_ids_to_attach}
                 clearModalErrs={this.state.clearModalErrs} />
 
               <ClientCheckboxes

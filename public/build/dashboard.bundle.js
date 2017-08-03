@@ -15192,6 +15192,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var _groupBy = __webpack_require__(656);
 var _map = __webpack_require__(662);
+var _isEmpty = __webpack_require__(672);
 var ClientCheckboxes = __webpack_require__(249);
 var CollaboratorCheckboxes = __webpack_require__(250);
 var ImageBoard = __webpack_require__(664);
@@ -15347,13 +15348,14 @@ var FormProject = function (_React$Component) {
   }, {
     key: 'allProjectImages',
     value: function allProjectImages() {
-      var _this3 = this;
+      var _state = this.state,
+          images_ids_to_attach = _state.images_ids_to_attach,
+          images_ids_attached_data = _state.images_ids_attached_data,
+          images_ids_detach = _state.images_ids_detach;
 
-      var images = this.state.images_ids_attached_data.filter(function (img) {
-        return !_this3.state.images_ids_detach.includes(img.id);
+      var images = images_ids_attached_data.filter(function (img) {
+        return !images_ids_detach.includes(img.id);
       });
-      var images_ids_to_attach = this.state.images_ids_to_attach;
-
       var allImages = images.concat(images_ids_to_attach);
 
       return allImages;
@@ -15417,7 +15419,7 @@ var FormProject = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var image_sort_order = this.state.image_sort_order;
 
@@ -15458,7 +15460,7 @@ var FormProject = function (_React$Component) {
                 {
                   className: 'btn btn-danger mb-3',
                   onClick: function onClick(e) {
-                    return _this4.deleteProject(e);
+                    return _this3.deleteProject(e);
                   } },
                 'Delete ',
                 this.state.initialName
@@ -15520,13 +15522,13 @@ var FormProject = function (_React$Component) {
                     className: this.state.nameErr ? 'err form-control' : 'form-control',
                     value: this.state.name,
                     onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this4);
+                      return FormHandlers.handleOnChange(e, _this3);
                     },
                     onFocus: function onFocus(e) {
                       return FormHandlers.preventSpaceKey(e);
                     },
                     onBlur: function onBlur(e) {
-                      FormValidations.checkField(e, _this4);
+                      FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -15554,13 +15556,13 @@ var FormProject = function (_React$Component) {
                     popoverTargetAttachment: 'top center',
                     popoverTargetOffset: '38px 250px',
                     onChange: function onChange(e) {
-                      return FormHandlersValidations.handleDateOnChange(e, _this4);
+                      return FormHandlersValidations.handleDateOnChange(e, _this3);
                     },
                     onFocus: function onFocus(e) {
                       return FormHandlers.preventAllButShiftAndTab(e);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this4);
+                      return FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -15581,13 +15583,13 @@ var FormProject = function (_React$Component) {
                     className: this.state.descriptionErr ? 'err form-control' : 'form-control',
                     value: this.state.description,
                     onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this4);
+                      return FormHandlers.handleOnChange(e, _this3);
                     },
                     onFocus: function onFocus(e) {
                       return FormHandlers.preventSpaceKey(e);
                     },
                     onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this4);
+                      return FormValidations.checkField(e, _this3);
                     } })
                 )
               ),
@@ -15608,9 +15610,9 @@ var FormProject = function (_React$Component) {
                     _react2.default.createElement(
                       'div',
                       { className: 'col-sm-12' },
-                      this.state.images_ids_attached_data.length > 0 ? _react2.default.createElement(ImageBoard, {
+                      _react2.default.createElement(ImageBoard, {
                         images: this.sortedProjectImages(this.allProjectImages(), this.state.image_sort_order),
-                        updateSortOrder: this.updateSortOrder }) : null
+                        updateSortOrder: this.updateSortOrder })
                     )
                   ),
                   _react2.default.createElement(
@@ -15618,7 +15620,7 @@ var FormProject = function (_React$Component) {
                     {
                       className: 'btn btn-secondary',
                       onClick: function onClick(e) {
-                        return _this4.openImageModal(e);
+                        return _this3.openImageModal(e);
                       } },
                     'Add/Remove Image(s)'
                   )
@@ -15670,7 +15672,7 @@ var FormProject = function (_React$Component) {
                       className: 'btn btn-primary',
                       disabled: this.requiredFieldsBlank,
                       onClick: function onClick(e) {
-                        return _this4.submitForm(e);
+                        return _this3.submitForm(e);
                       } },
                     this.props.sendRequestType === 'PUT' ? 'Update ' + this.state.initialName : 'Create New Project'
                   )
@@ -63389,9 +63391,7 @@ var ImageBoard = function (_Component) {
       var _this2 = this;
 
       var connectDropTarget = this.props.connectDropTarget;
-      var _state = this.state,
-          images = _state.images,
-          imageSortOrder = _state.imageSortOrder;
+      var images = this.state.images;
 
 
       return connectDropTarget(_react2.default.createElement(
@@ -63737,6 +63737,89 @@ function values(object) {
 }
 
 module.exports = values;
+
+
+/***/ }),
+/* 672 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseKeys = __webpack_require__(630),
+    getTag = __webpack_require__(644),
+    isArguments = __webpack_require__(459),
+    isArray = __webpack_require__(418),
+    isArrayLike = __webpack_require__(442),
+    isBuffer = __webpack_require__(552),
+    isPrototype = __webpack_require__(526),
+    isTypedArray = __webpack_require__(553);
+
+/** `Object#toString` result references. */
+var mapTag = '[object Map]',
+    setTag = '[object Set]';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Checks if `value` is an empty object, collection, map, or set.
+ *
+ * Objects are considered empty if they have no own enumerable string keyed
+ * properties.
+ *
+ * Array-like values such as `arguments` objects, arrays, buffers, strings, or
+ * jQuery-like collections are considered empty if they have a `length` of `0`.
+ * Similarly, maps and sets are considered empty if they have a `size` of `0`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is empty, else `false`.
+ * @example
+ *
+ * _.isEmpty(null);
+ * // => true
+ *
+ * _.isEmpty(true);
+ * // => true
+ *
+ * _.isEmpty(1);
+ * // => true
+ *
+ * _.isEmpty([1, 2, 3]);
+ * // => false
+ *
+ * _.isEmpty({ 'a': 1 });
+ * // => false
+ */
+function isEmpty(value) {
+  if (value == null) {
+    return true;
+  }
+  if (isArrayLike(value) &&
+      (isArray(value) || typeof value == 'string' || typeof value.splice == 'function' ||
+        isBuffer(value) || isTypedArray(value) || isArguments(value))) {
+    return !value.length;
+  }
+  var tag = getTag(value);
+  if (tag == mapTag || tag == setTag) {
+    return !value.size;
+  }
+  if (isPrototype(value)) {
+    return !baseKeys(value).length;
+  }
+  for (var key in value) {
+    if (hasOwnProperty.call(value, key)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+module.exports = isEmpty;
 
 
 /***/ })

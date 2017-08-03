@@ -11,6 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const _groupBy = require('lodash/groupBy');
 const _map = require('lodash/map');
+const _isEmpty = require('lodash/isEmpty');
 const ClientCheckboxes = require('./ClientCheckboxes');
 const CollaboratorCheckboxes = require('./CollaboratorCheckboxes');
 const ImageBoard = require('../drag_drop/ImageBoard');
@@ -166,10 +167,10 @@ class FormProject extends React.Component {
   }
 
   allProjectImages() {
-    let images = this.state.images_ids_attached_data.filter(img => {
-      return !this.state.images_ids_detach.includes(img.id);
+    let { images_ids_to_attach, images_ids_attached_data, images_ids_detach } = this.state;
+    let images = images_ids_attached_data.filter(img => {
+      return !images_ids_detach.includes(img.id);
     });
-    let { images_ids_to_attach } = this.state;
     let allImages = images.concat(images_ids_to_attach);
 
     return allImages;
@@ -355,13 +356,9 @@ class FormProject extends React.Component {
                 <div className="col-sm-10">
                     <div className="row">
                       <div className="col-sm-12">
-
-                      {this.state.images_ids_attached_data.length > 0 ?
                         <ImageBoard
                           images={this.sortedProjectImages(this.allProjectImages(), this.state.image_sort_order)}
-                          updateSortOrder={this.updateSortOrder} /> :
-                      null}
-
+                          updateSortOrder={this.updateSortOrder} />
                       </div>
                     </div>
                     <button

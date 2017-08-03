@@ -97,7 +97,7 @@ class ImageBoard extends Component {
 
   render() {
     const { connectDropTarget } = this.props;
-    const { images, imageSortOrder } = this.state;    
+    const { images } = this.state;
 
     return connectDropTarget(
       <div>

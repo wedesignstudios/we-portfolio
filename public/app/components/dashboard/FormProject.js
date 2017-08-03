@@ -237,7 +237,6 @@ class FormProject extends React.Component {
 
   render() {
     const { image_sort_order } = this.state;
-    console.log('FormProject Sort Order: ', image_sort_order);
     return (
       <div className="row justify-content-center">
         <div className="col-sm-6">

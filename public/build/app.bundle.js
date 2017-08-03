@@ -15423,7 +15423,6 @@ var FormProject = function (_React$Component) {
 
       var image_sort_order = this.state.image_sort_order;
 
-      console.log('FormProject Sort Order: ', image_sort_order);
       return _react2.default.createElement(
         'div',
         { className: 'row justify-content-center' },

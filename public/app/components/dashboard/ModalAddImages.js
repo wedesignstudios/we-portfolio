@@ -140,7 +140,8 @@ class ModalAddImages extends Component {
                   detach={this.props.detach}
                   toAttach={this.props.toAttach}
                   imageAddSuccess={this.state.imageAddSuccess}
-                  resetImageAdded={this.resetImageAdded} /> :
+                  resetImageAdded={this.resetImageAdded}
+                  addOrRemoveToAttachedFromSortArr = {this.props.addOrRemoveToAttachedFromSortArr} /> :
               null}
               {this.props.parentForm === 'newsStory' ?
                 <GetImagesNewsStory

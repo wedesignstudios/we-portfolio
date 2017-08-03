@@ -9,8 +9,11 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
+const _groupBy = require('lodash/groupBy');
+const _map = require('lodash/map');
 const ClientCheckboxes = require('./ClientCheckboxes');
 const CollaboratorCheckboxes = require('./CollaboratorCheckboxes');
+const ImageBoard = require('../drag_drop/ImageBoard');
 const ModalAddImages = require('./ModalAddImages');
 const ProjectCategoriesCheckboxes = require('./ProjectCategoriesCheckboxes');
 const DataActions = require('../../data/actions');
@@ -32,6 +35,7 @@ class FormProject extends React.Component {
       images_ids_attached: [],
       images_ids_attached_data: [],
       images_ids_detach: [],
+      image_sort_order: [],
       clients_ids: [],
       clients_ids_attached: [],
       clients_ids_detach: [],
@@ -56,10 +60,11 @@ class FormProject extends React.Component {
     this.requiredFields = ['name', 'date', 'description'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
+    this.updateSortOrder = this.updateSortOrder.bind(this);
+    this.addOrRemoveToAttachedFromSortArr = this.addOrRemoveToAttachedFromSortArr.bind(this);
     this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/projects', this.state.submitError);
     this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
-
 
   componentDidMount() {    
     if(this.props.projectId) {
@@ -84,6 +89,7 @@ class FormProject extends React.Component {
         if(data.images) {
           this.setAttachedAndSelected(data.images, 'images');
           this.setAttachedData(data.images, 'images');
+          this.setState({image_sort_order: this.getSortOrder(data.images)});
         }
       })
       .catch((err) => {
@@ -98,8 +104,9 @@ class FormProject extends React.Component {
     return true;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['nameErr', 'dateErr', 'descriptionErr']);
+    this.sortedProjectImages(this.allProjectImages(), this.state.image_sort_order);
   }
 
   setAttachedAndSelected(dataModel, dataModelName) {
@@ -158,19 +165,49 @@ class FormProject extends React.Component {
     );
   }
 
-  showAttachedImages() {
+  allProjectImages() {
     let images = this.state.images_ids_attached_data.filter(img => {
       return !this.state.images_ids_detach.includes(img.id);
     });
+    let { images_ids_to_attach } = this.state;
+    let allImages = images.concat(images_ids_to_attach);
 
-    return images.map((img, i) => {
-      return <img
-          key={i}
-          id={img.id}
-          src={img.url}
-          className="mb-3 mr-3"
-          height="100" />
-    })
+    return allImages;
+  }
+
+  getSortOrder(allImages) {
+    return allImages.map(img => img.id);
+  }
+
+  updateSortOrder(updatedSortOrder) {
+    this.setState({image_sort_order: updatedSortOrder});
+  }
+
+  addOrRemoveToAttachedFromSortArr(event) {
+    let { image_sort_order } = this.state;
+    let target = event.target;
+    let id = parseInt(target.id);
+
+    if(!image_sort_order.includes(id)) {
+      image_sort_order.push(id);
+    } else {
+      let index = image_sort_order.indexOf(id);
+      image_sort_order.splice(index, 1);
+    }
+
+    this.setState({image_sort_order: image_sort_order});
+  }
+
+  groupImagesById(imagesArr) {
+    return _groupBy(imagesArr, 'id');
+  }
+
+  sortedProjectImages(imagesArr, sortArr) {
+    let group = this.groupImagesById(imagesArr);
+
+    return _map(sortArr, function (i) {
+      return group[i].shift();
+    });
   }
 
   submitForm(event) {
@@ -198,6 +235,8 @@ class FormProject extends React.Component {
   }
 
   render() {
+    const { image_sort_order } = this.state;
+    console.log('FormProject Sort Order: ', image_sort_order);
     return (
       <div className="row justify-content-center">
         <div className="col-sm-6">
@@ -316,17 +355,13 @@ class FormProject extends React.Component {
                 <div className="col-sm-10">
                     <div className="row">
                       <div className="col-sm-12">
-                        {this.showAttachedImages()}
 
-                        {this.state.images_ids_to_attach.map((image, i) => {
-                          return <img
-                              key={i}
-                              id={image.id}
-                              src={image.url}
-                              className="mb-3 mr-3"
-                              height="100" />
-                        })}
-                        {console.log(this.state.images_ids_to_attach)}
+                      {this.state.images_ids_attached_data.length > 0 ?
+                        <ImageBoard
+                          images={this.sortedProjectImages(this.allProjectImages(), this.state.image_sort_order)}
+                          updateSortOrder={this.updateSortOrder} /> :
+                      null}
+
                       </div>
                     </div>
                     <button
@@ -345,7 +380,8 @@ class FormProject extends React.Component {
                 detach={this.state.images_ids_detach}
                 toAttach={this.state.images_ids}
                 toAttachImgUrls={this.state.images_ids_to_attach}
-                clearModalErrs={this.state.clearModalErrs} />
+                clearModalErrs={this.state.clearModalErrs}
+                addOrRemoveToAttachedFromSortArr = {this.addOrRemoveToAttachedFromSortArr} />
 
               <ClientCheckboxes
                 preSelected={this.state.clients_ids_selected}

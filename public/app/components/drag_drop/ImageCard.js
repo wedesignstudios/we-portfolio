@@ -5,12 +5,6 @@ import { DragSource, DropTarget } from 'react-dnd';
 
 const _flow = require('lodash/flow');
 
-const style = {
-  cursor: 'move',
-  display: 'inline-block',
-  marginRight: '1.5rem'
-};
-
 const cardSource = {
   beginDrag(props) {
     return {
@@ -24,7 +18,6 @@ const cardSource = {
 
     if(didDrop) {
       props.setSortOrder();
-      console.log('didDrop');
     }
   }
 };
@@ -61,12 +54,12 @@ function collectTarget(connect) {
 class ImageCard extends Component {
   render() {
     const { connectDragSource, isDragging, connectDropTarget } = this.props;
-    const { imgUrl } = this.props;
+    const { id, imgUrl } = this.props;
     const opacity = isDragging ? 0.4 : 1;
 
     return connectDragSource(connectDropTarget(
-      <div style={{ ...style, opacity }}>
-        <img src={imgUrl} width="100" />
+      <div className="image-card" style={{ opacity }}>
+        <img id={id} src={imgUrl} width="100" />
       </div>
     ))
   }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const DateFormatter = require('../../services/date_formatter');
 const FormValidations = require('../../services/form_validations');
+const _groupBy = require('lodash/groupBy');
 
 class GetProjects extends Component {
   constructor(props) {
@@ -76,12 +77,29 @@ class GetProjects extends Component {
             <div className="row">
               {this.state.projectsData.map(project => {
                 let projectDate = new Date(project.date);
+                let projectImagesGroups = _groupBy(project.images, 'id');
+                let coverImage;
+
+                if(project.project_images_sort_order.images_order) {
+                  let coverImageId = project.project_images_sort_order.images_order[0];
+                  coverImage = projectImagesGroups[coverImageId];
+                }
+
                 return (
                   <div className="col-sm-2 mb-4" key={project.id}>
                     <div className="card line-height-1-25-rem">
                       {project.images.length > 0 ?
                         <Link to={`${this.props.match.url}/${project.id}/update`}>
-                          <img className="card-img-top img-fluid" src={project.images[0].url} alt={project.images[0].alt} />
+                          {coverImage ?
+                            <img
+                              className="card-img-top img-fluid"
+                              src={coverImage[0].url}
+                              alt={coverImage[0].alt} /> :
+                            <img
+                              className="card-img-top img-fluid"
+                              src={project.images[0].url}
+                              alt={project.images[0].alt} />
+                          }
                         </Link> :
                       null}
                       <div className="card-block p-3">

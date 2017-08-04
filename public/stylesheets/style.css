@@ -110,4 +110,10 @@ form textarea.form-control {
       align-self: flex-end;
       margin: 0.5rem 0.75rem; }
 
+.image-card {
+  cursor: move;
+  display: inline-block;
+  margin-bottom: 1rem;
+  margin-right: 1.5rem; }
+
 /*# sourceMappingURL=style.css.map */

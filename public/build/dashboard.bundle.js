@@ -5503,7 +5503,9 @@ var FormHandlers = {
 
     this.attachDetachValue(attached, value, detach, toAttach);
 
-    this.attachDetachImage(target, attached, toAttachImgUrls);
+    if (name === 'image_ids') {
+      this.attachDetachImage(target, attached, toAttachImgUrls);
+    }
 
     this.selectValue(selected, value);
 
@@ -17060,7 +17062,11 @@ var FormProject = function (_React$Component) {
           if (data.images) {
             _this2.setAttachedAndSelected(data.images, 'images');
             _this2.setAttachedData(data.images, 'images');
-            _this2.setState({ image_sort_order: _this2.getSortOrder(data.images) });
+            if (data.project_images_sort_order.images_order) {
+              _this2.setState({ image_sort_order: data.project_images_sort_order.images_order });
+            } else {
+              _this2.setState({ image_sort_order: _this2.getSortOrder(data.images) });
+            }
           }
         }).catch(function (err) {
           console.error(err);
@@ -36323,6 +36329,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var DateFormatter = __webpack_require__(125);
 var FormValidations = __webpack_require__(17);
+var _groupBy = __webpack_require__(94);
 
 var GetProjects = function (_Component) {
   _inherits(GetProjects, _Component);
@@ -36429,6 +36436,14 @@ var GetProjects = function (_Component) {
               { className: 'row' },
               this.state.projectsData.map(function (project) {
                 var projectDate = new Date(project.date);
+                var projectImagesGroups = _groupBy(project.images, 'id');
+                var coverImage = void 0;
+
+                if (project.project_images_sort_order.images_order) {
+                  var coverImageId = project.project_images_sort_order.images_order[0];
+                  coverImage = projectImagesGroups[coverImageId];
+                }
+
                 return _react2.default.createElement(
                   'div',
                   { className: 'col-sm-2 mb-4', key: project.id },
@@ -36438,7 +36453,13 @@ var GetProjects = function (_Component) {
                     project.images.length > 0 ? _react2.default.createElement(
                       _reactRouterDom.Link,
                       { to: _this4.props.match.url + '/' + project.id + '/update' },
-                      _react2.default.createElement('img', { className: 'card-img-top img-fluid', src: project.images[0].url, alt: project.images[0].alt })
+                      coverImage ? _react2.default.createElement('img', {
+                        className: 'card-img-top img-fluid',
+                        src: coverImage[0].url,
+                        alt: coverImage[0].alt }) : _react2.default.createElement('img', {
+                        className: 'card-img-top img-fluid',
+                        src: project.images[0].url,
+                        alt: project.images[0].alt })
                     ) : null,
                     _react2.default.createElement(
                       'div',
@@ -38239,8 +38260,6 @@ module.exports = _flow([(0, _reactDnd.DropTarget)(_ItemTypes.ItemTypes.CARD, car
 "use strict";
 
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(2);
@@ -38265,12 +38284,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var _flow = __webpack_require__(171);
 
-var style = {
-  cursor: 'move',
-  display: 'inline-block',
-  marginRight: '1.5rem'
-};
-
 var cardSource = {
   beginDrag: function beginDrag(props) {
     return {
@@ -38283,7 +38296,6 @@ var cardSource = {
 
     if (didDrop) {
       props.setSortOrder();
-      console.log('didDrop');
     }
   }
 };
@@ -38337,14 +38349,16 @@ var ImageCard = function (_Component) {
           connectDragSource = _props.connectDragSource,
           isDragging = _props.isDragging,
           connectDropTarget = _props.connectDropTarget;
-      var imgUrl = this.props.imgUrl;
+      var _props2 = this.props,
+          id = _props2.id,
+          imgUrl = _props2.imgUrl;
 
       var opacity = isDragging ? 0.4 : 1;
 
       return connectDragSource(connectDropTarget(_react2.default.createElement(
         'div',
-        { style: _extends({}, style, { opacity: opacity }) },
-        _react2.default.createElement('img', { src: imgUrl, width: '100' })
+        { className: 'image-card', style: { opacity: opacity } },
+        _react2.default.createElement('img', { id: id, src: imgUrl, width: '100' })
       )));
     }
   }]);

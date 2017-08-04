@@ -8,8 +8,6 @@ const ProjectImagesSortOrder = bookshelf.Model.extend({
   project: function() {
     return this.belongsTo('Project', 'project_id');
   }
-}, {
-  dependents: ['project']
 });
 
 module.exports = bookshelf.model('ProjectImagesSortOrder', ProjectImagesSortOrder);

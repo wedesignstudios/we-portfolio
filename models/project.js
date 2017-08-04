@@ -29,7 +29,7 @@ const Project = bookshelf.Model.extend({
     return this.hasOne('ProjectImagesSortOrder');
   }
 }, {
-  dependents: ['clients', 'collaborators', 'images', 'project_categories']
+  dependents: ['clients', 'collaborators', 'images', 'project_categories', 'project_images_sort_order']
 });
 
 module.exports = bookshelf.model('Project', Project);

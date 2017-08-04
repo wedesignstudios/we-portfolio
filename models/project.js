@@ -7,6 +7,7 @@ const ProjectCategory = require('./project_category');
 const ProjectsClients = require('./projects_clients');
 const ProjectsCollaborators = require('./projects_collaborators');
 const ProjectsProjectCategories = require('./projects_project_categories');
+const ProjectImagesSortOrder = require('./project_images_sort_order');
 
 const Project = bookshelf.Model.extend({
   tableName: 'projects',
@@ -23,6 +24,9 @@ const Project = bookshelf.Model.extend({
   },
   project_categories: function() {
     return this.belongsToMany('ProjectCategory').through('ProjectsProjectCategories');
+  },
+  project_images_sort_order: function() {
+    return this.hasOne('ProjectImagesSortOrder');
   }
 }, {
   dependents: ['clients', 'collaborators', 'images', 'project_categories']

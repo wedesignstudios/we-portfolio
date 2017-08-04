@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     .collection()
     .orderBy('name', 'ASC')
     .fetch({
-      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories'],
+      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories', 'project_images_sort_order'],
       debug: true
     })
     .then((projects) => {
@@ -30,7 +30,7 @@ router.get('/:id', (req, res, next) => {
   Project
     .forge({id: req.params.id})
     .fetch({
-      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories'],
+      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories', 'project_images_sort_order'],
       debug: true
     })
     .then((project) => {

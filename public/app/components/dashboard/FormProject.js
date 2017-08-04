@@ -90,7 +90,11 @@ class FormProject extends React.Component {
         if(data.images) {
           this.setAttachedAndSelected(data.images, 'images');
           this.setAttachedData(data.images, 'images');
-          this.setState({image_sort_order: this.getSortOrder(data.images)});
+          if(data.project_images_sort_order.images_order) {
+            this.setState({image_sort_order: data.project_images_sort_order.images_order});
+          } else {
+            this.setState({image_sort_order: this.getSortOrder(data.images)});
+          }
         }
       })
       .catch((err) => {

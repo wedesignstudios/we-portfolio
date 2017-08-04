@@ -49,7 +49,9 @@ const FormHandlers = {
 
     this.attachDetachValue(attached, value, detach, toAttach);
 
-    this.attachDetachImage(target, attached, toAttachImgUrls);
+    if(name === 'image_ids') {
+      this.attachDetachImage(target, attached, toAttachImgUrls);
+    }
 
     this.selectValue(selected, value);
 

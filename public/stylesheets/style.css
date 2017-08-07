@@ -1,4 +1,20 @@
 @charset "UTF-8";
+.muli-reg {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400; }
+
+.muli-bold {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.06rem; }
+
+.muli-extra-bold {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 900; }
+
 html {
   font-size: 16px; }
 
@@ -53,23 +69,26 @@ textarea.err {
 .list-inline-item-separator:last-child:after {
   content: ''; }
 
-#navbar-main {
-  background-color: #00B7FF; }
-  #navbar-main ul li {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: 0.06rem;
-    text-transform: uppercase; }
-    #navbar-main ul li#nav-we-eye-logo a:hover {
-      box-shadow: none; }
-    #navbar-main ul li a {
-      color: #FFFFFF; }
-      #navbar-main ul li a.nav-active, #navbar-main ul li a:hover {
-        box-shadow: 0 7px 0 #E6E31A;
-        display: inline-block; }
-      #navbar-main ul li a.nav-link {
-        display: inline-block;
-        padding: 0.5rem 0; }
+#navbar-main ul li {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase; }
+  #navbar-main ul li#nav-we-eye-logo a:hover {
+    box-shadow: none; }
+  #navbar-main ul li a {
+    color: #FFFFFF; }
+    #navbar-main ul li a.nav-active, #navbar-main ul li a:hover {
+      box-shadow: 0 7px 0 #E6E31A;
+      display: inline-block; }
+    #navbar-main ul li a.nav-link {
+      display: inline-block;
+      padding: 0.5rem 0; }
+
+#footer {
+  background-color: #000000;
+  color: #FFFFFF;
+  min-height: 10rem; }
 
 form .Select-control {
   border-color: none;
@@ -115,5 +134,19 @@ form textarea.form-control {
   display: inline-block;
   margin-bottom: 1rem;
   margin-right: 1.5rem; }
+
+.image-full-width {
+  height: 100vh;
+  overflow: hidden;
+  position: relative; }
+  .image-full-width .image-full-width-container {
+    width: 100%; }
+  .image-full-width .image-full-width-text {
+    bottom: 3rem;
+    color: white;
+    display: block;
+    max-width: 100%;
+    position: absolute;
+    width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

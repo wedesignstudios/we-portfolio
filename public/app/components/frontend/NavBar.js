@@ -8,7 +8,7 @@ import {
 class NavBar extends Component {
   render() {
     return (
-      <div id="navbar-main" className="row justify-content-center">
+      <nav id="navbar-main" className="row justify-content-center mt-3">
         <div className="col-9">
           <ul className="nav nav-justified align-items-center justify-content-center">
             <li className="nav-item">
@@ -28,7 +28,7 @@ class NavBar extends Component {
             </li>
           </ul>
         </div>
-      </div>
+      </nav>
     );
   }
 }

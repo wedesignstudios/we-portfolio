@@ -64191,8 +64191,8 @@ var NavBar = function (_Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
-        { id: 'navbar-main', className: 'row justify-content-center' },
+        'nav',
+        { id: 'navbar-main', className: 'row justify-content-center mt-3' },
         _react2.default.createElement(
           'div',
           { className: 'col-9' },
@@ -64693,8 +64693,12 @@ var Layout = function (_Component) {
         _react2.default.createElement(
           'div',
           null,
-          this.props.auth ? _react2.default.createElement(NavAdmin, null) : null,
-          _react2.default.createElement(NavBar, null),
+          _react2.default.createElement(
+            'nav',
+            { className: 'fixed-top' },
+            this.props.auth ? _react2.default.createElement(NavAdmin, null) : null,
+            _react2.default.createElement(NavBar, null)
+          ),
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
@@ -64756,8 +64760,21 @@ var Index = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
-        'Inside Index Component!'
+        { className: 'row justify-content-center m-0 image-full-width' },
+        _react2.default.createElement(
+          'div',
+          { className: 'col p-0 image-full-width-container' },
+          _react2.default.createElement('img', { className: 'img-fluid', src: 'https://we-portfolio.s3.amazonaws.com/LAURA_WEST_TX.jpg', alt: 'Laura out in West Texas' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'col p-0 image-full-width-text' },
+          _react2.default.createElement(
+            'h5',
+            { className: 'muli-bold d-flex justify-content-center' },
+            'WE DESIGN STUDIOS'
+          )
+        )
       );
     }
   }]);

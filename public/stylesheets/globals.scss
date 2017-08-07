@@ -1,4 +1,23 @@
 // Global styles
+.muli-reg {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+}
+
+.muli-bold {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.06rem;
+}
+
+.muli-extra-bold {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 900;
+}
+
 html {
   font-size: 16px;
 }

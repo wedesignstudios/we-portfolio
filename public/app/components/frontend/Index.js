@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-class HomeLayout extends Component {
+class Index extends Component {
   render() {
     return (
       <div>
-        Inside HomeLayout Component!
+        Inside Index Component!
       </div>
     );
   }
 }
 
-module.exports = HomeLayout;
+module.exports = Index;

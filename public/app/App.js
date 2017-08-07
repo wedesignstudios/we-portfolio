@@ -10,7 +10,7 @@ import {
   withRouter
 } from 'react-router-dom';
 
-const Home = require('./components/frontend/Home');
+const Layout = require('./components/frontend/Layout');
 const Dashboard = require('./components/dashboard/Dashboard');
 const Login = require('./components/dashboard/Login');
 const NotFound = require('./components/dashboard/NotFound');
@@ -66,7 +66,7 @@ class App extends Component {
           <Switch>
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
             <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />
-            <Route path='/' component={props => <Home {...props} auth={this.state.loggedIn} />} />
+            <Route path='/' component={props => <Layout {...props} auth={this.state.loggedIn} />} />
             <Route component={NotFound} />
           </Switch>
         </div>

@@ -13,7 +13,7 @@ import {
 const NavAdmin = require('./NavAdmin');
 const NavBar = require('./NavBar');
 const Footer = require('./Footer');
-const HomeLayout = require('./HomeLayout');
+const Index = require('./Index');
 const About = require('./About');
 const Press = require('./Press');
 const Work = require('./Work');
@@ -21,7 +21,7 @@ const Contact = require('./Contact');
 const Post = require('./Post');
 const NotFound = require('../dashboard/NotFound');
 
-class Home extends Component {
+class Layout extends Component {
   render() {
     return (
       <Router>
@@ -29,7 +29,7 @@ class Home extends Component {
           {this.props.auth ? <NavAdmin /> : null}
           <NavBar />
           <Switch>
-            <Route exact path={this.props.match.url} component={HomeLayout} />
+            <Route exact path={this.props.match.url} component={Index} />
             <Route exact path={`${this.props.match.url}about`} component={About} />
             <Route exact path={`${this.props.match.url}press`} component={Press} />
             <Route exact path={`${this.props.match.url}work`} component={Work} />
@@ -44,4 +44,4 @@ class Home extends Component {
   }
 }
 
-module.exports = Home;
+module.exports = Layout;

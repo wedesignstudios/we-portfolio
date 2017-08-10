@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Select from 'react-select';
 import { Creatable } from 'react-select';
 import 'react-select/dist/react-select.css';
+import 'whatwg-fetch';
 
 const FormHandlers = require('../../services/form_handlers');
 

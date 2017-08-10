@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import 'whatwg-fetch';
 
 const FormHandlers = require('../../services/form_handlers');
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import 'whatwg-fetch';
 
 const DateFormatter = require('../../services/date_formatter');
 const FormValidations = require('../../services/form_validations');

@@ -5,6 +5,7 @@ import {
   withRouter
 } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
+import 'whatwg-fetch';
 
 const DataActions = require('../../data/actions');
 const ModalUpdateImage = require('./ModalUpdateImage');

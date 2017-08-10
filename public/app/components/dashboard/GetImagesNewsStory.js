@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import 'whatwg-fetch';
 
 class GetImagesNewsStory extends React.Component {
   constructor() {

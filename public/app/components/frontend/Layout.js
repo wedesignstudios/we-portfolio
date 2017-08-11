@@ -26,10 +26,10 @@ class Layout extends Component {
     return (
       <Router>
         <div>
-          <nav className="fixed-top">
+          <div className="fixed-top">
             {this.props.auth ? <NavAdmin /> : null}
             <NavBar />
-          </nav>
+          </div>
           <Switch>
             <Route exact path={this.props.match.url} component={Index} />
             <Route exact path={`${this.props.match.url}about`} component={About} />

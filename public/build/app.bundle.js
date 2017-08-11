@@ -64820,11 +64820,13 @@ var NavBar = function (_Component) {
           { className: 'col-xl-9 col-lg-12' },
           _react2.default.createElement(
             'nav',
-            { className: 'navbar navbar-toggleable-sm navbar-light' },
+            { className: 'navbar navbar-toggleable-sm' },
             _react2.default.createElement(
               'button',
-              { className: 'navbar-toggler navbar-toggler-right', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarNav', 'aria-controls': 'navbarNav', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' },
-              _react2.default.createElement('span', { className: 'navbar-toggler-icon' })
+              { className: 'navbar-toggler navbar-toggler-right collapsed', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarNav', 'aria-controls': 'navbarNav', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' },
+              _react2.default.createElement('span', { className: 'icon-bar' }),
+              _react2.default.createElement('span', { className: 'icon-bar' }),
+              _react2.default.createElement('span', { className: 'icon-bar' })
             ),
             _react2.default.createElement(
               'div',

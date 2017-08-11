@@ -98,6 +98,41 @@ textarea.err {
       display: inline-block;
       padding: 0.5rem 0; }
 
+#navbar-main .navbar-toggler .icon-bar {
+  position: relative;
+  top: 0;
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #FFFFFF;
+  margin-bottom: 4px;
+  transition: 300ms ease-in-out; }
+
+#navbar-main .navbar-toggler .icon-bar:last-child {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: -7px; }
+
+#navbar-main .navbar-toggler .icon-bar:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 7px; }
+
+#navbar-main .navbar-toggler .icon-bar:nth-child(2) {
+  opacity: 0; }
+
+#navbar-main .navbar-toggler.collapsed .icon-bar {
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  top: 0;
+  opacity: 1; }
+
 @media (max-width: 1440px) {
   #navbar-main ul li#nav-we-eye-logo img {
     width: 6rem; } }

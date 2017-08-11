@@ -18,6 +18,14 @@
 html {
   font-size: 16px; }
 
+@media (max-width: 900px) {
+  html {
+    font-size: 15px; } }
+
+@media (max-width: 400px) {
+  html {
+    font-size: 13px; } }
+
 body {
   font-family: 'Muli', sans-serif;
   margin: 0; }
@@ -69,6 +77,9 @@ textarea.err {
 .list-inline-item-separator:last-child:after {
   content: ''; }
 
+#navbar-main ul {
+  width: 100%; }
+
 #navbar-main ul li {
   font-size: 1.25rem;
   font-weight: 800;
@@ -76,6 +87,8 @@ textarea.err {
   text-transform: uppercase; }
   #navbar-main ul li#nav-we-eye-logo a:hover {
     box-shadow: none; }
+  #navbar-main ul li#nav-we-eye-logo img {
+    width: 8rem; }
   #navbar-main ul li a {
     color: #FFFFFF; }
     #navbar-main ul li a.nav-active, #navbar-main ul li a:hover {
@@ -84,6 +97,14 @@ textarea.err {
     #navbar-main ul li a.nav-link {
       display: inline-block;
       padding: 0.5rem 0; }
+
+@media (max-width: 1440px) {
+  #navbar-main ul li#nav-we-eye-logo img {
+    width: 6rem; } }
+
+@media only screen and (max-width: 992px) {
+  .nav-justified .nav-item {
+    flex: 0; } }
 
 #footer {
   background-color: #000000;
@@ -135,18 +156,21 @@ form textarea.form-control {
   margin-bottom: 1rem;
   margin-right: 1.5rem; }
 
-.image-full-width {
-  height: 100vh;
-  overflow: hidden;
-  position: relative; }
-  .image-full-width .image-full-width-container {
-    width: 100%; }
-  .image-full-width .image-full-width-text {
-    bottom: 3rem;
-    color: white;
+.image-full-width .img-portrait {
+  display: none; }
+
+@media only screen and (max-width: 800px) {
+  .image-full-width .img-landscape {
+    display: none; }
+  .image-full-width .img-portrait {
     display: block;
-    max-width: 100%;
-    position: absolute;
-    width: 100%; }
+    height: auto;
+    max-width: 100%; } }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 670px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+  .image-full-width .img-landscape {
+    display: block; }
+  .image-full-width .img-portrait {
+    display: none; } }
 
 /*# sourceMappingURL=style.css.map */

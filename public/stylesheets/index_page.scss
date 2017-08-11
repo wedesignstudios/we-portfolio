@@ -1,20 +1,40 @@
 // Index page styles
 
 .image-full-width {
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
 
-  .image-full-width-container {
-    width: 100%;
+  .img-portrait {
+    display: none;
   }
 
-  .image-full-width-text {
-    bottom: 3rem;
-    color: white;
-    display: block;
-    max-width: 100%;
-    position: absolute;    
-    width: 100%;
+}
+
+@media only screen
+  and (max-width: 800px) {
+  .image-full-width {
+
+    .img-landscape {
+      display: none;
+    }
+    .img-portrait {
+      display: block;
+      height: auto;
+      max-width: 100%;
+    }
   }
+}
+
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 670px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    .image-full-width {
+
+      .img-landscape {
+        display: block;
+      }
+      .img-portrait {
+        display: none;
+      }
+    }
 }

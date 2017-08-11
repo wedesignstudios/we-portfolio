@@ -64820,7 +64820,7 @@ var NavBar = function (_Component) {
           { className: 'col-xl-9 col-lg-12' },
           _react2.default.createElement(
             'nav',
-            { className: 'navbar navbar-toggleable-md navbar-light' },
+            { className: 'navbar navbar-toggleable-sm navbar-light' },
             _react2.default.createElement(
               'button',
               { className: 'navbar-toggler navbar-toggler-right', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarNav', 'aria-controls': 'navbarNav', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' },

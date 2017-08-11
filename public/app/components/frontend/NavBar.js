@@ -10,7 +10,7 @@ class NavBar extends Component {
     return (
       <div id="navbar-main" className="row justify-content-center mt-3">
         <div className="col-xl-9 col-lg-12">
-          <nav className="navbar navbar-toggleable-md navbar-light">
+          <nav className="navbar navbar-toggleable-sm navbar-light">
 
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

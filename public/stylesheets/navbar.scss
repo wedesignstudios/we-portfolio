@@ -1,5 +1,9 @@
 // Navbar component styles
 #navbar-main {
+  ul {
+    width: 100%;
+  }
+
   ul li {
     font-size: 1.25rem;
     font-weight: 800;
@@ -8,6 +12,10 @@
 
   &#nav-we-eye-logo a:hover {
     box-shadow: none; 
+  }
+
+  &#nav-we-eye-logo img {
+    width: 8rem;
   }
 
   a {
@@ -23,5 +31,21 @@
         padding: 0.5rem 0;
       }
     }
+  }
+}
+
+@media (max-width: 1440px) {
+  #navbar-main {
+    ul li {
+      &#nav-we-eye-logo img {
+        width: 6rem;
+      }      
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .nav-justified .nav-item {
+    flex: 0;
   }
 }

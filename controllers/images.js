@@ -68,11 +68,19 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
   let updatedBuffer;
 
   let gmPromise = new Promise((resolve, reject) => {
+
     gm(req.file.buffer, req.file.originalname)
+      // Resolve if SVG
+      .identify((err, val) => {
+        if (val.format === 'MVG') {
+          updatedBuffer = req.file.buffer;
+          resolve('SVG file. Skipping GM methods.');
+        }
+      })
       .autoOrient()
       .noProfile()
       .toBuffer((err, buffer) => {
-        if (err) return handle(err);
+        if (err) return console.error(err);
         updatedBuffer = buffer;
         resolve('Success!');
       })

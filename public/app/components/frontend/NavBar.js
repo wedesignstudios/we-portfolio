@@ -6,20 +6,46 @@ import {
 } from 'react-router-dom';
 
 class NavBar extends Component {
-  render() {
-    return (
-      <div id="navbar-main" className="row justify-content-center mt-3">
-        <div className="col-xl-9 col-lg-12">
-          <nav className="navbar navbar-toggleable-sm">
+  constructor() {
+    super();
+    this.state ={
+      navOpen: false
+    }
+  }
 
-            <button className="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  navOpened() {
+    this.setState({navOpen: !this.state.navOpen})
+  }
+
+  closeNav() {
+    $("#navbarNav").collapse('hide');
+  }
+
+  render() {
+    let { navOpen } = this.state;
+    return (
+      <div id="navbar-main" className="row justify-content-center">
+        <div className="col-xl-9 col-lg-12">
+          <nav className={"navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened' : '')}>
+            <button
+              className="navbar-toggler navbar-toggler-right collapsed"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              onClick={(e) => this.navOpened(e)} >
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
             </button>
+            <a className="navbar-brand" href="/">
+              <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg" alt="WE eye logo" />
+            </a>
 
             <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav nav-justified align-items-center justify-content-center">
+              <ul className="navbar-nav nav-justified align-items-center justify-content-center" onClick={(e) => { this.navOpened(e); this.closeNav(e) }}>
                 <li className="nav-item">
                   <NavLink to="/work" className="nav-link" activeClassName="nav-active">Work</NavLink>
                 </li>

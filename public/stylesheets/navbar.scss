@@ -1,5 +1,6 @@
 // Navbar component styles
 #navbar-main {
+  margin-top: 1rem;
 
   ul {
     width: 100%;
@@ -30,11 +31,23 @@
       &.nav-link {
         display: inline-block;
         padding: 0.5rem 0;
+        margin-bottom: 1rem;
       }
     }
   }
+
+  .navbar {
+    transition: 300ms ease-in-out;
+
+    &.nav-opened {
+      background-color: $black;
+    }
+  }
+
   
-  .navbar-toggler {      
+  .navbar-toggler {
+    padding: 0.75rem 0.75rem 0.25rem;
+
       .icon-bar {
         position: relative;
         top: 0;
@@ -75,6 +88,14 @@
   }
 }
 
+.navbar-brand {
+  padding: 0.25rem 0.75rem;
+
+  img {
+    width: 3rem;
+  }
+}
+
 @media (max-width: 1440px) {
   #navbar-main {
     ul li {
@@ -86,7 +107,25 @@
 }
 
 @media only screen and (max-width: 767px) {
+  #navbar-main {
+    margin-top: 0;
+  }
+
+  #nav-we-eye-logo {
+      display: none;
+  }
+
+  .navbar {
+    padding: 1.5rem 1rem;
+  }
+
   .nav-justified .nav-item {
     flex: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar-brand {
+    display: none;
   }
 }

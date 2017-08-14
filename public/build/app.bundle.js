@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 662);
+/******/ 	return __webpack_require__(__webpack_require__.s = 661);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -64806,34 +64806,70 @@ var NavBar = function (_Component) {
   function NavBar() {
     _classCallCheck(this, NavBar);
 
-    return _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this));
+
+    _this.state = {
+      navOpen: false
+    };
+    return _this;
   }
 
   _createClass(NavBar, [{
+    key: 'navOpened',
+    value: function navOpened() {
+      this.setState({ navOpen: !this.state.navOpen });
+    }
+  }, {
+    key: 'closeNav',
+    value: function closeNav() {
+      $("#navbarNav").collapse('hide');
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var navOpen = this.state.navOpen;
+
       return _react2.default.createElement(
         'div',
-        { id: 'navbar-main', className: 'row justify-content-center mt-3' },
+        { id: 'navbar-main', className: 'row justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-xl-9 col-lg-12' },
           _react2.default.createElement(
             'nav',
-            { className: 'navbar navbar-toggleable-sm' },
+            { className: "navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened' : '') },
             _react2.default.createElement(
               'button',
-              { className: 'navbar-toggler navbar-toggler-right collapsed', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarNav', 'aria-controls': 'navbarNav', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' },
+              {
+                className: 'navbar-toggler navbar-toggler-right collapsed',
+                type: 'button',
+                'data-toggle': 'collapse',
+                'data-target': '#navbarNav',
+                'aria-controls': 'navbarNav',
+                'aria-expanded': 'false',
+                'aria-label': 'Toggle navigation',
+                onClick: function onClick(e) {
+                  return _this2.navOpened(e);
+                } },
               _react2.default.createElement('span', { className: 'icon-bar' }),
               _react2.default.createElement('span', { className: 'icon-bar' }),
               _react2.default.createElement('span', { className: 'icon-bar' })
+            ),
+            _react2.default.createElement(
+              'a',
+              { className: 'navbar-brand', href: '/' },
+              _react2.default.createElement('img', { src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg', alt: 'WE eye logo' })
             ),
             _react2.default.createElement(
               'div',
               { className: 'collapse navbar-collapse', id: 'navbarNav' },
               _react2.default.createElement(
                 'ul',
-                { className: 'navbar-nav nav-justified align-items-center justify-content-center' },
+                { className: 'navbar-nav nav-justified align-items-center justify-content-center', onClick: function onClick(e) {
+                    _this2.navOpened(e);_this2.closeNav(e);
+                  } },
                 _react2.default.createElement(
                   'li',
                   { className: 'nav-item' },
@@ -65145,8 +65181,7 @@ var Work = function (_Component) {
 module.exports = Work;
 
 /***/ }),
-/* 661 */,
-/* 662 */
+/* 661 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

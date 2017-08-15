@@ -132,6 +132,8 @@ textarea.err {
       transform: rotate(0deg);
       top: 0;
       opacity: 1; }
+  #navbar-main .navbar.navbar-black a {
+    color: #000000; }
   #navbar-main .navbar.navbar-black .navbar-toggler .icon-bar {
     background: #000000; }
   #navbar-main .navbar.navbar-black.nav-opened .navbar-toggler .icon-bar {

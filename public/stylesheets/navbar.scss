@@ -81,6 +81,10 @@
   }
 
   &.navbar-black {
+    a {
+      color: $black;
+    }
+    
     .navbar-toggler .icon-bar {
       background: $black;
     }

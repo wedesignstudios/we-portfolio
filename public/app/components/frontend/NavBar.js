@@ -58,7 +58,12 @@ class NavBar extends Component {
                   <NavLink to="/about" className="nav-link" activeClassName="nav-active">About</NavLink>
                 </li>
                 <li id="nav-we-eye-logo" className="nav-item">
-                  <Link to="/"><img className="mx-auto"src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg" /></Link>
+                  <Link to="/">
+                    {location === '/' ? 
+                      <img className="mx-auto"src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg" /> :
+                      <img className="mx-auto"src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg" />
+                    }
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <NavLink to="/press" className="nav-link" activeClassName="nav-active">Press</NavLink>

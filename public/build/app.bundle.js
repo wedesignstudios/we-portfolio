@@ -64895,7 +64895,7 @@ var NavBar = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: '/' },
-                    _react2.default.createElement('img', { className: 'mx-auto', src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg' })
+                    location === '/' ? _react2.default.createElement('img', { className: 'mx-auto', src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg' }) : _react2.default.createElement('img', { className: 'mx-auto', src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg' })
                   )
                 ),
                 _react2.default.createElement(

@@ -64822,7 +64822,7 @@ var NavBar = function (_Component) {
   }, {
     key: 'closeNav',
     value: function closeNav() {
-      $("#navbarNav").collapse('hide');
+      $("#navbar-nav").collapse('hide');
     }
   }, {
     key: 'render',
@@ -64831,6 +64831,7 @@ var NavBar = function (_Component) {
 
       var navOpen = this.state.navOpen;
 
+      var location = this.props.location.pathname;
       return _react2.default.createElement(
         'div',
         { id: 'navbar-main', className: 'row justify-content-center' },
@@ -64839,15 +64840,15 @@ var NavBar = function (_Component) {
           { className: 'col-xl-9 col-lg-12' },
           _react2.default.createElement(
             'nav',
-            { className: "navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened' : '') },
+            { className: "navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened' : '') + (location !== '/' ? ' navbar-black' : '') },
             _react2.default.createElement(
               'button',
               {
                 className: 'navbar-toggler navbar-toggler-right collapsed',
                 type: 'button',
                 'data-toggle': 'collapse',
-                'data-target': '#navbarNav',
-                'aria-controls': 'navbarNav',
+                'data-target': '#navbar-nav',
+                'aria-controls': 'navbar-nav',
                 'aria-expanded': 'false',
                 'aria-label': 'Toggle navigation',
                 onClick: function onClick(e) {
@@ -64860,11 +64861,11 @@ var NavBar = function (_Component) {
             _react2.default.createElement(
               'a',
               { className: 'navbar-brand', href: '/' },
-              _react2.default.createElement('img', { src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg', alt: 'WE eye logo' })
+              navOpen || location === '/' ? _react2.default.createElement('img', { src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg', alt: 'WE eye logo' }) : _react2.default.createElement('img', { src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg', alt: 'WE eye logo' })
             ),
             _react2.default.createElement(
               'div',
-              { className: 'collapse navbar-collapse', id: 'navbarNav' },
+              { id: 'navbar-nav', className: 'collapse navbar-collapse' },
               _react2.default.createElement(
                 'ul',
                 { className: 'navbar-nav nav-justified align-items-center justify-content-center', onClick: function onClick(e) {
@@ -64926,7 +64927,7 @@ var NavBar = function (_Component) {
   return NavBar;
 }(_react.Component);
 
-module.exports = NavBar;
+module.exports = (0, _reactRouterDom.withRouter)(NavBar);
 
 /***/ }),
 /* 657 */

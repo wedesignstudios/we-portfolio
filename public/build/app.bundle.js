@@ -64423,6 +64423,7 @@ var Layout = function (_Component) {
     };
 
     _this.navReady = _this.navReady.bind(_this);
+    _this.navNotReady = _this.navNotReady.bind(_this);
     _this.navContainerHeight;
     return _this;
   }
@@ -64431,7 +64432,7 @@ var Layout = function (_Component) {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps, nextState) {
       // Get height of #nav-container
-      if (this.state !== nextState) {
+      if (this.state !== nextState && nextState.navBarReady !== false) {
         this.navContainerHeight = document.getElementById('nav-container').clientHeight;
       }
     }
@@ -64439,6 +64440,11 @@ var Layout = function (_Component) {
     key: 'navReady',
     value: function navReady(navName) {
       this.setState(_defineProperty({}, navName + 'Ready', true));
+    }
+  }, {
+    key: 'navNotReady',
+    value: function navNotReady(navName) {
+      this.setState(_defineProperty({}, navName + 'Ready', false));
     }
   }, {
     key: 'render',
@@ -64455,30 +64461,34 @@ var Layout = function (_Component) {
             'div',
             { id: 'nav-container', className: 'fixed-top' },
             this.props.auth ? _react2.default.createElement(NavAdmin, { navReady: this.navReady }) : null,
-            _react2.default.createElement(NavBar, { navReady: this.navReady })
+            _react2.default.createElement(NavBar, { navReady: this.navReady, navNotReady: this.navNotReady })
           ),
-          _react2.default.createElement(
-            _reactRouterDom.Switch,
+          this.state.navBarReady ? _react2.default.createElement(
+            'span',
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url, component: Index }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', render: function render(props) {
-                return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeight }));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', render: function render(props) {
-                return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeight }));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', render: function render(props) {
-                return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeight }));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', render: function render(props) {
-                return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeight }));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', render: function render(props) {
-                return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeight }));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
-          ),
-          _react2.default.createElement(Footer, null)
+            _react2.default.createElement(
+              _reactRouterDom.Switch,
+              null,
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url, component: Index }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', render: function render(props) {
+                  return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeight }));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', render: function render(props) {
+                  return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeight }));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', render: function render(props) {
+                  return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeight }));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', render: function render(props) {
+                  return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeight }));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', render: function render(props) {
+                  return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeight }));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+            ),
+            _react2.default.createElement(Footer, null)
+          ) : null
         )
       );
     }
@@ -64860,12 +64870,31 @@ var NavBar = function (_Component) {
     var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this));
 
     _this.state = {
-      navOpen: false
+      navOpen: false,
+      screenWidth: 0
     };
     return _this;
   }
 
   _createClass(NavBar, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.setState({ screenWidth: window.outerWidth });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      var _this2 = this;
+
+      var location = this.props.location.pathname;
+      if (this.state !== nextState && location !== nextProps.location.pathname) {
+        this.props.navNotReady('navBar');
+        setTimeout(function () {
+          _this2.props.navReady('navBar');
+        }, 400);
+      }
+    }
+  }, {
     key: 'navOpened',
     value: function navOpened() {
       this.setState({ navOpen: !this.state.navOpen });
@@ -64878,9 +64907,11 @@ var NavBar = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
-      var navOpen = this.state.navOpen;
+      var _state = this.state,
+          navOpen = _state.navOpen,
+          screenWidth = _state.screenWidth;
 
       var location = this.props.location.pathname;
       return _react2.default.createElement(
@@ -64891,7 +64922,7 @@ var NavBar = function (_Component) {
           { className: 'col-xl-9 col-lg-12' },
           _react2.default.createElement(
             'nav',
-            { className: "navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened' : '') + (location !== '/' ? ' navbar-black' : '') },
+            { className: "navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened ' : '') + (location !== '/' ? 'navbar-black' : '') },
             _react2.default.createElement(
               'button',
               {
@@ -64903,7 +64934,7 @@ var NavBar = function (_Component) {
                 'aria-expanded': 'false',
                 'aria-label': 'Toggle navigation',
                 onClick: function onClick(e) {
-                  return _this2.navOpened(e);
+                  return _this3.navOpened(e);
                 } },
               _react2.default.createElement('span', { className: 'icon-bar' }),
               _react2.default.createElement('span', { className: 'icon-bar' }),
@@ -64920,7 +64951,7 @@ var NavBar = function (_Component) {
               _react2.default.createElement(
                 'ul',
                 { className: 'navbar-nav nav-justified align-items-center justify-content-center', onClick: function onClick(e) {
-                    _this2.navOpened(e);_this2.closeNav(e);
+                    _this3.navOpened(e);_this3.closeNav(e);
                   } },
                 _react2.default.createElement(
                   'li',
@@ -64946,16 +64977,16 @@ var NavBar = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: '/' },
-                    location === '/' ? _react2.default.createElement('img', {
+                    location === '/' && screenWidth > 767 ? _react2.default.createElement('img', {
                       className: 'mx-auto',
                       src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg',
                       onLoad: function onLoad(e) {
-                        return _this2.props.navReady('navBar');
+                        return _this3.props.navReady('navBar');
                       } }) : _react2.default.createElement('img', {
                       className: 'mx-auto',
                       src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg',
                       onLoad: function onLoad(e) {
-                        return _this2.props.navReady('navBar');
+                        return _this3.props.navReady('navBar');
                       } })
                   )
                 ),

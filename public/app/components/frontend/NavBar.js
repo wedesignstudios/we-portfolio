@@ -10,7 +10,20 @@ class NavBar extends Component {
   constructor() {
     super();
     this.state ={
-      navOpen: false
+      navOpen: false,
+      screenWidth: 0
+    }
+  }
+
+  componentDidMount() {
+    this.setState({screenWidth: window.outerWidth});
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    let location = this.props.location.pathname;
+    if(this.state !== nextState && location !== nextProps.location.pathname) {
+      this.props.navNotReady('navBar');
+      setTimeout(() => {this.props.navReady('navBar')}, 400);
     }
   }
 
@@ -23,12 +36,12 @@ class NavBar extends Component {
   }
 
   render() {
-    let { navOpen } = this.state;
+    let { navOpen, screenWidth } = this.state;
     let location = this.props.location.pathname;
     return (
       <div id="navbar-main" className="row justify-content-center">
         <div className="col-xl-9 col-lg-12">
-          <nav className={"navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened' : '') + (location !== '/' ? ' navbar-black' : '') }>
+          <nav className={"navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened ' : '') + (location !== '/' ? 'navbar-black' : '') }>
             <button
               className="navbar-toggler navbar-toggler-right collapsed"
               type="button"
@@ -59,7 +72,7 @@ class NavBar extends Component {
                 </li>
                 <li id="nav-we-eye-logo" className="nav-item">
                   <Link to="/">
-                    {location === '/' ? 
+                    {location === '/' && screenWidth > 767 ?
                       <img
                         className="mx-auto"
                         src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg"

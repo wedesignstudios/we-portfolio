@@ -31,12 +31,13 @@ class Layout extends Component {
     }
 
     this.navReady = this.navReady.bind(this);
+    this.navNotReady = this.navNotReady.bind(this);
     this.navContainerHeight;
   }
 
   componentWillUpdate(nextProps, nextState) {
     // Get height of #nav-container
-    if(this.state !== nextState) {
+    if(this.state !== nextState && nextState.navBarReady !== false) {
       this.navContainerHeight = document.getElementById('nav-container').clientHeight;
     }
   }
@@ -45,14 +46,20 @@ class Layout extends Component {
     this.setState({[navName + 'Ready']: true});
   }
 
+  navNotReady(navName) {
+    this.setState({[navName + 'Ready']: false});
+  }
+
   render() {
     return (
       <Router>
         <div>
           <div id="nav-container" className="fixed-top">
             {this.props.auth ? <NavAdmin navReady={this.navReady} /> : null}
-            <NavBar navReady={this.navReady} />
+            <NavBar navReady={this.navReady} navNotReady={this.navNotReady} />
           </div>
+          {this.state.navBarReady ?
+          <span>
           <Switch>
             <Route exact path={this.props.match.url} component={Index} />
             <Route exact path={`${this.props.match.url}about`} render={props => <About {...props} margin={this.navContainerHeight} />} />
@@ -63,6 +70,8 @@ class Layout extends Component {
             <Route component={NotFound} />
           </Switch>
           <Footer />
+          </span>
+          : null}
         </div>
       </Router>
     );

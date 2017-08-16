@@ -15,10 +15,18 @@ class NavAdmin extends Component {
       .then(res => res.json())
       .then(data => this.setState({user: data}))
       .catch(err => console.error(err));
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    var { navReady  } = this.props;
+    if(prevState !== this.state) {
+      navReady('navAdmin');
+    }
   }
 
   render() {
-    if(!this.state.user) { return null}
+    if(!this.state.user) { return null }
     return(
       <nav id="navbar-admin" className="navbar navbar-toggleable-sm navbar-inverse bg-inverse row justify-content-center">
         <div className="col-6 collapse navbar-collapse">

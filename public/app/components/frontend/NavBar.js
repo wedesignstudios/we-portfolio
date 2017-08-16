@@ -60,8 +60,14 @@ class NavBar extends Component {
                 <li id="nav-we-eye-logo" className="nav-item">
                   <Link to="/">
                     {location === '/' ? 
-                      <img className="mx-auto"src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg" /> :
-                      <img className="mx-auto"src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg" />
+                      <img
+                        className="mx-auto"
+                        src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg"
+                        onLoad={(e) => this.props.navReady('navBar')} /> :
+                      <img
+                        className="mx-auto"
+                        src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg"
+                        onLoad={(e) => this.props.navReady('navBar')} />
                     }
                   </Link>
                 </li>

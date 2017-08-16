@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 
 class Contact extends Component {
   render() {
+    let { margin } = this.props;
     return (
-      <div>
+      <div id="contact" style={{marginTop: margin}}>
         Inside Contact Component!
       </div>
     );

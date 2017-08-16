@@ -22,21 +22,44 @@ const Post = require('./Post');
 const NotFound = require('../dashboard/NotFound');
 
 class Layout extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      navAdminReady: false,
+      navBarReady: false
+    }
+
+    this.navReady = this.navReady.bind(this);
+    this.navContainerHeight;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    // Get height of #nav-container
+    if(this.state !== nextState) {
+      this.navContainerHeight = document.getElementById('nav-container').clientHeight;
+    }
+  }
+
+  navReady(navName) {
+    this.setState({[navName + 'Ready']: true});
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <div className="fixed-top">
-            {this.props.auth ? <NavAdmin /> : null}
-            <NavBar />
+          <div id="nav-container" className="fixed-top">
+            {this.props.auth ? <NavAdmin navReady={this.navReady} /> : null}
+            <NavBar navReady={this.navReady} />
           </div>
           <Switch>
             <Route exact path={this.props.match.url} component={Index} />
-            <Route exact path={`${this.props.match.url}about`} component={About} />
-            <Route exact path={`${this.props.match.url}press`} component={Press} />
-            <Route exact path={`${this.props.match.url}work`} component={Work} />
-            <Route exact path={`${this.props.match.url}contact`} component={Contact} />
-            <Route exact path={`${this.props.match.url}:post_name`} component={Post} />
+            <Route exact path={`${this.props.match.url}about`} render={props => <About {...props} margin={this.navContainerHeight} />} />
+            <Route exact path={`${this.props.match.url}press`} render={props => <Press {...props} margin={this.navContainerHeight} />} />
+            <Route exact path={`${this.props.match.url}work`} render={props => <Work {...props} margin={this.navContainerHeight} />} />
+            <Route exact path={`${this.props.match.url}contact`} render={props => <Contact {...props} margin={this.navContainerHeight} />} />
+            <Route exact path={`${this.props.match.url}:post_name`} render={props => <Post {...props} margin={this.navContainerHeight} />} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

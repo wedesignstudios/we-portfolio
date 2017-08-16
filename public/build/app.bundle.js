@@ -64374,6 +64374,8 @@ module.exports = Login;
 "use strict";
 
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(2);
@@ -64387,6 +64389,8 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 var _reactRouterDom = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -64411,12 +64415,36 @@ var Layout = function (_Component) {
   function Layout() {
     _classCallCheck(this, Layout);
 
-    return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this));
+
+    _this.state = {
+      navAdminReady: false,
+      navBarReady: false
+    };
+
+    _this.navReady = _this.navReady.bind(_this);
+    _this.navContainerHeight;
+    return _this;
   }
 
   _createClass(Layout, [{
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      // Get height of #nav-container
+      if (this.state !== nextState) {
+        this.navContainerHeight = document.getElementById('nav-container').clientHeight;
+      }
+    }
+  }, {
+    key: 'navReady',
+    value: function navReady(navName) {
+      this.setState(_defineProperty({}, navName + 'Ready', true));
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         _reactRouterDom.BrowserRouter,
         null,
@@ -64425,19 +64453,29 @@ var Layout = function (_Component) {
           null,
           _react2.default.createElement(
             'div',
-            { className: 'fixed-top' },
-            this.props.auth ? _react2.default.createElement(NavAdmin, null) : null,
-            _react2.default.createElement(NavBar, null)
+            { id: 'nav-container', className: 'fixed-top' },
+            this.props.auth ? _react2.default.createElement(NavAdmin, { navReady: this.navReady }) : null,
+            _react2.default.createElement(NavBar, { navReady: this.navReady })
           ),
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url, component: Index }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', component: About }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', component: Press }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', component: Work }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', component: Contact }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', component: Post }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', render: function render(props) {
+                return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeight }));
+              } }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', render: function render(props) {
+                return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeight }));
+              } }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', render: function render(props) {
+                return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeight }));
+              } }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', render: function render(props) {
+                return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeight }));
+              } }),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', render: function render(props) {
+                return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeight }));
+              } }),
             _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
           ),
           _react2.default.createElement(Footer, null)
@@ -64488,9 +64526,11 @@ var About = function (_Component) {
   _createClass(About, [{
     key: 'render',
     value: function render() {
+      var margin = this.props.margin;
+
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'about', style: { marginTop: margin } },
         'Inside About Component!'
       );
     }
@@ -64538,9 +64578,11 @@ var Contact = function (_Component) {
   _createClass(Contact, [{
     key: 'render',
     value: function render() {
+      var margin = this.props.margin;
+
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'contact', style: { marginTop: margin } },
         'Inside Contact Component!'
       );
     }
@@ -64724,6 +64766,15 @@ var NavAdmin = function (_Component) {
       });
     }
   }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      var navReady = this.props.navReady;
+
+      if (prevState !== this.state) {
+        navReady('navAdmin');
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       if (!this.state.user) {
@@ -64895,7 +64946,17 @@ var NavBar = function (_Component) {
                   _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: '/' },
-                    location === '/' ? _react2.default.createElement('img', { className: 'mx-auto', src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg' }) : _react2.default.createElement('img', { className: 'mx-auto', src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg' })
+                    location === '/' ? _react2.default.createElement('img', {
+                      className: 'mx-auto',
+                      src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg',
+                      onLoad: function onLoad(e) {
+                        return _this2.props.navReady('navBar');
+                      } }) : _react2.default.createElement('img', {
+                      className: 'mx-auto',
+                      src: 'https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg',
+                      onLoad: function onLoad(e) {
+                        return _this2.props.navReady('navBar');
+                      } })
                   )
                 ),
                 _react2.default.createElement(
@@ -64994,9 +65055,11 @@ var Post = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var margin = this.props.margin;
+
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'post', style: { marginTop: margin } },
         this.state.dataFetched ? null : _react2.default.createElement(NotFound, null),
         this.state.postData !== '' ? _react2.default.createElement(PostLayout, { postData: this.state.postData }) : null
       );
@@ -65118,9 +65181,11 @@ var Press = function (_Component) {
   _createClass(Press, [{
     key: 'render',
     value: function render() {
+      var margin = this.props.margin;
+
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'press', style: { marginTop: margin } },
         'Inside Press Component!'
       );
     }
@@ -65168,9 +65233,11 @@ var Work = function (_Component) {
   _createClass(Work, [{
     key: 'render',
     value: function render() {
+      var margin = this.props.margin;
+
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'work', style: { marginTop: margin } },
         'Inside Work Component!'
       );
     }

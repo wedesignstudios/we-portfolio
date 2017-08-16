@@ -65192,6 +65192,10 @@ var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactRouterDom = __webpack_require__(13);
+
+__webpack_require__(25);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65206,18 +65210,79 @@ var Press = function (_Component) {
   function Press() {
     _classCallCheck(this, Press);
 
-    return _possibleConstructorReturn(this, (Press.__proto__ || Object.getPrototypeOf(Press)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Press.__proto__ || Object.getPrototypeOf(Press)).call(this));
+
+    _this.state = {
+      newsData: []
+    };
+    return _this;
   }
 
   _createClass(Press, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/news-stories').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          newsData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
+      var newsData = this.state.newsData;
       var margin = this.props.margin;
 
+      margin = margin / 16 + 4.375 + 'rem';
+      console.log(newsData);
       return _react2.default.createElement(
         'div',
-        { id: 'press', style: { marginTop: margin } },
-        'Inside Press Component!'
+        { id: 'press', className: 'row justify-content-center', style: { marginTop: margin } },
+        _react2.default.createElement(
+          'div',
+          { className: 'col-sm-10' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            newsData.map(function (story) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'col-sm-2 mb-4', key: story.id },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'card line-height-1-25-rem border-0' },
+                  _react2.default.createElement('img', {
+                    className: 'card-img-top img-fluid rounded-0',
+                    src: story.image.url,
+                    alt: story.image.alt }),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'card-block p-0 pt-3' },
+                    _react2.default.createElement(
+                      'p',
+                      { className: 'card-title mb-2' },
+                      _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        {
+                          to: _this3.props.match.url + '/' + story.id,
+                          className: 'text-muted' },
+                        story.title
+                      )
+                    )
+                  )
+                )
+              );
+            })
+          )
+        )
       );
     }
   }]);

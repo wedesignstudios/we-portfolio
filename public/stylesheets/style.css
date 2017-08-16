@@ -152,6 +152,8 @@ textarea.err {
   #navbar-main .navbar {
     margin-top: 0;
     padding: 1.5rem 1rem; }
+    #navbar-main .navbar.navbar-black a {
+      color: #FFFFFF; }
     #navbar-main .navbar.nav-opened {
       background-color: #000000; }
   #nav-we-eye-logo {

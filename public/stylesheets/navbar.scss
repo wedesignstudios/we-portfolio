@@ -91,6 +91,7 @@
     &.nav-opened .navbar-toggler .icon-bar {
       background: $white;
     }
+
   }
 }
 
@@ -117,8 +118,15 @@
     margin-top: 0;
     padding: 1.5rem 1rem;
 
+    &.navbar-black {
+      a {
+        color: $white;
+      }
+    }
+
     &.nav-opened {
       background-color: $black;
+
     }
   }
 

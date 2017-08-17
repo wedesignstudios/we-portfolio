@@ -16,7 +16,7 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    this.setState({screenWidth: window.outerWidth});
+    this.setState({screenWidth: window.innerWidth});
   }
 
   componentWillUpdate(nextProps, nextState) {

@@ -1,6 +1,6 @@
 // Navbar component styles
 #navbar-main .navbar {
-  margin-top: 1rem;
+  margin: 1rem;
   transition: 300ms ease-in-out;
 
 
@@ -101,6 +101,10 @@
   img {
     width: 3rem;
   }
+}
+
+.nav-bg-white {
+  background-color: $white;
 }
 
 @media (max-width: 1440px) {

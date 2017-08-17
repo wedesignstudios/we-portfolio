@@ -31,12 +31,13 @@ class Press extends Component {
     margin = ((margin/16)+4.375)+'rem';
     console.log(newsData);
     return (
-      <div id="press" className="row justify-content-center" style={{marginTop: margin}}>
+      <div id="press" className="row justify-content-center mx-0" style={{marginTop: margin}}>
         <div className="col-sm-10">
+          <div className="container-fluid">
           <div className="row">
             {newsData.map(story => {
               return(
-                <div className="col-sm-2 mb-4" key={story.id}>
+                <div className="col-6 col-md-4 col-xl-5ths mb-4" key={story.id}>
                   <div className="card line-height-1-25-rem border-0">
                     <img
                       className="card-img-top img-fluid rounded-0"
@@ -56,6 +57,7 @@ class Press extends Component {
                 )
               })
             }
+          </div>
           </div>
         </div>
       </div>

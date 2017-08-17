@@ -1,0 +1,12 @@
+// Custom Bootstrap styles
+
+@media (min-width: 1200px) {
+  .col-xl-5ths {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 20%;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+    padding: 0 1rem;
+  }
+}

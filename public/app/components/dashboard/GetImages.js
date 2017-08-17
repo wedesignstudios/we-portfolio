@@ -110,7 +110,7 @@ class GetImages extends React.Component {
   render() {
     let dropzoneRef;
     return(
-      <div className="row justify-content-center">
+      <div className="row m-0 justify-content-center">
         <div className="col-sm-6">
 
           <ModalUpdateImage

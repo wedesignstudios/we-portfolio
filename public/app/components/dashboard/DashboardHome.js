@@ -21,7 +21,7 @@ class DashboardHome extends Component {
   render() {
     if(!this.state.user) { return null}
     return(
-      <div className="row justify-content-center">
+      <div className="row m-0 justify-content-center">
         <div className="col-sm-6">
 
           <div className="container-fluid">

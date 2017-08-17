@@ -62,7 +62,7 @@ class App extends Component {
     }
     return (
       <Router>
-        <div>
+        <div className="col container-fluid p-0">
           <Switch>
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
             <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />
@@ -78,7 +78,7 @@ class App extends Component {
 
 ReactDOM.render(
   (
-    <div>
+    <div className="row m-0">
       <App />
     </div>
   ),

@@ -53,6 +53,15 @@ input {
 textarea.err {
   border: 2px solid red; }
 
+@media (min-width: 1200px) {
+  .col-xl-5ths {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 20%;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+    padding: 0 1rem; } }
+
 .line-height-1-rem {
   line-height: 1rem; }
 
@@ -78,7 +87,7 @@ textarea.err {
   content: ''; }
 
 #navbar-main .navbar {
-  margin-top: 1rem;
+  margin: 1rem;
   transition: 300ms ease-in-out; }
   #navbar-main .navbar ul {
     width: 100%; }
@@ -143,6 +152,9 @@ textarea.err {
   padding: 0.25rem 0.75rem; }
   .navbar-brand img {
     width: 3rem; }
+
+.nav-bg-white {
+  background-color: #FFFFFF; }
 
 @media (max-width: 1440px) {
   .navbar ul li#nav-we-eye-logo img {

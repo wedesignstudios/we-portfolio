@@ -16442,7 +16442,7 @@ var FormClient = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -16758,7 +16758,7 @@ var FormCollaborator = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -17680,7 +17680,7 @@ var FormProject = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -35838,7 +35838,7 @@ var DashboardHome = function (_Component) {
       }
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -35968,7 +35968,7 @@ var GetClients = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -36142,7 +36142,7 @@ var GetCollaborators = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -36386,7 +36386,7 @@ var GetImages = function (_React$Component) {
       var dropzoneRef = void 0;
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -36883,7 +36883,7 @@ var GetProjects = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -37026,7 +37026,7 @@ var NavDashboard = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'nav',
-        { className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mb-3' },
+        { className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mx-0 mb-3' },
         _react2.default.createElement(
           'div',
           { className: 'col-6' },
@@ -37382,26 +37382,30 @@ var Dashboard = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          null,
-          _react2.default.createElement(NavDashboard, { match: this.props.match, loggedIn: this.props.auth }),
+          { className: 'row m-0' },
           _react2.default.createElement(
-            _reactRouterDom.Switch,
-            null,
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '' + this.props.match.url, component: DashboardHome }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/create', component: CreateClient }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/:id/update', component: UpdateClient }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients', component: GetClients }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/create', component: CreateCollaborator }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/:id/update', component: UpdateCollaborator }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + '/images', component: GetImages }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/create', component: CreateNewsStory }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/:id/update', component: UpdateNewsStory }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories', component: GetNewsStories }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/create', component: CreateProject }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/:id/update', component: UpdateProject }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects', component: GetProjects }),
-            _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+            'div',
+            { className: 'col container-fluid p-0' },
+            _react2.default.createElement(NavDashboard, { match: this.props.match, loggedIn: this.props.auth }),
+            _react2.default.createElement(
+              _reactRouterDom.Switch,
+              null,
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '' + this.props.match.url, component: DashboardHome }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/create', component: CreateClient }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/:id/update', component: UpdateClient }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients', component: GetClients }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/create', component: CreateCollaborator }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/:id/update', component: UpdateCollaborator }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + '/images', component: GetImages }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/create', component: CreateNewsStory }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/:id/update', component: UpdateNewsStory }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories', component: GetNewsStories }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/create', component: CreateProject }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/:id/update', component: UpdateProject }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects', component: GetProjects }),
+              _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+            )
           )
         )
       );

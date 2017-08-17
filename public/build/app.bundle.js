@@ -16442,7 +16442,7 @@ var FormClient = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -16758,7 +16758,7 @@ var FormCollaborator = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -17680,7 +17680,7 @@ var FormProject = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -35838,7 +35838,7 @@ var DashboardHome = function (_Component) {
       }
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -35968,7 +35968,7 @@ var GetClients = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -36142,7 +36142,7 @@ var GetCollaborators = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -36386,7 +36386,7 @@ var GetImages = function (_React$Component) {
       var dropzoneRef = void 0;
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -36883,7 +36883,7 @@ var GetProjects = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'row justify-content-center' },
+        { className: 'row m-0 justify-content-center' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-6' },
@@ -37026,7 +37026,7 @@ var NavDashboard = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'nav',
-        { className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mb-3' },
+        { className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mx-0 mb-3' },
         _react2.default.createElement(
           'div',
           { className: 'col-6' },
@@ -37382,26 +37382,30 @@ var Dashboard = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          null,
-          _react2.default.createElement(NavDashboard, { match: this.props.match, loggedIn: this.props.auth }),
+          { className: 'row m-0' },
           _react2.default.createElement(
-            _reactRouterDom.Switch,
-            null,
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '' + this.props.match.url, component: DashboardHome }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/create', component: CreateClient }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/:id/update', component: UpdateClient }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients', component: GetClients }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/create', component: CreateCollaborator }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/:id/update', component: UpdateCollaborator }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + '/images', component: GetImages }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/create', component: CreateNewsStory }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/:id/update', component: UpdateNewsStory }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories', component: GetNewsStories }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/create', component: CreateProject }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/:id/update', component: UpdateProject }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects', component: GetProjects }),
-            _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+            'div',
+            { className: 'col container-fluid p-0' },
+            _react2.default.createElement(NavDashboard, { match: this.props.match, loggedIn: this.props.auth }),
+            _react2.default.createElement(
+              _reactRouterDom.Switch,
+              null,
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '' + this.props.match.url, component: DashboardHome }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/create', component: CreateClient }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients/:id/update', component: UpdateClient }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/clients', component: GetClients }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/create', component: CreateCollaborator }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators/:id/update', component: UpdateCollaborator }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/collaborators', component: GetCollaborators }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + '/images', component: GetImages }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/create', component: CreateNewsStory }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories/:id/update', component: UpdateNewsStory }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/news-stories', component: GetNewsStories }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/create', component: CreateProject }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects/:id/update', component: UpdateProject }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + '/projects', component: GetProjects }),
+              _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+            )
           )
         )
       );
@@ -64456,7 +64460,7 @@ var Layout = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'row m-0' },
           _react2.default.createElement(
             'div',
             { id: 'nav-container', className: 'fixed-top' },
@@ -64464,8 +64468,8 @@ var Layout = function (_Component) {
             _react2.default.createElement(NavBar, { navReady: this.navReady, navNotReady: this.navNotReady })
           ),
           this.state.navBarReady ? _react2.default.createElement(
-            'span',
-            null,
+            'div',
+            { className: 'col container-fluid p-0' },
             _react2.default.createElement(
               _reactRouterDom.Switch,
               null,
@@ -64916,7 +64920,7 @@ var NavBar = function (_Component) {
       var location = this.props.location.pathname;
       return _react2.default.createElement(
         'div',
-        { id: 'navbar-main', className: 'row justify-content-center' },
+        { id: 'navbar-main', className: "row justify-content-center " + (location !== '/' ? 'nav-bg-white' : '') },
         _react2.default.createElement(
           'div',
           { className: 'col-xl-9 col-lg-12' },
@@ -65245,42 +65249,46 @@ var Press = function (_Component) {
       console.log(newsData);
       return _react2.default.createElement(
         'div',
-        { id: 'press', className: 'row justify-content-center', style: { marginTop: margin } },
+        { id: 'press', className: 'row justify-content-center mx-0', style: { marginTop: margin } },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-10' },
           _react2.default.createElement(
             'div',
-            { className: 'row' },
-            newsData.map(function (story) {
-              return _react2.default.createElement(
-                'div',
-                { className: 'col-sm-2 mb-4', key: story.id },
-                _react2.default.createElement(
+            { className: 'container-fluid' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              newsData.map(function (story) {
+                return _react2.default.createElement(
                   'div',
-                  { className: 'card line-height-1-25-rem border-0' },
-                  _react2.default.createElement('img', {
-                    className: 'card-img-top img-fluid rounded-0',
-                    src: story.image.url,
-                    alt: story.image.alt }),
+                  { className: 'col-6 col-md-4 col-xl-5ths mb-4', key: story.id },
                   _react2.default.createElement(
                     'div',
-                    { className: 'card-block p-0 pt-3' },
+                    { className: 'card line-height-1-25-rem border-0' },
+                    _react2.default.createElement('img', {
+                      className: 'card-img-top img-fluid rounded-0',
+                      src: story.image.url,
+                      alt: story.image.alt }),
                     _react2.default.createElement(
-                      'p',
-                      { className: 'card-title mb-2' },
+                      'div',
+                      { className: 'card-block p-0 pt-3' },
                       _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        {
-                          to: _this3.props.match.url + '/' + story.id,
-                          className: 'text-muted' },
-                        story.title
+                        'p',
+                        { className: 'card-title mb-2' },
+                        _react2.default.createElement(
+                          _reactRouterDom.Link,
+                          {
+                            to: _this3.props.match.url + '/' + story.id,
+                            className: 'text-muted' },
+                          story.title
+                        )
                       )
                     )
                   )
-                )
-              );
-            })
+                );
+              })
+            )
           )
         )
       );
@@ -65440,7 +65448,7 @@ var App = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'col container-fluid p-0' },
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
@@ -65461,7 +65469,7 @@ var App = function (_Component) {
 
 _reactDom2.default.render(_react2.default.createElement(
   'div',
-  null,
+  { className: 'row m-0' },
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
 

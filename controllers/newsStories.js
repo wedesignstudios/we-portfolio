@@ -25,10 +25,15 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// SHOW a news story by ID
-router.get('/:id', (req, res, next) => {
+// SHOW a news story by ID/slug
+router.get('/:param', (req, res, next) => {
+  let key;
+  let param = req.params.param;
+
+  isNaN(parseInt(param)) ? (key = 'slug') : (key = 'id');
+
   NewsStory
-    .forge({id: req.params.id})
+    .forge({[key]: req.params.param})
     .fetch({
       withRelated: ['image', 'news_categories'],
       debug: true

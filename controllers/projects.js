@@ -26,10 +26,15 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// SHOW a project by ID
-router.get('/:id', (req, res, next) => {
+// SHOW a project by ID/slug
+router.get('/:param', (req, res, next) => {
+  let key;
+  let param = req.params.param;
+
+  isNaN(parseInt(param)) ? (key = 'slug') : (key = 'id');
+
   Project
-    .forge({id: req.params.id})
+    .forge({[key]: req.params.param})
     .fetch({
       withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories', 'project_images_sort_order'],
       debug: true

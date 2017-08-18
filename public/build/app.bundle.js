@@ -65270,32 +65270,28 @@ var Press = function (_Component) {
                 newsData.map(function (story) {
                   return _react2.default.createElement(
                     'div',
-                    { className: 'mb-4', key: story.id },
+                    { className: 'card line-height-1-25-rem border-0 d-inline-block mb-4', key: story.id },
+                    _react2.default.createElement(
+                      _reactRouterDom.Link,
+                      {
+                        to: _this3.props.match.url + '/' + story.slug },
+                      _react2.default.createElement('img', {
+                        className: 'card-img-top img-fluid rounded-0',
+                        src: story.image.url,
+                        alt: story.image.alt })
+                    ),
                     _react2.default.createElement(
                       'div',
-                      { className: 'card line-height-1-25-rem border-0' },
+                      { className: 'card-block p-0 pt-3' },
                       _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        {
-                          to: _this3.props.match.url + '/' + story.slug },
-                        _react2.default.createElement('img', {
-                          className: 'card-img-top img-fluid rounded-0',
-                          src: story.image.url,
-                          alt: story.image.alt })
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'card-block p-0 pt-3' },
+                        'p',
+                        { className: 'card-title mb-2' },
                         _react2.default.createElement(
-                          'p',
-                          { className: 'card-title mb-2' },
-                          _react2.default.createElement(
-                            _reactRouterDom.Link,
-                            {
-                              to: _this3.props.match.url + '/' + story.slug,
-                              className: 'text-muted' },
-                            story.title
-                          )
+                          _reactRouterDom.Link,
+                          {
+                            to: _this3.props.match.url + '/' + story.slug,
+                            className: 'text-muted' },
+                          story.title
                         )
                       )
                     )

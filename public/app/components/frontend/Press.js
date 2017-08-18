@@ -16,9 +16,11 @@ class Press extends Component {
     fetch('/api/news-stories')
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          newsData: data
-        });
+        if(this.refs.pressRef) {
+          this.setState({
+            newsData: data
+          });
+        }
       })
       .catch(err => {
         console.error(err);
@@ -29,37 +31,36 @@ class Press extends Component {
     let { newsData } = this.state;
     let { margin } = this.props;
     margin = ((margin/16)+4.375)+'rem';
-    console.log(newsData);
     return (
-      <div id="press" className="row justify-content-center mx-0" style={{marginTop: margin}}>
+      <div id="press" className="row justify-content-center mx-0" style={{marginTop: margin}} ref="pressRef">
         <div className="col-sm-10">
           <div className="container-fluid">
-          <div className="row">
-            <div className="card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2">
-            {newsData.map(story => {
-              return(
-                <div className="mb-4" key={story.id}>
-                  <div className="card line-height-1-25-rem border-0">
-                    <img
-                      className="card-img-top img-fluid rounded-0"
-                      src={story.image.url}
-                      alt={story.image.alt} />
-                    <div className="card-block p-0 pt-3">
-                      <p className="card-title mb-2">
-                        <Link
-                          to={`${this.props.match.url}/${story.id}`}
-                          className="text-muted">
-                            {story.title}
-                        </Link>
-                      </p>
+            <div className="row">
+              <div className="card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2">
+                {newsData.map(story => {
+                  return(
+                    <div className="mb-4" key={story.id}>
+                      <div className="card line-height-1-25-rem border-0">
+                        <img
+                          className="card-img-top img-fluid rounded-0"
+                          src={story.image.url}
+                          alt={story.image.alt} />
+                        <div className="card-block p-0 pt-3">
+                          <p className="card-title mb-2">
+                            <Link
+                              to={`${this.props.match.url}/${story.id}`}
+                              className="text-muted">
+                                {story.title}
+                            </Link>
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                )
-              })
-            }
+                    )
+                  })
+                }
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

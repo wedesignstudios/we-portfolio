@@ -65230,9 +65230,11 @@ var Press = function (_Component) {
       fetch('/api/news-stories').then(function (res) {
         return res.json();
       }).then(function (data) {
-        _this2.setState({
-          newsData: data
-        });
+        if (_this2.refs.pressRef) {
+          _this2.setState({
+            newsData: data
+          });
+        }
       }).catch(function (err) {
         console.error(err);
       });
@@ -65246,10 +65248,9 @@ var Press = function (_Component) {
       var margin = this.props.margin;
 
       margin = margin / 16 + 4.375 + 'rem';
-      console.log(newsData);
       return _react2.default.createElement(
         'div',
-        { id: 'press', className: 'row justify-content-center mx-0', style: { marginTop: margin } },
+        { id: 'press', className: 'row justify-content-center mx-0', style: { marginTop: margin }, ref: 'pressRef' },
         _react2.default.createElement(
           'div',
           { className: 'col-sm-10' },

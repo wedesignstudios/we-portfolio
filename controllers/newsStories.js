@@ -52,6 +52,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
   const image_id = req.body.image_id;
   const allowedKeys = ['title', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
+  formData['slug'] = formData.title.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 
   if(Object.keys(formData).length != 0) {
     NewsStory
@@ -91,6 +92,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
   const image_id = req.body.image_id;
   const allowedKeys = ['title', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
+  formData['slug'] = formData.title.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 
   if(Object.keys(formData).length != 0) {
     NewsStory

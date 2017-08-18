@@ -56,6 +56,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
   const image_sort_order = req.body.image_sort_order;
   const allowedKeys = ['name', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
+  formData['slug'] = formData.name.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 
   if (Object.keys(formData).length != 0) {
     Project
@@ -120,6 +121,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
   const image_sort_order = req.body.image_sort_order;
   const allowedKeys = ['name', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
+  formData['slug'] = formData.name.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 
   if (Object.keys(formData).length != 0) {
     Project

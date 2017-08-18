@@ -35,9 +35,10 @@ class Press extends Component {
         <div className="col-sm-10">
           <div className="container-fluid">
           <div className="row">
+            <div className="card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2">
             {newsData.map(story => {
               return(
-                <div className="col-6 col-md-4 col-xl-5ths mb-4" key={story.id}>
+                <div className="mb-4" key={story.id}>
                   <div className="card line-height-1-25-rem border-0">
                     <img
                       className="card-img-top img-fluid rounded-0"
@@ -57,6 +58,7 @@ class Press extends Component {
                 )
               })
             }
+            </div>
           </div>
           </div>
         </div>

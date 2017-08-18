@@ -1,6 +1,6 @@
 // Navbar component styles
 #navbar-main .navbar {
-  margin: 1rem;
+  margin: 1rem 0;
   transition: 300ms ease-in-out;
 
 
@@ -119,7 +119,7 @@
 
 @media only screen and (max-width: 767px) {
   #navbar-main .navbar {
-    margin-top: 0;
+    margin: 0;
     padding: 1.5rem 1rem;
 
     &.navbar-black {

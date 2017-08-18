@@ -1,12 +1,21 @@
 // Custom Bootstrap styles
 
+.card-columns-gap-3rem {
+  column-gap: 3rem;
+}
+
 @media (min-width: 1200px) {
-  .col-xl-5ths {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 20%;
-    -ms-flex: 0 0 20%;
-    flex: 0 0 20%;
-    max-width: 20%;
-    padding: 0 1rem;
+  .card-columns-5 {
+    column-count: 5;
+  }
+}
+
+@media (max-width: 574px) {
+  .card-columns-2 {
+    column-count: 2;
+  }
+
+  .card-columns-gap-2rem {
+    column-gap: 2rem;
   }
 }

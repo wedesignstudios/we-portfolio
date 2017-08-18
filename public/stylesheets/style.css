@@ -53,14 +53,18 @@ input {
 textarea.err {
   border: 2px solid red; }
 
+.card-columns-gap-3rem {
+  column-gap: 3rem; }
+
 @media (min-width: 1200px) {
-  .col-xl-5ths {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 20%;
-    -ms-flex: 0 0 20%;
-    flex: 0 0 20%;
-    max-width: 20%;
-    padding: 0 1rem; } }
+  .card-columns-5 {
+    column-count: 5; } }
+
+@media (max-width: 574px) {
+  .card-columns-2 {
+    column-count: 2; }
+  .card-columns-gap-2rem {
+    column-gap: 2rem; } }
 
 .line-height-1-rem {
   line-height: 1rem; }
@@ -87,7 +91,7 @@ textarea.err {
   content: ''; }
 
 #navbar-main .navbar {
-  margin: 1rem;
+  margin: 1rem 0;
   transition: 300ms ease-in-out; }
   #navbar-main .navbar ul {
     width: 100%; }
@@ -162,7 +166,7 @@ textarea.err {
 
 @media only screen and (max-width: 767px) {
   #navbar-main .navbar {
-    margin-top: 0;
+    margin: 0;
     padding: 1.5rem 1rem; }
     #navbar-main .navbar.navbar-black a {
       color: #FFFFFF; }

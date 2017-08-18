@@ -65259,35 +65259,39 @@ var Press = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'row' },
-              newsData.map(function (story) {
-                return _react2.default.createElement(
-                  'div',
-                  { className: 'col-6 col-md-4 col-xl-5ths mb-4', key: story.id },
-                  _react2.default.createElement(
+              _react2.default.createElement(
+                'div',
+                { className: 'card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2' },
+                newsData.map(function (story) {
+                  return _react2.default.createElement(
                     'div',
-                    { className: 'card line-height-1-25-rem border-0' },
-                    _react2.default.createElement('img', {
-                      className: 'card-img-top img-fluid rounded-0',
-                      src: story.image.url,
-                      alt: story.image.alt }),
+                    { className: 'mb-4', key: story.id },
                     _react2.default.createElement(
                       'div',
-                      { className: 'card-block p-0 pt-3' },
+                      { className: 'card line-height-1-25-rem border-0' },
+                      _react2.default.createElement('img', {
+                        className: 'card-img-top img-fluid rounded-0',
+                        src: story.image.url,
+                        alt: story.image.alt }),
                       _react2.default.createElement(
-                        'p',
-                        { className: 'card-title mb-2' },
+                        'div',
+                        { className: 'card-block p-0 pt-3' },
                         _react2.default.createElement(
-                          _reactRouterDom.Link,
-                          {
-                            to: _this3.props.match.url + '/' + story.id,
-                            className: 'text-muted' },
-                          story.title
+                          'p',
+                          { className: 'card-title mb-2' },
+                          _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            {
+                              to: _this3.props.match.url + '/' + story.id,
+                              className: 'text-muted' },
+                            story.title
+                          )
                         )
                       )
                     )
-                  )
-                );
-              })
+                  );
+                })
+              )
             )
           )
         )

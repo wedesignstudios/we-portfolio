@@ -65274,10 +65274,15 @@ var Press = function (_Component) {
                     _react2.default.createElement(
                       'div',
                       { className: 'card line-height-1-25-rem border-0' },
-                      _react2.default.createElement('img', {
-                        className: 'card-img-top img-fluid rounded-0',
-                        src: story.image.url,
-                        alt: story.image.alt }),
+                      _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        {
+                          to: _this3.props.match.url + '/' + story.slug },
+                        _react2.default.createElement('img', {
+                          className: 'card-img-top img-fluid rounded-0',
+                          src: story.image.url,
+                          alt: story.image.alt })
+                      ),
                       _react2.default.createElement(
                         'div',
                         { className: 'card-block p-0 pt-3' },
@@ -65287,7 +65292,7 @@ var Press = function (_Component) {
                           _react2.default.createElement(
                             _reactRouterDom.Link,
                             {
-                              to: _this3.props.match.url + '/' + story.id,
+                              to: _this3.props.match.url + '/' + story.slug,
                               className: 'text-muted' },
                             story.title
                           )
@@ -65526,18 +65531,41 @@ var PressStory = function (_Component) {
   function PressStory() {
     _classCallCheck(this, PressStory);
 
-    return _possibleConstructorReturn(this, (PressStory.__proto__ || Object.getPrototypeOf(PressStory)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (PressStory.__proto__ || Object.getPrototypeOf(PressStory)).call(this));
+
+    _this.state = {
+      newsData: []
+    };
+    return _this;
   }
 
   _createClass(PressStory, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/news-stories/' + this.props.match.params.title).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          newsData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var newsData = this.state.newsData;
       var margin = this.props.margin;
+
 
       return _react2.default.createElement(
         'div',
         { id: 'press-story', style: { marginTop: margin } },
-        'Inside PressStory component!'
+        'Story: ',
+        newsData.title
       );
     }
   }]);

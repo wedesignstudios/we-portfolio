@@ -41,14 +41,17 @@ class Press extends Component {
                   return(
                     <div className="mb-4" key={story.id}>
                       <div className="card line-height-1-25-rem border-0">
-                        <img
-                          className="card-img-top img-fluid rounded-0"
-                          src={story.image.url}
-                          alt={story.image.alt} />
+                      <Link
+                        to={`${this.props.match.url}/${story.slug}`} >
+                          <img
+                            className="card-img-top img-fluid rounded-0"
+                            src={story.image.url}
+                            alt={story.image.alt} />
+                      </Link>
                         <div className="card-block p-0 pt-3">
                           <p className="card-title mb-2">
                             <Link
-                              to={`${this.props.match.url}/${story.id}`}
+                              to={`${this.props.match.url}/${story.slug}`}
                               className="text-muted">
                                 {story.title}
                             </Link>

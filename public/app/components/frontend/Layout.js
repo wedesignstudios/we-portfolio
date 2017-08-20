@@ -54,26 +54,30 @@ class Layout extends Component {
   render() {
     return (
       <Router>
-        <div className="row m-0">
-          <div id="nav-container" className="fixed-top">
-            {this.props.auth ? <NavAdmin navReady={this.navReady} /> : null}
-            <NavBar navReady={this.navReady} navNotReady={this.navNotReady} />
-          </div>
-          {this.state.navBarReady ?
-            <div className="col container-fluid p-0">
-              <Switch>
-                <Route exact path={this.props.match.url} component={Index} />
-                <Route exact path={`${this.props.match.url}about`} render={props => <About {...props} margin={this.navContainerHeight} />} />
-                <Route exact path={`${this.props.match.url}press`} render={props => <Press {...props} margin={this.navContainerHeight} />} />
-                <Route path={`${this.props.match.url}press/:title`} render={props => <PressStory {...props} margin={this.navContainerHeight} />} />
-                <Route exact path={`${this.props.match.url}work`} render={props => <Work {...props} margin={this.navContainerHeight} />} />
-                <Route exact path={`${this.props.match.url}contact`} render={props => <Contact {...props} margin={this.navContainerHeight} />} />
-                <Route exact path={`${this.props.match.url}:post_name`} render={props => <Post {...props} margin={this.navContainerHeight} />} />
-                <Route component={NotFound} />
-              </Switch>
-              <Footer />
+        <div className="row m-0 height-100">
+          <div className="wrapper">
+            <div id="nav-container" className="fixed-top">
+              {this.props.auth ? <NavAdmin navReady={this.navReady} /> : null}
+              <NavBar navReady={this.navReady} navNotReady={this.navNotReady} />
             </div>
-          : null}
+            {this.state.navBarReady ?
+              <div className="col-12 container-fluid p-0">
+                <Switch>
+                  <Route exact path={this.props.match.url} component={Index} />
+                  <Route exact path={`${this.props.match.url}about`} render={props => <About {...props} margin={this.navContainerHeight} />} />
+                  <Route exact path={`${this.props.match.url}press`} render={props => <Press {...props} margin={this.navContainerHeight} />} />
+                  <Route path={`${this.props.match.url}press/:title`} render={props => <PressStory {...props} margin={this.navContainerHeight} />} />
+                  <Route exact path={`${this.props.match.url}work`} render={props => <Work {...props} margin={this.navContainerHeight} />} />
+                  <Route exact path={`${this.props.match.url}contact`} render={props => <Contact {...props} margin={this.navContainerHeight} />} />
+                  <Route exact path={`${this.props.match.url}:post_name`} render={props => <Post {...props} margin={this.navContainerHeight} />} />
+                  <Route component={NotFound} />
+                </Switch>
+              </div>
+            : null}
+            </div>
+          <div className="col-12 container-fluid p-0">
+            <Footer />
+          </div>
         </div>
       </Router>
     );

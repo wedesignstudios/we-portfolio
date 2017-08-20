@@ -64461,42 +64461,50 @@ var Layout = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          { className: 'row m-0' },
+          { className: 'row m-0 height-100' },
           _react2.default.createElement(
             'div',
-            { id: 'nav-container', className: 'fixed-top' },
-            this.props.auth ? _react2.default.createElement(NavAdmin, { navReady: this.navReady }) : null,
-            _react2.default.createElement(NavBar, { navReady: this.navReady, navNotReady: this.navNotReady })
-          ),
-          this.state.navBarReady ? _react2.default.createElement(
-            'div',
-            { className: 'col container-fluid p-0' },
+            { className: 'wrapper' },
             _react2.default.createElement(
-              _reactRouterDom.Switch,
-              null,
-              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url, component: Index }),
-              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', render: function render(props) {
-                  return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeight }));
-                } }),
-              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', render: function render(props) {
-                  return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeight }));
-                } }),
-              _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + 'press/:title', render: function render(props) {
-                  return _react2.default.createElement(PressStory, _extends({}, props, { margin: _this2.navContainerHeight }));
-                } }),
-              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', render: function render(props) {
-                  return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeight }));
-                } }),
-              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', render: function render(props) {
-                  return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeight }));
-                } }),
-              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', render: function render(props) {
-                  return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeight }));
-                } }),
-              _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+              'div',
+              { id: 'nav-container', className: 'fixed-top' },
+              this.props.auth ? _react2.default.createElement(NavAdmin, { navReady: this.navReady }) : null,
+              _react2.default.createElement(NavBar, { navReady: this.navReady, navNotReady: this.navNotReady })
             ),
+            this.state.navBarReady ? _react2.default.createElement(
+              'div',
+              { className: 'col-12 container-fluid p-0' },
+              _react2.default.createElement(
+                _reactRouterDom.Switch,
+                null,
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url, component: Index }),
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', render: function render(props) {
+                    return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeight }));
+                  } }),
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', render: function render(props) {
+                    return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeight }));
+                  } }),
+                _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + 'press/:title', render: function render(props) {
+                    return _react2.default.createElement(PressStory, _extends({}, props, { margin: _this2.navContainerHeight }));
+                  } }),
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', render: function render(props) {
+                    return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeight }));
+                  } }),
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', render: function render(props) {
+                    return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeight }));
+                  } }),
+                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', render: function render(props) {
+                    return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeight }));
+                  } }),
+                _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+              )
+            ) : null
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-12 container-fluid p-0' },
             _react2.default.createElement(Footer, null)
-          ) : null
+          )
         )
       );
     }
@@ -64548,8 +64556,12 @@ var About = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { id: 'about', style: { marginTop: margin } },
-        'Inside About Component!'
+        { id: 'about', className: 'row mx-0', style: { marginTop: margin } },
+        _react2.default.createElement(
+          'div',
+          { className: 'col-12 p-0' },
+          'Inside About Component!'
+        )
       );
     }
   }]);
@@ -65590,7 +65602,7 @@ var App = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          { className: 'col container-fluid p-0' },
+          { className: 'col container-fluid p-0 height-100' },
           _react2.default.createElement(
             _reactRouterDom.Switch,
             null,
@@ -65611,7 +65623,7 @@ var App = function (_Component) {
 
 _reactDom2.default.render(_react2.default.createElement(
   'div',
-  { className: 'row m-0' },
+  { className: 'row m-0 height-100' },
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
 

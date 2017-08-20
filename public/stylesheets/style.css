@@ -53,6 +53,14 @@ input {
 textarea.err {
   border: 2px solid red; }
 
+hr.hr-1rem {
+  border: none;
+  height: 1rem;
+  background-color: #000000; }
+
+.mb-5rem {
+  margin-bottom: 5rem; }
+
 .card-columns-gap-3rem {
   -webkit-column-gap: 3rem;
   -moz-column-gap: 3rem;
@@ -74,16 +82,22 @@ textarea.err {
     -moz-column-gap: 2rem;
     column-gap: 2rem; } }
 
+.white-space-pre-line {
+  white-space: pre-line; }
+
 .line-height-1-rem {
   line-height: 1rem; }
 
 .line-height-1-25-rem {
   line-height: 1.25rem; }
 
-.line-height-1-5rem {
+.line-height-1-45-rem {
+  line-height: 1.45rem; }
+
+.line-height-1-5-rem {
   line-height: 1.5rem; }
 
-.line-height-1-75rem {
+.line-height-1-75-rem {
   line-height: 1.75rem; }
 
 .line-height-2-rem {
@@ -255,5 +269,12 @@ form textarea.form-control {
     display: block; }
   .image-full-width .img-portrait {
     display: none; } }
+
+.feature-image-container {
+  max-height: 32.875rem;
+  overflow: hidden; }
+
+.press-title-letter-spacing {
+  letter-spacing: 0.125rem; }
 
 /*# sourceMappingURL=style.css.map */

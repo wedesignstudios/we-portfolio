@@ -1,5 +1,11 @@
 // Custom Bootstrap styles
 
+// Margins
+.mb-5rem {
+  margin-bottom: 5rem;
+}
+
+// Cards
 .card-columns-gap-3rem {
   -webkit-column-gap: 3rem;
   -moz-column-gap: 3rem;
@@ -26,4 +32,10 @@
     -moz-column-gap: 2rem;
     column-gap: 2rem;
   }
+}
+
+// White Space
+
+.white-space-pre-line {
+  white-space: pre-line;
 }

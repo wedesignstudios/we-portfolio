@@ -65472,6 +65472,10 @@ var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactRouterDom = __webpack_require__(11);
+
+__webpack_require__(22);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65480,24 +65484,101 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var _groupBy = __webpack_require__(63);
+
 var Work = function (_Component) {
   _inherits(Work, _Component);
 
   function Work() {
     _classCallCheck(this, Work);
 
-    return _possibleConstructorReturn(this, (Work.__proto__ || Object.getPrototypeOf(Work)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Work.__proto__ || Object.getPrototypeOf(Work)).call(this));
+
+    _this.state = {
+      projectData: []
+    };
+    return _this;
   }
 
   _createClass(Work, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/projects').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        if (_this2.refs.workRef) {
+          _this2.setState({
+            projectData: data
+          });
+        }
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
+      var projectData = this.state.projectData;
       var margin = this.props.margin;
+
 
       return _react2.default.createElement(
         'div',
-        { id: 'work', style: { marginTop: margin } },
-        'Inside Work Component!'
+        { id: 'work', className: 'row justify-content-center mx-0', style: { marginTop: margin }, ref: 'workRef' },
+        _react2.default.createElement(
+          'div',
+          { className: 'col-sm-10' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container-fluid' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2' },
+                projectData.map(function (project) {
+                  var groupedImages = _groupBy(project.images, 'id');
+                  var featureImageId = project.project_images_sort_order.images_order[0];
+                  var featureImage = groupedImages[featureImageId][0];
+
+                  return _react2.default.createElement(
+                    'div',
+                    { className: 'card line-height-1-25-rem border-0 d-inline-block mb-4', key: project.id },
+                    _react2.default.createElement(
+                      _reactRouterDom.Link,
+                      {
+                        to: _this3.props.match.url + '/' + project.slug },
+                      _react2.default.createElement('img', {
+                        className: 'card-img-top img-fluid rounded-0',
+                        src: featureImage.url,
+                        alt: featureImage.alt })
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-block p-0 pt-3' },
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-title mb-2' },
+                        _react2.default.createElement(
+                          _reactRouterDom.Link,
+                          {
+                            to: _this3.props.match.url + '/' + project.slug,
+                            className: 'text-muted' },
+                          project.name
+                        )
+                      )
+                    )
+                  );
+                })
+              )
+            )
+          )
+        )
       );
     }
   }]);

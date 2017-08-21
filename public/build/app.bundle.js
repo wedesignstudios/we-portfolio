@@ -64429,7 +64429,7 @@ var Layout = function (_Component) {
 
     _this.navReady = _this.navReady.bind(_this);
     _this.navNotReady = _this.navNotReady.bind(_this);
-    _this.navContainerHeight;
+    _this.navContainerHeightMargin;
     return _this;
   }
 
@@ -64438,7 +64438,8 @@ var Layout = function (_Component) {
     value: function componentWillUpdate(nextProps, nextState) {
       // Get height of #nav-container
       if (this.state !== nextState && nextState.navBarReady !== false) {
-        this.navContainerHeight = document.getElementById('nav-container').clientHeight;
+        var height = document.getElementById('nav-container').clientHeight;
+        this.navContainerHeightMargin = height / 16 + 1.375 + 'rem';
       }
     }
   }, {
@@ -64479,22 +64480,22 @@ var Layout = function (_Component) {
                 null,
                 _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url, component: Index }),
                 _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', render: function render(props) {
-                    return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeight }));
+                    return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
                   } }),
                 _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', render: function render(props) {
-                    return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeight }));
+                    return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
                   } }),
                 _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + 'press/:title', render: function render(props) {
-                    return _react2.default.createElement(PressStory, _extends({}, props, { margin: _this2.navContainerHeight }));
+                    return _react2.default.createElement(PressStory, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
                   } }),
                 _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', render: function render(props) {
-                    return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeight }));
+                    return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
                   } }),
                 _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', render: function render(props) {
-                    return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeight }));
+                    return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
                   } }),
                 _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', render: function render(props) {
-                    return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeight }));
+                    return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
                   } }),
                 _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
               )
@@ -65263,7 +65264,7 @@ var Press = function (_Component) {
       var newsData = this.state.newsData;
       var margin = this.props.margin;
 
-      margin = margin / 16 + 4.375 + 'rem';
+
       return _react2.default.createElement(
         'div',
         { id: 'press', className: 'row justify-content-center mx-0', style: { marginTop: margin }, ref: 'pressRef' },
@@ -65393,7 +65394,7 @@ var PressStory = function (_Component) {
       if (this.state.newsData.length < 1) return null;
       return _react2.default.createElement(
         'div',
-        { id: 'press-story', className: 'row m-0', style: { marginTop: margin } },
+        { id: 'press-story', className: 'row mx-0', style: { marginTop: margin } },
         _react2.default.createElement(
           'div',
           {

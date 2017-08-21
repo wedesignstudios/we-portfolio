@@ -33,13 +33,14 @@ class Layout extends Component {
 
     this.navReady = this.navReady.bind(this);
     this.navNotReady = this.navNotReady.bind(this);
-    this.navContainerHeight;
+    this.navContainerHeightMargin;
   }
 
   componentWillUpdate(nextProps, nextState) {
     // Get height of #nav-container
     if(this.state !== nextState && nextState.navBarReady !== false) {
-      this.navContainerHeight = document.getElementById('nav-container').clientHeight;
+      let height = document.getElementById('nav-container').clientHeight;
+      this.navContainerHeightMargin = ((height/16)+1.375)+'rem';
     }
   }
 
@@ -64,12 +65,12 @@ class Layout extends Component {
               <div className="col-12 container-fluid p-0">
                 <Switch>
                   <Route exact path={this.props.match.url} component={Index} />
-                  <Route exact path={`${this.props.match.url}about`} render={props => <About {...props} margin={this.navContainerHeight} />} />
-                  <Route exact path={`${this.props.match.url}press`} render={props => <Press {...props} margin={this.navContainerHeight} />} />
-                  <Route path={`${this.props.match.url}press/:title`} render={props => <PressStory {...props} margin={this.navContainerHeight} />} />
-                  <Route exact path={`${this.props.match.url}work`} render={props => <Work {...props} margin={this.navContainerHeight} />} />
-                  <Route exact path={`${this.props.match.url}contact`} render={props => <Contact {...props} margin={this.navContainerHeight} />} />
-                  <Route exact path={`${this.props.match.url}:post_name`} render={props => <Post {...props} margin={this.navContainerHeight} />} />
+                  <Route exact path={`${this.props.match.url}about`} render={props => <About {...props} margin={this.navContainerHeightMargin} />} />
+                  <Route exact path={`${this.props.match.url}press`} render={props => <Press {...props} margin={this.navContainerHeightMargin} />} />
+                  <Route path={`${this.props.match.url}press/:title`} render={props => <PressStory {...props} margin={this.navContainerHeightMargin} />} />
+                  <Route exact path={`${this.props.match.url}work`} render={props => <Work {...props} margin={this.navContainerHeightMargin} />} />
+                  <Route exact path={`${this.props.match.url}contact`} render={props => <Contact {...props} margin={this.navContainerHeightMargin} />} />
+                  <Route exact path={`${this.props.match.url}:post_name`} render={props => <Post {...props} margin={this.navContainerHeightMargin} />} />
                   <Route component={NotFound} />
                 </Switch>
               </div>

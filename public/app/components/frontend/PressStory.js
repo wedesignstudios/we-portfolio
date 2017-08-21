@@ -34,7 +34,7 @@ class PressStory extends Component {
 
     if(this.state.newsData.length < 1) return null;
     return(
-      <div id="press-story" className="row m-0" style={{marginTop: margin}}>
+      <div id="press-story" className="row mx-0" style={{marginTop: margin}}>
         <div
           id="press-feature-image"
           className="feature-image-container col-12 p-0">

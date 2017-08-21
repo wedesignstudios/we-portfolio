@@ -30,7 +30,7 @@ class Press extends Component {
   render() {
     let { newsData } = this.state;
     let { margin } = this.props;
-    margin = ((margin/16)+4.375)+'rem';
+
     return (
       <div id="press" className="row justify-content-center mx-0" style={{marginTop: margin}} ref="pressRef">
         <div className="col-sm-10">

@@ -64410,6 +64410,7 @@ var About = __webpack_require__(651);
 var Press = __webpack_require__(659);
 var PressStory = __webpack_require__(660);
 var Work = __webpack_require__(661);
+var WorkProject = __webpack_require__(672);
 var Contact = __webpack_require__(652);
 var Post = __webpack_require__(657);
 var NotFound = __webpack_require__(77);
@@ -64465,41 +64466,48 @@ var Layout = function (_Component) {
           { className: 'row m-0 height-100' },
           _react2.default.createElement(
             'div',
-            { className: 'wrapper' },
+            { className: 'wrapper col-12 px-0' },
             _react2.default.createElement(
               'div',
-              { id: 'nav-container', className: 'fixed-top' },
-              this.props.auth ? _react2.default.createElement(NavAdmin, { navReady: this.navReady }) : null,
-              _react2.default.createElement(NavBar, { navReady: this.navReady, navNotReady: this.navNotReady })
-            ),
-            this.state.navBarReady ? _react2.default.createElement(
-              'div',
-              { className: 'col-12 container-fluid p-0' },
+              { className: 'row mx-0' },
               _react2.default.createElement(
-                _reactRouterDom.Switch,
-                null,
-                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url, component: Index }),
-                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', render: function render(props) {
-                    return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
-                  } }),
-                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', render: function render(props) {
-                    return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
-                  } }),
-                _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + 'press/:title', render: function render(props) {
-                    return _react2.default.createElement(PressStory, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
-                  } }),
-                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', render: function render(props) {
-                    return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
-                  } }),
-                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', render: function render(props) {
-                    return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
-                  } }),
-                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', render: function render(props) {
-                    return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
-                  } }),
-                _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
-              )
-            ) : null
+                'div',
+                { id: 'nav-container', className: 'fixed-top' },
+                this.props.auth ? _react2.default.createElement(NavAdmin, { navReady: this.navReady }) : null,
+                _react2.default.createElement(NavBar, { navReady: this.navReady, navNotReady: this.navNotReady })
+              ),
+              this.state.navBarReady ? _react2.default.createElement(
+                'div',
+                { className: 'col-12 container-fluid p-0' },
+                _react2.default.createElement(
+                  _reactRouterDom.Switch,
+                  null,
+                  _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url, component: Index }),
+                  _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'about', render: function render(props) {
+                      return _react2.default.createElement(About, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
+                    } }),
+                  _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'press', render: function render(props) {
+                      return _react2.default.createElement(Press, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
+                    } }),
+                  _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + 'press/:title', render: function render(props) {
+                      return _react2.default.createElement(PressStory, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
+                    } }),
+                  _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'work', render: function render(props) {
+                      return _react2.default.createElement(Work, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
+                    } }),
+                  _react2.default.createElement(_reactRouterDom.Route, { path: this.props.match.url + 'work/:name', render: function render(props) {
+                      return _react2.default.createElement(WorkProject, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
+                    } }),
+                  _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + 'contact', render: function render(props) {
+                      return _react2.default.createElement(Contact, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
+                    } }),
+                  _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.props.match.url + ':post_name', render: function render(props) {
+                      return _react2.default.createElement(Post, _extends({}, props, { margin: _this2.navContainerHeightMargin }));
+                    } }),
+                  _react2.default.createElement(_reactRouterDom.Route, { component: NotFound })
+                )
+              ) : null
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -65417,7 +65425,7 @@ var PressStory = function (_Component) {
               { className: 'col-8 container p-0 mb-5rem mt-5' },
               _react2.default.createElement(
                 'h6',
-                { className: 'text-uppercase press-title-letter-spacing line-height-1-45-rem' },
+                { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
                 newsData.title
               ),
               _react2.default.createElement('hr', { className: 'hr-1rem' }),
@@ -65708,6 +65716,236 @@ _reactDom2.default.render(_react2.default.createElement(
   { className: 'row m-0 height-100' },
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(11);
+
+__webpack_require__(22);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _groupBy = __webpack_require__(63);
+var _map = __webpack_require__(174);
+var DateFormatter = __webpack_require__(78);
+
+var WorkProject = function (_Component) {
+  _inherits(WorkProject, _Component);
+
+  function WorkProject() {
+    _classCallCheck(this, WorkProject);
+
+    var _this = _possibleConstructorReturn(this, (WorkProject.__proto__ || Object.getPrototypeOf(WorkProject)).call(this));
+
+    _this.state = {
+      projectData: []
+    };
+
+    _this.featureImage;
+    _this.projectImages;
+    return _this;
+  }
+
+  _createClass(WorkProject, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('/api/projects/' + this.props.match.params.name).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState({
+          projectData: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      if (this.state !== nextState) {
+        var projectData = nextState.projectData;
+
+        var groupedImages = _groupBy(projectData.images, 'id');
+        var imagesOrder = projectData.project_images_sort_order.images_order;
+        var orderedImages = _map(imagesOrder, function (i) {
+          return groupedImages[i].shift();
+        });
+
+        this.featureImage = orderedImages.splice(0, 1)[0];
+        this.projectImages = orderedImages;
+
+        console.log(this.projectImages);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var projectData = this.state.projectData;
+      var margin = this.props.margin;
+
+      var projectDate = new Date(projectData.date);
+
+      if (projectData.length < 1) return null;
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'work-project', className: 'row mx-0', style: { marginTop: margin } },
+        _react2.default.createElement(
+          'div',
+          {
+            id: 'project-feature-image',
+            className: 'feature-image-container col-12 p-0' },
+          _react2.default.createElement('img', {
+            className: 'img-fluid',
+            src: this.featureImage.url,
+            title: this.featureImage.title,
+            alt: this.featureImage.alt })
+        ),
+        _react2.default.createElement(
+          'div',
+          {
+            id: 'press-text',
+            className: 'col-12 container p-0' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row justify-content-center m-0' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-8 container p-0 mb-5rem mt-5' },
+              _react2.default.createElement(
+                'h6',
+                { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                projectData.name
+              ),
+              _react2.default.createElement('hr', { className: 'hr-1rem' }),
+              _react2.default.createElement(
+                'div',
+                { className: 'row m-0' },
+                _react2.default.createElement(
+                  'div',
+                  { id: 'project-info', className: 'col-sm-6 p-0 pr-sm-3' },
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'font-weight-bold m-0 letter-spacing-point125-rem' },
+                    projectData.clients.length === 1 ? 'Client' : 'Clients'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    projectData.clients.map(function (client) {
+                      return client.name;
+                    }).join(', ')
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'font-weight-bold m-0 letter-spacing-point125-rem' },
+                    projectData.project_categories.length === 1 ? 'Service' : 'Services'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    projectData.project_categories.map(function (category) {
+                      return category.name;
+                    }).join(', ')
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'font-weight-bold m-0 letter-spacing-point125-rem' },
+                    projectData.collaborators.length === 1 ? 'Collaborator' : 'Collaborators'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    projectData.collaborators.map(function (collaborator) {
+                      return collaborator.name;
+                    }).join(', ')
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-6 p-0 pl-sm-3' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'white-space-pre-line' },
+                    projectData.description
+                  )
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          {
+            id: 'project-images',
+            className: 'col-12 p-0' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row justify-content-center m-0' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-12 col-sm-8 container p-0 mb-5rem mt-5' },
+              this.projectImages.map(function (image) {
+                return _react2.default.createElement(
+                  'div',
+                  {
+                    key: image.id,
+                    className: 'mb-5' },
+                  _react2.default.createElement('img', {
+                    className: 'img-fluid',
+                    src: image.url,
+                    title: image.title,
+                    alt: image.alt })
+                );
+              }),
+              _react2.default.createElement(
+                'p',
+                { className: 'text-center pt-4' },
+                'BACK TO TOP'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return WorkProject;
+}(_react.Component);
+
+module.exports = WorkProject;
 
 /***/ })
 /******/ ]);

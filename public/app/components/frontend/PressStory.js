@@ -47,7 +47,7 @@ class PressStory extends Component {
         <div id="press-text" className="col-12 container p-0">
           <div className="row justify-content-center m-0">
             <div className="col-8 container p-0 mb-5rem mt-5">
-              <h6 className="text-uppercase press-title-letter-spacing line-height-1-45-rem">{newsData.title}</h6>
+              <h6 className="text-uppercase letter-spacing-point125-rem line-height-1-45-rem">{newsData.title}</h6>
               <hr className="hr-1rem" />
               <div className="row m-0">
                 <div id="press-date" className="col-sm-6 p-0 pr-sm-3">

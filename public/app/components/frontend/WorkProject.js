@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
+import Scroll from 'react-scroll';
 
+const scroll = Scroll.animateScroll;
 const _groupBy = require('lodash/groupBy');
 const _map = require('lodash/map');
 const DateFormatter = require('../../services/date_formatter');
@@ -43,9 +45,11 @@ class WorkProject extends Component {
 
       this.featureImage = orderedImages.splice(0,1)[0];
       this.projectImages = orderedImages;
-
-      console.log(this.projectImages);
     }
+  }
+
+  scrollToTop() {
+    scroll.scrollToTop({duration: 1000});
   }
 
   render() {
@@ -118,7 +122,13 @@ class WorkProject extends Component {
                   </div>
                 )
               })}
-              <p className="text-center pt-4">BACK TO TOP</p>
+              <p className="text-center pt-4">
+                <span
+                  style={{cursor: 'pointer'}}
+                  onClick={this.scrollToTop} >
+                  BACK TO TOP
+                </span>
+              </p>
             </div>
           </div>
         </div>

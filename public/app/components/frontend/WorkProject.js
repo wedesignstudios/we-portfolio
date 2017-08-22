@@ -115,7 +115,7 @@ class WorkProject extends Component {
                     key={image.id}
                     className="mb-5">
                       <img
-                        className="img-fluid"
+                        className="img-fluid w-100"
                         src={image.url}
                         title={image.title}
                         alt={image.alt} />

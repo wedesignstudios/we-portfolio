@@ -52,11 +52,11 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return knex.schema
-    .dropTable('projects')
+    .dropTable('projects_clients')
+    .dropTable('projects_collaborators')
+    .dropTable('images')
     .dropTable('clients')
     .dropTable('collaborators')
     .dropTable('addresses')
-    .dropTable('images')
-    .dropTable('projects_clients')
-    .dropTable('projects_collaborators');
+    .dropTable('projects')
 };

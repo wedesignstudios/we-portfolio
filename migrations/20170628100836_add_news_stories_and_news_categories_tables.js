@@ -23,7 +23,7 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return knex.schema
-    .dropTable('news_stories')
-    .dropTable('news_categories')
     .dropTable('news_stories_news_categories')
+    .dropTable('news_categories')
+    .dropTable('news_stories')
 };

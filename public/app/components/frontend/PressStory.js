@@ -39,7 +39,7 @@ class PressStory extends Component {
           id="press-feature-image"
           className="feature-image-container col-12 p-0">
           <img
-            className="img-fluid w-100"
+            className="img-fluid"
             src={newsData.image.url}
             title={newsData.image.title}
             alt={newsData.image.alt} />

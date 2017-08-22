@@ -18,6 +18,7 @@ const About = require('./About');
 const Press = require('./Press');
 const PressStory = require('./PressStory');
 const Work = require('./Work');
+const WorkProject = require('./WorkProject');
 const Contact = require('./Contact');
 const Post = require('./Post');
 const NotFound = require('../dashboard/NotFound');
@@ -56,7 +57,8 @@ class Layout extends Component {
     return (
       <Router>
         <div className="row m-0 height-100">
-          <div className="wrapper">
+          <div className="wrapper col-12 px-0">
+          <div className="row mx-0">
             <div id="nav-container" className="fixed-top">
               {this.props.auth ? <NavAdmin navReady={this.navReady} /> : null}
               <NavBar navReady={this.navReady} navNotReady={this.navNotReady} />
@@ -69,12 +71,14 @@ class Layout extends Component {
                   <Route exact path={`${this.props.match.url}press`} render={props => <Press {...props} margin={this.navContainerHeightMargin} />} />
                   <Route path={`${this.props.match.url}press/:title`} render={props => <PressStory {...props} margin={this.navContainerHeightMargin} />} />
                   <Route exact path={`${this.props.match.url}work`} render={props => <Work {...props} margin={this.navContainerHeightMargin} />} />
+                  <Route path={`${this.props.match.url}work/:name`} render={props => <WorkProject {...props} margin={this.navContainerHeightMargin} />} />
                   <Route exact path={`${this.props.match.url}contact`} render={props => <Contact {...props} margin={this.navContainerHeightMargin} />} />
                   <Route exact path={`${this.props.match.url}:post_name`} render={props => <Post {...props} margin={this.navContainerHeightMargin} />} />
                   <Route component={NotFound} />
                 </Switch>
               </div>
             : null}
+            </div>
             </div>
           <div className="col-12 container-fluid p-0">
             <Footer />

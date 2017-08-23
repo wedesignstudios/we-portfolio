@@ -63,7 +63,7 @@ class WorkProject extends Component {
       <div id="work-project" className="row mx-0" style={{marginTop: margin}}>
         <div
           id="project-feature-image"
-          className="feature-image-container col-12 p-0">
+          className="col-12 p-0 d-flex align-items-center">
             <img
               className="img-fluid"
               src={this.featureImage.url}

@@ -37,7 +37,7 @@ class PressStory extends Component {
       <div id="press-story" className="row mx-0" style={{marginTop: margin}}>
         <div
           id="press-feature-image"
-          className="feature-image-container col-12 p-0">
+          className="col-12 p-0 d-flex align-items-center">
           <img
             className="img-fluid"
             src={newsData.image.url}

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 
+const ImageSizePicker = require('../../services/image_size_picker');
 const _groupBy = require('lodash/groupBy');
 
 class Work extends Component {
@@ -41,7 +42,7 @@ class Work extends Component {
                 <div className="card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2">
                   {projectData.map(project => {
                     let groupedImages = _groupBy(project.images, 'id');
-                    let featureImageId = project.project_images_sort_order.images_order[0];
+                    let featureImageId = project.project_images_sort_order.images_order[1];
                     let featureImage = groupedImages[featureImageId][0];
 
                     return(
@@ -50,7 +51,7 @@ class Work extends Component {
                         to={`${this.props.match.url}/${project.slug}`} >
                           <img
                             className="card-img-top img-fluid rounded-0"
-                            src={featureImage.url}
+                            src={ImageSizePicker.imgSize(featureImage.orig_name).w300}
                             alt={featureImage.alt} />
                       </Link>
                         <div className="card-block p-0 pt-3">

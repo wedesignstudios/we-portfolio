@@ -281,10 +281,6 @@ form textarea.form-control {
   .image-full-width .img-portrait {
     display: none; } }
 
-.feature-image-container {
-  max-height: 32.875rem;
-  overflow: hidden; }
-
 .letter-spacing-point125-rem {
   letter-spacing: 0.125rem; }
 

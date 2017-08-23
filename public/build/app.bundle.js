@@ -65407,7 +65407,7 @@ var PressStory = function (_Component) {
           'div',
           {
             id: 'press-feature-image',
-            className: 'feature-image-container col-12 p-0' },
+            className: 'col-12 p-0 d-flex align-items-center' },
           _react2.default.createElement('img', {
             className: 'img-fluid',
             src: newsData.image.url,
@@ -65492,6 +65492,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var ImageSizePicker = __webpack_require__(685);
 var _groupBy = __webpack_require__(63);
 
 var Work = function (_Component) {
@@ -65551,7 +65552,7 @@ var Work = function (_Component) {
                 { className: 'card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2' },
                 projectData.map(function (project) {
                   var groupedImages = _groupBy(project.images, 'id');
-                  var featureImageId = project.project_images_sort_order.images_order[0];
+                  var featureImageId = project.project_images_sort_order.images_order[1];
                   var featureImage = groupedImages[featureImageId][0];
 
                   return _react2.default.createElement(
@@ -65563,7 +65564,7 @@ var Work = function (_Component) {
                         to: _this3.props.match.url + '/' + project.slug },
                       _react2.default.createElement('img', {
                         className: 'card-img-top img-fluid rounded-0',
-                        src: featureImage.url,
+                        src: ImageSizePicker.imgSize(featureImage.orig_name).w300,
                         alt: featureImage.alt })
                     ),
                     _react2.default.createElement(
@@ -65834,7 +65835,7 @@ var WorkProject = function (_Component) {
           'div',
           {
             id: 'project-feature-image',
-            className: 'feature-image-container col-12 p-0' },
+            className: 'col-12 p-0 d-flex align-items-center' },
           _react2.default.createElement('img', {
             className: 'img-fluid',
             src: this.featureImage.url,
@@ -67043,6 +67044,49 @@ module.exports = {
     return x < .5 ? 16 * x * x * x * x * x : 1 + 16 * --x * x * x * x * x;
   }
 };
+
+/***/ }),
+/* 685 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var awsUrl = 'https://we-portfolio-resized.s3.amazonaws.com/';
+
+var ImageSizePicker = {
+
+  imgName: function imgName(origName) {
+    var nameMatch = origName.match(/^(.*?)\./);
+    return nameMatch[1];
+  },
+
+  imgFileFormat: function imgFileFormat(origName) {
+    var formatMatch = origName.match(/\.([^.]*)$/);
+    return formatMatch[0];
+  },
+
+  imgUrl: function imgUrl(width, origName, thumb) {
+    if (thumb) {
+      return awsUrl + 'thumb/' + this.imgName(origName) + '_thumb_' + width + this.imgFileFormat(origName);
+    }
+    return '' + awsUrl + width + '/' + this.imgName(origName) + '_' + width + 'w' + this.imgFileFormat(origName);
+  },
+
+  imgSize: function imgSize(origName) {
+    return {
+      w300: this.imgUrl(300, origName),
+      w450: this.imgUrl(450, origName),
+      w600: this.imgUrl(600, origName),
+      w900: this.imgUrl(900, origName),
+      thumb180: this.imgUrl(180, origName, true),
+      thumb300: this.imgUrl(300, origName, true)
+    };
+  }
+
+};
+
+module.exports = ImageSizePicker;
 
 /***/ })
 /******/ ]);

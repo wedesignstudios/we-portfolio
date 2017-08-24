@@ -65233,6 +65233,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var ImageSizePicker = __webpack_require__(685);
+
 var Press = function (_Component) {
   _inherits(Press, _Component);
 
@@ -65289,6 +65291,7 @@ var Press = function (_Component) {
                 'div',
                 { className: 'card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2' },
                 newsData.map(function (story) {
+                  var imageSizes = ImageSizePicker.imgSize(story.image.orig_name);
                   return _react2.default.createElement(
                     'div',
                     { className: 'card line-height-1-25-rem border-0 d-inline-block mb-4', key: story.id },
@@ -65298,8 +65301,12 @@ var Press = function (_Component) {
                         to: _this3.props.match.url + '/' + story.slug },
                       _react2.default.createElement('img', {
                         className: 'card-img-top img-fluid rounded-0',
-                        src: story.image.url,
-                        alt: story.image.alt })
+                        title: story.image.title,
+                        alt: story.image.alt,
+                        src: imageSizes.w300,
+                        srcSet: imageSizes.w800 + ' 800w, ' + imageSizes.w300 + ' 300w',
+                        sizes: '100vw',
+                        width: '300' })
                     ),
                     _react2.default.createElement(
                       'div',
@@ -65361,6 +65368,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var DateFormatter = __webpack_require__(78);
+var ImageSizePicker = __webpack_require__(685);
 
 var PressStory = function (_Component) {
   _inherits(PressStory, _Component);
@@ -65373,6 +65381,8 @@ var PressStory = function (_Component) {
     _this.state = {
       newsData: []
     };
+
+    _this.imageSizes;
     return _this;
   }
 
@@ -65392,6 +65402,13 @@ var PressStory = function (_Component) {
       });
     }
   }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      if (this.state !== nextState) {
+        this.imageSizes = ImageSizePicker.imgSize(nextState.newsData.image.orig_name);
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var newsData = this.state.newsData;
@@ -65407,12 +65424,15 @@ var PressStory = function (_Component) {
           'div',
           {
             id: 'press-feature-image',
-            className: 'col-12 p-0 d-flex align-items-center' },
+            className: 'col-12 p-0 d-flex align-items-center feature-image' },
           _react2.default.createElement('img', {
             className: 'img-fluid',
-            src: newsData.image.url,
             title: newsData.image.title,
-            alt: newsData.image.alt })
+            alt: newsData.image.alt,
+            src: this.imageSizes.w300,
+            srcSet: this.imageSizes.w300 + ' 300w, ' + this.imageSizes.w800 + ' 800w, ' + this.imageSizes.w1024 + ' 1024w, ' + this.imageSizes.w1440 + ' 1440w, ' + newsData.image.url + ' 2560w',
+            sizes: '100vw',
+            width: '2560' })
         ),
         _react2.default.createElement(
           'div',
@@ -65554,6 +65574,7 @@ var Work = function (_Component) {
                   var groupedImages = _groupBy(project.images, 'id');
                   var featureImageId = project.project_images_sort_order.images_order[1];
                   var featureImage = groupedImages[featureImageId][0];
+                  var featureImgSizes = ImageSizePicker.imgSize(featureImage.orig_name);
 
                   return _react2.default.createElement(
                     'div',
@@ -65564,7 +65585,11 @@ var Work = function (_Component) {
                         to: _this3.props.match.url + '/' + project.slug },
                       _react2.default.createElement('img', {
                         className: 'card-img-top img-fluid rounded-0',
-                        src: ImageSizePicker.imgSize(featureImage.orig_name).w300,
+                        src: featureImgSizes.w300,
+                        srcSet: featureImgSizes.w800 + ' 800w, ' + featureImgSizes.w450 + ' 450w, ' + featureImgSizes.w300 + ' 300w',
+                        sizes: '(min-width: 320px) 132px',
+                        width: '300',
+                        title: featureImage.title,
                         alt: featureImage.alt })
                     ),
                     _react2.default.createElement(
@@ -65763,7 +65788,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var scroll = _reactScroll2.default.animateScroll;
 var _groupBy = __webpack_require__(63);
 var _map = __webpack_require__(174);
-var DateFormatter = __webpack_require__(78);
+var ImageSizePicker = __webpack_require__(685);
 
 var WorkProject = function (_Component) {
   _inherits(WorkProject, _Component);
@@ -65825,6 +65850,10 @@ var WorkProject = function (_Component) {
       var margin = this.props.margin;
 
       var projectDate = new Date(projectData.date);
+      var featureImgSizes = void 0;
+      if (this.featureImage !== undefined) {
+        featureImgSizes = ImageSizePicker.imgSize(this.featureImage.orig_name);
+      }
 
       if (projectData.length < 1) return null;
 
@@ -65835,10 +65864,13 @@ var WorkProject = function (_Component) {
           'div',
           {
             id: 'project-feature-image',
-            className: 'col-12 p-0 d-flex align-items-center' },
+            className: 'col-12 p-0 d-flex align-items-center feature-image' },
           _react2.default.createElement('img', {
             className: 'img-fluid',
-            src: this.featureImage.url,
+            src: featureImgSizes.w300,
+            srcSet: featureImgSizes.w300 + ' 300w, ' + featureImgSizes.w800 + ' 800w, ' + featureImgSizes.w1024 + ' 1024w, ' + featureImgSizes.w1440 + ' 1440w, ' + this.featureImage.url + ' 2560w',
+            sizes: '100vw',
+            width: '2560',
             title: this.featureImage.title,
             alt: this.featureImage.alt })
         ),
@@ -65889,18 +65921,22 @@ var WorkProject = function (_Component) {
                       return category.name;
                     }).join(', ')
                   ),
-                  _react2.default.createElement(
-                    'p',
-                    { className: 'font-weight-bold m-0 letter-spacing-point125-rem' },
-                    projectData.collaborators.length === 1 ? 'Collaborator' : 'Collaborators'
-                  ),
-                  _react2.default.createElement(
-                    'p',
+                  projectData.collaborators.length > 0 ? _react2.default.createElement(
+                    'div',
                     null,
-                    projectData.collaborators.map(function (collaborator) {
-                      return collaborator.name;
-                    }).join(', ')
-                  )
+                    _react2.default.createElement(
+                      'p',
+                      { className: 'font-weight-bold m-0 letter-spacing-point125-rem' },
+                      projectData.collaborators.length === 1 ? 'Collaborator' : 'Collaborators'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      projectData.collaborators.map(function (collaborator) {
+                        return collaborator.name;
+                      }).join(', ')
+                    )
+                  ) : null
                 ),
                 _react2.default.createElement(
                   'div',
@@ -65927,6 +65963,7 @@ var WorkProject = function (_Component) {
               'div',
               { className: 'col-12 col-sm-8 container p-0 mb-5rem mt-5' },
               this.projectImages.map(function (image) {
+                var imageSizes = ImageSizePicker.imgSize(image.orig_name);
                 return _react2.default.createElement(
                   'div',
                   {
@@ -65934,9 +65971,12 @@ var WorkProject = function (_Component) {
                     className: 'mb-5' },
                   _react2.default.createElement('img', {
                     className: 'img-fluid w-100',
-                    src: image.url,
                     title: image.title,
-                    alt: image.alt })
+                    alt: image.alt,
+                    src: imageSizes.w300,
+                    srcSet: imageSizes.w800 + ' 800w, ' + imageSizes.w1024 + ' 1024w, ' + imageSizes.w1440 + '  1440w, ' + image.url + ' 2560w',
+                    sizes: '100vw',
+                    width: '1706' })
                 );
               }),
               _react2.default.createElement(
@@ -67077,8 +67117,9 @@ var ImageSizePicker = {
     return {
       w300: this.imgUrl(300, origName),
       w450: this.imgUrl(450, origName),
-      w600: this.imgUrl(600, origName),
-      w900: this.imgUrl(900, origName),
+      w800: this.imgUrl(800, origName),
+      w1024: this.imgUrl(1024, origName),
+      w1440: this.imgUrl(1440, origName),
       thumb180: this.imgUrl(180, origName, true),
       thumb300: this.imgUrl(300, origName, true)
     };

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 
+const ImageSizePicker = require('../../services/image_size_picker');
+
 class Press extends Component {
   constructor() {
     super();
@@ -38,14 +40,19 @@ class Press extends Component {
             <div className="row">
               <div className="card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2">
                 {newsData.map(story => {
+                  let imageSizes = ImageSizePicker.imgSize(story.image.orig_name);
                   return(
                     <div className="card line-height-1-25-rem border-0 d-inline-block mb-4" key={story.id}>
                     <Link
                       to={`${this.props.match.url}/${story.slug}`} >
                         <img
                           className="card-img-top img-fluid rounded-0"
-                          src={story.image.url}
-                          alt={story.image.alt} />
+                          title={story.image.title}
+                          alt={story.image.alt}
+                          src={imageSizes.w300}
+                          srcSet={`${imageSizes.w800} 800w, ${imageSizes.w300} 300w`}
+                          sizes="100vw"
+                          width="300" />
                     </Link>
                       <div className="card-block p-0 pt-3">
                         <p className="card-title mb-2">

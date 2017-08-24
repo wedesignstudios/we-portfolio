@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 
 const DateFormatter = require('../../services/date_formatter');
+const ImageSizePicker = require('../../services/image_size_picker');
 
 class PressStory extends Component {
   constructor() {
@@ -12,6 +13,8 @@ class PressStory extends Component {
     this.state = {
       newsData: []
     }
+
+    this.imageSizes;
   }
 
   componentDidMount() {
@@ -27,6 +30,12 @@ class PressStory extends Component {
       })
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if(this.state !== nextState) {
+      this.imageSizes = ImageSizePicker.imgSize(nextState.newsData.image.orig_name);
+    }
+  }
+
   render() {
     let { newsData } = this.state;
     let { margin } = this.props;
@@ -37,12 +46,15 @@ class PressStory extends Component {
       <div id="press-story" className="row mx-0" style={{marginTop: margin}}>
         <div
           id="press-feature-image"
-          className="col-12 p-0 d-flex align-items-center">
+          className="col-12 p-0 d-flex align-items-center feature-image">
           <img
             className="img-fluid"
-            src={newsData.image.url}
             title={newsData.image.title}
-            alt={newsData.image.alt} />
+            alt={newsData.image.alt}
+            src={this.imageSizes.w300}
+            srcSet={`${this.imageSizes.w300} 300w, ${this.imageSizes.w800} 800w, ${this.imageSizes.w1024} 1024w, ${this.imageSizes.w1440} 1440w, ${newsData.image.url} 2560w`}
+            sizes="100vw"
+            width="2560" />
         </div>
         <div id="press-text" className="col-12 container p-0">
           <div className="row justify-content-center m-0">

@@ -44,6 +44,7 @@ class Work extends Component {
                     let groupedImages = _groupBy(project.images, 'id');
                     let featureImageId = project.project_images_sort_order.images_order[1];
                     let featureImage = groupedImages[featureImageId][0];
+                    let featureImgSizes = ImageSizePicker.imgSize(featureImage.orig_name);
 
                     return(
                       <div className="card line-height-1-25-rem border-0 d-inline-block mb-4" key={project.id}>
@@ -51,7 +52,11 @@ class Work extends Component {
                         to={`${this.props.match.url}/${project.slug}`} >
                           <img
                             className="card-img-top img-fluid rounded-0"
-                            src={ImageSizePicker.imgSize(featureImage.orig_name).w300}
+                            src={featureImgSizes.w300}
+                            srcSet={`${featureImgSizes.w800} 800w, ${featureImgSizes.w450} 450w, ${featureImgSizes.w300} 300w`}
+                            sizes="(min-width: 320px) 132px"
+                            width="300"
+                            title={featureImage.title}
                             alt={featureImage.alt} />
                       </Link>
                         <div className="card-block p-0 pt-3">

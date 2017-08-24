@@ -7,7 +7,7 @@ import Scroll from 'react-scroll';
 const scroll = Scroll.animateScroll;
 const _groupBy = require('lodash/groupBy');
 const _map = require('lodash/map');
-const DateFormatter = require('../../services/date_formatter');
+const ImageSizePicker = require('../../services/image_size_picker');
 
 class WorkProject extends Component {
   constructor() {
@@ -56,6 +56,10 @@ class WorkProject extends Component {
     let { projectData } = this.state;
     let { margin } = this.props;
     let projectDate = new Date(projectData.date);
+    let featureImgSizes;
+    if(this.featureImage !== undefined) {
+      featureImgSizes = ImageSizePicker.imgSize(this.featureImage.orig_name);
+    }
 
     if(projectData.length < 1) return null;
 
@@ -63,10 +67,13 @@ class WorkProject extends Component {
       <div id="work-project" className="row mx-0" style={{marginTop: margin}}>
         <div
           id="project-feature-image"
-          className="col-12 p-0 d-flex align-items-center">
+          className="col-12 p-0 d-flex align-items-center feature-image">
             <img
               className="img-fluid"
-              src={this.featureImage.url}
+              src={featureImgSizes.w300}
+              srcSet={`${featureImgSizes.w300} 300w, ${featureImgSizes.w800} 800w, ${featureImgSizes.w1024} 1024w, ${featureImgSizes.w1440} 1440w, ${this.featureImage.url} 2560w`}
+              sizes="100vw"
+              width="2560"
               title={this.featureImage.title}
               alt={this.featureImage.alt} />
         </div>
@@ -91,11 +98,15 @@ class WorkProject extends Component {
                       }).join(', ')
                     }</p>
 
-                    <p className="font-weight-bold m-0 letter-spacing-point125-rem">{projectData.collaborators.length === 1 ? 'Collaborator' : 'Collaborators'}</p>
-                    <p>{projectData.collaborators.map(collaborator => {
-                        return collaborator.name;
-                      }).join(', ')
-                    }</p>
+                    {projectData.collaborators.length > 0 ?
+                      <div>
+                        <p className="font-weight-bold m-0 letter-spacing-point125-rem">{projectData.collaborators.length === 1 ? 'Collaborator' : 'Collaborators'}</p>
+                        <p>{projectData.collaborators.map(collaborator => {
+                            return collaborator.name;
+                          }).join(', ')
+                        }</p>
+                      </div> :
+                    null }
                   </div>
                   <div className="col-sm-6 p-0 pl-sm-3">
                     <div className="white-space-pre-line">{projectData.description}</div>
@@ -110,15 +121,19 @@ class WorkProject extends Component {
           <div className="row justify-content-center m-0">
             <div className="col-12 col-sm-8 container p-0 mb-5rem mt-5">
               {this.projectImages.map(image => {
+                let imageSizes = ImageSizePicker.imgSize(image.orig_name);
                 return(
                   <div
                     key={image.id}
                     className="mb-5">
                       <img
                         className="img-fluid w-100"
-                        src={image.url}
                         title={image.title}
-                        alt={image.alt} />
+                        alt={image.alt}
+                        src={imageSizes.w300}
+                        srcSet={`${imageSizes.w800} 800w, ${imageSizes.w1024} 1024w, ${imageSizes.w1440}  1440w, ${image.url} 2560w`}
+                        sizes="100vw"
+                        width="1706" />
                   </div>
                 )
               })}

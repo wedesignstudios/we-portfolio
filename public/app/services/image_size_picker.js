@@ -24,8 +24,9 @@ const ImageSizePicker = {
       {
         w300: this.imgUrl(300, origName),
         w450: this.imgUrl(450, origName),
-        w600: this.imgUrl(600, origName),
-        w900: this.imgUrl(900, origName),
+        w800: this.imgUrl(800, origName),
+        w1024: this.imgUrl(1024, origName),
+        w1440: this.imgUrl(1440, origName),
         thumb180: this.imgUrl(180, origName, true),
         thumb300: this.imgUrl(300, origName, true)
       }

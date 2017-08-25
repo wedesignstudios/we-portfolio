@@ -11,6 +11,7 @@ const DataActions = require('../../data/actions');
 const ModalUpdateImage = require('./ModalUpdateImage');
 const FormValidations = require('../../services/form_validations');
 const FormHandlers = require('../../services/form_handlers');
+const ImageSizePicker = require('../../services/image_size_picker');
 
 class GetImages extends React.Component {
   constructor(props) {
@@ -197,15 +198,16 @@ class GetImages extends React.Component {
 
             <div className="row">
               {this.state.imageData.map((image) => {
+                let imgSizes = ImageSizePicker.imgSize(image.orig_name);
                 return(
                   <div className="col-sm-3 mb-4" key={image.id}>
                     <div className="card line-height-1-25-rem">
                       <img
                         id={image.id}
-                        src={image.url}
+                        src={imgSizes.w300}
                         title={image.title}
                         alt={image.alt}
-                        width="100%"
+                        width="300"
                         onClick={(e) => this.openUpdateImageModal(e)} />
 
                         {image.project.name || image.news_story.title ?

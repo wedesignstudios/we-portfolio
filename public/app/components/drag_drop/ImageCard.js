@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ItemTypes } from './ItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
 
+const ImageSizePicker = require('../../services/image_size_picker');
 const _flow = require('lodash/flow');
 
 const cardSource = {
@@ -54,12 +55,16 @@ function collectTarget(connect) {
 class ImageCard extends Component {
   render() {
     const { connectDragSource, isDragging, connectDropTarget } = this.props;
-    const { id, imgUrl } = this.props;
+    const { id, imgOrigName } = this.props;
     const opacity = isDragging ? 0.4 : 1;
+    const imgSizes = ImageSizePicker.imgSize(imgOrigName);
 
     return connectDragSource(connectDropTarget(
       <div className="image-card" style={{ opacity }}>
-        <img id={id} src={imgUrl} width="100" />
+        <img
+          id={id}
+          src={imgSizes.w300}
+          width="100" />
       </div>
     ))
   }

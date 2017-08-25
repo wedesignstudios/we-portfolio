@@ -6,6 +6,7 @@ import 'whatwg-fetch';
 const DateFormatter = require('../../services/date_formatter');
 const FormValidations = require('../../services/form_validations');
 const _groupBy = require('lodash/groupBy');
+const ImageSizePicker = require('../../services/image_size_picker');
 
 class GetProjects extends Component {
   constructor(props) {
@@ -94,11 +95,11 @@ class GetProjects extends Component {
                           {coverImage ?
                             <img
                               className="card-img-top img-fluid"
-                              src={coverImage[0].url}
+                              src={ImageSizePicker.imgSize(coverImage[0].orig_name).thumb300}
                               alt={coverImage[0].alt} /> :
                             <img
                               className="card-img-top img-fluid"
-                              src={project.images[0].url}
+                              src={ImageSizePicker.imgSize(project.images[0].orig_name).thumb300}
                               alt={project.images[0].alt} />
                           }
                         </Link> :

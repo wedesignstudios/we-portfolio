@@ -105,7 +105,7 @@ class ImageBoard extends Component {
           return <ImageCard
               key={image.id}
               id={image.id}
-              imgUrl={image.url}
+              imgOrigName={image.orig_name}
               className="mb-3 mr-3"
               height="100"
               findImageCard={this.findImageCard}

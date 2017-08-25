@@ -17971,6 +17971,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var ImageSizePicker = __webpack_require__(685);
+
 var GetImagesNewsStory = function (_React$Component) {
   _inherits(GetImagesNewsStory, _React$Component);
 
@@ -18060,11 +18062,12 @@ var GetImagesNewsStory = function (_React$Component) {
           'div',
           { className: 'images-select-container' },
           this.state.image_data.map(function (image) {
+            var imgSizes = ImageSizePicker.imgSize(image.orig_name);
             return _react2.default.createElement('img', {
               key: image.id,
               id: image.id,
               className: _this4.state.image_id == image.id ? 'selected' : '',
-              src: image.url,
+              src: imgSizes.w300,
               height: '100',
               onClick: function onClick(e) {
                 return _this4.selectImage(e, _this4.props.sendImageDataToModal);
@@ -36265,6 +36268,7 @@ var DataActions = __webpack_require__(30);
 var ModalUpdateImage = __webpack_require__(353);
 var FormValidations = __webpack_require__(17);
 var FormHandlers = __webpack_require__(14);
+var ImageSizePicker = __webpack_require__(685);
 
 var GetImages = function (_React$Component) {
   _inherits(GetImages, _React$Component);
@@ -36522,6 +36526,7 @@ var GetImages = function (_React$Component) {
               'div',
               { className: 'row' },
               this.state.imageData.map(function (image) {
+                var imgSizes = ImageSizePicker.imgSize(image.orig_name);
                 return _react2.default.createElement(
                   'div',
                   { className: 'col-sm-3 mb-4', key: image.id },
@@ -36530,10 +36535,10 @@ var GetImages = function (_React$Component) {
                     { className: 'card line-height-1-25-rem' },
                     _react2.default.createElement('img', {
                       id: image.id,
-                      src: image.url,
+                      src: imgSizes.w300,
                       title: image.title,
                       alt: image.alt,
-                      width: '100%',
+                      width: '300',
                       onClick: function onClick(e) {
                         return _this5.openUpdateImageModal(e);
                       } }),
@@ -36623,6 +36628,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var DateFormatter = __webpack_require__(78);
 var FormValidations = __webpack_require__(17);
+var ImageSizePicker = __webpack_require__(685);
 
 var GetNewsStories = function (_Component) {
   _inherits(GetNewsStories, _Component);
@@ -36729,6 +36735,7 @@ var GetNewsStories = function (_Component) {
               { className: 'row' },
               this.state.newsStoriesData.map(function (story) {
                 var storyDate = new Date(story.date);
+                var imgSize = ImageSizePicker.imgSize(story.image.orig_name);
                 return _react2.default.createElement(
                   'div',
                   { className: 'col-sm-2 mb-4', key: story.id },
@@ -36738,7 +36745,11 @@ var GetNewsStories = function (_Component) {
                     _react2.default.createElement(
                       _reactRouterDom.Link,
                       { to: _this4.props.match.url + '/' + story.id + '/update' },
-                      _react2.default.createElement('img', { className: 'card-img-top img-fluid', src: story.image.url, alt: story.image.alt })
+                      _react2.default.createElement('img', {
+                        className: 'card-img-top img-fluid',
+                        src: imgSize.thumb300,
+                        alt: story.image.alt,
+                        width: '300' })
                     ),
                     _react2.default.createElement(
                       'div',
@@ -36813,6 +36824,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var DateFormatter = __webpack_require__(78);
 var FormValidations = __webpack_require__(17);
 var _groupBy = __webpack_require__(63);
+var ImageSizePicker = __webpack_require__(685);
 
 var GetProjects = function (_Component) {
   _inherits(GetProjects, _Component);
@@ -36938,10 +36950,10 @@ var GetProjects = function (_Component) {
                       { to: _this4.props.match.url + '/' + project.id + '/update' },
                       coverImage ? _react2.default.createElement('img', {
                         className: 'card-img-top img-fluid',
-                        src: coverImage[0].url,
+                        src: ImageSizePicker.imgSize(coverImage[0].orig_name).thumb300,
                         alt: coverImage[0].alt }) : _react2.default.createElement('img', {
                         className: 'card-img-top img-fluid',
-                        src: project.images[0].url,
+                        src: ImageSizePicker.imgSize(project.images[0].orig_name).thumb300,
                         alt: project.images[0].alt })
                     ) : null,
                     _react2.default.createElement(
@@ -37975,6 +37987,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var FormHandlers = __webpack_require__(14);
+var ImageSizePicker = __webpack_require__(685);
 
 var GetImagesProjects = function (_React$Component) {
   _inherits(GetImagesProjects, _React$Component);
@@ -38048,12 +38061,13 @@ var GetImagesProjects = function (_React$Component) {
           'div',
           { className: 'images-select-container' },
           this.state.image_data.map(function (image) {
+            var imgSizes = ImageSizePicker.imgSize(image.orig_name);
             return _react2.default.createElement('img', {
               key: image.id,
               id: image.id,
               name: 'image_ids',
               className: _this3.selectedImage(image),
-              src: image.url,
+              src: imgSizes.w300,
               height: '100',
               onClick: function onClick(e) {
                 _this3.props.addOrRemoveToAttachedFromSortArr(e), FormHandlers.multiSelect(e, _this3, _this3.props.sendImageDataToModal);
@@ -38097,6 +38111,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var FormHandlers = __webpack_require__(14);
 var FormValidations = __webpack_require__(17);
 var DataActions = __webpack_require__(30);
+var ImageSizePicker = __webpack_require__(685);
 
 var ModalUpdateImage = function (_Component) {
   _inherits(ModalUpdateImage, _Component);
@@ -38114,6 +38129,7 @@ var ModalUpdateImage = function (_Component) {
       success: false
     };
 
+    _this.imgSizes;
     _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/images', _this.state.submitError);
     return _this;
   }
@@ -38130,6 +38146,7 @@ var ModalUpdateImage = function (_Component) {
           title: data.title ? data.title : '',
           alt: data.alt ? data.alt : '',
           url: data.url,
+          orig_name: data.orig_name,
           index_page: data.index_page ? data.index_page : false
         });
       }).catch(function (err) {
@@ -38138,9 +38155,16 @@ var ModalUpdateImage = function (_Component) {
     }
   }, {
     key: 'componentDidUpdate',
-    value: function componentDidUpdate(prevProps) {
+    value: function componentDidUpdate(prevProps, prevState) {
       if (prevProps.imageId !== this.props.imageId) {
         this.loadImage();
+      }
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      if (nextState !== this.state) {
+        this.imgSizes = ImageSizePicker.imgSize(nextState.orig_name);
       }
     }
   }, {
@@ -38157,6 +38181,7 @@ var ModalUpdateImage = function (_Component) {
     value: function render() {
       var _this3 = this;
 
+      console.log('imgSizes: ', this.imgSizes);
       return _react2.default.createElement(
         'div',
         { className: 'modal fade', id: 'addImages', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'exampleModalLabel', 'aria-hidden': 'true' },
@@ -38206,7 +38231,7 @@ var ModalUpdateImage = function (_Component) {
                     'div',
                     { className: 'col-sm-10' },
                     _react2.default.createElement('img', {
-                      src: this.state.url,
+                      src: this.imgSizes ? this.imgSizes.thumb300 : '',
                       alt: this.state.alt,
                       width: '25%' })
                   )
@@ -38726,7 +38751,7 @@ var ImageBoard = function (_Component) {
           return _react2.default.createElement(_ImageCard2.default, {
             key: image.id,
             id: image.id,
-            imgUrl: image.url,
+            imgOrigName: image.orig_name,
             className: 'mb-3 mr-3',
             height: '100',
             findImageCard: _this2.findImageCard,
@@ -38771,6 +38796,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var ImageSizePicker = __webpack_require__(685);
 var _flow = __webpack_require__(172);
 
 var cardSource = {
@@ -38840,14 +38866,18 @@ var ImageCard = function (_Component) {
           connectDropTarget = _props.connectDropTarget;
       var _props2 = this.props,
           id = _props2.id,
-          imgUrl = _props2.imgUrl;
+          imgOrigName = _props2.imgOrigName;
 
       var opacity = isDragging ? 0.4 : 1;
+      var imgSizes = ImageSizePicker.imgSize(imgOrigName);
 
       return connectDragSource(connectDropTarget(_react2.default.createElement(
         'div',
         { className: 'image-card', style: { opacity: opacity } },
-        _react2.default.createElement('img', { id: id, src: imgUrl, width: '100' })
+        _react2.default.createElement('img', {
+          id: id,
+          src: imgSizes.w300,
+          width: '100' })
       )));
     }
   }]);

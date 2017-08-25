@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 const FormHandlers = require('../../services/form_handlers');
 const FormValidations = require('../../services/form_validations');
 const DataActions = require('../../data/actions');
+const ImageSizePicker = require('../../services/image_size_picker');
 
 class ModalUpdateImage extends Component {
   constructor() {
@@ -17,6 +18,7 @@ class ModalUpdateImage extends Component {
       success: false
     }
 
+    this.imgSizes;
     this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/images', this.state.submitError);
   }
 
@@ -28,6 +30,7 @@ class ModalUpdateImage extends Component {
           title: data.title ? data.title : '',
           alt: data.alt ? data.alt : '',
           url: data.url,
+          orig_name: data.orig_name,
           index_page: data.index_page ? data.index_page : false
         });
       })
@@ -36,9 +39,15 @@ class ModalUpdateImage extends Component {
       });
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if(prevProps.imageId !== this.props.imageId) {
       this.loadImage();
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if(nextState !== this.state) {
+      this.imgSizes = ImageSizePicker.imgSize(nextState.orig_name);
     }
   }
 
@@ -56,6 +65,7 @@ class ModalUpdateImage extends Component {
   }
 
   render() {
+    console.log('imgSizes: ', this.imgSizes);
     return(
       <div className="modal fade" id="addImages"tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">
@@ -82,7 +92,7 @@ class ModalUpdateImage extends Component {
                   <label className="col-sm-2 col-form-label">Image: </label>
                     <div className="col-sm-10">
                       <img
-                        src={this.state.url}
+                        src={this.imgSizes ? this.imgSizes.thumb300 : ''}
                         alt={this.state.alt}
                         width="25%" />
                     </div>

@@ -5,6 +5,7 @@ import 'whatwg-fetch';
 
 const DateFormatter = require('../../services/date_formatter');
 const FormValidations = require('../../services/form_validations');
+const ImageSizePicker = require('../../services/image_size_picker');
 
 class GetNewsStories extends Component {
   constructor(props) {
@@ -77,11 +78,16 @@ class GetNewsStories extends Component {
           <div className="row">
             {this.state.newsStoriesData.map(story => {
               let storyDate = new Date(story.date);
+              let imgSize = ImageSizePicker.imgSize(story.image.orig_name);
               return (
                 <div className="col-sm-2 mb-4" key={story.id}>
                   <div className="card line-height-1-25-rem">
                     <Link to={`${this.props.match.url}/${story.id}/update`}>
-                      <img className="card-img-top img-fluid" src={story.image.url} alt={story.image.alt} />
+                      <img
+                        className="card-img-top img-fluid"
+                        src={imgSize.thumb300}
+                        alt={story.image.alt}
+                        width="300" />
                     </Link>
                     <div className="card-block p-3">
                       <p className="card-title mb-2">

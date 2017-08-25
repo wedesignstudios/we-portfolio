@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 
 const FormHandlers = require('../../services/form_handlers');
+const ImageSizePicker = require('../../services/image_size_picker');
 
 class GetImagesProjects extends React.Component {
   constructor() {
@@ -59,12 +60,13 @@ class GetImagesProjects extends React.Component {
       <div id="get-images-projects">
         <div className="images-select-container">
         {this.state.image_data.map(image => {
+          let imgSizes = ImageSizePicker.imgSize(image.orig_name);
           return <img
                     key={image.id}
                     id={image.id}
                     name="image_ids"
                     className={this.selectedImage(image)}
-                    src={image.url}
+                    src={imgSizes.w300}
                     height="100"
                     onClick={(e) => {this.props.addOrRemoveToAttachedFromSortArr(e), FormHandlers.multiSelect(e, this, this.props.sendImageDataToModal) } } />
           })

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 
+const ImageSizePicker = require('../../services/image_size_picker');
+
 class GetImagesNewsStory extends React.Component {
   constructor() {
     super();
@@ -71,11 +73,12 @@ class GetImagesNewsStory extends React.Component {
       <div id="get-images-news-story">
         <div className="images-select-container">
         {this.state.image_data.map(image => {
+          let imgSizes = ImageSizePicker.imgSize(image.orig_name);
           return <img 
                     key={image.id}                    
                     id={image.id}
                     className={this.state.image_id == image.id ? 'selected' : ''}
-                    src={image.url} 
+                    src={imgSizes.w300}
                     height="100"
                     onClick={(e) => this.selectImage(e, this.props.sendImageDataToModal)} />
           })

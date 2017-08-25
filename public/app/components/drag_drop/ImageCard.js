@@ -55,15 +55,14 @@ function collectTarget(connect) {
 class ImageCard extends Component {
   render() {
     const { connectDragSource, isDragging, connectDropTarget } = this.props;
-    const { id, imgOrigName } = this.props;
+    const { id, imgOrigName, url } = this.props;
     const opacity = isDragging ? 0.4 : 1;
-    const imgSizes = ImageSizePicker.imgSize(imgOrigName);
 
     return connectDragSource(connectDropTarget(
       <div className="image-card" style={{ opacity }}>
         <img
           id={id}
-          src={imgSizes.w300}
+          src={url}
           width="100" />
       </div>
     ))

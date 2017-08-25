@@ -52,7 +52,7 @@ class PressStory extends Component {
             title={newsData.image.title}
             alt={newsData.image.alt}
             src={this.imageSizes.w300}
-            srcSet={`${this.imageSizes.w300} 300w, ${this.imageSizes.w800} 800w, ${this.imageSizes.w1024} 1024w, ${this.imageSizes.w1440} 1440w, ${newsData.image.url} 2560w`}
+            srcSet={`${this.imageSizes.w300} 300w, ${this.imageSizes.w600} 600w, ${this.imageSizes.w800} 800w, ${this.imageSizes.w1024} 1024w, ${this.imageSizes.w1440} 1440w, ${newsData.image.url} 2560w`}
             sizes="100vw"
             width="2560" />
         </div>

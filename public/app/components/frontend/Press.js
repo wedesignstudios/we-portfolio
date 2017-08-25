@@ -50,7 +50,7 @@ class Press extends Component {
                           title={story.image.title}
                           alt={story.image.alt}
                           src={imageSizes.w300}
-                          srcSet={`${imageSizes.w800} 800w, ${imageSizes.w300} 300w`}
+                          srcSet={`${imageSizes.w800} 800w, ${imageSizes.w600} 600w, ${imageSizes.w300} 300w`}
                           sizes="100vw"
                           width="300" />
                     </Link>

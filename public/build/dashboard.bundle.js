@@ -38751,7 +38751,7 @@ var ImageBoard = function (_Component) {
           return _react2.default.createElement(_ImageCard2.default, {
             key: image.id,
             id: image.id,
-            imgOrigName: image.orig_name,
+            url: image.url,
             className: 'mb-3 mr-3',
             height: '100',
             findImageCard: _this2.findImageCard,
@@ -38866,17 +38866,17 @@ var ImageCard = function (_Component) {
           connectDropTarget = _props.connectDropTarget;
       var _props2 = this.props,
           id = _props2.id,
-          imgOrigName = _props2.imgOrigName;
+          imgOrigName = _props2.imgOrigName,
+          url = _props2.url;
 
       var opacity = isDragging ? 0.4 : 1;
-      var imgSizes = ImageSizePicker.imgSize(imgOrigName);
 
       return connectDragSource(connectDropTarget(_react2.default.createElement(
         'div',
         { className: 'image-card', style: { opacity: opacity } },
         _react2.default.createElement('img', {
           id: id,
-          src: imgSizes.w300,
+          src: url,
           width: '100' })
       )));
     }
@@ -64397,6 +64397,7 @@ var ImageSizePicker = {
     return {
       w300: this.imgUrl(300, origName),
       w450: this.imgUrl(450, origName),
+      w600: this.imgUrl(600, origName),
       w800: this.imgUrl(800, origName),
       w1024: this.imgUrl(1024, origName),
       w1440: this.imgUrl(1440, origName),

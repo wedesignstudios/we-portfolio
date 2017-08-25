@@ -38751,7 +38751,7 @@ var ImageBoard = function (_Component) {
           return _react2.default.createElement(_ImageCard2.default, {
             key: image.id,
             id: image.id,
-            imgOrigName: image.orig_name,
+            url: image.url,
             className: 'mb-3 mr-3',
             height: '100',
             findImageCard: _this2.findImageCard,
@@ -38866,17 +38866,17 @@ var ImageCard = function (_Component) {
           connectDropTarget = _props.connectDropTarget;
       var _props2 = this.props,
           id = _props2.id,
-          imgOrigName = _props2.imgOrigName;
+          imgOrigName = _props2.imgOrigName,
+          url = _props2.url;
 
       var opacity = isDragging ? 0.4 : 1;
-      var imgSizes = ImageSizePicker.imgSize(imgOrigName);
 
       return connectDragSource(connectDropTarget(_react2.default.createElement(
         'div',
         { className: 'image-card', style: { opacity: opacity } },
         _react2.default.createElement('img', {
           id: id,
-          src: imgSizes.w300,
+          src: url,
           width: '100' })
       )));
     }
@@ -65334,7 +65334,7 @@ var Press = function (_Component) {
                         title: story.image.title,
                         alt: story.image.alt,
                         src: imageSizes.w300,
-                        srcSet: imageSizes.w800 + ' 800w, ' + imageSizes.w300 + ' 300w',
+                        srcSet: imageSizes.w800 + ' 800w, ' + imageSizes.w600 + ' 600w, ' + imageSizes.w300 + ' 300w',
                         sizes: '100vw',
                         width: '300' })
                     ),
@@ -65460,7 +65460,7 @@ var PressStory = function (_Component) {
             title: newsData.image.title,
             alt: newsData.image.alt,
             src: this.imageSizes.w300,
-            srcSet: this.imageSizes.w300 + ' 300w, ' + this.imageSizes.w800 + ' 800w, ' + this.imageSizes.w1024 + ' 1024w, ' + this.imageSizes.w1440 + ' 1440w, ' + newsData.image.url + ' 2560w',
+            srcSet: this.imageSizes.w300 + ' 300w, ' + this.imageSizes.w600 + ' 600w, ' + this.imageSizes.w800 + ' 800w, ' + this.imageSizes.w1024 + ' 1024w, ' + this.imageSizes.w1440 + ' 1440w, ' + newsData.image.url + ' 2560w',
             sizes: '100vw',
             width: '2560' })
         ),
@@ -65616,8 +65616,8 @@ var Work = function (_Component) {
                       _react2.default.createElement('img', {
                         className: 'card-img-top img-fluid rounded-0',
                         src: featureImgSizes.w300,
-                        srcSet: featureImgSizes.w800 + ' 800w, ' + featureImgSizes.w450 + ' 450w, ' + featureImgSizes.w300 + ' 300w',
-                        sizes: '(min-width: 320px) 132px',
+                        srcSet: featureImgSizes.w800 + ' 800w, ' + featureImgSizes.w600 + ' 600w, ' + featureImgSizes.w450 + ' 450w, ' + featureImgSizes.w300 + ' 300w',
+                        sizes: '(min-width: 320px) 132px, 100vw',
                         width: '300',
                         title: featureImage.title,
                         alt: featureImage.alt })
@@ -66004,7 +66004,7 @@ var WorkProject = function (_Component) {
                     title: image.title,
                     alt: image.alt,
                     src: imageSizes.w300,
-                    srcSet: imageSizes.w800 + ' 800w, ' + imageSizes.w1024 + ' 1024w, ' + imageSizes.w1440 + '  1440w, ' + image.url + ' 2560w',
+                    srcSet: imageSizes.w600 + ' 600w, ' + imageSizes.w800 + ' 800w, ' + imageSizes.w1024 + ' 1024w, ' + imageSizes.w1440 + '  1440w, ' + image.url + ' 2560w',
                     sizes: '100vw',
                     width: '1706' })
                 );
@@ -67147,6 +67147,7 @@ var ImageSizePicker = {
     return {
       w300: this.imgUrl(300, origName),
       w450: this.imgUrl(450, origName),
+      w600: this.imgUrl(600, origName),
       w800: this.imgUrl(800, origName),
       w1024: this.imgUrl(1024, origName),
       w1440: this.imgUrl(1440, origName),

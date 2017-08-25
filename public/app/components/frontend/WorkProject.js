@@ -131,7 +131,7 @@ class WorkProject extends Component {
                         title={image.title}
                         alt={image.alt}
                         src={imageSizes.w300}
-                        srcSet={`${imageSizes.w800} 800w, ${imageSizes.w1024} 1024w, ${imageSizes.w1440}  1440w, ${image.url} 2560w`}
+                        srcSet={`${imageSizes.w600} 600w, ${imageSizes.w800} 800w, ${imageSizes.w1024} 1024w, ${imageSizes.w1440}  1440w, ${image.url} 2560w`}
                         sizes="100vw"
                         width="1706" />
                   </div>

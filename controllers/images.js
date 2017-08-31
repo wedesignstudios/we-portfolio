@@ -4,15 +4,17 @@ const router = express.Router();
 const params = require('params');
 const multer = require('multer');
 const Image = require('../models/image.js');
-const s3 = new AWS.S3({signatureVersion: 'v4'});
 const isLoggedIn = require('../middleware/isLoggedIn');
 const fs = require('fs');
 const gm = require('gm');
 
 // AWS config
 AWS.config.update({
+  region: process.env.region,
   subregion: process.env.region
 });
+
+const s3 = new AWS.S3({signatureVersion: 'v4'});
 
 // Multer config
 // memory storage keeps file data in a buffer

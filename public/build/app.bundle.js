@@ -37107,7 +37107,10 @@ var GetNewsStories = function (_Component) {
                         className: 'card-img-top img-fluid',
                         src: imgSize.thumb300,
                         alt: story.image.alt,
-                        width: '300' })
+                        width: '300',
+                        onError: function onError(e) {
+                          return e.target.setAttribute('src', image.url);
+                        } })
                     ),
                     _react2.default.createElement(
                       'div',

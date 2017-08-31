@@ -87,7 +87,8 @@ class GetNewsStories extends Component {
                         className="card-img-top img-fluid"
                         src={imgSize.thumb300}
                         alt={story.image.alt}
-                        width="300" />
+                        width="300"
+                        onError={(e) => e.target.setAttribute('src', image.url)} />
                     </Link>
                     <div className="card-block p-3">
                       <p className="card-title mb-2">

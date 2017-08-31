@@ -208,7 +208,8 @@ class GetImages extends React.Component {
                         title={image.title}
                         alt={image.alt}
                         width="300"
-                        onClick={(e) => this.openUpdateImageModal(e)} />
+                        onClick={(e) => this.openUpdateImageModal(e)}
+                        onError={(e) => e.target.setAttribute('src', image.url)} />
 
                         {image.project.name || image.news_story.title ?
                           <div className="card-footer text-muted px-3 py-1">

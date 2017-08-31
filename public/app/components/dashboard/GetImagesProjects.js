@@ -68,7 +68,8 @@ class GetImagesProjects extends React.Component {
                     className={this.selectedImage(image)}
                     src={imgSizes.w300}
                     height="100"
-                    onClick={(e) => {this.props.addOrRemoveToAttachedFromSortArr(e), FormHandlers.multiSelect(e, this, this.props.sendImageDataToModal) } } />
+                    onClick={(e) => {this.props.addOrRemoveToAttachedFromSortArr(e), FormHandlers.multiSelect(e, this, this.props.sendImageDataToModal) } }
+                    onError={(e) => e.target.setAttribute('src', image.url)} />
           })
         }
         </div>

@@ -80,7 +80,8 @@ class GetImagesNewsStory extends React.Component {
                     className={this.state.image_id == image.id ? 'selected' : ''}
                     src={imgSizes.w300}
                     height="100"
-                    onClick={(e) => this.selectImage(e, this.props.sendImageDataToModal)} />
+                    onClick={(e) => this.selectImage(e, this.props.sendImageDataToModal)}
+                    onError={(e) => e.target.setAttribute('src', image.url)} />
           })
         }
       </div>

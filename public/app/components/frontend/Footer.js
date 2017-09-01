@@ -41,7 +41,9 @@ class Footer extends Component {
 
             <div id="contact-us" className="col-md-4 col-12 p-0">
               <p className="text-center muli-bold h5 mb-0">
-                CONTACT US
+                <Link to="/contact">
+                  CONTACT US
+                </Link>
               </p>
             </div>
 

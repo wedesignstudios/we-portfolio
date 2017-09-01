@@ -65645,7 +65645,11 @@ var Footer = function (_Component) {
               _react2.default.createElement(
                 'p',
                 { className: 'text-center muli-bold h5 mb-0' },
-                'CONTACT US'
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/contact' },
+                  'CONTACT US'
+                )
               )
             )
           )

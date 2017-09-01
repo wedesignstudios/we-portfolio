@@ -7064,6 +7064,10 @@ var ImageSizePicker = {
       thumb180: this.imgUrl(180, origName, true),
       thumb300: this.imgUrl(300, origName, true)
     };
+  },
+
+  imgOrig: function imgOrig(origName) {
+    return 'https://we-portfolio.s3.amazonaws.com/' + origName;
   }
 
 };

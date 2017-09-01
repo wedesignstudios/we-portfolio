@@ -7064,6 +7064,10 @@ var ImageSizePicker = {
       thumb180: this.imgUrl(180, origName, true),
       thumb300: this.imgUrl(300, origName, true)
     };
+  },
+
+  imgOrig: function imgOrig(origName) {
+    return 'https://we-portfolio.s3.amazonaws.com/' + origName;
   }
 
 };
@@ -65680,26 +65684,70 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var ImageSizePicker = __webpack_require__(23);
+
 var Index = function (_Component) {
   _inherits(Index, _Component);
 
   function Index() {
     _classCallCheck(this, Index);
 
-    return _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this));
+
+    _this.state = {
+      windowWidth: 0
+    };
+
+    _this.getWindowWidth = _this.getWindowWidth.bind(_this);
+    return _this;
   }
 
   _createClass(Index, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getWindowWidth();
+      window.addEventListener('resize', this.getWindowWidth);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      window.removeEventListener('resize', this.getWindowWidth);
+    }
+  }, {
+    key: 'getWindowWidth',
+    value: function getWindowWidth() {
+      this.setState({ windowWidth: window.innerWidth });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var windowWidth = this.state.windowWidth;
+
+      var imageOrig = ImageSizePicker.imgOrig('LAURA_WEST_TX.jpg');
+      var imageOrigMobile = ImageSizePicker.imgOrig('LAURA_WEST_TX_mobile.jpg');
+      var imageSizes = ImageSizePicker.imgSize('LAURA_WEST_TX.jpg');
+      var imageSizesMobile = ImageSizePicker.imgSize('LAURA_WEST_TX_mobile.jpg');
+
       return _react2.default.createElement(
         'div',
         { className: 'row justify-content-center m-0 image-full-width' },
         _react2.default.createElement(
           'div',
           { className: 'col p-0 image-full-width-container' },
-          _react2.default.createElement('img', { className: 'img-fluid img-landscape', src: 'https://we-portfolio.s3.amazonaws.com/LAURA_WEST_TX.jpg', alt: 'Laura out in West Texas' }),
-          _react2.default.createElement('img', { className: 'img-portrait', src: 'https://we-portfolio.s3.amazonaws.com/LAURA_WEST_TX_mobile.jpg', alt: 'Laura out in West Texas' })
+          windowWidth > 800 ? _react2.default.createElement('img', {
+            className: 'img-fluid img-landscape',
+            alt: 'Laura out in West Texas',
+            src: imageOrig,
+            srcSet: imageOrig + ' 2560w, ' + imageSizes.w1440 + ' 1440w, ' + imageSizes.w1024 + ' 1024w',
+            sizes: '100vw',
+            width: '2560' }) : null,
+          windowWidth <= 800 ? _react2.default.createElement('img', {
+            className: 'img-portrait',
+            alt: 'Laura out in West Texas',
+            src: imageOrigMobile,
+            srcSet: imageOrigMobile + ' 1440w, ' + imageSizesMobile.w1024 + ' 1024w, ' + imageSizesMobile.w800 + ' 800w, ' + imageSizesMobile.w600 + ' 600w,',
+            sizes: '100vw',
+            width: '1440' }) : null
         )
       );
     }

@@ -65568,16 +65568,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var Copyright = __webpack_require__(686);
+
 var Footer = function (_Component) {
   _inherits(Footer, _Component);
 
   function Footer() {
     _classCallCheck(this, Footer);
 
-    var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this));
-
-    _this.today = new Date();
-    return _this;
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
   }
 
   _createClass(Footer, [{
@@ -65588,13 +65587,63 @@ var Footer = function (_Component) {
         { id: 'footer', className: 'row justify-content-center m-0' },
         _react2.default.createElement(
           'div',
-          { className: 'col p-0' },
+          { className: 'col-lg-10 col-12 p-0 container-fluid height-100' },
           _react2.default.createElement(
             'div',
-            { className: 'd-flex justify-content-center' },
-            '\xA92010-',
-            this.today.getFullYear(),
-            ' WE Design Studios LLC'
+            { className: 'row m-0 height-100 align-items-center' },
+            _react2.default.createElement(
+              'div',
+              { id: 'social-icons', className: 'col-md-4 col-12 p-0' },
+              _react2.default.createElement(
+                'div',
+                { className: 'd-flex justify-content-center' },
+                _react2.default.createElement(
+                  'a',
+                  { href: 'https://instagram.com/wedesignstudios', target: '_blank' },
+                  _react2.default.createElement('i', { className: 'fa fa-instagram social-icon-circle mx-3', 'aria-hidden': 'true' })
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { href: 'https://www.facebook.com/WEDesignStudios', target: '_blank' },
+                  _react2.default.createElement('i', { className: 'fa fa-facebook social-icon-circle mx-3', 'aria-hidden': 'true' })
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { href: 'https://www.behance.net/WEDesignStudios', target: '_blank' },
+                  _react2.default.createElement('i', { className: 'fa fa-behance social-icon-circle mx-3', 'aria-hidden': 'true' })
+                )
+              ),
+              _react2.default.createElement(Copyright, null)
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'name-block', className: 'col-md-4 col-12 p-0' },
+              _react2.default.createElement(
+                'p',
+                { className: 'text-center muli-bold h4 mb-3' },
+                'WE DESIGN STUDIOS'
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'text-center muli-bold h6 mb-4' },
+                'AUSTIN, TX'
+              ),
+              _react2.default.createElement(
+                'div',
+                { id: 'squiggle', className: 'd-flex justify-content-center' },
+                _react2.default.createElement('img', { src: 'https://we-portfolio.s3.amazonaws.com/footer-squiggle.svg', alt: 'squiggle line' })
+              ),
+              _react2.default.createElement(Copyright, null)
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'contact-us', className: 'col-md-4 col-12 p-0' },
+              _react2.default.createElement(
+                'p',
+                { className: 'text-center muli-bold h5 mb-0' },
+                'CONTACT US'
+              )
+            )
           )
         )
       );
@@ -67161,6 +67210,69 @@ _reactDom2.default.render(_react2.default.createElement(
   { className: 'row m-0 height-100' },
   _react2.default.createElement(App, null)
 ), document.getElementById('app'));
+
+/***/ }),
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Copyright = function (_Component) {
+  _inherits(Copyright, _Component);
+
+  function Copyright() {
+    _classCallCheck(this, Copyright);
+
+    var _this = _possibleConstructorReturn(this, (Copyright.__proto__ || Object.getPrototypeOf(Copyright)).call(this));
+
+    _this.today = new Date();
+    return _this;
+  }
+
+  _createClass(Copyright, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'p',
+        { className: 'text-center muli-bold h6 mb-0 mt-4 copyright' },
+        'COPYRIGHT 2010-',
+        this.today.getFullYear()
+      );
+    }
+  }]);
+
+  return Copyright;
+}(_react.Component);
+
+module.exports = Copyright;
 
 /***/ })
 /******/ ]);

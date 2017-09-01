@@ -42,7 +42,8 @@ body {
 a {
   color: $dodger-blue;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: none;
   }
 }

@@ -32,6 +32,10 @@ const ImageSizePicker = {
         thumb300: this.imgUrl(300, origName, true)
       }
     )
+  },
+
+  imgOrig: function(origName) {
+    return 'https://we-portfolio.s3.amazonaws.com/' + origName;
   }
 
 }

@@ -65597,7 +65597,7 @@ var Footer = function (_Component) {
             { className: 'row m-0 height-100 align-items-center' },
             _react2.default.createElement(
               'div',
-              { id: 'social-icons', className: 'col-md-4 col-12 p-0' },
+              { id: 'social-icons', className: 'col-lg-4 col-12 p-0' },
               _react2.default.createElement(
                 'div',
                 { className: 'd-flex justify-content-center' },
@@ -65621,7 +65621,7 @@ var Footer = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { id: 'name-block', className: 'col-md-4 col-12 p-0' },
+              { id: 'name-block', className: 'col-lg-4 col-12 p-0' },
               _react2.default.createElement(
                 'p',
                 { className: 'text-center muli-bold h4 mb-3' },
@@ -65641,7 +65641,7 @@ var Footer = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { id: 'contact-us', className: 'col-md-4 col-12 p-0' },
+              { id: 'contact-us', className: 'col-lg-4 col-12 p-0' },
               _react2.default.createElement(
                 'div',
                 { className: 'd-flex justify-content-center muli-bold h5 mb-0' },

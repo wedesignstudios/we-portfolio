@@ -11,7 +11,7 @@ class Footer extends Component {
         <div className="col-lg-10 col-12 p-0 container-fluid height-100">
           <div className="row m-0 height-100 align-items-center">
 
-            <div id="social-icons" className="col-md-4 col-12 p-0">
+            <div id="social-icons" className="col-lg-4 col-12 p-0">
               <div className="d-flex justify-content-center">
                 <a href="https://instagram.com/wedesignstudios" target="_blank">
                   <i className="fa fa-instagram social-icon-circle mx-3" aria-hidden="true"></i>
@@ -26,7 +26,7 @@ class Footer extends Component {
               <Copyright />
             </div>
 
-            <div id="name-block" className="col-md-4 col-12 p-0">
+            <div id="name-block" className="col-lg-4 col-12 p-0">
               <p className="text-center muli-bold h4 mb-3">
                 WE DESIGN STUDIOS
               </p>
@@ -39,7 +39,7 @@ class Footer extends Component {
               <Copyright />
             </div>
 
-            <div id="contact-us" className="col-md-4 col-12 p-0">
+            <div id="contact-us" className="col-lg-4 col-12 p-0">
               <div className="d-flex justify-content-center muli-bold h5 mb-0">
                 <Link to="/contact">
                   <span className="contact-wave">

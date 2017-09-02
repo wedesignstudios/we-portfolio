@@ -173,3 +173,9 @@
     display: none;
   }
 }
+
+@media (hover: none) {
+  #navbar-main .navbar ul li a:hover::after {    
+    width: 0;
+  }
+}

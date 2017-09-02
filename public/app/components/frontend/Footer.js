@@ -40,11 +40,22 @@ class Footer extends Component {
             </div>
 
             <div id="contact-us" className="col-md-4 col-12 p-0">
-              <p className="text-center muli-bold h5 mb-0">
+              <div className="d-flex justify-content-center muli-bold h5 mb-0">
                 <Link to="/contact">
-                  CONTACT US
+                  <span className="contact-wave">
+                    <span>C</span>
+                    <span>O</span>
+                    <span>N</span>
+                    <span>T</span>
+                    <span>A</span>
+                    <span>C</span>
+                    <span>T</span>
+                    <span>&nbsp;</span>
+                    <span>U</span>
+                    <span>S</span>
+                  </span>
                 </Link>
-              </p>
+              </div>
             </div>
 
           </div>

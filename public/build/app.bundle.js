@@ -65643,12 +65643,65 @@ var Footer = function (_Component) {
               'div',
               { id: 'contact-us', className: 'col-md-4 col-12 p-0' },
               _react2.default.createElement(
-                'p',
-                { className: 'text-center muli-bold h5 mb-0' },
+                'div',
+                { className: 'd-flex justify-content-center muli-bold h5 mb-0' },
                 _react2.default.createElement(
                   _reactRouterDom.Link,
                   { to: '/contact' },
-                  'CONTACT US'
+                  _react2.default.createElement(
+                    'span',
+                    { className: 'contact-wave' },
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'C'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'O'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'N'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'T'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'A'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'C'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'T'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      '\xA0'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'U'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      null,
+                      'S'
+                    )
+                  )
                 )
               )
             )

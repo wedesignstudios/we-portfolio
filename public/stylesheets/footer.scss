@@ -45,6 +45,64 @@
   padding-right: 1px;
 }
 
+.contact-wave span {
+  display: table-cell;
+  line-height: 3rem;
+}
+
+.contact-wave:hover span {
+  display: table-cell;
+
+  -webkit-animation:  jump 0.5s 1;
+  -moz-animation:     jump 0.5s 1;
+  -o-animation:       jump 0.5s 1;
+  animation:          jump 0.5s 1;
+}
+
+@keyframes jump {
+  0% {
+    transform:translateY(0px);
+  }
+  50% {
+    transform:translateY(-15px);
+
+  }
+  100% {
+    transform:translateY(0px);
+  }
+}
+
+.contact-wave span:nth-child(1) {
+  animation-delay: 0s;
+}
+.contact-wave span:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.contact-wave span:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.contact-wave span:nth-child(4) {
+  animation-delay: 0.15s;
+}
+.contact-wave span:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.contact-wave span:nth-child(6) {
+  animation-delay: 0.25s;
+}
+.contact-wave span:nth-child(7) {
+  animation-delay: 0.3s;
+}
+.contact-wave span:nth-child(8) {
+  animation-delay: 0.35s;
+}
+.contact-wave span:nth-child(9) {
+  animation-delay: 0.4s;
+}
+.contact-wave span:nth-child(10) {
+  animation-delay: 0.45s;
+}
+
 @media screen and (max-width: 767px) {
   .wrapper {
     margin-bottom: -20rem;
@@ -66,5 +124,14 @@
     .copyright {
       display: none;
     }
+  }
+}
+
+@media (hover: none) {
+  .contact-wave:hover span {
+    -webkit-animation:  none;
+    -moz-animation:     none;
+    -o-animation:       none;
+    animation:          none;
   }
 }

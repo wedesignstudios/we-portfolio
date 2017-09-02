@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
+import Scroll from 'react-scroll';
 
+const scroll = Scroll.animateScroll;
 const DateFormatter = require('../../services/date_formatter');
 const ImageSizePicker = require('../../services/image_size_picker');
 
@@ -11,10 +13,12 @@ class PressStory extends Component {
     super();
 
     this.state = {
-      newsData: []
+      newsData: [],
+      windowWidth: 0
     }
 
     this.imageSizes;
+    this.getWindowWidth = this.getWindowWidth.bind(this);
   }
 
   componentDidMount() {
@@ -27,17 +31,31 @@ class PressStory extends Component {
       })
       .catch(err => {
         console.error(err);
-      })
+      });
+    this.getWindowWidth();
+    window.addEventListener('resize', this.getWindowWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.getWindowWidth);
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if(this.state !== nextState) {
+    if(this.state.newsData !== nextState.newsData) {
       this.imageSizes = ImageSizePicker.imgSize(nextState.newsData.image.orig_name);
     }
   }
 
+  getWindowWidth() {
+    this.setState({windowWidth: window.innerWidth});
+  }
+
+  scrollToTop() {
+    scroll.scrollToTop({duration: 1000});
+  }
+
   render() {
-    let { newsData } = this.state;
+    let { newsData, windowWidth } = this.state;
     let { margin } = this.props;
     let storyDate = new Date(newsData.date);
 
@@ -69,6 +87,15 @@ class PressStory extends Component {
                   <div className="white-space-pre-line">{newsData.description}</div>
                 </div>
               </div>
+              {windowWidth <= 768 ?
+                <p className="text-center pt-5">
+                  <span
+                    style={{cursor: 'pointer'}}
+                    onClick={this.scrollToTop} >
+                    BACK TO TOP
+                  </span>
+                </p>
+              : null}
             </div>
           </div>
         </div>

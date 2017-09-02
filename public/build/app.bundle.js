@@ -66422,6 +66422,10 @@ var _reactRouterDom = __webpack_require__(11);
 
 __webpack_require__(20);
 
+var _reactScroll = __webpack_require__(673);
+
+var _reactScroll2 = _interopRequireDefault(_reactScroll);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -66430,6 +66434,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var scroll = _reactScroll2.default.animateScroll;
 var DateFormatter = __webpack_require__(79);
 var ImageSizePicker = __webpack_require__(23);
 
@@ -66442,10 +66447,12 @@ var PressStory = function (_Component) {
     var _this = _possibleConstructorReturn(this, (PressStory.__proto__ || Object.getPrototypeOf(PressStory)).call(this));
 
     _this.state = {
-      newsData: []
+      newsData: [],
+      windowWidth: 0
     };
 
     _this.imageSizes;
+    _this.getWindowWidth = _this.getWindowWidth.bind(_this);
     return _this;
   }
 
@@ -66463,18 +66470,37 @@ var PressStory = function (_Component) {
       }).catch(function (err) {
         console.error(err);
       });
+      this.getWindowWidth();
+      window.addEventListener('resize', this.getWindowWidth);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      window.removeEventListener('resize', this.getWindowWidth);
     }
   }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps, nextState) {
-      if (this.state !== nextState) {
+      if (this.state.newsData !== nextState.newsData) {
         this.imageSizes = ImageSizePicker.imgSize(nextState.newsData.image.orig_name);
       }
     }
   }, {
+    key: 'getWindowWidth',
+    value: function getWindowWidth() {
+      this.setState({ windowWidth: window.innerWidth });
+    }
+  }, {
+    key: 'scrollToTop',
+    value: function scrollToTop() {
+      scroll.scrollToTop({ duration: 1000 });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var newsData = this.state.newsData;
+      var _state = this.state,
+          newsData = _state.newsData,
+          windowWidth = _state.windowWidth;
       var margin = this.props.margin;
 
       var storyDate = new Date(newsData.date);
@@ -66533,7 +66559,18 @@ var PressStory = function (_Component) {
                     newsData.description
                   )
                 )
-              )
+              ),
+              windowWidth <= 768 ? _react2.default.createElement(
+                'p',
+                { className: 'text-center pt-5' },
+                _react2.default.createElement(
+                  'span',
+                  {
+                    style: { cursor: 'pointer' },
+                    onClick: this.scrollToTop },
+                  'BACK TO TOP'
+                )
+              ) : null
             )
           )
         )

@@ -73,12 +73,13 @@ class GetImagesNewsStory extends React.Component {
       <div id="get-images-news-story">
         <div className="images-select-container">
         {this.state.image_data.map(image => {
+          let isSVG = /(.svg)$/g.test(image.orig_name);
           let imgSizes = ImageSizePicker.imgSize(image.orig_name);
           return <img 
                     key={image.id}                    
                     id={image.id}
                     className={this.state.image_id == image.id ? 'selected' : ''}
-                    src={imgSizes.w300}
+                    src={!isSVG ? imgSizes.w300 : image.url}
                     height="100"
                     onClick={(e) => this.selectImage(e, this.props.sendImageDataToModal)}
                     onError={(e) => e.target.setAttribute('src', image.url)} />

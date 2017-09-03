@@ -14,6 +14,7 @@ class ModalUpdateImage extends Component {
       title: '',
       alt: '',
       url: '',
+      orig_name: '',
       index_page: false,
       success: false
     }
@@ -65,6 +66,8 @@ class ModalUpdateImage extends Component {
   }
 
   render() {
+    let { title, alt, url, index_page, orig_name } = this.state;
+    let isSVG = /(.svg)$/g.test(orig_name);
     return(
       <div className="modal fade" id="addImages"tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">
@@ -91,8 +94,8 @@ class ModalUpdateImage extends Component {
                   <label className="col-sm-2 col-form-label">Image: </label>
                     <div className="col-sm-10">
                       <img
-                        src={this.imgSizes ? this.imgSizes.thumb300 : ''}
-                        alt={this.state.alt}
+                        src={this.imgSizes && !isSVG ? this.imgSizes.thumb300 : url}
+                        alt={alt}
                         width="25%" />
                     </div>
                 </div>
@@ -100,7 +103,7 @@ class ModalUpdateImage extends Component {
                 <div className="form-group row">
                   <label className="col-sm-2 col-form-label">URL: </label>
                   <div className="col-sm-10">
-                    <div className="form-control border-0 pl-0">{this.state.url}</div>
+                    <div className="form-control border-0 pl-0">{url}</div>
                   </div>
                 </div>
 
@@ -111,7 +114,7 @@ class ModalUpdateImage extends Component {
                       type="text"
                       name="title"
                       className="form-control"
-                      value={this.state.title}
+                      value={title}
                       onChange={(e) => FormHandlers.handleOnChange(e, this)}
                       onFocus={(e) => FormHandlers.preventSpaceKey(e)} />
                   </div>
@@ -124,7 +127,7 @@ class ModalUpdateImage extends Component {
                       type="text"
                       name="alt"
                       className="form-control"
-                      value={this.state.alt}
+                      value={alt}
                       onChange={(e) => FormHandlers.handleOnChange(e, this)}
                       onFocus={(e) => FormHandlers.preventSpaceKey(e)} />
                   </div>
@@ -137,7 +140,7 @@ class ModalUpdateImage extends Component {
                       type="checkbox"
                       name="index_page"
                       className="form-control mt-3"
-                      checked={this.state.index_page}
+                      checked={index_page}
                       onChange={(e) => FormHandlers.checkboxChange(e, this)} />
                   </div>
                 </div>

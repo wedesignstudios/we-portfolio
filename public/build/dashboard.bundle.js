@@ -18170,12 +18170,13 @@ var GetImagesNewsStory = function (_React$Component) {
           'div',
           { className: 'images-select-container' },
           this.state.image_data.map(function (image) {
+            var isSVG = /(.svg)$/g.test(image.orig_name);
             var imgSizes = ImageSizePicker.imgSize(image.orig_name);
             return _react2.default.createElement('img', {
               key: image.id,
               id: image.id,
               className: _this4.state.image_id == image.id ? 'selected' : '',
-              src: imgSizes.w300,
+              src: !isSVG ? imgSizes.w300 : image.url,
               height: '100',
               onClick: function onClick(e) {
                 return _this4.selectImage(e, _this4.props.sendImageDataToModal);
@@ -36579,7 +36580,9 @@ var GetImages = function (_React$Component) {
               'div',
               { className: 'row' },
               this.state.imageData.map(function (image) {
+                var isSVG = /(.svg)$/g.test(image.orig_name);
                 var imgSizes = ImageSizePicker.imgSize(image.orig_name);
+
                 return _react2.default.createElement(
                   'div',
                   { className: 'col-sm-3 mb-4', key: image.id },
@@ -36588,7 +36591,7 @@ var GetImages = function (_React$Component) {
                     { className: 'card line-height-1-25-rem' },
                     _react2.default.createElement('img', {
                       id: image.id,
-                      src: imgSizes.w300,
+                      src: isSVG ? image.url : imgSizes.w300,
                       title: image.title,
                       alt: image.alt,
                       width: '300',
@@ -38120,13 +38123,14 @@ var GetImagesProjects = function (_React$Component) {
           'div',
           { className: 'images-select-container' },
           this.state.image_data.map(function (image) {
+            var isSVG = /(.svg)$/g.test(image.orig_name);
             var imgSizes = ImageSizePicker.imgSize(image.orig_name);
             return _react2.default.createElement('img', {
               key: image.id,
               id: image.id,
               name: 'image_ids',
               className: _this3.selectedImage(image),
-              src: imgSizes.w300,
+              src: !isSVG ? imgSizes.w300 : image.url,
               height: '100',
               onClick: function onClick(e) {
                 _this3.props.addOrRemoveToAttachedFromSortArr(e), FormHandlers.multiSelect(e, _this3, _this3.props.sendImageDataToModal);
@@ -38187,6 +38191,7 @@ var ModalUpdateImage = function (_Component) {
       title: '',
       alt: '',
       url: '',
+      orig_name: '',
       index_page: false,
       success: false
     };
@@ -38243,6 +38248,14 @@ var ModalUpdateImage = function (_Component) {
     value: function render() {
       var _this3 = this;
 
+      var _state = this.state,
+          title = _state.title,
+          alt = _state.alt,
+          url = _state.url,
+          index_page = _state.index_page,
+          orig_name = _state.orig_name;
+
+      var isSVG = /(.svg)$/g.test(orig_name);
       return _react2.default.createElement(
         'div',
         { className: 'modal fade', id: 'addImages', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'exampleModalLabel', 'aria-hidden': 'true' },
@@ -38292,8 +38305,8 @@ var ModalUpdateImage = function (_Component) {
                     'div',
                     { className: 'col-sm-10' },
                     _react2.default.createElement('img', {
-                      src: this.imgSizes ? this.imgSizes.thumb300 : '',
-                      alt: this.state.alt,
+                      src: this.imgSizes && !isSVG ? this.imgSizes.thumb300 : url,
+                      alt: alt,
                       width: '25%' })
                   )
                 ),
@@ -38311,7 +38324,7 @@ var ModalUpdateImage = function (_Component) {
                     _react2.default.createElement(
                       'div',
                       { className: 'form-control border-0 pl-0' },
-                      this.state.url
+                      url
                     )
                   )
                 ),
@@ -38330,7 +38343,7 @@ var ModalUpdateImage = function (_Component) {
                       type: 'text',
                       name: 'title',
                       className: 'form-control',
-                      value: this.state.title,
+                      value: title,
                       onChange: function onChange(e) {
                         return FormHandlers.handleOnChange(e, _this3);
                       },
@@ -38354,7 +38367,7 @@ var ModalUpdateImage = function (_Component) {
                       type: 'text',
                       name: 'alt',
                       className: 'form-control',
-                      value: this.state.alt,
+                      value: alt,
                       onChange: function onChange(e) {
                         return FormHandlers.handleOnChange(e, _this3);
                       },
@@ -38378,7 +38391,7 @@ var ModalUpdateImage = function (_Component) {
                       type: 'checkbox',
                       name: 'index_page',
                       className: 'form-control mt-3',
-                      checked: this.state.index_page,
+                      checked: index_page,
                       onChange: function onChange(e) {
                         return FormHandlers.checkboxChange(e, _this3);
                       } })

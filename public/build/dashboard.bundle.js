@@ -17581,6 +17581,7 @@ var FormProject = function (_React$Component) {
       images_ids_attached_data: [],
       images_ids_detach: [],
       image_sort_order: [],
+      feature_image_id: '',
       clients_ids: [],
       clients_ids_attached: [],
       clients_ids_detach: [],

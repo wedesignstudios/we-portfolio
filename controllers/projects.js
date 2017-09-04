@@ -7,6 +7,7 @@ const bookshelf = require('../db/bookshelf');
 const Project = require('../models/project');
 const Image = require('../models/image');
 const ProjectImagesSortOrder = require('../models/project_images_sort_order');
+const ProjectFeatureImage = require('../models/project_feature_images');
 
 // INDEX all projects
 router.get('/', (req, res, next) => {
@@ -14,7 +15,16 @@ router.get('/', (req, res, next) => {
     .collection()
     .orderBy('name', 'ASC')
     .fetch({
-      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories', 'project_images_sort_order'],
+      withRelated: [
+        'images',
+        'feature_image.image',
+        'clients',
+        'clients.address',
+        'collaborators',
+        'collaborators.address',
+        'project_categories',
+        'project_images_sort_order'
+      ],
       debug: true
     })
     .then((projects) => {
@@ -36,7 +46,16 @@ router.get('/:param', (req, res, next) => {
   Project
     .forge({[key]: req.params.param})
     .fetch({
-      withRelated: ['images', 'clients', 'clients.address', 'collaborators', 'collaborators.address', 'project_categories', 'project_images_sort_order'],
+      withRelated: [
+        'images',
+        'feature_image.image',
+        'clients',
+        'clients.address',
+        'collaborators',
+        'collaborators.address',
+        'project_categories',
+        'project_images_sort_order'
+      ],
       debug: true
     })
     .then((project) => {
@@ -58,6 +77,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
   const clients_ids = req.body.clients_ids;
   const collaborators_ids = req.body.collaborators_ids;
   const project_categories_ids = req.body.project_categories_ids;
+  const feature_image_id = req.body.feature_image_id;
   const image_sort_order = req.body.image_sort_order;
   const allowedKeys = ['name', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
@@ -85,6 +105,16 @@ router.post('/', isLoggedIn, (req, res, next) => {
                   });
               });
             };
+          });
+        // Add feature image
+        project.related('feature_image')
+          .fetch()
+          .then((image) => {
+            if(image === null && feature_image_id !== '') {
+              return ProjectFeatureImage
+                .forge({project_id: project.id, image_id: feature_image_id})
+                .save();
+            }
           });
         // Add image sort order
         project.related('project_images_sort_order')
@@ -123,6 +153,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
   const collaborators_ids_detach = req.body.collaborators_ids_detach;
   const project_categories_ids = req.body.project_categories_ids;
   const project_categories_ids_detach = req.body.project_categories_ids_detach;
+  const feature_image_id = req.body.feature_image_id;
   const image_sort_order = req.body.image_sort_order;
   const allowedKeys = ['name', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
@@ -171,11 +202,36 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
               });
             };
           });
+        // Fetch feature image
+        project.related('feature_image')
+          .fetch()
+          .then((f_image) => {
+            if(f_image) {
+              let f_imageJSON = f_image.toJSON();
+
+              // If Project currently has feature image and is not changing it: return
+              if(f_imageJSON.image_id === feature_image_id) {
+                return
+              } else {
+              // If Project is changing feature image
+                return ProjectFeatureImage
+                  .forge({id: f_imageJSON.id})
+                  .save({image_id: feature_image_id}, {method: 'update', patch: true})
+              }
+            }
+
+            // If Project currently has no feature image: set feature image
+            if(f_image === null && feature_image_id !== '') {
+              return ProjectFeatureImage
+                .forge({project_id: project.id, image_id: feature_image_id})
+                .save();
+            }
+          });
+
         // Fetch related image sort order
         project.related('project_images_sort_order')
           .fetch()
           .then(sort_order => {
-            console.log('SORT_ORDER: ', sort_order);
             if(sort_order !== null) {
               sort_order = sort_order.serialize();
             }

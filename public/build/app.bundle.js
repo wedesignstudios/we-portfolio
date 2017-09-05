@@ -17581,7 +17581,7 @@ var FormProject = function (_React$Component) {
       images_ids_attached_data: [],
       images_ids_detach: [],
       image_sort_order: [],
-      feature_image_id: '',
+      feature_image: [],
       clients_ids: [],
       clients_ids_attached: [],
       clients_ids_detach: [],
@@ -17603,9 +17603,10 @@ var FormProject = function (_React$Component) {
 
     _this.initialState = _this.state;
 
-    _this.requiredFields = ['name', 'date', 'description'];
+    _this.requiredFields = ['name', 'date', 'description', 'feature_image'];
     _this.requiredFieldsBlank = true;
     _this.getComponentData = _this.getComponentData.bind(_this);
+    _this.getFeatureImgData = _this.getFeatureImgData.bind(_this);
     _this.updateSortOrder = _this.updateSortOrder.bind(_this);
     _this.addOrRemoveToAttachedFromSortArr = _this.addOrRemoveToAttachedFromSortArr.bind(_this);
     _this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, _this, '/dashboard/projects', _this.state.submitError);
@@ -17626,7 +17627,8 @@ var FormProject = function (_React$Component) {
             name: data.name,
             initialName: data.name,
             date: (0, _moment2.default)(data.date),
-            description: data.description
+            description: data.description,
+            feature_image: { id: data.feature_image.image.id, url: data.feature_image.image.url }
           });
           if (data.clients) {
             _this2.setAttachedAndSelected(data.clients, 'clients');
@@ -17696,6 +17698,18 @@ var FormProject = function (_React$Component) {
       }
 
       this.setState((_setState5 = {}, _defineProperty(_setState5, inputName, data.toAttach), _defineProperty(_setState5, inputName + '_attached', data.attached), _defineProperty(_setState5, inputName + '_detach', data.detach), _defineProperty(_setState5, inputName + '_selected', data.selected), _setState5));
+    }
+  }, {
+    key: 'getFeatureImgData',
+    value: function getFeatureImgData(data) {
+      this.setState({ feature_image: data });
+    }
+  }, {
+    key: 'openFeatureImageModal',
+    value: function openFeatureImageModal(event) {
+      event.preventDefault();
+      $(_reactDom2.default.findDOMNode(this.refs.featureModal)).modal();
+      this.setState({ clearModalErrs: true });
     }
   }, {
     key: 'openImageModal',
@@ -17962,6 +17976,41 @@ var FormProject = function (_React$Component) {
                 _react2.default.createElement(
                   'label',
                   { className: 'col-sm-2 col-form-label' },
+                  'Feature Image: '
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-10' },
+                  this.state.feature_image.id ? _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'col-sm-12' },
+                      _react2.default.createElement('img', {
+                        id: this.state.feature_image.id,
+                        src: this.state.feature_image.url,
+                        className: 'mb-3 mr-3',
+                        height: '100' })
+                    )
+                  ) : null,
+                  _react2.default.createElement(
+                    'button',
+                    {
+                      className: 'btn btn-secondary',
+                      onClick: function onClick(e) {
+                        return _this3.openFeatureImageModal(e);
+                      } },
+                    this.state.feature_image.id ? 'Change Image' : 'Add Image'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'form-group row' },
+                _react2.default.createElement(
+                  'label',
+                  { className: 'col-sm-2 col-form-label' },
                   'Image(s): '
                 ),
                 _react2.default.createElement(
@@ -17989,6 +18038,14 @@ var FormProject = function (_React$Component) {
                   )
                 )
               ),
+              _react2.default.createElement(ModalAddImages, {
+                ref: 'featureModal',
+                parentForm: 'project-feature',
+                sendImageData: this.getFeatureImgData,
+                projectId: this.props.projectId,
+                attached: this.state.images_ids_attached,
+                feature_image: this.state.feature_image,
+                clearModalErrs: this.state.clearModalErrs }),
               _react2.default.createElement(ModalAddImages, {
                 ref: 'modal',
                 parentForm: 'project',
@@ -18227,6 +18284,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var FormHandlers = __webpack_require__(14);
 var DataActions = __webpack_require__(31);
+var GetFeatureImageProjects = __webpack_require__(687);
 var GetImagesProjects = __webpack_require__(354);
 var GetImagesNewsStory = __webpack_require__(134);
 
@@ -18411,6 +18469,14 @@ var ModalAddImages = function (_Component) {
                   );
                 })
               ),
+              this.props.parentForm === 'project-feature' ? _react2.default.createElement(GetFeatureImageProjects, {
+                openDropzone: this.state.openDropzone,
+                sendOpenCloseData: this.getOpenCloseData,
+                projectId: this.props.projectId,
+                attached: this.props.attached,
+                sendImageDataToModal: this.props.sendImageData,
+                imageAddSuccess: this.state.imageAddSuccess,
+                resetImageAdded: this.resetImageAdded }) : null,
               this.props.parentForm === 'project' ? _react2.default.createElement(GetImagesProjects, {
                 openDropzone: this.state.openDropzone,
                 sendOpenCloseData: this.getOpenCloseData,
@@ -37192,7 +37258,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var DateFormatter = __webpack_require__(79);
 var FormValidations = __webpack_require__(17);
-var _groupBy = __webpack_require__(48);
 var ImageSizePicker = __webpack_require__(23);
 
 var GetProjects = function (_Component) {
@@ -37300,13 +37365,7 @@ var GetProjects = function (_Component) {
               { className: 'row' },
               this.state.projectsData.map(function (project) {
                 var projectDate = new Date(project.date);
-                var projectImagesGroups = _groupBy(project.images, 'id');
-                var coverImage = void 0;
-
-                if (project.project_images_sort_order.images_order) {
-                  var coverImageId = project.project_images_sort_order.images_order[0];
-                  coverImage = projectImagesGroups[coverImageId];
-                }
+                var coverImage = project.feature_image.image;
 
                 return _react2.default.createElement(
                   'div',
@@ -37319,8 +37378,8 @@ var GetProjects = function (_Component) {
                       { to: _this4.props.match.url + '/' + project.id + '/update' },
                       coverImage ? _react2.default.createElement('img', {
                         className: 'card-img-top img-fluid',
-                        src: ImageSizePicker.imgSize(coverImage[0].orig_name).thumb300,
-                        alt: coverImage[0].alt }) : _react2.default.createElement('img', {
+                        src: ImageSizePicker.imgSize(coverImage.orig_name).thumb300,
+                        alt: coverImage.alt }) : _react2.default.createElement('img', {
                         className: 'card-img-top img-fluid',
                         src: ImageSizePicker.imgSize(project.images[0].orig_name).thumb300,
                         alt: project.images[0].alt })
@@ -66686,7 +66745,7 @@ var Work = function (_Component) {
                 { className: 'card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2' },
                 projectData.map(function (project) {
                   var groupedImages = _groupBy(project.images, 'id');
-                  var featureImageId = project.project_images_sort_order.images_order[1];
+                  var featureImageId = project.project_images_sort_order.images_order[0];
                   var featureImage = groupedImages[featureImageId][0];
                   var featureImgSizes = ImageSizePicker.imgSize(featureImage.orig_name);
 
@@ -66786,7 +66845,6 @@ var WorkProject = function (_Component) {
       projectData: []
     };
 
-    _this.featureImage;
     _this.projectImages;
     return _this;
   }
@@ -66818,7 +66876,6 @@ var WorkProject = function (_Component) {
           return groupedImages[i].shift();
         });
 
-        this.featureImage = orderedImages.splice(0, 1)[0];
         this.projectImages = orderedImages;
       }
     }
@@ -66835,8 +66892,10 @@ var WorkProject = function (_Component) {
 
       var projectDate = new Date(projectData.date);
       var featureImgSizes = void 0;
-      if (this.featureImage !== undefined) {
-        featureImgSizes = ImageSizePicker.imgSize(this.featureImage.orig_name);
+      var featureImage = void 0;
+      if (projectData.feature_image !== undefined) {
+        featureImage = projectData.feature_image.image;
+        featureImgSizes = ImageSizePicker.imgSize(projectData.feature_image.image.orig_name);
       }
 
       if (projectData.length < 1) return null;
@@ -66852,11 +66911,11 @@ var WorkProject = function (_Component) {
           _react2.default.createElement('img', {
             className: 'img-fluid',
             src: featureImgSizes.w300,
-            srcSet: featureImgSizes.w300 + ' 300w, ' + featureImgSizes.w800 + ' 800w, ' + featureImgSizes.w1024 + ' 1024w, ' + featureImgSizes.w1440 + ' 1440w, ' + this.featureImage.url + ' 2560w',
+            srcSet: featureImgSizes.w300 + ' 300w, ' + featureImgSizes.w800 + ' 800w, ' + featureImgSizes.w1024 + ' 1024w, ' + featureImgSizes.w1440 + ' 1440w, ' + featureImage.url + ' 2560w',
             sizes: '100vw',
             width: '2560',
-            title: this.featureImage.title,
-            alt: this.featureImage.alt })
+            title: featureImage.title,
+            alt: featureImage.alt })
         ),
         _react2.default.createElement(
           'div',
@@ -67429,6 +67488,160 @@ var Copyright = function (_Component) {
 }(_react.Component);
 
 module.exports = Copyright;
+
+/***/ }),
+/* 687 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+__webpack_require__(20);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ImageSizePicker = __webpack_require__(23);
+
+var GetFeatureImageProjects = function (_Component) {
+  _inherits(GetFeatureImageProjects, _Component);
+
+  function GetFeatureImageProjects() {
+    _classCallCheck(this, GetFeatureImageProjects);
+
+    var _this = _possibleConstructorReturn(this, (GetFeatureImageProjects.__proto__ || Object.getPrototypeOf(GetFeatureImageProjects)).call(this));
+
+    _this.state = {
+      image_data: [],
+      image_id: null
+    };
+    return _this;
+  }
+
+  _createClass(GetFeatureImageProjects, [{
+    key: 'loadImages',
+    value: function loadImages() {
+      var _this2 = this;
+
+      fetch('/api/images').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        data = data.filter(function (obj) {
+          return obj.project_id === null || _this2.props.attached.includes(obj.id);
+        });
+        _this2.setState({
+          image_data: data
+        });
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+  }, {
+    key: 'setImageId',
+    value: function setImageId(imageData) {
+      var _this3 = this;
+
+      if (this.props.projectId) {
+        var image = imageData.filter(function (img) {
+          return img.feature_image_project.project_id == _this3.props.projectId;
+        });
+
+        if (image.length > 0) {
+          this.setState({
+            image_id: image[0].id
+          });
+        }
+      }
+    }
+  }, {
+    key: 'selectImage',
+    value: function selectImage(event, sendImageDataFunc) {
+      var target = event.target;
+      var selectedImageId = target.id;
+      var selectedImageUrl = target.src;
+
+      this.setState({
+        image_id: target.id
+      });
+
+      sendImageDataFunc({ id: selectedImageId, url: selectedImageUrl });
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.loadImages();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
+        this.loadImages();
+        this.props.resetImageAdded();
+      }
+
+      if (this.state.image_id === null && this.props.projectId) {
+        this.setImageId(this.state.image_data);
+      }
+
+      if (prevProps.attached !== this.props.attached) {
+        this.loadImages();
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { id: 'get-feature-image-project' },
+          _react2.default.createElement(
+            'div',
+            { className: 'images-select-container' },
+            this.state.image_data.map(function (image) {
+              var isSVG = /(.svg)$/g.test(image.orig_name);
+              var imgSizes = ImageSizePicker.imgSize(image.orig_name);
+              return _react2.default.createElement('img', {
+                key: image.id,
+                id: image.id,
+                className: _this4.state.image_id == image.id ? 'selected' : '',
+                src: !isSVG ? imgSizes.w300 : image.url,
+                height: '100',
+                onClick: function onClick(e) {
+                  return _this4.selectImage(e, _this4.props.sendImageDataToModal);
+                },
+                onError: function onError(e) {
+                  return e.target.setAttribute('src', image.url);
+                } });
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return GetFeatureImageProjects;
+}(_react.Component);
+
+module.exports = GetFeatureImageProjects;
 
 /***/ })
 /******/ ]);

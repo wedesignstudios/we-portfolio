@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 
 const FormHandlers = require('../../services/form_handlers');
 const DataActions = require('../../data/actions');
+const GetFeatureImageProjects = require('./GetFeatureImageProjects');
 const GetImagesProjects = require('./GetImagesProjects');
 const GetImagesNewsStory = require('./GetImagesNewsStory');
 
@@ -130,6 +131,16 @@ class ModalAddImages extends Component {
                 }
               </div>
 
+              {this.props.parentForm === 'project-feature' ?
+                <GetFeatureImageProjects
+                  openDropzone={this.state.openDropzone}
+                  sendOpenCloseData={this.getOpenCloseData}
+                  projectId={this.props.projectId}
+                  attached={this.props.attached}
+                  sendImageDataToModal={this.props.sendImageData}
+                  imageAddSuccess={this.state.imageAddSuccess}
+                  resetImageAdded={this.resetImageAdded} />
+              : null}
               {this.props.parentForm === 'project' ?
                 <GetImagesProjects
                   openDropzone={this.state.openDropzone}

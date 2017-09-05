@@ -17,7 +17,6 @@ class WorkProject extends Component {
       projectData: []
     }
 
-    this.featureImage;
     this.projectImages;
   }
 
@@ -43,7 +42,6 @@ class WorkProject extends Component {
           return groupedImages[i].shift();
         });
 
-      this.featureImage = orderedImages.splice(0,1)[0];
       this.projectImages = orderedImages;
     }
   }
@@ -57,8 +55,10 @@ class WorkProject extends Component {
     let { margin } = this.props;
     let projectDate = new Date(projectData.date);
     let featureImgSizes;
-    if(this.featureImage !== undefined) {
-      featureImgSizes = ImageSizePicker.imgSize(this.featureImage.orig_name);
+    let featureImage;
+    if(projectData.feature_image !== undefined) {
+      featureImage = projectData.feature_image.image;
+      featureImgSizes = ImageSizePicker.imgSize(projectData.feature_image.image.orig_name);
     }
 
     if(projectData.length < 1) return null;
@@ -71,11 +71,11 @@ class WorkProject extends Component {
             <img
               className="img-fluid"
               src={featureImgSizes.w300}
-              srcSet={`${featureImgSizes.w300} 300w, ${featureImgSizes.w800} 800w, ${featureImgSizes.w1024} 1024w, ${featureImgSizes.w1440} 1440w, ${this.featureImage.url} 2560w`}
+              srcSet={`${featureImgSizes.w300} 300w, ${featureImgSizes.w800} 800w, ${featureImgSizes.w1024} 1024w, ${featureImgSizes.w1440} 1440w, ${featureImage.url} 2560w`}
               sizes="100vw"
               width="2560"
-              title={this.featureImage.title}
-              alt={this.featureImage.alt} />
+              title={featureImage.title}
+              alt={featureImage.alt} />
         </div>
         <div
           id="press-text"

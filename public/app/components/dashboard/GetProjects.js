@@ -5,7 +5,6 @@ import 'whatwg-fetch';
 
 const DateFormatter = require('../../services/date_formatter');
 const FormValidations = require('../../services/form_validations');
-const _groupBy = require('lodash/groupBy');
 const ImageSizePicker = require('../../services/image_size_picker');
 
 class GetProjects extends Component {
@@ -79,13 +78,7 @@ class GetProjects extends Component {
             <div className="row">
               {this.state.projectsData.map(project => {
                 let projectDate = new Date(project.date);
-                let projectImagesGroups = _groupBy(project.images, 'id');
-                let coverImage;
-
-                if(project.project_images_sort_order.images_order) {
-                  let coverImageId = project.project_images_sort_order.images_order[0];
-                  coverImage = projectImagesGroups[coverImageId];
-                }
+                let coverImage = project.feature_image.image;
 
                 return (
                   <div className="col-sm-2 mb-4" key={project.id}>
@@ -95,8 +88,8 @@ class GetProjects extends Component {
                           {coverImage ?
                             <img
                               className="card-img-top img-fluid"
-                              src={ImageSizePicker.imgSize(coverImage[0].orig_name).thumb300}
-                              alt={coverImage[0].alt} /> :
+                              src={ImageSizePicker.imgSize(coverImage.orig_name).thumb300}
+                              alt={coverImage.alt} /> :
                             <img
                               className="card-img-top img-fluid"
                               src={ImageSizePicker.imgSize(project.images[0].orig_name).thumb300}

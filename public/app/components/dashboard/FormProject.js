@@ -37,6 +37,7 @@ class FormProject extends React.Component {
       images_ids_attached_data: [],
       images_ids_detach: [],
       image_sort_order: [],
+      feature_image: [],
       clients_ids: [],
       clients_ids_attached: [],
       clients_ids_detach: [],
@@ -58,9 +59,10 @@ class FormProject extends React.Component {
 
     this.initialState = this.state;
 
-    this.requiredFields = ['name', 'date', 'description'];
+    this.requiredFields = ['name', 'date', 'description', 'feature_image'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
+    this.getFeatureImgData = this.getFeatureImgData.bind(this);
     this.updateSortOrder = this.updateSortOrder.bind(this);
     this.addOrRemoveToAttachedFromSortArr = this.addOrRemoveToAttachedFromSortArr.bind(this);
     this.setRedirectWithMessage = FormHandlers.setRedirectWithMessage.bind(null, this, '/dashboard/projects', this.state.submitError);
@@ -76,7 +78,8 @@ class FormProject extends React.Component {
             name: data.name,
             initialName: data.name,
             date: moment(data.date),
-            description: data.description
+            description: data.description,
+            feature_image: {id: data.feature_image.image.id, url: data.feature_image.image.url}
           });
         if(data.clients) {
           this.setAttachedAndSelected(data.clients, 'clients');
@@ -152,6 +155,16 @@ class FormProject extends React.Component {
       [inputName + '_detach']: data.detach,
       [inputName + '_selected']: data.selected
     });
+  }
+
+  getFeatureImgData(data) {
+    this.setState({feature_image: data});
+  }
+
+  openFeatureImageModal(event) {
+    event.preventDefault();
+    $(ReactDOM.findDOMNode(this.refs.featureModal)).modal();
+    this.setState({clearModalErrs: true});
   }
 
   openImageModal(event) {
@@ -355,6 +368,30 @@ class FormProject extends React.Component {
               </div>
 
               <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Feature Image: </label>
+                <div className="col-sm-10">
+                  {this.state.feature_image.id ?
+                    <div className="row">
+                      <div className="col-sm-12">
+                        <img
+                          id={this.state.feature_image.id}
+                          src={this.state.feature_image.url}
+                          className="mb-3 mr-3"
+                          height="100" />
+                      </div>
+                    </div> :
+                  null}
+                    <button
+                      className="btn btn-secondary"
+                      onClick={(e) => this.openFeatureImageModal(e)} >
+                        {this.state.feature_image.id ?
+                          'Change Image' : 'Add Image'
+                        }
+                    </button>
+                </div>
+              </div>
+
+              <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Image(s): </label>
                 <div className="col-sm-10">
                     <div className="row">
@@ -371,6 +408,15 @@ class FormProject extends React.Component {
                     </button>
                 </div>
               </div>
+
+              <ModalAddImages
+                ref="featureModal"
+                parentForm="project-feature"
+                sendImageData={this.getFeatureImgData}
+                projectId={this.props.projectId}
+                attached={this.state.images_ids_attached}
+                feature_image={this.state.feature_image}
+                clearModalErrs={this.state.clearModalErrs} />
 
               <ModalAddImages
                 ref="modal"

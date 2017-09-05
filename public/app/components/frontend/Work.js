@@ -42,7 +42,7 @@ class Work extends Component {
                 <div className="card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2">
                   {projectData.map(project => {
                     let groupedImages = _groupBy(project.images, 'id');
-                    let featureImageId = project.project_images_sort_order.images_order[1];
+                    let featureImageId = project.project_images_sort_order.images_order[0];
                     let featureImage = groupedImages[featureImageId][0];
                     let featureImgSizes = ImageSizePicker.imgSize(featureImage.orig_name);
 

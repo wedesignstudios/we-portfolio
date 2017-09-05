@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
     .collection()
     .orderBy('created_at', 'DESC')
     .fetch({
-      withRelated: ['project', 'news_story'],
+      withRelated: ['project', 'news_story', 'feature_image_project'],
       debug: true
     })
     .then((image) => {
@@ -47,7 +47,7 @@ router.get('/:id', (req, res, next) => {
   Image
     .forge({id: req.params.id})
     .fetch({
-      withRelated: ['project', 'news_story'],
+      withRelated: ['project', 'news_story', 'feature_image_project'],
       debug: true
     })
     .then((image) => {

@@ -65527,6 +65527,10 @@ var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactScroll = __webpack_require__(673);
+
+var _reactScroll2 = _interopRequireDefault(_reactScroll);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65534,6 +65538,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var scroll = _reactScroll2.default.animateScroll;
+var ImageSizePicker = __webpack_require__(23);
 
 var About = function (_Component) {
   _inherits(About, _Component);
@@ -65545,6 +65552,11 @@ var About = function (_Component) {
   }
 
   _createClass(About, [{
+    key: 'scrollToTop',
+    value: function scrollToTop() {
+      scroll.scrollToTop({ duration: 1000 });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var margin = this.props.margin;
@@ -65554,8 +65566,154 @@ var About = function (_Component) {
         { id: 'about', className: 'row mx-0', style: { marginTop: margin } },
         _react2.default.createElement(
           'div',
-          { className: 'col-12 p-0' },
-          'Inside About Component!'
+          {
+            id: 'about-feature-image',
+            className: 'col-12 p-0  p-0 d-flex align-items-center feature-image' },
+          _react2.default.createElement('img', {
+            className: 'img-fluid',
+            title: '',
+            alt: '',
+            src: 'https://we-portfolio.s3.amazonaws.com/IMG_0588.JPG',
+            srcSet: '',
+            sizes: '100vw',
+            width: '2560' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'about-content', className: 'col-12 p-0 container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row justify-content-center m-0' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-8 container p-0 mb-5rem mt-5' },
+              _react2.default.createElement(
+                'h6',
+                { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                'WHO WE ARE'
+              ),
+              _react2.default.createElement('hr', { className: 'hr-1rem' }),
+              _react2.default.createElement(
+                'p',
+                null,
+                'WE Design Studios is an Austin-based design and development duo run by Laura Worrick and David Elden. Their curiosity has brought them around the world where they\u2019ve been able to learn, play, explore & educate. The team\u2019s thoughtful design is informed by their multidisciplinary backgrounds and playful nature. They are commited to community and have provided design resources and management for various projects in collaboration with IBM Design, AIGA and Create-A-Thon.'
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                'WE specializes in brand identities, software development, print design, web design, illustration & more.'
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                'Start a Project >'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row justify-content-center m-0 mt-6rem' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-6 pl-sm-0 about-profile' },
+                  _react2.default.createElement('img', {
+                    className: 'headshot',
+                    title: '',
+                    alt: '',
+                    src: 'https://we-portfolio.s3.amazonaws.com/WE-Headshot-Placeholder.png',
+                    srcSet: '',
+                    sizes: '100vw',
+                    width: '100%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-6 pr-sm-0 about-profile order-1' },
+                  _react2.default.createElement(
+                    'h6',
+                    { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                    'LAURA WORRICK'
+                  ),
+                  _react2.default.createElement('hr', { className: 'hr-1rem' }),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Laura is an art director, designer and illustrator.'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row justify-content-center m-0 mt-6rem' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-6 pl-sm-0 about-profile' },
+                  _react2.default.createElement(
+                    'h6',
+                    { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                    'DAVID ELDEN'
+                  ),
+                  _react2.default.createElement('hr', { className: 'hr-1rem' }),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'David is a software developer, designer and operations manager.'
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-6 pr-sm-0 about-profile' },
+                  _react2.default.createElement('img', {
+                    className: 'headshot',
+                    title: '',
+                    alt: '',
+                    src: 'https://we-portfolio.s3.amazonaws.com/WE-Headshot-Placeholder.png',
+                    srcSet: '',
+                    sizes: '100vw',
+                    width: '100%' })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'row justify-content-center m-0 mb-5 mt-6rem' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-6 pl-sm-0 about-profile' },
+                  _react2.default.createElement('img', {
+                    className: 'headshot',
+                    title: '',
+                    alt: '',
+                    src: 'https://we-portfolio.s3.amazonaws.com/WE-Headshot-Placeholder.png',
+                    srcSet: '',
+                    sizes: '100vw',
+                    width: '100%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-sm-6 pr-sm-0 about-profile order-1' },
+                  _react2.default.createElement(
+                    'h6',
+                    { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                    'LEMMY'
+                  ),
+                  _react2.default.createElement('hr', { className: 'hr-1rem' }),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Office manager, Pug-zhu and sleep expert. Bork!'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'text-center pt-4' },
+                _react2.default.createElement(
+                  'span',
+                  {
+                    style: { cursor: 'pointer' },
+                    onClick: this.scrollToTop },
+                  'BACK TO TOP'
+                )
+              )
+            )
+          )
         )
       );
     }

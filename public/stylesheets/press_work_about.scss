@@ -1,4 +1,4 @@
-// PressStory/WorkProject component styles
+// Press/Work/About component styles
 
 .letter-spacing-point125-rem {
   letter-spacing: 0.125rem;
@@ -12,5 +12,18 @@
 @media screen and (max-width: 1440px) {
   .feature-image {
     max-height: 30rem;
+  }
+}
+
+.headshot {
+  margin-top: 2.4375rem;
+}
+
+@media screen and (max-width: 575px) {
+  .about-profile {
+    padding: 0;
+  }
+  .order-1 {
+    order: -1;
   }
 }

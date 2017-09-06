@@ -62,7 +62,10 @@ hr.hr-1rem {
   background-color: #000000; }
 
 .mb-5rem {
-  margin-bottom: 5rem; }
+  margin-bottom: 5rem !important; }
+
+.mt-6rem {
+  margin-top: 6rem !important; }
 
 .card-columns-gap-3rem {
   -webkit-column-gap: 3rem;
@@ -400,5 +403,14 @@ form textarea.form-control {
 @media screen and (max-width: 1440px) {
   .feature-image {
     max-height: 30rem; } }
+
+.headshot {
+  margin-top: 2.4375rem; }
+
+@media screen and (max-width: 575px) {
+  .about-profile {
+    padding: 0; }
+  .order-1 {
+    order: -1; } }
 
 /*# sourceMappingURL=style.css.map */

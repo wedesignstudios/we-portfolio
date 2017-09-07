@@ -32,10 +32,14 @@ class Post extends Component {
 
   render() {
     let { margin } = this.props;
+    let { postData, dataFetched } = this.state;
     return (
-      <div id="post" style={{marginTop: margin}}>
-        {this.state.dataFetched ? null : <NotFound />}
-        {this.state.postData !== '' ? <PostLayout postData={this.state.postData} />: null}
+      <div
+        id={`post-${postData.id}`}
+        className="row justify-content-center mx-0"
+        style={{marginTop: margin}} >
+          {dataFetched ? null : <NotFound />}
+          {postData !== '' ? <PostLayout postData={postData} />: null}
       </div>
     );
   }

@@ -66410,12 +66410,18 @@ var Post = function (_Component) {
     key: 'render',
     value: function render() {
       var margin = this.props.margin;
+      var _state = this.state,
+          postData = _state.postData,
+          dataFetched = _state.dataFetched;
 
       return _react2.default.createElement(
         'div',
-        { id: 'post', style: { marginTop: margin } },
-        this.state.dataFetched ? null : _react2.default.createElement(NotFound, null),
-        this.state.postData !== '' ? _react2.default.createElement(PostLayout, { postData: this.state.postData }) : null
+        {
+          id: 'post-' + postData.id,
+          className: 'row justify-content-center mx-0',
+          style: { marginTop: margin } },
+        dataFetched ? null : _react2.default.createElement(NotFound, null),
+        postData !== '' ? _react2.default.createElement(PostLayout, { postData: postData }) : null
       );
     }
   }]);
@@ -66442,6 +66448,10 @@ var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reactScroll = __webpack_require__(673);
+
+var _reactScroll2 = _interopRequireDefault(_reactScroll);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -66450,6 +66460,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var scroll = _reactScroll2.default.animateScroll;
 var DateFormatter = __webpack_require__(79);
 
 var PostLayout = function (_Component) {
@@ -66468,27 +66479,51 @@ var PostLayout = function (_Component) {
   }
 
   _createClass(PostLayout, [{
+    key: 'scrollToTop',
+    value: function scrollToTop() {
+      scroll.scrollToTop({ duration: 1000 });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'wp-content-container col-8 container p-0' },
         _react2.default.createElement(
-          'h3',
-          null,
+          'h5',
+          { className: 'text-uppercase font-weight-bold letter-spacing-point125-rem line-height-1-45-rem' },
           this.title
         ),
+        _react2.default.createElement('hr', { className: 'hr-1rem' }),
         _react2.default.createElement(
           'p',
-          null,
+          { className: 'm-0 letter-spacing-point125-rem' },
           DateFormatter.monthDayYear(this.date)
         ),
         _react2.default.createElement(
           'p',
-          null,
+          { className: 'm-0 letter-spacing-point125-rem mb-4' },
           this.author
         ),
-        _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.content } })
+        _react2.default.createElement(
+          'div',
+          { className: 'row m-0' },
+          _react2.default.createElement('div', {
+            id: 'wp-post-content',
+            className: 'col-12 p-0',
+            dangerouslySetInnerHTML: { __html: this.content } })
+        ),
+        _react2.default.createElement(
+          'p',
+          { className: 'text-center py-4' },
+          _react2.default.createElement(
+            'span',
+            {
+              style: { cursor: 'pointer' },
+              onClick: this.scrollToTop },
+            'BACK TO TOP'
+          )
+        )
       );
     }
   }]);

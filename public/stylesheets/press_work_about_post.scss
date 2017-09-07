@@ -1,0 +1,53 @@
+// Press/Work/About/Post component styles
+
+.letter-spacing-point125-rem {
+  letter-spacing: 0.125rem;
+}
+
+.feature-image {
+  max-height: 50rem;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1440px) {
+  .feature-image {
+    max-height: 30rem;
+  }
+}
+
+.headshot {
+  margin-top: 2.4375rem;
+}
+
+@media screen and (max-width: 575px) {
+  .about-profile {
+    padding: 0;
+  }
+  .order-1 {
+    order: -1;
+  }
+}
+
+#wp-post-content {
+  img {
+    height: auto;
+    margin-bottom: 2rem;
+    max-width: 100%;
+  }
+  p {
+    margin-bottom: 2rem;
+  }
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.125rem;
+    line-height: 1.45rem;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+  }
+}
+
+.aligncenter {
+  display: block;
+  margin: 0 auto;
+}

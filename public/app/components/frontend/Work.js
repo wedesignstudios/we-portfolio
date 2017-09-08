@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
+import {Helmet} from 'react-helmet';
 
 const ImageSizePicker = require('../../services/image_size_picker');
 const _groupBy = require('lodash/groupBy');
@@ -76,6 +77,9 @@ class Work extends Component {
               </div>
             </div>
           </div>
+        <Helmet>
+          <title>Work</title>
+        </Helmet>
       </div>
     );
   }

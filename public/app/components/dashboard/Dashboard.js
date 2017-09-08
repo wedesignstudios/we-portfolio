@@ -9,6 +9,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 
 const NavDashboard = require('./NavDashboard');
 const DashboardHome = require('./DashboardHome');
@@ -52,6 +53,9 @@ class Dashboard extends Component {
             <Route component={NotFound} />
           </Switch>
         </div>
+        <Helmet>
+          <title>Dashboard</title>
+        </Helmet>
       </div>
       </Router>
     );

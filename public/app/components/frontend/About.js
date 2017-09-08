@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Scroll from 'react-scroll';
+import {Helmet} from 'react-helmet';
 
 const scroll = Scroll.animateScroll;
 const ImageSizePicker = require('../../services/image_size_picker');
@@ -99,6 +100,9 @@ class About extends Component {
             </div>
           </div>
         </div>
+        <Helmet>
+          <title>About</title>
+        </Helmet>
       </div>
     );
   }

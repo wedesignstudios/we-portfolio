@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 import Scroll from 'react-scroll';
+import {Helmet} from 'react-helmet';
 
 const scroll = Scroll.animateScroll;
 const DateFormatter = require('../../services/date_formatter');
@@ -99,6 +100,9 @@ class PressStory extends Component {
             </div>
           </div>
         </div>
+        <Helmet>
+          <title>{newsData.title}</title>
+        </Helmet>
       </div>
     );
   }

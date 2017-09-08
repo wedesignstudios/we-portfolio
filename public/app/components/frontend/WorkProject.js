@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 import Scroll from 'react-scroll';
+import {Helmet} from 'react-helmet';
 
 const scroll = Scroll.animateScroll;
 const _groupBy = require('lodash/groupBy');
@@ -147,6 +148,9 @@ class WorkProject extends Component {
             </div>
           </div>
         </div>
+        <Helmet>
+          <title>{projectData.name}</title>
+        </Helmet>
       </div>
     );
   };

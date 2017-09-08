@@ -9,6 +9,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 
 const Layout = require('./components/frontend/Layout');
 const Dashboard = require('./components/dashboard/Dashboard');
@@ -63,6 +64,12 @@ class App extends Component {
     return (
       <Router>
         <div className="col container-fluid p-0 height-100">
+          <Helmet
+            titleTemplate="WE Design Studios | %s"
+            defaultTitle="WE Design Studios">
+              <meta charSet="utf-8" />              
+              <link rel="canonical" href="https://wedesignstudios.com" />
+          </Helmet>
           <Switch>
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
             <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />

@@ -53,6 +53,7 @@
     "react-dnd-html5-backend": "^2.4.1",
     "react-dom": "^15.4.2",
     "react-dropzone": "^3.13.1",
+    "react-helmet": "^5.2.0",
     "react-router-dom": "^4.1.1",
     "react-scroll": "^1.5.4",
     "react-select": "^1.0.0-rc.5",

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
+import {Helmet} from 'react-helmet';
 
 const ImageSizePicker = require('../../services/image_size_picker');
 
@@ -71,6 +72,9 @@ class Press extends Component {
             </div>
           </div>
         </div>
+        <Helmet>
+          <title>Press</title>
+        </Helmet>
       </div>
     );
   }

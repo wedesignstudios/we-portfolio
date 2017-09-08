@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {Helmet} from 'react-helmet';
 
 const PostLayout = require('./PostLayout');
 const NotFound = require('../dashboard/NotFound');
@@ -40,6 +41,9 @@ class Post extends Component {
         style={{marginTop: margin}} >
           {dataFetched ? null : <NotFound />}
           {postData !== '' ? <PostLayout postData={postData} />: null}
+        <Helmet>
+          <title>{postData.post_title}</title>
+        </Helmet>
       </div>
     );
   }

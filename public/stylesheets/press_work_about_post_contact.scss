@@ -1,8 +1,4 @@
-// Press/Work/About/Post component styles
-
-.letter-spacing-point125-rem {
-  letter-spacing: 0.125rem;
-}
+// Press/Work/About/Post/Contact component styles
 
 .feature-image {
   max-height: 50rem;
@@ -50,4 +46,26 @@
 .aligncenter {
   display: block;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  #cta-contact {
+    .h1-jumbo {
+      font-size: 5rem;
+    }    
+  }  
+}
+
+@media screen and (max-width: 575px) {
+  #cta-contact {
+    .h1-jumbo {
+      font-size: 3rem;
+    }    
+  }
+
+  #contact-email-addresses {
+    h5 {
+      font-size: 1.05rem;
+    }
+  }
 }

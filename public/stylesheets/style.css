@@ -1,20 +1,4 @@
 @charset "UTF-8";
-.muli-reg {
-  font-family: 'Muli';
-  font-style: normal;
-  font-weight: 400; }
-
-.muli-bold {
-  font-family: 'Muli';
-  font-style: normal;
-  font-weight: 800;
-  letter-spacing: 0.06rem; }
-
-.muli-extra-bold {
-  font-family: 'Muli';
-  font-style: normal;
-  font-weight: 900; }
-
 html, body {
   height: 100%; }
 
@@ -30,6 +14,7 @@ html {
     font-size: 13px; } }
 
 body {
+  color: #000000;
   font-family: 'Muli', sans-serif;
   margin: 0; }
 
@@ -61,6 +46,40 @@ hr.hr-1rem {
   height: 1rem;
   background-color: #000000; }
 
+hr.hr-half-rem {
+  border: none;
+  height: 0.5rem;
+  background-color: #000000; }
+
+.muli-reg {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400; }
+
+.muli-bold {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.06rem; }
+
+.muli-extra-bold {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 900; }
+
+.h1-jumbo {
+  color: #000000;
+  font-size: 7rem; }
+
+.letter-spacing-point125-rem {
+  letter-spacing: 0.125rem; }
+
+.letter-spacing-point3-rem {
+  letter-spacing: 0.3rem; }
+
+.h6-underline {
+  border-bottom: 0.5rem solid #000000; }
+
 .mb-5rem {
   margin-bottom: 5rem !important; }
 
@@ -90,6 +109,17 @@ hr.hr-1rem {
 
 .white-space-pre-line {
   white-space: pre-line; }
+
+.position-relative {
+  position: relative; }
+
+.position-absolute {
+  position: absolute; }
+
+.text-overlay-container {
+  height: 100%;
+  top: 0;
+  width: 100%; }
 
 .line-height-1-rem {
   line-height: 1rem; }
@@ -393,9 +423,6 @@ form textarea.form-control {
   .image-full-width .img-portrait {
     display: none; } }
 
-.letter-spacing-point125-rem {
-  letter-spacing: 0.125rem; }
-
 .feature-image {
   max-height: 50rem;
   overflow: hidden; }
@@ -432,5 +459,15 @@ form textarea.form-control {
 .aligncenter {
   display: block;
   margin: 0 auto; }
+
+@media screen and (max-width: 767px) {
+  #cta-contact .h1-jumbo {
+    font-size: 5rem; } }
+
+@media screen and (max-width: 575px) {
+  #cta-contact .h1-jumbo {
+    font-size: 3rem; }
+  #contact-email-addresses h5 {
+    font-size: 1.05rem; } }
 
 /*# sourceMappingURL=style.css.map */

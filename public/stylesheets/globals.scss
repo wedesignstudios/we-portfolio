@@ -1,22 +1,4 @@
 // Global styles
-.muli-reg {
-  font-family: 'Muli';
-  font-style: normal;
-  font-weight: 400;
-}
-
-.muli-bold {
-  font-family: 'Muli';
-  font-style: normal;
-  font-weight: 800;
-  letter-spacing: 0.06rem;
-}
-
-.muli-extra-bold {
-  font-family: 'Muli';
-  font-style: normal;
-  font-weight: 900;
-}
 
 html, body {
   height: 100%;
@@ -35,6 +17,7 @@ html {
 }
 
 body {
+  color: $black;
   font-family: 'Muli', sans-serif;  
   margin: 0;
 } 
@@ -78,6 +61,11 @@ hr {
   &.hr-1rem {
     border: none;
     height: 1rem;
+    background-color: $black;
+  }
+  &.hr-half-rem {
+    border: none;
+    height: 0.5rem;
     background-color: $black;
   }
 }

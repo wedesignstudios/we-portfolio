@@ -1,0 +1,37 @@
+// Text/font styles
+
+.muli-reg {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+}
+
+.muli-bold {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.06rem;
+}
+
+.muli-extra-bold {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 900;
+}
+
+.h1-jumbo {
+  color: $black;
+  font-size: 7rem;
+}
+
+.letter-spacing-point125-rem {
+  letter-spacing: 0.125rem;
+}
+
+.letter-spacing-point3-rem {
+  letter-spacing: 0.3rem;
+}
+
+.h6-underline {
+  border-bottom: 0.5rem solid $black;
+}

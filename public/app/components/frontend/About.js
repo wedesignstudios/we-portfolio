@@ -18,7 +18,7 @@ class About extends Component {
       <div id="about" className="row mx-0" style={{marginTop: margin}}>
         <div
           id="about-feature-image"
-          className="col-12 p-0  p-0 d-flex align-items-center feature-image">
+          className="col-12 p-0 d-flex align-items-center feature-image">
             <img
              className="img-fluid"
              title=""

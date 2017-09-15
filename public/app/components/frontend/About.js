@@ -73,7 +73,7 @@ class About extends Component {
                     width="100%" />
                 </div>
               </div>
-              <div className="row justify-content-center m-0 mb-5 mt-6rem">
+              <div className="row justify-content-center m-0 mt-6rem">
                 <div className="col-sm-6 pl-sm-0 about-profile">
                   <img
                     className="headshot"
@@ -89,6 +89,11 @@ class About extends Component {
                   <hr className="hr-1rem" />
                   <p>Office manager, Pug-zhu and sleep expert. Bork!</p>
                 </div>
+              </div>
+              <div className="mb-5 mt-6rem">
+                <h6 className="text-uppercase letter-spacing-point125-rem line-height-1-45-rem">SELECT CLIENTS</h6>
+                <hr className="hr-1rem" />
+                <p>United Nations, Who What Wear, AIGA Austin, International Crisis Group, Thomson Reuters, Rhode Island School of Design, Mount Holyoke College, Lady Bird Johnson Wild Flower Center, Handmade in the Heartland, The Hutong Beijing.</p>
               </div>
               <p className="text-center pt-4">
                 <span

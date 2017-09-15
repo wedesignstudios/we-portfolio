@@ -67132,7 +67132,7 @@ var About = function (_Component) {
               ),
               _react2.default.createElement(
                 'div',
-                { className: 'row justify-content-center m-0 mb-5 mt-6rem' },
+                { className: 'row justify-content-center m-0 mt-6rem' },
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-6 pl-sm-0 about-profile' },
@@ -67159,6 +67159,21 @@ var About = function (_Component) {
                     null,
                     'Office manager, Pug-zhu and sleep expert. Bork!'
                   )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'mb-5 mt-6rem' },
+                _react2.default.createElement(
+                  'h6',
+                  { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                  'SELECT CLIENTS'
+                ),
+                _react2.default.createElement('hr', { className: 'hr-1rem' }),
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'United Nations, Who What Wear, AIGA Austin, International Crisis Group, Thomson Reuters, Rhode Island School of Design, Mount Holyoke College, Lady Bird Johnson Wild Flower Center, Handmade in the Heartland, The Hutong Beijing.'
                 )
               ),
               _react2.default.createElement(

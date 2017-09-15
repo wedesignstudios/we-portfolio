@@ -37,7 +37,7 @@ class Index extends Component {
     return (
       <div className="row justify-content-center m-0 image-full-width">
         <div className="col p-0 image-full-width-container">
-          {windowWidth > 800 ?
+          {windowWidth > 1024 ?
             <img
               className="img-fluid img-landscape"
               alt="Laura out in West Texas"
@@ -46,7 +46,7 @@ class Index extends Component {
               sizes="100vw"
               width="2560" />
           : null}
-          {windowWidth <= 800 ?
+          {windowWidth <= 1024 ?
             <img
               className="img-portrait"
               alt="Laura out in West Texas"

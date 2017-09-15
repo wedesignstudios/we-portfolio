@@ -67674,14 +67674,14 @@ var Index = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'col p-0 image-full-width-container' },
-          windowWidth > 800 ? _react2.default.createElement('img', {
+          windowWidth > 1024 ? _react2.default.createElement('img', {
             className: 'img-fluid img-landscape',
             alt: 'Laura out in West Texas',
             src: imageOrig,
             srcSet: imageOrig + ' 2560w, ' + imageSizes.w1440 + ' 1440w, ' + imageSizes.w1024 + ' 1024w',
             sizes: '100vw',
             width: '2560' }) : null,
-          windowWidth <= 800 ? _react2.default.createElement('img', {
+          windowWidth <= 1024 ? _react2.default.createElement('img', {
             className: 'img-portrait',
             alt: 'Laura out in West Texas',
             src: imageOrigMobile,

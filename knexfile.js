@@ -31,4 +31,14 @@ module.exports = {
     }
   },
 
+  production: {
+    client: 'pg',
+    debug: true,
+    connection: process.env.DATABASE_URL,
+    migrations: {
+      tableName: 'knex_migrations'
+    },
+    ssl: true
+  }
+
 };

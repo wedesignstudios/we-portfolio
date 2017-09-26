@@ -74,6 +74,10 @@ class Press extends Component {
         </div>
         <Helmet>
           <title>Press</title>
+          <meta name="description" content="Read press releases, feature articles and media mentions about our studio." />
+          <meta property="og:description" content="Read press releases, feature articles and media mentions about our studio." />
+          <link rel="canonical" href={`https://wedesignstudios.com${this.props.match.url}`} />
+          <meta property="og:url" content={`https://wedesignstudios.com${this.props.match.url}`} />
         </Helmet>
       </div>
     );

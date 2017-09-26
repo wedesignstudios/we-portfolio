@@ -67,8 +67,17 @@ class App extends Component {
           <Helmet
             titleTemplate="WE Design Studios | %s"
             defaultTitle="WE Design Studios">
-              <meta charSet="utf-8" />              
-              <link rel="canonical" href="https://wedesignstudios.com" />
+              <meta charSet="utf-8" />
+              <title>WE Design Studios</title>
+              <meta property="og:title" content="WE Design Studios" />
+              <meta name="description" content="WE Design Studios is an Austin, TX based design firm that creates visual identities, graphics, posters, logos, illustrations, apps and websites." />
+              <meta property="og:description" content="WE Design Studios is an Austin, TX based design firm that creates visual identities, graphics, posters, logos, illustrations, apps and websites." />  
+              <meta property="og:image" content="https://we-portfolio.s3.amazonaws.com/we-social.png" />
+              <link rel="canonical" href="https://wedesignstudios.com/" />
+              <meta property="og:url" content="https://wedesignstudios.com" />
+              <meta property="og:locale" content="en_US" />
+              <meta property="og:type" content="website" />
+              <meta property="og:site_name" content="WE Design Studios" />
           </Helmet>
           <Switch>
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />

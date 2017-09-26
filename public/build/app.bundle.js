@@ -67197,7 +67197,11 @@ var About = function (_Component) {
             'title',
             null,
             'About'
-          )
+          ),
+          _react2.default.createElement('meta', { name: 'description', content: 'Learn about the creative WE team and our expertise in design and development.' }),
+          _react2.default.createElement('meta', { property: 'og:description', content: 'Learn about the creative WE team and our expertise in design and development.' }),
+          _react2.default.createElement('link', { rel: 'canonical', href: 'https://wedesignstudios.com' + this.props.match.url }),
+          _react2.default.createElement('meta', { property: 'og:url', content: 'https://wedesignstudios.com' + this.props.match.url })
         )
       );
     }
@@ -67378,7 +67382,11 @@ var Contact = function (_Component) {
             'title',
             null,
             'Contact'
-          )
+          ),
+          _react2.default.createElement('meta', { name: 'description', content: 'Contact us to start a design conversation about your project today.' }),
+          _react2.default.createElement('meta', { property: 'og:description', content: 'Contact us to start a design conversation about your project today.' }),
+          _react2.default.createElement('link', { rel: 'canonical', href: 'https://wedesignstudios.com' + this.props.match.url }),
+          _react2.default.createElement('meta', { property: 'og:url', content: 'https://wedesignstudios.com' + this.props.match.url })
         )
       );
     }
@@ -68345,7 +68353,11 @@ var Press = function (_Component) {
             'title',
             null,
             'Press'
-          )
+          ),
+          _react2.default.createElement('meta', { name: 'description', content: 'Read press releases, feature articles and media mentions about our studio.' }),
+          _react2.default.createElement('meta', { property: 'og:description', content: 'Read press releases, feature articles and media mentions about our studio.' }),
+          _react2.default.createElement('link', { rel: 'canonical', href: 'https://wedesignstudios.com' + this.props.match.url }),
+          _react2.default.createElement('meta', { property: 'og:url', content: 'https://wedesignstudios.com' + this.props.match.url })
         )
       );
     }
@@ -68688,7 +68700,11 @@ var Work = function (_Component) {
             'title',
             null,
             'Work'
-          )
+          ),
+          _react2.default.createElement('meta', { name: 'description', content: 'View our work creating visual identities, graphics, posters, logos, illustrations, apps and websites.' }),
+          _react2.default.createElement('meta', { property: 'og:description', content: 'View our work creating visual identities, graphics, posters, logos, illustrations, apps and websites.' }),
+          _react2.default.createElement('link', { rel: 'canonical', href: 'https://wedesignstudios.com' + this.props.match.url }),
+          _react2.default.createElement('meta', { property: 'og:url', content: 'https://wedesignstudios.com' + this.props.match.url })
         )
       );
     }
@@ -69309,7 +69325,20 @@ var App = function (_Component) {
               titleTemplate: 'WE Design Studios | %s',
               defaultTitle: 'WE Design Studios' },
             _react2.default.createElement('meta', { charSet: 'utf-8' }),
-            _react2.default.createElement('link', { rel: 'canonical', href: 'https://wedesignstudios.com' })
+            _react2.default.createElement(
+              'title',
+              null,
+              'WE Design Studios'
+            ),
+            _react2.default.createElement('meta', { property: 'og:title', content: 'WE Design Studios' }),
+            _react2.default.createElement('meta', { name: 'description', content: 'WE Design Studios is an Austin, TX based design firm that creates visual identities, graphics, posters, logos, illustrations, apps and websites.' }),
+            _react2.default.createElement('meta', { property: 'og:description', content: 'WE Design Studios is an Austin, TX based design firm that creates visual identities, graphics, posters, logos, illustrations, apps and websites.' }),
+            _react2.default.createElement('meta', { property: 'og:image', content: 'https://we-portfolio.s3.amazonaws.com/we-social.png' }),
+            _react2.default.createElement('link', { rel: 'canonical', href: 'https://wedesignstudios.com/' }),
+            _react2.default.createElement('meta', { property: 'og:url', content: 'https://wedesignstudios.com' }),
+            _react2.default.createElement('meta', { property: 'og:locale', content: 'en_US' }),
+            _react2.default.createElement('meta', { property: 'og:type', content: 'website' }),
+            _react2.default.createElement('meta', { property: 'og:site_name', content: 'WE Design Studios' })
           ),
           _react2.default.createElement(
             _reactRouterDom.Switch,

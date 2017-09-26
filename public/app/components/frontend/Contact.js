@@ -100,6 +100,10 @@ class Contact extends Component {
         </div>
         <Helmet>
           <title>Contact</title>
+          <meta name="description" content="Contact us to start a design conversation about your project today." />
+          <meta property="og:description" content="Contact us to start a design conversation about your project today." />
+          <link rel="canonical" href={`https://wedesignstudios.com${this.props.match.url}`} />
+          <meta property="og:url" content={`https://wedesignstudios.com${this.props.match.url}`} />
         </Helmet>
       </div>
     );

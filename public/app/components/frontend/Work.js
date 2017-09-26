@@ -79,6 +79,10 @@ class Work extends Component {
           </div>
         <Helmet>
           <title>Work</title>
+          <meta name="description" content="View our work creating visual identities, graphics, posters, logos, illustrations, apps and websites." />
+          <meta property="og:description" content="View our work creating visual identities, graphics, posters, logos, illustrations, apps and websites." />
+          <link rel="canonical" href={`https://wedesignstudios.com${this.props.match.url}`} />
+          <meta property="og:url" content={`https://wedesignstudios.com${this.props.match.url}`} />
         </Helmet>
       </div>
     );

@@ -107,6 +107,10 @@ class About extends Component {
         </div>
         <Helmet>
           <title>About</title>
+          <meta name="description" content="Learn about the creative WE team and our expertise in design and development." />
+          <meta property="og:description" content="Learn about the creative WE team and our expertise in design and development." />
+          <link rel="canonical" href={`https://wedesignstudios.com${this.props.match.url}`} />
+          <meta property="og:url" content={`https://wedesignstudios.com${this.props.match.url}`} />
         </Helmet>
       </div>
     );

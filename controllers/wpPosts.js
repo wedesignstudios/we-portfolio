@@ -25,7 +25,7 @@ router.get('/:post_name', (req, res) => {
   Post
     .forge({post_name: req.params.post_name})
     .fetch({
-      withRelated: ['author'],
+      withRelated: ['author', 'meta_description'],
       debug: true
     })
     .then(post => {

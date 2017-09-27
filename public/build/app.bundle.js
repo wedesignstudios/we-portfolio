@@ -68091,6 +68091,13 @@ var Post = function (_Component) {
           postData = _state.postData,
           dataFetched = _state.dataFetched;
 
+      var meta_description_fallback = void 0;
+      if (postData.post_content) {
+        meta_description_fallback = postData.post_content.replace(/<(?:.|\n)*?>/gm, '');
+        if (meta_description_fallback.length > 155) {
+          meta_description_fallback = meta_description_fallback.substring(0, 155);
+        }
+      }
       return _react2.default.createElement(
         'div',
         {
@@ -68099,15 +68106,19 @@ var Post = function (_Component) {
           style: { marginTop: margin } },
         dataFetched ? null : _react2.default.createElement(NotFound, null),
         postData !== '' ? _react2.default.createElement(PostLayout, { postData: postData }) : null,
-        _react2.default.createElement(
+        postData !== '' ? _react2.default.createElement(
           _reactHelmet.Helmet,
           null,
           _react2.default.createElement(
             'title',
             null,
             postData.post_title
-          )
-        )
+          ),
+          _react2.default.createElement('meta', { name: 'description', content: postData.meta_description.meta_description ? postData.meta_description.meta_description : meta_description_fallback }),
+          _react2.default.createElement('meta', { property: 'og:description', content: postData.meta_description.meta_description ? postData.meta_description.meta_description : meta_description_fallback }),
+          _react2.default.createElement('link', { rel: 'canonical', href: 'https://wedesignstudios.com' + this.props.match.url }),
+          _react2.default.createElement('meta', { property: 'og:url', content: 'https://wedesignstudios.com' + this.props.match.url })
+        ) : null
       );
     }
   }]);

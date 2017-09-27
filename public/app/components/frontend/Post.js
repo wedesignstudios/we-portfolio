@@ -34,6 +34,13 @@ class Post extends Component {
   render() {
     let { margin } = this.props;
     let { postData, dataFetched } = this.state;
+    let meta_description_fallback;
+    if(postData.post_content) {
+      meta_description_fallback = postData.post_content.replace(/<(?:.|\n)*?>/gm, '');
+      if (meta_description_fallback.length > 155) {
+        meta_description_fallback = meta_description_fallback.substring(0,155);
+      }
+    }
     return (
       <div
         id={`post-${postData.id}`}
@@ -41,9 +48,15 @@ class Post extends Component {
         style={{marginTop: margin}} >
           {dataFetched ? null : <NotFound />}
           {postData !== '' ? <PostLayout postData={postData} />: null}
-        <Helmet>
-          <title>{postData.post_title}</title>
-        </Helmet>
+        {postData !== '' ?
+          <Helmet>
+            <title>{postData.post_title}</title>
+            <meta name="description" content={postData.meta_description.meta_description ? postData.meta_description.meta_description : meta_description_fallback} />
+            <meta property="og:description" content={postData.meta_description.meta_description ? postData.meta_description.meta_description : meta_description_fallback} />
+            <link rel="canonical" href={`https://wedesignstudios.com${this.props.match.url}`} />
+            <meta property="og:url" content={`https://wedesignstudios.com${this.props.match.url}`} />
+          </Helmet>
+        : null}
       </div>
     );
   }

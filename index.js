@@ -51,8 +51,8 @@ redisClient.on('connect', function() {
 
 // sessions
 app.use(session({
-  store: new redisStore({client: redisClient, host: 'localhost', port: 6379}),
-  secret: process.env.SESSION_SECRET,
+  store: new redisStore({client: redisClient, host: process.env.REDIS_URL}),
+  secret: process.env.REDIS_PW,
   resave: false,
   saveUninitialized: false
 }));

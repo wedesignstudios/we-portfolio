@@ -67686,10 +67686,10 @@ var Index = function (_Component) {
     value: function render() {
       var windowWidth = this.state.windowWidth;
 
-      var imageOrig = ImageSizePicker.imgOrig('LAURA_WEST_TX.jpg');
-      var imageOrigMobile = ImageSizePicker.imgOrig('LAURA_WEST_TX_mobile.jpg');
-      var imageSizes = ImageSizePicker.imgSize('LAURA_WEST_TX.jpg');
-      var imageSizesMobile = ImageSizePicker.imgSize('LAURA_WEST_TX_mobile.jpg');
+      var imageOrig = ImageSizePicker.imgOrig('HOMEPAGE_IMAGE_DESKTOP.jpg');
+      var imageOrigMobile = ImageSizePicker.imgOrig('HOMEPAGE_IMAGE_MOBILE.jpg');
+      var imageSizes = ImageSizePicker.imgSize('HOMEPAGE_IMAGE_DESKTOP.jpg');
+      var imageSizesMobile = ImageSizePicker.imgSize('HOMEPAGE_IMAGE_MOBILE.jpg');
 
       return _react2.default.createElement(
         'div',

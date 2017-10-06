@@ -29,10 +29,10 @@ class Index extends Component {
 
   render() {
     let { windowWidth } = this.state;
-    let imageOrig = ImageSizePicker.imgOrig('LAURA_WEST_TX.jpg');
-    let imageOrigMobile = ImageSizePicker.imgOrig('LAURA_WEST_TX_mobile.jpg');
-    let imageSizes = ImageSizePicker.imgSize('LAURA_WEST_TX.jpg');
-    let imageSizesMobile = ImageSizePicker.imgSize('LAURA_WEST_TX_mobile.jpg');
+    let imageOrig = ImageSizePicker.imgOrig('HOMEPAGE_IMAGE_DESKTOP.jpg');
+    let imageOrigMobile = ImageSizePicker.imgOrig('HOMEPAGE_IMAGE_MOBILE.jpg');
+    let imageSizes = ImageSizePicker.imgSize('HOMEPAGE_IMAGE_DESKTOP.jpg');
+    let imageSizesMobile = ImageSizePicker.imgSize('HOMEPAGE_IMAGE_MOBILE.jpg');
 
     return (
       <div className="row justify-content-center m-0 image-full-width">

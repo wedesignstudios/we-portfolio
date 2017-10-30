@@ -31,35 +31,62 @@ class Contact extends Component {
   render() {
     let { margin } = this.props;
     let { windowWidth } = this.state;
-    let imageOrig = ImageSizePicker.imgOrig('LAURA_WEST_TX.jpg');
-    let imageOrigMobile = ImageSizePicker.imgOrig('LAURA_WEST_TX_mobile.jpg');
-    let imageSizes = ImageSizePicker.imgSize('LAURA_WEST_TX.jpg');
-    let imageSizesMobile = ImageSizePicker.imgSize('LAURA_WEST_TX_mobile.jpg');
+    let imageOrig = ImageSizePicker.imgOrig('HAND_ONLY.jpg');
+    let imageOrigMobile = ImageSizePicker.imgOrig('HAND_ONLY_MOBILE.jpg');
+    let imageSizes = ImageSizePicker.imgSize('HAND_ONLY.jpg');
+    let imageSizesMobile = ImageSizePicker.imgSize('HAND_ONLY_MOBILE.jpg');
+    let video = 'https://we-portfolio.s3.amazonaws.com/HAND_ONLY.mp4';
     return (
       <div id="contact" className="row mx-0 image-full-width" style={{marginTop: margin}}>
         <div
           id="contact-feature-image"
           className="col p-0 container image-full-width-container position-relative">
           {windowWidth > 800 ?
-            <img
-             className="img-fluid img-landscape"
-             title=""
-             alt=""
-             src={imageOrig}
-             srcSet=""
-             sizes="100vw"
-             width="2560" />
-           : null}
-           {windowWidth <= 800 ?
-            <img
-             className="img-portrait"
-             title=""
-             alt=""
-             src={imageOrigMobile}
-             srcSet=""
-             sizes="100vw"
-             width="1440" />
-           : null}
+            <div>
+              <video id="contact-video" poster={imageOrig} playsInline autoPlay muted loop>
+                <source src={video} type="video/mp4" />
+              </video>
+              <img
+               id="ipad-pro-poster-img"
+               className="img-portrait"
+               title="Contact hand with googly eyes"
+               alt="Contact hand with googly eyes"
+               src={imageOrigMobile}
+               srcSet={`${imageOrigMobile} 1440w, ${imageSizesMobile.w1024} 1024w, ${imageSizesMobile.w800} 800w, ${imageSizesMobile.w600} 600w,`}
+               sizes="100vw"
+               width="1440" />
+             <img
+              id="ipad-pro-poster-img-landscape"
+              className="img-fluid img-landscape"
+              title="Contact hand with googly eyes"
+              alt="Contact hand with googly eyes"
+              src={imageOrig}
+              srcSet={`${imageOrig} 1440w, ${imageSizes.w1024} 1024w, ${imageSizes.w800} 800w, ${imageSizes.w600} 600w,`}
+              sizes="100vw"
+              width="1440" />
+             </div>
+          : null}
+          {windowWidth <= 800 ?
+            <div>
+              <img
+               className="img-portrait"
+               title="Contact hand with googly eyes"
+               alt="Contact hand with googly eyes"
+               src={imageOrigMobile}
+               srcSet={`${imageOrigMobile} 1440w, ${imageSizesMobile.w1024} 1024w, ${imageSizesMobile.w800} 800w, ${imageSizesMobile.w600} 600w,`}
+               sizes="100vw"
+               width="1440" />
+              <img
+               id="img-landscape"
+               className="img-fluid img-landscape"
+               title="Contact hand with googly eyes"
+               alt="Contact hand with googly eyes"
+               src={imageOrig}
+               srcSet={`${imageOrig} 1440w, ${imageSizes.w1024} 1024w, ${imageSizes.w800} 800w, ${imageSizes.w600} 600w,`}
+               sizes="100vw"
+               width="1440" />
+             </div>
+          : null}
           <div className="row mx-0 position-absolute text-overlay-container">
             <div className="col-12 p-0 container d-flex flex-column justify-content-between">
               <div id="cta-contact" className="row mx-0 mt-5">

@@ -67279,10 +67279,11 @@ var Contact = function (_Component) {
       var margin = this.props.margin;
       var windowWidth = this.state.windowWidth;
 
-      var imageOrig = ImageSizePicker.imgOrig('LAURA_WEST_TX.jpg');
-      var imageOrigMobile = ImageSizePicker.imgOrig('LAURA_WEST_TX_mobile.jpg');
-      var imageSizes = ImageSizePicker.imgSize('LAURA_WEST_TX.jpg');
-      var imageSizesMobile = ImageSizePicker.imgSize('LAURA_WEST_TX_mobile.jpg');
+      var imageOrig = ImageSizePicker.imgOrig('HAND_ONLY.jpg');
+      var imageOrigMobile = ImageSizePicker.imgOrig('HAND_ONLY_MOBILE.jpg');
+      var imageSizes = ImageSizePicker.imgSize('HAND_ONLY.jpg');
+      var imageSizesMobile = ImageSizePicker.imgSize('HAND_ONLY_MOBILE.jpg');
+      var video = 'https://we-portfolio.s3.amazonaws.com/HAND_ONLY.mp4';
       return _react2.default.createElement(
         'div',
         { id: 'contact', className: 'row mx-0 image-full-width', style: { marginTop: margin } },
@@ -67291,22 +67292,54 @@ var Contact = function (_Component) {
           {
             id: 'contact-feature-image',
             className: 'col p-0 container image-full-width-container position-relative' },
-          windowWidth > 800 ? _react2.default.createElement('img', {
-            className: 'img-fluid img-landscape',
-            title: '',
-            alt: '',
-            src: imageOrig,
-            srcSet: '',
-            sizes: '100vw',
-            width: '2560' }) : null,
-          windowWidth <= 800 ? _react2.default.createElement('img', {
-            className: 'img-portrait',
-            title: '',
-            alt: '',
-            src: imageOrigMobile,
-            srcSet: '',
-            sizes: '100vw',
-            width: '1440' }) : null,
+          windowWidth > 800 ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'video',
+              { id: 'contact-video', poster: imageOrig, playsInline: true, autoPlay: true, muted: true, loop: true },
+              _react2.default.createElement('source', { src: video, type: 'video/mp4' })
+            ),
+            _react2.default.createElement('img', {
+              id: 'ipad-pro-poster-img',
+              className: 'img-portrait',
+              title: 'Contact hand with googly eyes',
+              alt: 'Contact hand with googly eyes',
+              src: imageOrigMobile,
+              srcSet: imageOrigMobile + ' 1440w, ' + imageSizesMobile.w1024 + ' 1024w, ' + imageSizesMobile.w800 + ' 800w, ' + imageSizesMobile.w600 + ' 600w,',
+              sizes: '100vw',
+              width: '1440' }),
+            _react2.default.createElement('img', {
+              id: 'ipad-pro-poster-img-landscape',
+              className: 'img-fluid img-landscape',
+              title: 'Contact hand with googly eyes',
+              alt: 'Contact hand with googly eyes',
+              src: imageOrig,
+              srcSet: imageOrig + ' 1440w, ' + imageSizes.w1024 + ' 1024w, ' + imageSizes.w800 + ' 800w, ' + imageSizes.w600 + ' 600w,',
+              sizes: '100vw',
+              width: '1440' })
+          ) : null,
+          windowWidth <= 800 ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('img', {
+              className: 'img-portrait',
+              title: 'Contact hand with googly eyes',
+              alt: 'Contact hand with googly eyes',
+              src: imageOrigMobile,
+              srcSet: imageOrigMobile + ' 1440w, ' + imageSizesMobile.w1024 + ' 1024w, ' + imageSizesMobile.w800 + ' 800w, ' + imageSizesMobile.w600 + ' 600w,',
+              sizes: '100vw',
+              width: '1440' }),
+            _react2.default.createElement('img', {
+              id: 'img-landscape',
+              className: 'img-fluid img-landscape',
+              title: 'Contact hand with googly eyes',
+              alt: 'Contact hand with googly eyes',
+              src: imageOrig,
+              srcSet: imageOrig + ' 1440w, ' + imageSizes.w1024 + ' 1024w, ' + imageSizes.w800 + ' 800w, ' + imageSizes.w600 + ' 600w,',
+              sizes: '100vw',
+              width: '1440' })
+          ) : null,
           _react2.default.createElement(
             'div',
             { className: 'row mx-0 position-absolute text-overlay-container' },

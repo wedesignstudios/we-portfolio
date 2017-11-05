@@ -7,6 +7,28 @@ const scroll = Scroll.animateScroll;
 const ImageSizePicker = require('../../services/image_size_picker');
 
 class About extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      windowWidth: 0
+    }
+
+    this.getWindowWidth = this.getWindowWidth.bind(this);
+  }
+
+  componentDidMount() {
+    this.getWindowWidth();
+    window.addEventListener('resize', this.getWindowWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.getWindowWidth);
+  }
+
+  getWindowWidth() {
+    this.setState({windowWidth: window.innerWidth});
+  }
 
   scrollToTop() {
     scroll.scrollToTop({duration: 1000});
@@ -14,19 +36,34 @@ class About extends Component {
 
   render() {
     let { margin } = this.props;
+    let { windowWidth } = this.state;
+    let imageOrig = ImageSizePicker.imgOrig('WE_TWIRL.jpg');
+    let imageSizes = ImageSizePicker.imgSize('WE_TWIRL.jpg');
+    let video = 'https://we-portfolio.s3.amazonaws.com/WE_TWIRL.mp4';
     return (
       <div id="about" className="row mx-0" style={{marginTop: margin}}>
         <div
           id="about-feature-image"
-          className="col-12 p-0 d-flex align-items-center feature-image">
-            <img
-             className="img-fluid"
-             title=""
-             alt=""
-             src="https://we-portfolio.s3.amazonaws.com/IMG_0588.JPG"
-             srcSet=""
-             sizes="100vw"
-             width="2560" />
+          className="col-12 p-0 container image-full-width-container">
+          {windowWidth > 800 ?
+            <div>
+              <video id="about-video" className="ipad-pro-video" poster={imageOrig} playsInline autoPlay muted loop>
+                <source src={video} type="video/mp4" />
+              </video>
+            </div>
+          : null}
+          {windowWidth <= 800 ?
+            <div>
+              <img
+               className="img-fluid"
+               title="Contact hand with googly eyes"
+               alt="Contact hand with googly eyes"
+               src={imageOrig}
+               srcSet={`${imageOrig} 1440w, ${imageSizes.w1024} 1024w, ${imageSizes.w800} 800w, ${imageSizes.w600} 600w,`}
+               sizes="100vw"
+               width="1440" />
+            </div>
+          : null}
         </div>
         <div id="about-content" className="col-12 p-0 container">
           <div className="row justify-content-center m-0">

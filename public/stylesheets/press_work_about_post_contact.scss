@@ -69,3 +69,36 @@
     }
   }
 }
+
+.ipad-pro-video {
+  @include respond(ipad-pro-portrait) {
+    display: none;
+  }
+  @include respond(ipad-pro-landscape) {
+    display: none;
+  }
+}
+
+.ipad-pro-poster-img {
+  @include respond(ipad-pro-portrait) {
+    display: block;
+  }
+  @include respond(ipad-pro-landscape) {
+    display: block;
+  }
+  display: none;
+}
+
+.ipad-pro-poster-img-landscape {
+  @include respond(ipad-pro-landscape) {
+    display: block;
+  }
+  display: none;
+}
+
+.ipad-pro-poster-img-portrait {
+  @include respond(ipad-pro-portrait) {
+    display: block;
+  }
+  display: none;
+}

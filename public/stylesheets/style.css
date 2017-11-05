@@ -51,6 +51,11 @@ hr.hr-half-rem {
   height: 0.5rem;
   background-color: #000000; }
 
+video {
+  display: block;
+  max-width: 100%;
+  min-width: 100%; }
+
 .muli-reg {
   font-family: 'Muli';
   font-style: normal;
@@ -423,29 +428,6 @@ form textarea.form-control {
   .image-full-width .img-portrait {
     display: none; } }
 
-#contact-video {
-  display: block;
-  max-width: 100%;
-  min-width: 100%; }
-  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
-    #contact-video {
-      display: none; } }
-  @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (min-width: 1366px) and (max-width: 1366px) {
-    #contact-video {
-      display: none; } }
-
-#ipad-pro-poster-img {
-  display: none; }
-  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
-    #ipad-pro-poster-img {
-      display: block; } }
-
-#ipad-pro-poster-img-landscape {
-  display: none; }
-  @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (min-width: 1366px) and (max-width: 1366px) {
-    #ipad-pro-poster-img-landscape {
-      display: block; } }
-
 .feature-image {
   max-height: 50rem;
   overflow: hidden; }
@@ -492,5 +474,34 @@ form textarea.form-control {
     font-size: 3rem; }
   #contact-email-addresses h5 {
     font-size: 1.05rem; } }
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
+  .ipad-pro-video {
+    display: none; } }
+
+@media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (min-width: 1366px) and (max-width: 1366px) {
+  .ipad-pro-video {
+    display: none; } }
+
+.ipad-pro-poster-img {
+  display: none; }
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
+    .ipad-pro-poster-img {
+      display: block; } }
+  @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (min-width: 1366px) and (max-width: 1366px) {
+    .ipad-pro-poster-img {
+      display: block; } }
+
+.ipad-pro-poster-img-landscape {
+  display: none; }
+  @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (min-width: 1366px) and (max-width: 1366px) {
+    .ipad-pro-poster-img-landscape {
+      display: block; } }
+
+.ipad-pro-poster-img-portrait {
+  display: none; }
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
+    .ipad-pro-poster-img-portrait {
+      display: block; } }
 
 /*# sourceMappingURL=style.css.map */

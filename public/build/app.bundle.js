@@ -67008,10 +67008,33 @@ var About = function (_Component) {
   function About() {
     _classCallCheck(this, About);
 
-    return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).call(this));
+
+    _this.state = {
+      windowWidth: 0
+    };
+
+    _this.getWindowWidth = _this.getWindowWidth.bind(_this);
+    return _this;
   }
 
   _createClass(About, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getWindowWidth();
+      window.addEventListener('resize', this.getWindowWidth);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      window.removeEventListener('resize', this.getWindowWidth);
+    }
+  }, {
+    key: 'getWindowWidth',
+    value: function getWindowWidth() {
+      this.setState({ windowWidth: window.innerWidth });
+    }
+  }, {
     key: 'scrollToTop',
     value: function scrollToTop() {
       scroll.scrollToTop({ duration: 1000 });
@@ -67020,7 +67043,11 @@ var About = function (_Component) {
     key: 'render',
     value: function render() {
       var margin = this.props.margin;
+      var windowWidth = this.state.windowWidth;
 
+      var imageOrig = ImageSizePicker.imgOrig('WE_TWIRL.jpg');
+      var imageSizes = ImageSizePicker.imgSize('WE_TWIRL.jpg');
+      var video = 'https://we-portfolio.s3.amazonaws.com/WE_TWIRL.mp4';
       return _react2.default.createElement(
         'div',
         { id: 'about', className: 'row mx-0', style: { marginTop: margin } },
@@ -67028,15 +67055,28 @@ var About = function (_Component) {
           'div',
           {
             id: 'about-feature-image',
-            className: 'col-12 p-0 d-flex align-items-center feature-image' },
-          _react2.default.createElement('img', {
-            className: 'img-fluid',
-            title: '',
-            alt: '',
-            src: 'https://we-portfolio.s3.amazonaws.com/IMG_0588.JPG',
-            srcSet: '',
-            sizes: '100vw',
-            width: '2560' })
+            className: 'col-12 p-0 container image-full-width-container' },
+          windowWidth > 800 ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'video',
+              { id: 'about-video', className: 'ipad-pro-video', poster: imageOrig, playsInline: true, autoPlay: true, muted: true, loop: true },
+              _react2.default.createElement('source', { src: video, type: 'video/mp4' })
+            )
+          ) : null,
+          windowWidth <= 800 ? _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('img', {
+              className: 'img-fluid',
+              title: 'Contact hand with googly eyes',
+              alt: 'Contact hand with googly eyes',
+              src: imageOrig,
+              srcSet: imageOrig + ' 1440w, ' + imageSizes.w1024 + ' 1024w, ' + imageSizes.w800 + ' 800w, ' + imageSizes.w600 + ' 600w,',
+              sizes: '100vw',
+              width: '1440' })
+          ) : null
         ),
         _react2.default.createElement(
           'div',
@@ -67297,12 +67337,11 @@ var Contact = function (_Component) {
             null,
             _react2.default.createElement(
               'video',
-              { id: 'contact-video', poster: imageOrig, playsInline: true, autoPlay: true, muted: true, loop: true },
+              { id: 'contact-video', className: 'ipad-pro-video', poster: imageOrig, playsInline: true, autoPlay: true, muted: true, loop: true },
               _react2.default.createElement('source', { src: video, type: 'video/mp4' })
             ),
             _react2.default.createElement('img', {
-              id: 'ipad-pro-poster-img',
-              className: 'img-portrait',
+              className: 'img-portrait ipad-pro-poster-img-portrait ipad-pro-poster-img',
               title: 'Contact hand with googly eyes',
               alt: 'Contact hand with googly eyes',
               src: imageOrigMobile,
@@ -67310,8 +67349,7 @@ var Contact = function (_Component) {
               sizes: '100vw',
               width: '1440' }),
             _react2.default.createElement('img', {
-              id: 'ipad-pro-poster-img-landscape',
-              className: 'img-fluid img-landscape',
+              className: 'img-fluid img-landscape ipad-pro-poster-img-landscape',
               title: 'Contact hand with googly eyes',
               alt: 'Contact hand with googly eyes',
               src: imageOrig,

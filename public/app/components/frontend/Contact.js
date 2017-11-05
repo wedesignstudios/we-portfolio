@@ -43,12 +43,11 @@ class Contact extends Component {
           className="col p-0 container image-full-width-container position-relative">
           {windowWidth > 800 ?
             <div>
-              <video id="contact-video" poster={imageOrig} playsInline autoPlay muted loop>
+              <video id="contact-video" className="ipad-pro-video" poster={imageOrig} playsInline autoPlay muted loop>
                 <source src={video} type="video/mp4" />
               </video>
               <img
-               id="ipad-pro-poster-img"
-               className="img-portrait"
+               className="img-portrait ipad-pro-poster-img-portrait ipad-pro-poster-img"
                title="Contact hand with googly eyes"
                alt="Contact hand with googly eyes"
                src={imageOrigMobile}
@@ -56,8 +55,7 @@ class Contact extends Component {
                sizes="100vw"
                width="1440" />
              <img
-              id="ipad-pro-poster-img-landscape"
-              className="img-fluid img-landscape"
+              className="img-fluid img-landscape ipad-pro-poster-img-landscape"
               title="Contact hand with googly eyes"
               alt="Contact hand with googly eyes"
               src={imageOrig}

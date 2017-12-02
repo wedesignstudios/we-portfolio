@@ -41,9 +41,9 @@ router.get('/', passport.authenticate('facebook', { scope: 'email' }));
 
 router.get('/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    console.log('REQ.USER: ', req.user);
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Credentials', true);
+    console.log('REQ.SESSION.COOKIE: ', req.session.cookie);
     req.session.cookie.user = req.user;
     res.redirect('/dashboard');
 });

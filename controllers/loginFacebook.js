@@ -41,7 +41,8 @@ router.get('/', passport.authenticate('facebook', { scope: 'email' }));
 
 router.get('/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://we-portfolio.herokuapp.com');
+    console.log('HEADER: ', res.header());
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Credentials', true);
     req.session.cookie.user = req.user;
     res.redirect('/dashboard');

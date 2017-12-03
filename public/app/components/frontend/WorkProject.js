@@ -110,7 +110,7 @@ class WorkProject extends Component {
                     null }
                   </div>
                   <div className="col-sm-6 p-0 pl-sm-3">
-                    <div className="white-space-pre-line">{projectData.description}</div>
+                    <div className="white-space-pre-line" dangerouslySetInnerHTML={{__html: projectData.description}}></div>
                   </div>
                 </div>
               </div>

@@ -68988,11 +68988,7 @@ var WorkProject = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-6 p-0 pl-sm-3' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'white-space-pre-line' },
-                    projectData.description
-                  )
+                  _react2.default.createElement('div', { className: 'white-space-pre-line', dangerouslySetInnerHTML: { __html: projectData.description } })
                 )
               )
             )

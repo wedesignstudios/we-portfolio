@@ -7,8 +7,8 @@ const User = require('../models/user');
 passport.use(new passportFacebook({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    // callbackURL: 'http://we-portfolio.herokuapp.com/login/facebook/callback',
-    callbackURL: 'http://localhost:3000/login/facebook/callback',
+    callbackURL: 'http://we-portfolio.herokuapp.com/login/facebook/callback',
+    // callbackURL: 'http://localhost:3000/login/facebook/callback',
     profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {    

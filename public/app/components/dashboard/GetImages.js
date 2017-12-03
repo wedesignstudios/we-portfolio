@@ -213,7 +213,7 @@ class GetImages extends React.Component {
                         onClick={(e) => this.openUpdateImageModal(e)}
                         onError={(e) => e.target.setAttribute('src', image.url)} />
 
-                        {image.project.name || image.news_story.title ?
+                        {image.project_id !== null || image.news_story_id !== null ?
                           <div className="card-footer text-muted px-3 py-1">
                             <div className="card-text mb-0">
                                 {image.project.name ?

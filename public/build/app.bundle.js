@@ -37357,7 +37357,7 @@ var GetImages = function (_React$Component) {
                       onError: function onError(e) {
                         return e.target.setAttribute('src', image.url);
                       } }),
-                    image.project.name || image.news_story.title ? _react2.default.createElement(
+                    image.project_id !== null || image.news_story_id !== null ? _react2.default.createElement(
                       'div',
                       { className: 'card-footer text-muted px-3 py-1' },
                       _react2.default.createElement(

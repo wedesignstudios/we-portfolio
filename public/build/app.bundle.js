@@ -68604,11 +68604,7 @@ var PressStory = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-6 p-0 pl-sm-3' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'white-space-pre-line' },
-                    newsData.description
-                  )
+                  _react2.default.createElement('div', { className: 'white-space-pre-line', dangerouslySetInnerHTML: { __html: newsData.description } })
                 )
               ),
               windowWidth <= 768 ? _react2.default.createElement(

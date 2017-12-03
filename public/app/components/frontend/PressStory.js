@@ -85,7 +85,7 @@ class PressStory extends Component {
                   <p className="font-weight-bold">{DateFormatter.monthYear(storyDate)}</p>
                 </div>
                 <div className="col-sm-6 p-0 pl-sm-3">
-                  <div className="white-space-pre-line">{newsData.description}</div>
+                  <div className="white-space-pre-line" dangerouslySetInnerHTML={{__html: newsData.description}}></div>
                 </div>
               </div>
               {windowWidth <= 768 ?

@@ -48,6 +48,9 @@ app.set('view engine', 'hbs');
 redisClient.on('connect', function() {
   console.log('Redis connected');
 });
+redisClient.on('error', function(err) {
+  console.log('Redis error: ', err);
+});
 
 // sessions
 app.use(session({

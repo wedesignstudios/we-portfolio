@@ -8,7 +8,6 @@ passport.use(new passportFacebook({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: 'http://we-portfolio.herokuapp.com/login/facebook/callback',
-    // callbackURL: 'http://localhost:3000/login/facebook/callback',
     profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {    
@@ -42,9 +41,8 @@ router.get('/', passport.authenticate('facebook', { scope: 'email' }));
 
 router.get('/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'http://we-portfolio.herokuapp.com');
     res.header('Access-Control-Allow-Credentials', true);
-    console.log('REQ.SESSION.COOKIE: ', req.session.cookie);
     req.session.cookie.user = req.user;
     res.redirect('/dashboard');
 });

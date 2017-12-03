@@ -7,7 +7,7 @@ const User = require('../models/user');
 passport.use(new passportGoogle({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/login/google/callback'
+    callbackURL: 'http://we-portfolio.herokuapp.com/login/google/callback'
   },
   function(token, tokenSecret, profile, cb) {
     User
@@ -41,7 +41,7 @@ router.get('/', passport.authenticate('google', { scope: 'openid email' }));
 
 router.get('/callback', passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Origin', 'http://we-portfolio.herokuapp.com');
     res.header('Access-Control-Allow-Credentials', true);
     req.session.cookie.user = req.user;
     res.redirect('/dashboard');

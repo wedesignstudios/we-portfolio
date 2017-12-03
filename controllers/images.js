@@ -7,6 +7,7 @@ const Image = require('../models/image.js');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const fs = require('fs');
 const gm = require('gm');
+const imageMagick = gm.subClass({ imageMagick: true });
 
 // AWS config
 AWS.config.update({
@@ -71,7 +72,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
 
   let gmPromise = new Promise((resolve, reject) => {
 
-    gm(req.file.buffer, req.file.originalname)
+    imageMagick(req.file.buffer, req.file.originalname)
       // Resolve if SVG
       .identify((err, val) => {
         if (val.format === 'MVG') {

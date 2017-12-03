@@ -37036,13 +37036,13 @@ var GetImages = function (_React$Component) {
                       onError: function onError(e) {
                         return e.target.setAttribute('src', image.url);
                       } }),
-                    image.project_id !== null || image.news_story_id !== null ? _react2.default.createElement(
+                    image.project_id || image.news_story_id ? _react2.default.createElement(
                       'div',
                       { className: 'card-footer text-muted px-3 py-1' },
                       _react2.default.createElement(
                         'div',
                         { className: 'card-text mb-0' },
-                        image.project.name ? _react2.default.createElement(
+                        image.project_id ? _react2.default.createElement(
                           'div',
                           null,
                           _react2.default.createElement(
@@ -37057,7 +37057,7 @@ var GetImages = function (_React$Component) {
                             image.project.name
                           )
                         ) : null,
-                        image.news_story.title ? _react2.default.createElement(
+                        image.news_story_id ? _react2.default.createElement(
                           'div',
                           null,
                           _react2.default.createElement(

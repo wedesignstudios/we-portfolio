@@ -17,7 +17,7 @@ class Work extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/projects')
+    fetch('/api/v1/projects')
       .then(res => res.json())
       .then(data => {
         if(this.refs.workRef) {

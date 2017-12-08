@@ -13,7 +13,7 @@ class ProjectCategoriesCheckboxes extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/project-categories`)
+    fetch(`/api/v1/project-categories`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({

@@ -16505,7 +16505,7 @@ var FormAddress = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/addresses').then(function (res) {
+      fetch('/api/v1/addresses').then(function (res) {
         return res.json();
       }).then(function (data) {
         var arrCities = data.map(function (item) {
@@ -16518,7 +16518,7 @@ var FormAddress = function (_Component) {
         console.error(err);
       });
 
-      fetch('/api/states').then(function (res) {
+      fetch('/api/v1/states').then(function (res) {
         return res.json();
       }).then(function (data) {
         var arrStates = data.map(function (item) {
@@ -16531,7 +16531,7 @@ var FormAddress = function (_Component) {
         console.log(err);
       });
 
-      fetch('/api/countries').then(function (res) {
+      fetch('/api/v1/countries').then(function (res) {
         return res.json();
       }).then(function (data) {
         var arrCountries = data.map(function (item) {
@@ -16784,7 +16784,7 @@ var FormClient = function (_React$Component) {
       var _this2 = this;
 
       if (this.props.clientId) {
-        fetch('/api/clients/' + this.props.clientId).then(function (res) {
+        fetch('/api/v1/clients/' + this.props.clientId).then(function (res) {
           return res.json();
         }).then(function (data) {
           _this2.setState({
@@ -16820,7 +16820,7 @@ var FormClient = function (_React$Component) {
   }, {
     key: 'deleteClient',
     value: function deleteClient() {
-      DataActions.sendRequest('DELETE', { name: this.state.initialName, address_id: this.state.address_id }, '/api/clients/' + this.props.clientId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.initialName, address_id: this.state.address_id }, '/api/v1/clients/' + this.props.clientId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'submitForm',
@@ -16834,9 +16834,9 @@ var FormClient = function (_React$Component) {
       this.forceUpdate(function () {
         if (!this.state.urlErr) {
           if (this.props.sendRequestType === 'POST') {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/v1/clients', this.setRedirectWithMessage, this.setSubmitErrorMessage);
           } else {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/clients/' + this.props.clientId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/v1/clients/' + this.props.clientId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
           }
         };
       });
@@ -17100,7 +17100,7 @@ var FormCollaborator = function (_React$Component) {
       var _this2 = this;
 
       if (this.props.collaboratorId) {
-        fetch('/api/collaborators/' + this.props.collaboratorId).then(function (res) {
+        fetch('/api/v1/collaborators/' + this.props.collaboratorId).then(function (res) {
           return res.json();
         }).then(function (data) {
           _this2.setState({
@@ -17136,7 +17136,7 @@ var FormCollaborator = function (_React$Component) {
   }, {
     key: 'deleteCollaborator',
     value: function deleteCollaborator() {
-      DataActions.sendRequest('DELETE', { name: this.state.initialName, address_id: this.state.address_id }, '/api/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.initialName, address_id: this.state.address_id }, '/api/v1/collaborators/' + this.props.collaboratorId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'submitForm',
@@ -17150,9 +17150,9 @@ var FormCollaborator = function (_React$Component) {
       this.forceUpdate(function () {
         if (!this.state.urlErr) {
           if (this.props.sendRequestType === 'POST') {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/v1/collaborators', this.setRedirectWithMessage, this.setSubmitErrorMessage);
           } else {
-            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/collaborators/' + this.props.collaboratorId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
+            DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/v1/collaborators/' + this.props.collaboratorId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
           }
         };
       });
@@ -17458,7 +17458,7 @@ var FormNewsStory = function (_React$Component) {
       var _this2 = this;
 
       if (this.props.newsStoryId) {
-        fetch('/api/news-stories/' + this.props.newsStoryId).then(function (res) {
+        fetch('/api/v1/news-stories/' + this.props.newsStoryId).then(function (res) {
           return res.json();
         }).then(function (data) {
           _this2.setState({
@@ -17498,7 +17498,7 @@ var FormNewsStory = function (_React$Component) {
   }, {
     key: 'deleteNewsStory',
     value: function deleteNewsStory() {
-      DataActions.sendRequest('DELETE', { title: this.state.initialTitle }, '/api/news-stories/' + this.props.newsStoryId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+      DataActions.sendRequest('DELETE', { title: this.state.initialTitle }, '/api/v1/news-stories/' + this.props.newsStoryId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'openImageSelect',
@@ -17516,9 +17516,9 @@ var FormNewsStory = function (_React$Component) {
 
       this.forceUpdate(function () {
         if (this.props.sendRequestType === 'POST') {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/v1/news-stories', this.setRedirectWithMessage, this.setSubmitErrorMessage);
         } else {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/news-stories/' + this.props.newsStoryId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/v1/news-stories/' + this.props.newsStoryId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
         }
       });
     }
@@ -17918,7 +17918,7 @@ var FormProject = function (_React$Component) {
       var _this2 = this;
 
       if (this.props.projectId) {
-        fetch('/api/projects/' + this.props.projectId).then(function (res) {
+        fetch('/api/v1/projects/' + this.props.projectId).then(function (res) {
           return res.json();
         }).then(function (data) {
           _this2.setState({
@@ -18019,7 +18019,7 @@ var FormProject = function (_React$Component) {
   }, {
     key: 'deleteProject',
     value: function deleteProject() {
-      DataActions.sendRequest('DELETE', { name: this.state.initialName }, '/api/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+      DataActions.sendRequest('DELETE', { name: this.state.initialName }, '/api/v1/projects/' + this.props.projectId + '/delete', this.setRedirectWithMessage, this.setSubmitErrorMessage);
     }
   }, {
     key: 'allProjectImages',
@@ -18086,9 +18086,9 @@ var FormProject = function (_React$Component) {
       FormValidations.trimData(this.state, this);
       this.forceUpdate(function () {
         if (this.props.sendRequestType === 'POST') {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects', this.setRedirectWithMessage, this.setSubmitErrorMessage);
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/v1/projects', this.setRedirectWithMessage, this.setSubmitErrorMessage);
         } else {
-          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/projects/' + this.props.projectId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
+          DataActions.sendRequest(this.props.sendRequestType, this.state, '/api/v1/projects/' + this.props.projectId, this.setRedirectWithMessage, this.setSubmitErrorMessage);
         }
       });
     }
@@ -18457,7 +18457,7 @@ var GetImagesNewsStory = function (_React$Component) {
     value: function loadImages() {
       var _this2 = this;
 
-      fetch('/api/images').then(function (res) {
+      fetch('/api/v1/images').then(function (res) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
@@ -18624,7 +18624,7 @@ var ModalAddImages = function (_Component) {
         var formData = new FormData();
 
         formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload', _this2.imageAdded, _this2.setSubmitErrorMessage);
+        DataActions.uploadImages(formData, '/api/v1/images/upload', _this2.imageAdded, _this2.setSubmitErrorMessage);
       });
     }
   }, {
@@ -36635,7 +36635,7 @@ var DashboardHome = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/user-data', { credentials: 'include' }).then(function (res) {
+      fetch('/api/v1/user-data', { credentials: 'include' }).then(function (res) {
         return res.json();
       }).then(function (data) {
         return _this2.setState({ user: data });
@@ -36749,7 +36749,7 @@ var GetClients = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/clients').then(function (res) {
+      fetch('/api/v1/clients').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -36923,7 +36923,7 @@ var GetCollaborators = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/collaborators').then(function (res) {
+      fetch('/api/v1/collaborators').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -37118,7 +37118,7 @@ var GetImages = function (_React$Component) {
     value: function loadImages() {
       var _this2 = this;
 
-      fetch('/api/images').then(function (res) {
+      fetch('/api/v1/images').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -37137,7 +37137,7 @@ var GetImages = function (_React$Component) {
         var formData = new FormData();
 
         formData.append('image', file);
-        DataActions.uploadImages(formData, '/api/images/upload', _this3.imageAdded, _this3.setSubmitErrorMessage);
+        DataActions.uploadImages(formData, '/api/v1/images/upload', _this3.imageAdded, _this3.setSubmitErrorMessage);
       });
     }
   }, {
@@ -37470,7 +37470,7 @@ var GetNewsStories = function (_Component) {
     value: function loadStories() {
       var _this2 = this;
 
-      fetch('/api/news-stories').then(function (res) {
+      fetch('/api/v1/news-stories').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -37668,7 +37668,7 @@ var GetProjects = function (_Component) {
     value: function loadProjects() {
       var _this2 = this;
 
-      fetch('/api/projects').then(function (res) {
+      fetch('/api/v1/projects').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -38601,7 +38601,7 @@ var ClientCheckboxes = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/clients').then(function (res) {
+      fetch('/api/v1/clients').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -38714,7 +38714,7 @@ var CollaboratorCheckboxes = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/collaborators').then(function (res) {
+      fetch('/api/v1/collaborators').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -38830,7 +38830,7 @@ var GetFeatureImageProjects = function (_Component) {
     value: function loadImages() {
       var _this2 = this;
 
-      fetch('/api/images').then(function (res) {
+      fetch('/api/v1/images').then(function (res) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
@@ -38986,7 +38986,7 @@ var GetImagesProjects = function (_React$Component) {
     value: function loadImages() {
       var _this2 = this;
 
-      fetch('/api/images').then(function (res) {
+      fetch('/api/v1/images').then(function (res) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
@@ -39120,7 +39120,7 @@ var ModalUpdateImage = function (_Component) {
     value: function loadImage() {
       var _this2 = this;
 
-      fetch('/api/images/' + this.props.imageId).then(function (res) {
+      fetch('/api/v1/images/' + this.props.imageId).then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -39154,7 +39154,7 @@ var ModalUpdateImage = function (_Component) {
       event.preventDefault();
       FormValidations.trimData(this.state, this);
       this.forceUpdate(function () {
-        DataActions.sendRequest('PUT', this.state, '/api/images/' + this.props.imageId, this.setRedirectWithMessage);
+        DataActions.sendRequest('PUT', this.state, '/api/v1/images/' + this.props.imageId, this.setRedirectWithMessage);
       });
     }
   }, {
@@ -39395,7 +39395,7 @@ var NewsCategoriesCheckboxes = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/news-categories').then(function (res) {
+      fetch('/api/v1/news-categories').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -39509,7 +39509,7 @@ var ProjectCategoriesCheckboxes = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/project-categories').then(function (res) {
+      fetch('/api/v1/project-categories').then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -67836,7 +67836,7 @@ var NavAdmin = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/user-data', { credentials: 'include' }).then(function (res) {
+      fetch('/api/v1/user-data', { credentials: 'include' }).then(function (res) {
         return res.json();
       }).then(function (data) {
         return _this2.setState({ user: data });
@@ -68140,7 +68140,7 @@ var Post = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/wp-posts/' + this.props.match.params.post_name).then(function (res) {
+      fetch('/api/v1/wp-posts/' + this.props.match.params.post_name).then(function (res) {
         return res.json();
       }).then(function (data) {
         if (data) {
@@ -68353,7 +68353,7 @@ var Press = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/news-stories').then(function (res) {
+      fetch('/api/v1/news-stories').then(function (res) {
         return res.json();
       }).then(function (data) {
         if (_this2.refs.pressRef) {
@@ -68512,7 +68512,7 @@ var PressStory = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/news-stories/' + this.props.match.params.title).then(function (res) {
+      fetch('/api/v1/news-stories/' + this.props.match.params.title).then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -68692,7 +68692,7 @@ var Work = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/projects').then(function (res) {
+      fetch('/api/v1/projects').then(function (res) {
         return res.json();
       }).then(function (data) {
         if (_this2.refs.workRef) {
@@ -68854,7 +68854,7 @@ var WorkProject = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/projects/' + this.props.match.params.name).then(function (res) {
+      fetch('/api/v1/projects/' + this.props.match.params.name).then(function (res) {
         return res.json();
       }).then(function (data) {
         _this2.setState({
@@ -69363,7 +69363,7 @@ var App = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('/api/user-data', { credentials: 'include' }).then(function (res) {
+      fetch('/api/v1/user-data', { credentials: 'include' }).then(function (res) {
         return res.json();
       }).then(function (data) {
         if (data.length === 1) {

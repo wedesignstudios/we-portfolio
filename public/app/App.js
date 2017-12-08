@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/user-data', {credentials: 'include'})
+    fetch('/api/v1/user-data', {credentials: 'include'})
       .then((res) => res.json())
       .then((data) => {
         if (data.length === 1) {

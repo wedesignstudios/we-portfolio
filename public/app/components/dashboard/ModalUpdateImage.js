@@ -24,7 +24,7 @@ class ModalUpdateImage extends Component {
   }
 
   loadImage() {
-    fetch(`/api/images/${this.props.imageId}`)
+    fetch(`/api/v1/images/${this.props.imageId}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -59,7 +59,7 @@ class ModalUpdateImage extends Component {
       DataActions.sendRequest(
         'PUT',
         this.state,
-        `/api/images/${this.props.imageId}`,
+        `/api/v1/images/${this.props.imageId}`,
         this.setRedirectWithMessage
       );
     });

@@ -13,7 +13,7 @@ class ClientCheckboxes extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/clients`)
+    fetch(`/api/v1/clients`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({

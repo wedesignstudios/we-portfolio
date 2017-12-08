@@ -22,7 +22,7 @@ class WorkProject extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/projects/${this.props.match.params.name}`)
+    fetch(`/api/v1/projects/${this.props.match.params.name}`)
       .then(res => res.json())
       .then(data => {
         this.setState({

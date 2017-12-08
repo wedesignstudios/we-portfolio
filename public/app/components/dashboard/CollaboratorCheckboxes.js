@@ -13,7 +13,7 @@ class CollaboratorCheckboxes extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/collaborators`)
+    fetch(`/api/v1/collaborators`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({

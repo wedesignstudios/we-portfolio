@@ -71,7 +71,7 @@ class FormProject extends React.Component {
 
   componentDidMount() {    
     if(this.props.projectId) {
-      fetch(`/api/projects/${this.props.projectId}`)
+      fetch(`/api/v1/projects/${this.props.projectId}`)
         .then((res) => res.json())
         .then((data) => {
           this.setState({
@@ -177,7 +177,7 @@ class FormProject extends React.Component {
     DataActions.sendRequest(
       'DELETE',
       {name: this.state.initialName},
-      `/api/projects/${this.props.projectId}/delete`,
+      `/api/v1/projects/${this.props.projectId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage
     );
@@ -236,7 +236,7 @@ class FormProject extends React.Component {
         DataActions.sendRequest(
           this.props.sendRequestType,
           this.state,
-          '/api/projects',
+          '/api/v1/projects',
           this.setRedirectWithMessage,
           this.setSubmitErrorMessage
         );
@@ -244,7 +244,7 @@ class FormProject extends React.Component {
         DataActions.sendRequest(
           this.props.sendRequestType,
           this.state,
-          `/api/projects/${this.props.projectId}`,
+          `/api/v1/projects/${this.props.projectId}`,
           this.setRedirectWithMessage,
           this.setSubmitErrorMessage
         );

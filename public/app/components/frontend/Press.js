@@ -16,7 +16,7 @@ class Press extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/news-stories')
+    fetch('/api/v1/news-stories')
       .then(res => res.json())
       .then(data => {
         if(this.refs.pressRef) {

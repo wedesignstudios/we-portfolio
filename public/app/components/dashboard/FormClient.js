@@ -43,7 +43,7 @@ class FormClient extends React.Component {
 
   componentDidMount() {
     if(this.props.clientId) {
-      fetch(`/api/clients/${this.props.clientId}`)
+      fetch(`/api/v1/clients/${this.props.clientId}`)
         .then((res) => res.json())
         .then((data) => {
           this.setState({
@@ -82,7 +82,7 @@ class FormClient extends React.Component {
     DataActions.sendRequest(
       'DELETE',
       {name: this.state.initialName, address_id: this.state.address_id},
-      `/api/clients/${this.props.clientId}/delete`,
+      `/api/v1/clients/${this.props.clientId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage
     );
@@ -101,7 +101,7 @@ class FormClient extends React.Component {
           DataActions.sendRequest(
             this.props.sendRequestType,
             this.state,
-            '/api/clients',
+            '/api/v1/clients',
             this.setRedirectWithMessage,
             this.setSubmitErrorMessage
           );
@@ -109,7 +109,7 @@ class FormClient extends React.Component {
           DataActions.sendRequest(
             this.props.sendRequestType,
             this.state,
-            `/api/clients/${this.props.clientId}`,
+            `/api/v1/clients/${this.props.clientId}`,
             this.setRedirectWithMessage,
             this.setSubmitErrorMessage
           );

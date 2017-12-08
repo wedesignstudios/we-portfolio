@@ -38,7 +38,7 @@ class ModalAddImages extends Component {
       formData.append('image', file);
       DataActions.uploadImages(
         formData,
-        '/api/images/upload',
+        '/api/v1/images/upload',
         this.imageAdded,
         this.setSubmitErrorMessage
       );

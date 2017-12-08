@@ -23,7 +23,7 @@ class GetProjects extends Component {
   }
 
   loadProjects() {
-    fetch('/api/projects')
+    fetch('/api/v1/projects')
       .then((res) => res.json())
       .then((data) => {
         this.setState({

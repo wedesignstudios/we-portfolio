@@ -80,7 +80,7 @@ class FormNewsStory extends React.Component {
 
   componentDidMount() {
     if(this.props.newsStoryId) {
-      fetch(`/api/news-stories/${this.props.newsStoryId}`)
+      fetch(`/api/v1/news-stories/${this.props.newsStoryId}`)
         .then((res) => res.json())
         .then((data) => {
           this.setState({
@@ -121,7 +121,7 @@ class FormNewsStory extends React.Component {
     DataActions.sendRequest(
       'DELETE',
       {title: this.state.initialTitle},
-      `/api/news-stories/${this.props.newsStoryId}/delete`,
+      `/api/v1/news-stories/${this.props.newsStoryId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage
     );
@@ -143,7 +143,7 @@ class FormNewsStory extends React.Component {
        DataActions.sendRequest(
          this.props.sendRequestType,
          this.state,
-         '/api/news-stories',
+         '/api/v1/news-stories',
          this.setRedirectWithMessage,
          this.setSubmitErrorMessage
        );
@@ -151,7 +151,7 @@ class FormNewsStory extends React.Component {
         DataActions.sendRequest(
           this.props.sendRequestType,
           this.state,
-          `/api/news-stories/${this.props.newsStoryId}`,
+          `/api/v1/news-stories/${this.props.newsStoryId}`,
           this.setRedirectWithMessage,
           this.setSubmitErrorMessage
         );

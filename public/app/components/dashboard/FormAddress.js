@@ -23,7 +23,7 @@ class FormAddress extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/addresses')
+    fetch('/api/v1/addresses')
       .then((res) => res.json())
       .then((data) => {
         let arrCities = data.map(item => {
@@ -37,7 +37,7 @@ class FormAddress extends Component {
         console.error(err);
       });
 
-    fetch('/api/states')
+    fetch('/api/v1/states')
       .then((res) => res.json())
       .then((data) => {
         let arrStates = data.map(item => {
@@ -51,7 +51,7 @@ class FormAddress extends Component {
         console.log(err);
       });
 
-    fetch('/api/countries')
+    fetch('/api/v1/countries')
       .then((res) => res.json())
       .then((data) => {
         let arrCountries = data.map(item => {

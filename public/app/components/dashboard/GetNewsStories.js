@@ -23,7 +23,7 @@ class GetNewsStories extends Component {
   }
 
   loadStories() {
-    fetch('/api/news-stories')
+    fetch('/api/v1/news-stories')
       .then((res) => res.json())
       .then((data) => {
         this.setState({

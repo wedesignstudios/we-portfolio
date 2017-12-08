@@ -15,7 +15,7 @@ class GetImagesNewsStory extends React.Component {
   }
 
   loadImages() {
-    fetch('/api/images')
+    fetch('/api/v1/images')
       .then((res) => res.json())
       .then((data) => {
         data = data.filter(obj => {

@@ -16,7 +16,7 @@ class Post extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/wp-posts/${this.props.match.params.post_name}`)
+    fetch(`/api/v1/wp-posts/${this.props.match.params.post_name}`)
       .then(res => res.json())
       .then(data => {
         if(data) {

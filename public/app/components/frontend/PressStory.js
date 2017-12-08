@@ -23,7 +23,7 @@ class PressStory extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/news-stories/${this.props.match.params.title}`)
+    fetch(`/api/v1/news-stories/${this.props.match.params.title}`)
       .then(res => res.json())
       .then(data => {
         this.setState({

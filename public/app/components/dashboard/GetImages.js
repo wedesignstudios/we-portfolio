@@ -41,7 +41,7 @@ class GetImages extends React.Component {
   }
 
   loadImages() {
-    fetch('/api/images')
+    fetch('/api/v1/images')
       .then((res) => res.json())
       .then((data) => {
         this.setState({
@@ -60,7 +60,7 @@ class GetImages extends React.Component {
       formData.append('image', file);
       DataActions.uploadImages(
         formData,
-        '/api/images/upload',
+        '/api/v1/images/upload',
         this.imageAdded,
         this.setSubmitErrorMessage
       );

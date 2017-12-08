@@ -43,7 +43,7 @@ class FormCollaborator extends React.Component {
 
   componentDidMount() {
     if(this.props.collaboratorId) {
-      fetch(`/api/collaborators/${this.props.collaboratorId}`)
+      fetch(`/api/v1/collaborators/${this.props.collaboratorId}`)
         .then((res) => res.json())
         .then((data) => {
           this.setState({
@@ -82,7 +82,7 @@ class FormCollaborator extends React.Component {
     DataActions.sendRequest(
       'DELETE',
       {name: this.state.initialName, address_id: this.state.address_id},
-      `/api/collaborators/${this.props.collaboratorId}/delete`,
+      `/api/v1/collaborators/${this.props.collaboratorId}/delete`,
       this.setRedirectWithMessage,
       this.setSubmitErrorMessage
     );
@@ -101,7 +101,7 @@ class FormCollaborator extends React.Component {
           DataActions.sendRequest(
             this.props.sendRequestType,
             this.state,
-            '/api/collaborators',
+            '/api/v1/collaborators',
             this.setRedirectWithMessage,
             this.setSubmitErrorMessage
           );
@@ -109,7 +109,7 @@ class FormCollaborator extends React.Component {
           DataActions.sendRequest(
             this.props.sendRequestType,
             this.state,
-            `/api/collaborators/${this.props.collaboratorId}`,
+            `/api/v1/collaborators/${this.props.collaboratorId}`,
             this.setRedirectWithMessage,
             this.setSubmitErrorMessage
           );

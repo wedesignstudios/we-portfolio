@@ -12,7 +12,7 @@ class DashboardHome extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/user-data', {credentials: 'include'})
+    fetch('/api/v1/user-data', {credentials: 'include'})
       .then(res => res.json())
       .then(data => this.setState({user: data}))
       .catch(err => console.error(err));

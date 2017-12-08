@@ -13,7 +13,7 @@ class NewsCategoriesCheckboxes extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/api/news-categories`)
+    fetch(`/api/v1/news-categories`)
       .then((res) => res.json())
       .then((data) => {
         this.setState({

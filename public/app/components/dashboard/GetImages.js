@@ -12,6 +12,7 @@ const ModalUpdateImage = require('./ModalUpdateImage');
 const FormValidations = require('../../services/form_validations');
 const FormHandlers = require('../../services/form_handlers');
 const ImageSizePicker = require('../../services/image_size_picker');
+const Spinner = require('../spinner/Spinner.js');
 
 class GetImages extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class GetImages extends React.Component {
       imageId: null,
       imageAddSuccess: false,
       openDropzone: false,
-      submitError: []
+      submitError: [],
+      fileProcessing: false
     }
 
     if(this.props.history.location.state === undefined) {
@@ -54,6 +56,9 @@ class GetImages extends React.Component {
   }
 
   onDrop(files) {
+    this.setState({
+      fileProcessing: true
+    });
     files.forEach(file => {
       const formData = new FormData();
 
@@ -77,6 +82,10 @@ class GetImages extends React.Component {
     this.setState({imageAddSuccess: false});
   }
 
+  resetFileProcessing() {
+    this.setState({fileProcessing: false});
+  }
+
   componentDidMount() {
     this.loadImages();
   }
@@ -84,7 +93,11 @@ class GetImages extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if(this.state.imageAddSuccess && this.state.imageAddSuccess !== prevState.imageAddSuccess) {
       this.loadImages();
+      this.resetFileProcessing();
       this.resetImageAdded();
+    }
+    if(this.state.submitError.length > prevState.submitError.length) {
+      this.resetFileProcessing();
     }
   }
 
@@ -92,7 +105,7 @@ class GetImages extends React.Component {
     this.loadImages();
   }
 
-  componentWillUpdate(nextProps) {
+  componentWillUpdate(nextProps, nextState) {
     if(this.props.history.location.state !== undefined) {
       this.flashMessage = nextProps.history.location.state.message;
 
@@ -176,6 +189,13 @@ class GetImages extends React.Component {
                     className="dropzone-styles"
                     disableClick={true}
                     onDrop={e => this.onDrop(e)}>
+                      {this.state.fileProcessing ?
+                        <Spinner
+                          radius="20"
+                          lineWidth="8"
+                          color="white">
+                        </Spinner>
+                      : null}
                       <button
                         id="close-dropzone"
                         type="button"

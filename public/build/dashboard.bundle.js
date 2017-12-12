@@ -5630,7 +5630,7 @@ var FormHandlers = {
   setSubmitErrorMessage: function setSubmitErrorMessage(_this, message) {
     _this.setState(function (prevState) {
       if (_typeof(prevState.submitError) === 'object') {
-        var errorArr = prevState.submitError;
+        var errorArr = prevState.submitError.slice();
         errorArr.push(message);
         return { submitError: errorArr };
       };
@@ -36758,6 +36758,7 @@ var ModalUpdateImage = __webpack_require__(359);
 var FormValidations = __webpack_require__(17);
 var FormHandlers = __webpack_require__(14);
 var ImageSizePicker = __webpack_require__(21);
+var Spinner = __webpack_require__(697);
 
 var GetImages = function (_React$Component) {
   _inherits(GetImages, _React$Component);
@@ -36772,7 +36773,8 @@ var GetImages = function (_React$Component) {
       imageId: null,
       imageAddSuccess: false,
       openDropzone: false,
-      submitError: []
+      submitError: [],
+      fileProcessing: false
     };
 
     if (_this.props.history.location.state === undefined) {
@@ -36812,6 +36814,9 @@ var GetImages = function (_React$Component) {
     value: function onDrop(files) {
       var _this3 = this;
 
+      this.setState({
+        fileProcessing: true
+      });
       files.forEach(function (file) {
         var formData = new FormData();
 
@@ -36832,6 +36837,11 @@ var GetImages = function (_React$Component) {
       this.setState({ imageAddSuccess: false });
     }
   }, {
+    key: 'resetFileProcessing',
+    value: function resetFileProcessing() {
+      this.setState({ fileProcessing: false });
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.loadImages();
@@ -36841,7 +36851,11 @@ var GetImages = function (_React$Component) {
     value: function componentDidUpdate(prevProps, prevState) {
       if (this.state.imageAddSuccess && this.state.imageAddSuccess !== prevState.imageAddSuccess) {
         this.loadImages();
+        this.resetFileProcessing();
         this.resetImageAdded();
+      }
+      if (this.state.submitError.length > prevState.submitError.length) {
+        this.resetFileProcessing();
       }
     }
   }, {
@@ -36851,7 +36865,7 @@ var GetImages = function (_React$Component) {
     }
   }, {
     key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps) {
+    value: function componentWillUpdate(nextProps, nextState) {
       var _this4 = this;
 
       if (this.props.history.location.state !== undefined) {
@@ -36973,6 +36987,10 @@ var GetImages = function (_React$Component) {
                     onDrop: function onDrop(e) {
                       return _this5.onDrop(e);
                     } },
+                  this.state.fileProcessing ? _react2.default.createElement(Spinner, {
+                    radius: '20',
+                    lineWidth: '8',
+                    color: 'white' }) : null,
                   _react2.default.createElement(
                     'button',
                     {
@@ -65907,6 +65925,147 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */,
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */,
+/* 684 */,
+/* 685 */,
+/* 686 */,
+/* 687 */,
+/* 688 */,
+/* 689 */,
+/* 690 */,
+/* 691 */,
+/* 692 */,
+/* 693 */,
+/* 694 */,
+/* 695 */,
+/* 696 */,
+/* 697 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(4);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function Arc(ctx, x, y, radius, lineWidth, color) {
+  this.x = x;
+  this.y = y;
+  this.radius = radius;
+  this.lineWidth = lineWidth;
+  this.color = color;
+  this.currentAngle = 0;
+  this.startAngle = 2 * Math.PI;
+  this.endAngle = 1.6 * Math.PI;
+
+  this.draw = function () {
+    ctx.beginPath();
+    ctx.lineWidth = this.lineWidth;
+    ctx.strokeStyle = this.color;
+    ctx.arc(this.x, this.y, this.radius, this.startAngle + this.currentAngle, this.endAngle + this.currentAngle, false);
+    ctx.stroke();
+  };
+
+  this.update = function () {
+    this.currentAngle += 0.08;
+  };
+}
+
+var Spinner = function (_Component) {
+  _inherits(Spinner, _Component);
+
+  function Spinner() {
+    _classCallCheck(this, Spinner);
+
+    var _this = _possibleConstructorReturn(this, (Spinner.__proto__ || Object.getPrototypeOf(Spinner)).call(this));
+
+    _this.ctx;
+    _this.reqAnimFrame;
+    return _this;
+  }
+
+  _createClass(Spinner, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.ctx = this.refs.canvas.getContext('2d');
+      this.refs.canvas.width = this.props.radius * 2 + 20;
+      this.refs.canvas.height = this.props.radius * 2 + 20;
+      var arc = this.createArc();
+      this.animate(this.ctx, arc);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      cancelAnimationFrame(this.reqAnimFrame);
+    }
+  }, {
+    key: 'createArc',
+    value: function createArc() {
+      return new Arc(this.ctx, this.refs.canvas.width / 2, this.refs.canvas.height / 2, this.props.radius, this.props.lineWidth, this.props.color);
+    }
+  }, {
+    key: 'animate',
+    value: function animate(ctx, arc) {
+      var _this2 = this;
+
+      this.reqAnimFrame = requestAnimationFrame(function () {
+        return _this2.animate(ctx, arc);
+      });
+      ctx.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+      arc.update();
+      arc.draw();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'spinner-container d-inline-flex justify-content-center' },
+        _react2.default.createElement('canvas', { ref: 'canvas' })
+      );
+    }
+  }]);
+
+  return Spinner;
+}(_react.Component);
+
+module.exports = Spinner;
 
 /***/ })
 /******/ ]);

@@ -398,6 +398,7 @@ form textarea.form-control {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
   width: 100%; }
   .dropzone-styles button {
     margin-bottom: 2rem; }
@@ -503,5 +504,14 @@ form textarea.form-control {
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
     .ipad-pro-poster-img-portrait {
       display: block; } }
+
+.spinner-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.35); }
+  .spinner-container > canvas {
+    display: inline-block;
+    align-self: center; }
 
 /*# sourceMappingURL=style.css.map */

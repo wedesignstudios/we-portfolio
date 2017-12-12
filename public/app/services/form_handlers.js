@@ -178,7 +178,7 @@ const FormHandlers = {
   setSubmitErrorMessage: function(_this, message) {
     _this.setState((prevState) => {
       if (typeof prevState.submitError === 'object') {
-        let errorArr = prevState.submitError;
+        let errorArr = prevState.submitError.slice();
         errorArr.push(message);
         return {submitError: errorArr}
       };

@@ -18506,6 +18506,7 @@ var GetImagesNewsStory = function (_React$Component) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
       if (this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
+        this.props.resetFileProcessing();
         this.loadImages();
         this.props.resetImageAdded();
       }
@@ -18585,6 +18586,7 @@ var DataActions = __webpack_require__(31);
 var GetFeatureImageProjects = __webpack_require__(357);
 var GetImagesProjects = __webpack_require__(358);
 var GetImagesNewsStory = __webpack_require__(135);
+var Spinner = __webpack_require__(697);
 
 var ModalAddImages = function (_Component) {
   _inherits(ModalAddImages, _Component);
@@ -18597,13 +18599,15 @@ var ModalAddImages = function (_Component) {
     _this.state = {
       openDropzone: false,
       imageAddSuccess: false,
-      submitError: []
+      submitError: [],
+      fileProcessing: false
     };
 
     _this.getOpenCloseData = _this.getOpenCloseData.bind(_this);
     _this.getImageData = _this.getImageData.bind(_this);
     _this.imageAdded = _this.imageAdded.bind(_this);
     _this.resetImageAdded = _this.resetImageAdded.bind(_this);
+    _this.resetFileProcessing = _this.resetFileProcessing.bind(_this);
     _this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, _this);
     return _this;
   }
@@ -18616,10 +18620,20 @@ var ModalAddImages = function (_Component) {
       }
     }
   }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.state.submitError.length > prevState.submitError.length) {
+        this.resetFileProcessing();
+      }
+    }
+  }, {
     key: 'onDrop',
     value: function onDrop(files) {
       var _this2 = this;
 
+      this.setState({
+        fileProcessing: true
+      });
       files.forEach(function (file) {
         var formData = new FormData();
 
@@ -18638,6 +18652,11 @@ var ModalAddImages = function (_Component) {
     key: 'resetImageAdded',
     value: function resetImageAdded() {
       this.setState({ imageAddSuccess: false });
+    }
+  }, {
+    key: 'resetFileProcessing',
+    value: function resetFileProcessing() {
+      this.setState({ fileProcessing: false });
     }
   }, {
     key: 'openCloseDropZone',
@@ -18677,6 +18696,7 @@ var ModalAddImages = function (_Component) {
               _react2.default.createElement(
                 'h5',
                 { className: 'modal-title p-2' },
+                this.props.parentForm === 'project-feature' ? 'Select Feature Image' : null,
                 this.props.parentForm === 'project' ? 'Select Image(s)' : null,
                 this.props.parentForm === 'newsStory' ? 'Select Image' : null
               ),
@@ -18720,6 +18740,10 @@ var ModalAddImages = function (_Component) {
                   onDrop: function onDrop(e) {
                     return _this3.onDrop(e);
                   } },
+                this.state.fileProcessing ? _react2.default.createElement(Spinner, {
+                  radius: '20',
+                  lineWidth: '8',
+                  color: 'white' }) : null,
                 _react2.default.createElement(
                   'button',
                   {
@@ -18774,7 +18798,8 @@ var ModalAddImages = function (_Component) {
                 attached: this.props.attached,
                 sendImageDataToModal: this.props.sendImageData,
                 imageAddSuccess: this.state.imageAddSuccess,
-                resetImageAdded: this.resetImageAdded }) : null,
+                resetImageAdded: this.resetImageAdded,
+                resetFileProcessing: this.resetFileProcessing }) : null,
               this.props.parentForm === 'project' ? _react2.default.createElement(GetImagesProjects, {
                 openDropzone: this.state.openDropzone,
                 sendOpenCloseData: this.getOpenCloseData,
@@ -18785,6 +18810,7 @@ var ModalAddImages = function (_Component) {
                 toAttach: this.props.toAttach,
                 imageAddSuccess: this.state.imageAddSuccess,
                 resetImageAdded: this.resetImageAdded,
+                resetFileProcessing: this.resetFileProcessing,
                 addOrRemoveToAttachedFromSortArr: this.props.addOrRemoveToAttachedFromSortArr }) : null,
               this.props.parentForm === 'newsStory' ? _react2.default.createElement(GetImagesNewsStory, {
                 openDropzone: this.state.openDropzone,
@@ -18792,7 +18818,8 @@ var ModalAddImages = function (_Component) {
                 sendImageDataToModal: this.props.sendImageData,
                 newsStoryId: this.props.newsStoryId,
                 imageAddSuccess: this.state.imageAddSuccess,
-                resetImageAdded: this.resetImageAdded }) : null
+                resetImageAdded: this.resetImageAdded,
+                resetFileProcessing: this.resetFileProcessing }) : null
             ),
             _react2.default.createElement(
               'div',
@@ -38579,6 +38606,7 @@ var GetFeatureImageProjects = function (_Component) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
       if (this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
+        this.props.resetFileProcessing();
         this.loadImages();
         this.props.resetImageAdded();
       }
@@ -38705,6 +38733,7 @@ var GetImagesProjects = function (_React$Component) {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps) {
       if (this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
+        this.props.resetFileProcessing();
         this.loadImages();
         this.props.resetImageAdded();
       }

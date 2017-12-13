@@ -59,6 +59,7 @@ class GetImagesNewsStory extends React.Component {
 
   componentDidUpdate(prevProps) {
     if(this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
+      this.props.resetFileProcessing();
       this.loadImages();
       this.props.resetImageAdded();
     }

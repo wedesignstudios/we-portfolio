@@ -7,6 +7,7 @@ const DataActions = require('../../data/actions');
 const GetFeatureImageProjects = require('./GetFeatureImageProjects');
 const GetImagesProjects = require('./GetImagesProjects');
 const GetImagesNewsStory = require('./GetImagesNewsStory');
+const Spinner = require('../spinner/Spinner.js');
 
 class ModalAddImages extends Component {
   constructor() {
@@ -15,13 +16,15 @@ class ModalAddImages extends Component {
     this.state = {
       openDropzone: false,
       imageAddSuccess: false,
-      submitError: []
+      submitError: [],
+      fileProcessing: false
     }
 
     this.getOpenCloseData = this.getOpenCloseData.bind(this);
     this.getImageData = this.getImageData.bind(this);
     this.imageAdded = this.imageAdded.bind(this);
     this.resetImageAdded = this.resetImageAdded.bind(this);
+    this.resetFileProcessing = this.resetFileProcessing.bind(this);
     this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
@@ -31,7 +34,16 @@ class ModalAddImages extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.submitError.length > prevState.submitError.length) {
+      this.resetFileProcessing();
+    }
+  }
+
   onDrop(files) {
+    this.setState({
+      fileProcessing: true
+    });
     files.forEach(file => {
       const formData = new FormData();
 
@@ -53,6 +65,10 @@ class ModalAddImages extends Component {
 
   resetImageAdded() {
     this.setState({imageAddSuccess: false});
+  }
+
+  resetFileProcessing() {
+    this.setState({fileProcessing: false});
   }
 
   openCloseDropZone() {
@@ -77,6 +93,7 @@ class ModalAddImages extends Component {
           <div className="modal-content">
             <div className="modal-header d-flex justify-content-start">
               <h5 className="modal-title p-2">
+                {this.props.parentForm === 'project-feature' ? 'Select Feature Image' : null}
                 {this.props.parentForm === 'project' ? 'Select Image(s)' : null}
                 {this.props.parentForm === 'newsStory' ? 'Select Image' : null}
               </h5>
@@ -95,7 +112,6 @@ class ModalAddImages extends Component {
               </button>
             </div>
             <div className="modal-body">
-
               {this.state.openDropzone ?
                 <Dropzone
                   ref={(node) => {dropzoneRef = node}}
@@ -104,6 +120,13 @@ class ModalAddImages extends Component {
                   className="dropzone-styles"
                   disableClick={true}
                   onDrop={e => this.onDrop(e)}>
+                    {this.state.fileProcessing ?
+                      <Spinner
+                        radius="20"
+                        lineWidth="8"
+                        color="white">
+                      </Spinner>
+                    : null}
                     <button
                       id="close-dropzone"
                       type="button"
@@ -139,7 +162,8 @@ class ModalAddImages extends Component {
                   attached={this.props.attached}
                   sendImageDataToModal={this.props.sendImageData}
                   imageAddSuccess={this.state.imageAddSuccess}
-                  resetImageAdded={this.resetImageAdded} />
+                  resetImageAdded={this.resetImageAdded}
+                  resetFileProcessing={this.resetFileProcessing} />
               : null}
               {this.props.parentForm === 'project' ?
                 <GetImagesProjects
@@ -152,6 +176,7 @@ class ModalAddImages extends Component {
                   toAttach={this.props.toAttach}
                   imageAddSuccess={this.state.imageAddSuccess}
                   resetImageAdded={this.resetImageAdded}
+                  resetFileProcessing={this.resetFileProcessing}
                   addOrRemoveToAttachedFromSortArr = {this.props.addOrRemoveToAttachedFromSortArr} /> :
               null}
               {this.props.parentForm === 'newsStory' ?
@@ -161,7 +186,8 @@ class ModalAddImages extends Component {
                   sendImageDataToModal={this.props.sendImageData}
                   newsStoryId={this.props.newsStoryId}
                   imageAddSuccess={this.state.imageAddSuccess}
-                  resetImageAdded={this.resetImageAdded} /> :
+                  resetImageAdded={this.resetImageAdded}
+                  resetFileProcessing={this.resetFileProcessing} /> :
               null}
             </div>
             <div className="modal-footer">

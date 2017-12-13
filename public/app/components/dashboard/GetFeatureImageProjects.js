@@ -62,6 +62,7 @@ class GetFeatureImageProjects extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.imageAddSuccess && this.props.imageAddSuccess !== prevProps.imageAddSuccess) {
+      this.props.resetFileProcessing();
       this.loadImages();
       this.props.resetImageAdded();
     }

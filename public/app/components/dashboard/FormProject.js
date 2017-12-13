@@ -31,6 +31,7 @@ class FormProject extends React.Component {
       initialName: '',
       date: '',
       description: '',
+      images_all: [],
       images_ids: [],
       images_ids_to_attach: [],
       images_ids_attached: [],
@@ -59,7 +60,7 @@ class FormProject extends React.Component {
 
     this.initialState = this.state;
 
-    this.requiredFields = ['name', 'date', 'description', 'feature_image'];
+    this.requiredFields = ['name', 'date', 'description', 'feature_image', 'images_all'];
     this.requiredFieldsBlank = true;
     this.getComponentData = this.getComponentData.bind(this);
     this.getFeatureImgData = this.getFeatureImgData.bind(this);
@@ -113,6 +114,9 @@ class FormProject extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if(this.allProjectImages().length !== this.state.images_all.length) {
+      this.setState({images_all: this.allProjectImages()});
+    };
     FormValidations.clearErrsIfNoneBeforeOnBlur(this, ['nameErr', 'dateErr', 'descriptionErr']);
     this.sortedProjectImages(this.allProjectImages(), this.state.image_sort_order);
   }

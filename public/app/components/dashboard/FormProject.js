@@ -323,51 +323,70 @@ class FormProject extends React.Component {
 
             <form id="create-project">
               <div className="form-group row">
-                <label className="col-sm-2 col-form-label">Project Name: </label>
+                <label className="col-sm-2 col-form-label">Project Name:
+                </label>
                 <div className="col-sm-10">
-                  <input
-                      type="text"
-                      name="name"
-                      className={this.state.nameErr ? 'err form-control' : 'form-control'}
-                      value={this.state.name}
-                      onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                      onFocus={(e) => FormHandlers.preventSpaceKey(e)}
-                      onBlur={(e) => {FormValidations.checkField(e, this);}} />
+                  <div className="input-group">
+                    <input
+                        type="text"
+                        name="name"
+                        className={this.state.nameErr ? 'err form-control' : 'form-control'}
+                        value={this.state.name}
+                        onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                        onFocus={(e) => FormHandlers.preventSpaceKey(e)}
+                        onBlur={(e) => {FormValidations.checkField(e, this);}} />
+                      {this.state.name ?
+                        <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                        <span className="input-group-addon text-danger background-white border-0">Required</span>
+                      }
+                  </div>
                 </div>
               </div>
 
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Date Completed: </label>
                 <div className="col-sm-10">
-                  <DatePicker
-                      selected={this.state.date}
-                      value={this.state.date}
-                      name="date"
-                      className={this.state.dateErr ? 'err form-control' : 'form-control'}
-                      showMonthDropdown
-                      showYearDropdown
-                      dropdownMode="select"
-                      placeholderText="Click to select a date"
-                      popoverAttachment="top right"
-                      popoverTargetAttachment="top center"
-                      popoverTargetOffset="38px 250px"
-                      onChange={(e) => FormHandlersValidations.handleDateOnChange(e, this)}
-                      onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
-                      onBlur={(e) => FormValidations.checkField(e, this)} />
+                  <div className="input-group">
+                    <DatePicker
+                        selected={this.state.date}
+                        value={this.state.date}
+                        name="date"
+                        className={this.state.dateErr ? 'err form-control' : 'form-control'}
+                        showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                        placeholderText="Click to select a date"
+                        popoverAttachment="top right"
+                        popoverTargetAttachment="top center"
+                        popoverTargetOffset="38px 250px"
+                        onChange={(e) => FormHandlersValidations.handleDateOnChange(e, this)}
+                        onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
+                        onBlur={(e) => FormValidations.checkField(e, this)} />
+                    {this.state.date ?
+                      <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="input-group-addon text-danger background-white border-0">Required</span>
+                    }
+                  </div>
                 </div>
               </div>
 
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Description: </label>
                 <div className="col-sm-10">
-                  <textarea
-                      type="textfield"
-                      name="description"
-                      className={this.state.descriptionErr ? 'err form-control' : 'form-control'}
-                      value={this.state.description}
-                      onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                      onFocus={(e) => FormHandlers.preventSpaceKey(e)}
-                      onBlur={(e) => FormValidations.checkField(e, this)} />
+                  <div className="input-group">
+                    <textarea
+                        type="textfield"
+                        name="description"
+                        className={this.state.descriptionErr ? 'err form-control' : 'form-control'}
+                        value={this.state.description}
+                        onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                        onFocus={(e) => FormHandlers.preventSpaceKey(e)}
+                        onBlur={(e) => FormValidations.checkField(e, this)} />
+                    {this.state.description ?
+                      <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="input-group-addon text-danger background-white border-0">Required</span>
+                    }
+                  </div>
                 </div>
               </div>
 
@@ -388,10 +407,13 @@ class FormProject extends React.Component {
                     <button
                       className="btn btn-secondary"
                       onClick={(e) => this.openFeatureImageModal(e)} >
-                        {this.state.feature_image.id ?
-                          'Change Image' : 'Add Image'
+                        {this.state.feature_image.id ?                          'Change Image' : 'Add Image'
                         }
                     </button>
+                    {this.state.feature_image.id ? 
+                      <span className="text-success background-white ml-3"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="text-danger background-white ml-3">Required</span>
+                    }
                 </div>
               </div>
 
@@ -410,6 +432,10 @@ class FormProject extends React.Component {
                       onClick={(e) => this.openImageModal(e)} >
                         Add/Remove Image(s)
                     </button>
+                    {this.state.images_all.length > 0 ?
+                      <span className="text-success background-white ml-3"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="text-danger background-white ml-3">Required</span>
+                    }
                 </div>
               </div>
 

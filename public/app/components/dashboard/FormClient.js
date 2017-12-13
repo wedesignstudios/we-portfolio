@@ -177,13 +177,19 @@ class FormClient extends React.Component {
               <div className="form-group row">
                 <label className="col-sm-2 col-form-label">Client Name: </label>
                   <div className="col-sm-10">
-                    <input
-                        type="text"
-                        name="name"
-                        className={this.state.nameErr ? 'err form-control' : 'form-control'}
-                        value={this.state.name}
-                        onChange={(e) => FormHandlers.handleOnChange(e, this)}
-                        onBlur={(e) => {FormValidations.checkField(e, this);}} />
+                    <div className="input-group">
+                      <input
+                          type="text"
+                          name="name"
+                          className={this.state.nameErr ? 'err form-control' : 'form-control'}
+                          value={this.state.name}
+                          onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                          onBlur={(e) => {FormValidations.checkField(e, this);}} />
+                        {this.state.name ?
+                          <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                          <span className="input-group-addon text-danger background-white border-0">Required</span>
+                        }
+                    </div>
                   </div>
               </div>
 

@@ -34,3 +34,11 @@ form {
     }
   }
 }
+
+#create-project,
+#create-news-story,
+#create-client {
+  .form-control {
+    border-radius: 0.25rem;
+  }
+} 

@@ -126,6 +126,9 @@ video {
   top: 0;
   width: 100%; }
 
+.background-white {
+  background-color: #FFFFFF; }
+
 .line-height-1-rem {
   line-height: 1rem; }
 
@@ -388,6 +391,11 @@ form .images-select-container {
 form textarea.form-control {
   min-height: 10rem; }
 
+#create-project .form-control,
+#create-news-story .form-control,
+#create-client .form-control {
+  border-radius: 0.25rem; }
+
 .image-grid-element {
   display: inline-block;
   width: 300px; }
@@ -405,6 +413,9 @@ form textarea.form-control {
     .dropzone-styles button#close-dropzone {
       align-self: flex-end;
       margin: 0.5rem 0.75rem; }
+
+.react-datepicker__input-container .form-control {
+  width: 100%; }
 
 .image-card {
   cursor: move;

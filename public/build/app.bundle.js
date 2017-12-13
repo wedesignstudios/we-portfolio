@@ -16934,17 +16934,30 @@ var FormClient = function (_React$Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-10' },
-                  _react2.default.createElement('input', {
-                    type: 'text',
-                    name: 'name',
-                    className: this.state.nameErr ? 'err form-control' : 'form-control',
-                    value: this.state.name,
-                    onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this3);
-                    },
-                    onBlur: function onBlur(e) {
-                      FormValidations.checkField(e, _this3);
-                    } })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement('input', {
+                      type: 'text',
+                      name: 'name',
+                      className: this.state.nameErr ? 'err form-control' : 'form-control',
+                      value: this.state.name,
+                      onChange: function onChange(e) {
+                        return FormHandlers.handleOnChange(e, _this3);
+                      },
+                      onBlur: function onBlur(e) {
+                        FormValidations.checkField(e, _this3);
+                      } }),
+                    this.state.name ? _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-success background-white border-0' },
+                      _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                    ) : _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-danger background-white border-0' },
+                      'Required'
+                    )
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -17249,17 +17262,30 @@ var FormCollaborator = function (_React$Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-10' },
-                  _react2.default.createElement('input', {
-                    type: 'text',
-                    name: 'name',
-                    className: this.state.nameErr ? 'err form-control' : 'form-control',
-                    value: this.state.name,
-                    onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this3);
-                    },
-                    onBlur: function onBlur(e) {
-                      FormValidations.checkField(e, _this3);
-                    } })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement('input', {
+                      type: 'text',
+                      name: 'name',
+                      className: this.state.nameErr ? 'err form-control' : 'form-control',
+                      value: this.state.name,
+                      onChange: function onChange(e) {
+                        return FormHandlers.handleOnChange(e, _this3);
+                      },
+                      onBlur: function onBlur(e) {
+                        FormValidations.checkField(e, _this3);
+                      } }),
+                    this.state.name ? _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-success background-white border-0' },
+                      _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                    ) : _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-danger background-white border-0' },
+                      'Required'
+                    )
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -17622,15 +17648,6 @@ var FormNewsStory = function (_React$Component) {
               )
             ),
             _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement(
-                'em',
-                null,
-                'All fields required.'
-              )
-            ),
-            _react2.default.createElement(
               'form',
               { id: 'create-news-story' },
               _react2.default.createElement(
@@ -17644,20 +17661,33 @@ var FormNewsStory = function (_React$Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-10' },
-                  _react2.default.createElement('input', {
-                    type: 'text',
-                    name: 'title',
-                    className: this.state.titleErr ? 'err form-control' : 'form-control',
-                    value: this.state.title,
-                    onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this3);
-                    },
-                    onFocus: function onFocus(e) {
-                      return FormHandlers.preventSpaceKey(e);
-                    },
-                    onBlur: function onBlur(e) {
-                      FormValidations.checkField(e, _this3);
-                    } })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement('input', {
+                      type: 'text',
+                      name: 'title',
+                      className: this.state.titleErr ? 'err form-control' : 'form-control',
+                      value: this.state.title,
+                      onChange: function onChange(e) {
+                        return FormHandlers.handleOnChange(e, _this3);
+                      },
+                      onFocus: function onFocus(e) {
+                        return FormHandlers.preventSpaceKey(e);
+                      },
+                      onBlur: function onBlur(e) {
+                        FormValidations.checkField(e, _this3);
+                      } }),
+                    this.state.title ? _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-success background-white border-0' },
+                      _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                    ) : _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-danger background-white border-0' },
+                      'Required'
+                    )
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -17671,27 +17701,40 @@ var FormNewsStory = function (_React$Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-10' },
-                  _react2.default.createElement(_reactDatepicker2.default, {
-                    selected: this.state.date,
-                    value: this.state.date,
-                    name: 'date',
-                    className: this.state.dateErr ? 'err form-control' : 'form-control',
-                    showMonthDropdown: true,
-                    showYearDropdown: true,
-                    dropdownMode: 'select',
-                    placeholderText: 'Click to select a date',
-                    popoverAttachment: 'top right',
-                    popoverTargetAttachment: 'top center',
-                    popoverTargetOffset: '38px 250px',
-                    onChange: function onChange(e) {
-                      return FormHandlersValidations.handleDateOnChange(e, _this3);
-                    },
-                    onFocus: function onFocus(e) {
-                      return FormHandlers.preventAllButShiftAndTab(e);
-                    },
-                    onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
-                    } })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement(_reactDatepicker2.default, {
+                      selected: this.state.date,
+                      value: this.state.date,
+                      name: 'date',
+                      className: this.state.dateErr ? 'err form-control' : 'form-control',
+                      showMonthDropdown: true,
+                      showYearDropdown: true,
+                      dropdownMode: 'select',
+                      placeholderText: 'Click to select a date',
+                      popoverAttachment: 'top right',
+                      popoverTargetAttachment: 'top center',
+                      popoverTargetOffset: '38px 250px',
+                      onChange: function onChange(e) {
+                        return FormHandlersValidations.handleDateOnChange(e, _this3);
+                      },
+                      onFocus: function onFocus(e) {
+                        return FormHandlers.preventAllButShiftAndTab(e);
+                      },
+                      onBlur: function onBlur(e) {
+                        return FormValidations.checkField(e, _this3);
+                      } }),
+                    this.state.date ? _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-success background-white border-0' },
+                      _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                    ) : _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-danger background-white border-0' },
+                      'Required'
+                    )
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -17705,20 +17748,33 @@ var FormNewsStory = function (_React$Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-10' },
-                  _react2.default.createElement('textarea', {
-                    type: 'textfield',
-                    name: 'description',
-                    className: this.state.descriptionErr ? 'err form-control' : 'form-control',
-                    value: this.state.description,
-                    onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this3);
-                    },
-                    onFocus: function onFocus(e) {
-                      return FormHandlers.preventSpaceKey(e);
-                    },
-                    onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
-                    } })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement('textarea', {
+                      type: 'textfield',
+                      name: 'description',
+                      className: this.state.descriptionErr ? 'err form-control' : 'form-control',
+                      value: this.state.description,
+                      onChange: function onChange(e) {
+                        return FormHandlers.handleOnChange(e, _this3);
+                      },
+                      onFocus: function onFocus(e) {
+                        return FormHandlers.preventSpaceKey(e);
+                      },
+                      onBlur: function onBlur(e) {
+                        return FormValidations.checkField(e, _this3);
+                      } }),
+                    this.state.description ? _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-success background-white border-0' },
+                      _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                    ) : _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-danger background-white border-0' },
+                      'Required'
+                    )
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -17753,6 +17809,15 @@ var FormNewsStory = function (_React$Component) {
                         return _this3.openImageModal(e);
                       } },
                     this.state.image_id ? 'Change Image' : 'Add Image'
+                  ),
+                  this.state.image_id ? _react2.default.createElement(
+                    'span',
+                    { className: 'text-success background-white ml-3' },
+                    _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                  ) : _react2.default.createElement(
+                    'span',
+                    { className: 'text-danger background-white ml-3' },
+                    'Required'
                   )
                 )
               ),
@@ -18190,25 +18255,38 @@ var FormProject = function (_React$Component) {
                 _react2.default.createElement(
                   'label',
                   { className: 'col-sm-2 col-form-label' },
-                  'Project Name: '
+                  'Project Name:'
                 ),
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-10' },
-                  _react2.default.createElement('input', {
-                    type: 'text',
-                    name: 'name',
-                    className: this.state.nameErr ? 'err form-control' : 'form-control',
-                    value: this.state.name,
-                    onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this3);
-                    },
-                    onFocus: function onFocus(e) {
-                      return FormHandlers.preventSpaceKey(e);
-                    },
-                    onBlur: function onBlur(e) {
-                      FormValidations.checkField(e, _this3);
-                    } })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement('input', {
+                      type: 'text',
+                      name: 'name',
+                      className: this.state.nameErr ? 'err form-control' : 'form-control',
+                      value: this.state.name,
+                      onChange: function onChange(e) {
+                        return FormHandlers.handleOnChange(e, _this3);
+                      },
+                      onFocus: function onFocus(e) {
+                        return FormHandlers.preventSpaceKey(e);
+                      },
+                      onBlur: function onBlur(e) {
+                        FormValidations.checkField(e, _this3);
+                      } }),
+                    this.state.name ? _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-success background-white border-0' },
+                      _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                    ) : _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-danger background-white border-0' },
+                      'Required'
+                    )
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -18222,27 +18300,40 @@ var FormProject = function (_React$Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-10' },
-                  _react2.default.createElement(_reactDatepicker2.default, {
-                    selected: this.state.date,
-                    value: this.state.date,
-                    name: 'date',
-                    className: this.state.dateErr ? 'err form-control' : 'form-control',
-                    showMonthDropdown: true,
-                    showYearDropdown: true,
-                    dropdownMode: 'select',
-                    placeholderText: 'Click to select a date',
-                    popoverAttachment: 'top right',
-                    popoverTargetAttachment: 'top center',
-                    popoverTargetOffset: '38px 250px',
-                    onChange: function onChange(e) {
-                      return FormHandlersValidations.handleDateOnChange(e, _this3);
-                    },
-                    onFocus: function onFocus(e) {
-                      return FormHandlers.preventAllButShiftAndTab(e);
-                    },
-                    onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
-                    } })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement(_reactDatepicker2.default, {
+                      selected: this.state.date,
+                      value: this.state.date,
+                      name: 'date',
+                      className: this.state.dateErr ? 'err form-control' : 'form-control',
+                      showMonthDropdown: true,
+                      showYearDropdown: true,
+                      dropdownMode: 'select',
+                      placeholderText: 'Click to select a date',
+                      popoverAttachment: 'top right',
+                      popoverTargetAttachment: 'top center',
+                      popoverTargetOffset: '38px 250px',
+                      onChange: function onChange(e) {
+                        return FormHandlersValidations.handleDateOnChange(e, _this3);
+                      },
+                      onFocus: function onFocus(e) {
+                        return FormHandlers.preventAllButShiftAndTab(e);
+                      },
+                      onBlur: function onBlur(e) {
+                        return FormValidations.checkField(e, _this3);
+                      } }),
+                    this.state.date ? _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-success background-white border-0' },
+                      _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                    ) : _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-danger background-white border-0' },
+                      'Required'
+                    )
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -18256,20 +18347,33 @@ var FormProject = function (_React$Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-sm-10' },
-                  _react2.default.createElement('textarea', {
-                    type: 'textfield',
-                    name: 'description',
-                    className: this.state.descriptionErr ? 'err form-control' : 'form-control',
-                    value: this.state.description,
-                    onChange: function onChange(e) {
-                      return FormHandlers.handleOnChange(e, _this3);
-                    },
-                    onFocus: function onFocus(e) {
-                      return FormHandlers.preventSpaceKey(e);
-                    },
-                    onBlur: function onBlur(e) {
-                      return FormValidations.checkField(e, _this3);
-                    } })
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'input-group' },
+                    _react2.default.createElement('textarea', {
+                      type: 'textfield',
+                      name: 'description',
+                      className: this.state.descriptionErr ? 'err form-control' : 'form-control',
+                      value: this.state.description,
+                      onChange: function onChange(e) {
+                        return FormHandlers.handleOnChange(e, _this3);
+                      },
+                      onFocus: function onFocus(e) {
+                        return FormHandlers.preventSpaceKey(e);
+                      },
+                      onBlur: function onBlur(e) {
+                        return FormValidations.checkField(e, _this3);
+                      } }),
+                    this.state.description ? _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-success background-white border-0' },
+                      _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                    ) : _react2.default.createElement(
+                      'span',
+                      { className: 'input-group-addon text-danger background-white border-0' },
+                      'Required'
+                    )
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -18304,6 +18408,15 @@ var FormProject = function (_React$Component) {
                         return _this3.openFeatureImageModal(e);
                       } },
                     this.state.feature_image.id ? 'Change Image' : 'Add Image'
+                  ),
+                  this.state.feature_image.id ? _react2.default.createElement(
+                    'span',
+                    { className: 'text-success background-white ml-3' },
+                    _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                  ) : _react2.default.createElement(
+                    'span',
+                    { className: 'text-danger background-white ml-3' },
+                    'Required'
                   )
                 )
               ),
@@ -18337,6 +18450,15 @@ var FormProject = function (_React$Component) {
                         return _this3.openImageModal(e);
                       } },
                     'Add/Remove Image(s)'
+                  ),
+                  this.state.images_all.length > 0 ? _react2.default.createElement(
+                    'span',
+                    { className: 'text-success background-white ml-3' },
+                    _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+                  ) : _react2.default.createElement(
+                    'span',
+                    { className: 'text-danger background-white ml-3' },
+                    'Required'
                   )
                 )
               ),
@@ -39590,27 +39712,40 @@ var NewsCategoriesCheckboxes = function (_React$Component) {
           { className: 'col-sm-10' },
           _react2.default.createElement(
             'div',
-            { className: 'checkboxes-container form-control' },
-            this.state.news_categories_data.map(function (category) {
-              return _react2.default.createElement(
-                'div',
-                { className: 'form-check', key: category.id },
-                _react2.default.createElement(
-                  'label',
-                  { className: 'form-check-label' },
-                  _react2.default.createElement('input', {
-                    className: 'form-check-input mr-2',
-                    type: 'checkbox',
-                    value: category.id,
-                    name: 'news_categories_ids',
-                    checked: _this3.props.preSelected.includes(category.id),
-                    onChange: function onChange(e) {
-                      return FormHandlers.multiSelect(e, _this3, _this3.props.sendNewsCategoriesData);
-                    } }),
-                  category.name
-                )
-              );
-            })
+            { className: 'input-group' },
+            _react2.default.createElement(
+              'div',
+              { className: 'checkboxes-container form-control' },
+              this.state.news_categories_data.map(function (category) {
+                return _react2.default.createElement(
+                  'div',
+                  { className: 'form-check', key: category.id },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'form-check-label' },
+                    _react2.default.createElement('input', {
+                      className: 'form-check-input mr-2',
+                      type: 'checkbox',
+                      value: category.id,
+                      name: 'news_categories_ids',
+                      checked: _this3.props.preSelected.includes(category.id),
+                      onChange: function onChange(e) {
+                        return FormHandlers.multiSelect(e, _this3, _this3.props.sendNewsCategoriesData);
+                      } }),
+                    category.name
+                  )
+                );
+              })
+            ),
+            preSelected.length > 0 ? _react2.default.createElement(
+              'span',
+              { className: 'input-group-addon text-success background-white border-0' },
+              _react2.default.createElement('i', { className: 'fa fa-check-circle', 'aria-hidden': 'true' })
+            ) : _react2.default.createElement(
+              'span',
+              { className: 'input-group-addon text-danger background-white border-0' },
+              'Required'
+            )
           )
         )
       );

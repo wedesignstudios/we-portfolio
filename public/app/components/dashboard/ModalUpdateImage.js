@@ -150,6 +150,12 @@ class ModalUpdateImage extends Component {
             <div className="modal-footer">
               <button
                 type="button"
+                className="btn btn-danger mr-auto"
+                data-dismiss="modal">
+                  Delete
+              </button>
+              <button
+                type="button"
                 className="btn btn-secondary"
                 data-dismiss="modal">
                   Cancel

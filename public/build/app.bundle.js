@@ -37636,12 +37636,27 @@ var GetImages = function (_React$Component) {
                       onError: function onError(e) {
                         return e.target.setAttribute('src', image.url);
                       } }),
-                    image.project_id || image.news_story_id ? _react2.default.createElement(
+                    image.project_id || image.news_story_id || image.feature_image_project.id ? _react2.default.createElement(
                       'div',
                       { className: 'card-footer text-muted px-3 py-1' },
                       _react2.default.createElement(
                         'div',
                         { className: 'card-text mb-0' },
+                        image.feature_image_project.id ? _react2.default.createElement(
+                          'div',
+                          null,
+                          _react2.default.createElement(
+                            'small',
+                            { className: 'text-muted' },
+                            _react2.default.createElement(
+                              'span',
+                              { className: 'font-weight-bold' },
+                              'Feature Image:'
+                            ),
+                            ' ',
+                            image.feature_image_project.project.name
+                          )
+                        ) : null,
                         image.project_id ? _react2.default.createElement(
                           'div',
                           null,
@@ -39597,6 +39612,14 @@ var ModalUpdateImage = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'modal-footer' },
+              _react2.default.createElement(
+                'button',
+                {
+                  type: 'button',
+                  className: 'btn btn-danger mr-auto',
+                  'data-dismiss': 'modal' },
+                'Delete'
+              ),
               _react2.default.createElement(
                 'button',
                 {

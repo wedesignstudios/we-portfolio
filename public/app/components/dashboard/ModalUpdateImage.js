@@ -16,7 +16,8 @@ class ModalUpdateImage extends Component {
       url: '',
       orig_name: '',
       index_page: false,
-      success: false
+      success: false,
+      image_data: null
     }
 
     this.imgSizes;
@@ -32,7 +33,8 @@ class ModalUpdateImage extends Component {
           alt: data.alt ? data.alt : '',
           url: data.url,
           orig_name: data.orig_name,
-          index_page: data.index_page ? data.index_page : false
+          index_page: data.index_page ? data.index_page : false,
+          image_data: data
         });
       })
       .catch((err) => {
@@ -49,6 +51,17 @@ class ModalUpdateImage extends Component {
   componentWillUpdate(nextProps, nextState) {
     if(nextState !== this.state) {
       this.imgSizes = ImageSizePicker.imgSize(nextState.orig_name);
+    }
+  }
+
+  attachedToProjectOrNews() {
+    if(this.state.image_data) {
+      let {project_id, feature_image_project, news_story_id} = this.state.image_data;
+
+      if(project_id || Object.keys(feature_image_project).length > 0 || news_story_id) {
+        return true;
+      }
+      return false;
     }
   }
 
@@ -151,7 +164,8 @@ class ModalUpdateImage extends Component {
               <button
                 type="button"
                 className="btn btn-danger mr-auto"
-                data-dismiss="modal">
+                data-dismiss="modal"
+                disabled={this.attachedToProjectOrNews()}>
                   Delete
               </button>
               <button

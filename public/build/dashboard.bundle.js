@@ -39082,7 +39082,8 @@ var ModalUpdateImage = function (_Component) {
       url: '',
       orig_name: '',
       index_page: false,
-      success: false
+      success: false,
+      image_data: null
     };
 
     _this.imgSizes;
@@ -39103,7 +39104,8 @@ var ModalUpdateImage = function (_Component) {
           alt: data.alt ? data.alt : '',
           url: data.url,
           orig_name: data.orig_name,
-          index_page: data.index_page ? data.index_page : false
+          index_page: data.index_page ? data.index_page : false,
+          image_data: data
         });
       }).catch(function (err) {
         console.error(err);
@@ -39121,6 +39123,22 @@ var ModalUpdateImage = function (_Component) {
     value: function componentWillUpdate(nextProps, nextState) {
       if (nextState !== this.state) {
         this.imgSizes = ImageSizePicker.imgSize(nextState.orig_name);
+      }
+    }
+  }, {
+    key: 'attachedToProjectOrNews',
+    value: function attachedToProjectOrNews() {
+      if (this.state.image_data) {
+        var _state$image_data = this.state.image_data,
+            project_id = _state$image_data.project_id,
+            feature_image_project = _state$image_data.feature_image_project,
+            news_story_id = _state$image_data.news_story_id;
+
+
+        if (project_id || Object.keys(feature_image_project).length > 0 || news_story_id) {
+          return true;
+        }
+        return false;
       }
     }
   }, {
@@ -39296,7 +39314,8 @@ var ModalUpdateImage = function (_Component) {
                 {
                   type: 'button',
                   className: 'btn btn-danger mr-auto',
-                  'data-dismiss': 'modal' },
+                  'data-dismiss': 'modal',
+                  disabled: this.attachedToProjectOrNews() },
                 'Delete'
               ),
               _react2.default.createElement(

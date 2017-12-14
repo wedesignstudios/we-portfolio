@@ -4,3 +4,13 @@
   display: inline-block;
   width: 300px;
 }
+
+.card {
+  > img {
+    max-width: 100%;
+
+  }
+  > img:hover {
+    cursor: pointer;
+  }
+}

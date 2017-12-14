@@ -400,6 +400,12 @@ form textarea.form-control {
   display: inline-block;
   width: 300px; }
 
+.card > img {
+  max-width: 100%; }
+
+.card > img:hover {
+  cursor: pointer; }
+
 .dropzone-styles {
   align-items: center;
   border: 2px dashed gray;

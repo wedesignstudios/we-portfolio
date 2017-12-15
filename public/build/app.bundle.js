@@ -39463,6 +39463,30 @@ var ModalUpdateImage = function (_Component) {
       }
     }
   }, {
+    key: 'disabledDeleteMessage',
+    value: function disabledDeleteMessage() {
+      if (this.state.image_data) {
+        var message = 'Image is attached to: ';
+        var _state$image_data2 = this.state.image_data,
+            project_id = _state$image_data2.project_id,
+            project = _state$image_data2.project,
+            feature_image_project = _state$image_data2.feature_image_project,
+            news_story_id = _state$image_data2.news_story_id,
+            news_story = _state$image_data2.news_story;
+
+
+        if (project_id) {
+          return message += project.name;
+        }
+        if (Object.keys(feature_image_project).length > 0) {
+          return message += feature_image_project.project.name;
+        }
+        if (news_story_id) {
+          return message += news_story.title;
+        }
+      }
+    }
+  }, {
     key: 'submitForm',
     value: function submitForm(event) {
       event.preventDefault();
@@ -39639,6 +39663,11 @@ var ModalUpdateImage = function (_Component) {
                   disabled: this.attachedToProjectOrNews() },
                 'Delete'
               ),
+              this.attachedToProjectOrNews() ? _react2.default.createElement(
+                'span',
+                { className: 'disabled-delete-message text-danger font-weight-bold mr-auto' },
+                this.disabledDeleteMessage()
+              ) : null,
               _react2.default.createElement(
                 'button',
                 {

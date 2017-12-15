@@ -65,6 +65,23 @@ class ModalUpdateImage extends Component {
     }
   }
 
+  disabledDeleteMessage() {
+    if(this.state.image_data) {
+      let message = 'Image is attached to: ';
+      let {project_id, project, feature_image_project, news_story_id, news_story} = this.state.image_data;
+
+      if(project_id) {
+        return message += project.name;
+      }
+      if(Object.keys(feature_image_project).length > 0) {
+        return message += feature_image_project.project.name;
+      }
+      if(news_story_id) {
+        return message += news_story.title;
+      }
+    }
+  }
+
   submitForm(event) {
     event.preventDefault();
     FormValidations.trimData(this.state, this);
@@ -168,6 +185,11 @@ class ModalUpdateImage extends Component {
                 disabled={this.attachedToProjectOrNews()}>
                   Delete
               </button>
+              {this.attachedToProjectOrNews() ?
+                <span className="disabled-delete-message text-danger font-weight-bold mr-auto">
+                  {this.disabledDeleteMessage()}
+                </span> :
+              null}
               <button
                 type="button"
                 className="btn btn-secondary"

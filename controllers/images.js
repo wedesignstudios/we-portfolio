@@ -146,5 +146,32 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
     };
 });
 
+// DELETE an image
+router.delete('/:id', (req, res, next) => {
+  console.log(req.params.id);
+  console.log(req.body);
+
+  // Delete from S3 bucket
+  s3.deleteObject({
+    Bucket: 'we-portfolio',
+    Key: req.body.orig_name
+  }, (err, data) => {
+    if(err) {
+      console.log('Error message: ', err);
+      return res.status(400).send(err);
+    }
+  })
+
+  // Delete from database
+  Image
+    .forge({id: req.params.id})
+    .destroy()
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send(`Whoops! The following error occurred: ${err}`);
+    });
+    res.status(200).send(`Image ${req.body.url} deleted.`);
+});
+
 
 module.exports = router;

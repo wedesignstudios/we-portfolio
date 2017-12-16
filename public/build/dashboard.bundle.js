@@ -39166,6 +39166,14 @@ var ModalUpdateImage = function (_Component) {
       }
     }
   }, {
+    key: 'deleteImage',
+    value: function deleteImage(event) {
+      event.preventDefault();
+      this.forceUpdate(function () {
+        DataActions.sendRequest('DELETE', this.state.image_data, '/api/v1/images/' + this.props.imageId, this.setRedirectWithMessage);
+      });
+    }
+  }, {
     key: 'submitForm',
     value: function submitForm(event) {
       event.preventDefault();
@@ -39339,7 +39347,10 @@ var ModalUpdateImage = function (_Component) {
                   type: 'button',
                   className: 'btn btn-danger mr-auto',
                   'data-dismiss': 'modal',
-                  disabled: this.attachedToProjectOrNews() },
+                  disabled: this.attachedToProjectOrNews(),
+                  onClick: function onClick(e) {
+                    return _this3.deleteImage(e);
+                  } },
                 'Delete'
               ),
               this.attachedToProjectOrNews() ? _react2.default.createElement(

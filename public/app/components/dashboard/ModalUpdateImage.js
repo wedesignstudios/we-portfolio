@@ -82,6 +82,18 @@ class ModalUpdateImage extends Component {
     }
   }
 
+  deleteImage(event) {
+    event.preventDefault();
+    this.forceUpdate(function() {
+      DataActions.sendRequest(
+        'DELETE',
+        this.state.image_data,
+        `/api/v1/images/${this.props.imageId}`,
+        this.setRedirectWithMessage
+      );
+    });
+  }
+
   submitForm(event) {
     event.preventDefault();
     FormValidations.trimData(this.state, this);
@@ -182,7 +194,8 @@ class ModalUpdateImage extends Component {
                 type="button"
                 className="btn btn-danger mr-auto"
                 data-dismiss="modal"
-                disabled={this.attachedToProjectOrNews()}>
+                disabled={this.attachedToProjectOrNews()}
+                onClick={(e) => this.deleteImage(e)}>
                   Delete
               </button>
               {this.attachedToProjectOrNews() ?

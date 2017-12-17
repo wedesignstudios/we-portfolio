@@ -147,7 +147,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 });
 
 // DELETE an image
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', isLoggedIn, (req, res, next) => {
   console.log(req.params.id);
   console.log(req.body);
 

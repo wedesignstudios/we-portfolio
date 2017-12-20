@@ -12,7 +12,7 @@ class Press extends Component {
 
     this.state = {
       newsData: [],
-      cardMousedOver: false
+      cardMouseEnterId: false
     }
   }
 
@@ -31,16 +31,17 @@ class Press extends Component {
       });
   }
 
-  cardMouseOver() {
-    this.setState({cardMousedOver: !this.state.cardMousedOver});
+  cardMouseEnter(event) {
+    let cardId = event.target.id;
+    this.setState({cardMouseEnterId: cardId});
   }
 
-  cardMouseOut() {
-    this.setState({cardMousedOver: !this.state.cardMousedOver});
+  cardMouseLeave() {
+    this.setState({cardMouseEnterId: ''});
   }
 
   render() {
-    let { newsData, cardMousedOver } = this.state;
+    let { newsData, cardMouseEnterId } = this.state;
     let { margin } = this.props;
 
     return (
@@ -56,9 +57,10 @@ class Press extends Component {
                       <Link
                         to={`${this.props.match.url}/${story.slug}`} >
                         <div
+                          id={story.id}
                           className="card line-height-1-25-rem border-0 d-inline-block mb-4"
-                          onMouseOver={(e) => this.cardMouseOver()}
-                          onMouseOut={(e) => this.cardMouseOut()}>
+                          onMouseEnter={(e) => this.cardMouseEnter(e)}
+                          onMouseLeave={(e) => this.cardMouseLeave()}>
                             <img
                               className="card-img-top img-fluid rounded-0 p-2"
                               title={story.image.title}
@@ -68,7 +70,7 @@ class Press extends Component {
                               sizes="100vw"
                               width="300" />
                           <div className="card-block px-2 pb-3 pt-0">
-                            <p className={cardMousedOver ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold'}>
+                            <p className={cardMouseEnterId == story.id ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold'}>
                               {story.title}
                             </p>
                           </div>

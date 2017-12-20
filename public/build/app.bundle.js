@@ -68726,7 +68726,7 @@ var Press = function (_Component) {
 
     _this.state = {
       newsData: [],
-      cardMousedOver: false
+      cardMouseEnterId: false
     };
     return _this;
   }
@@ -68749,14 +68749,15 @@ var Press = function (_Component) {
       });
     }
   }, {
-    key: 'cardMouseOver',
-    value: function cardMouseOver() {
-      this.setState({ cardMousedOver: !this.state.cardMousedOver });
+    key: 'cardMouseEnter',
+    value: function cardMouseEnter(event) {
+      var cardId = event.target.id;
+      this.setState({ cardMouseEnterId: cardId });
     }
   }, {
-    key: 'cardMouseOut',
-    value: function cardMouseOut() {
-      this.setState({ cardMousedOver: !this.state.cardMousedOver });
+    key: 'cardMouseLeave',
+    value: function cardMouseLeave() {
+      this.setState({ cardMouseEnterId: '' });
     }
   }, {
     key: 'render',
@@ -68765,7 +68766,7 @@ var Press = function (_Component) {
 
       var _state = this.state,
           newsData = _state.newsData,
-          cardMousedOver = _state.cardMousedOver;
+          cardMouseEnterId = _state.cardMouseEnterId;
       var margin = this.props.margin;
 
 
@@ -68796,12 +68797,13 @@ var Press = function (_Component) {
                       _react2.default.createElement(
                         'div',
                         {
+                          id: story.id,
                           className: 'card line-height-1-25-rem border-0 d-inline-block mb-4',
-                          onMouseOver: function onMouseOver(e) {
-                            return _this3.cardMouseOver();
+                          onMouseEnter: function onMouseEnter(e) {
+                            return _this3.cardMouseEnter(e);
                           },
-                          onMouseOut: function onMouseOut(e) {
-                            return _this3.cardMouseOut();
+                          onMouseLeave: function onMouseLeave(e) {
+                            return _this3.cardMouseLeave();
                           } },
                         _react2.default.createElement('img', {
                           className: 'card-img-top img-fluid rounded-0 p-2',
@@ -68816,7 +68818,7 @@ var Press = function (_Component) {
                           { className: 'card-block px-2 pb-3 pt-0' },
                           _react2.default.createElement(
                             'p',
-                            { className: cardMousedOver ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold' },
+                            { className: cardMouseEnterId == story.id ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold' },
                             story.title
                           )
                         )
@@ -69083,7 +69085,7 @@ var Work = function (_Component) {
 
     _this.state = {
       projectData: [],
-      cardMousedOver: false
+      cardMousedOverId: ''
     };
     return _this;
   }
@@ -69106,14 +69108,15 @@ var Work = function (_Component) {
       });
     }
   }, {
-    key: 'cardMouseOver',
-    value: function cardMouseOver() {
-      this.setState({ cardMousedOver: !this.state.cardMousedOver });
+    key: 'cardMouseEnter',
+    value: function cardMouseEnter(event) {
+      var cardId = event.target.id;
+      this.setState({ cardMousedOverId: cardId });
     }
   }, {
-    key: 'cardMouseOut',
-    value: function cardMouseOut() {
-      this.setState({ cardMousedOver: !this.state.cardMousedOver });
+    key: 'cardMouseLeave',
+    value: function cardMouseLeave() {
+      this.setState({ cardMousedOverId: '' });
     }
   }, {
     key: 'render',
@@ -69122,7 +69125,7 @@ var Work = function (_Component) {
 
       var _state = this.state,
           projectData = _state.projectData,
-          cardMousedOver = _state.cardMousedOver;
+          cardMousedOverId = _state.cardMousedOverId;
       var margin = this.props.margin;
 
 
@@ -69157,12 +69160,13 @@ var Work = function (_Component) {
                       _react2.default.createElement(
                         'div',
                         {
+                          id: project.id,
                           className: 'card line-height-1-25-rem border-0 d-inline-block mb-4',
-                          onMouseOver: function onMouseOver(e) {
-                            return _this3.cardMouseOver();
+                          onMouseEnter: function onMouseEnter(e) {
+                            return _this3.cardMouseEnter(e);
                           },
-                          onMouseOut: function onMouseOut(e) {
-                            return _this3.cardMouseOut();
+                          onMouseLeave: function onMouseLeave(e) {
+                            return _this3.cardMouseLeave(e);
                           } },
                         _react2.default.createElement('img', {
                           className: 'card-img-top img-fluid rounded-0 p-2',
@@ -69177,7 +69181,7 @@ var Work = function (_Component) {
                           { className: 'card-block px-2 pb-3 pt-0' },
                           _react2.default.createElement(
                             'p',
-                            { className: cardMousedOver ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold' },
+                            { className: cardMousedOverId == project.id ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold' },
                             project.name
                           )
                         )

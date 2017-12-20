@@ -13,6 +13,12 @@
   margin-top: 6rem !important;
 }
 
+// Buttons
+
+.btn {
+  text-decoration: none;
+}
+
 // Cards
 .card {
   &::before {
@@ -39,6 +45,14 @@
     display: inline-block;
     font-size: 0.95rem;
     position: relative;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
 
     &::after {
       @include animated-underline(5px);

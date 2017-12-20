@@ -102,6 +102,9 @@ video {
 .mt-6rem {
   margin-top: 6rem !important; }
 
+.btn {
+  text-decoration: none; }
+
 .card::before {
   background-color: transparent;
   content: '';
@@ -124,6 +127,10 @@ video {
   display: inline-block;
   font-size: 0.95rem;
   position: relative; }
+  .card .card-title a {
+    text-decoration: none; }
+    .card .card-title a:hover {
+      background-color: transparent; }
   .card .card-title::after {
     bottom: 0;
     box-shadow: 0 5px 0 #E6E31A;

@@ -6,7 +6,7 @@ class NavDashboard extends Component {
 
   render() {
     return(
-      <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mx-0 mb-3">
+      <nav id="nav-dashboard" className="navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mx-0 mb-3">
         <div className="col-6">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item"><Link className="nav-link" to={`${this.props.match.url}`}>Home</Link></li>

@@ -43,6 +43,15 @@
   }
 }
 
+.back-to-top {
+  cursor: pointer;
+
+  &:hover {
+    background-color: $barberry;
+    padding: 0.15rem 0.5rem;
+  }
+}
+
 .aligncenter {
   display: block;
   margin: 0 auto;

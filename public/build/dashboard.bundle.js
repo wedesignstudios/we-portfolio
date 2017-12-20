@@ -37822,7 +37822,7 @@ var NavDashboard = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'nav',
-        { className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mx-0 mb-3' },
+        { id: 'nav-dashboard', className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mx-0 mb-3' },
         _react2.default.createElement(
           'div',
           { className: 'col-6' },

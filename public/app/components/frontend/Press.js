@@ -11,7 +11,8 @@ class Press extends Component {
     super();
 
     this.state = {
-      newsData: []
+      newsData: [],
+      cardMousedOver: false
     }
   }
 
@@ -30,8 +31,16 @@ class Press extends Component {
       });
   }
 
+  cardMouseOver() {
+    this.setState({cardMousedOver: !this.state.cardMousedOver});
+  }
+
+  cardMouseOut() {
+    this.setState({cardMousedOver: !this.state.cardMousedOver});
+  }
+
   render() {
-    let { newsData } = this.state;
+    let { newsData, cardMousedOver } = this.state;
     let { margin } = this.props;
 
     return (
@@ -43,27 +52,28 @@ class Press extends Component {
                 {newsData.map(story => {
                   let imageSizes = ImageSizePicker.imgSize(story.image.orig_name);
                   return(
-                    <div className="card line-height-1-25-rem border-0 d-inline-block mb-4" key={story.id}>
-                    <Link
-                      to={`${this.props.match.url}/${story.slug}`} >
-                        <img
-                          className="card-img-top img-fluid rounded-0"
-                          title={story.image.title}
-                          alt={story.image.alt}
-                          src={imageSizes.w300}
-                          srcSet={`${imageSizes.w800} 800w, ${imageSizes.w600} 600w, ${imageSizes.w300} 300w`}
-                          sizes="100vw"
-                          width="300" />
-                    </Link>
-                      <div className="card-block p-0 pt-3">
-                        <p className="card-title mb-2">
-                          <Link
-                            to={`${this.props.match.url}/${story.slug}`}
-                            className="text-muted">
+                    <div key={story.id}>
+                      <Link
+                        to={`${this.props.match.url}/${story.slug}`} >
+                        <div
+                          className="card line-height-1-25-rem border-0 d-inline-block mb-4"
+                          onMouseOver={(e) => this.cardMouseOver()}
+                          onMouseOut={(e) => this.cardMouseOut()}>
+                            <img
+                              className="card-img-top img-fluid rounded-0 p-2"
+                              title={story.image.title}
+                              alt={story.image.alt}
+                              src={imageSizes.w300}
+                              srcSet={`${imageSizes.w800} 800w, ${imageSizes.w600} 600w, ${imageSizes.w300} 300w`}
+                              sizes="100vw"
+                              width="300" />
+                          <div className="card-block px-2 pb-3 pt-0">
+                            <p className={cardMousedOver ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold'}>
                               {story.title}
-                          </Link>
-                        </p>
-                      </div>
+                            </p>
+                          </div>
+                        </div>
+                      </Link>
                     </div>
                     )
                   })

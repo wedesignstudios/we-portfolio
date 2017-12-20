@@ -12,7 +12,8 @@ class Work extends Component {
     super();
 
     this.state = {
-      projectData: []
+      projectData: [],
+      cardMousedOver: false
     }
   }
 
@@ -31,8 +32,16 @@ class Work extends Component {
       });
   }
 
+  cardMouseOver() {
+    this.setState({cardMousedOver: !this.state.cardMousedOver});
+  }
+
+  cardMouseOut() {
+    this.setState({cardMousedOver: !this.state.cardMousedOver});
+  }
+
   render() {
-    let { projectData } = this.state;
+    let { projectData, cardMousedOver } = this.state;
     let { margin } = this.props;
 
     return (
@@ -48,27 +57,28 @@ class Work extends Component {
                     let featureImgSizes = ImageSizePicker.imgSize(featureImage.orig_name);
 
                     return(
-                      <div className="card line-height-1-25-rem border-0 d-inline-block mb-4" key={project.id}>
-                      <Link
-                        to={`${this.props.match.url}/${project.slug}`} >
-                          <img
-                            className="card-img-top img-fluid rounded-0"
-                            src={featureImgSizes.w300}
-                            srcSet={`${featureImgSizes.w800} 800w, ${featureImgSizes.w600} 600w, ${featureImgSizes.w450} 450w, ${featureImgSizes.w300} 300w`}
-                            sizes="(min-width: 320px) 132px, 100vw"
-                            width="300"
-                            title={featureImage.title}
-                            alt={featureImage.alt} />
-                      </Link>
-                        <div className="card-block p-0 pt-3">
-                          <p className="card-title mb-2">
-                            <Link
-                              to={`${this.props.match.url}/${project.slug}`}
-                              className="text-muted">
+                      <div key={project.id}>
+                        <Link
+                          to={`${this.props.match.url}/${project.slug}`} >
+                          <div
+                            className="card line-height-1-25-rem border-0 d-inline-block mb-4"
+                            onMouseOver={(e) => this.cardMouseOver()}
+                            onMouseOut={(e) => this.cardMouseOut()}>
+                            <img
+                              className="card-img-top img-fluid rounded-0 p-2"
+                              src={featureImgSizes.w300}
+                              srcSet={`${featureImgSizes.w800} 800w, ${featureImgSizes.w600} 600w, ${featureImgSizes.w450} 450w, ${featureImgSizes.w300} 300w`}
+                              sizes="(min-width: 320px) 132px, 100vw"
+                              width="300"
+                              title={featureImage.title}
+                              alt={featureImage.alt} />
+                            <div className="card-block px-2 pb-3 pt-0">
+                              <p className={cardMousedOver ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold'}>
                                 {project.name}
-                            </Link>
-                          </p>
-                        </div>
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
                       </div>
                       )
                     })

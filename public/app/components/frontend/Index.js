@@ -40,7 +40,7 @@ class Index extends Component {
           {windowWidth > 1024 ?
             <img
               className="img-fluid img-landscape"
-              alt="Laura out in West Texas"
+              alt="WE paper mache heads"
               src={imageOrig}
               srcSet={`${imageOrig} 2560w, ${imageSizes.w1440} 1440w, ${imageSizes.w1024} 1024w`}
               sizes="100vw"
@@ -49,7 +49,7 @@ class Index extends Component {
           {windowWidth <= 1024 ?
             <img
               className="img-portrait"
-              alt="Laura out in West Texas"
+              alt="WE paper mache heads"
               src={imageOrigMobile}
               srcSet={`${imageOrigMobile} 1440w, ${imageSizesMobile.w1024} 1024w, ${imageSizesMobile.w800} 800w, ${imageSizesMobile.w600} 600w,`}
               sizes="100vw"

@@ -18,12 +18,19 @@ html {
 
 body {
   color: $black;
-  font-family: 'Muli', sans-serif;  
+  font-family: 'Muli', sans-serif;
+  font-size: 1.125rem;
   margin: 0;
 } 
 
 a {
-  color: $dodger-blue;
+  color: $black;
+  text-decoration: underline;
+
+  &:hover {
+    background-color: $barberry;
+    color: $black;
+  }
 
   &:hover,
   &:focus {
@@ -58,15 +65,17 @@ textarea {
 }
 
 hr {
+  border: none;
+  background-color: $black;
+
   &.hr-1rem {
-    border: none;
     height: 1rem;
-    background-color: $black;
+  }
+  &.hr-point7rem {
+    height: 0.7rem;
   }
   &.hr-half-rem {
-    border: none;
     height: 0.5rem;
-    background-color: $black;
   }
 }
 

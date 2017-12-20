@@ -1,122 +1,133 @@
 // Navbar component styles
-#navbar-main .navbar {
-  margin: 1rem 0;
-  transition: 300ms ease-in-out;
+#navbar-main {
+  background: linear-gradient(rgba(1,76,228,0.5), rgba(1,76,228,0.0));
 
+    .navbar {
+    margin: 1rem 0;
+    transition: 300ms ease-in-out;
 
-  ul {
-    width: 100%;
-  }
-
-  ul li {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: 0.06rem;
-    text-transform: uppercase;
-
-  &#nav-we-eye-logo {
-     a:hover,
-     a::after {
-      box-shadow: none;
-    }
-  }
-
-  &#nav-we-eye-logo img {
-    width: 8rem;
-  }
-
-  a {
-    color: $white;
-    position: relative;
-
-      &.nav-active {
-        box-shadow: 0 7px 0 $barberry;
-        display: inline-block;
-      }
-
-      &.nav-link {
-        display: inline-block;
-        padding: 0.5rem 0;
-        margin-bottom: 1rem;
-      }
-
-      &::after {
-        bottom: 0;
-        box-shadow: 0 7px 0 $barberry;
-        content: '';
-        height: 100%;
-        left: 0;
-        position: absolute;
-        -webkit-transition: width 0.15s ease-in-out;
-        -moz-transition: width 0.15s ease-in-out;
-        -o-transition: width 0.15s ease-in-out;
-        transition: width 0.15s ease-in-out;
-        width: 0;
-      }
-
-      &:hover::after {
-        width: 100%;
-      }
-
+    ul {
+      width: 100%;
     }
 
+    ul li {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.08rem;
+      text-transform: uppercase;
 
-  }
-
-  .navbar-toggler {
-    padding: 0.75rem 0.75rem 0.155rem;
-
-      .icon-bar {
-        position: relative;
-        top: 0;
-        display: block;
-        width: 24px;
-        height: 3px;
-        background: $white;
-        margin-bottom: 4px;
-        transition: 300ms ease-in-out;
-      }
-      .icon-bar:last-child {
-        -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        -o-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-        top: -7px;
-      }
-      .icon-bar:nth-child(1) {
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
-        transform: rotate(45deg);
-        top: 7px;
-      }
-      .icon-bar:nth-child(2) {
-        opacity: 0;
-      }
-      &.collapsed {
-        .icon-bar {
-            -webkit-transform: rotate(0deg);
-            -ms-transform: rotate(0deg);
-            -o-transform: rotate(0deg);
-            transform: rotate(0deg);        
-            top: 0;
-            opacity: 1;
+      &#nav-we-eye-logo {
+         a:hover,
+         a::after {
+          box-shadow: none;
         }
       }
+
+      &#nav-we-eye-logo img {
+        width: 6.75rem;
+      }
+
+      a {
+        color: $white;
+        text-decoration: none;
+        position: relative;
+
+          &.nav-active {
+            box-shadow: 0 7px 0 $barberry;
+            display: inline-block;
+          }
+
+          &.nav-link {
+            display: inline-block;
+            padding: 0;
+            margin-bottom: 1rem;
+          }
+
+          &::after {
+            @include animated-underline(7px);
+          }
+
+          &:hover {
+            background-color: transparent;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+        }
+
+    }
+
+    .navbar-toggler {
+      padding: 0.75rem 0.75rem 0.155rem;
+
+        .icon-bar {
+          position: relative;
+          top: 0;
+          display: block;
+          width: 24px;
+          height: 3px;
+          background: $white;
+          margin-bottom: 4px;
+          transition: 300ms ease-in-out;
+        }
+        .icon-bar:last-child {
+          -webkit-transform: rotate(-45deg);
+          -ms-transform: rotate(-45deg);
+          -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+          top: -7px;
+        }
+        .icon-bar:nth-child(1) {
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+          top: 7px;
+        }
+        .icon-bar:nth-child(2) {
+          opacity: 0;
+        }
+        &.collapsed {
+          .icon-bar {
+              -webkit-transform: rotate(0deg);
+              -ms-transform: rotate(0deg);
+              -o-transform: rotate(0deg);
+              transform: rotate(0deg);
+              top: 0;
+              opacity: 1;
+          }
+        }
+    }
+
+    &.navbar-black {
+      a {
+        color: $black;
+      }
+
+      .navbar-toggler .icon-bar {
+        background: $black;
+      }
+      &.nav-opened .navbar-toggler .icon-bar {
+        background: $white;
+      }
+
+    }
   }
 
-  &.navbar-black {
-    a {
-      color: $black;
-    }
-    
-    .navbar-toggler .icon-bar {
-      background: $black;
-    }
-    &.nav-opened .navbar-toggler .icon-bar {
-      background: $white;
-    }
+  &.nav-bg-white {
+    background: transparent;
+    background-color: $white;
+  }
+}
 
+#nav-dashboard, #navbar-admin {
+  a {
+    text-decoration: none;
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 }
 
@@ -126,10 +137,10 @@
   img {
     width: 3rem;
   }
-}
 
-.nav-bg-white {
-  background-color: $white;
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 @media (max-width: 1440px) {

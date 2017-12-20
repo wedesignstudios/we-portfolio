@@ -77,21 +77,21 @@ class PressStory extends Component {
         </div>
         <div id="press-text" className="col-12 container p-0">
           <div className="row justify-content-center m-0">
-            <div className="col-8 container p-0 mb-5rem mt-5">
-              <h6 className="text-uppercase letter-spacing-point125-rem line-height-1-45-rem">{newsData.title}</h6>
-              <hr className="hr-1rem" />
+            <div className="col-10 col-lg-8 col-xl-6 container p-0 mb-5rem mt-5">
+              <h2 className="text-uppercase letter-spacing-point125-rem muli-bold">{newsData.title}</h2>
+              <hr className="hr-point7rem mb-4" />
               <div className="row m-0">
                 <div id="press-date" className="col-sm-6 p-0 pr-sm-3">
-                  <p className="font-weight-bold">{DateFormatter.monthYear(storyDate)}</p>
+                  <h5 className="muli-bold m-0 mb-4 letter-spacing-point05-rem">{DateFormatter.monthYear(storyDate)}</h5>
                 </div>
                 <div className="col-sm-6 p-0 pl-sm-3">
                   <div className="white-space-pre-line" dangerouslySetInnerHTML={{__html: newsData.description}}></div>
                 </div>
               </div>
               {windowWidth <= 768 ?
-                <p className="text-center pt-5">
+                <p className="text-center pt-4 muli-bold">
                   <span
-                    style={{cursor: 'pointer'}}
+                    className="back-to-top"
                     onClick={this.scrollToTop} >
                     BACK TO TOP
                   </span>

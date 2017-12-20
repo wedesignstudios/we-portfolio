@@ -38143,7 +38143,7 @@ var NavDashboard = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'nav',
-        { className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mx-0 mb-3' },
+        { id: 'nav-dashboard', className: 'navbar navbar-toggleable-md navbar-inverse bg-inverse row justify-content-center mx-0 mb-3' },
         _react2.default.createElement(
           'div',
           { className: 'col-6' },
@@ -67423,6 +67423,12 @@ var About = function (_Component) {
 
       var imageOrig = ImageSizePicker.imgOrig('WE_TWIRL.jpg');
       var imageSizes = ImageSizePicker.imgSize('WE_TWIRL.jpg');
+      var lauraImageOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT.jpg');
+      var lauraImageSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT.jpg');
+      var davidImageOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT.jpg');
+      var davidImageSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT.jpg');
+      var lemmyImageOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT.jpg');
+      var lemmyImageSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT.jpg');
       var video = 'https://we-portfolio.s3.amazonaws.com/WE_TWIRL.mp4';
       return _react2.default.createElement(
         'div',
@@ -67446,8 +67452,8 @@ var About = function (_Component) {
             null,
             _react2.default.createElement('img', {
               className: 'img-fluid',
-              title: 'Contact hand with googly eyes',
-              alt: 'Contact hand with googly eyes',
+              title: 'WE letters',
+              alt: 'WE letters',
               src: imageOrig,
               srcSet: imageOrig + ' 1440w, ' + imageSizes.w1024 + ' 1024w, ' + imageSizes.w800 + ' 800w, ' + imageSizes.w600 + ' 600w,',
               sizes: '100vw',
@@ -67462,13 +67468,13 @@ var About = function (_Component) {
             { className: 'row justify-content-center m-0' },
             _react2.default.createElement(
               'div',
-              { className: 'col-8 container p-0 mb-5rem mt-5' },
+              { className: 'col-10 col-lg-8 col-xl-6 container p-0 mb-2rem mt-5' },
               _react2.default.createElement(
-                'h6',
-                { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                'h2',
+                { className: 'text-uppercase letter-spacing-point125-rem muli-bold' },
                 'WHO WE ARE'
               ),
-              _react2.default.createElement('hr', { className: 'hr-1rem' }),
+              _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
               _react2.default.createElement(
                 'p',
                 null,
@@ -67492,10 +67498,10 @@ var About = function (_Component) {
                   { className: 'col-sm-6 pl-sm-0 about-profile' },
                   _react2.default.createElement('img', {
                     className: 'headshot',
-                    title: '',
-                    alt: '',
-                    src: 'https://we-portfolio.s3.amazonaws.com/WE-Headshot-Placeholder.png',
-                    srcSet: '',
+                    title: 'Laura Worrick headshot',
+                    alt: 'Laura Worrick headshot',
+                    src: lauraImageOrig,
+                    srcSet: lauraImageOrig + ' 1440w, ' + lauraImageSizes.w1024 + ' 1024w, ' + lauraImageSizes.w800 + ' 800w, ' + lauraImageSizes.w600 + ' 600w,',
                     sizes: '100vw',
                     width: '100%' })
                 ),
@@ -67503,11 +67509,11 @@ var About = function (_Component) {
                   'div',
                   { className: 'col-sm-6 pr-sm-0 about-profile order-1' },
                   _react2.default.createElement(
-                    'h6',
-                    { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                    'h5',
+                    { className: 'muli-bold m-0 letter-spacing-point05-rem' },
                     'LAURA WORRICK'
                   ),
-                  _react2.default.createElement('hr', { className: 'hr-1rem' }),
+                  _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
                   _react2.default.createElement(
                     'p',
                     null,
@@ -67522,11 +67528,11 @@ var About = function (_Component) {
                   'div',
                   { className: 'col-sm-6 pl-sm-0 about-profile' },
                   _react2.default.createElement(
-                    'h6',
-                    { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                    'h5',
+                    { className: 'muli-bold m-0 letter-spacing-point05-rem' },
                     'DAVID ELDEN'
                   ),
-                  _react2.default.createElement('hr', { className: 'hr-1rem' }),
+                  _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
                   _react2.default.createElement(
                     'p',
                     null,
@@ -67538,10 +67544,10 @@ var About = function (_Component) {
                   { className: 'col-sm-6 pr-sm-0 about-profile' },
                   _react2.default.createElement('img', {
                     className: 'headshot',
-                    title: '',
-                    alt: '',
-                    src: 'https://we-portfolio.s3.amazonaws.com/WE-Headshot-Placeholder.png',
-                    srcSet: '',
+                    title: 'David Elden headshot',
+                    alt: 'David Elden headshot',
+                    src: davidImageOrig,
+                    srcSet: davidImageOrig + ' 1440w, ' + davidImageSizes.w1024 + ' 1024w, ' + davidImageSizes.w800 + ' 800w, ' + davidImageSizes.w600 + ' 600w,',
                     sizes: '100vw',
                     width: '100%' })
                 )
@@ -67554,10 +67560,10 @@ var About = function (_Component) {
                   { className: 'col-sm-6 pl-sm-0 about-profile' },
                   _react2.default.createElement('img', {
                     className: 'headshot',
-                    title: '',
-                    alt: '',
-                    src: 'https://we-portfolio.s3.amazonaws.com/WE-Headshot-Placeholder.png',
-                    srcSet: '',
+                    title: 'Lemmy headshot',
+                    alt: 'Lemmy headshot',
+                    src: lemmyImageOrig,
+                    srcSet: lemmyImageOrig + ' 1440w, ' + lemmyImageSizes.w1024 + ' 1024w, ' + lemmyImageSizes.w800 + ' 800w, ' + lemmyImageSizes.w600 + ' 600w,',
                     sizes: '100vw',
                     width: '100%' })
                 ),
@@ -67565,11 +67571,11 @@ var About = function (_Component) {
                   'div',
                   { className: 'col-sm-6 pr-sm-0 about-profile order-1' },
                   _react2.default.createElement(
-                    'h6',
-                    { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                    'h5',
+                    { className: 'muli-bold m-0 letter-spacing-point05-rem' },
                     'LEMMY'
                   ),
-                  _react2.default.createElement('hr', { className: 'hr-1rem' }),
+                  _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
                   _react2.default.createElement(
                     'p',
                     null,
@@ -67581,11 +67587,11 @@ var About = function (_Component) {
                 'div',
                 { className: 'mb-5 mt-6rem' },
                 _react2.default.createElement(
-                  'h6',
-                  { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                  'h5',
+                  { className: 'muli-bold m-0 letter-spacing-point05-rem' },
                   'SELECT CLIENTS'
                 ),
-                _react2.default.createElement('hr', { className: 'hr-1rem' }),
+                _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
                 _react2.default.createElement(
                   'p',
                   null,
@@ -67594,11 +67600,11 @@ var About = function (_Component) {
               ),
               _react2.default.createElement(
                 'p',
-                { className: 'text-center pt-4' },
+                { className: 'text-center pt-4 muli-bold' },
                 _react2.default.createElement(
                   'span',
                   {
-                    style: { cursor: 'pointer' },
+                    className: 'back-to-top',
                     onClick: this.scrollToTop },
                   'BACK TO TOP'
                 )
@@ -68146,14 +68152,14 @@ var Index = function (_Component) {
           { className: 'col p-0 image-full-width-container' },
           windowWidth > 1024 ? _react2.default.createElement('img', {
             className: 'img-fluid img-landscape',
-            alt: 'Laura out in West Texas',
+            alt: 'WE paper mache heads',
             src: imageOrig,
             srcSet: imageOrig + ' 2560w, ' + imageSizes.w1440 + ' 1440w, ' + imageSizes.w1024 + ' 1024w',
             sizes: '100vw',
             width: '2560' }) : null,
           windowWidth <= 1024 ? _react2.default.createElement('img', {
             className: 'img-portrait',
-            alt: 'Laura out in West Texas',
+            alt: 'WE paper mache heads',
             src: imageOrigMobile,
             srcSet: imageOrigMobile + ' 1440w, ' + imageSizesMobile.w1024 + ' 1024w, ' + imageSizesMobile.w800 + ' 800w, ' + imageSizesMobile.w600 + ' 600w,',
             sizes: '100vw',
@@ -68719,7 +68725,8 @@ var Press = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Press.__proto__ || Object.getPrototypeOf(Press)).call(this));
 
     _this.state = {
-      newsData: []
+      newsData: [],
+      cardMousedOver: false
     };
     return _this;
   }
@@ -68742,11 +68749,23 @@ var Press = function (_Component) {
       });
     }
   }, {
+    key: 'cardMouseOver',
+    value: function cardMouseOver() {
+      this.setState({ cardMousedOver: !this.state.cardMousedOver });
+    }
+  }, {
+    key: 'cardMouseOut',
+    value: function cardMouseOut() {
+      this.setState({ cardMousedOver: !this.state.cardMousedOver });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
 
-      var newsData = this.state.newsData;
+      var _state = this.state,
+          newsData = _state.newsData,
+          cardMousedOver = _state.cardMousedOver;
       var margin = this.props.margin;
 
 
@@ -68769,32 +68788,37 @@ var Press = function (_Component) {
                   var imageSizes = ImageSizePicker.imgSize(story.image.orig_name);
                   return _react2.default.createElement(
                     'div',
-                    { className: 'card line-height-1-25-rem border-0 d-inline-block mb-4', key: story.id },
+                    { key: story.id },
                     _react2.default.createElement(
                       _reactRouterDom.Link,
                       {
                         to: _this3.props.match.url + '/' + story.slug },
-                      _react2.default.createElement('img', {
-                        className: 'card-img-top img-fluid rounded-0',
-                        title: story.image.title,
-                        alt: story.image.alt,
-                        src: imageSizes.w300,
-                        srcSet: imageSizes.w800 + ' 800w, ' + imageSizes.w600 + ' 600w, ' + imageSizes.w300 + ' 300w',
-                        sizes: '100vw',
-                        width: '300' })
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'card-block p-0 pt-3' },
                       _react2.default.createElement(
-                        'p',
-                        { className: 'card-title mb-2' },
+                        'div',
+                        {
+                          className: 'card line-height-1-25-rem border-0 d-inline-block mb-4',
+                          onMouseOver: function onMouseOver(e) {
+                            return _this3.cardMouseOver();
+                          },
+                          onMouseOut: function onMouseOut(e) {
+                            return _this3.cardMouseOut();
+                          } },
+                        _react2.default.createElement('img', {
+                          className: 'card-img-top img-fluid rounded-0 p-2',
+                          title: story.image.title,
+                          alt: story.image.alt,
+                          src: imageSizes.w300,
+                          srcSet: imageSizes.w800 + ' 800w, ' + imageSizes.w600 + ' 600w, ' + imageSizes.w300 + ' 300w',
+                          sizes: '100vw',
+                          width: '300' }),
                         _react2.default.createElement(
-                          _reactRouterDom.Link,
-                          {
-                            to: _this3.props.match.url + '/' + story.slug,
-                            className: 'text-muted' },
-                          story.title
+                          'div',
+                          { className: 'card-block px-2 pb-3 pt-0' },
+                          _react2.default.createElement(
+                            'p',
+                            { className: cardMousedOver ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold' },
+                            story.title
+                          )
                         )
                       )
                     )
@@ -68958,13 +68982,13 @@ var PressStory = function (_Component) {
             { className: 'row justify-content-center m-0' },
             _react2.default.createElement(
               'div',
-              { className: 'col-8 container p-0 mb-5rem mt-5' },
+              { className: 'col-10 col-lg-8 col-xl-6 container p-0 mb-5rem mt-5' },
               _react2.default.createElement(
-                'h6',
-                { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                'h2',
+                { className: 'text-uppercase letter-spacing-point125-rem muli-bold' },
                 newsData.title
               ),
-              _react2.default.createElement('hr', { className: 'hr-1rem' }),
+              _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
               _react2.default.createElement(
                 'div',
                 { className: 'row m-0' },
@@ -68972,8 +68996,8 @@ var PressStory = function (_Component) {
                   'div',
                   { id: 'press-date', className: 'col-sm-6 p-0 pr-sm-3' },
                   _react2.default.createElement(
-                    'p',
-                    { className: 'font-weight-bold' },
+                    'h5',
+                    { className: 'muli-bold m-0 mb-4 letter-spacing-point05-rem' },
                     DateFormatter.monthYear(storyDate)
                   )
                 ),
@@ -68985,11 +69009,11 @@ var PressStory = function (_Component) {
               ),
               windowWidth <= 768 ? _react2.default.createElement(
                 'p',
-                { className: 'text-center pt-5' },
+                { className: 'text-center pt-4 muli-bold' },
                 _react2.default.createElement(
                   'span',
                   {
-                    style: { cursor: 'pointer' },
+                    className: 'back-to-top',
                     onClick: this.scrollToTop },
                   'BACK TO TOP'
                 )
@@ -69058,7 +69082,8 @@ var Work = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Work.__proto__ || Object.getPrototypeOf(Work)).call(this));
 
     _this.state = {
-      projectData: []
+      projectData: [],
+      cardMousedOver: false
     };
     return _this;
   }
@@ -69081,11 +69106,23 @@ var Work = function (_Component) {
       });
     }
   }, {
+    key: 'cardMouseOver',
+    value: function cardMouseOver() {
+      this.setState({ cardMousedOver: !this.state.cardMousedOver });
+    }
+  }, {
+    key: 'cardMouseOut',
+    value: function cardMouseOut() {
+      this.setState({ cardMousedOver: !this.state.cardMousedOver });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
 
-      var projectData = this.state.projectData;
+      var _state = this.state,
+          projectData = _state.projectData,
+          cardMousedOver = _state.cardMousedOver;
       var margin = this.props.margin;
 
 
@@ -69112,32 +69149,37 @@ var Work = function (_Component) {
 
                   return _react2.default.createElement(
                     'div',
-                    { className: 'card line-height-1-25-rem border-0 d-inline-block mb-4', key: project.id },
+                    { key: project.id },
                     _react2.default.createElement(
                       _reactRouterDom.Link,
                       {
                         to: _this3.props.match.url + '/' + project.slug },
-                      _react2.default.createElement('img', {
-                        className: 'card-img-top img-fluid rounded-0',
-                        src: featureImgSizes.w300,
-                        srcSet: featureImgSizes.w800 + ' 800w, ' + featureImgSizes.w600 + ' 600w, ' + featureImgSizes.w450 + ' 450w, ' + featureImgSizes.w300 + ' 300w',
-                        sizes: '(min-width: 320px) 132px, 100vw',
-                        width: '300',
-                        title: featureImage.title,
-                        alt: featureImage.alt })
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'card-block p-0 pt-3' },
                       _react2.default.createElement(
-                        'p',
-                        { className: 'card-title mb-2' },
+                        'div',
+                        {
+                          className: 'card line-height-1-25-rem border-0 d-inline-block mb-4',
+                          onMouseOver: function onMouseOver(e) {
+                            return _this3.cardMouseOver();
+                          },
+                          onMouseOut: function onMouseOut(e) {
+                            return _this3.cardMouseOut();
+                          } },
+                        _react2.default.createElement('img', {
+                          className: 'card-img-top img-fluid rounded-0 p-2',
+                          src: featureImgSizes.w300,
+                          srcSet: featureImgSizes.w800 + ' 800w, ' + featureImgSizes.w600 + ' 600w, ' + featureImgSizes.w450 + ' 450w, ' + featureImgSizes.w300 + ' 300w',
+                          sizes: '(min-width: 320px) 132px, 100vw',
+                          width: '300',
+                          title: featureImage.title,
+                          alt: featureImage.alt }),
                         _react2.default.createElement(
-                          _reactRouterDom.Link,
-                          {
-                            to: _this3.props.match.url + '/' + project.slug,
-                            className: 'text-muted' },
-                          project.name
+                          'div',
+                          { className: 'card-block px-2 pb-3 pt-0' },
+                          _react2.default.createElement(
+                            'p',
+                            { className: cardMousedOver ? 'card-title m-0 muli-bold animate-underline' : 'card-title m-0 muli-bold' },
+                            project.name
+                          )
                         )
                       )
                     )
@@ -69295,21 +69337,19 @@ var WorkProject = function (_Component) {
         ),
         _react2.default.createElement(
           'div',
-          {
-            id: 'press-text',
-            className: 'col-12 container p-0' },
+          { id: 'project-text', className: 'col-12 container p-0' },
           _react2.default.createElement(
             'div',
             { className: 'row justify-content-center m-0' },
             _react2.default.createElement(
               'div',
-              { className: 'col-8 container p-0 mb-5rem mt-5' },
+              { className: 'col-10 col-lg-8 col-xl-6 container p-0 mb-2rem mt-5' },
               _react2.default.createElement(
-                'h6',
-                { className: 'text-uppercase letter-spacing-point125-rem line-height-1-45-rem' },
+                'h2',
+                { className: 'text-uppercase letter-spacing-point125-rem muli-bold' },
                 projectData.name
               ),
-              _react2.default.createElement('hr', { className: 'hr-1rem' }),
+              _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
               _react2.default.createElement(
                 'div',
                 { className: 'row m-0' },
@@ -69317,8 +69357,8 @@ var WorkProject = function (_Component) {
                   'div',
                   { id: 'project-info', className: 'col-sm-6 p-0 pr-sm-3' },
                   _react2.default.createElement(
-                    'p',
-                    { className: 'font-weight-bold m-0 letter-spacing-point125-rem' },
+                    'h5',
+                    { className: 'muli-bold m-0 letter-spacing-point05-rem' },
                     projectData.clients.length === 1 ? 'Client' : 'Clients'
                   ),
                   _react2.default.createElement(
@@ -69329,8 +69369,8 @@ var WorkProject = function (_Component) {
                     }).join(', ')
                   ),
                   _react2.default.createElement(
-                    'p',
-                    { className: 'font-weight-bold m-0 letter-spacing-point125-rem' },
+                    'h5',
+                    { className: 'muli-bold m-0 letter-spacing-point05-rem' },
                     projectData.project_categories.length === 1 ? 'Service' : 'Services'
                   ),
                   _react2.default.createElement(
@@ -69344,8 +69384,8 @@ var WorkProject = function (_Component) {
                     'div',
                     null,
                     _react2.default.createElement(
-                      'p',
-                      { className: 'font-weight-bold m-0 letter-spacing-point125-rem' },
+                      'h5',
+                      { className: 'muli-bold m-0 letter-spacing-point05-rem' },
                       projectData.collaborators.length === 1 ? 'Collaborator' : 'Collaborators'
                     ),
                     _react2.default.createElement(
@@ -69376,7 +69416,7 @@ var WorkProject = function (_Component) {
             { className: 'row justify-content-center m-0' },
             _react2.default.createElement(
               'div',
-              { className: 'col-12 col-sm-8 container p-0 mb-5rem mt-5' },
+              { className: 'col-10 col-lg-8 col-xl-6 container p-0 mb-5rem mt-5' },
               this.projectImages.map(function (image) {
                 var imageSizes = ImageSizePicker.imgSize(image.orig_name);
                 return _react2.default.createElement(
@@ -69396,11 +69436,11 @@ var WorkProject = function (_Component) {
               }),
               _react2.default.createElement(
                 'p',
-                { className: 'text-center pt-4' },
+                { className: 'text-center pt-4 muli-bold' },
                 _react2.default.createElement(
                   'span',
                   {
-                    style: { cursor: 'pointer' },
+                    className: 'back-to-top',
                     onClick: this.scrollToTop },
                   'BACK TO TOP'
                 )

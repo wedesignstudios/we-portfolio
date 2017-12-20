@@ -78,22 +78,20 @@ class WorkProject extends Component {
               title={featureImage.title}
               alt={featureImage.alt} />
         </div>
-        <div
-          id="press-text"
-          className="col-12 container p-0">
+        <div id="project-text" className="col-12 container p-0">
             <div className="row justify-content-center m-0">
-              <div className="col-8 container p-0 mb-5rem mt-5">
-                <h6 className="text-uppercase letter-spacing-point125-rem line-height-1-45-rem">{projectData.name}</h6>
-                <hr className="hr-1rem" />
+              <div className="col-10 col-lg-8 col-xl-6 container p-0 mb-2rem mt-5">
+                <h2 className="text-uppercase letter-spacing-point125-rem muli-bold">{projectData.name}</h2>
+                <hr className="hr-point7rem mb-4" />
                 <div className="row m-0">
                   <div id="project-info" className="col-sm-6 p-0 pr-sm-3">
-                    <p className="font-weight-bold m-0 letter-spacing-point125-rem">{projectData.clients.length === 1 ? 'Client' : 'Clients'}</p>
+                    <h5 className="muli-bold m-0 letter-spacing-point05-rem">{projectData.clients.length === 1 ? 'Client' : 'Clients'}</h5>
                     <p>{projectData.clients.map(client => {
                         return client.name;
                       }).join(', ')
                     }</p>
 
-                    <p className="font-weight-bold m-0 letter-spacing-point125-rem">{projectData.project_categories.length === 1 ? 'Service' : 'Services'}</p>
+                    <h5 className="muli-bold m-0 letter-spacing-point05-rem">{projectData.project_categories.length === 1 ? 'Service' : 'Services'}</h5>
                     <p>{projectData.project_categories.map(category => {
                         return category.name;
                       }).join(', ')
@@ -101,7 +99,7 @@ class WorkProject extends Component {
 
                     {projectData.collaborators.length > 0 ?
                       <div>
-                        <p className="font-weight-bold m-0 letter-spacing-point125-rem">{projectData.collaborators.length === 1 ? 'Collaborator' : 'Collaborators'}</p>
+                        <h5 className="muli-bold m-0 letter-spacing-point05-rem">{projectData.collaborators.length === 1 ? 'Collaborator' : 'Collaborators'}</h5>
                         <p>{projectData.collaborators.map(collaborator => {
                             return collaborator.name;
                           }).join(', ')
@@ -120,7 +118,7 @@ class WorkProject extends Component {
           id="project-images"
           className="col-12 p-0">
           <div className="row justify-content-center m-0">
-            <div className="col-12 col-sm-8 container p-0 mb-5rem mt-5">
+            <div className="col-10 col-lg-8 col-xl-6 container p-0 mb-5rem mt-5">
               {this.projectImages.map(image => {
                 let imageSizes = ImageSizePicker.imgSize(image.orig_name);
                 return(
@@ -138,9 +136,9 @@ class WorkProject extends Component {
                   </div>
                 )
               })}
-              <p className="text-center pt-4">
+              <p className="text-center pt-4 muli-bold">
                 <span
-                  style={{cursor: 'pointer'}}
+                  className="back-to-top"
                   onClick={this.scrollToTop} >
                   BACK TO TOP
                 </span>

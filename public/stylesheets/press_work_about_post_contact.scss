@@ -1,5 +1,40 @@
 // Press/Work/About/Post/Contact component styles
 
+#work,
+#press {
+  .card {
+    &::before {
+      background-color: rgba(0,0,0,0.0);
+      content: '';
+      height: 100%;
+      position: absolute;
+      -webkit-transition: background-color 0.2s ease-out;
+      -moz-transition: background-color 0.2s ease-out;
+      -o-transition: background-color 0.2s ease-out;
+      transition: background-color 0.2s ease;
+      width: 100%;
+    }
+
+    &:hover::before {
+      background-color: rgba(0,0,0,0.05);
+      content: '';
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+
+    .card-title {
+      &::after {
+        @include animated-underline(5px);
+      }
+
+      &.animate-underline::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
 .feature-image {
   max-height: 50rem;
   overflow: hidden;

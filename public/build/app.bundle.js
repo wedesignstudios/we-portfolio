@@ -17403,6 +17403,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var classNames = __webpack_require__(54);
 var DataActions = __webpack_require__(31);
 var FormHandlers = __webpack_require__(14);
 var FormValidations = __webpack_require__(17);
@@ -17469,6 +17470,8 @@ var FormNewsStory = function (_React$Component) {
   }, {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps, nextState) {
+      if (nextState.title.length > 30) nextState.title = this.state.title;
+
       this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
       return true;
@@ -17553,6 +17556,7 @@ var FormNewsStory = function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      var wordCounterClass = classNames('input-group-addon', 'input-group-addon', 'background-white', 'word-counter', { 'text-danger': this.state.title.length >= 25 });
       return _react2.default.createElement(
         'div',
         { className: 'row justify-content-center' },
@@ -17667,7 +17671,7 @@ var FormNewsStory = function (_React$Component) {
                     _react2.default.createElement('input', {
                       type: 'text',
                       name: 'title',
-                      className: this.state.titleErr ? 'err form-control' : 'form-control',
+                      className: this.state.titleErr ? 'err form-control word-count' : 'form-control word-count',
                       value: this.state.title,
                       onChange: function onChange(e) {
                         return FormHandlers.handleOnChange(e, _this3);
@@ -17678,6 +17682,12 @@ var FormNewsStory = function (_React$Component) {
                       onBlur: function onBlur(e) {
                         FormValidations.checkField(e, _this3);
                       } }),
+                    _react2.default.createElement(
+                      'span',
+                      { className: wordCounterClass },
+                      this.state.title.length,
+                      '/30'
+                    ),
                     this.state.title ? _react2.default.createElement(
                       'span',
                       { className: 'input-group-addon text-success background-white border-0' },
@@ -17912,6 +17922,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var classNames = __webpack_require__(54);
 var _groupBy = __webpack_require__(65);
 var _map = __webpack_require__(129);
 var _isEmpty = __webpack_require__(503);
@@ -18021,6 +18032,10 @@ var FormProject = function (_React$Component) {
     key: 'componentWillUpdate',
     value: function componentWillUpdate(nextProps, nextState) {
       this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+      if (nextState.name.length > 30) {
+        nextState.name = this.state.name;
+      }
 
       return true;
     }
@@ -18168,6 +18183,7 @@ var FormProject = function (_React$Component) {
 
       var image_sort_order = this.state.image_sort_order;
 
+      var wordCounterClass = classNames('input-group-addon', 'input-group-addon', 'background-white', 'word-counter', { 'text-danger': this.state.name.length >= 25 });
       return _react2.default.createElement(
         'div',
         { className: 'row m-0 justify-content-center' },
@@ -18266,7 +18282,7 @@ var FormProject = function (_React$Component) {
                     _react2.default.createElement('input', {
                       type: 'text',
                       name: 'name',
-                      className: this.state.nameErr ? 'err form-control' : 'form-control',
+                      className: this.state.nameErr ? 'err form-control word-count' : 'form-control word-count',
                       value: this.state.name,
                       onChange: function onChange(e) {
                         return FormHandlers.handleOnChange(e, _this3);
@@ -18277,6 +18293,12 @@ var FormProject = function (_React$Component) {
                       onBlur: function onBlur(e) {
                         FormValidations.checkField(e, _this3);
                       } }),
+                    _react2.default.createElement(
+                      'span',
+                      { className: wordCounterClass },
+                      this.state.name.length,
+                      '/30'
+                    ),
                     this.state.name ? _react2.default.createElement(
                       'span',
                       { className: 'input-group-addon text-success background-white border-0' },
@@ -18601,10 +18623,11 @@ var GetImagesNewsStory = function (_React$Component) {
     value: function setImageId(imageData) {
       var _this3 = this;
 
-      if (this.props.newsStoryId) {
-        var image = imageData.filter(function (img) {
-          return img.news_story_id == _this3.props.newsStoryId;
-        });
+      var image = imageData.filter(function (img) {
+        return img.news_story_id == _this3.props.newsStoryId;
+      });
+
+      if (image.length > 0) {
         this.setState({
           image_id: image[0].id
         });

@@ -31,10 +31,11 @@ class GetImagesNewsStory extends React.Component {
   }
 
   setImageId(imageData) {
-    if(this.props.newsStoryId) {
-      let image = imageData.filter(img => {
-        return img.news_story_id == this.props.newsStoryId;
-      });
+    let image = imageData.filter(img => {
+      return img.news_story_id == this.props.newsStoryId;
+    });
+
+    if(image.length > 0) {
       this.setState({
         image_id: image[0].id
       });

@@ -9,6 +9,7 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
+const classNames = require('classnames');
 const _groupBy = require('lodash/groupBy');
 const _map = require('lodash/map');
 const _isEmpty = require('lodash/isEmpty');
@@ -109,6 +110,10 @@ class FormProject extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+    if(nextState.name.length > 30) {
+      nextState.name = this.state.name;
+    }
 
     return true;
   }
@@ -258,6 +263,13 @@ class FormProject extends React.Component {
 
   render() {
     const { image_sort_order } = this.state;
+    const wordCounterClass = classNames(
+      'input-group-addon',
+      'input-group-addon',
+      'background-white',
+      'word-counter',
+      {'text-danger': this.state.name.length >= 25}
+    );
     return (
       <div className="row m-0 justify-content-center">
         <div className="col-sm-6">
@@ -330,11 +342,12 @@ class FormProject extends React.Component {
                     <input
                         type="text"
                         name="name"
-                        className={this.state.nameErr ? 'err form-control' : 'form-control'}
+                        className={this.state.nameErr ? 'err form-control word-count' : 'form-control word-count'}
                         value={this.state.name}
                         onChange={(e) => FormHandlers.handleOnChange(e, this)}
                         onFocus={(e) => FormHandlers.preventSpaceKey(e)}
                         onBlur={(e) => {FormValidations.checkField(e, this);}} />
+                      <span className={wordCounterClass}>{this.state.name.length}/30</span>
                       {this.state.name ?
                         <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
                         <span className="input-group-addon text-danger background-white border-0">Required</span>

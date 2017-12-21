@@ -9,6 +9,7 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
+const classNames = require('classnames');
 const DataActions = require('../../data/actions');
 const FormHandlers = require('../../services/form_handlers');
 const FormValidations = require('../../services/form_validations');
@@ -69,6 +70,8 @@ class FormNewsStory extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
+    if(nextState.title.length > 30) nextState.title = this.state.title;
+
     this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
     return true;
@@ -160,6 +163,13 @@ class FormNewsStory extends React.Component {
   }
 
   render() {
+    const wordCounterClass = classNames(
+      'input-group-addon',
+      'input-group-addon',
+      'background-white',
+      'word-counter',
+      {'text-danger': this.state.title.length >= 25}
+    );
     return(
       <div className="row justify-content-center">
         <div className="col-sm-6">
@@ -244,11 +254,12 @@ class FormNewsStory extends React.Component {
                       <input
                         type="text"
                         name="title"
-                        className={this.state.titleErr ? 'err form-control' : 'form-control'}
+                        className={this.state.titleErr ? 'err form-control word-count' : 'form-control word-count'}
                         value={this.state.title}
                         onChange={(e) => FormHandlers.handleOnChange(e, this)}
                         onFocus={(e) => FormHandlers.preventSpaceKey(e)}
                         onBlur={(e) => {FormValidations.checkField(e, this);}} />
+                      <span className={wordCounterClass}>{this.state.title.length}/30</span>
                         {this.state.title ?
                           <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
                           <span className="input-group-addon text-danger background-white border-0">Required</span>

@@ -68851,7 +68851,7 @@ var Press = function (_Component) {
               { className: 'row' },
               _react2.default.createElement(
                 'div',
-                { className: 'card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2' },
+                { className: 'card-columns' },
                 newsData.map(function (story) {
                   var imageSizes = ImageSizePicker.imgSize(story.image.orig_name);
                   return _react2.default.createElement(
@@ -69207,10 +69207,10 @@ var Work = function (_Component) {
             { className: 'container-fluid' },
             _react2.default.createElement(
               'div',
-              { className: 'row' },
+              { className: 'row justify-content-center' },
               _react2.default.createElement(
                 'div',
-                { className: 'card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2' },
+                { className: 'card-columns' },
                 projectData.map(function (project) {
                   var groupedImages = _groupBy(project.images, 'id');
                   var featureImageId = project.project_images_sort_order.images_order[0];

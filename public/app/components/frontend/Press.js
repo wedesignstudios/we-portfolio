@@ -49,7 +49,7 @@ class Press extends Component {
         <div className="col-sm-10">
           <div className="container-fluid">
             <div className="row">
-              <div className="card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2">
+              <div className="card-columns">
                 {newsData.map(story => {
                   let imageSizes = ImageSizePicker.imgSize(story.image.orig_name);
                   return(

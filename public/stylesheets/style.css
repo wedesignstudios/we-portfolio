@@ -114,26 +114,23 @@ video {
     .card .card-title a:hover {
       background-color: transparent; }
 
-.card-columns-gap-3rem {
-  -webkit-column-gap: 3rem;
-  -moz-column-gap: 3rem;
-  column-gap: 3rem; }
-
-@media (min-width: 1200px) {
-  .card-columns-5 {
-    -webkit-column-count: 5;
-    -moz-column-count: 5;
-    column-count: 5; } }
-
-@media (max-width: 574px) {
-  .card-columns-2 {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2; }
-  .card-columns-gap-2rem {
+@media (min-width: 576px) {
+  .card-columns {
     -webkit-column-gap: 2rem;
     -moz-column-gap: 2rem;
-    column-gap: 2rem; } }
+    column-gap: 2rem;
+    column-count: 2; } }
+
+@media (min-width: 992px) {
+  .card-columns {
+    -webkit-column-gap: 3rem;
+    -moz-column-gap: 3rem;
+    column-gap: 3rem;
+    column-count: 3; } }
+
+@media (min-width: 1200px) {
+  .card-columns {
+    column-count: 4; } }
 
 .white-space-pre-line {
   white-space: pre-line; }

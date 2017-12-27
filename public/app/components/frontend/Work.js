@@ -49,8 +49,8 @@ class Work extends Component {
       <div id="work" className="row justify-content-center mx-0" style={{marginTop: margin}} ref="workRef">
           <div className="col-sm-10">
             <div className="container-fluid">
-              <div className="row">
-                <div className="card-columns card-columns-gap-3rem card-columns-gap-2rem card-columns-5 card-columns-2">
+              <div className="row justify-content-center">
+                <div className="card-columns">
                   {projectData.map(project => {
                     let groupedImages = _groupBy(project.images, 'id');
                     let featureImageId = project.project_images_sort_order.images_order[0];

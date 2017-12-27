@@ -56,16 +56,23 @@ class GetImages extends React.Component {
   }
 
   onDrop(files) {
+    let uploadPath = '/api/v1/images/upload';
+
     this.setState({
       fileProcessing: true
     });
+
     files.forEach(file => {
       const formData = new FormData();
-
       formData.append('image', file);
+
+      if(file.type === 'image/gif') {
+        uploadPath = '/api/v1/images/upload/gif'
+      }
+
       DataActions.uploadImages(
         formData,
-        '/api/v1/images/upload',
+        uploadPath,
         this.imageAdded,
         this.setSubmitErrorMessage
       );

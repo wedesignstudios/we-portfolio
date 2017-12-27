@@ -6,7 +6,7 @@ const multer = require('multer');
 const Image = require('../models/image.js');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const fs = require('fs');
-const gm = require('gm').subClass({ imageMagick: true });
+const gm = require('gm');
 const {execFile} = require('child_process');
 const gifsicle = require('gifsicle');
 const imageMagick = gm.subClass({ imageMagick: true });
@@ -189,7 +189,7 @@ router.post('/upload/gif', isLoggedIn, uploadGif.single('image'), (req, res, nex
 
     async.waterfall([
       function getDimensions(next) {
-        gm(filePath)
+        imageMagick(filePath)
           .size(function (err, size) {
             if (!err) {
               origWidth = size.width;

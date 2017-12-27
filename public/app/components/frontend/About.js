@@ -41,10 +41,16 @@ class About extends Component {
     let imageSizes = ImageSizePicker.imgSize('WE_TWIRL.jpg');
     let lauraImageOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT.jpg');
     let lauraImageSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT.jpg');
+    let lauraGifOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT_GIF_V3.gif');
+    let lauraGifSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT_GIF_V3.gif');
     let davidImageOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT.jpg');
     let davidImageSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT.jpg');
+    let davidGifOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT_GIF_V2.gif');
+    let davidGifSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT_GIF_V2.gif');
     let lemmyImageOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT.jpg');
     let lemmyImageSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT.jpg');
+    let lemmyGifOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT_GIF_V2.gif');
+    let lemmyGifSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT_GIF_V2.gif');
     let video = 'https://we-portfolio.s3.amazonaws.com/WE_TWIRL.mp4';
     return (
       <div id="about" className="row mx-0" style={{marginTop: margin}}>
@@ -92,6 +98,14 @@ class About extends Component {
                     srcSet={`${lauraImageOrig} 1440w, ${lauraImageSizes.w1024} 1024w, ${lauraImageSizes.w800} 800w, ${lauraImageSizes.w600} 600w,`}
                     sizes="100vw"
                     width="100%" />
+                  <img
+                    className="headshot headshot-animated-gif pr-md-3"
+                    title="Laura Worrick headshot animated gif"
+                    alt="Laura Worrick headshot animated gif"
+                    src={lauraGifOrig}
+                    srcSet={`${lauraGifOrig} 1440w, ${lauraGifSizes.w1024} 1024w, ${lauraGifSizes.w800} 800w, ${lauraGifSizes.w600} 600w,`}
+                    sizes="100vw"
+                    width="100%" />
                 </div>
                 <div className="col-sm-6 pr-sm-0 about-profile order-1">
                   <h5 className="muli-bold m-0 letter-spacing-point05-rem">LAURA WORRICK</h5>
@@ -114,6 +128,14 @@ class About extends Component {
                     srcSet={`${davidImageOrig} 1440w, ${davidImageSizes.w1024} 1024w, ${davidImageSizes.w800} 800w, ${davidImageSizes.w600} 600w,`}
                     sizes="100vw"
                     width="100%" />
+                  <img
+                    className="headshot headshot-animated-gif pl-md-3"
+                    title="David Elden headshot animated gif"
+                    alt="David Elden headshot animated gif"
+                    src={davidGifOrig}
+                    srcSet={`${davidGifOrig} 1440w, ${davidGifSizes.w1024} 1024w, ${davidGifSizes.w800} 800w, ${davidGifSizes.w600} 600w,`}
+                    sizes="100vw"
+                    width="100%" />
                 </div>
               </div>
               <div className="row justify-content-center m-0 mt-6rem">
@@ -124,6 +146,14 @@ class About extends Component {
                     alt="Lemmy headshot"
                     src={lemmyImageOrig}
                     srcSet={`${lemmyImageOrig} 1440w, ${lemmyImageSizes.w1024} 1024w, ${lemmyImageSizes.w800} 800w, ${lemmyImageSizes.w600} 600w,`}
+                    sizes="100vw"
+                    width="100%" />
+                  <img
+                    className="headshot headshot-animated-gif pr-md-3"
+                    title="Lemmy headshot animated gif"
+                    alt="Lemmy headshot animated gif"
+                    src={lemmyGifOrig}
+                    srcSet={`${lemmyGifOrig} 1440w, ${lemmyGifSizes.w1024} 1024w, ${lemmyGifSizes.w800} 800w, ${lemmyGifSizes.w600} 600w,`}
                     sizes="100vw"
                     width="100%" />
                 </div>

@@ -67462,10 +67462,16 @@ var About = function (_Component) {
       var imageSizes = ImageSizePicker.imgSize('WE_TWIRL.jpg');
       var lauraImageOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT.jpg');
       var lauraImageSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT.jpg');
+      var lauraGifOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT_GIF_V3.gif');
+      var lauraGifSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT_GIF_V3.gif');
       var davidImageOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT.jpg');
       var davidImageSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT.jpg');
+      var davidGifOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT_GIF_V2.gif');
+      var davidGifSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT_GIF_V2.gif');
       var lemmyImageOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT.jpg');
       var lemmyImageSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT.jpg');
+      var lemmyGifOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT_GIF_V2.gif');
+      var lemmyGifSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT_GIF_V2.gif');
       var video = 'https://we-portfolio.s3.amazonaws.com/WE_TWIRL.mp4';
       return _react2.default.createElement(
         'div',
@@ -67540,6 +67546,14 @@ var About = function (_Component) {
                     src: lauraImageOrig,
                     srcSet: lauraImageOrig + ' 1440w, ' + lauraImageSizes.w1024 + ' 1024w, ' + lauraImageSizes.w800 + ' 800w, ' + lauraImageSizes.w600 + ' 600w,',
                     sizes: '100vw',
+                    width: '100%' }),
+                  _react2.default.createElement('img', {
+                    className: 'headshot headshot-animated-gif pr-md-3',
+                    title: 'Laura Worrick headshot animated gif',
+                    alt: 'Laura Worrick headshot animated gif',
+                    src: lauraGifOrig,
+                    srcSet: lauraGifOrig + ' 1440w, ' + lauraGifSizes.w1024 + ' 1024w, ' + lauraGifSizes.w800 + ' 800w, ' + lauraGifSizes.w600 + ' 600w,',
+                    sizes: '100vw',
                     width: '100%' })
                 ),
                 _react2.default.createElement(
@@ -67586,6 +67600,14 @@ var About = function (_Component) {
                     src: davidImageOrig,
                     srcSet: davidImageOrig + ' 1440w, ' + davidImageSizes.w1024 + ' 1024w, ' + davidImageSizes.w800 + ' 800w, ' + davidImageSizes.w600 + ' 600w,',
                     sizes: '100vw',
+                    width: '100%' }),
+                  _react2.default.createElement('img', {
+                    className: 'headshot headshot-animated-gif pl-md-3',
+                    title: 'David Elden headshot animated gif',
+                    alt: 'David Elden headshot animated gif',
+                    src: davidGifOrig,
+                    srcSet: davidGifOrig + ' 1440w, ' + davidGifSizes.w1024 + ' 1024w, ' + davidGifSizes.w800 + ' 800w, ' + davidGifSizes.w600 + ' 600w,',
+                    sizes: '100vw',
                     width: '100%' })
                 )
               ),
@@ -67601,6 +67623,14 @@ var About = function (_Component) {
                     alt: 'Lemmy headshot',
                     src: lemmyImageOrig,
                     srcSet: lemmyImageOrig + ' 1440w, ' + lemmyImageSizes.w1024 + ' 1024w, ' + lemmyImageSizes.w800 + ' 800w, ' + lemmyImageSizes.w600 + ' 600w,',
+                    sizes: '100vw',
+                    width: '100%' }),
+                  _react2.default.createElement('img', {
+                    className: 'headshot headshot-animated-gif pr-md-3',
+                    title: 'Lemmy headshot animated gif',
+                    alt: 'Lemmy headshot animated gif',
+                    src: lemmyGifOrig,
+                    srcSet: lemmyGifOrig + ' 1440w, ' + lemmyGifSizes.w1024 + ' 1024w, ' + lemmyGifSizes.w800 + ' 800w, ' + lemmyGifSizes.w600 + ' 600w,',
                     sizes: '100vw',
                     width: '100%' })
                 ),

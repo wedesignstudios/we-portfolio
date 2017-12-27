@@ -1,0 +1,1 @@
+This directory (tmp/gifs/resized) exists to temporarily hold resized gif files processed throught the RESTful /upload/gifs POST route (see controllers/images.js for more details).

@@ -24,9 +24,10 @@ $ipad-pro-landscape-breakpoint: "(min-device-width: 1366px) and (max-device-widt
   height: 100%;
   left: 0;
   position: absolute;
+  transition: width 0.15s ease-in-out;
+  -ms-transition: width 0.15s ease-in-out;
   -webkit-transition: width 0.15s ease-in-out;
   -moz-transition: width 0.15s ease-in-out;
   -o-transition: width 0.15s ease-in-out;
-  transition: width 0.15s ease-in-out;
   width: 0;
 }

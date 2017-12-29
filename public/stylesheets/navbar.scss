@@ -43,12 +43,12 @@
             margin-bottom: 1rem;
           }
 
-          &::after {
-            @include animated-underline(7px);
-          }
-
           &:hover {
             background-color: transparent;
+          }
+
+          &::after {
+            @include animated-underline(7px);
           }
 
           &:hover::after {

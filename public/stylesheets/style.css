@@ -204,6 +204,8 @@ video {
           display: inline-block;
           padding: 0;
           margin-bottom: 1rem; }
+        #navbar-main .navbar ul li a:hover {
+          background-color: transparent; }
         #navbar-main .navbar ul li a::after {
           bottom: 0;
           box-shadow: 0 7px 0 #E6E31A;
@@ -211,13 +213,12 @@ video {
           height: 100%;
           left: 0;
           position: absolute;
+          transition: width 0.15s ease-in-out;
+          -ms-transition: width 0.15s ease-in-out;
           -webkit-transition: width 0.15s ease-in-out;
           -moz-transition: width 0.15s ease-in-out;
           -o-transition: width 0.15s ease-in-out;
-          transition: width 0.15s ease-in-out;
           width: 0; }
-        #navbar-main .navbar ul li a:hover {
-          background-color: transparent; }
         #navbar-main .navbar ul li a:hover::after {
           width: 100%; }
     #navbar-main .navbar .navbar-toggler {
@@ -518,10 +519,11 @@ form textarea.form-control {
   height: 100%;
   left: 0;
   position: absolute;
+  transition: width 0.15s ease-in-out;
+  -ms-transition: width 0.15s ease-in-out;
   -webkit-transition: width 0.15s ease-in-out;
   -moz-transition: width 0.15s ease-in-out;
   -o-transition: width 0.15s ease-in-out;
-  transition: width 0.15s ease-in-out;
   width: 0; }
 
 #work .card .card-title.animate-underline::after,

@@ -71,7 +71,7 @@ class About extends Component {
                title="WE letters"
                alt="WE letters"
                src={imageOrig}
-               srcSet={`${imageOrig} 1440w, ${imageSizes.w1024} 1024w, ${imageSizes.w800} 800w, ${imageSizes.w600} 600w,`}
+               srcSet={`${imageOrig} 1440w, ${imageSizes.w1024} 1024w, ${imageSizes.w800} 800w, ${imageSizes.w600} 600w`}
                sizes="100vw"
                width="1440" />
             </div>
@@ -95,7 +95,7 @@ class About extends Component {
                     title="Laura Worrick headshot"
                     alt="Laura Worrick headshot"
                     src={lauraImageOrig}
-                    srcSet={`${lauraImageOrig} 1440w, ${lauraImageSizes.w1024} 1024w, ${lauraImageSizes.w800} 800w, ${lauraImageSizes.w600} 600w,`}
+                    srcSet={`${lauraImageOrig} 1440w, ${lauraImageSizes.w1024} 1024w, ${lauraImageSizes.w800} 800w, ${lauraImageSizes.w600} 600w`}
                     sizes="100vw"
                     width="100%" />
                   <img
@@ -103,7 +103,7 @@ class About extends Component {
                     title="Laura Worrick headshot animated gif"
                     alt="Laura Worrick headshot animated gif"
                     src={lauraGifOrig}
-                    srcSet={`${lauraGifOrig} 1440w, ${lauraGifSizes.w1024} 1024w, ${lauraGifSizes.w800} 800w, ${lauraGifSizes.w600} 600w,`}
+                    srcSet={`${lauraGifOrig} 1440w, ${lauraGifSizes.w1024} 1024w, ${lauraGifSizes.w800} 800w, ${lauraGifSizes.w600} 600w`}
                     sizes="100vw"
                     width="100%" />
                 </div>
@@ -125,7 +125,7 @@ class About extends Component {
                     title="David Elden headshot"
                     alt="David Elden headshot"
                     src={davidImageOrig}
-                    srcSet={`${davidImageOrig} 1440w, ${davidImageSizes.w1024} 1024w, ${davidImageSizes.w800} 800w, ${davidImageSizes.w600} 600w,`}
+                    srcSet={`${davidImageOrig} 1440w, ${davidImageSizes.w1024} 1024w, ${davidImageSizes.w800} 800w, ${davidImageSizes.w600} 600w`}
                     sizes="100vw"
                     width="100%" />
                   <img
@@ -133,7 +133,7 @@ class About extends Component {
                     title="David Elden headshot animated gif"
                     alt="David Elden headshot animated gif"
                     src={davidGifOrig}
-                    srcSet={`${davidGifOrig} 1440w, ${davidGifSizes.w1024} 1024w, ${davidGifSizes.w800} 800w, ${davidGifSizes.w600} 600w,`}
+                    srcSet={`${davidGifOrig} 1440w, ${davidGifSizes.w1024} 1024w, ${davidGifSizes.w800} 800w, ${davidGifSizes.w600} 600w`}
                     sizes="100vw"
                     width="100%" />
                 </div>
@@ -145,7 +145,7 @@ class About extends Component {
                     title="Lemmy headshot"
                     alt="Lemmy headshot"
                     src={lemmyImageOrig}
-                    srcSet={`${lemmyImageOrig} 1440w, ${lemmyImageSizes.w1024} 1024w, ${lemmyImageSizes.w800} 800w, ${lemmyImageSizes.w600} 600w,`}
+                    srcSet={`${lemmyImageOrig} 1440w, ${lemmyImageSizes.w1024} 1024w, ${lemmyImageSizes.w800} 800w, ${lemmyImageSizes.w600} 600w`}
                     sizes="100vw"
                     width="100%" />
                   <img
@@ -153,7 +153,7 @@ class About extends Component {
                     title="Lemmy headshot animated gif"
                     alt="Lemmy headshot animated gif"
                     src={lemmyGifOrig}
-                    srcSet={`${lemmyGifOrig} 1440w, ${lemmyGifSizes.w1024} 1024w, ${lemmyGifSizes.w800} 800w, ${lemmyGifSizes.w600} 600w,`}
+                    srcSet={`${lemmyGifOrig} 1440w, ${lemmyGifSizes.w1024} 1024w, ${lemmyGifSizes.w800} 800w, ${lemmyGifSizes.w600} 600w`}
                     sizes="100vw"
                     width="100%" />
                 </div>

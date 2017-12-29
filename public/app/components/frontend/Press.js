@@ -48,7 +48,7 @@ class Press extends Component {
       <div id="press" className="row justify-content-center mx-0" style={{marginTop: margin}} ref="pressRef">
         <div className="col-sm-10">
           <div className="container-fluid">
-            <div className="row">
+            <div className="row justify-content-center">
               <div className="card-columns">
                 {newsData.map(story => {
                   let imageSizes = ImageSizePicker.imgSize(story.image.orig_name);

@@ -68951,7 +68951,7 @@ var Press = function (_Component) {
             { className: 'container-fluid' },
             _react2.default.createElement(
               'div',
-              { className: 'row' },
+              { className: 'row justify-content-center' },
               _react2.default.createElement(
                 'div',
                 { className: 'card-columns' },

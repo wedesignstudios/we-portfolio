@@ -169,7 +169,7 @@ class About extends Component {
                   <hr className="hr-point7rem mb-4" />
                 </div>
               </div>
-              <div id="client-logos" className="row justify-content-start align-items-center m-0">
+              <div id="client-logos" className="row justify-content-start align-items-center m-0 mb-5">
                 <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
                   <img
                     id="logo-un"
@@ -251,7 +251,7 @@ class About extends Component {
                     width="75%" />
                 </div>
               </div>
-              <p className="text-center mt-6rem muli-bold">
+              <p className="text-center pt-4 muli-bold">
                 <span
                   className="back-to-top"
                   onClick={this.scrollToTop} >

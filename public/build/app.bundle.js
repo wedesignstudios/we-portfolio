@@ -67666,7 +67666,7 @@ var About = function (_Component) {
               ),
               _react2.default.createElement(
                 'div',
-                { id: 'client-logos', className: 'row justify-content-start align-items-center m-0' },
+                { id: 'client-logos', className: 'row justify-content-start align-items-center m-0 mb-5' },
                 _react2.default.createElement(
                   'div',
                   { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
@@ -67770,7 +67770,7 @@ var About = function (_Component) {
               ),
               _react2.default.createElement(
                 'p',
-                { className: 'text-center mt-6rem muli-bold' },
+                { className: 'text-center pt-4 muli-bold' },
                 _react2.default.createElement(
                   'span',
                   {

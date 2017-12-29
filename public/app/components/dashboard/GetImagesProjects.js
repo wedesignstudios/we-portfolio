@@ -21,7 +21,7 @@ class GetImagesProjects extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         data = data.filter(obj => {
-          return obj.project_id === null || this.props.attached.includes(obj.id);
+          return (obj.project_id === null && Object.keys(obj.feature_image_project).length === 0) || this.props.attached.includes(obj.id);
         });
         this.setState({
           image_data: data

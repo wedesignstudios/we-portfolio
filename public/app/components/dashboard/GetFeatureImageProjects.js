@@ -19,7 +19,7 @@ class GetFeatureImageProjects extends Component {
     .then(res => res.json())
     .then(data => {
       data = data.filter(obj => {
-        return obj.project_id === null || this.props.attached.includes(obj.id);
+        return (Object.keys(obj.feature_image_project).length === 0 && obj.project_id === null) || obj.feature_image_project.project_id == this.props.projectId;
       });
       this.setState({
         image_data: data

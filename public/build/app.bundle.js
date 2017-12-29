@@ -39165,7 +39165,7 @@ var GetFeatureImageProjects = function (_Component) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
-          return obj.project_id === null || _this2.props.attached.includes(obj.id);
+          return Object.keys(obj.feature_image_project).length === 0 && obj.project_id === null || obj.feature_image_project.project_id == _this2.props.projectId;
         });
         _this2.setState({
           image_data: data
@@ -39322,7 +39322,7 @@ var GetImagesProjects = function (_React$Component) {
         return res.json();
       }).then(function (data) {
         data = data.filter(function (obj) {
-          return obj.project_id === null || _this2.props.attached.includes(obj.id);
+          return obj.project_id === null && Object.keys(obj.feature_image_project).length === 0 || _this2.props.attached.includes(obj.id);
         });
         _this2.setState({
           image_data: data

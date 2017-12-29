@@ -420,8 +420,7 @@ class FormProject extends React.Component {
                     <button
                       className="btn btn-secondary"
                       onClick={(e) => this.openFeatureImageModal(e)} >
-                        {this.state.feature_image.id ?                          'Change Image' : 'Add Image'
-                        }
+                        {this.state.feature_image.id ? 'Change Image' : 'Add Image'}
                     </button>
                     {this.state.feature_image.id ? 
                       <span className="text-success background-white ml-3"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :

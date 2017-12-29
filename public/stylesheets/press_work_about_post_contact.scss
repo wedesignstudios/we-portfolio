@@ -35,6 +35,27 @@
   }
 }
 
+#client-logos {
+  img {
+    &#logo-hmithl {
+      @include media-breakpoint-down(sm) {
+        width: 90%;
+      }
+    }
+    &#logo-thomsonreuters,
+    &#logo-hutong {
+      @include media-breakpoint-down(sm) {
+        width: 80%;
+      }
+    }
+    &#logo-risd {
+      @include media-breakpoint-down(sm) {
+        width: 75%;
+      }
+    }
+  }
+}
+
 .feature-image {
   max-height: 50rem;
   overflow: hidden;

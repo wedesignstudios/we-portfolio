@@ -530,6 +530,18 @@ form textarea.form-control {
 #press .card .card-title.animate-underline::after {
   width: 100%; }
 
+@media (max-width: 767px) {
+  #client-logos img#logo-hmithl {
+    width: 90%; } }
+
+@media (max-width: 767px) {
+  #client-logos img#logo-thomsonreuters, #client-logos img#logo-hutong {
+    width: 80%; } }
+
+@media (max-width: 767px) {
+  #client-logos img#logo-risd {
+    width: 75%; } }
+
 .feature-image {
   max-height: 50rem;
   overflow: hidden; }

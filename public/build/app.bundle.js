@@ -67652,22 +67652,125 @@ var About = function (_Component) {
               ),
               _react2.default.createElement(
                 'div',
-                { className: 'mb-5 mt-6rem' },
+                { className: 'row justify-content-center m-0 mt-6rem' },
                 _react2.default.createElement(
-                  'h5',
-                  { className: 'muli-bold m-0 letter-spacing-point05-rem' },
-                  'SELECT CLIENTS'
+                  'div',
+                  { className: 'col-sm-12 p-0' },
+                  _react2.default.createElement(
+                    'h5',
+                    { className: 'muli-bold m-0 letter-spacing-point05-rem' },
+                    'SELECT CLIENTS'
+                  ),
+                  _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' })
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { id: 'client-logos', className: 'row justify-content-start align-items-center m-0' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-un',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/UnitedNations.svg',
+                    title: 'United Nations logo',
+                    alt: 'United Nations logo',
+                    width: '70%' })
                 ),
-                _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
                 _react2.default.createElement(
-                  'p',
-                  null,
-                  'United Nations, Who What Wear, AIGA Austin, International Crisis Group, Thomson Reuters, Rhode Island School of Design, Mount Holyoke College, Lady Bird Johnson Wild Flower Center, Handmade in the Heartland, The Hutong Beijing.'
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-whowhatwear',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/WhoWhatWear.svg',
+                    title: 'Who What Wear logo',
+                    alt: 'Who What Wear logo',
+                    width: '100%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-aiga',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/AIGA.svg',
+                    title: 'AIGA logo',
+                    alt: 'AIGA logo',
+                    width: '60%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-icg',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/InternationalCrisisGroup.svg',
+                    title: 'International Crisis Group logo',
+                    alt: 'International Crisis Group logo',
+                    width: '100%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-thomsonreuters',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/ThomsonReuters.svg',
+                    title: 'Thomson Reuters logo',
+                    alt: 'Thomson Reuters logo',
+                    width: '60%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-risd',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/RISD.svg',
+                    title: 'RISD logo',
+                    alt: 'RISD logo',
+                    width: '60%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-mhc',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/MHC.svg',
+                    title: 'MHC logo',
+                    alt: 'MHC logo',
+                    width: '100%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-wfc',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/WFC.svg',
+                    title: 'Wildflower Center logo',
+                    alt: 'Wildflower Center logo',
+                    width: '90%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-hmithl',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/HMITHL.svg',
+                    title: 'Handmade In The Heartland logo',
+                    alt: 'Handmade In The Heartland logo',
+                    width: '75%' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  _react2.default.createElement('img', {
+                    id: 'logo-hutong',
+                    src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/TheHutong.svg',
+                    title: 'The Hutong logo',
+                    alt: 'The Hutong logo',
+                    width: '75%' })
                 )
               ),
               _react2.default.createElement(
                 'p',
-                { className: 'text-center pt-4 muli-bold' },
+                { className: 'text-center mt-6rem muli-bold' },
                 _react2.default.createElement(
                   'span',
                   {

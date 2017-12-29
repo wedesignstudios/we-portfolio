@@ -163,12 +163,95 @@ class About extends Component {
                   <p>Office manager, Pug-zhu and sleep expert. Bork!</p>
                 </div>
               </div>
-              <div className="mb-5 mt-6rem">
-                <h5 className="muli-bold m-0 letter-spacing-point05-rem">SELECT CLIENTS</h5>
-                <hr className="hr-point7rem mb-4" />
-                <p>United Nations, Who What Wear, AIGA Austin, International Crisis Group, Thomson Reuters, Rhode Island School of Design, Mount Holyoke College, Lady Bird Johnson Wild Flower Center, Handmade in the Heartland, The Hutong Beijing.</p>
+              <div className="row justify-content-center m-0 mt-6rem">
+                <div className="col-sm-12 p-0">
+                  <h5 className="muli-bold m-0 letter-spacing-point05-rem">SELECT CLIENTS</h5>
+                  <hr className="hr-point7rem mb-4" />
+                </div>
               </div>
-              <p className="text-center pt-4 muli-bold">
+              <div id="client-logos" className="row justify-content-start align-items-center m-0">
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-un"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/UnitedNations.svg"
+                    title="United Nations logo"
+                    alt="United Nations logo"
+                    width="70%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-whowhatwear"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/WhoWhatWear.svg"
+                    title="Who What Wear logo"
+                    alt="Who What Wear logo"
+                    width="100%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-aiga"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/AIGA.svg"
+                    title="AIGA logo"
+                    alt="AIGA logo"
+                    width="60%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-icg"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/InternationalCrisisGroup.svg"
+                    title="International Crisis Group logo"
+                    alt="International Crisis Group logo"
+                    width="100%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-thomsonreuters"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/ThomsonReuters.svg"
+                    title="Thomson Reuters logo"
+                    alt="Thomson Reuters logo"
+                    width="60%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-risd"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/RISD.svg"
+                    title="RISD logo"
+                    alt="RISD logo"
+                    width="60%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-mhc"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/MHC.svg"
+                    title="MHC logo"
+                    alt="MHC logo"
+                    width="100%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-wfc"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/WFC.svg"
+                    title="Wildflower Center logo"
+                    alt="Wildflower Center logo"
+                    width="90%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-hmithl"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/HMITHL.svg"
+                    title="Handmade In The Heartland logo"
+                    alt="Handmade In The Heartland logo"
+                    width="75%" />
+                </div>
+                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                  <img
+                    id="logo-hutong"
+                    src="https://s3.us-east-2.amazonaws.com/we-portfolio/TheHutong.svg"
+                    title="The Hutong logo"
+                    alt="The Hutong logo"
+                    width="75%" />
+                </div>
+              </div>
+              <p className="text-center mt-6rem muli-bold">
                 <span
                   className="back-to-top"
                   onClick={this.scrollToTop} >

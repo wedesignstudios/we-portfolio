@@ -67329,7 +67329,7 @@ var Layout = function (_Component) {
               { className: 'row mx-0' },
               _react2.default.createElement(
                 'div',
-                { id: 'nav-container', className: 'fixed-top' },
+                { id: 'nav-container' },
                 this.props.auth ? _react2.default.createElement(NavAdmin, { navReady: this.navReady }) : null,
                 _react2.default.createElement(NavBar, { navReady: this.navReady, navNotReady: this.navNotReady })
               ),

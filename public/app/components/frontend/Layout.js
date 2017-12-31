@@ -59,7 +59,7 @@ class Layout extends Component {
         <div className="row m-0 height-100">
           <div className="wrapper col-12 px-0">
           <div className="row mx-0">
-            <div id="nav-container" className="fixed-top">
+            <div id="nav-container">
               {this.props.auth ? <NavAdmin navReady={this.navReady} /> : null}
               <NavBar navReady={this.navReady} navNotReady={this.navNotReady} />
             </div>

@@ -1,7 +1,13 @@
 // Navbar component styles
-#navbar-main {
-  background: linear-gradient(rgba(1,76,228,0.5), rgba(1,76,228,0.0));
+#nav-container {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
 
+#navbar-main {
     .navbar {
     margin: 1rem 0;
     transition: 300ms ease-in-out;
@@ -113,11 +119,6 @@
       }
 
     }
-  }
-
-  &.nav-bg-white {
-    background: transparent;
-    background-color: $white;
   }
 }
 

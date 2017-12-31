@@ -67404,6 +67404,8 @@ var _reactScroll2 = _interopRequireDefault(_reactScroll);
 
 var _reactHelmet = __webpack_require__(46);
 
+var _reactRouterDom = __webpack_require__(11);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -67529,9 +67531,9 @@ var About = function (_Component) {
                 'WE specializes in brand identities, software development, print design, web design, illustration & more.'
               ),
               _react2.default.createElement(
-                'p',
-                null,
-                'Start a Project >'
+                _reactRouterDom.NavLink,
+                { to: '/contact', className: 'btn btn-cta btn-lg muli-bold text-uppercase rounded-0 mt-5' },
+                'Start a Project'
               ),
               _react2.default.createElement(
                 'div',

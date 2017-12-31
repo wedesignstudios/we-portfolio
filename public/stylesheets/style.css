@@ -105,6 +105,18 @@ video {
 .btn {
   text-decoration: none; }
 
+.btn-cta {
+  background-color: #FFFFFF;
+  border: 4px solid #000000;
+  color: #000000; }
+  .btn-cta:hover {
+    border-color: transparent; }
+  @media (max-width: 767px) {
+    .btn-cta {
+      display: block;
+      margin: 3rem auto;
+      max-width: 16rem; } }
+
 .card .card-title {
   display: inline-block;
   font-size: 0.95rem;

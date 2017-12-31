@@ -19,6 +19,22 @@
   text-decoration: none;
 }
 
+.btn-cta {
+  background-color: $white;
+  border: 4px solid $black;
+  color: $black;
+
+  &:hover {
+    border-color: transparent;
+  }
+
+  @include media-breakpoint-down(sm) {
+    display: block;
+    margin: 3rem auto;
+    max-width: 16rem;
+  }
+}
+
 // Cards
 .card {
 

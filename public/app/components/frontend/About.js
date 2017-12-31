@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Scroll from 'react-scroll';
 import {Helmet} from 'react-helmet';
+import { NavLink } from 'react-router-dom';
 
 const scroll = Scroll.animateScroll;
 const ImageSizePicker = require('../../services/image_size_picker');
@@ -86,7 +87,9 @@ class About extends Component {
 
               <p>WE specializes in brand identities, software development, print design, web design, illustration & more.</p>
 
-              <p>Start a Project ></p>
+              <NavLink to="/contact" className="btn btn-cta btn-lg muli-bold text-uppercase rounded-0 mt-5">
+                Start a Project
+              </NavLink>
 
               <div className="row justify-content-center m-0 mt-6rem">
                 <div className="col-sm-6 pl-sm-0 about-profile">

@@ -114,6 +114,9 @@ class About extends Component {
                   <h5 className="muli-bold m-0 letter-spacing-point05-rem">LAURA WORRICK</h5>
                   <hr className="hr-point7rem mb-4" />
                   <p>Laura is an art director, designer and illustrator.</p>
+                  <p>Contact Laura:<br />
+                    <span className="muli-bold">laura@wedesignstudios.com</span>
+                  </p>
                 </div>
               </div>
               <div className="row justify-content-center m-0 mt-6rem">
@@ -121,6 +124,10 @@ class About extends Component {
                   <h5 className="muli-bold m-0 letter-spacing-point05-rem">DAVID ELDEN</h5>
                   <hr className="hr-point7rem mb-4" />
                   <p>David is a software developer, designer and operations manager.</p>
+                  <hr />
+                  <p>Contact David:<br />
+                    <span className="muli-bold">david@wedesignstudios.com</span>
+                  </p>
                 </div>
                 <div className="col-sm-6 pr-sm-0 about-profile">
                   <img

@@ -67571,6 +67571,17 @@ var About = function (_Component) {
                     'p',
                     null,
                     'Laura is an art director, designer and illustrator.'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Contact Laura:',
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'muli-bold' },
+                      'laura@wedesignstudios.com'
+                    )
                   )
                 )
               ),
@@ -67590,6 +67601,18 @@ var About = function (_Component) {
                     'p',
                     null,
                     'David is a software developer, designer and operations manager.'
+                  ),
+                  _react2.default.createElement('hr', null),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Contact David:',
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'muli-bold' },
+                      'david@wedesignstudios.com'
+                    )
                   )
                 ),
                 _react2.default.createElement(

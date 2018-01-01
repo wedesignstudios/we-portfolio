@@ -42,7 +42,7 @@ class Contact extends Component {
           id="contact-feature-image"
           className="col p-0 container image-full-width-container position-relative">
           {windowWidth > 800 ?
-            <div>
+            <div className="video-container">
               <video id="contact-video" className="ipad-pro-video" poster={imageOrig} playsInline autoPlay muted loop>
                 <source src={video} type="video/mp4" />
               </video>
@@ -65,7 +65,7 @@ class Contact extends Component {
              </div>
           : null}
           {windowWidth <= 800 ?
-            <div>
+            <div className="img-container-mobile">
               <img
                className="img-portrait"
                title="Contact hand with googly eyes"
@@ -94,32 +94,35 @@ class Contact extends Component {
                   </h1>
                 </div>
               </div>
-              <div id="contact-email-addresses" className="row mx-0 text-center mb-5">
-                <div className="col-xl-4 p-0 mb-xl-0 mb-4">
-                  <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-sm-4">
-                    DESIGN INQUIRIES
-                  </h6>
-                  <h5 className="muli-extra-bold letter-spacing-point125-rem">
-                    LAURA@WEDESIGNSTUDIOS.COM
-                  </h5>
-                </div>
-                <div className="col-xl-4 p-0 mb-xl-0 mb-4">
-                  <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-sm-4">
-                    GENERAL INQUIRIES
-                  </h6>
-                  <h5 className="muli-extra-bold letter-spacing-point125-rem">
-                    INFO@WEDESIGNSTUDIOS.COM
-                  </h5>
-                </div>
-                <div className="col-xl-4 p-0 mb-xl-0">
-                  <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-sm-4">
-                    DEVELOPMENT INQUIRIES
-                  </h6>
-                  <h5 className="muli-extra-bold letter-spacing-point125-rem">
-                    DAVID@WEDESIGNSTUDIOS.COM
-                  </h5>
-                </div>
-              </div>
+            </div>
+          </div>
+          <div id="contact-email-addresses" className="row mx-0 text-center my-xl-8rem my-5">
+            <h2 className="col-12 p-0 mb-xl-5rem mb-5 text-uppercase letter-spacing-point125-rem muli-bold">
+              <p>Let's Get Started. Contact Us.</p>
+            </h2>
+            <div className="col-xl-4 p-0 mb-xl-0 mb-5">
+              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4">
+                DESIGN INQUIRIES
+              </h6>
+              <h5 className="muli-extra-bold letter-spacing-point125-rem">
+                LAURA@WEDESIGNSTUDIOS.COM
+              </h5>
+            </div>
+            <div className="col-xl-4 p-0 mb-xl-0 mb-5">
+              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4">
+                GENERAL INQUIRIES
+              </h6>
+              <h5 className="muli-extra-bold letter-spacing-point125-rem">
+                INFO@WEDESIGNSTUDIOS.COM
+              </h5>
+            </div>
+            <div className="col-xl-4 p-0 mb-xl-0">
+              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4">
+                DEVELOPMENT INQUIRIES
+              </h6>
+              <h5 className="muli-extra-bold letter-spacing-point125-rem">
+                DAVID@WEDESIGNSTUDIOS.COM
+              </h5>
             </div>
           </div>
         </div>

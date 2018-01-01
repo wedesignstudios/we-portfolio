@@ -59,7 +59,7 @@ class About extends Component {
           id="about-feature-image"
           className="col-12 p-0 container image-full-width-container">
           {windowWidth > 800 ?
-            <div>
+            <div className="video-container">
               <video id="about-video" className="ipad-pro-video" poster={imageOrig} playsInline autoPlay muted loop>
                 <source src={video} type="video/mp4" />
               </video>

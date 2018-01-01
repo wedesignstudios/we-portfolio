@@ -119,6 +119,20 @@
   margin: 0 auto;
 }
 
+.video-container {
+  max-height: 72rem;
+  overflow: hidden;
+}
+
+.img-container-mobile {
+  max-height: 42rem;
+  overflow: hidden;
+  @include media-breakpoint-up(sm) {
+    max-height: 65rem;
+    overflow: hidden;
+  }
+}
+
 @media screen and (max-width: 767px) {
   #cta-contact {
     .h1-jumbo {
@@ -152,24 +166,24 @@
 
 .ipad-pro-poster-img {
   @include respond(ipad-pro-portrait) {
-    display: block;
+    display: block !important;
   }
   @include respond(ipad-pro-landscape) {
-    display: block;
+    display: block !important;
   }
-  display: none;
+  display: none !important;
 }
 
 .ipad-pro-poster-img-landscape {
   @include respond(ipad-pro-landscape) {
-    display: block;
+    display: block !important;
   }
-  display: none;
+  display: none !important;
 }
 
 .ipad-pro-poster-img-portrait {
   @include respond(ipad-pro-portrait) {
-    display: block;
+    display: block !important;
   }
-  display: none;
+  display: none !important;
 }

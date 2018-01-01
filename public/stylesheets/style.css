@@ -104,8 +104,17 @@ video {
 .mb-5rem {
   margin-bottom: 5rem !important; }
 
+@media (min-width: 1200px) {
+  .mb-xl-5rem {
+    margin-bottom: 5rem !important; } }
+
 .mt-6rem {
-  margin-top: 6rem !important; }
+  margin-bottom: 6rem !important; }
+
+@media (min-width: 1200px) {
+  .my-xl-8rem {
+    margin-top: 8rem !important;
+    margin-bottom: 8rem !important; } }
 
 .btn {
   text-decoration: none; }
@@ -613,6 +622,18 @@ form textarea.form-control {
   display: block;
   margin: 0 auto; }
 
+.video-container {
+  max-height: 72rem;
+  overflow: hidden; }
+
+.img-container-mobile {
+  max-height: 42rem;
+  overflow: hidden; }
+  @media (min-width: 576px) {
+    .img-container-mobile {
+      max-height: 65rem;
+      overflow: hidden; } }
+
 @media screen and (max-width: 767px) {
   #cta-contact .h1-jumbo {
     font-size: 5rem; } }
@@ -632,25 +653,25 @@ form textarea.form-control {
     display: none; } }
 
 .ipad-pro-poster-img {
-  display: none; }
+  display: none !important; }
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
     .ipad-pro-poster-img {
-      display: block; } }
+      display: block !important; } }
   @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (min-width: 1366px) and (max-width: 1366px) {
     .ipad-pro-poster-img {
-      display: block; } }
+      display: block !important; } }
 
 .ipad-pro-poster-img-landscape {
-  display: none; }
+  display: none !important; }
   @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (min-width: 1366px) and (max-width: 1366px) {
     .ipad-pro-poster-img-landscape {
-      display: block; } }
+      display: block !important; } }
 
 .ipad-pro-poster-img-portrait {
-  display: none; }
+  display: none !important; }
   @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
     .ipad-pro-poster-img-portrait {
-      display: block; } }
+      display: block !important; } }
 
 .spinner-container {
   width: 100%;

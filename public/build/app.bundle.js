@@ -67485,7 +67485,7 @@ var About = function (_Component) {
             className: 'col-12 p-0 container image-full-width-container' },
           windowWidth > 800 ? _react2.default.createElement(
             'div',
-            null,
+            { className: 'video-container' },
             _react2.default.createElement(
               'video',
               { id: 'about-video', className: 'ipad-pro-video', poster: imageOrig, playsInline: true, autoPlay: true, muted: true, loop: true },
@@ -67911,7 +67911,7 @@ var Contact = function (_Component) {
             className: 'col p-0 container image-full-width-container position-relative' },
           windowWidth > 800 ? _react2.default.createElement(
             'div',
-            null,
+            { className: 'video-container' },
             _react2.default.createElement(
               'video',
               { id: 'contact-video', className: 'ipad-pro-video', poster: imageOrig, playsInline: true, autoPlay: true, muted: true, loop: true },
@@ -67936,7 +67936,7 @@ var Contact = function (_Component) {
           ) : null,
           windowWidth <= 800 ? _react2.default.createElement(
             'div',
-            null,
+            { className: 'img-container-mobile' },
             _react2.default.createElement('img', {
               className: 'img-portrait',
               title: 'Contact hand with googly eyes',
@@ -67973,52 +67973,61 @@ var Contact = function (_Component) {
                     'SAY HELLO.'
                   )
                 )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { id: 'contact-email-addresses', className: 'row mx-0 text-center my-xl-8rem my-5' },
+            _react2.default.createElement(
+              'h2',
+              { className: 'col-12 p-0 mb-xl-5rem mb-5 text-uppercase letter-spacing-point125-rem muli-bold' },
+              _react2.default.createElement(
+                'p',
+                null,
+                'Let\'s Get Started. Contact Us.'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-xl-4 p-0 mb-xl-0 mb-5' },
+              _react2.default.createElement(
+                'h6',
+                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4' },
+                'DESIGN INQUIRIES'
               ),
               _react2.default.createElement(
-                'div',
-                { id: 'contact-email-addresses', className: 'row mx-0 text-center mb-5' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'col-xl-4 p-0 mb-xl-0 mb-4' },
-                  _react2.default.createElement(
-                    'h6',
-                    { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-sm-4' },
-                    'DESIGN INQUIRIES'
-                  ),
-                  _react2.default.createElement(
-                    'h5',
-                    { className: 'muli-extra-bold letter-spacing-point125-rem' },
-                    'LAURA@WEDESIGNSTUDIOS.COM'
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'col-xl-4 p-0 mb-xl-0 mb-4' },
-                  _react2.default.createElement(
-                    'h6',
-                    { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-sm-4' },
-                    'GENERAL INQUIRIES'
-                  ),
-                  _react2.default.createElement(
-                    'h5',
-                    { className: 'muli-extra-bold letter-spacing-point125-rem' },
-                    'INFO@WEDESIGNSTUDIOS.COM'
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'col-xl-4 p-0 mb-xl-0' },
-                  _react2.default.createElement(
-                    'h6',
-                    { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-sm-4' },
-                    'DEVELOPMENT INQUIRIES'
-                  ),
-                  _react2.default.createElement(
-                    'h5',
-                    { className: 'muli-extra-bold letter-spacing-point125-rem' },
-                    'DAVID@WEDESIGNSTUDIOS.COM'
-                  )
-                )
+                'h5',
+                { className: 'muli-extra-bold letter-spacing-point125-rem' },
+                'LAURA@WEDESIGNSTUDIOS.COM'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-xl-4 p-0 mb-xl-0 mb-5' },
+              _react2.default.createElement(
+                'h6',
+                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4' },
+                'GENERAL INQUIRIES'
+              ),
+              _react2.default.createElement(
+                'h5',
+                { className: 'muli-extra-bold letter-spacing-point125-rem' },
+                'INFO@WEDESIGNSTUDIOS.COM'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-xl-4 p-0 mb-xl-0' },
+              _react2.default.createElement(
+                'h6',
+                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4' },
+                'DEVELOPMENT INQUIRIES'
+              ),
+              _react2.default.createElement(
+                'h5',
+                { className: 'muli-extra-bold letter-spacing-point125-rem' },
+                'DAVID@WEDESIGNSTUDIOS.COM'
               )
             )
           )

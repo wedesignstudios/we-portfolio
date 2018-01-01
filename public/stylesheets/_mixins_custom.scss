@@ -15,19 +15,25 @@ $ipad-pro-landscape-breakpoint: "(min-device-width: 1366px) and (max-device-widt
   }
 }
 
+// Hover transitions
+
+@mixin hover-transition($rule) {
+  transition: $rule 0.15s ease-in-out;
+  -ms-transition: $rule 0.15s ease-in-out;
+  -webkit-transition: $rule 0.15s ease-in-out;
+  -moz-transition: $rule 0.15s ease-in-out;
+  -o-transition: $rule 0.15s ease-in-out;
+}
+
 // Nav underline animation
 
 @mixin animated-underline($y-offset) {
+  @include hover-transition(width);
   bottom: 0;
   box-shadow: 0 $y-offset 0 $barberry;
   content: '';
   height: 100%;
   left: 0;
   position: absolute;
-  transition: width 0.15s ease-in-out;
-  -ms-transition: width 0.15s ease-in-out;
-  -webkit-transition: width 0.15s ease-in-out;
-  -moz-transition: width 0.15s ease-in-out;
-  -o-transition: width 0.15s ease-in-out;
   width: 0;
 }

@@ -20,6 +20,11 @@ body {
   margin: 0; }
 
 a {
+  transition: background-color 0.15s ease-in-out;
+  -ms-transition: background-color 0.15s ease-in-out;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  -moz-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out;
   color: #000000;
   text-decoration: underline; }
   a:hover {
@@ -224,17 +229,17 @@ video {
       #navbar-main .navbar ul li a:hover {
         background-color: transparent; }
       #navbar-main .navbar ul li a::after {
+        transition: width 0.15s ease-in-out;
+        -ms-transition: width 0.15s ease-in-out;
+        -webkit-transition: width 0.15s ease-in-out;
+        -moz-transition: width 0.15s ease-in-out;
+        -o-transition: width 0.15s ease-in-out;
         bottom: 0;
         box-shadow: 0 7px 0 #E6E31A;
         content: '';
         height: 100%;
         left: 0;
         position: absolute;
-        transition: width 0.15s ease-in-out;
-        -ms-transition: width 0.15s ease-in-out;
-        -webkit-transition: width 0.15s ease-in-out;
-        -moz-transition: width 0.15s ease-in-out;
-        -o-transition: width 0.15s ease-in-out;
         width: 0; }
       #navbar-main .navbar ul li a:hover::after {
         width: 100%; }
@@ -527,17 +532,17 @@ form textarea.form-control {
 
 #work .card .card-title::after,
 #press .card .card-title::after {
+  transition: width 0.15s ease-in-out;
+  -ms-transition: width 0.15s ease-in-out;
+  -webkit-transition: width 0.15s ease-in-out;
+  -moz-transition: width 0.15s ease-in-out;
+  -o-transition: width 0.15s ease-in-out;
   bottom: 0;
   box-shadow: 0 5px 0 #E6E31A;
   content: '';
   height: 100%;
   left: 0;
   position: absolute;
-  transition: width 0.15s ease-in-out;
-  -ms-transition: width 0.15s ease-in-out;
-  -webkit-transition: width 0.15s ease-in-out;
-  -moz-transition: width 0.15s ease-in-out;
-  -o-transition: width 0.15s ease-in-out;
   width: 0; }
 
 #work .card .card-title.animate-underline::after,
@@ -594,7 +599,12 @@ form textarea.form-control {
   text-transform: uppercase; }
 
 .back-to-top {
-  cursor: pointer; }
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  -ms-transition: background-color 0.15s ease-in-out;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  -moz-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out; }
   .back-to-top:hover {
     background-color: #E6E31A;
     padding: 0.15rem 0.5rem; }

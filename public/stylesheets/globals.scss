@@ -24,6 +24,7 @@ body {
 } 
 
 a {
+  @include hover-transition(background-color);
   color: $black;
   text-decoration: underline;
 

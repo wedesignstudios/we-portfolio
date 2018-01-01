@@ -1,4 +1,4 @@
-// Press/Work/About/Post/Contact component styles
+  // Press/Work/About/Post/Contact component styles
 
 #work,
 #press {
@@ -106,6 +106,7 @@
 
 .back-to-top {
   cursor: pointer;
+  @include hover-transition(background-color);
 
   &:hover {
     background-color: $barberry;

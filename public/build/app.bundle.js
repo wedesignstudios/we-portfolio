@@ -67685,7 +67685,17 @@ var About = function (_Component) {
                   _react2.default.createElement(
                     'p',
                     null,
-                    'Office manager, Shih Tzu mix and sleep expert. Bork!'
+                    'Office manager, sleep expert and Shih Tzu mix.'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Lemmy started at WE Design Studios in 2017 as the office manager and resident sleep expert. While he claims to be from San Marcos, TX, his background is a mystery and he has remained tight lipped about his past.'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'He loves Greek yogurt, throws a mean side-eye, is extremely enthusiastic (just ask him for a high five - you\u2019ll see) and has a dramatic sigh louder than your teenage daughter. His favorite activities include wrestling, listening to Mot\xF6rhead, sleeping, cruising in the car and meeting new people. Bork!'
                   )
                 )
               ),

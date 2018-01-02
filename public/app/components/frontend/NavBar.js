@@ -39,7 +39,7 @@ class NavBar extends Component {
     let { navOpen, screenWidth } = this.state;
     let location = this.props.location.pathname;
     return (
-      <div id="navbar-main" className={"row justify-content-center " + (location !== '/' ? 'nav-bg-white' : '')}>
+      <div id="navbar-main" className={"row justify-content-center m-0 " + (location !== '/' ? 'nav-bg-white' : '')}>
         <div className="col-xl-9 col-lg-12">
           <nav className={"navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened ' : '') + (location !== '/' ? 'navbar-black' : '') }>
             <button

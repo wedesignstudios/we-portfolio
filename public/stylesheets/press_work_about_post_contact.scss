@@ -124,6 +124,12 @@
   overflow: hidden;
 }
 
+@media screen and (max-width: 1440px) {
+  .video-container {
+    max-height: 40rem;
+  }
+}
+
 .img-container-mobile {
   max-height: 42rem;
   overflow: hidden;

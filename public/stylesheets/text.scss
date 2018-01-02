@@ -21,7 +21,13 @@
 
 .h1-jumbo {
   color: $black;
-  font-size: 7rem;
+  font-size: 5.5rem;
+  @include media-breakpoint-down(lg) {
+    font-size: 4rem;
+  }
+  @include media-breakpoint-down(md) {
+    font-size: 5rem;
+  }
 }
 
 .letter-spacing-point05-rem {

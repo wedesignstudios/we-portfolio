@@ -68571,7 +68571,7 @@ var NavBar = function (_Component) {
       var location = this.props.location.pathname;
       return _react2.default.createElement(
         'div',
-        { id: 'navbar-main', className: "row justify-content-center " + (location !== '/' ? 'nav-bg-white' : '') },
+        { id: 'navbar-main', className: "row justify-content-center m-0 " + (location !== '/' ? 'nav-bg-white' : '') },
         _react2.default.createElement(
           'div',
           { className: 'col-xl-9 col-lg-12' },

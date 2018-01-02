@@ -84,7 +84,13 @@ video {
 
 .h1-jumbo {
   color: #000000;
-  font-size: 7rem; }
+  font-size: 5.5rem; }
+  @media (max-width: 1199px) {
+    .h1-jumbo {
+      font-size: 4rem; } }
+  @media (max-width: 991px) {
+    .h1-jumbo {
+      font-size: 5rem; } }
 
 .letter-spacing-point05-rem {
   letter-spacing: 0.05rem; }
@@ -109,7 +115,7 @@ video {
     margin-bottom: 5rem !important; } }
 
 .mt-6rem {
-  margin-bottom: 6rem !important; }
+  margin-top: 6rem !important; }
 
 @media (min-width: 1200px) {
   .my-xl-8rem {
@@ -625,6 +631,10 @@ form textarea.form-control {
 .video-container {
   max-height: 72rem;
   overflow: hidden; }
+
+@media screen and (max-width: 1440px) {
+  .video-container {
+    max-height: 40rem; } }
 
 .img-container-mobile {
   max-height: 42rem;

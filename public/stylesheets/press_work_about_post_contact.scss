@@ -37,21 +37,30 @@
 
 #client-logos {
   img {
-    &#logo-hmithl {
-      @include media-breakpoint-down(sm) {
-        width: 90%;
-      }
-    }
+    &#logo-un,
     &#logo-thomsonreuters,
-    &#logo-hutong {
-      @include media-breakpoint-down(sm) {
-        width: 80%;
-      }
-    }
     &#logo-risd {
-      @include media-breakpoint-down(sm) {
-        width: 75%;
-      }
+      max-width: 100%;
+      width: 6rem;
+    }
+    &#logo-whowhatwear,
+    &#logo-icg,
+    &#logo-mhc {
+      max-width: 100%;
+      width: 10rem;
+    }
+    &#logo-aiga {
+      max-width: 100%;
+      width: 4.5rem;
+    }
+    &#logo-wfc {
+      max-width: 100%;
+      width: 8.5rem;
+    }
+    &#logo-hmithl,
+    &#logo-hutong {
+     max-width: 100%;
+     width: 8rem;
     }
   }
 }

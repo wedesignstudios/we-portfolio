@@ -96,32 +96,32 @@ class Contact extends Component {
               </div>
             </div>
           </div>
-          <div id="contact-email-addresses" className="row mx-0 text-center my-xl-8rem my-5">
-            <h2 className="col-12 p-0 mb-xl-5rem mb-5 text-uppercase letter-spacing-point125-rem muli-bold">
+          <div id="contact-email-addresses" className="row mx-0 text-center mb-8rem mt-5rem">
+            <h2 className="col-12 mb-5 text-uppercase letter-spacing-point125-rem muli-bold">
               <p>Let's Get Started. Contact Us.</p>
             </h2>
-            <div className="col-xl-4 p-0 mb-xl-0 mb-5">
-              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4">
+            <div className="col-12 mb-sm-5rem mb-5">
+              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-4">
                 DESIGN INQUIRIES
               </h6>
               <h5 className="muli-extra-bold letter-spacing-point125-rem">
                 LAURA@WEDESIGNSTUDIOS.COM
               </h5>
             </div>
-            <div className="col-xl-4 p-0 mb-xl-0 mb-5">
-              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4">
-                GENERAL INQUIRIES
-              </h6>
-              <h5 className="muli-extra-bold letter-spacing-point125-rem">
-                INFO@WEDESIGNSTUDIOS.COM
-              </h5>
-            </div>
-            <div className="col-xl-4 p-0 mb-xl-0">
-              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4">
+            <div className="col-12 mb-sm-5rem mb-5">
+              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-4">
                 DEVELOPMENT INQUIRIES
               </h6>
               <h5 className="muli-extra-bold letter-spacing-point125-rem">
                 DAVID@WEDESIGNSTUDIOS.COM
+              </h5>
+            </div>
+            <div className="col-12">
+              <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-4">
+                GENERAL INQUIRIES
+              </h6>
+              <h5 className="muli-extra-bold letter-spacing-point125-rem">
+                INFO@WEDESIGNSTUDIOS.COM
               </h5>
             </div>
           </div>

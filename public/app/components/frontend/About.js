@@ -180,85 +180,75 @@ class About extends Component {
                 </div>
               </div>
               <div id="client-logos" className="row justify-content-start align-items-center m-0 mb-5">
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-un"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/UnitedNations.svg"
                     title="United Nations logo"
-                    alt="United Nations logo"
-                    width="70%" />
+                    alt="United Nations logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-whowhatwear"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/WhoWhatWear.svg"
                     title="Who What Wear logo"
-                    alt="Who What Wear logo"
-                    width="100%" />
+                    alt="Who What Wear logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-aiga"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/AIGA.svg"
                     title="AIGA logo"
-                    alt="AIGA logo"
-                    width="60%" />
+                    alt="AIGA logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-icg"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/InternationalCrisisGroup.svg"
                     title="International Crisis Group logo"
-                    alt="International Crisis Group logo"
-                    width="100%" />
+                    alt="International Crisis Group logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-thomsonreuters"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/ThomsonReuters.svg"
                     title="Thomson Reuters logo"
-                    alt="Thomson Reuters logo"
-                    width="60%" />
+                    alt="Thomson Reuters logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-risd"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/RISD.svg"
                     title="RISD logo"
-                    alt="RISD logo"
-                    width="60%" />
+                    alt="RISD logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-mhc"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/MHC.svg"
                     title="MHC logo"
-                    alt="MHC logo"
-                    width="100%" />
+                    alt="MHC logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-wfc"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/WFC.svg"
                     title="Wildflower Center logo"
-                    alt="Wildflower Center logo"
-                    width="90%" />
+                    alt="Wildflower Center logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-hmithl"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/HMITHL.svg"
                     title="Handmade In The Heartland logo"
-                    alt="Handmade In The Heartland logo"
-                    width="75%" />
+                    alt="Handmade In The Heartland logo" />
                 </div>
-                <div className="col-6 col-md-3 col-lg-2 mb-3 text-center">
+                <div className="col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center">
                   <img
                     id="logo-hutong"
                     src="https://s3.us-east-2.amazonaws.com/we-portfolio/TheHutong.svg"
                     title="The Hutong logo"
-                    alt="The Hutong logo"
-                    width="75%" />
+                    alt="The Hutong logo" />
                 </div>
               </div>
               <p className="text-center pt-4 muli-bold">

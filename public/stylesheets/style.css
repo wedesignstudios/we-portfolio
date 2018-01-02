@@ -110,17 +110,30 @@ video {
 .mb-5rem {
   margin-bottom: 5rem !important; }
 
-@media (min-width: 1200px) {
-  .mb-xl-5rem {
-    margin-bottom: 5rem !important; } }
-
 .mt-6rem {
   margin-top: 6rem !important; }
 
+.mt-5rem {
+  margin-top: 5rem !important; }
+
+.mb-8rem {
+  margin-bottom: 8rem !important; }
+
+@media (min-width: 576px) {
+  .mb-sm-5rem {
+    margin-bottom: 5rem !important; } }
+
 @media (min-width: 1200px) {
-  .my-xl-8rem {
-    margin-top: 8rem !important;
-    margin-bottom: 8rem !important; } }
+  .mt-xl-5rem {
+    margin-top: 5rem !important; } }
+
+@media screen and (min-width: 1441px) {
+  .col-xxl-2 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 16.666667%;
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%; } }
 
 .btn {
   text-decoration: none; }
@@ -564,17 +577,25 @@ form textarea.form-control {
 #press .card .card-title.animate-underline::after {
   width: 100%; }
 
-@media (max-width: 767px) {
-  #client-logos img#logo-hmithl {
-    width: 90%; } }
+#client-logos img#logo-un, #client-logos img#logo-thomsonreuters, #client-logos img#logo-risd {
+  max-width: 100%;
+  width: 6rem; }
 
-@media (max-width: 767px) {
-  #client-logos img#logo-thomsonreuters, #client-logos img#logo-hutong {
-    width: 80%; } }
+#client-logos img#logo-whowhatwear, #client-logos img#logo-icg, #client-logos img#logo-mhc {
+  max-width: 100%;
+  width: 10rem; }
 
-@media (max-width: 767px) {
-  #client-logos img#logo-risd {
-    width: 75%; } }
+#client-logos img#logo-aiga {
+  max-width: 100%;
+  width: 4.5rem; }
+
+#client-logos img#logo-wfc {
+  max-width: 100%;
+  width: 8.5rem; }
+
+#client-logos img#logo-hmithl, #client-logos img#logo-hutong {
+  max-width: 100%;
+  width: 8rem; }
 
 .feature-image {
   max-height: 50rem;

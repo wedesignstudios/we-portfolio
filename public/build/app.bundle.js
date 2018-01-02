@@ -67694,103 +67694,93 @@ var About = function (_Component) {
                 { id: 'client-logos', className: 'row justify-content-start align-items-center m-0 mb-5' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-un',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/UnitedNations.svg',
                     title: 'United Nations logo',
-                    alt: 'United Nations logo',
-                    width: '70%' })
+                    alt: 'United Nations logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-whowhatwear',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/WhoWhatWear.svg',
                     title: 'Who What Wear logo',
-                    alt: 'Who What Wear logo',
-                    width: '100%' })
+                    alt: 'Who What Wear logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-aiga',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/AIGA.svg',
                     title: 'AIGA logo',
-                    alt: 'AIGA logo',
-                    width: '60%' })
+                    alt: 'AIGA logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-icg',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/InternationalCrisisGroup.svg',
                     title: 'International Crisis Group logo',
-                    alt: 'International Crisis Group logo',
-                    width: '100%' })
+                    alt: 'International Crisis Group logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-thomsonreuters',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/ThomsonReuters.svg',
                     title: 'Thomson Reuters logo',
-                    alt: 'Thomson Reuters logo',
-                    width: '60%' })
+                    alt: 'Thomson Reuters logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-risd',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/RISD.svg',
                     title: 'RISD logo',
-                    alt: 'RISD logo',
-                    width: '60%' })
+                    alt: 'RISD logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-mhc',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/MHC.svg',
                     title: 'MHC logo',
-                    alt: 'MHC logo',
-                    width: '100%' })
+                    alt: 'MHC logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-wfc',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/WFC.svg',
                     title: 'Wildflower Center logo',
-                    alt: 'Wildflower Center logo',
-                    width: '90%' })
+                    alt: 'Wildflower Center logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-hmithl',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/HMITHL.svg',
                     title: 'Handmade In The Heartland logo',
-                    alt: 'Handmade In The Heartland logo',
-                    width: '75%' })
+                    alt: 'Handmade In The Heartland logo' })
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-6 col-md-3 col-lg-2 mb-3 text-center' },
+                  { className: 'col-6 col-md-3 col-xxl-2 mb-4 mb-sm-3 text-center' },
                   _react2.default.createElement('img', {
                     id: 'logo-hutong',
                     src: 'https://s3.us-east-2.amazonaws.com/we-portfolio/TheHutong.svg',
                     title: 'The Hutong logo',
-                    alt: 'The Hutong logo',
-                    width: '75%' })
+                    alt: 'The Hutong logo' })
                 )
               ),
               _react2.default.createElement(
@@ -67978,10 +67968,10 @@ var Contact = function (_Component) {
           ),
           _react2.default.createElement(
             'div',
-            { id: 'contact-email-addresses', className: 'row mx-0 text-center my-xl-8rem my-5' },
+            { id: 'contact-email-addresses', className: 'row mx-0 text-center mb-8rem mt-5rem' },
             _react2.default.createElement(
               'h2',
-              { className: 'col-12 p-0 mb-xl-5rem mb-5 text-uppercase letter-spacing-point125-rem muli-bold' },
+              { className: 'col-12 mb-5 text-uppercase letter-spacing-point125-rem muli-bold' },
               _react2.default.createElement(
                 'p',
                 null,
@@ -67990,10 +67980,10 @@ var Contact = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col-xl-4 p-0 mb-xl-0 mb-5' },
+              { className: 'col-12 mb-sm-5rem mb-5' },
               _react2.default.createElement(
                 'h6',
-                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4' },
+                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-4' },
                 'DESIGN INQUIRIES'
               ),
               _react2.default.createElement(
@@ -68004,30 +67994,30 @@ var Contact = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col-xl-4 p-0 mb-xl-0 mb-5' },
+              { className: 'col-12 mb-sm-5rem mb-5' },
               _react2.default.createElement(
                 'h6',
-                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4' },
-                'GENERAL INQUIRIES'
-              ),
-              _react2.default.createElement(
-                'h5',
-                { className: 'muli-extra-bold letter-spacing-point125-rem' },
-                'INFO@WEDESIGNSTUDIOS.COM'
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-xl-4 p-0 mb-xl-0' },
-              _react2.default.createElement(
-                'h6',
-                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-xl-5 mb-4' },
+                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-4' },
                 'DEVELOPMENT INQUIRIES'
               ),
               _react2.default.createElement(
                 'h5',
                 { className: 'muli-extra-bold letter-spacing-point125-rem' },
                 'DAVID@WEDESIGNSTUDIOS.COM'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-12' },
+              _react2.default.createElement(
+                'h6',
+                { className: 'muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-4' },
+                'GENERAL INQUIRIES'
+              ),
+              _react2.default.createElement(
+                'h5',
+                { className: 'muli-extra-bold letter-spacing-point125-rem' },
+                'INFO@WEDESIGNSTUDIOS.COM'
               )
             )
           )

@@ -67486,11 +67486,15 @@ var About = function (_Component) {
           windowWidth > 800 ? _react2.default.createElement(
             'div',
             { className: 'video-container' },
-            _react2.default.createElement(
-              'video',
-              { id: 'about-video', className: 'ipad-pro-video', poster: imageOrig, playsInline: true, autoPlay: true, muted: true, loop: true },
-              _react2.default.createElement('source', { src: video, type: 'video/mp4' })
-            )
+            _react2.default.createElement('video', {
+              id: 'about-video',
+              className: 'ipad-pro-video',
+              width: windowWidth,
+              src: video,
+              playsInline: true,
+              autoPlay: true,
+              muted: true,
+              loop: true })
           ) : null,
           windowWidth <= 800 ? _react2.default.createElement(
             'div',
@@ -67523,12 +67527,12 @@ var About = function (_Component) {
               _react2.default.createElement(
                 'p',
                 null,
-                'WE Design Studios is an Austin-based design and development duo run by Laura Worrick and David Elden. Their curiosity has brought them around the world where they\u2019ve been able to learn, play, explore & educate. The team\u2019s thoughtful design is informed by their multidisciplinary backgrounds and playful nature. They are commited to community and have provided design resources and management for various projects in collaboration with IBM Design, AIGA and Create-A-Thon.'
+                'WE Design Studios is an Austin-based design and development duo run by Laura Worrick and David Elden. Our curiosity has brought us around the world where we\u2019ve been able to learn, play, explore and educate. Our team\u2019s thoughtful design is informed by our multidisciplinary backgrounds and playful nature. We are commited to community and have provided design resources and management for various projects in collaboration with IBM Design, AIGA and Create-A-Thon.'
               ),
               _react2.default.createElement(
                 'p',
                 null,
-                'WE specializes in brand identities, software development, print design, web design, illustration & more.'
+                'WE specializes in brand identities, software development, print design, web design, illustration and more.'
               ),
               _react2.default.createElement(
                 _reactRouterDom.NavLink,
@@ -67575,6 +67579,11 @@ var About = function (_Component) {
                   _react2.default.createElement(
                     'p',
                     null,
+                    'When not designing and art directing, Laura can be found working on her daily drawing project, which focuses on social justice issues. She volunteers at Round Rock High School teaching design thinking and collaborates with members of the IBM Design team to bring design thinking training to students in underserved communities nationwide.'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
                     'Contact Laura:',
                     _react2.default.createElement('br', null),
                     _react2.default.createElement(
@@ -67600,7 +67609,12 @@ var About = function (_Component) {
                   _react2.default.createElement(
                     'p',
                     null,
-                    'David is a software developer, designer and operations manager.'
+                    'David Elden is a software developer, designer and operations manager.'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'When not designing and building the latest great project for clients, David can be found enjoying the outdoors from the vantage point atop two wheels - both bicycle and motorcycle. He also likes gathering inspiration through his visits to the desert landscapes of west Texas and to culturally rich communities throughout Asia.'
                   ),
                   _react2.default.createElement('hr', null),
                   _react2.default.createElement(
@@ -67671,7 +67685,7 @@ var About = function (_Component) {
                   _react2.default.createElement(
                     'p',
                     null,
-                    'Office manager, Pug-zhu and sleep expert. Bork!'
+                    'Office manager, Shih Tzu mix and sleep expert. Bork!'
                   )
                 )
               ),
@@ -67857,7 +67871,8 @@ var Contact = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Contact.__proto__ || Object.getPrototypeOf(Contact)).call(this));
 
     _this.state = {
-      windowWidth: 0
+      windowWidth: 0,
+      videoLoaded: false
     };
 
     _this.getWindowWidth = _this.getWindowWidth.bind(_this);
@@ -67881,10 +67896,19 @@ var Contact = function (_Component) {
       this.setState({ windowWidth: window.innerWidth });
     }
   }, {
+    key: 'setVideoLoaded',
+    value: function setVideoLoaded() {
+      this.setState({ videoLoaded: true });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var margin = this.props.margin;
-      var windowWidth = this.state.windowWidth;
+      var _state = this.state,
+          windowWidth = _state.windowWidth,
+          videoLoaded = _state.videoLoaded;
 
       var imageOrig = ImageSizePicker.imgOrig('HAND_ONLY.jpg');
       var imageOrigMobile = ImageSizePicker.imgOrig('HAND_ONLY_MOBILE.jpg');
@@ -67902,11 +67926,18 @@ var Contact = function (_Component) {
           windowWidth > 800 ? _react2.default.createElement(
             'div',
             { className: 'video-container' },
-            _react2.default.createElement(
-              'video',
-              { id: 'contact-video', className: 'ipad-pro-video', poster: imageOrig, playsInline: true, autoPlay: true, muted: true, loop: true },
-              _react2.default.createElement('source', { src: video, type: 'video/mp4' })
-            ),
+            _react2.default.createElement('video', {
+              id: 'contact-video',
+              className: 'ipad-pro-video',
+              width: windowWidth,
+              src: video,
+              playsInline: true,
+              autoPlay: true,
+              muted: true,
+              loop: true,
+              onCanPlay: function onCanPlay(e) {
+                return _this2.setVideoLoaded(e);
+              } }),
             _react2.default.createElement('img', {
               className: 'img-portrait ipad-pro-poster-img-portrait ipad-pro-poster-img',
               title: 'Contact hand with googly eyes',
@@ -67957,11 +67988,11 @@ var Contact = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-12 p-0' },
-                  _react2.default.createElement(
+                  videoLoaded ? _react2.default.createElement(
                     'h1',
                     { className: 'text-center muli-extra-bold h1-jumbo letter-spacing-point3-rem' },
                     'SAY HELLO.'
-                  )
+                  ) : null
                 )
               )
             )
@@ -67975,7 +68006,7 @@ var Contact = function (_Component) {
               _react2.default.createElement(
                 'p',
                 null,
-                'Let\'s Get Started. Contact Us.'
+                'Let\u2019s Get Started. Contact Us.'
               )
             ),
             _react2.default.createElement(

@@ -60,8 +60,15 @@ class About extends Component {
           className="col-12 p-0 container image-full-width-container">
           {windowWidth > 800 ?
             <div className="video-container">
-              <video id="about-video" className="ipad-pro-video" poster={imageOrig} playsInline autoPlay muted loop>
-                <source src={video} type="video/mp4" />
+              <video
+                id="about-video"
+                className="ipad-pro-video"
+                width={windowWidth}
+                src={video}
+                playsInline
+                autoPlay
+                muted
+                loop>
               </video>
             </div>
           : null}
@@ -83,9 +90,9 @@ class About extends Component {
             <div className="col-10 col-lg-8 col-xl-6 container p-0 mb-2rem mt-5">
               <h2 className="text-uppercase letter-spacing-point125-rem muli-bold">WHO WE ARE</h2>
               <hr className="hr-point7rem mb-4" />
-              <p>WE Design Studios is an Austin-based design and development duo run by Laura Worrick and David Elden. Their curiosity has brought them around the world where they’ve been able to learn, play, explore & educate. The team’s thoughtful design is informed by their multidisciplinary backgrounds and playful nature. They are commited to community and have provided design resources and management for various projects in collaboration with IBM Design, AIGA and Create-A-Thon.</p>
+              <p>WE Design Studios is an Austin-based design and development duo run by Laura Worrick and David Elden. Our curiosity has brought us around the world where we’ve been able to learn, play, explore and educate. Our team’s thoughtful design is informed by our multidisciplinary backgrounds and playful nature. We are commited to community and have provided design resources and management for various projects in collaboration with IBM Design, AIGA and Create-A-Thon.</p>
 
-              <p>WE specializes in brand identities, software development, print design, web design, illustration & more.</p>
+              <p>WE specializes in brand identities, software development, print design, web design, illustration and more.</p>
 
               <NavLink to="/contact" className="btn btn-cta btn-lg muli-bold text-uppercase rounded-0 mt-5">
                 Start a Project
@@ -114,6 +121,7 @@ class About extends Component {
                   <h5 className="muli-bold m-0 letter-spacing-point05-rem">LAURA WORRICK</h5>
                   <hr className="hr-point7rem mb-4" />
                   <p>Laura is an art director, designer and illustrator.</p>
+                  <p>When not designing and art directing, Laura can be found working on her daily drawing project, which focuses on social justice issues. She volunteers at Round Rock High School teaching design thinking and collaborates with members of the IBM Design team to bring design thinking training to students in underserved communities nationwide.</p>
                   <p>Contact Laura:<br />
                     <span className="muli-bold">laura@wedesignstudios.com</span>
                   </p>
@@ -123,7 +131,8 @@ class About extends Component {
                 <div className="col-sm-6 pl-sm-0 about-profile">
                   <h5 className="muli-bold m-0 letter-spacing-point05-rem">DAVID ELDEN</h5>
                   <hr className="hr-point7rem mb-4" />
-                  <p>David is a software developer, designer and operations manager.</p>
+                  <p>David Elden is a software developer, designer and operations manager.</p>
+                  <p>When not designing and building the latest great project for clients, David can be found enjoying the outdoors from the vantage point atop two wheels - both bicycle and motorcycle. He also likes gathering inspiration through his visits to the desert landscapes of west Texas and to culturally rich communities throughout Asia.</p>
                   <hr />
                   <p>Contact David:<br />
                     <span className="muli-bold">david@wedesignstudios.com</span>
@@ -170,7 +179,7 @@ class About extends Component {
                 <div className="col-sm-6 pr-sm-0 about-profile order-1">
                   <h5 className="muli-bold m-0 letter-spacing-point05-rem">LEMMY</h5>
                   <hr className="hr-point7rem mb-4" />
-                  <p>Office manager, Pug-zhu and sleep expert. Bork!</p>
+                  <p>Office manager, Shih Tzu mix and sleep expert. Bork!</p>
                 </div>
               </div>
               <div className="row justify-content-center m-0 mt-6rem">

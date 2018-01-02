@@ -9,7 +9,8 @@ class Contact extends Component {
     super();
 
     this.state = {
-      windowWidth: 0
+      windowWidth: 0,
+      videoLoaded: false
     }
 
     this.getWindowWidth = this.getWindowWidth.bind(this);
@@ -28,9 +29,13 @@ class Contact extends Component {
     this.setState({windowWidth: window.innerWidth});
   }
 
+  setVideoLoaded() {
+    this.setState({videoLoaded: true});
+  }
+
   render() {
     let { margin } = this.props;
-    let { windowWidth } = this.state;
+    let { windowWidth, videoLoaded } = this.state;
     let imageOrig = ImageSizePicker.imgOrig('HAND_ONLY.jpg');
     let imageOrigMobile = ImageSizePicker.imgOrig('HAND_ONLY_MOBILE.jpg');
     let imageSizes = ImageSizePicker.imgSize('HAND_ONLY.jpg');
@@ -43,8 +48,16 @@ class Contact extends Component {
           className="col p-0 container image-full-width-container position-relative">
           {windowWidth > 800 ?
             <div className="video-container">
-              <video id="contact-video" className="ipad-pro-video" poster={imageOrig} playsInline autoPlay muted loop>
-                <source src={video} type="video/mp4" />
+              <video
+                id="contact-video"
+                className="ipad-pro-video"
+                width={windowWidth}
+                src={video}
+                playsInline
+                autoPlay
+                muted
+                loop
+                onCanPlay={(e) => this.setVideoLoaded(e)}>
               </video>
               <img
                className="img-portrait ipad-pro-poster-img-portrait ipad-pro-poster-img"
@@ -89,16 +102,18 @@ class Contact extends Component {
             <div className="col-12 p-0 container d-flex flex-column justify-content-between">
               <div id="cta-contact" className="row mx-0 mt-5">
                 <div className="col-12 p-0">
+                {videoLoaded ?
                   <h1 className="text-center muli-extra-bold h1-jumbo letter-spacing-point3-rem">
                     SAY HELLO.
                   </h1>
+                : null}
                 </div>
               </div>
             </div>
           </div>
           <div id="contact-email-addresses" className="row mx-0 text-center mb-8rem mt-5rem">
             <h2 className="col-12 mb-5 text-uppercase letter-spacing-point125-rem muli-bold">
-              <p>Let's Get Started. Contact Us.</p>
+              <p>Let’s Get Started. Contact Us.</p>
             </h2>
             <div className="col-12 mb-sm-5rem mb-5">
               <h6 className="muli-extra-bold letter-spacing-point125-rem d-inline-block h6-underline pb-2 mb-4">

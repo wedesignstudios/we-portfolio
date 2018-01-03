@@ -82,13 +82,14 @@ router.get('/:id', (req, res, next) => {
 
 // UPLOAD images to AWS S3 + POST image URL
 router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
-  const url = 'https://we-portfolio.s3.amazonaws.com/' + req.file.originalname;
+  const fileOrigName = req.file.originalname.replace(/ /g, '-');
+  const url = 'https://we-portfolio.s3.amazonaws.com/' + fileOrigName;
 
   let updatedBuffer;
 
   let gmPromise = new Promise((resolve, reject) => {
 
-    imageMagick(req.file.buffer, req.file.originalname)
+    imageMagick(req.file.buffer, fileOrigName)
       // Resolve if SVG
       .identify((err, val) => {
         if (val.format === 'MVG') {
@@ -109,7 +110,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
     .then(() => {
       s3.putObject({
         Bucket: 'we-portfolio',
-        Key: req.file.originalname,
+        Key: fileOrigName,
         Body: updatedBuffer,
         ACL: 'public-read',
         Expires: 120,
@@ -121,7 +122,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
         }
         // Save URL to database
         Image
-          .forge({url: url, orig_name: req.file.originalname})
+          .forge({url: url, orig_name: fileOrigName})
           .save()
           .then((image) => {
             return res.status(200).send(`Image(s) uploaded to S3 and saved to database.`);
@@ -129,7 +130,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
           .catch((err) => {
             console.error(err);
             if (err.name == 'DuplicateError') {
-              res.status(500).send(`${err.name}: Image ${req.file.originalname} already exists and was not uploaded.`);
+              res.status(500).send(`${err.name}: Image ${fileOrigName} already exists and was not uploaded.`);
             } else {
               res.status(500).send(`Whoops! The following error occurred: ${err}`);
             }
@@ -141,12 +142,13 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
 // Resize Gif images with Gifsicle and push to AWS S3 we-portfolio-resized
 router.post('/upload/gif', isLoggedIn, uploadGif.single('image'), (req, res, next) => {
     const gifObj = req.file;
+    const fileOrigName = gifObj.filename.replace(/ /g, '-');
     // Infer the image name
-    const nameMatch = gifObj.filename.match(/^(.*?)\./);
+    const nameMatch = fileOrigName.match(/^(.*?)\./);
     // Get gif local path
     const filePath = gifObj.path;
     // Get AWS S3 URL
-    const url = 'https://we-portfolio.s3.amazonaws.com/' + gifObj.filename;
+    const url = 'https://we-portfolio.s3.amazonaws.com/' + fileOrigName;
 
     const resizeConfig = [
         {
@@ -257,7 +259,7 @@ router.post('/upload/gif', isLoggedIn, uploadGif.single('image'), (req, res, nex
 
         var fileBuffer = fs.readFileSync(filePath);
         var s3Bucket = 'we-portfolio';
-        var s3Key = gifObj.filename;
+        var s3Key = fileOrigName;
 
         // Upload original gif to 'we-portfolio' S3 bucket
         s3Upload(fileBuffer, s3Bucket, s3Key);
@@ -289,13 +291,13 @@ router.post('/upload/gif', isLoggedIn, uploadGif.single('image'), (req, res, nex
       },
       function saveToDB(arg, cb) {
         Image
-          .forge({url: url, orig_name: gifObj.filename})
+          .forge({url: url, orig_name: fileOrigName})
           .save()
           .then(() => cb(null, 'Done'))
           .catch((err) => {
             console.error(err);
             if (err.name == 'DuplicateError') {
-              res.status(500).send(`${err.name}: Image ${req.file.originalname} already exists and was not uploaded.`);
+              res.status(500).send(`${err.name}: Image ${fileOrigName} already exists and was not uploaded.`);
             } else {
               res.status(500).send(`Whoops! The following error occurred: ${err}`);
             }

@@ -22,18 +22,19 @@ class PostLayout extends Component {
   render() {
     return(
       <div className="wp-content-container col-8 container p-0">
-        <h5 className="text-uppercase font-weight-bold letter-spacing-point125-rem line-height-1-45-rem">{this.title}</h5>
-        <hr className="hr-1rem" />
-        <p className="m-0 letter-spacing-point125-rem">{DateFormatter.monthDayYear(this.date)}</p>
-        <p className="m-0 letter-spacing-point125-rem mb-4">{this.author}</p>
+        <h2 className="text-uppercase letter-spacing-point125-rem muli-bold">{this.title}</h2>
+        <hr className="hr-point7rem mb-4" />
+        <p className="m-0">{DateFormatter.monthDayYear(this.date)}</p>
+        <p className="m-0 mb-4">{this.author}</p>
         <div className="row m-0">
           <div
             id="wp-post-content"
             className="col-12 p-0"
             dangerouslySetInnerHTML={{__html: this.content}} />
         </div>
-        <p className="text-center py-4">
+        <p className="text-center py-4 muli-bold">
           <span
+            className="back-to-top"
             style={{cursor: 'pointer'}}
             onClick={this.scrollToTop} >
             BACK TO TOP

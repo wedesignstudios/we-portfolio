@@ -627,10 +627,10 @@ form textarea.form-control {
   margin-bottom: 2rem; }
 
 #wp-post-content h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.125rem;
-  line-height: 1.45rem;
+  font-family: 'Muli';
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.05rem;
   margin-bottom: 1.25rem;
   text-transform: uppercase; }
 

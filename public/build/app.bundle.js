@@ -68875,19 +68875,19 @@ var PostLayout = function (_Component) {
         'div',
         { className: 'wp-content-container col-8 container p-0' },
         _react2.default.createElement(
-          'h5',
-          { className: 'text-uppercase font-weight-bold letter-spacing-point125-rem line-height-1-45-rem' },
+          'h2',
+          { className: 'text-uppercase letter-spacing-point125-rem muli-bold' },
           this.title
         ),
-        _react2.default.createElement('hr', { className: 'hr-1rem' }),
+        _react2.default.createElement('hr', { className: 'hr-point7rem mb-4' }),
         _react2.default.createElement(
           'p',
-          { className: 'm-0 letter-spacing-point125-rem' },
+          { className: 'm-0' },
           DateFormatter.monthDayYear(this.date)
         ),
         _react2.default.createElement(
           'p',
-          { className: 'm-0 letter-spacing-point125-rem mb-4' },
+          { className: 'm-0 mb-4' },
           this.author
         ),
         _react2.default.createElement(
@@ -68900,10 +68900,11 @@ var PostLayout = function (_Component) {
         ),
         _react2.default.createElement(
           'p',
-          { className: 'text-center py-4' },
+          { className: 'text-center py-4 muli-bold' },
           _react2.default.createElement(
             'span',
             {
+              className: 'back-to-top',
               style: { cursor: 'pointer' },
               onClick: this.scrollToTop },
             'BACK TO TOP'

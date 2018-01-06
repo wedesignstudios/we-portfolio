@@ -21,7 +21,7 @@ class PostLayout extends Component {
 
   render() {
     return(
-      <div className="wp-content-container col-8 container p-0">
+      <div className="wp-content-container col-10 col-lg-8 col-xl-6 container p-0">
         <h2 className="text-uppercase letter-spacing-point125-rem muli-bold">{this.title}</h2>
         <hr className="hr-point7rem mb-4" />
         <p className="m-0">{DateFormatter.monthDayYear(this.date)}</p>

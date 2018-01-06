@@ -68873,7 +68873,7 @@ var PostLayout = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { className: 'wp-content-container col-8 container p-0' },
+        { className: 'wp-content-container col-10 col-lg-8 col-xl-6 container p-0' },
         _react2.default.createElement(
           'h2',
           { className: 'text-uppercase letter-spacing-point125-rem muli-bold' },

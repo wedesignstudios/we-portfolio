@@ -10,7 +10,7 @@ class Contact extends Component {
 
     this.state = {
       windowWidth: 0,
-      videoLoaded: false
+      videoOrImageLoaded: false
     }
 
     this.getWindowWidth = this.getWindowWidth.bind(this);
@@ -29,13 +29,13 @@ class Contact extends Component {
     this.setState({windowWidth: window.innerWidth});
   }
 
-  setVideoLoaded() {
-    this.setState({videoLoaded: true});
+  setVideoOrImageLoaded() {
+    this.setState({videoOrImageLoaded: true});
   }
 
   render() {
     let { margin } = this.props;
-    let { windowWidth, videoLoaded } = this.state;
+    let { windowWidth, videoOrImageLoaded } = this.state;
     let imageOrig = ImageSizePicker.imgOrig('HAND_ONLY.jpg');
     let imageOrigMobile = ImageSizePicker.imgOrig('HAND_ONLY_MOBILE.jpg');
     let imageSizes = ImageSizePicker.imgSize('HAND_ONLY.jpg');
@@ -57,7 +57,7 @@ class Contact extends Component {
                 autoPlay
                 muted
                 loop
-                onCanPlay={(e) => this.setVideoLoaded(e)}>
+                onCanPlay={(e) => this.setVideoOrImageLoaded(e)}>
               </video>
               <img
                className="img-portrait ipad-pro-poster-img-portrait ipad-pro-poster-img"
@@ -75,7 +75,7 @@ class Contact extends Component {
               srcSet={`${imageOrig} 1440w, ${imageSizes.w1024} 1024w, ${imageSizes.w800} 800w, ${imageSizes.w600} 600w,`}
               sizes="100vw"
               width="1440" />
-             </div>
+            </div>
           : null}
           {windowWidth <= 800 ?
             <div className="img-container-mobile">
@@ -86,7 +86,8 @@ class Contact extends Component {
                src={imageOrigMobile}
                srcSet={`${imageOrigMobile} 1440w, ${imageSizesMobile.w1024} 1024w, ${imageSizesMobile.w800} 800w, ${imageSizesMobile.w600} 600w,`}
                sizes="100vw"
-               width="1440" />
+               width="1440"
+               onLoad={(e) => this.setVideoOrImageLoaded(e)} />
               <img
                id="img-landscape"
                className="img-fluid img-landscape"
@@ -95,14 +96,15 @@ class Contact extends Component {
                src={imageOrig}
                srcSet={`${imageOrig} 1440w, ${imageSizes.w1024} 1024w, ${imageSizes.w800} 800w, ${imageSizes.w600} 600w,`}
                sizes="100vw"
-               width="1440" />
+               width="1440"
+               onLoad={(e) => this.setVideoOrImageLoaded(e)} />
              </div>
           : null}
           <div className="row mx-0 position-absolute text-overlay-container">
             <div className="col-12 p-0 container d-flex flex-column justify-content-between">
               <div id="cta-contact" className="row mx-0 mt-5">
                 <div className="col-12 p-0">
-                {videoLoaded ?
+                {videoOrImageLoaded ?
                   <h1 className="text-center muli-extra-bold h1-jumbo letter-spacing-point3-rem">
                     SAY HELLO.
                   </h1>

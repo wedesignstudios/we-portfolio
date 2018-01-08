@@ -136,6 +136,12 @@
 @media screen and (max-width: 1440px) {
   .video-container {
     max-height: 40rem;
+    @include respond(ipad-pro-portrait) {
+      max-height: 72rem;
+    }
+    @include respond(ipad-pro-landscape) {
+      max-height: 72rem;
+    }
   }
 }
 

@@ -577,7 +577,7 @@ form textarea.form-control {
 #press .card .card-title.animate-underline::after {
   width: 100%; }
 
-@media (hover: none) {
+@media (hover: none), (hover: on-demand) {
   #work .card::before,
   #press .card::before {
     background-color: transparent; } }

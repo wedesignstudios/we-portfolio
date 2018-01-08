@@ -35,7 +35,8 @@
   }
 }
 
-@media (hover: none) {
+@media (hover: none),
+(hover: on-demand) {
   #work,
   #press {
     .card {

@@ -15,12 +15,14 @@
       width: 100%;
     }
 
-    &:hover::before {
-      background-color: rgba(0,0,0,0.05);
-      content: '';
-      height: 100%;
-      position: absolute;
-      width: 100%;
+    @media (hover) {
+      &:hover::before {
+        background-color: rgba(0,0,0,0.05);
+        content: '';
+        height: 100%;
+        position: absolute;
+        width: 100%;
+      }
     }
 
     .card-title {
@@ -30,18 +32,6 @@
 
       &.animate-underline::after {
         width: 100%;
-      }
-    }
-  }
-}
-
-@media (hover: none),
-(hover: on-demand) {
-  #work,
-  #press {
-    .card {
-      &::before {
-        background-color: rgba(0,0,0,0.0);
       }
     }
   }

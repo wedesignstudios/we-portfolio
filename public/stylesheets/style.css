@@ -550,13 +550,14 @@ form textarea.form-control {
   transition: background-color 0.2s ease;
   width: 100%; }
 
-#work .card:hover::before,
-#press .card:hover::before {
-  background-color: rgba(0, 0, 0, 0.05);
-  content: '';
-  height: 100%;
-  position: absolute;
-  width: 100%; }
+@media (hover) {
+  #work .card:hover::before,
+  #press .card:hover::before {
+    background-color: rgba(0, 0, 0, 0.05);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 100%; } }
 
 #work .card .card-title::after,
 #press .card .card-title::after {
@@ -576,11 +577,6 @@ form textarea.form-control {
 #work .card .card-title.animate-underline::after,
 #press .card .card-title.animate-underline::after {
   width: 100%; }
-
-@media (hover: none), (hover: on-demand) {
-  #work .card::before,
-  #press .card::before {
-    background-color: transparent; } }
 
 #client-logos img#logo-un, #client-logos img#logo-thomsonreuters, #client-logos img#logo-risd {
   max-width: 100%;

@@ -35,6 +35,17 @@
   }
 }
 
+@media (hover: none) {
+  #work,
+  #press {
+    .card {
+      &::before {
+        background-color: rgba(0,0,0,0.0);
+      }
+    }
+  }
+}
+
 #client-logos {
   img {
     &#logo-un,

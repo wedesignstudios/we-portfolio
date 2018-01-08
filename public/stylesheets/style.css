@@ -577,6 +577,11 @@ form textarea.form-control {
 #press .card .card-title.animate-underline::after {
   width: 100%; }
 
+@media (hover: none) {
+  #work .card::before,
+  #press .card::before {
+    background-color: transparent; } }
+
 #client-logos img#logo-un, #client-logos img#logo-thomsonreuters, #client-logos img#logo-risd {
   max-width: 100%;
   width: 6rem; }

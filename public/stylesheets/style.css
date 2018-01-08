@@ -656,6 +656,12 @@ form textarea.form-control {
 @media screen and (max-width: 1440px) {
   .video-container {
     max-height: 40rem; } }
+  @media only screen and (max-width: 1440px) and (min-device-width: 1024px) and (max-device-width: 1024px) and (min-device-height: 1366px) and (max-device-height: 1366px) and (min-width: 1024px) and (max-width: 1024px) {
+    .video-container {
+      max-height: 72rem; } }
+  @media only screen and (max-width: 1440px) and (min-device-width: 1366px) and (max-device-width: 1366px) and (min-device-height: 1024px) and (max-device-height: 1024px) and (min-width: 1366px) and (max-width: 1366px) {
+    .video-container {
+      max-height: 72rem; } }
 
 .img-container-mobile {
   max-height: 42rem;

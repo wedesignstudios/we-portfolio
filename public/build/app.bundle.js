@@ -67882,7 +67882,7 @@ var Contact = function (_Component) {
 
     _this.state = {
       windowWidth: 0,
-      videoLoaded: false
+      videoOrImageLoaded: false
     };
 
     _this.getWindowWidth = _this.getWindowWidth.bind(_this);
@@ -67906,9 +67906,9 @@ var Contact = function (_Component) {
       this.setState({ windowWidth: window.innerWidth });
     }
   }, {
-    key: 'setVideoLoaded',
-    value: function setVideoLoaded() {
-      this.setState({ videoLoaded: true });
+    key: 'setVideoOrImageLoaded',
+    value: function setVideoOrImageLoaded() {
+      this.setState({ videoOrImageLoaded: true });
     }
   }, {
     key: 'render',
@@ -67918,7 +67918,7 @@ var Contact = function (_Component) {
       var margin = this.props.margin;
       var _state = this.state,
           windowWidth = _state.windowWidth,
-          videoLoaded = _state.videoLoaded;
+          videoOrImageLoaded = _state.videoOrImageLoaded;
 
       var imageOrig = ImageSizePicker.imgOrig('HAND_ONLY.jpg');
       var imageOrigMobile = ImageSizePicker.imgOrig('HAND_ONLY_MOBILE.jpg');
@@ -67946,7 +67946,7 @@ var Contact = function (_Component) {
               muted: true,
               loop: true,
               onCanPlay: function onCanPlay(e) {
-                return _this2.setVideoLoaded(e);
+                return _this2.setVideoOrImageLoaded(e);
               } }),
             _react2.default.createElement('img', {
               className: 'img-portrait ipad-pro-poster-img-portrait ipad-pro-poster-img',
@@ -67975,7 +67975,10 @@ var Contact = function (_Component) {
               src: imageOrigMobile,
               srcSet: imageOrigMobile + ' 1440w, ' + imageSizesMobile.w1024 + ' 1024w, ' + imageSizesMobile.w800 + ' 800w, ' + imageSizesMobile.w600 + ' 600w,',
               sizes: '100vw',
-              width: '1440' }),
+              width: '1440',
+              onLoad: function onLoad(e) {
+                return _this2.setVideoOrImageLoaded(e);
+              } }),
             _react2.default.createElement('img', {
               id: 'img-landscape',
               className: 'img-fluid img-landscape',
@@ -67984,7 +67987,10 @@ var Contact = function (_Component) {
               src: imageOrig,
               srcSet: imageOrig + ' 1440w, ' + imageSizes.w1024 + ' 1024w, ' + imageSizes.w800 + ' 800w, ' + imageSizes.w600 + ' 600w,',
               sizes: '100vw',
-              width: '1440' })
+              width: '1440',
+              onLoad: function onLoad(e) {
+                return _this2.setVideoOrImageLoaded(e);
+              } })
           ) : null,
           _react2.default.createElement(
             'div',
@@ -67998,7 +68004,7 @@ var Contact = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'col-12 p-0' },
-                  videoLoaded ? _react2.default.createElement(
+                  videoOrImageLoaded ? _react2.default.createElement(
                     'h1',
                     { className: 'text-center muli-extra-bold h1-jumbo letter-spacing-point3-rem' },
                     'SAY HELLO.'
@@ -68605,7 +68611,7 @@ var NavBar = function (_Component) {
         { id: 'navbar-main', className: "row justify-content-center m-0 " + (location !== '/' ? 'nav-bg-white' : '') },
         _react2.default.createElement(
           'div',
-          { className: 'col-xl-9 col-lg-12' },
+          { className: 'col-xl-9 col-lg-12 p-0' },
           _react2.default.createElement(
             'nav',
             { className: "navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened ' : '') + (location !== '/' ? 'navbar-black' : '') },

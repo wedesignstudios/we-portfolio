@@ -23,15 +23,15 @@
         position: absolute;
         width: 100%;
       }
-    }
 
-    .card-title {
-      &::after {
-        @include animated-underline(5px);
-      }
+      .card-title {
+        &::after {
+          @include animated-underline(5px);
+        }
 
-      &.animate-underline::after {
-        width: 100%;
+        &.animate-underline::after {
+          width: 100%;
+        }
       }
     }
   }

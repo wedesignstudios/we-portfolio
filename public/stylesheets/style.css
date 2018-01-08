@@ -557,26 +557,24 @@ form textarea.form-control {
     content: '';
     height: 100%;
     position: absolute;
+    width: 100%; }
+  #work .card .card-title::after,
+  #press .card .card-title::after {
+    transition: width 0.15s ease-in-out;
+    -ms-transition: width 0.15s ease-in-out;
+    -webkit-transition: width 0.15s ease-in-out;
+    -moz-transition: width 0.15s ease-in-out;
+    -o-transition: width 0.15s ease-in-out;
+    bottom: 0;
+    box-shadow: 0 5px 0 #E6E31A;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 0; }
+  #work .card .card-title.animate-underline::after,
+  #press .card .card-title.animate-underline::after {
     width: 100%; } }
-
-#work .card .card-title::after,
-#press .card .card-title::after {
-  transition: width 0.15s ease-in-out;
-  -ms-transition: width 0.15s ease-in-out;
-  -webkit-transition: width 0.15s ease-in-out;
-  -moz-transition: width 0.15s ease-in-out;
-  -o-transition: width 0.15s ease-in-out;
-  bottom: 0;
-  box-shadow: 0 5px 0 #E6E31A;
-  content: '';
-  height: 100%;
-  left: 0;
-  position: absolute;
-  width: 0; }
-
-#work .card .card-title.animate-underline::after,
-#press .card .card-title.animate-underline::after {
-  width: 100%; }
 
 #client-logos img#logo-un, #client-logos img#logo-thomsonreuters, #client-logos img#logo-risd {
   max-width: 100%;

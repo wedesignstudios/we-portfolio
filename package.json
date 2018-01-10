@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "export NODE_ENV=test; test",
-    "start:dev": "export NODE_ENV=development; node ./bin/www",
+    "start:dev": "export NODE_ENV=development; nodemon ./bin/www",
     "start": "node ./bin/www"
   },
   "repository": {

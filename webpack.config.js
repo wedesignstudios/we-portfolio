@@ -12,7 +12,7 @@ module.exports = {
       filename: 'public/build/[name].bundle.js',
       sourceMapFilename: 'public/build/[name].bundle.map'
   },
-  devtool: '#source-map',
+  devtool: 'source-map',
   module: {
    loaders: [
      {

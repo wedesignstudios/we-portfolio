@@ -4,6 +4,7 @@
   "description": "Portfolio app to showcase design and development projects.",
   "main": "index.js",
   "scripts": {
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
     "test": "export NODE_ENV=test; test",
     "start:dev": "export NODE_ENV=development; nodemon ./bin/www",
     "start": "node ./bin/www"

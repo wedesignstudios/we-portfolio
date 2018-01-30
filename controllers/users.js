@@ -8,7 +8,7 @@ const User = require('../models/user');
 router.get('/', function(req, res, next) {
   User
     .collection()
-    .fetch({      
+    .fetch({
       debug: true
     })
     .then((user) => {      
@@ -23,7 +23,18 @@ router.get('/', function(req, res, next) {
 router.get('/:username', function(req, res, next) {  
   User
     .forge({username: req.params.username})
-    .fetch({debug: true})
+    .fetch({
+      withRelated: [
+        'projects',
+        'projects.feature_image',
+        'projects.images',
+        'projects.clients',
+        'projects.collaborators',
+        'projects.project_categories',
+        'projects.project_images_sort_order'
+      ],
+      debug: true
+    })
     .then((user) => {
       res.json(user);
     })

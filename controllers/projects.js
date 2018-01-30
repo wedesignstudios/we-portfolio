@@ -18,6 +18,7 @@ router.get('/', (req, res, next) => {
       withRelated: [
         'images',
         'feature_image.image',
+        'users',
         'clients',
         'clients.address',
         'collaborators',
@@ -49,6 +50,7 @@ router.get('/:param', (req, res, next) => {
       withRelated: [
         'images',
         'feature_image.image',
+        'users',
         'clients',
         'clients.address',
         'collaborators',

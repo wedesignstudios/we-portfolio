@@ -279,7 +279,7 @@ class FormProject extends React.Component {
     const visibleBtnIconClass = classNames(
       'fa',
       {'fa-eye': visible == true},
-      {'fa-eye-slash ': visible == false || visible == null}
+      {'fa-eye-slash text-danger': visible == false || visible == null}
     );
 
     const visibleBtnClass = classNames(

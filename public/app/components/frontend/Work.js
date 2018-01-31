@@ -21,6 +21,9 @@ class Work extends Component {
     fetch('/api/v1/projects')
       .then(res => res.json())
       .then(data => {
+        data = data.filter(obj => {
+          return obj.visible === true
+        })
         if(this.refs.workRef) {
           this.setState({
             projectData: data

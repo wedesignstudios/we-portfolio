@@ -67,6 +67,15 @@
   }
 }
 
+.btn-secondary {
+  &:focus {
+    box-shadow: none;
+  }
+  &:hover {
+    background-color: transparent;
+  }
+}
+
 // Cards
 .card {
 

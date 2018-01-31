@@ -66,6 +66,9 @@ video {
   max-width: 100%;
   min-width: 100%; }
 
+button:hover {
+  cursor: pointer; }
+
 .muli-reg {
   font-family: 'Muli';
   font-style: normal;
@@ -149,6 +152,12 @@ video {
       display: block;
       margin: 3rem auto;
       max-width: 16rem; } }
+
+.btn-secondary:focus {
+  box-shadow: none; }
+
+.btn-secondary:hover {
+  background-color: transparent; }
 
 .card .card-title {
   display: inline-block;

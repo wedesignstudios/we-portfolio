@@ -81,7 +81,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
   const project_categories_ids = req.body.project_categories_ids;
   const feature_image_id = req.body.feature_image.id;
   const image_sort_order = req.body.image_sort_order;
-  const allowedKeys = ['name', 'date', 'description'];
+  const allowedKeys = ['name', 'date', 'description', 'visible'];
   const formData = params(req.body).only(allowedKeys);
   formData['slug'] = formData.name.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 
@@ -157,7 +157,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
   const project_categories_ids_detach = req.body.project_categories_ids_detach;
   const feature_image_id = req.body.feature_image.id;
   const image_sort_order = req.body.image_sort_order;
-  const allowedKeys = ['name', 'date', 'description'];
+  const allowedKeys = ['name', 'date', 'description', 'visible'];
   const formData = params(req.body).only(allowedKeys);
   formData['slug'] = formData.name.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 

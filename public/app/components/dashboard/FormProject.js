@@ -32,6 +32,7 @@ class FormProject extends React.Component {
       initialName: '',
       date: '',
       description: '',
+      visible: false,
       images_all: [],
       images_ids: [],
       images_ids_to_attach: [],
@@ -81,6 +82,7 @@ class FormProject extends React.Component {
             initialName: data.name,
             date: moment(data.date),
             description: data.description,
+            visible: data.visible,
             feature_image: {id: data.feature_image.image.id, url: data.feature_image.image.url}
           });
         if(data.clients) {
@@ -237,6 +239,10 @@ class FormProject extends React.Component {
     });
   }
 
+  toggleVisible() {
+    this.setState({visible: !this.state.visible});
+  }
+
   submitForm(event) {
     event.preventDefault();
     FormValidations.trimData(this.state, this);
@@ -262,13 +268,23 @@ class FormProject extends React.Component {
   }
 
   render() {
-    const { image_sort_order } = this.state;
+    const { image_sort_order, visible } = this.state;
     const wordCounterClass = classNames(
       'input-group-addon',
       'input-group-addon',
       'background-white',
       'word-counter',
       {'text-danger': this.state.name.length >= 25}
+    );
+    const visibleBtnIconClass = classNames(
+      'fa',
+      {'fa-eye': visible == true},
+      {'fa-eye-slash ': visible == false || visible == null}
+    );
+
+    const visibleBtnClass = classNames(
+      'btn btn-secondary mb-3',
+      {'btn-visible': visible == true}
     );
     return (
       <div className="row m-0 justify-content-center">
@@ -287,15 +303,25 @@ class FormProject extends React.Component {
               <hr className="col" />
             </div>
 
-            {this.props.sendRequestType === 'PUT' ?
-              <div>
+            <div className="row mb-3">
+              {this.props.sendRequestType === 'PUT' ?
+                <div>
+                  <button
+                    className="btn btn-danger mb-3"
+                    onClick={(e) => this.deleteProject(e)}>
+                      Delete {this.state.initialName}
+                  </button>
+                </div> :
+              null}
+
+              <div className="ml-auto">
                 <button
-                  className="btn btn-danger mb-3"
-                  onClick={(e) => this.deleteProject(e)}>
-                    Delete {this.state.initialName}
+                  className={visibleBtnClass}
+                  onClick={(e) => this.toggleVisible(e)}>
+                  <i className={visibleBtnIconClass} aria-hidden="true"></i>
                 </button>
-              </div> :
-            null}
+              </div>
+            </div>
 
             <div className="col submit-message-error">
               {this.state.submitError ?

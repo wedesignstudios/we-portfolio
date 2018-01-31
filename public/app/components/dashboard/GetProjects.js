@@ -6,6 +6,7 @@ import 'whatwg-fetch';
 const DateFormatter = require('../../services/date_formatter');
 const FormValidations = require('../../services/form_validations');
 const ImageSizePicker = require('../../services/image_size_picker');
+const classNames = require('classnames');
 
 class GetProjects extends Component {
   constructor(props) {
@@ -79,38 +80,44 @@ class GetProjects extends Component {
               {this.state.projectsData.map(project => {
                 let projectDate = new Date(project.date);
                 let coverImage = project.feature_image.image;
+                let visibleBtnIconClass = classNames(
+                  'fa',
+                  {'fa-eye': project.visible == true},
+                  {'fa-eye-slash text-danger': project.visible == false || project.visible == null}
+                );
 
                 return (
                   <div className="col-sm-2 mb-4" key={project.id}>
                     <div className="card line-height-1-25-rem">
-                      {project.images.length > 0 ?
-                        <Link to={`${this.props.match.url}/${project.id}/update`}>
-                          {coverImage ?
-                            <img
-                              className="card-img-top img-fluid"
-                              src={ImageSizePicker.imgSize(coverImage.orig_name).thumb300}
-                              alt={coverImage.alt} /> :
-                            <img
-                              className="card-img-top img-fluid"
-                              src={ImageSizePicker.imgSize(project.images[0].orig_name).thumb300}
-                              alt={project.images[0].alt} />
-                          }
-                        </Link> :
-                      null}
-                      <div className="card-block p-3">
-                        <p className="card-title mb-2">
-                          <Link to={`${this.props.match.url}/${project.id}/update`} className="text-muted">
-                            {project.name}
-                          </Link>
-                        </p>
-                      </div>
-                      <div className="card-footer text-muted px-3 py-1">
-                        <p className="card-text mb-0">
-                          <small className="text-muted">
-                            {DateFormatter.monthYear(projectDate)}
-                          </small>
-                        </p>
-                      </div>
+                      <Link to={`${this.props.match.url}/${project.id}/update`} className="text-muted">
+                        {project.images.length > 0 ?
+                          <div>
+                            {coverImage ?
+                              <img
+                                className="card-img-top img-fluid"
+                                src={ImageSizePicker.imgSize(coverImage.orig_name).thumb300}
+                                alt={coverImage.alt} /> :
+                              <img
+                                className="card-img-top img-fluid"
+                                src={ImageSizePicker.imgSize(project.images[0].orig_name).thumb300}
+                                alt={project.images[0].alt} />
+                            }
+                          </div> :
+                          null}
+                          <div className="card-block p-3">
+                            <p className="card-title mb-2">
+                                {project.name}
+                            </p>
+                            <i className={visibleBtnIconClass} aria-hidden="true"></i>
+                          </div>
+                        <div className="card-footer text-muted px-3 py-1">
+                          <p className="card-text mb-0">
+                            <small className="text-muted">
+                              {DateFormatter.monthYear(projectDate)}
+                            </small>
+                          </p>
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 )}

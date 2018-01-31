@@ -159,6 +159,11 @@ button:hover {
 .btn-secondary:hover {
   background-color: transparent; }
 
+.card a {
+  text-decoration: none; }
+  .card a:hover {
+    background-color: transparent; }
+
 .card .card-title {
   display: inline-block;
   font-size: 0.95rem;

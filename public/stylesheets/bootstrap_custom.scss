@@ -78,6 +78,13 @@
 
 // Cards
 .card {
+  a {
+    text-decoration: none;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
 
   .card-title {
     display: inline-block;

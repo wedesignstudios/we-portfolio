@@ -6,7 +6,7 @@ const User = require('../models/user');
 const ENV = process.env.NODE_ENV;
 var callbackHost = undefined;
 
-(ENV === 'development') ? (callbackHost = 'http://localhost:3000') : (callbackHost = 'http://we-portfolio.herokuapp.com');
+(ENV === 'development') ? (callbackHost = 'http://localhost:3000') : (callbackHost = 'https://wedesignstudios.com');
 
 passport.use(new passportFacebook({
     clientID: process.env.FACEBOOK_APP_ID,

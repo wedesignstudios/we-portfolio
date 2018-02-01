@@ -10,6 +10,8 @@ const User = bookshelf.Model.extend({
   projects: function() {
     return this.belongsToMany('Project').through('ProjectsUsers');
   }
+}, {
+  dependents: ['projects']
 });
 
 module.exports = bookshelf.model('User', User);

@@ -79,6 +79,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
   const clients_ids = req.body.clients_ids;
   const collaborators_ids = req.body.collaborators_ids;
   const project_categories_ids = req.body.project_categories_ids;
+  const users_ids = req.body.users_ids;
   const feature_image_id = req.body.feature_image.id;
   const image_sort_order = req.body.image_sort_order;
   const allowedKeys = ['name', 'date', 'description', 'visible'];
@@ -93,6 +94,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
         project.clients().attach(clients_ids);
         project.collaborators().attach(collaborators_ids);
         project.project_categories().attach(project_categories_ids);
+        project.users().attach(users_ids);
         // Add images
         project.related('images')
           .fetch()
@@ -155,6 +157,8 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
   const collaborators_ids_detach = req.body.collaborators_ids_detach;
   const project_categories_ids = req.body.project_categories_ids;
   const project_categories_ids_detach = req.body.project_categories_ids_detach;
+  const users_ids = req.body.users_ids;
+  const users_ids_detach = req.body.users_ids_detach;
   const feature_image_id = req.body.feature_image.id;
   const image_sort_order = req.body.image_sort_order;
   const allowedKeys = ['name', 'date', 'description', 'visible'];
@@ -174,6 +178,9 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 
         if (project_categories_ids_detach) project.project_categories().detach(project_categories_ids_detach);
         if (project_categories_ids) project.project_categories().attach(project_categories_ids);
+
+        if (users_ids_detach) project.users().detach(users_ids_detach);
+        if (users_ids) project.users().attach(users_ids);
 
         // Fetch related images
         project.related('images')

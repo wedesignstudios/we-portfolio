@@ -15,6 +15,7 @@ const _map = require('lodash/map');
 const _isEmpty = require('lodash/isEmpty');
 const ClientCheckboxes = require('./ClientCheckboxes');
 const CollaboratorCheckboxes = require('./CollaboratorCheckboxes');
+const UsersCheckboxes = require('./UsersCheckboxes');
 const ImageBoard = require('../drag_drop/ImageBoard');
 const ModalAddImages = require('./ModalAddImages');
 const ProjectCategoriesCheckboxes = require('./ProjectCategoriesCheckboxes');
@@ -53,6 +54,10 @@ class FormProject extends React.Component {
       project_categories_ids_attached: [],
       project_categories_ids_detach: [],
       project_categories_ids_selected: [],
+      users_ids: [],
+      users_ids_attached: [],
+      users_ids_detach: [],
+      users_ids_selected: [],
       nameErr: false,
       dateErr: false,
       descriptionErr: false,
@@ -94,6 +99,9 @@ class FormProject extends React.Component {
         if(data.project_categories) {
           this.setAttachedAndSelected(data.project_categories, 'project_categories');
         };
+        if(data.users) {
+          this.setAttachedAndSelected(data.users, 'users');
+        };
         if(data.images) {
           this.setAttachedAndSelected(data.images, 'images');
           this.setAttachedData(data.images, 'images');
@@ -111,6 +119,7 @@ class FormProject extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
+    console.log('nextState: ', nextState);
     this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
     if(nextState.name.length > 30) {
@@ -517,6 +526,13 @@ class FormProject extends React.Component {
                 attached={this.state.project_categories_ids_attached}
                 toAttach={this.state.project_categories_ids}
                 detach={this.state.project_categories_ids_detach} />
+
+              <UsersCheckboxes
+                preSelected={this.state.users_ids_selected}
+                sendUsersData={this.getComponentData}
+                attached={this.state.users_ids_attached}
+                toAttach={this.state.users_ids}
+                detach={this.state.users_ids_detach} />
 
               <div className="form-group row">
                 <div className="col-sm-12 d-flex justify-content-end">

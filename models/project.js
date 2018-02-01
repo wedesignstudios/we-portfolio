@@ -38,7 +38,7 @@ const Project = bookshelf.Model.extend({
     return this.belongsToMany('User').through('ProjectsUsers');
   }
 }, {
-  dependents: ['clients', 'collaborators', 'images', 'project_categories', 'project_images_sort_order', 'feature_image']
+  dependents: ['clients', 'collaborators', 'images', 'project_categories', 'project_images_sort_order', 'feature_image', 'users']
 });
 
 module.exports = bookshelf.model('Project', Project);

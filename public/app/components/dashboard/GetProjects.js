@@ -108,7 +108,7 @@ class GetProjects extends Component {
                             <p className="card-title mb-2">
                                 {project.name}
                             </p>
-                            <i className={visibleBtnIconClass} aria-hidden="true"></i>
+                            <p className="mb-0"><i className={visibleBtnIconClass} aria-hidden="true"></i></p>
                           </div>
                         <div className="card-footer text-muted px-3 py-1">
                           <p className="card-text mb-0">

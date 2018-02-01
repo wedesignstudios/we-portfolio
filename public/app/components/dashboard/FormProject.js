@@ -119,7 +119,6 @@ class FormProject extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log('nextState: ', nextState);
     this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
     if(nextState.name.length > 30) {

@@ -552,6 +552,19 @@ form textarea.form-control {
   .image-full-width .img-portrait {
     display: none; } }
 
+#login-card .card {
+  width: 18rem; }
+  #login-card .card > img:hover {
+    cursor: initial; }
+  #login-card .card a:hover {
+    background-color: #E6E31A; }
+
+#login-card .card-img-top {
+  background-color: #DEDEDE; }
+
+#login-card .card-block {
+  border-top: 1px solid #DEDEDE; }
+
 #work .card::before,
 #press .card::before {
   background-color: transparent;

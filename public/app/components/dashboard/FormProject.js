@@ -285,11 +285,14 @@ class FormProject extends React.Component {
       {'text-danger': this.state.name.length >= 25}
     );
     const visibleBtnIconClass = classNames(
-      'fa',
-      {'fa-eye': visible == true},
-      {'fa-eye-slash text-danger': visible == false || visible == null}
+      "fas",
+      {"fa-eye": visible == true},
+      {"fa-eye-slash text-danger": visible == false || visible == null}
     );
-
+    const thingy = classNames(
+      {'eye': visible === true},
+      {'eye-slash': visible === false}
+    );
     const visibleBtnClass = classNames(
       'btn btn-secondary mb-3',
       {'btn-visible': visible == true}
@@ -326,7 +329,7 @@ class FormProject extends React.Component {
                 <button
                   className={visibleBtnClass}
                   onClick={(e) => this.toggleVisible(e)}>
-                  <i className={visibleBtnIconClass} aria-hidden="true"></i>
+                  <i className={visibleBtnIconClass}></i>
                 </button>
               </div>
             </div>
@@ -383,7 +386,7 @@ class FormProject extends React.Component {
                         onBlur={(e) => {FormValidations.checkField(e, this);}} />
                       <span className={wordCounterClass}>{this.state.name.length}/30</span>
                       {this.state.name ?
-                        <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                        <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                         <span className="input-group-addon text-danger background-white border-0">Required</span>
                       }
                   </div>
@@ -410,7 +413,7 @@ class FormProject extends React.Component {
                         onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
                         onBlur={(e) => FormValidations.checkField(e, this)} />
                     {this.state.date ?
-                      <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                       <span className="input-group-addon text-danger background-white border-0">Required</span>
                     }
                   </div>
@@ -430,7 +433,7 @@ class FormProject extends React.Component {
                         onFocus={(e) => FormHandlers.preventSpaceKey(e)}
                         onBlur={(e) => FormValidations.checkField(e, this)} />
                     {this.state.description ?
-                      <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                       <span className="input-group-addon text-danger background-white border-0">Required</span>
                     }
                   </div>
@@ -457,7 +460,7 @@ class FormProject extends React.Component {
                         {this.state.feature_image.id ? 'Change Image' : 'Add Image'}
                     </button>
                     {this.state.feature_image.id ? 
-                      <span className="text-success background-white ml-3"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="text-success background-white ml-3"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                       <span className="text-danger background-white ml-3">Required</span>
                     }
                 </div>
@@ -479,7 +482,7 @@ class FormProject extends React.Component {
                         Add/Remove Image(s)
                     </button>
                     {this.state.images_all.length > 0 ?
-                      <span className="text-success background-white ml-3"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="text-success background-white ml-3"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                       <span className="text-danger background-white ml-3">Required</span>
                     }
                 </div>

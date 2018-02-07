@@ -261,7 +261,7 @@ class FormNewsStory extends React.Component {
                         onBlur={(e) => {FormValidations.checkField(e, this);}} />
                       <span className={wordCounterClass}>{this.state.title.length}/30</span>
                         {this.state.title ?
-                          <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                          <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                           <span className="input-group-addon text-danger background-white border-0">Required</span>
                         }
                     </div>
@@ -288,7 +288,7 @@ class FormNewsStory extends React.Component {
                         onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
                         onBlur={(e) => FormValidations.checkField(e, this)} />
                       {this.state.date ?
-                        <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                        <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                         <span className="input-group-addon text-danger background-white border-0">Required</span>
                       }
                   </div>
@@ -308,7 +308,7 @@ class FormNewsStory extends React.Component {
                         onFocus={(e) => FormHandlers.preventSpaceKey(e)}
                         onBlur={(e) => FormValidations.checkField(e, this)} />
                     {this.state.description ?
-                      <span className="input-group-addon text-success background-white border-0"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                       <span className="input-group-addon text-danger background-white border-0">Required</span>
                     }
                   </div>
@@ -337,7 +337,7 @@ class FormNewsStory extends React.Component {
                         }
                     </button>
                     {this.state.image_id ?
-                      <span className="text-success background-white ml-3"><i className="fa fa-check-circle" aria-hidden="true"></i></span> :
+                      <span className="text-success background-white ml-3"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                       <span className="text-danger background-white ml-3">Required</span>
                     }
                 </div>

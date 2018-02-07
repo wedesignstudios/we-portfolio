@@ -14,13 +14,13 @@ class Footer extends Component {
             <div id="social-icons" className="col-lg-4 col-12 p-0">
               <div className="d-flex justify-content-center">
                 <a href="https://instagram.com/wedesignstudios" target="_blank">
-                  <i className="fa fa-instagram social-icon-circle mx-3" aria-hidden="true"></i>
+                  <i className="fab fa-instagram social-icon-circle mx-3" aria-hidden="true"></i>
                 </a>
                 <a href="https://www.facebook.com/WEDesignStudios" target="_blank">
-                  <i className="fa fa-facebook social-icon-circle mx-3" aria-hidden="true"></i>
+                  <i className="fab fa-facebook-f social-icon-circle mx-3" aria-hidden="true"></i>
                 </a>
                 <a href="https://www.behance.net/WEDesignStudios" target="_blank">
-                <i className="fa fa-behance social-icon-circle mx-3" aria-hidden="true"></i>
+                <i className="fab fa-behance social-icon-circle mx-3" aria-hidden="true"></i>
                 </a>
               </div>
               <Copyright />

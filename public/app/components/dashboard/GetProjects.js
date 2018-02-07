@@ -81,7 +81,7 @@ class GetProjects extends Component {
                 let projectDate = new Date(project.date);
                 let coverImage = project.feature_image.image;
                 let visibleBtnIconClass = classNames(
-                  'fa',
+                  'fas',
                   {'fa-eye': project.visible == true},
                   {'fa-eye-slash text-danger': project.visible == false || project.visible == null}
                 );

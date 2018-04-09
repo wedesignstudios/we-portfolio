@@ -65,10 +65,12 @@ class FormProject extends React.Component {
       clearModalErrs: false
     }
 
-    this.initialState = this.state;
+    this.initialFetchComplete = false;
+    this.newProject = false;
 
     this.requiredFields = ['name', 'date', 'description', 'feature_image', 'images_all'];
     this.requiredFieldsBlank = true;
+    this.noStateChanged = true;
     this.getComponentData = this.getComponentData.bind(this);
     this.getFeatureImgData = this.getFeatureImgData.bind(this);
     this.updateSortOrder = this.updateSortOrder.bind(this);
@@ -112,9 +114,14 @@ class FormProject extends React.Component {
           }
         }
       })
+      .then(() => {
+        this.initialFetchComplete = true;
+      })
       .catch((err) => {
         console.error(err);
       });
+    } else {
+      this.newProject = true;
     }
   }
 
@@ -123,6 +130,10 @@ class FormProject extends React.Component {
 
     if(nextState.name.length > 30) {
       nextState.name = this.state.name;
+    }
+
+    if(nextState != this.state && (this.initialFetchComplete || this.newProject)) {
+      this.noStateChanged = false;
     }
 
     return true;
@@ -275,6 +286,17 @@ class FormProject extends React.Component {
     })
   }
 
+  previewChanges(event) {
+    event.preventDefault();
+    FormValidations.trimData(this.state, this);
+    DataActions.sendRequest(
+      'POST',
+      this.state,
+      '/api/v1/projects/preview'
+    );
+    window.open('/dashboard/projects/preview', 'previewWindow').focus();
+  }
+
   render() {
     const { image_sort_order, visible } = this.state;
     const wordCounterClass = classNames(
@@ -326,6 +348,12 @@ class FormProject extends React.Component {
               null}
 
               <div className="ml-auto">
+                <button
+                  className="btn btn-secondary mb-3 mr-2"
+                  disabled={this.noStateChanged || this.newProject}
+                  onClick={(e) => this.previewChanges(e)}>
+                  Preview Changes
+                </button>
                 <button
                   className={visibleBtnClass}
                   onClick={(e) => this.toggleVisible(e)}>
@@ -541,7 +569,7 @@ class FormProject extends React.Component {
                   <Link to='/dashboard/projects' className="btn btn-secondary mr-3">Cancel</Link><br />
                   <button
                     className="btn btn-primary"
-                    disabled={this.requiredFieldsBlank}
+                    disabled={this.requiredFieldsBlank || this.noStateChanged}
                     onClick={(e) => this.submitForm(e)}>
                       {this.props.sendRequestType === 'PUT' ?
                         `Update ${this.state.initialName}`:

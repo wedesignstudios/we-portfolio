@@ -22,16 +22,11 @@ class WorkProject extends Component {
   }
 
   componentDidMount() {
-    fetch(`/api/v1/projects/${this.props.match.params.name}`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          projectData: data
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      })
+    if (this.props.preview) {
+      this.getProject('/api/v1/projects/preview');
+    } else {
+      this.getProject(`/api/v1/projects/${this.props.match.params.name}`);
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -45,6 +40,24 @@ class WorkProject extends Component {
 
       this.projectImages = orderedImages;
     }
+  }
+
+  getProject(apiUrl) {
+    fetch(apiUrl,
+        {
+          method: 'GET',
+          credentials: 'include'
+        }
+      )
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          projectData: data
+        });
+      })
+      .catch(err => {
+        console.error('fetch err: ', err);
+      });
   }
 
   scrollToTop() {

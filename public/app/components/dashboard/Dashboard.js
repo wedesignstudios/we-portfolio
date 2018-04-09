@@ -16,6 +16,7 @@ const DashboardHome = require('./DashboardHome');
 const CreateProject = require('./CreateProject');
 const GetProjects = require('./GetProjects');
 const UpdateProject = require('./UpdateProject');
+const WorkProject = require('../frontend/WorkProject');
 const CreateClient = require('./CreateClient');
 const GetClients = require('./GetClients');
 const UpdateClient = require('./UpdateClient');
@@ -48,6 +49,7 @@ class Dashboard extends Component {
             <Route path={`${this.props.match.url}/news-stories/:id/update`} component={UpdateNewsStory} />
             <Route path={`${this.props.match.url}/news-stories`} component={GetNewsStories} />
             <Route path={`${this.props.match.url}/projects/create`} component={CreateProject} />
+            <Route path={`${this.props.match.url}/projects/preview`} render={props => <WorkProject {...props} preview={true} />} />
             <Route path={`${this.props.match.url}/projects/:id/update`} component={UpdateProject} />
             <Route path={`${this.props.match.url}/projects`} component={GetProjects} />
             <Route component={NotFound} />

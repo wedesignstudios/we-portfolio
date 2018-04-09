@@ -6,6 +6,9 @@ const bookshelf = require('../db/bookshelf');
 
 const Project = require('../models/project');
 const Image = require('../models/image');
+const Client = require('../models/client');
+const Collaborator = require('../models/collaborator');
+const ProjectCategory = require('../models/project_category');
 const ProjectImagesSortOrder = require('../models/project_images_sort_order');
 const ProjectFeatureImage = require('../models/project_feature_images');
 
@@ -35,6 +38,12 @@ router.get('/', (req, res, next) => {
       console.log('Error message: ', err);
       res.sendStatus(500);
     });
+});
+
+// GET project preview JSON
+
+router.get('/preview', isLoggedIn, (req, res) => {
+  res.json(req.session.projectPreview);
 });
 
 // SHOW a project by ID/slug
@@ -145,6 +154,71 @@ router.post('/', isLoggedIn, (req, res, next) => {
     } else {
       res.status(400).send('Bad Request');
     };
+});
+
+// POST preview changes to a project
+
+router.post('/preview', isLoggedIn, (req, res, next) => {
+  if(!req.session.projectPreview) {
+    req.session.projectPreview = {};
+  }
+
+  // Build initial session.projectPreview object
+  req.session.projectPreview = {
+    name: req.body.name,
+    date: req.body.date,
+    description: req.body.description,
+    feature_image: {image: req.body.feature_image},
+    images: req.body.images_all,
+    project_images_sort_order: {images_order: req.body.image_sort_order},
+    clients: [],
+    collaborators: [],
+    project_categories: [],
+  };
+
+  // Extract feature image orig_name
+  let featImgUrl = req.session.projectPreview.feature_image.image.url;
+
+  req.session.projectPreview.feature_image.image.orig_name = featImgUrl.substr(featImgUrl.lastIndexOf('/') + 1);
+
+  // Check if image objects have 'orig_name' key
+  req.body.images_all.forEach(obj => {
+    let keys = Object.keys(obj);
+    if(!keys.includes('orig_name')) {
+      obj.orig_name = obj.url.substr(obj.url.lastIndexOf('/') + 1);
+    };
+  });
+
+  // Fetch client, collaborator, project_category data from db
+  Client
+    .where('id', 'IN', req.body.clients_ids_selected)
+    .fetchAll()
+    .then(clients => {
+      req.session.projectPreview.clients = clients;
+    })
+    .then(() => {
+      return Collaborator
+        .where('id', 'IN', req.body.collaborators_ids_selected)
+        .fetchAll()
+        .then(collabs => {
+          req.session.projectPreview.collaborators = collabs;
+        })
+        .catch(err => console.error(err));
+    })
+    .then(() => {
+      return ProjectCategory
+        .where('id', 'IN', req.body.project_categories_ids_selected)
+        .fetchAll()
+        .then(categories => {
+          req.session.projectPreview.project_categories = categories;
+        })
+        .catch(err => console.error(err));
+    })
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch(err => console.error(err));
+
 });
 
 // UPDATE a project

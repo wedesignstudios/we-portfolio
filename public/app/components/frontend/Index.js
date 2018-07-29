@@ -17,10 +17,14 @@ class Index extends Component {
   componentDidMount() {
     this.getWindowWidth();
     window.addEventListener('resize', this.getWindowWidth);
+    // Add repeating eye logo to background
+    document.body.style.background = 'url(https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg) center/3.5rem space';
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.getWindowWidth);
+    // Remove repeating eye logo to background
+    document.body.style.background = 'initial';
   }
 
   getWindowWidth() {

@@ -133,7 +133,6 @@ class About extends Component {
                   <hr className="hr-point7rem mb-4" />
                   <p>David Elden is a software developer, designer and operations manager.</p>
                   <p>When not designing and building the latest great project for clients, David can be found enjoying the outdoors from the vantage point atop two wheels - both bicycle and motorcycle. He also likes gathering inspiration through his visits to the desert landscapes of west Texas and to culturally rich communities throughout Asia.</p>
-                  <hr />
                   <p>Contact David:<br />
                     <span className="muli-bold">david@wedesignstudios.com</span>
                   </p>
@@ -182,6 +181,9 @@ class About extends Component {
                   <p>Office manager, sleep expert and Shih Tzu mix.</p>
                   <p>Lemmy started at WE Design Studios in 2017 as the office manager and resident sleep expert. While he claims to be from San Marcos, TX, his background is a mystery and he has remained tight lipped about his past.</p> 
                   <p>He loves Greek yogurt, throws a mean side-eye, is extremely enthusiastic (just ask him for a high five - you’ll see) and has a dramatic sigh louder than your teenage daughter. His favorite activities include wrestling, listening to Mot&ouml;rhead, sleeping, cruising in the car and meeting new people. Bork!</p>
+                  <p>Follow Lemmy on <a href="https://www.instagram.com/lilbudlemmy/" target="_blank">Instagram</a>:<br />
+                    <span className="muli-bold">@lilbudlemmy</span>
+                  </p>
                 </div>
               </div>
               <div className="row justify-content-center m-0 mt-6rem">

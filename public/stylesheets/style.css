@@ -466,6 +466,9 @@ button:hover {
     -o-animation: none;
     animation: none; } }
 
+#pre_footer {
+  background-color: #E6E31A; }
+
 form .Select-control {
   border-color: none;
   border: 1px solid rgba(0, 0, 0, 0.15);

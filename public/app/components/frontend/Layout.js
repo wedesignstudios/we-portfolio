@@ -12,6 +12,7 @@ import {
 
 const NavAdmin = require('./NavAdmin');
 const NavBar = require('./NavBar');
+const PreFooter = require('./PreFooter');
 const Footer = require('./Footer');
 const Index = require('./Index');
 const About = require('./About');
@@ -81,6 +82,7 @@ class Layout extends Component {
             </div>
             </div>
           <div className="col-12 container-fluid p-0">
+            <PreFooter />
             <Footer />
           </div>
         </div>

@@ -1,5 +1,14 @@
 // PreFooter styles
 
 #pre_footer {
-  background-color: $barberry; 
+  background-color: $barberry;
+  height: 8.625rem;
+  position: relative;
+
+  #pre_footer_overlay {
+    background-color: red;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
 }

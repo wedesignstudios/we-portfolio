@@ -48,7 +48,9 @@
 
 // Buttons
 .btn {
+  border-radius: 0;
   text-decoration: none;
+  vertical-align: bottom;
 }
 
 .btn-cta {
@@ -65,6 +67,11 @@
     margin: 3rem auto;
     max-width: 16rem;
   }
+}
+
+.btn-primary {
+  background-color: $blue_ribbon;
+  border-color: $blue_ribbon;
 }
 
 .btn-secondary {

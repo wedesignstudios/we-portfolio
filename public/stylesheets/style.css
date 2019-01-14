@@ -113,6 +113,9 @@ button:hover {
 .mb-5rem {
   margin-bottom: 5rem !important; }
 
+.mr-2rem {
+  margin-right: 2rem !important; }
+
 .mt-6rem {
   margin-top: 6rem !important; }
 
@@ -477,7 +480,6 @@ button:hover {
   height: 8.625rem;
   position: relative; }
   #pre_footer #pre_footer_overlay {
-    background-color: red;
     height: 100%;
     position: absolute;
     width: 100%; }
@@ -518,8 +520,17 @@ form textarea.form-control {
   border-right: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0 0.25rem 0.25rem 0; }
 
+#mc_signup_cta {
+  color: #4D4D4D; }
+
 #mc_signup_form input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px #4D4D4D solid;
+  color: #4D4D4D;
   width: 100%; }
+  #mc_signup_form input::placeholder {
+    color: #4D4D4D; }
 
 .image-grid-element {
   display: inline-block;

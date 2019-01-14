@@ -13,27 +13,23 @@ class FormMailchimpSignUp extends Component {
           <div className="col-12">
             <form id="mc_signup_form">
               <div className="form-group row justify-content-center">
-                <div className="col-5">
+                <div className="col-9 d-flex">
                   <input
-                    className="mb-0"
+                    className="mb-0 mr-2rem"
                     type="text"
                     name="first_name"
                     /* value="" */
                     placeholder="First Name" />
-                </div>
 
-                <div className="col-5">
                   <input
-                    className="mb-0"
+                    className="mb-0 mr-2rem"
                     type="text"
                     name="email"
                     /* value="" */
                     placeholder="Email" />
-                </div>
 
-                <div className="col-1">
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary ml-auto"
                     /*disabled={this.requiredFieldsBlank}
                     onClick={(e) => this.submitForm(e)}*/>
                     GO

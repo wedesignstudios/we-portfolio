@@ -139,7 +139,9 @@ button:hover {
     max-width: 16.666667%; } }
 
 .btn {
-  text-decoration: none; }
+  border-radius: 0;
+  text-decoration: none;
+  vertical-align: bottom; }
 
 .btn-cta {
   background-color: #FFFFFF;
@@ -152,6 +154,10 @@ button:hover {
       display: block;
       margin: 3rem auto;
       max-width: 16rem; } }
+
+.btn-primary {
+  background-color: #024FF3;
+  border-color: #024FF3; }
 
 .btn-secondary:focus {
   box-shadow: none; }
@@ -467,7 +473,14 @@ button:hover {
     animation: none; } }
 
 #pre_footer {
-  background-color: #E6E31A; }
+  background-color: #E6E31A;
+  height: 8.625rem;
+  position: relative; }
+  #pre_footer #pre_footer_overlay {
+    background-color: red;
+    height: 100%;
+    position: absolute;
+    width: 100%; }
 
 form .Select-control {
   border-color: none;
@@ -504,6 +517,9 @@ form textarea.form-control {
 #create-news-story .word-counter {
   border-right: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0 0.25rem 0.25rem 0; }
+
+#mc_signup_form input {
+  width: 100%; }
 
 .image-grid-element {
   display: inline-block;

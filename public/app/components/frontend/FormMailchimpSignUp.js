@@ -7,7 +7,7 @@ class FormMailchimpSignUp extends Component {
       <div id="mc_signup_wrapper" className="col-10">
         <div className="row height-100 align-content-center">
           <div id="mc_signup_cta" className="col-12">
-            <h4 className="text-center muli-reg">Sign Up For The WE Monthly Newsletter!</h4>
+            <h3 className="text-center muli-bold mb-3">Sign Up For The WE Monthly Newsletter!</h3>
           </div>
 
           <div className="col-12">

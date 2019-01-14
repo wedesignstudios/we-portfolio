@@ -1,7 +1,19 @@
 // FormMailchimpSignUp component styles
 
+#mc_signup_cta {
+  color: $tundora;
+}
+
 #mc_signup_form {
   input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px $tundora solid;
+    color: $tundora;
     width: 100%;
+
+    &::placeholder {
+      color: $tundora;
+    }
   }
 }

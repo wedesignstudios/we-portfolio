@@ -16,6 +16,7 @@ const canvasPreFooter = function() {
                       '2, 66, 204'];
 
     var maxRadius = 150;
+    var circleArray = [];
 
     canvas.style.width ='100%';
     canvas.style.height='100%';
@@ -80,6 +81,26 @@ const canvasPreFooter = function() {
       };
     }
 
+    function numberOfCircles() {
+      if (canvas.width <= 425) {
+        return 20;
+      }
+
+      if (canvas.width > 425 && canvas.width <= 768) {
+        return 45;
+      }
+
+      if (canvas.width > 768 && canvas.width <= 1024) {
+        return 50;
+      }
+
+      if (canvas.width > 1024 && canvas.width <= 1440) {
+        return 65;
+      }
+
+      return 85;
+    }
+
     function animate() {
       window.requestAnimationFrame(animate);
       ctx.clearRect(0, 0, innerWidth, innerHeight);
@@ -92,15 +113,11 @@ const canvasPreFooter = function() {
     function resizeCanvas(event) {
       canvas.width  = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
-      // Must be able to cap number of circles depending on screen width
-      createCircles(75);
+      createCircles(numberOfCircles());
     }
 
     window.addEventListener('resize', resizeCanvas);
-
-    var circleArray = [];
-    // Must be able to cap number of circles depending on screen width
-    createCircles(75);
+    createCircles(numberOfCircles());
     animate();
   }
 

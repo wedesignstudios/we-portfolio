@@ -24,8 +24,26 @@ class FormMailchimpSignUp extends Component {
   }
 
   submitForm(event) {
-    alert('A name was submitted');
+    let data = {
+      email_address: this.state.email_address,
+      status: 'pending',
+      merge_fields: { FNAME: this.state.FNAME }
+    }
+
     event.preventDefault();
+
+    fetch('/api/v1/mailchimp/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(text => console.log(text))
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   render() {

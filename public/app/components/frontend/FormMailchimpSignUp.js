@@ -39,8 +39,19 @@ class FormMailchimpSignUp extends Component {
         },
         body: JSON.stringify(data)
       })
-      .then(res => res.text())
-      .then(text => console.log(text))
+      .then(res => {
+        if(res.status === 200) {
+          this.setState({
+            success: true
+          });
+        } else {
+          this.setState({
+            success: false
+          });
+        }
+        return res.text();
+      })
+      .then(text => this.setState({ messages: [text] }))
       .catch((err) => {
         console.error(err);
       });
@@ -83,6 +94,10 @@ class FormMailchimpSignUp extends Component {
                 </div>
               </div>
             </form>
+            <div id="form-errors" className="row">
+              // Loop through messages!!!
+              <p>{this.state.messages ? this.state.messages[0] : null}</p>
+            </div>
           </div>
         </div>
       </div>

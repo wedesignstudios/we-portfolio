@@ -533,6 +533,9 @@ form textarea.form-control {
   #mc_signup_form input::placeholder {
     color: #000000; }
 
+#form-errors {
+  min-height: 2rem; }
+
 .image-grid-element {
   display: inline-block;
   width: 300px; }

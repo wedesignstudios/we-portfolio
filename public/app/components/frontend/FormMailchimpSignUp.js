@@ -94,11 +94,11 @@ class FormMailchimpSignUp extends Component {
                 </div>
               </div>
             </form>
-            <div id="form-errors" className="row">
+            <div id="form-errors" className="row justify-content-center">
               {this.state.messages ?
                 this.state.messages.map(msg => {
                   return (
-                    <p>{msg}</p>
+                    <p className="mb-0 text-danger">{msg}</p>
                   )
                 }) : null}
             </div>

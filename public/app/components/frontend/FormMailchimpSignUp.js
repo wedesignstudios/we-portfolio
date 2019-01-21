@@ -95,8 +95,12 @@ class FormMailchimpSignUp extends Component {
               </div>
             </form>
             <div id="form-errors" className="row">
-              // Loop through messages!!!
-              <p>{this.state.messages ? this.state.messages[0] : null}</p>
+              {this.state.messages ?
+                this.state.messages.map(msg => {
+                  return (
+                    <p>{msg}</p>
+                  )
+                }) : null}
             </div>
           </div>
         </div>

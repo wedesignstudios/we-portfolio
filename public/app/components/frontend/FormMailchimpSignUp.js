@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+const FormValidations = require('../../services/form_validations');
+
 class FormMailchimpSignUp extends Component {
   constructor(props) {
     super(props);
@@ -9,8 +11,18 @@ class FormMailchimpSignUp extends Component {
       email_address: ''
     };
 
+    this.requiredFields = ['FNAME', 'email_address'];
+    this.requiredFieldsBlank = true;
     this.handleInputChange = this.handleInputChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
+
+    this.state.messages ? this.setState({ messages: [] }) : null;
+
+    return true;
   }
 
   handleInputChange(event) {
@@ -31,6 +43,11 @@ class FormMailchimpSignUp extends Component {
     }
 
     event.preventDefault();
+    FormValidations.trimData(this.state, this);
+
+    if(this.state.email_addressErr && this.state.email_addressErrType === 'not valid') {
+      return;
+    }
 
     fetch('/api/v1/mailchimp/signup', {
         method: 'POST',
@@ -70,31 +87,37 @@ class FormMailchimpSignUp extends Component {
               <div className="form-group row justify-content-center">
                 <div className="col-lg-9 col-sm-12 d-flex">
                   <input
-                    className="mb-0 mr-2rem"
+                    className={this.state.FNAMEErr ? 'err mb-0 mr-2rem' : 'mb-0 mr-2rem'}
                     type="text"
                     name="FNAME"
-                    placeholder="First Name"
+                    placeholder={this.state.FNAMEErr ? 'First Name Can Not Be Blank' : 'First Name'}
                     value={this.state.FNAME}
-                    onChange={this.handleInputChange} />
+                    onChange={this.handleInputChange}
+                    onBlur={(e) => {FormValidations.checkField(e, this);}} />
 
                   <input
-                    className="mb-0 mr-2rem"
+                    className={this.state.email_addressErr ? 'err mb-0 mr-2rem' : 'mb-0 mr-2rem'}
                     type="text"
                     name="email_address"
-                    placeholder="Email"
+                    placeholder={this.state.email_addressErr && this.state.email_addressErrType === 'blank' ? 'Email Address Can Not Be Blank' : 'Email'}
                     value={this.state.email_address}
-                    onChange={this.handleInputChange} />
+                    onChange={this.handleInputChange}
+                    onBlur={(e) => {FormValidations.checkField(e, this);}} />
 
                   <button
                     className="btn btn-primary ml-auto"
-                    // disabled={this.requiredFieldsBlank}
+                    disabled={this.requiredFieldsBlank}
                     onClick={(e) => this.submitForm(e)}>
                     GO
                   </button>
                 </div>
               </div>
             </form>
-            <div id="form-errors" className="row justify-content-center">
+            <div id="form-messages" className="row justify-content-center">
+              {this.state.email_addressErr && this.state.email_addressErrType === 'not valid' ?
+                <p className="mb-0 text-danger">Email address is not valid. Please enter a valid email address.</p> :
+                null}
+
               {this.state.messages ?
                 this.state.messages.map(msg => {
                   return (

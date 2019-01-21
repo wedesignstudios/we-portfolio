@@ -532,8 +532,13 @@ form textarea.form-control {
   width: 100%; }
   #mc_signup_form input::placeholder {
     color: #000000; }
+  #mc_signup_form input.err {
+    border-radius: 0;
+    border-bottom-color: red; }
+    #mc_signup_form input.err::placeholder {
+      color: red; }
 
-#form-errors {
+#form-messages {
   min-height: 2rem; }
 
 .image-grid-element {

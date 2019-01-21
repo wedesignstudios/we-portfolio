@@ -61,6 +61,20 @@ const FormValidations = {
         });
       };
     }
+
+    if(fieldName === 'email_address' && value) {
+      if(!FormValidations.checkForValidEmail(value)) {
+        _this.setState({
+          [err]: true,
+          [errType]: 'not valid'
+        })
+      } else {
+        _this.setState({
+          [err]: false,
+          [errType]: null
+        });
+      };
+    }
   },
 
   clearErrsIfNoneBeforeOnBlur: function(_this, errArr) {
@@ -107,6 +121,16 @@ const FormValidations = {
     } else {
       return result.join();
     }
+  },
+
+  checkForValidEmail: function(email_address) {
+    let result = email_address.match(/\S+@\S+\.\S+/);
+
+    if(result === null) {
+      return false;
+    }
+
+    return true;
   }
 
 }

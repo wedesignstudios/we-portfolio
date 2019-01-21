@@ -42,7 +42,10 @@ const FormValidations = {
         [errType]: 'blank'
       });
     } else {
-      _this.setState({[err]: false});
+      _this.setState({
+        [err]: false,
+        [errType]: null
+      });
     }
 
     if(fieldName === 'url' && value) {
@@ -51,6 +54,11 @@ const FormValidations = {
           [err]: true,
           [errType]: 'not valid'
         })
+      } else {
+        _this.setState({
+          [err]: false,
+          [errType]: null
+        });
       };
     }
   },

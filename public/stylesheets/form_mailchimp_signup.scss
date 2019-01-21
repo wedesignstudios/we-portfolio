@@ -15,9 +15,18 @@
     &::placeholder {
       color: $black;
     }
+
+    &.err {
+      border-radius: 0;
+      border-bottom-color: red;
+
+      &::placeholder {
+        color: red;
+      }
+    }
   }
 }
 
-#form-errors {
+#form-messages {
   min-height: 2rem;
 }

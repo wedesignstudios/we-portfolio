@@ -1,0 +1,40 @@
+// FormMailchimpSignUp component styles
+
+#mc_signup_cta {
+  color: $black;
+
+  img {
+    width: 3.5rem;
+  }
+}
+
+#mc_signup_form {
+  &.hide {
+    visibility: hidden;
+  }
+
+  input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px $black solid;
+    color: $black;
+    width: 100%;
+
+    &::placeholder {
+      color: $black;
+    }
+
+    &.err {
+      border-radius: 0;
+      border-bottom-color: red;
+
+      &::placeholder {
+        color: red;
+      }
+    }
+  }
+}
+
+#form-messages {
+  min-height: 2rem;
+}

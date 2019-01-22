@@ -1,0 +1,14 @@
+// PreFooter styles
+
+#pre_footer {
+  background-color: $white;
+  border-top: 2px solid $black;
+  height: 60%;
+  position: relative;
+
+  #pre_footer_overlay {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+}

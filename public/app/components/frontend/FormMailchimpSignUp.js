@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 const FormValidations = require('../../services/form_validations');
+const classNames = require('classnames');
 
 class FormMailchimpSignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       FNAME: '',
-      email_address: ''
+      email_address: '',
+      messages: []
     };
 
     this.requiredFields = ['FNAME', 'email_address'];
@@ -20,7 +22,7 @@ class FormMailchimpSignUp extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     this.requiredFieldsBlank = FormValidations.areAnyRequiredFieldsBlank(this.requiredFields, nextState);
 
-    this.state.messages ? this.setState({ messages: [] }) : null;
+    this.state.messages.length > 0 ? this.setState({ messages: [] }) : null;
 
     return true;
   }
@@ -59,6 +61,8 @@ class FormMailchimpSignUp extends Component {
       .then(res => {
         if(res.status === 200) {
           this.setState({
+            FNAME: '',
+            email_address: '',
             success: true
           });
         } else {
@@ -75,20 +79,47 @@ class FormMailchimpSignUp extends Component {
   }
 
   render() {
+    let ctaClass = classNames({
+          'text-center': true,
+          'muli-bold': true,
+          'mt-2': true,
+          'mb-3': true
+        }),
+        fnameClass = classNames({
+          'err': this.state.FNAMEErr,
+          'mb-0': true,
+          'mr-2rem': true
+        }),
+        emailClass = classNames({
+          'err': this.state.email_addressErr,
+          'mb-0': true,
+          'mr-2rem': true
+        }),
+        formClass = classNames({
+          'hide': this.state.success && this.state.messages.length > 0
+        });
+
     return (
       <div id="mc_signup_wrapper" className="col-10">
         <div className="row height-100 align-content-center">
           <div id="mc_signup_cta" className="col-12 text-center">
             <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg" className="m-3" alt="WE eye logo" />
-            <h3 className="text-center muli-bold mt-2 mb-3">Sign Up For The WE Monthly Newsletter!</h3>
+            {this.state.success && this.state.messages.length > 0 ?
+              this.state.messages.map(msg => {
+                return(
+                  <h3 className={ctaClass}>{msg}</h3>
+                )
+              }) :
+            <h3 className={ctaClass}>Sign Up For The WE Monthly Newsletter!</h3>
+            }
           </div>
 
           <div className="col-12">
-            <form id="mc_signup_form">
+            <form id="mc_signup_form" className={formClass}>
               <div className="form-group row justify-content-center">
                 <div className="col-lg-9 col-sm-12 d-flex">
                   <input
-                    className={this.state.FNAMEErr ? 'err mb-0 mr-2rem' : 'mb-0 mr-2rem'}
+                    className={fnameClass}
                     type="text"
                     name="FNAME"
                     placeholder={this.state.FNAMEErr ? 'First Name Can Not Be Blank' : 'First Name'}
@@ -97,7 +128,7 @@ class FormMailchimpSignUp extends Component {
                     onBlur={(e) => {FormValidations.checkField(e, this);}} />
 
                   <input
-                    className={this.state.email_addressErr ? 'err mb-0 mr-2rem' : 'mb-0 mr-2rem'}
+                    className={emailClass}
                     type="text"
                     name="email_address"
                     placeholder={this.state.email_addressErr && this.state.email_addressErrType === 'blank' ? 'Email Address Can Not Be Blank' : 'Email'}
@@ -119,7 +150,7 @@ class FormMailchimpSignUp extends Component {
                 <p className="mb-0 text-danger">Email address is not valid. Please enter a valid email address.</p> :
                 null}
 
-              {this.state.messages ?
+              {this.state.messages.length > 0 && !this.state.success ?
                 this.state.messages.map(msg => {
                   return (
                     <p className="mb-0 text-danger">{msg}</p>

@@ -6,6 +6,7 @@ const apiKey = process.env.MAILCHIMP_API_KEY;
 
 router.post('/signup', (req, res) => {
   let messages = {
+    success: "Yay! Check your inbox to confirm your sign up.",
     member_exists: "Whoa! Looks like you're already on the list.",
     service_not_available: "Oops! Looks like this service is down. Please try again later.",
     general_err: "Oops! Something went wrong. Please try again. If the problem persists please email: info@wedesignstudios.com."
@@ -22,7 +23,7 @@ router.post('/signup', (req, res) => {
   .then(mailchimpRes => mailchimpRes.json())
   .then(json => {
     if(json.id && json.status === 'pending') {
-      return res.status(200).send("Yay! Check your inbox to confirm your sign up.");
+      return res.status(200).send(messages['success']);
     }
     if(json.status >= 400 && json.status < 500) {
       let key = json.title.toLowerCase().replace(' ', '_');

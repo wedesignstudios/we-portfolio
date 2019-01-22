@@ -90,7 +90,7 @@ class About extends Component {
             <div className="col-10 col-lg-8 col-xl-6 container p-0 mb-2rem mt-5">
               <h2 className="text-uppercase letter-spacing-point125-rem muli-bold">WHO WE ARE</h2>
               <hr className="hr-point7rem mb-4" />
-              <p>WE Design Studios is an Austin-based design and development duo run by Laura Worrick and David Elden. Our curiosity has brought us around the world where we’ve been able to learn, play, explore and educate. Our team’s thoughtful design is informed by our multidisciplinary backgrounds and playful nature. We are commited to community and have provided design resources and management for various projects in collaboration with IBM Design, AIGA and Create-A-Thon.</p>
+              <p>WE Design Studios is an Austin-based design and development studio run by Laura Worrick and David Elden. Our curiosity has brought us around the world where we’ve been able to learn, play, explore and educate. Our team’s thoughtful design is informed by our multidisciplinary backgrounds and playful nature. We are committed to community and have provided design resources and management for various projects in collaboration with IBM Design, AIGA and Create-A-Thon.</p>
 
               <p>WE specializes in brand identities, software development, print design, web design, illustration and more.</p>
 

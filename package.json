@@ -4,7 +4,7 @@
   "description": "Portfolio app to showcase design and development projects.",
   "engines": {
     "node": "9.8.0"
-  }
+  },
   "main": "index.js",
   "scripts": {
     "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",

@@ -526,6 +526,9 @@ form textarea.form-control {
   #mc_signup_cta img {
     width: 3.5rem; }
 
+#mc_signup_form.hide {
+  visibility: hidden; }
+
 #mc_signup_form input {
   background-color: transparent;
   border: 0;

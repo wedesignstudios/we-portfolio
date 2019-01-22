@@ -13,6 +13,12 @@
   margin-right: ($spacer-y * 2) !important;
 }
 
+.mr-md-2rem {
+  @include media-breakpoint-up(md) {
+    margin-right: ($spacer-y * 2) !important;
+  }
+}
+
 .mt-6rem {
   margin-top: ($spacer-y * 6) !important;
 }

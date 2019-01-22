@@ -9,6 +9,10 @@
 }
 
 #mc_signup_form {
+  &.hide {
+    visibility: hidden;
+  }
+
   input {
     background-color: transparent;
     border: 0;

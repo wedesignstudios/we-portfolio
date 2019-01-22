@@ -5,7 +5,7 @@ const listURL = 'https://us18.api.mailchimp.com/3.0/lists/50a3044e08/members';
 const apiKey = process.env.MAILCHIMP_API_KEY;
 
 router.post('/signup', (req, res) => {
-  let errors = {
+  let messages = {
     member_exists: "Whoa! Looks like you're already on the list.",
     service_not_available: "Oops! Looks like this service is down. Please try again later.",
     general_err: "Oops! Something went wrong. Please try again. If the problem persists please email: info@wedesignstudios.com."
@@ -27,13 +27,13 @@ router.post('/signup', (req, res) => {
     if(json.status >= 400 && json.status < 500) {
       let key = json.title.toLowerCase().replace(' ', '_');
 
-      if(Object.keys(errors).includes(key)) {
-        return res.status(json.status).send(errors[key]);
+      if(Object.keys(messages).includes(key)) {
+        return res.status(json.status).send(messages[key]);
       } else {
-        return res.status(json.status).send(errors['general_err']);
+        return res.status(json.status).send(messages['general_err']);
       }
     }
-    return res.status(json.status).send(errors['service_not_available']);
+    return res.status(json.status).send(messages['service_not_available']);
   })
   .catch((err) => {
     console.error(err);

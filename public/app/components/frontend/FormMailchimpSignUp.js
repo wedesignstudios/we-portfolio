@@ -117,7 +117,7 @@ class FormMailchimpSignUp extends Component {
           <div className="col-12">
             <form id="mc_signup_form" className={formClass}>
               <div className="form-group row justify-content-center">
-                <div className="col-lg-9 col-sm-12 d-flex">
+                <div className="col-lg-9 col-sm-12 d-flex flex-wrap flex-md-nowrap">
                   <input
                     className={fnameClass}
                     type="text"
@@ -137,7 +137,7 @@ class FormMailchimpSignUp extends Component {
                     onBlur={(e) => {FormValidations.checkField(e, this);}} />
 
                   <button
-                    className="btn btn-primary ml-auto"
+                    className="btn btn-primary ml-md-auto"
                     disabled={this.requiredFieldsBlank}
                     onClick={(e) => this.submitForm(e)}>
                     GO

@@ -122,7 +122,7 @@ class FormMailchimpSignUp extends Component {
                     className={fnameClass}
                     type="text"
                     name="FNAME"
-                    placeholder={this.state.FNAMEErr ? 'First Name Can Not Be Blank' : 'First Name'}
+                    placeholder={this.state.FNAMEErr ? 'First Name Is Required' : 'First Name'}
                     value={this.state.FNAME}
                     onChange={this.handleInputChange}
                     onBlur={(e) => {FormValidations.checkField(e, this);}} />
@@ -131,7 +131,7 @@ class FormMailchimpSignUp extends Component {
                     className={emailClass}
                     type="text"
                     name="email_address"
-                    placeholder={this.state.email_addressErr && this.state.email_addressErrType === 'blank' ? 'Email Address Can Not Be Blank' : 'Email'}
+                    placeholder={this.state.email_addressErr && this.state.email_addressErrType === 'blank' ? 'Email Address Is Required' : 'Email'}
                     value={this.state.email_address}
                     onChange={this.handleInputChange}
                     onBlur={(e) => {FormValidations.checkField(e, this);}} />

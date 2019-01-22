@@ -116,6 +116,10 @@ button:hover {
 .mr-2rem {
   margin-right: 2rem !important; }
 
+@media (min-width: 768px) {
+  .mr-md-2rem {
+    margin-right: 2rem !important; } }
+
 .mt-6rem {
   margin-top: 6rem !important; }
 

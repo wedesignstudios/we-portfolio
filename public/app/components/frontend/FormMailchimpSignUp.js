@@ -87,13 +87,13 @@ class FormMailchimpSignUp extends Component {
         }),
         fnameClass = classNames({
           'err': this.state.FNAMEErr,
-          'mb-0': true,
-          'mr-2rem': true
+          'mb-md-0': true,
+          'mr-md-2rem': true
         }),
         emailClass = classNames({
           'err': this.state.email_addressErr,
-          'mb-0': true,
-          'mr-2rem': true
+          'mb-md-0': true,
+          'mr-md-2rem': true
         }),
         formClass = classNames({
           'hide': this.state.success && this.state.messages.length > 0
@@ -142,7 +142,7 @@ class FormMailchimpSignUp extends Component {
                     onBlur={(e) => {FormValidations.checkField(e, this);}} />
 
                   <button
-                    className="btn btn-primary ml-md-auto"
+                    className="btn btn-primary mx-auto ml-md-auto"
                     disabled={this.requiredFieldsBlank}
                     onClick={(e) => this.submitForm(e)}>
                     GO

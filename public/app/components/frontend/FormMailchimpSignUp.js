@@ -78,7 +78,8 @@ class FormMailchimpSignUp extends Component {
     return (
       <div id="mc_signup_wrapper" className="col-10">
         <div className="row height-100 align-content-center">
-          <div id="mc_signup_cta" className="col-12">
+          <div id="mc_signup_cta" className="col-12 text-center">
+            <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg" className="m-3" alt="WE eye logo" />
             <h3 className="text-center muli-bold mt-2 mb-3">Sign Up For The WE Monthly Newsletter!</h3>
           </div>
 

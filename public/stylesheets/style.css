@@ -523,6 +523,8 @@ form textarea.form-control {
 
 #mc_signup_cta {
   color: #000000; }
+  #mc_signup_cta img {
+    width: 3.5rem; }
 
 #mc_signup_form input {
   background-color: transparent;

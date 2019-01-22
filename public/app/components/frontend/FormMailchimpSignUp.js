@@ -97,6 +97,11 @@ class FormMailchimpSignUp extends Component {
         }),
         formClass = classNames({
           'hide': this.state.success && this.state.messages.length > 0
+        }),
+        messageClass = classNames({
+          'mb-0': true,
+          'text-center': true,
+          'text-danger': true
         });
 
     return (
@@ -147,13 +152,13 @@ class FormMailchimpSignUp extends Component {
             </form>
             <div id="form-messages" className="row justify-content-center">
               {this.state.email_addressErr && this.state.email_addressErrType === 'not valid' ?
-                <p className="mb-0 text-danger">Email address is not valid. Please enter a valid email address.</p> :
+                <p className={messageClass}>Email address is not valid. Please enter a valid email address.</p> :
                 null}
 
               {this.state.messages.length > 0 && !this.state.success ?
                 this.state.messages.map(msg => {
                   return (
-                    <p className="mb-0 text-danger">{msg}</p>
+                    <p className={messageClass}>{msg}</p>
                   )
                 }) : null}
             </div>

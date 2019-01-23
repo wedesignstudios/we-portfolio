@@ -542,6 +542,7 @@ form textarea.form-control {
   background-color: transparent;
   border: 0;
   border-bottom: 1px #000000 solid;
+  border-radius: 0;
   color: #000000;
   width: 100%; }
   #mc_signup_form input::placeholder {

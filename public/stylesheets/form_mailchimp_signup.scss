@@ -34,6 +34,17 @@
       }
     }
   }
+
+  button {
+    &:active {
+      background-color: $barberry;
+      border-color: $barberry;
+    }
+    &:focus {
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+  }
 }
 
 #form-messages {

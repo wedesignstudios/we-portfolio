@@ -553,6 +553,14 @@ form textarea.form-control {
     #mc_signup_form input.err::placeholder {
       color: red; }
 
+#mc_signup_form button:active {
+  background-color: #E6E31A;
+  border-color: #E6E31A; }
+
+#mc_signup_form button:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none; }
+
 #form-messages {
   min-height: 2rem; }
 

@@ -11,7 +11,8 @@ var callbackHost = undefined;
 passport.use(new passportGoogle({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: `${callbackHost}/login/google/callback`
+    callbackURL: `${callbackHost}/login/google/callback`,
+    userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
   },
   function(token, tokenSecret, profile, cb) {
     User

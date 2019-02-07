@@ -6,7 +6,6 @@ const redis = require('redis');
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);
 const bodyParser = require('body-parser');
-const redisClient = redis.createClient(process.env.REDIS_URL);
 const passport = require('passport');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -45,23 +44,26 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// redis
-redisClient.on('connect', function() {
-  console.log('Redis connected');
-});
-redisClient.on('error', function(err) {
-  console.log('Redis error: ', err);
-});
+if(ENV !== 'test') {
+  let redisClient = redis.createClient(process.env.REDIS_URL);
+  // redis
+  redisClient.on('connect', function() {
+    console.log('Redis connected');
+  });
+  redisClient.on('error', function(err) {
+    console.log('Redis error: ', err);
+  });
 
-// sessions
-app.use(session({
-  store: new redisStore({client: redisClient, host: process.env.REDIS_URL}),
-  secret: process.env.REDIS_PW,
-  resave: false,
-  saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+  // sessions
+  app.use(session({
+    store: new redisStore({client: redisClient, host: process.env.REDIS_URL}),
+    secret: process.env.REDIS_PW,
+    resave: false,
+    saveUninitialized: false
+  }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+}
 
 // favicon in /public/favicon
 app.use(favicon(path.join(__dirname, 'public/favicon', 'favicon.ico')));

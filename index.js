@@ -63,11 +63,13 @@ if(ENV !== 'test') {
   }));
   app.use(passport.initialize());
   app.use(passport.session());
+
+  // logger
+  app.use(logger('dev'));
 }
 
 // favicon in /public/favicon
 app.use(favicon(path.join(__dirname, 'public/favicon', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

@@ -5,24 +5,24 @@ const request = require('supertest'),
       db = knex(config['test']);
 
 beforeAll(async () => {
-  await db.migrate.rollback();
-  await db.migrate.latest();
-  return db('addresses').insert({"city": "Austin", "state": "TX", "country": "US"});
+   await db.raw('TRUNCATE TABLE addresses CASCADE');
+   await db.raw('ALTER SEQUENCE addresses_id_seq RESTART WITH 1');
+   return db('addresses').insert({"city": "Austin", "state": "TX", "country": "US"});
 });
 
-describe('GET /addresses', function () {
-  it('responds with 200 status code', function (done) {
+describe('GET /addresses', () => {
+  it('responds with 200 status code', (done) => {
     request(app)
       .get('/api/v1/addresses')
       .expect(200, done);
   });
-  it('responds with a JSON object', function (done) {
+  it('responds with a JSON object', (done) => {
     request(app)
       .get('/api/v1/addresses')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/, done);
   });
-  it('responds with a JSON object containing data', function (done) {
+  it('responds with a JSON object containing data', (done) => {
     request(app)
       .get('/api/v1/addresses')
       .set('Accept', 'application/json')

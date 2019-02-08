@@ -8,7 +8,7 @@ const request = require('supertest'),
 beforeAll(async () => {
    await trunc.truncateCascade(knex, ['addresses']);
    await idSeq.idSeqReset(knex, 'addresses');
-   return knex('addresses').insert({"city": "Austin", "state": "TX", "country": "US"});
+   return knex('addresses').insert({'city': 'Austin', 'state': 'TX', 'country': 'US'});
 });
 
 describe('GET /addresses', () => {

@@ -1,11 +1,13 @@
 const request = require('supertest'),
       app = require('../../index'),
       config = require('../../knexfile'),
-      knex = require('knex')(config['test']);
+      knex = require('knex')(config['test']),
+      trunc = require('../helpers/knex/truncate'),
+      idSeq = require('../helpers/knex/idSeqReset');
 
 beforeAll(async () => {
-  await knex.raw('TRUNCATE TABLE countries');
-  await knex.raw('ALTER SEQUENCE countries_id_seq RESTART WITH 1');
+  await trunc.truncate(knex, ['countries']);
+  await idSeq.idSeqReset(knex, 'countries');
   return knex.seed.run(['test']);
 });
 

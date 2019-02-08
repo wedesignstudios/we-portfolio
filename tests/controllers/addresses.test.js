@@ -1,11 +1,13 @@
 const request = require('supertest'),
       app = require('../../index'),
       config = require('../../knexfile'),
-      knex = require('knex')(config['test']);
+      knex = require('knex')(config['test']),
+      trunc = require('../helpers/knex/truncate'),
+      idSeq = require('../helpers/knex/idSeqReset');
 
 beforeAll(async () => {
-   await knex.raw('TRUNCATE TABLE addresses CASCADE');
-   await knex.raw('ALTER SEQUENCE addresses_id_seq RESTART WITH 1');
+   await trunc.truncateCascade(knex, ['addresses']);
+   await idSeq.idSeqReset(knex, 'addresses');
    return knex('addresses').insert({"city": "Austin", "state": "TX", "country": "US"});
 });
 

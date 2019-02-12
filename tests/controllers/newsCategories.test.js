@@ -11,3 +11,4 @@ beforeAll(async () => {
 });
 
 testGET.httpGET('news-categories');
+testGET.httpGETRelated('news-categories', ['news_story']);

@@ -12,3 +12,4 @@ beforeAll(async () => {
 
 testGET.httpGET('clients');
 testGET.httpGETRelated('clients', ['projects', 'address']);
+testGET.httpGETById('clients', 1);

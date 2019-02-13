@@ -4,21 +4,12 @@ const request = require('supertest'),
 function httpGET(routeName) {
   return(
     describe(`GET /${routeName}`, () => {
-      it('responds with 200 status code', (done) => {
-        request(app)
-          .get(`/api/v1/${routeName}`)
-          .expect(200, done);
-      });
-      it('responds with a JSON object', (done) => {
-        request(app)
-          .get(`/api/v1/${routeName}`)
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/, done);
-      });
       it('responds with a JSON object containing data', (done) => {
         request(app)
           .get(`/api/v1/${routeName}`)
           .set('Accept', 'application/json')
+          .expect(200)
+          .expect('Content-Type', /json/)
           .expect(res => {
             expect(res.body.length).toBeGreaterThan(0);
           })
@@ -36,11 +27,14 @@ function httpGET(routeName) {
 function httpGETRelated(routeName, relatedModelsArr) {
   return(
     describe(`GET /${routeName}`, () => {
-      it('responds with JSON object containing related model data', (done) => {
+      it('responds with JSON object containing primary model data and related model data', (done) => {
         request(app)
           .get(`/api/v1/${routeName}`)
           .set('Accept', 'application/json')
+          .expect(200)
+          .expect('Content-Type', /json/)
           .expect(res => {
+            expect(res.body.length).toBeGreaterThan(0);
             relatedModelsArr.map(model => {
               return expect(res.body[0]).toHaveProperty(model);
             })

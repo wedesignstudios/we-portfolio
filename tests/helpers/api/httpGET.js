@@ -56,4 +56,28 @@ function httpGETRelated(routeName, relatedModelsArr) {
   )
 }
 
-module.exports = { httpGET, httpGETRelated };
+function httpGETById(routeName, id) {
+  return(
+    describe(`GET /${routeName}/${id}`, () => {
+      it('responds with JSON object containing data by id', (done) => {
+        request(app)
+          .get(`/api/v1/${routeName}/${id}`)
+          .set('Accept', 'application/json')
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .expect(res => {
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.id).toBe(id);
+          })
+          .end((err, res) => {
+            if (err) {
+              return done(err);
+            }
+            return done();
+          });
+      })
+    })
+  )
+}
+
+module.exports = { httpGET, httpGETRelated, httpGETById };

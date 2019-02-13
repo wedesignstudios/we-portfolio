@@ -2,7 +2,8 @@ const config = require('../../knexfile'),
       knex = require('knex')(config['test']),
       trunc = require('../helpers/knex/truncate'),
       idSeq = require('../helpers/knex/idSeqReset'),
-      testGET = require('../helpers/api/httpGET');
+      testGET = require('../helpers/api/httpGET'),
+      relatedModels = ['projects', 'address'];
 
 beforeAll(async () => {
   await trunc.truncateCascade(knex, ['clients']);
@@ -10,6 +11,5 @@ beforeAll(async () => {
   return knex('clients').insert({'name': 'My Client LLC', 'url': 'https://myclientllc.com'});
 });
 
-testGET.httpGET('clients');
-testGET.httpGETRelated('clients', ['projects', 'address']);
-testGET.httpGETById('clients', 1);
+testGET.httpGETRelated('clients', relatedModels);
+testGET.httpGETByIdRelated('clients', 1, relatedModels);

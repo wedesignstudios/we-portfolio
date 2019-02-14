@@ -10,8 +10,10 @@
     "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
     "test": "export NODE_ENV=test; test",
     "start:dev": "export NODE_ENV=development; nodemon ./bin/www",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
+  "heroku-run-build-script": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wedesignstudios/we-portfolio.git"

@@ -29,6 +29,7 @@ const users = require('./controllers/users');
 const userData = require('./controllers/user-data');
 const loginFacebook = require('./controllers/loginFacebook');
 const loginGoogle = require('./controllers/loginGoogle');
+const loginTest = require('./controllers/loginTest');
 const logout = require('./controllers/logout');
 const states = require('./controllers/states');
 const wpPosts = require('./controllers/wpPosts');
@@ -61,12 +62,21 @@ if(ENV !== 'test') {
     resave: false,
     saveUninitialized: false
   }));
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   // logger
   app.use(logger('dev'));
+} else {
+  // sessions ENV === 'test'
+  app.use(session({
+    secret: 'lemmy dog',
+    resave: false,
+    saveUninitialized: true
+  }));
 }
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // favicon in /public/favicon
 app.use(favicon(path.join(__dirname, 'public/favicon', 'favicon.ico')));
@@ -100,6 +110,7 @@ app.use('/api/v1/wp-posts', wpPosts);
 app.use('/api/v1/wp-users', wpUsers);
 app.use('/login/facebook', loginFacebook);
 app.use('/login/google', loginGoogle);
+app.use('/login/test', loginTest);
 app.use('/logout', logout);
 app.use('/*', index);
 

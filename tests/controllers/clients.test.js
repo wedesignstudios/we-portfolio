@@ -4,8 +4,10 @@ const config = require('../../knexfile'),
       idSeq = require('../helpers/knex/idSeqReset'),
       testGET = require('../helpers/api/httpGET'),
       testPOST = require('../helpers/api/httpPOST'),
+      testPUT = require('../helpers/api/httpPUT'),
       relatedModels = ['projects', 'address'],
-      postData = {'name': 'POST Client Inc.', 'url': 'https://postclientinc.com'};
+      postData = {'name': 'POST Client Inc.', 'url': 'https://postclientinc.com'},
+      putData = {'name': 'PUT Client LLC', 'url': 'https://putclientinc.com'};
 
 beforeAll(async () => {
   await trunc.truncateCascade(knex, ['clients']);
@@ -16,3 +18,4 @@ beforeAll(async () => {
 testGET.httpGETRelated('clients', relatedModels);
 testGET.httpGETByIdRelated('clients', 1, relatedModels);
 testPOST.httpPOST('clients', postData);
+testPUT.httpPUT('clients', 1, putData);

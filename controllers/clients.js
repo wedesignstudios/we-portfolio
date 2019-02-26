@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
 // SHOW a client by ID
 router.get('/:id', (req, res, next) => {
   Client
-    .forge({id: req.params.id})
+    .forge({id: parseInt(req.params.id)})
     .fetch({
       withRelated: ['projects', 'address'],
       debug: true
@@ -81,7 +81,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 // UPDATE a client
 router.put('/:id', isLoggedIn, (req, res, next) => {
-  const address_id = req.body.address_id;
+  const address_id = parseInt(req.body.address_id);
   const allowedKeys = ['name', 'url'];
   const allowedAddressKeys = ['city', 'state', 'country'];
   const formData = params(req.body).only(allowedKeys);
@@ -89,7 +89,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 
   if (Object.keys(formData).length != 0) {
     Client
-      .forge({id: req.params.id})
+      .forge({id: parseInt(req.params.id)})
       .save(formData, {method: 'update'})
       .then((client) => {
         Address
@@ -110,10 +110,10 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 // DELETE a client
 router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
   const client_name = req.body.name;
-  const address_id = req.body.address_id;
+  const address_id = parseInt(req.body.address_id);
 
   Client
-    .forge({id: req.params.id})
+    .forge({id: parseInt(req.params.id)})
     .destroy()
     .then(() => {
       return Address

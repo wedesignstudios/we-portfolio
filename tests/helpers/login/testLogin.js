@@ -1,5 +1,5 @@
 function testLogin(agent) {
-  return function(done) {
+  return async function(done) {
     agent
       .post('/login/test')
       .send({ username: 'testuser', password: 'anystring' })

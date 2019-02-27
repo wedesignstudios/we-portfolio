@@ -92,9 +92,11 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
       .forge({id: parseInt(req.params.id)})
       .save(formData, {method: 'update'})
       .then((collaborator) => {
-        Address
-          .forge({id: address_id})
-          .save(formAddressData, {method: 'update'});
+        if(address_id) {
+          Address
+            .forge({id: address_id})
+            .save(formAddressData, {method: 'update'});
+        }
         collaborator = collaborator.toJSON();
         return res.status(200).send(`${collaborator.name} has been updated.`);
       })
@@ -116,9 +118,11 @@ router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
     .forge({id: parseInt(req.params.id)})
     .destroy()
     .then(() => {
-       return Address
-        .forge({id: address_id})
-        .destroy();
+       if(address_id) {
+        return Address
+          .forge({id: address_id})
+          .destroy();
+      }
     })
     .then(() => {
       return res.status(200).send(`${collaborator_name} has been deleted.`);  

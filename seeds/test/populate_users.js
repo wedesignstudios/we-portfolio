@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('users').insert([
-        {"username": "testuser", "first_name": "Test", "last_name": "User"}
+        {"username": "testuser", "first_name": "Test", "last_name": "User", "created_at": new Date, "updated_at": new Date}
       ]);
     });
 };

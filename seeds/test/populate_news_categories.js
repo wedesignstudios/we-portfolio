@@ -1,8 +1,9 @@
-const idSeq = require('../../tests/helpers/knex/idSeqReset');
+const idSeq = require('../../tests/helpers/knex/idSeqReset'),
+      trunc = require('../../tests/helpers/knex/truncate');
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('news_categories').del()
+  return trunc.truncateCascade(knex, ['news_categories'])
     .then(() => {
       return idSeq.idSeqReset(knex, 'news_categories');
     })

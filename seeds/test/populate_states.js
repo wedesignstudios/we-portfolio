@@ -1,6 +1,11 @@
+const idSeq = require('../../tests/helpers/knex/idSeqReset');
+
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('states').del()
+    .then(() => {
+      return idSeq.idSeqReset(knex, 'states');
+    })
     .then(function () {
       // Inserts seed entries
       return knex('states').insert([

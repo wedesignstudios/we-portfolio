@@ -12,6 +12,9 @@
     "start:dev": "export NODE_ENV=development; nodemon ./bin/www",
     "start": "node ./bin/www"
   },
+  "jest": {
+    "globalSetup": "./tests/config/globalSetup.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wedesignstudios/we-portfolio.git"

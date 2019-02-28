@@ -3,8 +3,6 @@ const request = require('supertest'),
       agent = request.agent(app),
       config = require('../../../knexfile'),
       knex = require('knex')(config['test']),
-      trunc = require('../knex/truncate'),
-      idSeq = require('../knex/idSeqReset'),
       tblNm = require('../knex/tableName'),
       login = require('../login/testLogin');
 
@@ -15,14 +13,11 @@ function httpPOST(routeName, data) {
           tableCount1;
 
       beforeAll(async () => {
-        await trunc.truncateCascade(knex, ['users']);
-        await idSeq.idSeqReset(knex, 'users');
         await knex(table)
                 .count('id')
                 .then(cnt => {
                   tableCount1 = parseInt(cnt[0]['count']);
               });
-        return knex.seed.run(['test']);
       });
 
       it('login', login.testLogin(agent));

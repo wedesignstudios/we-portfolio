@@ -3,8 +3,6 @@ const request = require('supertest'),
       agent = request.agent(app),
       config = require('../../../knexfile'),
       knex = require('knex')(config['test']),
-      trunc = require('../knex/truncate'),
-      idSeq = require('../knex/idSeqReset'),
       tblNm = require('../knex/tableName'),
       login = require('../login/testLogin');
 
@@ -15,15 +13,12 @@ function httpPUT(routeName, id, data) {
           record;
 
       beforeAll(async () => {
-        await trunc.truncateCascade(knex, ['users']);
-        await idSeq.idSeqReset(knex, 'users');
         await knex(table)
                 .where('id', id)
                 .select()
                 .then(res => {
                   record = res[0];
                 })
-        return knex.seed.run(['test']);
       });
 
       it('login', login.testLogin(agent));

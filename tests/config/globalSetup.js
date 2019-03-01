@@ -7,7 +7,8 @@ const config = require('../../knexfile'),
         'collaborators',
         'images',
         'news_categories',
-        'news_stories'
+        'news_stories',
+        'project_categories'
       ];
 
 module.exports = async () => {

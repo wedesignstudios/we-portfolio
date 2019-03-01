@@ -93,15 +93,15 @@ router.post('/', isLoggedIn, (req, res, next) => {
 router.put('/:id', isLoggedIn, (req, res, next) => {
   const news_categories_ids = req.body.news_categories_ids;
   const news_categories_ids_detach = req.body.news_categories_ids_detach;
-  const storyId = req.params.id;
-  const image_id = req.body.image_id;
+  const storyId = parseInt(req.params.id);
+  const image_id = parseInt(req.body.image_id);
   const allowedKeys = ['title', 'date', 'description'];
   const formData = params(req.body).only(allowedKeys);
   formData['slug'] = formData.title.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 
   if(Object.keys(formData).length != 0) {
     NewsStory
-      .forge({id: req.params.id})
+      .forge({id: storyId})
       .save(formData, {method: 'update'})
       .then((story) => {
         // Attach/detach news categories
@@ -152,7 +152,7 @@ router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
   const story_title = req.body.title;
 
   NewsStory
-    .forge({id: req.params.id})
+    .forge({id: parseInt(req.params.id)})
     .fetch()
     .then((story) => {
       let relation = story.image();

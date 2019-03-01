@@ -112,7 +112,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
         .fetch()
         .then((image) => {
           // If NewsStory currently has an image and is not changing it: return
-          if(image && (image.id === image_id)) {
+          if(image && (image.id === image_id || image && !image_id)) {
             return
           }
           // If NewsStory currently has an image and it is changing to a different image: set current image news_story_id to null.

@@ -2,6 +2,7 @@ const config = require('../../knexfile'),
       knex = require('knex')(config['test']),
       trunc = require('../helpers/knex/truncate'),
       arrOfTables = [
+        'addresses',
         'images',
         'news_categories',
         'news_stories'

@@ -4,6 +4,7 @@ const config = require('../../knexfile'),
       arrOfTables = [
         'addresses',
         'clients',
+        'collaborators',
         'images',
         'news_categories',
         'news_stories'

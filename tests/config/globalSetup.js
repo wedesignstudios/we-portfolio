@@ -9,6 +9,7 @@ const config = require('../../knexfile'),
         'news_categories',
         'news_stories',
         'project_categories',
+        'wp_posts',
         'wp_users'
       ];
 

@@ -3,6 +3,7 @@ const config = require('../../knexfile'),
       trunc = require('../helpers/knex/truncate'),
       arrOfTables = [
         'addresses',
+        'clients',
         'images',
         'news_categories',
         'news_stories'

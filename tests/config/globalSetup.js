@@ -8,7 +8,8 @@ const config = require('../../knexfile'),
         'images',
         'news_categories',
         'news_stories',
-        'project_categories'
+        'project_categories',
+        'wp_users'
       ];
 
 module.exports = async () => {

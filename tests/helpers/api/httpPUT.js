@@ -35,7 +35,9 @@ function httpPUT(routeName, id, data) {
                 .select()
                 .then(res => {
                   Object.keys(data).map(key => {
-                    expect(res[0][key]).not.toBe(record[key]);
+                    if(record[key]) {
+                      expect(res[0][key]).not.toBe(record[key]);
+                    }
                   })
                   done();
                 })

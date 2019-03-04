@@ -8,6 +8,7 @@ const config = require('../../knexfile'),
         'images',
         'news_categories',
         'news_stories',
+        'projects',
         'project_categories',
         'wp_posts',
         'wp_users'

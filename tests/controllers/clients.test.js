@@ -10,4 +10,4 @@ testGET.httpGETRelated('clients', relatedModels);
 testGET.httpGETByIdRelated('clients', 1, relatedModels);
 testPOST.httpPOST('clients', postData);
 testPUT.httpPUT('clients', 1, putData);
-testDELETE.httpDELETE('clients', 1);
+testDELETE.httpDELETE('clients', 2);

@@ -85,10 +85,15 @@ function httpGETByIdRelated(routeName, id, relatedModelsArr) {
           .expect('Content-Type', /json/)
           .expect(res => {
             expect(res.body).toBeInstanceOf(Object);
-            if(routeName === 'wp-posts') {
-              expect(res.body.post_name).toBe(id);
-            } else {
-              expect(res.body.id).toBe(id);
+            switch(routeName) {
+              case 'wp-posts':
+                expect(res.body.post_name).toBe(id);
+                break;
+              case 'users':
+                expect(res.body.username).toBe(id);
+                break;
+              default:
+                expect(res.body.id).toBe(id);
             }
             relatedModelsArr.map(model => {
               return expect(res.body).toHaveProperty(model);

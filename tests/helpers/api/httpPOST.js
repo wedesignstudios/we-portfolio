@@ -1,4 +1,6 @@
-const request = require('supertest'),      
+const fs = require('fs'),
+      path = require('path'),
+      request = require('supertest'),
       app = require('../../../index'),
       agent = request.agent(app),
       config = require('../../../knexfile'),
@@ -44,4 +46,38 @@ function httpPOST(routeName, data) {
   );
 }
 
-module.exports = { httpPOST };
+function httpPOSTImg(routeName, imgFilePath) {
+  return(
+    describe(`POST /${routeName}/upload`, () => {
+      let imgPath = imgFilePath,
+          table = tblNm.tableName(routeName),
+          buffer = new Buffer(fs.readFileSync(imgPath)),
+          tableCount1;
+
+      beforeAll(async () => {
+        await knex(table)
+                .count('id')
+                .then(cnt => {
+                  tableCount1 = parseInt(cnt[0]['count']);
+              });
+      });
+
+      it('login', login.testLogin(agent));
+
+      it(`persists a new record in the ${table} db table`, (done) => {
+        agent
+          .post(`/api/v1/${routeName}/upload`)
+          .attach('image', buffer, path.basename(imgPath))
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err);
+            }
+            return done();
+          });
+      })
+    })
+  )
+}
+
+module.exports = { httpPOST, httpPOSTImg };

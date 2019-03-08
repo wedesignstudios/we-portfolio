@@ -6,7 +6,6 @@ const redis = require('redis');
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);
 const bodyParser = require('body-parser');
-const redisClient = redis.createClient(process.env.REDIS_URL);
 const passport = require('passport');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -30,6 +29,7 @@ const users = require('./controllers/users');
 const userData = require('./controllers/user-data');
 const loginFacebook = require('./controllers/loginFacebook');
 const loginGoogle = require('./controllers/loginGoogle');
+const loginTest = require('./controllers/loginTest');
 const logout = require('./controllers/logout');
 const states = require('./controllers/states');
 const wpPosts = require('./controllers/wpPosts');
@@ -45,27 +45,41 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// redis
-redisClient.on('connect', function() {
-  console.log('Redis connected');
-});
-redisClient.on('error', function(err) {
-  console.log('Redis error: ', err);
-});
+if(ENV !== 'test') {
+  let redisClient = redis.createClient(process.env.REDIS_URL);
+  // redis
+  redisClient.on('connect', function() {
+    console.log('Redis connected');
+  });
+  redisClient.on('error', function(err) {
+    console.log('Redis error: ', err);
+  });
 
-// sessions
-app.use(session({
-  store: new redisStore({client: redisClient, host: process.env.REDIS_URL}),
-  secret: process.env.REDIS_PW,
-  resave: false,
-  saveUninitialized: false
-}));
+  // sessions
+  app.use(session({
+    store: new redisStore({client: redisClient, host: process.env.REDIS_URL}),
+    secret: process.env.REDIS_PW,
+    resave: false,
+    saveUninitialized: false
+  }));
+
+  // logger
+  app.use(logger('dev'));
+} else {
+  // sessions ENV === 'test'
+  app.use(session({
+    secret: 'lemmy dog',
+    resave: false,
+    saveUninitialized: true
+  }));
+}
+
+// passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 // favicon in /public/favicon
 app.use(favicon(path.join(__dirname, 'public/favicon', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -96,6 +110,7 @@ app.use('/api/v1/wp-posts', wpPosts);
 app.use('/api/v1/wp-users', wpUsers);
 app.use('/login/facebook', loginFacebook);
 app.use('/login/google', loginGoogle);
+app.use('/login/test', loginTest);
 app.use('/logout', logout);
 app.use('/*', index);
 

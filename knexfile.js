@@ -1,6 +1,6 @@
 module.exports = {
 
-  testing: {
+  test: {
     client: 'pg',
     connection: {
       database: 'we_portfolio_test'
@@ -11,6 +11,9 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations'
+    },
+    seeds: {
+      directory: './seeds/test'
     }
   },
 

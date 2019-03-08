@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
 // SHOW a collaborator by ID
 router.get('/:id', (req, res, next) => {
   Collaborator
-    .forge({id: req.params.id})
+    .forge({id: parseInt(req.params.id)})
     .fetch({
       withRelated: ['projects', 'address'],
       debug: true
@@ -81,7 +81,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 // UPDATE a collaborator
 router.put('/:id', isLoggedIn, (req, res, next) => {
-  const address_id = req.body.address_id;
+  const address_id = parseInt(req.body.address_id);
   const allowedKeys = ['name', 'url'];
   const allowedAddressKeys = ['city', 'state', 'country'];
   const formData = params(req.body).only(allowedKeys);
@@ -89,12 +89,14 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 
   if (Object.keys(formData).length != 0) {
     Collaborator
-      .forge({id: req.params.id})
+      .forge({id: parseInt(req.params.id)})
       .save(formData, {method: 'update'})
       .then((collaborator) => {
-        Address
-          .forge({id: address_id})
-          .save(formAddressData, {method: 'update'});
+        if(address_id) {
+          Address
+            .forge({id: address_id})
+            .save(formAddressData, {method: 'update'});
+        }
         collaborator = collaborator.toJSON();
         return res.status(200).send(`${collaborator.name} has been updated.`);
       })
@@ -110,15 +112,17 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 // DELETE a collaborator
 router.delete('/:id/delete', isLoggedIn, (req, res, next) => {
   const collaborator_name = req.body.name;
-  const address_id = req.body.address_id;
+  const address_id = parseInt(req.body.address_id);;
 
   Collaborator
-    .forge({id: req.params.id})
+    .forge({id: parseInt(req.params.id)})
     .destroy()
     .then(() => {
-       return Address
-        .forge({id: address_id})
-        .destroy();
+       if(address_id) {
+        return Address
+          .forge({id: address_id})
+          .destroy();
+      }
     })
     .then(() => {
       return res.status(200).send(`${collaborator_name} has been deleted.`);  

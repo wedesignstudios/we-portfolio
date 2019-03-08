@@ -11,6 +11,7 @@ const {execFile} = require('child_process');
 const gifsicle = require('gifsicle');
 const imageMagick = gm.subClass({ imageMagick: true });
 const async = require('async');
+const path = require('path');
 
 // AWS config
 AWS.config.update({
@@ -125,6 +126,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res, next) => {
           .forge({url: url, orig_name: fileOrigName})
           .save()
           .then((image) => {
+
             return res.status(200).send(`Image(s) uploaded to S3 and saved to database.`);
           })
           .catch((err) => {
@@ -339,29 +341,39 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 
 // DELETE an image
 router.delete('/:id', isLoggedIn, (req, res, next) => {
-  console.log(req.params.id);
-  console.log(req.body);
-
-  // Delete from S3 bucket
-  s3.deleteObject({
-    Bucket: 'we-portfolio',
-    Key: req.body.orig_name
-  }, (err, data) => {
-    if(err) {
-      console.log('Error message: ', err);
-      return res.status(400).send(err);
+  let parsedPath = path.parse(req.body.orig_name),
+      params = {
+        Bucket: 'we-portfolio-resized',
+        Key: `1024/${parsedPath.name}_1024w${parsedPath.ext}`
+      };
+  // Wait until resized images exist before deleting
+  s3.waitFor('objectExists', params, function(err, data) {
+    if (err) console.error(err, err.stack);
+    else {
+      // Delete from S3 bucket
+      s3.deleteObject({
+        Bucket: 'we-portfolio',
+        Key: req.body.orig_name
+      }, (err, data) => {
+        if(err) {
+          console.error('Error message: ', err);
+          return res.status(400).send(err);
+        }
+        // Delete from database
+        Image
+          .forge({id: req.params.id})
+          .destroy()
+          .then(() => {
+            return res.status(200).send(`Image ${req.body.url} deleted.`);
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send(`Whoops! The following error occurred: ${err}`);
+          });
+      })
     }
-  })
+  });
 
-  // Delete from database
-  Image
-    .forge({id: req.params.id})
-    .destroy()
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send(`Whoops! The following error occurred: ${err}`);
-    });
-    res.status(200).send(`Image ${req.body.url} deleted.`);
 });
 
 

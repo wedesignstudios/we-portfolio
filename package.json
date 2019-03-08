@@ -10,6 +10,7 @@
     "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
     "test": "export NODE_ENV=test; knex migrate:latest; jest --watch --detectOpenHandles",
     "test:silent": "export NODE_ENV=test; knex migrate:latest; jest --watch --detectOpenHandles --silent",
+    "start:test": "export NODE_ENV=test; nodemon ./bin/www",
     "start:dev": "export NODE_ENV=development; nodemon ./bin/www",
     "start": "node ./bin/www"
   },

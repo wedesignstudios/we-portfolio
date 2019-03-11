@@ -59,7 +59,7 @@ function httpDELETEImg(routeName, id, data) {
                 })
             )
           })
-      }, 12000)
+      }, 20000)
 
     })
   )

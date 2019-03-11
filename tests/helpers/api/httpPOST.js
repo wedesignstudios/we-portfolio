@@ -75,7 +75,7 @@ function httpPOSTImg(routeName, imgFilePath) {
             }
             return done();
           });
-      })
+      }, 12000)
     })
   )
 }

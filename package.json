@@ -75,7 +75,7 @@
     "react-scroll": "^1.5.4",
     "react-select": "^1.0.0-rc.5",
     "redis": "^2.7.1",
-    "serve-favicon": "~2.3.2",
+    "serve-favicon": "^2.5.0",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

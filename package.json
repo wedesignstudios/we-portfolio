@@ -38,7 +38,7 @@
     "async": "^2.6.2",
     "aws-sdk": "^2.419.0",
     "body-parser": "^1.18.3",
-    "bookshelf": "^0.10.3",
+    "bookshelf": "^0.14.2",
     "bookshelf-cascade-delete": "^2.0.1",
     "bookshelf-check-duplicates": "^0.2.2",
     "classnames": "^2.2.6",

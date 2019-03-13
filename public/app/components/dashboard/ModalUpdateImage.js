@@ -58,7 +58,7 @@ class ModalUpdateImage extends Component {
     if(this.state.image_data) {
       let {project_id, feature_image_project, news_story_id} = this.state.image_data;
 
-      if(project_id || Object.keys(feature_image_project).length > 0 || news_story_id) {
+      if(project_id || feature_image_project || news_story_id) {
         return true;
       }
       return false;

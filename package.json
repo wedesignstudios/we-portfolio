@@ -42,7 +42,7 @@
     "bookshelf-cascade-delete": "^2.0.1",
     "bookshelf-check-duplicates": "^0.2.2",
     "classnames": "^2.2.6",
-    "connect-redis": "^3.4.0",
+    "connect-redis": "^3.4.1",
     "cookie-parser": "^1.4.4",
     "debug": "~2.6.0",
     "dotenv": "^6.0.0",

@@ -45,7 +45,7 @@
     "connect-redis": "^3.4.1",
     "cookie-parser": "^1.4.4",
     "debug": "~2.6.0",
-    "dotenv": "^6.0.0",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "gifsicle": "^3.0.4",

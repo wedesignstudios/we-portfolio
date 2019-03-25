@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-
-const FormCollaborator = require('./FormCollaborator');
+import FormCollaborator from './FormCollaborator';
 
 class CreateCollaborator extends React.Component {
   render() {
@@ -13,4 +12,4 @@ class CreateCollaborator extends React.Component {
   }
 }
 
-module.exports = CreateCollaborator;
+export default CreateCollaborator;

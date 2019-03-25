@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 import Scroll from 'react-scroll';
 import {Helmet} from 'react-helmet';
+import ImageSizePicker from '../../services/image_size_picker';
+import DateFormatter from '../../services/date_formatter';
 
 const scroll = Scroll.animateScroll;
-const DateFormatter = require('../../services/date_formatter');
-const ImageSizePicker = require('../../services/image_size_picker');
 
 class PressStory extends Component {
   constructor() {
@@ -108,4 +108,4 @@ class PressStory extends Component {
   }
 }
 
-module.exports = PressStory;
+export default PressStory;

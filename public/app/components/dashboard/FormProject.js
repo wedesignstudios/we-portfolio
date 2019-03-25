@@ -6,23 +6,21 @@ import {
 } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import FormHandlers from '../../services/form_handlers';
+import classNames from 'classnames';
+import ClientCheckboxes from './ClientCheckboxes';
+import CollaboratorCheckboxes from './CollaboratorCheckboxes';
+import UsersCheckboxes from './UsersCheckboxes';
+import ImageBoard from '../drag_drop/ImageBoard';
+import ModalAddImages from './ModalAddImages';
+import ProjectCategoriesCheckboxes from './ProjectCategoriesCheckboxes';
+import DataActions from '../../data/actions';
+import FormValidations from '../../services/form_validations';
+import FormHandlersValidations from '../../services/form_handlers_validations';
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
 
 import 'react-datepicker/dist/react-datepicker.css';
-
-const classNames = require('classnames');
-const _groupBy = require('lodash/groupBy');
-const _map = require('lodash/map');
-const _isEmpty = require('lodash/isEmpty');
-const ClientCheckboxes = require('./ClientCheckboxes');
-const CollaboratorCheckboxes = require('./CollaboratorCheckboxes');
-const UsersCheckboxes = require('./UsersCheckboxes');
-const ImageBoard = require('../drag_drop/ImageBoard');
-const ModalAddImages = require('./ModalAddImages');
-const ProjectCategoriesCheckboxes = require('./ProjectCategoriesCheckboxes');
-const DataActions = require('../../data/actions');
-const FormHandlers = require('../../services/form_handlers');
-const FormValidations = require('../../services/form_validations');
-const FormHandlersValidations = require('../../services/form_handlers_validations');
 
 class FormProject extends React.Component {
   constructor() {
@@ -31,7 +29,7 @@ class FormProject extends React.Component {
     this.state = {
       name: '',
       initialName: '',
-      date: '',
+      date: new Date(),
       description: '',
       visible: false,
       images_all: [],
@@ -79,7 +77,7 @@ class FormProject extends React.Component {
     this.setSubmitErrorMessage = FormHandlers.setSubmitErrorMessage.bind(null, this);
   }
 
-  componentDidMount() {    
+  componentDidMount() {
     if(this.props.projectId) {
       fetch(`/api/v1/projects/${this.props.projectId}`)
         .then((res) => res.json())
@@ -87,7 +85,7 @@ class FormProject extends React.Component {
           this.setState({
             name: data.name,
             initialName: data.name,
-            date: moment(data.date),
+            date: new Date(data.date),
             description: data.description,
             visible: data.visible,
             feature_image: {id: data.feature_image.image.id, url: data.feature_image.image.url}
@@ -247,13 +245,13 @@ class FormProject extends React.Component {
   }
 
   groupImagesById(imagesArr) {
-    return _groupBy(imagesArr, 'id');
+    return groupBy(imagesArr, 'id');
   }
 
   sortedProjectImages(imagesArr, sortArr) {
     let group = this.groupImagesById(imagesArr);
 
-    return _map(sortArr, function (i) {
+    return map(sortArr, function (i) {
       return group[i].shift();
     });
   }
@@ -426,20 +424,19 @@ class FormProject extends React.Component {
                 <div className="col-sm-10">
                   <div className="input-group">
                     <DatePicker
-                        selected={this.state.date}
-                        value={this.state.date}
-                        name="date"
-                        className={this.state.dateErr ? 'err form-control' : 'form-control'}
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        placeholderText="Click to select a date"
-                        popoverAttachment="top right"
-                        popoverTargetAttachment="top center"
-                        popoverTargetOffset="38px 250px"
-                        onChange={(e) => FormHandlersValidations.handleDateOnChange(e, this)}
-                        onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
-                        onBlur={(e) => FormValidations.checkField(e, this)} />
+                      dateFormat="MM/dd/yyyy"
+                      selected={this.state.date}
+                      name="date"
+                      className={this.state.dateErr ? 'err form-control' : 'form-control'}
+                      peekNextMonth
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      placeholderText="Click to select a date"
+                      onChange={(e) => FormHandlersValidations.handleDateOnChange(e, this)}
+                      onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
+                      onBlur={(e) => FormValidations.checkField(e, this)}
+                    />
                     {this.state.date ?
                       <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                       <span className="input-group-addon text-danger background-white border-0">Required</span>
@@ -487,7 +484,7 @@ class FormProject extends React.Component {
                       onClick={(e) => this.openFeatureImageModal(e)} >
                         {this.state.feature_image.id ? 'Change Image' : 'Add Image'}
                     </button>
-                    {this.state.feature_image.id ? 
+                    {this.state.feature_image.id ?
                       <span className="text-success background-white ml-3"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                       <span className="text-danger background-white ml-3">Required</span>
                     }
@@ -586,4 +583,4 @@ class FormProject extends React.Component {
   }
 }
 
-module.exports = withRouter(FormProject);
+export default withRouter(FormProject);

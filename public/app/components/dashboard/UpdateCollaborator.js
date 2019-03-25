@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-
-const FormCollaborator = require('./FormCollaborator');
+import FormCollaborator from './FormCollaborator';
 
 class UpdateCollaborator extends Component {
   render() {
@@ -14,4 +13,4 @@ class UpdateCollaborator extends Component {
   }
 }
 
-module.exports = UpdateCollaborator;
+export default UpdateCollaborator;

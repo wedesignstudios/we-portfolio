@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-const FormHandlers = require('../../services/form_handlers');
-const FormValidations = require('../../services/form_validations');
-const DataActions = require('../../data/actions');
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
+import FormHandlers from '../../services/form_handlers';
+import FormValidations from'../../services/form_validations';
+import DataActions from'../../data/actions';
 
 class ModalUpdateImage extends Component {
   constructor() {
@@ -224,4 +223,4 @@ class ModalUpdateImage extends Component {
   }
 };
 
-module.exports = ModalUpdateImage;
+export default ModalUpdateImage;

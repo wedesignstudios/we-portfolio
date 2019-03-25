@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Scroll from 'react-scroll';
+import DateFormatter from '../../services/date_formatter';
 
 const scroll = Scroll.animateScroll;
-const DateFormatter = require('../../services/date_formatter');
 
 class PostLayout extends Component {
   constructor(props) {
     super(props);
-    
+
     this.title = this.props.postData.post_title;
     this.date = new Date(this.props.postData.post_date);
     this.author = this.props.postData.author.display_name;
@@ -45,4 +45,4 @@ class PostLayout extends Component {
   }
 }
 
-module.exports = PostLayout;
+export default PostLayout;

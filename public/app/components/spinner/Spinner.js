@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 function Arc(ctx, x, y, radius, lineWidth, color) {
   this.x = x;
-  this.y = y;  
+  this.y = y;
   this.radius = radius;
   this.lineWidth = lineWidth;
   this.color = color;
@@ -64,4 +64,4 @@ class Spinner extends Component {
   }
 }
 
-module.exports = Spinner;
+export default Spinner;

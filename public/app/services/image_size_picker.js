@@ -40,4 +40,4 @@ const ImageSizePicker = {
 
 }
 
-module.exports = ImageSizePicker;
+export default ImageSizePicker;

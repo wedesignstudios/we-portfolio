@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {Helmet} from 'react-helmet';
-
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
 
 class Contact extends Component {
   constructor() {
@@ -155,4 +154,4 @@ class Contact extends Component {
   }
 }
 
-module.exports = Contact;
+export default Contact;

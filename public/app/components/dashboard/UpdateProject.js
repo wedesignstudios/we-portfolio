@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-
-const FormProject = require('./FormProject');
+import FormProject from './FormProject';
 
 class UpdateProject extends React.Component {
   render() {
@@ -14,4 +13,4 @@ class UpdateProject extends React.Component {
   }
 }
 
-module.exports = UpdateProject;
+export default UpdateProject;

@@ -1,13 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import ReactDOM from 'react-dom';
 import Dropzone from 'react-dropzone';
+import FormHandlers from '../../services/form_handlers';
+import DataActions from '../../data/actions';
+import GetFeatureImageProjects from './GetFeatureImageProjects';
+import GetImagesProjects from './GetImagesProjects';
+import GetImagesNewsStory from './GetImagesNewsStory';
+import Spinner from '../spinner/Spinner.js';
 
-const FormHandlers = require('../../services/form_handlers');
-const DataActions = require('../../data/actions');
-const GetFeatureImageProjects = require('./GetFeatureImageProjects');
-const GetImagesProjects = require('./GetImagesProjects');
-const GetImagesNewsStory = require('./GetImagesNewsStory');
-const Spinner = require('../spinner/Spinner.js');
+const dropzoneRef = createRef(),
+      baseStyle = {
+        alignItems: 'center',
+        borderWidth: 2,
+        borderStyle: 'dashed',
+        borderColor: 'gray',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        position: 'relative',
+        width: '100%'
+      };
 
 class ModalAddImages extends Component {
   constructor() {
@@ -41,6 +53,8 @@ class ModalAddImages extends Component {
   }
 
   onDrop(files) {
+    console.log('onDrop: ', files);
+
     let uploadPath = '/api/v1/images/upload';
 
     this.setState({
@@ -93,7 +107,6 @@ class ModalAddImages extends Component {
   }
 
   render() {
-    let dropzoneRef;
     return(
       <div className="modal fade" id="addImages"tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">
@@ -121,34 +134,39 @@ class ModalAddImages extends Component {
             <div className="modal-body">
               {this.state.openDropzone ?
                 <Dropzone
-                  ref={(node) => {dropzoneRef = node}}
-                  name="images"
-                  accept="image/*"
-                  className="dropzone-styles"
-                  disableClick={true}
-                  onDrop={e => this.onDrop(e)}>
-                    {this.state.fileProcessing ?
-                      <Spinner
-                        radius="20"
-                        lineWidth="8"
-                        color="white">
-                      </Spinner>
-                    : null}
-                    <button
-                      id="close-dropzone"
-                      type="button"
-                      className="close"
-                      onClick={(e) => this.openCloseDropZone(e)}>
-                        <span>&times;</span>
-                    </button>
-                    <h5>Drag image(s) here.</h5>
-                    <p>or</p>
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      onClick={() => {dropzoneRef.open()}} >
-                        Select Image(s)
-                    </button>
+                  ref={dropzoneRef}
+                  onDrop={acceptedFiles => this.onDrop(acceptedFiles)}>
+                  {({ getRootProps, getInputProps }) => (
+                    <div {...getRootProps({
+                        accept: 'image/*',
+                        onClick: e => { e.preventDefault(); e.stopPropagation(); },
+                        onKeyDown: e => {
+                          if (e.keyCode === 32 || e.keyCode === 13) {
+                            e.stopPropagation();
+                          }
+                        },
+                        style: baseStyle
+                      })
+                    }>
+                      <input {...getInputProps()} />
+                      <button
+                        id="close-dropzone"
+                        type="button"
+                        className="close"
+                        onClick={(e) => this.openCloseDropZone(e)}>
+                          <span>&times;</span>
+                      </button>
+                      <h5>Drag image(s) here.</h5>
+                      <p>or</p>
+                      <button
+                        id="open-dropzone-select"
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={ dropzoneRef.current ? dropzoneRef.current.open : null } >
+                          Select Image(s)
+                      </button>
+                    </div>
+                  )}
                 </Dropzone> :
               null}
 
@@ -212,4 +230,4 @@ class ModalAddImages extends Component {
   }
 };
 
-module.exports = ModalAddImages;
+export default ModalAddImages;

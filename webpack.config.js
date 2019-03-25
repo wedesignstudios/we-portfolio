@@ -1,46 +1,58 @@
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path'),
+      MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+      devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  context: path.join(__dirname, 'public', 'app'),
+  mode: 'development',
   entry: {
-      app: './App.js',
-      dashboard: './components/dashboard/Dashboard.js'
+      app: './public/app/App.js',
+      dashboard: './public/app/components/dashboard/Dashboard.js'
   },
-  output:{
-      filename: 'public/build/[name].bundle.js',
-      sourceMapFilename: 'public/build/[name].bundle.map'
+  output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist/public/build'),
+      publicPath: '/',
+      sourceMapFilename: '[name].bundle.map',
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist/public/build'
+  },
   module: {
-   loaders: [
+   rules: [
      {
-       test: /\.jsx?$/,
-       exclude: /(node_modules|bower_components)/,
-       loader: 'babel-loader',
-       query:{
-           presets: ['react','es2015'],
-           plugins: ['transform-object-rest-spread']
-       }
+        test: /\.(js|jsx)$/,
+        exclude: /( node_modules | bower_components )/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['@babel/plugin-proposal-object-rest-spread']
+          }
+        }
      },
      {
-       test: /\.css$/,
-       loader: ExtractTextPlugin.extract({
-         fallback: "style-loader",
-         use: "css-loader"
-       })
+        test: /\.css$/,
+        use: [
+          devMode ? 'style-loader' :
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                // you can specify a publicPath here
+                // by default it uses publicPath in webpackOptions.output
+                publicPath: './public/stylesheets/component_styles.css'
+              }
+            },
+          'css-loader'
+        ]
      }
    ]
   },
   plugins: [
-    new ExtractTextPlugin("./public/stylesheets/component_styles.css"),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      test: /\.js($|\?)/i,
-      cache: true
-    })
+    new MiniCssExtractPlugin({
+          // Options similar to the same options in webpackOptions.output
+          // both options are optional
+          filename: '[name].css',
+          chunkFilename: '[id].css'
+        })
   ]
 }﻿

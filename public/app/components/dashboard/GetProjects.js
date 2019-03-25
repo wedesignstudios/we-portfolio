@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
-
-const DateFormatter = require('../../services/date_formatter');
-const FormValidations = require('../../services/form_validations');
-const ImageSizePicker = require('../../services/image_size_picker');
-const classNames = require('classnames');
+import ImageSizePicker from '../../services/image_size_picker';
+import DateFormatter from '../../services/date_formatter';
+import FormValidations from '../../services/form_validations';
+import classNames from 'classnames';
 
 class GetProjects extends Component {
   constructor(props) {
@@ -131,4 +130,4 @@ class GetProjects extends Component {
   }
 }
 
-module.exports = GetProjects;
+export default GetProjects;

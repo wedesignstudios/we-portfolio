@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 import {Helmet} from 'react-helmet';
-
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
 
 class Press extends Component {
   constructor() {
@@ -96,4 +95,4 @@ class Press extends Component {
   }
 }
 
-module.exports = Press;
+export default Press;

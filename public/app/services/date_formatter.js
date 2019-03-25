@@ -23,7 +23,7 @@ const DateFormatter = {
     let month = this.monthNames()[dateObj.getMonth()];
     let day = dateObj.getDate();
     let year = dateObj.getFullYear();
-    
+
     return `${month} ${day}, ${year}`;
   },
 
@@ -36,4 +36,4 @@ const DateFormatter = {
 
 }
 
-module.exports = DateFormatter;
+export default DateFormatter;

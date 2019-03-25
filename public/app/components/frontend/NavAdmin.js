@@ -45,4 +45,4 @@ class NavAdmin extends Component {
   }
 }
 
-module.exports = NavAdmin;
+export default NavAdmin;

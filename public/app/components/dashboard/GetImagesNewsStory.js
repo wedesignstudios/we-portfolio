@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
-
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
 
 class GetImagesNewsStory extends React.Component {
   constructor() {
@@ -77,8 +76,8 @@ class GetImagesNewsStory extends React.Component {
         {this.state.image_data.map(image => {
           let isSVG = /(.svg)$/g.test(image.orig_name);
           let imgSizes = ImageSizePicker.imgSize(image.orig_name);
-          return <img 
-                    key={image.id}                    
+          return <img
+                    key={image.id}
                     id={image.id}
                     className={this.state.image_id == image.id ? 'selected' : ''}
                     src={!isSVG ? imgSizes.w300 : image.url}
@@ -93,4 +92,4 @@ class GetImagesNewsStory extends React.Component {
   }
 }
 
-module.exports = GetImagesNewsStory;
+export default GetImagesNewsStory;

@@ -17,4 +17,4 @@ class Copyright extends Component {
   }
 }
 
-module.exports = Copyright;
+export default Copyright;

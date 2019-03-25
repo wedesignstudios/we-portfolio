@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-const preFooterScript = require('../../../javascripts/canvasPreFooter');
-const FormMailchimpSignUp = require('./FormMailchimpSignUp');
+import preFooterScript from '../../../javascripts/canvasPreFooter';
+import FormMailchimpSignUp from './FormMailchimpSignUp';
 
 class PreFooter extends Component {
   render() {
@@ -17,4 +16,4 @@ class PreFooter extends Component {
   }
 }
 
-module.exports = PreFooter;
+export default PreFooter;

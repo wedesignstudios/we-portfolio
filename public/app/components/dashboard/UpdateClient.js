@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-
-const FormClient = require('./FormClient');
+import FormClient from './FormClient';
 
 class UpdateClient extends Component {
   render() {
@@ -14,4 +13,4 @@ class UpdateClient extends Component {
   }
 }
 
-module.exports = UpdateClient;
+export default UpdateClient;

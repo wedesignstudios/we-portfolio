@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-
-const Copyright = require('./Copyright');
+import Copyright from './Copyright';
 
 class Footer extends Component {
   render() {
@@ -65,4 +64,4 @@ class Footer extends Component {
   }
 }
 
-module.exports = Footer;
+export default Footer;

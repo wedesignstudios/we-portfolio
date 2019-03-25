@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
-
-const FormHandlers = require('../../services/form_handlers');
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
+import FormHandlers from '../../services/form_handlers';
 
 class GetImagesProjects extends React.Component {
   constructor() {
@@ -80,4 +79,4 @@ class GetImagesProjects extends React.Component {
   }
 }
 
-module.exports = GetImagesProjects;
+export default GetImagesProjects;

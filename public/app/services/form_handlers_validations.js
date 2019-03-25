@@ -1,7 +1,7 @@
-const FormHandlers = require('./form_handlers');
-const FormValidations = require('./form_validations');
+import FormHandlers from './form_handlers';
+import FormValidations from './form_validations';
 
-const FormHandlersValidations = {  
+const FormHandlersValidations = {
 
   handleDateOnChange: function(event, _this) {
     _this.setState({
@@ -34,4 +34,4 @@ const FormHandlersValidations = {
 
 }
 
-module.exports = FormHandlersValidations;
+export default FormHandlersValidations;

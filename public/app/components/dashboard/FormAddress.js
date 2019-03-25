@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
 import { Creatable } from 'react-select';
-import 'react-select/dist/react-select.css';
 import 'whatwg-fetch';
-
-const FormHandlers = require('../../services/form_handlers');
+import FormHandlers from '../../services/form_handlers';
+// import 'react-select/dist/react-select.css';
 
 class FormAddress extends Component {
   constructor() {
@@ -169,7 +168,7 @@ class FormAddress extends Component {
           isValidNewOption={val => this.checkIsValidNewOption(val)}
           newOptionCreator={val => this.createNewOption(val)}
           promptTextCreator={val => this.createPromptText(val)}
-          placeholder="Select/Enter A City" />
+          placeholder="Select/Enter A Really Great City" />
 
         <Select
           name="state"
@@ -193,4 +192,4 @@ class FormAddress extends Component {
   }
 }
 
-module.exports = FormAddress;
+export default FormAddress;

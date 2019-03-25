@@ -574,22 +574,18 @@ form textarea.form-control {
 .card > img:hover {
   cursor: pointer; }
 
-.dropzone-styles {
-  align-items: center;
-  border: 2px dashed gray;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  width: 100%; }
-  .dropzone-styles button {
-    margin-bottom: 2rem; }
-    .dropzone-styles button#close-dropzone {
-      align-self: flex-end;
-      margin: 0.5rem 0.75rem; }
+#close-dropzone {
+  align-self: flex-end;
+  margin: 0.5rem 0.75rem; }
+
+#open-dropzone-select {
+  margin-bottom: 2rem; }
 
 .react-datepicker__input-container .form-control {
   width: 100%; }
+
+.react-datepicker-popper {
+  z-index: 3 !important; }
 
 .image-card {
   cursor: move;

@@ -10,11 +10,10 @@ import {
   withRouter
 } from 'react-router-dom';
 import {Helmet} from 'react-helmet';
-
-const Layout = require('./components/frontend/Layout');
-const Dashboard = require('./components/dashboard/Dashboard');
-const Login = require('./components/dashboard/Login');
-const NotFound = require('./components/dashboard/NotFound');
+import Layout from './components/frontend/Layout';
+import Dashboard from './components/dashboard/Dashboard';
+import Login from './components/dashboard/Login';
+import NotFound from './components/dashboard/NotFound';
 
 const PrivateRoute = ({ component: Component, path, auth, redirectPath }) => (
   <Route path={path} render={props => (
@@ -71,7 +70,7 @@ class App extends Component {
               <title>WE Design Studios</title>
               <meta property="og:title" content="WE Design Studios" />
               <meta name="description" content="WE Design Studios is an Austin, TX based design firm that creates visual identities, graphics, posters, logos, illustrations, apps and websites." />
-              <meta property="og:description" content="WE Design Studios is an Austin, TX based design firm that creates visual identities, graphics, posters, logos, illustrations, apps and websites." />  
+              <meta property="og:description" content="WE Design Studios is an Austin, TX based design firm that creates visual identities, graphics, posters, logos, illustrations, apps and websites." />
               <meta property="og:image" content="https://we-portfolio.s3.amazonaws.com/we-social.png" />
               <link rel="canonical" href="https://wedesignstudios.com/" />
               <meta property="og:url" content="https://wedesignstudios.com" />
@@ -82,7 +81,7 @@ class App extends Component {
           <Switch>
             <PrivateRoute path='/login' component={Login} auth={!this.state.loggedIn} redirectPath='/dashboard' />
             <PrivateRoute path='/dashboard' component={Dashboard} auth={this.state.loggedIn} redirectPath='/login' />
-            <Route path='/' component={props => <Layout {...props} auth={this.state.loggedIn} />} />
+            <Route path='/' render={props => <Layout {...props} auth={this.state.loggedIn} />} />
             <Route component={NotFound} />
           </Switch>
         </div>

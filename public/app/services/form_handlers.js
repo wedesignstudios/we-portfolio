@@ -1,11 +1,10 @@
-const FormValidations = require('./form_validations');
-const _groupBy = require('lodash/groupBy');
-const _includes = require('lodash/includes');
+import FormValidations from './form_validations';
+import groupBy from 'lodash/groupBy';
 
 const FormHandlers = {
 
-  handleOnChange: function(event, _this) {    
-    FormHandlers.inputChange(event, _this);    
+  handleOnChange: function(event, _this) {
+    FormHandlers.inputChange(event, _this);
   },
 
   inputChange: function(event, _this) {
@@ -74,7 +73,7 @@ const FormHandlers = {
     let url = target.src;
     let id = parseInt(target.id);
     let image = {id: id, url: url};
-    let toAttachGroups = _groupBy(toAttachImages, 'id');
+    let toAttachGroups = groupBy(toAttachImages, 'id');
 
     if(toAttachImages && toAttachGroups[id]) {
       let index = toAttachImages.findIndex(i => i.id === id);
@@ -239,4 +238,4 @@ const FormHandlers = {
 
 };
 
-module.exports = FormHandlers;
+export default FormHandlers;

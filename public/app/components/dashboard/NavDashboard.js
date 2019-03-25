@@ -21,6 +21,6 @@ class NavDashboard extends Component {
       </nav>
     );
   }
-}
+};
 
-module.exports = NavDashboard;
+export default NavDashboard;

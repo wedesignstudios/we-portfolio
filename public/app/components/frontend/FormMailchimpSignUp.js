@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-const FormValidations = require('../../services/form_validations');
-const classNames = require('classnames');
+import FormValidations from '../../services/form_validations';
+import classNames from 'classnames';
 
 class FormMailchimpSignUp extends Component {
   constructor(props) {
@@ -169,4 +168,4 @@ class FormMailchimpSignUp extends Component {
   }
 }
 
-module.exports = FormMailchimpSignUp;
+export default FormMailchimpSignUp;

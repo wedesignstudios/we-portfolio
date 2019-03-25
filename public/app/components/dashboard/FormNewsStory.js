@@ -5,18 +5,16 @@ import {
   withRouter
 } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import FormHandlers from '../../services/form_handlers';
+import classNames from 'classnames';
+import DataActions from '../../data/actions';
+import FormValidations from '../../services/form_validations';
+import FormHandlersValidations from '../../services/form_handlers_validations';
+import ModalAddImages from './ModalAddImages';
+import NewsCategoriesCheckboxes from './NewsCategoriesCheckboxes';
+import GetImagesNewsStory from './GetImagesNewsStory';
 
 import 'react-datepicker/dist/react-datepicker.css';
-
-const classNames = require('classnames');
-const DataActions = require('../../data/actions');
-const FormHandlers = require('../../services/form_handlers');
-const FormValidations = require('../../services/form_validations');
-const FormHandlersValidations = require('../../services/form_handlers_validations');
-const ModalAddImages = require('./ModalAddImages');
-const NewsCategoriesCheckboxes = require('./NewsCategoriesCheckboxes');
-const GetImagesNewsStory = require('./GetImagesNewsStory');
 
 class FormNewsStory extends React.Component {
   constructor() {
@@ -25,7 +23,7 @@ class FormNewsStory extends React.Component {
     this.state = {
       title: '',
       initialTitle: '',
-      date: '',
+      date: new Date(),
       description: '',
       image_id: '',
       image_url: '',
@@ -89,7 +87,7 @@ class FormNewsStory extends React.Component {
           this.setState({
             title: data.title,
             initialTitle: data.title,
-            date: moment(data.date),
+            date: new Date(data.date),
             description: data.description,
             image_id: data.image.id ? data.image.id : '',
             image_url: data.image.url ? data.image.url : ''
@@ -273,20 +271,19 @@ class FormNewsStory extends React.Component {
                 <div className="col-sm-10">
                   <div className="input-group">
                     <DatePicker
-                        selected={this.state.date}
-                        value={this.state.date}
-                        name="date"
-                        className={this.state.dateErr ? 'err form-control' : 'form-control'}
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        placeholderText="Click to select a date"
-                        popoverAttachment="top right"
-                        popoverTargetAttachment="top center"
-                        popoverTargetOffset="38px 250px"
-                        onChange={(e) => FormHandlersValidations.handleDateOnChange(e, this)}
-                        onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
-                        onBlur={(e) => FormValidations.checkField(e, this)} />
+                      dateFormat="MM/dd/yyyy"
+                      selected={this.state.date}
+                      name="date"
+                      className={this.state.dateErr ? 'err form-control' : 'form-control'}
+                      peekNextMonth
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      placeholderText="Click to select a date"
+                      onChange={(e) => FormHandlersValidations.handleDateOnChange(e, this)}
+                      onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
+                      onBlur={(e) => FormValidations.checkField(e, this)}
+                    />
                       {this.state.date ?
                         <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                         <span className="input-group-addon text-danger background-white border-0">Required</span>
@@ -380,4 +377,4 @@ class FormNewsStory extends React.Component {
   }
 };
 
-module.exports = withRouter(FormNewsStory);
+export default withRouter(FormNewsStory);

@@ -100,4 +100,4 @@ class NavBar extends Component {
   }
 }
 
-module.exports = withRouter(NavBar);
+export default withRouter(NavBar);

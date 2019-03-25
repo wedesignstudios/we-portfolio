@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import update from 'react/lib/update';
+import update from 'immutability-helper';
 import { ItemTypes } from './ItemTypes';
 import { DragDropContext, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import ImageCard from '../drag_drop/ImageCard';
-
-const _flow = require('lodash/flow');
-const _groupBy = require('lodash/groupBy');
-const _map = require('lodash/map');
+import flow from 'lodash/flow';
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
+// import update from 'react/lib/update';
 
 const cardTarget = {
-  drop() {    
+  drop() {
   },
 };
 
@@ -77,11 +77,11 @@ class ImageBoard extends Component {
   }
 
   groupImagesById(imagesArr) {
-    return _groupBy(imagesArr, 'id');
+    return groupBy(imagesArr, 'id');
   }
 
   sortImageCards(sortArr, groups) {
-    return _map(sortArr, function (i) {
+    return map(sortArr, function (i) {
       return groups[i].shift();
     });
   }
@@ -119,4 +119,7 @@ class ImageBoard extends Component {
 
 }
 
-module.exports = _flow([DropTarget(ItemTypes.CARD, cardTarget, collectTarget), DragDropContext(HTML5Backend)])(ImageBoard);
+export default flow(
+  DropTarget(ItemTypes.CARD, cardTarget, collectTarget),
+  DragDropContext(HTML5Backend)
+)(ImageBoard)

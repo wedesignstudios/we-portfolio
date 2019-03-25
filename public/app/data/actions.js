@@ -64,4 +64,4 @@ const DataActions = {
 };
 
 
-module.exports = DataActions;
+export default DataActions;

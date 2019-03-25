@@ -1,5 +1,9 @@
 // Datepicker styles
 
 .react-datepicker__input-container .form-control {
-  width: 100%;  
+  width: 100%;
+}
+
+.react-datepicker-popper {
+  z-index: 3 !important;
 }

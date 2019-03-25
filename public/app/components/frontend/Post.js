@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {Helmet} from 'react-helmet';
-
-const PostLayout = require('./PostLayout');
-const NotFound = require('../dashboard/NotFound');
+import PostLayout from './PostLayout';
+import NotFound from '../dashboard/NotFound';
 
 class Post extends Component {
   constructor() {
@@ -62,4 +61,4 @@ class Post extends Component {
   }
 }
 
-module.exports = Post;
+export default Post;

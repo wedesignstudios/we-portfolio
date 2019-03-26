@@ -78,6 +78,13 @@ if(ENV !== 'test') {
   }));
 }
 
+if(ENV === 'development') {
+  // webpack
+  app.use(webpackDevMiddleware(compiler, {
+    publicPath: webpackConfig.output.publicPath
+  }));
+}
+
 // passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -95,10 +102,6 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// webpack
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: webpackConfig.output.publicPath
-}));
 
 // routes
 app.use('/', index);

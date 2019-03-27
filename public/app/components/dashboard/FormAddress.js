@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
-import { Creatable } from 'react-select';
+import CreatableSelect from 'react-select/lib/Creatable';
 import 'whatwg-fetch';
 import FormHandlers from '../../services/form_handlers';
 // import 'react-select/dist/react-select.css';
@@ -77,7 +77,7 @@ class FormAddress extends Component {
     let modelId = model + 'Id';
     let models = model + 's';
 
-    fetch(`/api/${models}/${this.props[modelId]}`)
+    fetch(`/api/v1/${models}/${this.props[modelId]}`)
       .then((res) => res.json())
       .then((data) => {
         if(data.address.length > 0) {
@@ -94,10 +94,10 @@ class FormAddress extends Component {
       });
   }
 
-  setSelectedCity(val) {
+  setSelectedCity(newVal) {
     this.setState({
-      city: val ? val.value : ''
-    });
+      city: newVal ? newVal.value : ''
+    })
   }
 
   setSelectedState(val) {
@@ -113,10 +113,9 @@ class FormAddress extends Component {
   }
 
   checkIsValidNewOption(val) {
-    let regex = /[a-zA-Z\u00C0-\u00FC]/g;
     let numSpecCharsRegex = /[\u0000-\u001f\u0021-\u0040\u005b-\u0060\u007b-\u00bf]/g;
 
-    if(numSpecCharsRegex.test(val.label) || val.label === undefined || val.label === '') {
+    if(numSpecCharsRegex.test(val) || val === undefined || val === '') {
       return false
     }
     return true
@@ -132,61 +131,63 @@ class FormAddress extends Component {
     sendDataFunc(data, inputName);
   }
 
-  createNewOption(val) {
-    if(val.label !== undefined) {
-      let inputValue = val.label;
-      inputValue = FormHandlers.titleCase(inputValue);
-      return {
-        value: inputValue,
-        label: inputValue
-      }
-    };
-    return {
-      value: val.label,
-      label: val.label
+  createNewOption(inputVal) {
+    inputVal = FormHandlers.titleCase(inputVal);
+
+    let newCityObj = {
+      value: inputVal,
+      label: inputVal
     }
+
+    this.setState({
+      allCities: [...this.state.allCities, newCityObj],
+      city: inputVal
+    });
+
+    return newCityObj;
   }
 
   createPromptText(val) {
     if(val !== undefined) {
-      return `Create new city: ${val}`;
+      return `Create New City: ${val}`;
     }
-    return 'Type to add a new city.';
+    return 'Type To Add A New City.';
   }
 
   render() {
     return(
       <div>
-        <Select.Creatable
+        <CreatableSelect
           name="city"
           className="mb-3"
-          value={this.state.city}
+          value={this.state.allCities.filter(({value}) => value === this.state.city)}
           options={this.state.allCities}
-          onChange={(val) => this.setSelectedCity(val)}
+          onChange={(newVal) => this.setSelectedCity(newVal)}
+          onCreateOption={inputVal => this.createNewOption(inputVal)}
           onBlur={(e) => this.selectOnBlurHandler(e, this.props.sendAddressData, 'city')}
           onFocus={(e) => FormHandlers.preventSpaceKey(e)}
           isValidNewOption={val => this.checkIsValidNewOption(val)}
-          newOptionCreator={val => this.createNewOption(val)}
-          promptTextCreator={val => this.createPromptText(val)}
-          placeholder="Select/Enter A Really Great City" />
-
+          formatCreateLabel={val => this.createPromptText(val)}
+          placeholder="Select/Enter A City"
+        />
         <Select
           name="state"
           className="mb-3"
-          value={this.state.state}
+          value={this.state.allStates.filter(({value}) => value === this.state.state)}
           options={this.state.allStates}
           onChange={(val) => this.setSelectedState(val)}
           onBlur={(e) => this.selectOnBlurHandler(e, this.props.sendAddressData, 'state')}
-          placeholder="Select A State" />
-
-          <Select
+          placeholder="Select A State"
+        />
+        <Select
           name="country"
           className="mb-3"
-          value={this.state.country}
+          value={this.state.allCountries.filter(({value}) => value === this.state.country)}
           options={this.state.allCountries}
           onChange={(val) => this.setSelectedCountry(val)}
           onBlur={(e) => this.selectOnBlurHandler(e, this.props.sendAddressData, 'country')}
-          placeholder="Select A Country" />
+          placeholder="Select A Country"
+        />
       </div>
     );
   }

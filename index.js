@@ -40,7 +40,7 @@ const wpUsers = require('./controllers/wpUsers');
 const ENV = process.env.NODE_ENV || 'development';
 const config = require('./knexfile');
 const db = knex(config[ENV]);
-const webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.dev.js');
 const compiler = webpack(webpackConfig);
 
 const app = express();

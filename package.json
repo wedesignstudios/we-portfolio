@@ -12,8 +12,7 @@
     "test:silent": "export NODE_ENV=test; knex migrate:latest; jest --watch --detectOpenHandles --silent",
     "start:test": "export NODE_ENV=test; nodemon ./bin/www",
     "start:dev": "export NODE_ENV=development; nodemon ./bin/www",
-    "start": "node ./bin/www",
-    "heroku-postbuild": "echo Skip build on Heroku"
+    "start": "node ./bin/www"
   },
   "jest": {
     "globalSetup": "./tests/config/globalSetup.js"

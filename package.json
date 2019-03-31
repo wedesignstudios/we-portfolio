@@ -69,7 +69,7 @@
     "react-dnd": "^7.4.3",
     "react-dnd-html5-backend": "^7.4.0",
     "react-dom": "^16.8.6",
-    "react-dropzone": "^10.0.6",
+    "react-dropzone": "^10.1.0",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^5.0.0",
     "react-scroll": "^1.7.11",

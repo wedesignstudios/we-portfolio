@@ -1,5 +1,4 @@
 const path = require('path'),
-      HtmlWebpackPlugin = require('html-webpack-plugin'),
       CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
@@ -28,10 +27,6 @@ module.exports = {
    ]
  	},
   plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      filename: '../../../views/layout.hbs',
-      template: './views/html-webpack-template.hbs'
-    })
+    new CleanWebpackPlugin()
   ]
 }

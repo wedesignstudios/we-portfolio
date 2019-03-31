@@ -28,7 +28,7 @@ class NavAdmin extends Component {
   render() {
     if(!this.state.user) { return null }
     return(
-      <nav id="navbar-admin" className="navbar navbar-toggleable-sm navbar-inverse bg-inverse row justify-content-center">
+      <nav id="navbar-admin" className="navbar navbar-expand-sm navbar-dark bg-dark row justify-content-center">
         <div className="col-6 collapse navbar-collapse">
           <span className="navbar-text mr-auto">Hi, {this.state.user[0].first_name}</span>
           <ul className="navbar-nav ml-auto">

@@ -84,12 +84,14 @@
   border-color: $blue_ribbon;
 }
 
-.btn-secondary {
+.btn-outline-secondary {
+  color: $black;
   &:focus {
     box-shadow: none;
   }
   &:hover {
     background-color: transparent;
+    color: inherit;
   }
 }
 
@@ -118,7 +120,7 @@
   }
 }
 
-.card-columns { 
+.card-columns {
   @include media-breakpoint-up(sm) {
     -webkit-column-gap: 2rem;
     -moz-column-gap: 2rem;

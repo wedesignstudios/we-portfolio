@@ -171,11 +171,13 @@ button:hover {
   background-color: #024FF3;
   border-color: #024FF3; }
 
-.btn-secondary:focus {
-  box-shadow: none; }
-
-.btn-secondary:hover {
-  background-color: transparent; }
+.btn-outline-secondary {
+  color: #000000; }
+  .btn-outline-secondary:focus {
+    box-shadow: none; }
+  .btn-outline-secondary:hover {
+    background-color: transparent;
+    color: inherit; }
 
 .card a {
   text-decoration: none; }

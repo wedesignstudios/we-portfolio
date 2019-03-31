@@ -41,7 +41,7 @@ class NavBar extends Component {
     return (
       <div id="navbar-main" className={"row justify-content-center m-0 " + (location !== '/' ? 'nav-bg-white' : '')}>
         <div className="col-xl-9 col-lg-12 p-0">
-          <nav className={"navbar navbar-toggleable-sm " + (navOpen ? 'nav-opened ' : '') + (location !== '/' ? 'navbar-black' : '') }>
+          <nav className={"navbar navbar-expand-sm " + (navOpen ? 'nav-opened ' : '') + (location !== '/' ? 'navbar-black' : '') }>
             <button
               className="navbar-toggler navbar-toggler-right collapsed"
               type="button"

@@ -204,7 +204,7 @@ class ModalUpdateImage extends Component {
               null}
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-outline-secondary"
                 data-dismiss="modal">
                   Cancel
               </button>

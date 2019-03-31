@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-const FormProject = require('./FormProject');
+import FormProject from './FormProject';
 
 class CreateProject extends React.Component {
   render() {
@@ -13,4 +12,4 @@ class CreateProject extends React.Component {
   }
 }
 
-module.exports = CreateProject;
+export default CreateProject;

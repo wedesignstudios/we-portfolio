@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
-
-const DateFormatter = require('../../services/date_formatter');
-const FormValidations = require('../../services/form_validations');
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
+import DateFormatter from '../../services/date_formatter';
+import FormValidations from '../../services/form_validations';
 
 class GetNewsStories extends Component {
   constructor(props) {
@@ -116,4 +115,4 @@ class GetNewsStories extends Component {
   }
 }
 
-module.exports = GetNewsStories;
+export default GetNewsStories;

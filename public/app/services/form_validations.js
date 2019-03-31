@@ -135,4 +135,4 @@ const FormValidations = {
 
 }
 
-module.exports = FormValidations;
+export default FormValidations;

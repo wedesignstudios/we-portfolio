@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-const FormHandlers = require('../../services/form_handlers');
-const FormValidations = require('../../services/form_validations');
-const DataActions = require('../../data/actions');
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
+import FormHandlers from '../../services/form_handlers';
+import FormValidations from'../../services/form_validations';
+import DataActions from'../../data/actions';
 
 class ModalUpdateImage extends Component {
   constructor() {
@@ -58,7 +57,7 @@ class ModalUpdateImage extends Component {
     if(this.state.image_data) {
       let {project_id, feature_image_project, news_story_id} = this.state.image_data;
 
-      if(project_id || Object.keys(feature_image_project).length > 0 || news_story_id) {
+      if(project_id || feature_image_project || news_story_id) {
         return true;
       }
       return false;
@@ -205,7 +204,7 @@ class ModalUpdateImage extends Component {
               null}
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-outline-secondary"
                 data-dismiss="modal">
                   Cancel
               </button>
@@ -224,4 +223,4 @@ class ModalUpdateImage extends Component {
   }
 };
 
-module.exports = ModalUpdateImage;
+export default ModalUpdateImage;

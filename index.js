@@ -2,6 +2,8 @@
 require('dotenv').config();
 
 const express = require('express');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
 const redis = require('redis');
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);
@@ -38,6 +40,8 @@ const wpUsers = require('./controllers/wpUsers');
 const ENV = process.env.NODE_ENV || 'development';
 const config = require('./knexfile');
 const db = knex(config[ENV]);
+const webpackConfig = require('./webpack.dev.js');
+const compiler = webpack(webpackConfig);
 
 const app = express();
 
@@ -74,6 +78,13 @@ if(ENV !== 'test') {
   }));
 }
 
+if(ENV === 'development') {
+  // webpack
+  app.use(webpackDevMiddleware(compiler, {
+    publicPath: webpackConfig.output.publicPath
+  }));
+}
+
 // passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -89,7 +100,9 @@ app.use(require('node-sass-middleware')({
   indentedSyntax: true,
   sourceMap: true
 }));
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // routes
 app.use('/', index);
@@ -116,7 +129,7 @@ app.use('/*', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const err = new Error('Not Found');  
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -139,7 +152,7 @@ app.up = () => {
       return db.migrate.currentVersion();
     })
     .then((val) => {
-      console.log('Done running latest migration:', val);      
+      console.log('Done running latest migration:', val);
     });
   }
 

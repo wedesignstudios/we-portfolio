@@ -4,12 +4,11 @@ import {
   Link,
   withRouter
 } from 'react-router-dom';
-
-const FormAddress = require('./FormAddress');
-const DataActions = require('../../data/actions');
-const FormHandlers = require('../../services/form_handlers');
-const FormValidations = require('../../services/form_validations');
-const FormHandlersValidations = require('../../services/form_handlers_validations');
+import FormHandlers from '../../services/form_handlers';
+import FormAddress from './FormAddress';
+import DataActions from '../../data/actions';
+import FormValidations from '../../services/form_validations';
+import FormHandlersValidations from '../../services/form_handlers_validations';
 
 class FormClient extends React.Component {
   constructor() {
@@ -236,4 +235,4 @@ class FormClient extends React.Component {
   }
 }
 
-module.exports = withRouter(FormClient);
+export default withRouter(FormClient);

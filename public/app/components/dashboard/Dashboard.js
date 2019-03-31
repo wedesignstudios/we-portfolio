@@ -10,24 +10,23 @@ import {
   withRouter
 } from 'react-router-dom';
 import {Helmet} from 'react-helmet';
-
-const NavDashboard = require('./NavDashboard');
-const DashboardHome = require('./DashboardHome');
-const CreateProject = require('./CreateProject');
-const GetProjects = require('./GetProjects');
-const UpdateProject = require('./UpdateProject');
-const WorkProject = require('../frontend/WorkProject');
-const CreateClient = require('./CreateClient');
-const GetClients = require('./GetClients');
-const UpdateClient = require('./UpdateClient');
-const CreateCollaborator = require('./CreateCollaborator');
-const GetCollaborators = require('./GetCollaborators');
-const UpdateCollaborator = require('./UpdateCollaborator');
-const GetImages = require('./GetImages');
-const CreateNewsStory = require('./CreateNewsStory');
-const GetNewsStories = require('./GetNewsStories');
-const UpdateNewsStory = require('./UpdateNewsStory');
-const NotFound = require('./NotFound');
+import NavDashboard from './NavDashboard';
+import DashboardHome from './DashboardHome';
+import CreateProject from './CreateProject';
+import GetProjects from './GetProjects';
+import UpdateProject from './UpdateProject';
+import WorkProject from '../frontend/WorkProject';
+import CreateClient from './CreateClient';
+import GetClients from './GetClients';
+import UpdateClient from './UpdateClient';
+import CreateCollaborator from './CreateCollaborator';
+import GetCollaborators from './GetCollaborators';
+import UpdateCollaborator from './UpdateCollaborator';
+import GetImages from './GetImages';
+import CreateNewsStory from './CreateNewsStory';
+import GetNewsStories from './GetNewsStories';
+import UpdateNewsStory from './UpdateNewsStory';
+import NotFound from './NotFound';
 
 class Dashboard extends Component {
   render() {
@@ -64,4 +63,4 @@ class Dashboard extends Component {
   }
 }
 
-module.exports = Dashboard;
+export default Dashboard;

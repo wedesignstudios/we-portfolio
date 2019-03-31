@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
-import {Helmet} from 'react-helmet';
-
-const ImageSizePicker = require('../../services/image_size_picker');
-const _groupBy = require('lodash/groupBy');
+import { Helmet } from 'react-helmet';
+import ImageSizePicker from '../../services/image_size_picker';
+import groupBy from 'lodash/groupBy';
 
 class Work extends Component {
   constructor() {
@@ -55,7 +54,7 @@ class Work extends Component {
               <div className="row justify-content-center">
                 <div className="card-columns">
                   {projectData.map(project => {
-                    let groupedImages = _groupBy(project.images, 'id');
+                    let groupedImages = groupBy(project.images, 'id');
                     let featureImageId = project.project_images_sort_order.images_order[0];
                     let featureImage = groupedImages[featureImageId][0];
                     let featureImgSizes = ImageSizePicker.imgSize(featureImage.orig_name);
@@ -104,4 +103,4 @@ class Work extends Component {
   }
 }
 
-module.exports = Work;
+export default Work;

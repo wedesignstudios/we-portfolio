@@ -11,7 +11,8 @@ const config = require('../../knexfile'),
         'projects',
         'project_categories',
         'wp_posts',
-        'wp_users'
+        'wp_users',
+        'wp_meta_descriptions'
       ];
 
 module.exports = async () => {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import ReactDOM from 'react-dom';
 import {
   Link,
@@ -6,13 +6,25 @@ import {
 } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import 'whatwg-fetch';
+import ImageSizePicker from '../../services/image_size_picker';
+import FormHandlers from '../../services/form_handlers';
+import DataActions from '../../data/actions';
+import ModalUpdateImage from './ModalUpdateImage';
+import FormValidations from '../../services/form_validations';
+import Spinner from '../spinner/Spinner.js';
 
-const DataActions = require('../../data/actions');
-const ModalUpdateImage = require('./ModalUpdateImage');
-const FormValidations = require('../../services/form_validations');
-const FormHandlers = require('../../services/form_handlers');
-const ImageSizePicker = require('../../services/image_size_picker');
-const Spinner = require('../spinner/Spinner.js');
+const dropzoneRef = createRef(),
+      baseStyle = {
+        alignItems: 'center',
+        borderWidth: 2,
+        borderStyle: 'dashed',
+        borderColor: 'gray',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        position: 'relative',
+        width: '100%'
+      };
 
 class GetImages extends React.Component {
   constructor(props) {
@@ -129,7 +141,6 @@ class GetImages extends React.Component {
   }
 
   render() {
-    let dropzoneRef;
     return(
       <div className="row m-0 justify-content-center">
         <div className="col-sm-6">
@@ -190,19 +201,21 @@ class GetImages extends React.Component {
               <div className="row">
                 <div className="col mb-4">
                   <Dropzone
-                    ref={(node) => {dropzoneRef = node}}
-                    name="images"
-                    accept="image/*"
-                    className="dropzone-styles"
-                    disableClick={true}
-                    onDrop={e => this.onDrop(e)}>
-                      {this.state.fileProcessing ?
-                        <Spinner
-                          radius="20"
-                          lineWidth="8"
-                          color="white">
-                        </Spinner>
-                      : null}
+                  ref={dropzoneRef}
+                  onDrop={acceptedFiles => this.onDrop(acceptedFiles)}>
+                  {({ getRootProps, getInputProps }) => (
+                    <div {...getRootProps({
+                        accept: 'image/*',
+                        onClick: e => { e.preventDefault(); e.stopPropagation(); },
+                        onKeyDown: e => {
+                          if (e.keyCode === 32 || e.keyCode === 13) {
+                            e.stopPropagation();
+                          }
+                        },
+                        style: baseStyle
+                      })
+                    }>
+                      <input {...getInputProps()} />
                       <button
                         id="close-dropzone"
                         type="button"
@@ -213,12 +226,15 @@ class GetImages extends React.Component {
                       <h5>Drag image(s) here.</h5>
                       <p>or</p>
                       <button
+                        id="open-dropzone-select"
                         type="button"
                         className="btn btn-secondary"
-                        onClick={() => {dropzoneRef.open()}} >
+                        onClick={ dropzoneRef.current ? dropzoneRef.current.open : null } >
                           Select Image(s)
                       </button>
-                  </Dropzone>
+                    </div>
+                  )}
+                </Dropzone>
                 </div>
               </div> :
             null}
@@ -279,4 +295,4 @@ class GetImages extends React.Component {
   }
 };
 
-module.exports = withRouter(GetImages);
+export default withRouter(GetImages);

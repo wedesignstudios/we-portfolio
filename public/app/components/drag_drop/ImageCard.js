@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ItemTypes } from './ItemTypes';
 import { DragSource, DropTarget } from 'react-dnd';
-
-const ImageSizePicker = require('../../services/image_size_picker');
-const _flow = require('lodash/flow');
+import ImageSizePicker from '../../services/image_size_picker';
+import flow from 'lodash/flow';
 
 const cardSource = {
   beginDrag(props) {
@@ -69,4 +68,7 @@ class ImageCard extends Component {
   }
 }
 
-module.exports = _flow([DropTarget(ItemTypes.CARD, cardTarget, collectTarget), DragSource(ItemTypes.CARD, cardSource, collectSource)])(ImageCard);
+export default flow(
+  DropTarget(ItemTypes.CARD, cardTarget, collectTarget),
+  DragSource(ItemTypes.CARD, cardSource, collectSource)
+)(ImageCard)

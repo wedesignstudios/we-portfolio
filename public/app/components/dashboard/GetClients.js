@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
-
-const FormValidations = require('../../services/form_validations');
+import FormValidations from '../../services/form_validations';
 
 class GetClients extends Component {
   constructor(props) {
@@ -97,4 +96,4 @@ class GetClients extends Component {
   }
 }
 
-module.exports = GetClients;
+export default GetClients;

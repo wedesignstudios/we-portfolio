@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import Scroll from 'react-scroll';
 import {Helmet} from 'react-helmet';
 import { NavLink } from 'react-router-dom';
+import ImageSizePicker from '../../services/image_size_picker';
 
 const scroll = Scroll.animateScroll;
-const ImageSizePicker = require('../../services/image_size_picker');
 
 class About extends Component {
   constructor() {
@@ -179,7 +179,7 @@ class About extends Component {
                   <h5 className="muli-bold m-0 letter-spacing-point05-rem">LEMMY</h5>
                   <hr className="hr-point7rem mb-4" />
                   <p>Office manager, sleep expert and Shih Tzu mix.</p>
-                  <p>Lemmy started at WE Design Studios in 2017 as the office manager and resident sleep expert. While he claims to be from San Marcos, TX, his background is a mystery and he has remained tight lipped about his past.</p> 
+                  <p>Lemmy started at WE Design Studios in 2017 as the office manager and resident sleep expert. While he claims to be from San Marcos, TX, his background is a mystery and he has remained tight lipped about his past.</p>
                   <p>He loves Greek yogurt, throws a mean side-eye, is extremely enthusiastic (just ask him for a high five - you’ll see) and has a dramatic sigh louder than your teenage daughter. His favorite activities include wrestling, listening to Mot&ouml;rhead, sleeping, cruising in the car and meeting new people. Bork!</p>
                   <p>Follow Lemmy on <a href="https://www.instagram.com/lilbudlemmy/" target="_blank">Instagram</a>:<br />
                     <span className="muli-bold">@lilbudlemmy</span>
@@ -286,4 +286,4 @@ class About extends Component {
   }
 }
 
-module.exports = About;
+export default About;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-const FormHandlers = require('../../services/form_handlers');
+import FormHandlers from '../../services/form_handlers';
 
 class UserCheckboxes extends React.Component {
   constructor() {
@@ -54,4 +53,4 @@ class UserCheckboxes extends React.Component {
   }
 }
 
-module.exports = UserCheckboxes;
+export default UserCheckboxes;

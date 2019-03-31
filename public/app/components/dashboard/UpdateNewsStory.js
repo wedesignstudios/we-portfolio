@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-const FormNewsStory = require('./FormNewsStory');
+import FormNewsStory from './FormNewsStory';
 
 class UpdateNewsStory extends Component {
   render() {
@@ -13,4 +12,4 @@ class UpdateNewsStory extends Component {
   }
 }
 
-module.exports = UpdateNewsStory;
+export default UpdateNewsStory;

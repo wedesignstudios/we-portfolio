@@ -42,4 +42,4 @@ class DashboardHome extends Component {
   }
 }
 
-module.exports = DashboardHome;
+export default DashboardHome;

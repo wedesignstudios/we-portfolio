@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
 
 class Index extends Component {
   constructor() {
@@ -65,4 +64,4 @@ class Index extends Component {
   }
 }
 
-module.exports = Index;
+export default Index;

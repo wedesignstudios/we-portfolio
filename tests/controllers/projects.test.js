@@ -36,6 +36,7 @@ const config = require('../../knexfile'),
       };
 
 beforeAll(async () => {
+  await knex('project_images_sort_orders').insert({ project_id: 1, images_order: [1] });
   return knex('project_feature_images').insert({ project_id: 1, image_id: 1, created_at: new Date, updated_at: new Date });
 })
 

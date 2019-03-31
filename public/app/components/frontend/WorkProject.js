@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 import Scroll from 'react-scroll';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
+import ImageSizePicker from '../../services/image_size_picker';
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
 
 const scroll = Scroll.animateScroll;
-const _groupBy = require('lodash/groupBy');
-const _map = require('lodash/map');
-const ImageSizePicker = require('../../services/image_size_picker');
 
 class WorkProject extends Component {
   constructor() {
@@ -32,9 +32,9 @@ class WorkProject extends Component {
   componentWillUpdate(nextProps, nextState) {
     if(this.state !== nextState) {
       let { projectData } = nextState;
-      let groupedImages = _groupBy(projectData.images, 'id');
+      let groupedImages = groupBy(projectData.images, 'id');
       let imagesOrder = projectData.project_images_sort_order.images_order;
-      let orderedImages = _map(imagesOrder, function(i) {
+      let orderedImages = map(imagesOrder, function(i) {
           return groupedImages[i].shift();
         });
 
@@ -167,4 +167,4 @@ class WorkProject extends Component {
   };
 }
 
-module.exports = WorkProject;
+export default WorkProject;

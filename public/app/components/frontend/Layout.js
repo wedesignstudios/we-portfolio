@@ -9,20 +9,19 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-
-const NavAdmin = require('./NavAdmin');
-const NavBar = require('./NavBar');
-const PreFooter = require('./PreFooter');
-const Footer = require('./Footer');
-const Index = require('./Index');
-const About = require('./About');
-const Press = require('./Press');
-const PressStory = require('./PressStory');
-const Work = require('./Work');
-const WorkProject = require('./WorkProject');
-const Contact = require('./Contact');
-const Post = require('./Post');
-const NotFound = require('../dashboard/NotFound');
+import NavAdmin from './NavAdmin';
+import NavBar from './NavBar';
+import PreFooter from './PreFooter';
+import Footer from './Footer';
+import Index from './Index';
+import About from './About';
+import Press from './Press';
+import PressStory from './PressStory';
+import Work from './Work';
+import WorkProject from './WorkProject';
+import Contact from './Contact';
+import Post from './Post';
+import NotFound from '../dashboard/NotFound';
 
 class Layout extends Component {
   constructor() {
@@ -91,4 +90,4 @@ class Layout extends Component {
   }
 }
 
-module.exports = Layout;
+export default Layout;

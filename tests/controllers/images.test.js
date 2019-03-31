@@ -25,10 +25,11 @@ const config = require('../../knexfile'),
       };
 
 beforeAll(async () => {
+  await knex('project_feature_images').insert({ project_id: 1, image_id: 1 });
   return knex('images').where({ id: 1 }).update({ project_id: 1, news_story_id: 1 });
 })
 
-testGET.httpGETRelated('images', relatedModels);
+testGET.httpGET('images');
 testGET.httpGETByIdRelated('images', 1, relatedModels);
 testPOST.httpPOSTImg('images', imgPath);
 testPUT.httpPUT('images', 1, putData);

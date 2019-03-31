@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
-
-const ImageSizePicker = require('../../services/image_size_picker');
+import ImageSizePicker from '../../services/image_size_picker';
 
 class GetFeatureImageProjects extends Component {
   constructor() {
     super();
-    
+
     this.state = {
       image_data: [],
       image_id: null
@@ -26,20 +25,20 @@ class GetFeatureImageProjects extends Component {
       });
     })
     .catch(err => {
-      console.error(err);      
+      console.error(err);
     });
   }
 
   setImageId(imageData) {
     if(this.props.projectId) {
-      let image = imageData.filter(img => {                  
-        return img.feature_image_project.project_id == this.props.projectId;    
+      let image = imageData.filter(img => {
+        return img.feature_image_project.project_id == this.props.projectId;
       });
-      
+
       if(image.length > 0) {
         this.setState({
           image_id: image[0].id
-        });        
+        });
       }
     }
   }
@@ -76,7 +75,7 @@ class GetFeatureImageProjects extends Component {
     }
   }
 
-  render() {    
+  render() {
     return(
       <div>
         <div id="get-feature-image-project">
@@ -84,8 +83,8 @@ class GetFeatureImageProjects extends Component {
                 {this.state.image_data.map(image => {
                   let isSVG = /(.svg)$/g.test(image.orig_name);
                   let imgSizes = ImageSizePicker.imgSize(image.orig_name);
-                  return <img 
-                            key={image.id}                    
+                  return <img
+                            key={image.id}
                             id={image.id}
                             className={this.state.image_id == image.id ? 'selected' : ''}
                             src={!isSVG ? imgSizes.w300 : image.url}
@@ -101,4 +100,4 @@ class GetFeatureImageProjects extends Component {
   }
 }
 
-module.exports = GetFeatureImageProjects;
+export default GetFeatureImageProjects;

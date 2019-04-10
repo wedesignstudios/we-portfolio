@@ -72,7 +72,7 @@ class Work extends Component {
                               className="card-img-top img-fluid rounded-0 p-2"
                               src={featureImgSizes.w300}
                               srcSet={`${featureImgSizes.w800} 800w, ${featureImgSizes.w600} 600w, ${featureImgSizes.w450} 450w, ${featureImgSizes.w300} 300w`}
-                              sizes="(min-width: 320px) 132px, 100vw"
+                              sizes="100vw"
                               width="300"
                               title={featureImage.title}
                               alt={featureImage.alt} />

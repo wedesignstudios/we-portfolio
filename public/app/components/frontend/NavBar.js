@@ -42,6 +42,12 @@ class NavBar extends Component {
       <div id="navbar-main" className={"row justify-content-center m-0 " + (location !== '/' ? 'nav-bg-white' : '')}>
         <div className="col-xl-9 col-lg-12 p-0">
           <nav className={"navbar navbar-expand-sm " + (navOpen ? 'nav-opened ' : '') + (location !== '/' ? 'navbar-black' : '') }>
+            <a className="navbar-brand" href="/">
+              {navOpen || location === '/' ?
+                <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg" alt="WE eye logo" /> :
+                <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg" alt="WE eye logo" />
+              }
+            </a>
             <button
               className="navbar-toggler navbar-toggler-right collapsed"
               type="button"
@@ -55,12 +61,6 @@ class NavBar extends Component {
                   <span className="icon-bar"></span>
                   <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="/">
-              {navOpen || location === '/' ?
-                <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg" alt="WE eye logo" /> :
-                <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg" alt="WE eye logo" />
-              }
-            </a>
 
             <div id="navbar-nav" className="collapse navbar-collapse">
               <ul className="navbar-nav nav-justified align-items-center justify-content-center" onClick={(e) => { this.navOpened(e); this.closeNav(e) }}>

@@ -305,38 +305,36 @@ button:hover {
         width: 0; }
       #navbar-main .navbar ul li a:hover::after {
         width: 100%; }
-  #navbar-main .navbar .navbar-toggler {
-    padding: 0.75rem 0.75rem 0.155rem; }
-    #navbar-main .navbar .navbar-toggler .icon-bar {
-      position: relative;
-      top: 0;
-      display: block;
-      width: 24px;
-      height: 3px;
-      background: #FFFFFF;
-      margin-bottom: 4px;
-      transition: 300ms ease-in-out; }
-    #navbar-main .navbar .navbar-toggler .icon-bar:last-child {
-      -webkit-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-      -o-transform: rotate(-45deg);
-      transform: rotate(-45deg);
-      top: -7px; }
-    #navbar-main .navbar .navbar-toggler .icon-bar:nth-child(1) {
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      -o-transform: rotate(45deg);
-      transform: rotate(45deg);
-      top: 7px; }
-    #navbar-main .navbar .navbar-toggler .icon-bar:nth-child(2) {
-      opacity: 0; }
-    #navbar-main .navbar .navbar-toggler.collapsed .icon-bar {
-      -webkit-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-      top: 0;
-      opacity: 1; }
+  #navbar-main .navbar .navbar-toggler .icon-bar {
+    position: relative;
+    top: 0;
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: #FFFFFF;
+    margin-bottom: 4px;
+    transition: 300ms ease-in-out; }
+  #navbar-main .navbar .navbar-toggler .icon-bar:last-child {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: -7px; }
+  #navbar-main .navbar .navbar-toggler .icon-bar:nth-child(1) {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 7px; }
+  #navbar-main .navbar .navbar-toggler .icon-bar:nth-child(2) {
+    opacity: 0; }
+  #navbar-main .navbar .navbar-toggler.collapsed .icon-bar {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    top: 0;
+    opacity: 1; }
   #navbar-main .navbar.navbar-black a {
     color: #000000; }
   #navbar-main .navbar.navbar-black .navbar-toggler .icon-bar {

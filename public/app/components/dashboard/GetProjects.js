@@ -75,54 +75,55 @@ class GetProjects extends Component {
               </div> :
             null}
 
-            <div className="row">
-              {this.state.projectsData.map(project => {
-                let projectDate = new Date(project.date);
-                let coverImage = project.feature_image.image;
-                let visibleBtnIconClass = classNames(
-                  'fas',
-                  {'fa-eye': project.visible == true},
-                  {'fa-eye-slash text-danger': project.visible == false || project.visible == null}
-                );
+            <div className="row justify-content-center">
+              <div className="card-columns">
+                {this.state.projectsData.map(project => {
+                  let projectDate = new Date(project.date);
+                  let coverImage = project.feature_image.image;
+                  let visibleBtnIconClass = classNames(
+                    'fas',
+                    {'fa-eye': project.visible == true},
+                    {'fa-eye-slash text-danger': project.visible == false || project.visible == null}
+                  );
 
-                return (
-                  <div className="col-sm-2 mb-4" key={project.id}>
-                    <div className="card line-height-1-25-rem">
-                      <Link to={`${this.props.match.url}/${project.id}/update`} className="text-muted">
-                        {project.images.length > 0 ?
-                          <div>
-                            {coverImage ?
-                              <img
-                                className="card-img-top img-fluid"
-                                src={ImageSizePicker.imgSize(coverImage.orig_name).thumb300}
-                                alt={coverImage.alt} /> :
-                              <img
-                                className="card-img-top img-fluid"
-                                src={ImageSizePicker.imgSize(project.images[0].orig_name).thumb300}
-                                alt={project.images[0].alt} />
-                            }
-                          </div> :
-                          null}
-                          <div className="card-block p-3">
-                            <p className="card-title mb-2">
-                                {project.name}
+                  return (
+                    <div key={project.id}>
+                      <div className="card line-height-1-25-rem">
+                        <Link to={`${this.props.match.url}/${project.id}/update`} className="text-muted">
+                          {project.images.length > 0 ?
+                            <div>
+                              {coverImage ?
+                                <img
+                                  className="card-img-top img-fluid"
+                                  src={ImageSizePicker.imgSize(coverImage.orig_name).thumb300}
+                                  alt={coverImage.alt} /> :
+                                <img
+                                  className="card-img-top img-fluid"
+                                  src={ImageSizePicker.imgSize(project.images[0].orig_name).thumb300}
+                                  alt={project.images[0].alt} />
+                              }
+                            </div> :
+                            null}
+                            <div className="card-block p-3">
+                              <p className="card-title mb-2">
+                                  {project.name}
+                              </p>
+                              <p className="mb-0"><i className={visibleBtnIconClass} aria-hidden="true"></i></p>
+                            </div>
+                          <div className="card-footer text-muted px-3 py-1">
+                            <p className="card-text mb-0">
+                              <small className="text-muted">
+                                {DateFormatter.monthYear(projectDate)}
+                              </small>
                             </p>
-                            <p className="mb-0"><i className={visibleBtnIconClass} aria-hidden="true"></i></p>
                           </div>
-                        <div className="card-footer text-muted px-3 py-1">
-                          <p className="card-text mb-0">
-                            <small className="text-muted">
-                              {DateFormatter.monthYear(projectDate)}
-                            </small>
-                          </p>
-                        </div>
-                      </Link>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 )}
-              )}
+              </div>
             </div>
-
           </div>
         </div>
       </div>

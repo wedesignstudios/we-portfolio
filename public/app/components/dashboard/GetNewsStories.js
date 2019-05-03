@@ -74,39 +74,41 @@ class GetNewsStories extends Component {
             </div> :
           null}
 
-          <div className="row">
-            {this.state.newsStoriesData.map(story => {
-              let storyDate = new Date(story.date);
-              let imgSize = ImageSizePicker.imgSize(story.image.orig_name);
-              return (
-                <div className="col-sm-2 mb-4" key={story.id}>
-                  <div className="card line-height-1-25-rem">
-                    <Link to={`${this.props.match.url}/${story.id}/update`}>
-                      <img
-                        className="card-img-top img-fluid"
-                        src={imgSize.thumb300}
-                        alt={story.image.alt}
-                        width="300"
-                        onError={(e) => e.target.setAttribute('src', image.url)} />
-                    </Link>
-                    <div className="card-block p-3">
-                      <p className="card-title mb-2">
-                        <Link to={`${this.props.match.url}/${story.id}/update`} className="text-muted">
-                          {story.title}
+          <div className="row justify-content-center">
+              <div className="card-columns">
+                {this.state.newsStoriesData.map(story => {
+                  let storyDate = new Date(story.date);
+                  let imgSize = ImageSizePicker.imgSize(story.image.orig_name);
+                  return (
+                    <div key={story.id}>
+                      <div className="card line-height-1-25-rem">
+                        <Link to={`${this.props.match.url}/${story.id}/update`}>
+                          <img
+                            className="card-img-top img-fluid"
+                            src={imgSize.thumb300}
+                            alt={story.image.alt}
+                            width="300"
+                            onError={(e) => e.target.setAttribute('src', image.url)} />
                         </Link>
-                      </p>
+                        <div className="card-block p-3">
+                          <p className="card-title mb-2">
+                            <Link to={`${this.props.match.url}/${story.id}/update`} className="text-muted">
+                              {story.title}
+                            </Link>
+                          </p>
+                        </div>
+                        <div className="card-footer text-muted px-3 py-1">
+                          <p className="card-text mb-0">
+                            <small className="text-muted">
+                              {DateFormatter.monthYear(storyDate)}
+                            </small>
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="card-footer text-muted px-3 py-1">
-                      <p className="card-text mb-0">
-                        <small className="text-muted">
-                          {DateFormatter.monthYear(storyDate)}
-                        </small>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            )}
+                  )}
+                )}
+            </div>
           </div>
         </div>
         </div>

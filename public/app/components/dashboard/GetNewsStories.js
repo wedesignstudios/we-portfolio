@@ -61,7 +61,7 @@ class GetNewsStories extends Component {
 
         <div className="container-fluid">
           <div className="row">
-            <h2 className="font-weight-bold">All News Stories</h2>
+            <h2 className="font-weight-bold m-0">All News Stories</h2>
             <Link to={`${this.props.match.url}/create`} className="btn btn-primary ml-auto">Add News Story</Link>
           </div>
           <div className="row">

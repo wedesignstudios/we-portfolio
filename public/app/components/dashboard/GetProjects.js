@@ -62,7 +62,7 @@ class GetProjects extends Component {
 
           <div className="container-fluid">
             <div className="row">
-              <h2 className="font-weight-bold">All Projects</h2>
+              <h2 className="font-weight-bold m-0">All Projects</h2>
               <Link to={`${this.props.match.url}/create`} className="btn btn-primary ml-auto">Add New Project</Link>
             </div>
             <div className="row">

@@ -174,7 +174,7 @@ class FormNewsStory extends React.Component {
 
           <div className="container-fluid">
             <div className="row">
-              <h2 className="font-weight-bold">
+              <h2 className="font-weight-bold m-0">
                 {this.props.sendRequestType === 'POST' ?
                   'Create A News Story' :
                   `Update: ${this.state.initialTitle}`}

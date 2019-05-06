@@ -503,6 +503,7 @@ form .Select-control {
 
 form .checkboxes-container,
 form .images-select-container {
+  height: unset;
   max-height: 21.4rem;
   overflow: scroll; }
   form .checkboxes-container img,
@@ -515,6 +516,9 @@ form .images-select-container {
 
 form textarea.form-control {
   min-height: 10rem; }
+
+form .form-group label {
+  word-wrap: break-word; }
 
 #create-project .form-control,
 #create-news-story .form-control,
@@ -582,6 +586,7 @@ form textarea.form-control {
   margin-bottom: 2rem; }
 
 .react-datepicker__input-container .form-control {
+  margin: 0;
   width: 100%; }
 
 .react-datepicker-popper {

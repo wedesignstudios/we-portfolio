@@ -46,11 +46,11 @@ class GetCollaborators extends Component {
   render() {
     return(
       <div className="row m-0 justify-content-center">
-        <div className="col-sm-6">
+        <div className="col-sm-9">
 
           <div className="container-fluid">
             <div className="row">
-              <h2 className="font-weight-bold">All Collaborators</h2>
+              <h2 className="font-weight-bold m-0">All Collaborators</h2>
               <Link to={`${this.props.match.url}/create`} className="btn btn-primary ml-auto">Add New Collaborator</Link>
             </div>
             <div className="row">
@@ -66,7 +66,7 @@ class GetCollaborators extends Component {
             <div className="row">
               {this.state.collaboratorsData.map(collaborator => {
                 return(
-                  <div className="col-sm-2 mb-4" key={collaborator.id}>
+                  <div className="col-sm-3 mb-4" key={collaborator.id}>
                     <div className="card line-height-1-25-rem">
                       <div className="card-block p-3">
                         <p className="card-title mb-2">

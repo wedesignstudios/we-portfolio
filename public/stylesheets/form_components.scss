@@ -3,8 +3,8 @@
 form {
 
   .Select-control {
-    border-color: none;  
-    border: 1px solid rgba(0,0,0,0.15);  
+    border-color: none;
+    border: 1px solid rgba(0,0,0,0.15);
     padding: 0.05rem 0.75rem;
 
     .Select-input {
@@ -12,8 +12,9 @@ form {
     }
   }
 
-  .checkboxes-container, 
+  .checkboxes-container,
   .images-select-container {
+    height: unset;
     max-height: 21.4rem;
     overflow: scroll;
 
@@ -21,7 +22,7 @@ form {
       margin: 0.5rem;
       border: 5px solid transparent;
     }
-    
+
     img.selected {
       border-color: orange;
     }
@@ -32,6 +33,10 @@ form {
     &.form-control {
       min-height: 10rem;
     }
+  }
+
+  .form-group label {
+    word-wrap: break-word;
   }
 }
 
@@ -54,4 +59,4 @@ form {
     border-right: 1px solid rgba(0,0,0,0.15);
     border-radius: 0 0.25rem 0.25rem 0;
   }
-} 
+}

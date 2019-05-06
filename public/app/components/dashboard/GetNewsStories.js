@@ -57,7 +57,7 @@ class GetNewsStories extends Component {
   render() {
     return(
       <div className="row justify-content-center">
-        <div className="col-sm-6">
+        <div className="col-sm-9">
 
         <div className="container-fluid">
           <div className="row">

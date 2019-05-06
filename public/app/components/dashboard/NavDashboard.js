@@ -7,7 +7,7 @@ class NavDashboard extends Component {
   render() {
     return(
       <nav id="nav-dashboard" className="navbar navbar-expand-md navbar-dark bg-dark row justify-content-center mx-0 mb-3">
-        <div className="col-6">
+        <div className="col-9 p-0">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item"><Link className="nav-link" to={`${this.props.match.url}`}>Home</Link></li>
             <li className="nav-item"><Link className="nav-link" to={`${this.props.match.url}/projects`}>Projects</Link></li>

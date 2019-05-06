@@ -298,8 +298,7 @@ class FormProject extends React.Component {
   render() {
     const { image_sort_order, visible } = this.state;
     const wordCounterClass = classNames(
-      'input-group-addon',
-      'input-group-addon',
+      'input-group-text',
       'background-white',
       'word-counter',
       {'text-danger': this.state.name.length >= 25}
@@ -319,11 +318,11 @@ class FormProject extends React.Component {
     );
     return (
       <div className="row m-0 justify-content-center">
-        <div className="col-sm-6">
+        <div className="col-sm-9">
 
           <div className="container-fluid">
             <div className="row">
-              <h2 className="font-weight-bold">
+              <h2 className="font-weight-bold m-0">
                 {this.props.sendRequestType === 'POST' ?
                   'Add A New Project' :
                   `Update: ${this.state.initialName}`}
@@ -410,11 +409,13 @@ class FormProject extends React.Component {
                         onChange={(e) => FormHandlers.handleOnChange(e, this)}
                         onFocus={(e) => FormHandlers.preventSpaceKey(e)}
                         onBlur={(e) => {FormValidations.checkField(e, this);}} />
-                      <span className={wordCounterClass}>{this.state.name.length}/30</span>
-                      {this.state.name ?
-                        <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
-                        <span className="input-group-addon text-danger background-white border-0">Required</span>
-                      }
+                      <div className="input-group-append">
+                        <span className={wordCounterClass}>{this.state.name.length}/30</span>
+                        {this.state.name ?
+                          <span className="input-group-text text-success background-white border-0 ml-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
+                          <span className="input-group-text text-danger background-white border-0 ml-0">Required</span>
+                        }
+                      </div>
                   </div>
                 </div>
               </div>
@@ -437,10 +438,12 @@ class FormProject extends React.Component {
                       onFocus={(e) => FormHandlers.preventAllButShiftAndTab(e)}
                       onBlur={(e) => FormValidations.checkField(e, this)}
                     />
-                    {this.state.date ?
-                      <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
-                      <span className="input-group-addon text-danger background-white border-0">Required</span>
-                    }
+                    <div className="input-group-append">
+                      {this.state.date ?
+                        <span className="input-group-text text-success background-white border-0 ml-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
+                        <span className="input-group-text text-danger background-white border-0 ml-0">Required</span>
+                      }
+                    </div>
                   </div>
                 </div>
               </div>
@@ -457,10 +460,12 @@ class FormProject extends React.Component {
                         onChange={(e) => FormHandlers.handleOnChange(e, this)}
                         onFocus={(e) => FormHandlers.preventSpaceKey(e)}
                         onBlur={(e) => FormValidations.checkField(e, this)} />
-                    {this.state.description ?
-                      <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
-                      <span className="input-group-addon text-danger background-white border-0">Required</span>
-                    }
+                    <div className="input-group-append">
+                      {this.state.description ?
+                        <span className="input-group-text text-success background-white border-0 ml-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
+                        <span className="input-group-text text-danger background-white border-0 ml-0">Required</span>
+                      }
+                    </div>
                   </div>
                 </div>
               </div>

@@ -48,10 +48,12 @@ class NewsCategoriesCheckboxes extends React.Component {
                 </div>)
               }
             </div>
-            {preSelected.length > 0 ?
-              <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
-              <span className="input-group-addon text-danger background-white border-0">Required</span>
-            }
+            <div className="input-group-append">
+              {preSelected.length > 0 ?
+                <span className="input-group-text text-success background-white border-0 ml-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
+                <span className="input-group-text text-danger background-white border-0 ml-0">Required</span>
+              }
+            </div>
           </div>
         </div>
       </div>

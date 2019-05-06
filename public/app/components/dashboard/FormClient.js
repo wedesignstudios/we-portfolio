@@ -121,7 +121,7 @@ class FormClient extends React.Component {
   render() {
     return (
       <div className="row m-0 justify-content-center">
-        <div className="col-sm-6">
+        <div className="col-sm-9">
 
           <div className="container-fluid">
             <div className="row">
@@ -184,10 +184,12 @@ class FormClient extends React.Component {
                           value={this.state.name}
                           onChange={(e) => FormHandlers.handleOnChange(e, this)}
                           onBlur={(e) => {FormValidations.checkField(e, this);}} />
-                        {this.state.name ?
-                          <span className="input-group-addon text-success background-white border-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
-                          <span className="input-group-addon text-danger background-white border-0">Required</span>
-                        }
+                        <div className="input-group-append">
+                          {this.state.name ?
+                            <span className="input-group-text text-success background-white border-0 ml-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
+                            <span className="input-group-text text-danger background-white border-0 ml-0">Required</span>
+                          }
+                        </div>
                     </div>
                   </div>
               </div>

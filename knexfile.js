@@ -3,6 +3,8 @@ module.exports = {
   test: {
     client: 'pg',
     connection: {
+      host: process.env.DATABASE_HOST, // Host is docker-compose service name
+      user: process.env.DATABASE_USER,
       database: 'we_portfolio_test'
     },
     pool: {
@@ -20,6 +22,8 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
+      host: process.env.DATABASE_HOST, // Host is docker-compose service name
+      user: process.env.DATABASE_USER,
       database: 'we_portfolio',
     },
     pool: {

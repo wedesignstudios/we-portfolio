@@ -50,7 +50,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 if(ENV !== 'test') {
-  let redisClient = redis.createClient(process.env.REDIS_URL);
+  let redisClient = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
   // redis
   redisClient.on('connect', function() {
     console.log('Redis connected');
@@ -61,7 +61,10 @@ if(ENV !== 'test') {
 
   // sessions
   app.use(session({
-    store: new redisStore({client: redisClient, host: process.env.REDIS_URL}),
+    store: new redisStore({
+      client: redisClient,
+      host: process.env.REDIS_HOST
+    }),
     secret: process.env.REDIS_PW,
     resave: false,
     saveUninitialized: false

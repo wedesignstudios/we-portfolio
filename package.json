@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Portfolio app to showcase design and development projects.",
   "engines": {
-    "node": "9.8.0"
+    "node": "^10.15.1"
   },
   "main": "index.js",
   "scripts": {
@@ -88,6 +88,7 @@
     "css-loader": "^2.1.1",
     "jest": "^24.7.1",
     "mini-css-extract-plugin": "^0.6.0",
+    "nodemon": "^1.19.0",
     "style-loader": "^0.23.1",
     "supertest": "^4.0.2",
     "webpack": "^4.30.0",

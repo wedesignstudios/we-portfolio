@@ -10,6 +10,15 @@
     "AWS_SECRET_ACCESS_KEY": {
       "required": true
     },
+    "AWS_S3_REGION": {
+      "required": true
+    },
+    "DATABASE_HOST": {
+      "required": true
+    },
+    "DATABASE_USER": {
+      "required": true
+    },
     "FACEBOOK_APP_ID": {
       "required": true
     },
@@ -22,13 +31,16 @@
     "GOOGLE_CLIENT_SECRET": {
       "required": true
     },
+    "REDIS_HOST": {
+      "required": true
+    },
+    "REDIS_PORT": {
+      "required": true
+    },
     "REDIS_PW": {
       "required": true
     },
     "REDIS_URL": {
-      "required": true
-    },
-    "region": {
       "required": true
     },
     "SESSION_SECRET": {
@@ -48,5 +60,6 @@
     {
       "url": "heroku/nodejs"
     }
-  ]
+  ],
+  "stack": "container"
 }

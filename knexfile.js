@@ -8,7 +8,7 @@ module.exports = {
       database: 'we_portfolio_test'
     },
     pool: {
-      min:2,
+      min: 2,
       max: 10
     },
     migrations: {

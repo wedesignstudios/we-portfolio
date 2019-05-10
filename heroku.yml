@@ -7,3 +7,5 @@ setup:
 build:
   docker:
     web: Dockerfile
+run:
+  web: webpack --config webpack.prod.js && npm start

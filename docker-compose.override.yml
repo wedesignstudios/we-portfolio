@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+
+  node:
+    build:
+      args:
+        - NODE_ENV=development
+    # you can use legacy debug config or new inspect
+    # NOTE: if nodemon isn't restarting on changes, you might be on Windows
+    # which has trouble seeing file changes, so add -L to use legacy polling
+    # https://github.com/remy/nodemon#application-isnt-restarting
+    # command: ../node_modules/.bin/nodemon --debug=0.0.0.0:5858
+    # command: ../node_modules/.bin/nodemon --inspect=0.0.0.0:9229 ./bin/www
+    command: npm run start:dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+
+  db:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      start_period: 10s
+      timeout: 4s
+      retries: 3

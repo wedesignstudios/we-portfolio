@@ -7,5 +7,3 @@ setup:
 build:
   docker:
     web: Dockerfile
-run:
-  web: npm install webpack webpack-cli webpack-dev-middleware -g && npm start

@@ -17,7 +17,7 @@
   "jest": {
     "globalSetup": "./tests/config/globalSetup.js"
   },
-  "heroku-run-build-script": true,
+  "heroku-run-build-script": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wedesignstudios/we-portfolio.git"

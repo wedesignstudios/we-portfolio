@@ -15,8 +15,8 @@ const path = require('path');
 
 // AWS config
 AWS.config.update({
-  region: process.env.region,
-  subregion: process.env.region
+  region: process.env.AWS_S3_REGION,
+  subregion: process.env.AWS_S3_REGION
 });
 
 const s3 = new AWS.S3({signatureVersion: 'v4'});

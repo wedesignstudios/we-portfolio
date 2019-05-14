@@ -50,8 +50,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 if(ENV !== 'test') {
-  let redisClient = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
   // redis
+  let redisClient;
+
+  if(ENV === 'development') {
+    redisClient = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
+  } else {
+    redisClient = redis.createClient(process.env.REDIS_URL);
+  }
   redisClient.on('connect', function() {
     console.log('Redis connected');
   });

@@ -4,7 +4,6 @@
 #press {
   .card {
     &::before {
-      background-color: rgba(0,0,0,0.0);
       content: '';
       height: 100%;
       position: absolute;
@@ -17,7 +16,6 @@
 
     @media (hover) {
       &:hover::before {
-        background-color: rgba(0,0,0,0.05);
         content: '';
         height: 100%;
         position: absolute;
@@ -160,15 +158,15 @@
   #cta-contact {
     .h1-jumbo {
       font-size: 5rem;
-    }    
-  }  
+    }
+  }
 }
 
 @media screen and (max-width: 575px) {
   #cta-contact {
     .h1-jumbo {
       font-size: 3rem;
-    }    
+    }
   }
 
   #contact-email-addresses {

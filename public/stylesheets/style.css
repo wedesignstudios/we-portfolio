@@ -630,7 +630,6 @@ form .form-group label {
 
 #work .card::before,
 #press .card::before {
-  background-color: rgba(0, 0, 0, 0);
   content: '';
   height: 100%;
   position: absolute;
@@ -643,7 +642,6 @@ form .form-group label {
 @media (hover) {
   #work .card:hover::before,
   #press .card:hover::before {
-    background-color: rgba(0, 0, 0, 0.05);
     content: '';
     height: 100%;
     position: absolute;

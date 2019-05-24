@@ -1,10 +1,13 @@
 // Navbar component styles
 #nav-container {
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1000;
+
+  &.nav-homepage {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+  }
 }
 
 #navbar-main {
@@ -22,6 +25,10 @@
       letter-spacing: 0.08rem;
       text-transform: uppercase;
 
+      &.nav-font-size {
+        font-size: 1rem;
+      }
+
       &#nav-we-eye-logo {
          a:hover,
          a::after {
@@ -30,7 +37,11 @@
       }
 
       &#nav-we-eye-logo img {
-        width: 6.75rem;
+        width: 3.75rem;
+
+        &.nav-logo-home-page {
+          width: 6.75rem;
+        }
       }
 
       a {

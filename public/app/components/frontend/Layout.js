@@ -54,8 +54,10 @@ class Layout extends Component {
     let location = this.props.location.pathname,
         navContainerClass = classNames({
           'col-12': true,
+          'px-0': true,
+          'px-sm-3': true,
           'nav-homepage': this.state.navLocation === '/'
-        })
+        });
     return (
       <Router>
         <div className="row m-0 height-100">
@@ -63,6 +65,7 @@ class Layout extends Component {
           <div className="row mx-0">
             <div id="nav-container" className={navContainerClass}>
               {this.props.auth ? <NavAdmin navReady={this.navReady} /> : null}
+
               <NavBar navReady={this.navReady} navNotReady={this.navNotReady} navLocation={this.navLocation} />
             </div>
             {this.state.navBarReady ?

@@ -90,8 +90,8 @@ class NavBar extends Component {
           <nav className={navClass}>
             <a className="navbar-brand" href="/">
               {navOpen || location === '/' ?
-                <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg" alt="WE eye logo" /> :
-                <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg" alt="WE eye logo" />
+                <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-white.svg" alt="WE eye logo" onLoad={(e) => this.props.navReady('navBar')} /> :
+                <img src="https://we-portfolio.s3.amazonaws.com/we-eye-logo-black.svg" alt="WE eye logo" onLoad={(e) => this.props.navReady('navBar')} />
               }
             </a>
             <button

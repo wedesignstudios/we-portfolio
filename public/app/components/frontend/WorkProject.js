@@ -65,11 +65,11 @@ class WorkProject extends Component {
   }
 
   render() {
-    let { projectData } = this.state;
-    let { margin } = this.props;
-    let projectDate = new Date(projectData.date);
-    let featureImgSizes;
-    let featureImage;
+    let { projectData } = this.state,
+        projectDate = new Date(projectData.date),
+        featureImgSizes,
+        featureImage;
+
     if(projectData.feature_image !== undefined) {
       featureImage = projectData.feature_image.image;
       featureImgSizes = ImageSizePicker.imgSize(projectData.feature_image.image.orig_name);
@@ -78,7 +78,7 @@ class WorkProject extends Component {
     if(projectData.length < 1) return null;
 
     return(
-      <div id="work-project" className="row mx-0" style={{marginTop: margin}}>
+      <div id="work-project" className="row mx-0">
         <div
           id="project-feature-image"
           className="col-12 p-0 d-flex align-items-center feature-image">

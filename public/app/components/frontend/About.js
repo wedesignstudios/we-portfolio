@@ -36,25 +36,25 @@ class About extends Component {
   }
 
   render() {
-    let { margin } = this.props;
-    let { windowWidth } = this.state;
-    let imageOrig = ImageSizePicker.imgOrig('WE_TWIRL.jpg');
-    let imageSizes = ImageSizePicker.imgSize('WE_TWIRL.jpg');
-    let lauraImageOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT.jpg');
-    let lauraImageSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT.jpg');
-    let lauraGifOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT_GIF_V3.gif');
-    let lauraGifSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT_GIF_V3.gif');
-    let davidImageOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT.jpg');
-    let davidImageSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT.jpg');
-    let davidGifOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT_GIF_V2.gif');
-    let davidGifSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT_GIF_V2.gif');
-    let lemmyImageOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT.jpg');
-    let lemmyImageSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT.jpg');
-    let lemmyGifOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT_GIF_V2.gif');
-    let lemmyGifSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT_GIF_V2.gif');
-    let video = 'https://we-portfolio.s3.amazonaws.com/WE_TWIRL.mp4';
+    let { windowWidth } = this.state,
+        imageOrig = ImageSizePicker.imgOrig('WE_TWIRL.jpg'),
+        imageSizes = ImageSizePicker.imgSize('WE_TWIRL.jpg'),
+        lauraImageOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT.jpg'),
+        lauraImageSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT.jpg'),
+        lauraGifOrig = ImageSizePicker.imgOrig('LAURA_HEADSHOT_GIF_V3.gif'),
+        lauraGifSizes = ImageSizePicker.imgSize('LAURA_HEADSHOT_GIF_V3.gif'),
+        davidImageOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT.jpg'),
+        davidImageSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT.jpg'),
+        davidGifOrig = ImageSizePicker.imgOrig('DAVID_HEADSHOT_GIF_V2.gif'),
+        davidGifSizes = ImageSizePicker.imgSize('DAVID_HEADSHOT_GIF_V2.gif'),
+        lemmyImageOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT.jpg'),
+        lemmyImageSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT.jpg'),
+        lemmyGifOrig = ImageSizePicker.imgOrig('LEMMY_HEADSHOT_GIF_V2.gif'),
+        lemmyGifSizes = ImageSizePicker.imgSize('LEMMY_HEADSHOT_GIF_V2.gif'),
+        video = 'https://we-portfolio.s3.amazonaws.com/WE_TWIRL.mp4';
+
     return (
-      <div id="about" className="row mx-0" style={{marginTop: margin}}>
+      <div id="about" className="row mx-0">
         <div
           id="about-feature-image"
           className="col-12 p-0 container image-full-width-container">

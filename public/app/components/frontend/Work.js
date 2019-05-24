@@ -45,10 +45,9 @@ class Work extends Component {
 
   render() {
     let { projectData, cardMousedOverId } = this.state;
-    let { margin } = this.props;
 
     return (
-      <div id="work" className="row justify-content-center mx-0" style={{marginTop: margin}} ref="workRef">
+      <div id="work" className="row justify-content-center mx-0" ref="workRef">
           <div className="col-sm-10">
             <div className="container-fluid">
               <div className="row justify-content-center">

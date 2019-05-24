@@ -33,15 +33,14 @@ class Contact extends Component {
   }
 
   render() {
-    let { margin } = this.props;
-    let { windowWidth, videoOrImageLoaded } = this.state;
-    let imageOrig = ImageSizePicker.imgOrig('HAND_ONLY.jpg');
-    let imageOrigMobile = ImageSizePicker.imgOrig('HAND_ONLY_MOBILE.jpg');
-    let imageSizes = ImageSizePicker.imgSize('HAND_ONLY.jpg');
-    let imageSizesMobile = ImageSizePicker.imgSize('HAND_ONLY_MOBILE.jpg');
-    let video = 'https://we-portfolio.s3.amazonaws.com/HAND_ONLY.mp4';
+    let { windowWidth, videoOrImageLoaded } = this.state,
+        imageOrig = ImageSizePicker.imgOrig('HAND_ONLY.jpg'),
+        imageOrigMobile = ImageSizePicker.imgOrig('HAND_ONLY_MOBILE.jpg'),
+        imageSizes = ImageSizePicker.imgSize('HAND_ONLY.jpg'),
+        imageSizesMobile = ImageSizePicker.imgSize('HAND_ONLY_MOBILE.jpg'),
+        video = 'https://we-portfolio.s3.amazonaws.com/HAND_ONLY.mp4';
     return (
-      <div id="contact" className="row mx-0 image-full-width" style={{marginTop: margin}}>
+      <div id="contact" className="row mx-0 image-full-width">
         <div
           id="contact-feature-image"
           className="col p-0 container image-full-width-container position-relative">

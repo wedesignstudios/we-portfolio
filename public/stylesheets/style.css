@@ -255,7 +255,7 @@ button:hover {
 .list-inline-item-separator:last-child:after {
   content: ''; }
 
-#nav-container {
+#nav-container.nav-homepage {
   left: 0;
   position: absolute;
   right: 0;
@@ -272,11 +272,15 @@ button:hover {
     font-weight: 800;
     letter-spacing: 0.08rem;
     text-transform: uppercase; }
+    #navbar-main .navbar ul li.nav-font-size {
+      font-size: 1rem; }
     #navbar-main .navbar ul li#nav-we-eye-logo a:hover,
     #navbar-main .navbar ul li#nav-we-eye-logo a::after {
       box-shadow: none; }
     #navbar-main .navbar ul li#nav-we-eye-logo img {
-      width: 6.75rem; }
+      width: 3.75rem; }
+      #navbar-main .navbar ul li#nav-we-eye-logo img.nav-logo-home-page {
+        width: 6.75rem; }
     #navbar-main .navbar ul li a {
       color: #FFFFFF;
       text-decoration: none;

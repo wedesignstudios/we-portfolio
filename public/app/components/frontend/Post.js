@@ -31,9 +31,9 @@ class Post extends Component {
   }
 
   render() {
-    let { margin } = this.props;
-    let { postData, dataFetched } = this.state;
-    let meta_description_fallback;
+    let { postData, dataFetched } = this.state,
+        meta_description_fallback;
+
     if(postData.post_content) {
       meta_description_fallback = postData.post_content.replace(/<(?:.|\n)*?>/gm, '');
       if (meta_description_fallback.length > 155) {
@@ -43,8 +43,7 @@ class Post extends Component {
     return (
       <div
         id={`post-${postData.id}`}
-        className="row justify-content-center mx-0"
-        style={{marginTop: margin}} >
+        className="row justify-content-center mx-0">
           {dataFetched ? null : <NotFound />}
           {postData !== '' ? <PostLayout postData={postData} />: null}
         {postData !== '' ?

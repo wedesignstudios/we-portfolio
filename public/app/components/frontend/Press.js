@@ -41,10 +41,9 @@ class Press extends Component {
 
   render() {
     let { newsData, cardMouseEnterId } = this.state;
-    let { margin } = this.props;
 
     return (
-      <div id="press" className="row justify-content-center mx-0" style={{marginTop: margin}} ref="pressRef">
+      <div id="press" className="row justify-content-center mx-0" ref="pressRef">
         <div className="col-sm-10">
           <div className="container-fluid">
             <div className="row justify-content-center">

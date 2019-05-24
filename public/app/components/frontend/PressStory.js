@@ -56,13 +56,12 @@ class PressStory extends Component {
   }
 
   render() {
-    let { newsData, windowWidth } = this.state;
-    let { margin } = this.props;
-    let storyDate = new Date(newsData.date);
+    let { newsData, windowWidth } = this.state,
+        storyDate = new Date(newsData.date);
 
     if(this.state.newsData.length < 1) return null;
     return(
-      <div id="press-story" className="row mx-0" style={{marginTop: margin}}>
+      <div id="press-story" className="row mx-0">
         <div
           id="press-feature-image"
           className="col-12 p-0 d-flex align-items-center feature-image">

@@ -9,6 +9,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
+import classNames from 'classnames';
 import NavAdmin from './NavAdmin';
 import NavBar from './NavBar';
 import PreFooter from './PreFooter';
@@ -34,15 +35,7 @@ class Layout extends Component {
 
     this.navReady = this.navReady.bind(this);
     this.navNotReady = this.navNotReady.bind(this);
-    this.navContainerHeightMargin;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    // Get height of #nav-container
-    if(this.state !== nextState && nextState.navBarReady !== false) {
-      let height = document.getElementById('nav-container').clientHeight;
-      this.navContainerHeightMargin = ((height/16)+1.375)+'rem';
-    }
+    this.navLocation = this.navLocation.bind(this);
   }
 
   navReady(navName) {
@@ -53,27 +46,36 @@ class Layout extends Component {
     this.setState({[navName + 'Ready']: false});
   }
 
+  navLocation(location) {
+    this.setState({navLocation: location});
+  }
+
   render() {
+    let location = this.props.location.pathname,
+        navContainerClass = classNames({
+          'col-12': true,
+          'nav-homepage': this.state.navLocation === '/'
+        })
     return (
       <Router>
         <div className="row m-0 height-100">
           <div className="wrapper col-12 px-0">
           <div className="row mx-0">
-            <div id="nav-container">
+            <div id="nav-container" className={navContainerClass}>
               {this.props.auth ? <NavAdmin navReady={this.navReady} /> : null}
-              <NavBar navReady={this.navReady} navNotReady={this.navNotReady} />
+              <NavBar navReady={this.navReady} navNotReady={this.navNotReady} navLocation={this.navLocation} />
             </div>
             {this.state.navBarReady ?
               <div className="col-12 container-fluid p-0">
                 <Switch>
                   <Route exact path={this.props.match.url} component={Index} />
-                  <Route exact path={`${this.props.match.url}about`} render={props => <About {...props} margin={this.navContainerHeightMargin} />} />
-                  <Route exact path={`${this.props.match.url}press`} render={props => <Press {...props} margin={this.navContainerHeightMargin} />} />
-                  <Route path={`${this.props.match.url}press/:title`} render={props => <PressStory {...props} margin={this.navContainerHeightMargin} />} />
-                  <Route exact path={`${this.props.match.url}work`} render={props => <Work {...props} margin={this.navContainerHeightMargin} />} />
-                  <Route path={`${this.props.match.url}work/:name`} render={props => <WorkProject {...props} margin={this.navContainerHeightMargin} />} />
-                  <Route exact path={`${this.props.match.url}contact`} render={props => <Contact {...props} margin={this.navContainerHeightMargin} />} />
-                  <Route exact path={`${this.props.match.url}:post_name`} render={props => <Post {...props} margin={this.navContainerHeightMargin} />} />
+                  <Route exact path={`${this.props.match.url}about`} render={props => <About {...props} />} />
+                  <Route exact path={`${this.props.match.url}press`} render={props => <Press {...props} />} />
+                  <Route path={`${this.props.match.url}press/:title`} render={props => <PressStory {...props} />} />
+                  <Route exact path={`${this.props.match.url}work`} render={props => <Work {...props} />} />
+                  <Route path={`${this.props.match.url}work/:name`} render={props => <WorkProject {...props} />} />
+                  <Route exact path={`${this.props.match.url}contact`} render={props => <Contact {...props} />} />
+                  <Route exact path={`${this.props.match.url}:post_name`} render={props => <Post {...props} />} />
                   <Route component={NotFound} />
                 </Switch>
               </div>

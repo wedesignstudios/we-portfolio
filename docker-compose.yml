@@ -21,6 +21,8 @@ services:
       # this will overwrite the default node_modules dir in container so it won't conflict with our
       # /opt/node_app/node_modules location. Thanks to PR from @brnluiz
       - notused:/opt/node_app/app/node_modules
+    env_file:
+      - .env
     depends_on:
       - db
       - redis

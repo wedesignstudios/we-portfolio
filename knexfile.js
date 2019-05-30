@@ -24,7 +24,7 @@ module.exports = {
     connection: {
       host: process.env.DATABASE_HOST, // Host is docker-compose service name
       user: process.env.DATABASE_USER,
-      database: 'we_portfolio',
+      database: 'we_portfolio'
     },
     pool: {
       min: 2,

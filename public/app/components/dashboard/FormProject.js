@@ -30,6 +30,7 @@ class FormProject extends React.Component {
       name: '',
       initialName: '',
       date: new Date(),
+      result_statement: '',
       description: '',
       visible: false,
       images_all: [],
@@ -58,6 +59,7 @@ class FormProject extends React.Component {
       users_ids_selected: [],
       nameErr: false,
       dateErr: false,
+      result_statementErr: false,
       descriptionErr: false,
       submitError: '',
       clearModalErrs: false
@@ -66,7 +68,7 @@ class FormProject extends React.Component {
     this.initialFetchComplete = false;
     this.newProject = false;
 
-    this.requiredFields = ['name', 'date', 'description', 'feature_image', 'images_all'];
+    this.requiredFields = ['name', 'date', 'description', 'feature_image', 'result_statement', 'images_all'];
     this.requiredFieldsBlank = true;
     this.noStateChanged = true;
     this.getComponentData = this.getComponentData.bind(this);
@@ -86,6 +88,7 @@ class FormProject extends React.Component {
             name: data.name,
             initialName: data.name,
             date: new Date(data.date),
+            result_statement: data.result_statement || '',
             description: data.description,
             visible: data.visible,
             feature_image: {id: data.feature_image.image.id, url: data.feature_image.image.url}
@@ -385,7 +388,13 @@ class FormProject extends React.Component {
                       Date can not be blank. Please enter a project completed date.
                   </div> :
                 null}
-                {this.state.descriptionErr ?
+                {this.state.result_statementErr ?
+                  <div id="project-description-validation-error"
+                  className="alert alert-danger"
+                  role="alert">
+                    Results statement can not be blank. Please enter a results statement.
+                  </div> :
+                null}{this.state.descriptionErr ?
                   <div id="project-description-validation-error"
                   className="alert alert-danger"
                   role="alert">
@@ -440,6 +449,28 @@ class FormProject extends React.Component {
                     />
                     <div className="input-group-append">
                       {this.state.date ?
+                        <span className="input-group-text text-success background-white border-0 ml-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
+                        <span className="input-group-text text-danger background-white border-0 ml-0">Required</span>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label className="col-sm-2 col-form-label">Results Statement: </label>
+                <div className="col-sm-10">
+                  <div className="input-group">
+                    <textarea
+                        type="textfield"
+                        name="result_statement"
+                        className={this.state.result_statementErr ? 'err form-control' : 'form-control'}
+                        value={this.state.result_statement}
+                        onChange={(e) => FormHandlers.handleOnChange(e, this)}
+                        onFocus={(e) => FormHandlers.preventSpaceKey(e)}
+                        onBlur={(e) => FormValidations.checkField(e, this)} />
+                    <div className="input-group-append">
+                      {this.state.result_statement ?
                         <span className="input-group-text text-success background-white border-0 ml-0"><i className="fas fa-check-circle" aria-hidden="true"></i></span> :
                         <span className="input-group-text text-danger background-white border-0 ml-0">Required</span>
                       }

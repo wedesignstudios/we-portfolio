@@ -91,7 +91,7 @@ router.post('/', isLoggedIn, (req, res, next) => {
   const users_ids = req.body.users_ids;
   const feature_image_id = req.body.feature_image.id;
   const image_sort_order = req.body.image_sort_order;
-  const allowedKeys = ['name', 'date', 'description', 'visible'];
+  const allowedKeys = ['name', 'date', 'result_statement', 'description', 'visible'];
   const formData = params(req.body).only(allowedKeys);
   formData['slug'] = formData.name.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 
@@ -167,6 +167,7 @@ router.post('/preview', isLoggedIn, (req, res, next) => {
   req.session.projectPreview = {
     name: req.body.name,
     date: req.body.date,
+    result_statement: req.body.result_statement,
     description: req.body.description,
     feature_image: {image: req.body.feature_image},
     images: req.body.images_all,
@@ -235,7 +236,7 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
   const users_ids_detach = req.body.users_ids_detach;
   const feature_image_id = req.body.feature_image.id;
   const image_sort_order = req.body.image_sort_order;
-  const allowedKeys = ['name', 'date', 'description', 'visible'];
+  const allowedKeys = ['name', 'date', 'result_statement', 'description', 'visible'];
   const formData = params(req.body).only(allowedKeys);
   formData['slug'] = formData.name.toLowerCase().replace(/[^a-zA-Z0-9 ]/gi, '').replace(/ /gi, '-');
 

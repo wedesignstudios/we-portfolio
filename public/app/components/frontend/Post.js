@@ -49,8 +49,8 @@ class Post extends Component {
         {postData !== '' ?
           <Helmet>
             <title>{postData.post_title}</title>
-            <meta name="description" content={postData.meta_description.meta_description ? postData.meta_description.meta_description : meta_description_fallback} />
-            <meta property="og:description" content={postData.meta_description.meta_description ? postData.meta_description.meta_description : meta_description_fallback} />
+            <meta name="description" content={postData.meta_description ? postData.meta_description : meta_description_fallback} />
+            <meta property="og:description" content={postData.meta_description ? postData.meta_description : meta_description_fallback} />
             <link rel="canonical" href={`https://wedesignstudios.com${this.props.match.url}`} />
             <meta property="og:url" content={`https://wedesignstudios.com${this.props.match.url}`} />
           </Helmet>

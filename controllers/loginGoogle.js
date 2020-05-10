@@ -28,8 +28,8 @@ passport.use(new passportGoogle({
         return cb(null, user);
       })
       .catch((err) => {
-        console.log(err);        
-      });    
+        console.log(err);
+      });
     // return cb(null, profile);
   })
 );

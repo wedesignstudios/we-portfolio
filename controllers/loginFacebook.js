@@ -3,10 +3,7 @@ const passport = require('passport');
 const passportFacebook = require('passport-facebook');
 const router = express.Router();
 const User = require('../models/user');
-const ENV = process.env.NODE_ENV;
-var callbackHost = undefined;
-
-(ENV === 'development') ? (callbackHost = 'http://localhost:3000') : (callbackHost = 'https://wedesignstudios.com');
+const callbackHost = process.env.PASSORT_CALLBACK_URL || 'http://localhost:3000';
 
 passport.use(new passportFacebook({
     clientID: process.env.FACEBOOK_APP_ID,
@@ -14,7 +11,7 @@ passport.use(new passportFacebook({
     callbackURL: `${callbackHost}/login/facebook/callback`,
     profileFields: ['id', 'displayName', 'email']
   },
-  function(accessToken, refreshToken, profile, cb) {    
+  function(accessToken, refreshToken, profile, cb) {
     User
       .forge({username: profile._json.email})
       .fetch({
@@ -28,8 +25,8 @@ passport.use(new passportFacebook({
         return cb(null, user);
       })
       .catch((err) => {
-        console.log(err);        
-      });    
+        console.log(err);
+      });
     })
 );
 

@@ -3,10 +3,7 @@ const passport = require('passport');
 const passportGoogle = require('passport-google-oauth').OAuth2Strategy;
 const router = express.Router();
 const User = require('../models/user');
-const ENV = process.env.NODE_ENV;
-var callbackHost = undefined;
-
-(ENV === 'development') ? (callbackHost = 'http://localhost:3000') : (callbackHost = 'https://wedesignstudios.com');
+const callbackHost = process.env.PASSORT_CALLBACK_URL || 'http://localhost:3000';
 
 passport.use(new passportGoogle({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -28,8 +25,8 @@ passport.use(new passportGoogle({
         return cb(null, user);
       })
       .catch((err) => {
-        console.log(err);        
-      });    
+        console.log(err);
+      });
     // return cb(null, profile);
   })
 );

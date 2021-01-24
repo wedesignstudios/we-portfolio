@@ -90,7 +90,8 @@
   border-left: 0;
 }
 
-.react-datepicker--time-only .react-datepicker__time, .react-datepicker--time-only .react-datepicker__time-box {
+.react-datepicker--time-only .react-datepicker__time,
+.react-datepicker--time-only .react-datepicker__time-box {
   border-bottom-left-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
 }

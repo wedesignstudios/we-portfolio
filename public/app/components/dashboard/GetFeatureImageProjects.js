@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import 'whatwg-fetch';
 import ImageSizePicker from '../../services/image_size_picker';
 
 class GetFeatureImageProjects extends Component {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
-import 'whatwg-fetch';
 import FormHandlers from '../../services/form_handlers';
 // import 'react-select/dist/react-select.css';
 

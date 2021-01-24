@@ -5,7 +5,6 @@ import {
   withRouter
 } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
-import 'whatwg-fetch';
 import ImageSizePicker from '../../services/image_size_picker';
 import FormHandlers from '../../services/form_handlers';
 import DataActions from '../../data/actions';

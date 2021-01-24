@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import 'whatwg-fetch';
 
 class DashboardHome extends Component {
   constructor() {

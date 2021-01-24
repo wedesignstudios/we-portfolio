@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import 'whatwg-fetch';
 import FormValidations from '../../services/form_validations';
 
 class GetCollaborators extends Component {

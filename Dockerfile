@@ -25,8 +25,8 @@ WORKDIR /opt/node_app
 # user who runs the app.
 # https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#non-root-user
 USER node
-COPY package.json package-lock.json* ./
-RUN npm install --omit=optional
+COPY --chown=node:node package.json package-lock.json* ./
+RUN npm install --omit=optional && npm cache clean --force
 ENV PATH /opt/node_app/node_modules/.bin:$PATH
 
 # check every 30s to ensure this service returns HTTP 200

@@ -1,41 +1,40 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const Post = require('../models/wp_post.js');
+const Post = require("../models/wp_post.js");
+const isHiddenPost = require("../middleware/isHiddenPost.js");
 
 // GET all posts
-router.get('/', (req, res) => {
-  Post
-    .collection()
-    .orderBy('post_date')
+router.get("/", (req, res) => {
+  Post.collection()
+    .orderBy("post_date")
     .fetch({
-      debug: true
+      debug: true,
     })
-    .then(posts => {
+    .then((posts) => {
       res.json(posts);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
       res.sendStatus(500);
     });
 });
 
 // SHOW a post by post_name
-router.get('/:post_name', (req, res) => {
-  Post
-    .forge({post_name: req.params.post_name})
+router.get("/:post_name", isHiddenPost, (req, res) => {
+  Post.forge({ post_name: req.params.post_name })
     .fetch({
-      withRelated: ['author', 'meta_description'],
-      debug: true
+      withRelated: ["author", "meta_description"],
+      debug: true,
     })
-    .then(post => {
-      if(post) {
+    .then((post) => {
+      if (post) {
         res.json(post);
       } else {
         res.json(null);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
       res.sendStatus(500);
     });
